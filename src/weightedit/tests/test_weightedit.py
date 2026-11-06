@@ -170,6 +170,19 @@ def test_train_ckpt_same_as_plain():
     assert all(abs(a - b) < 1e-4 for a, b in zip(*outs)), outs
 
 
+def test_grad_checkpoint_with_layer_skip_restores_forward():
+    """Regression: r4s crashed (AssertionError in grad_checkpointed) because skipped layers already had an instance forward."""
+    m = tiny_model()
+    r = Recipe(expert_r=2, steps=2, window=32, batch=2, rank=4).validate(m.config)
+    ad = RouterAdapters(m.config, r)
+    with EditedDraft(m, ad, 2, skip_layers={1}) as e:
+        before = {i: "forward" in L.__dict__ for i, L in enumerate(m.model.layers)}
+        assert before[1]
+        train(m, ad, e, seqs(4, 40, 2), r, log=lambda *_: None, ckpt=True)
+        after = {i: "forward" in L.__dict__ for i, L in enumerate(m.model.layers)}
+        assert before == after
+
+
 def test_duplicate_recipe_skipped(tmp_path):
     m = tiny_model()
     tr, ga = seqs(4, 64, 5), seqs(4, 64, 6)
