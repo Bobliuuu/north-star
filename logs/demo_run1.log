@@ -9,3 +9,158 @@ https://modal.com/apps/<workspace>/main/ap-YQcDqwl0vuA9m4NTXOWz0M
 ├── ✓ Uploaded <home>/north-star/tests
 ├── ✓ Uploaded <home>/north-star/harness
 └── ✓ Created Function demo_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:07, 50.30it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:14, 25.63it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:17, 21.33it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:18, 19.54it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:18, 19.13it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:18, 18.76it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:02<00:18, 18.36it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:03<00:18, 17.77it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:03<00:18, 17.89it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:03<00:18, 17.67it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:04<00:17, 17.88it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:04<00:16, 17.91it/s]
+[1ALoading weights:  24%|██▎       | 93/394 [00:04<00:16, 17.90it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:05<00:16, 18.00it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:05<00:16, 17.82it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:06<00:15, 17.86it/s]
+[1ALoading weights:  30%|██▉       | 117/394 [00:06<00:15, 17.40it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:06<00:15, 17.92it/s]
+[1ALoading weights:  32%|███▏      | 125/394 [00:06<00:14, 18.16it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:07<00:15, 17.17it/s]
+[1ALoading weights:  34%|███▍      | 133/394 [00:07<00:15, 17.08it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:07<00:14, 17.24it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:07<00:14, 17.15it/s]
+[1ALoading weights:  38%|███▊      | 149/394 [00:08<00:14, 17.09it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:08<00:13, 17.43it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:08<00:13, 17.17it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:09<00:12, 17.45it/s]
+[1ALoading weights:  44%|████▍     | 173/394 [00:09<00:12, 17.71it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:09<00:12, 17.45it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:10<00:11, 17.58it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:10<00:11, 17.78it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:11<00:10, 17.86it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:11<00:10, 17.91it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:12<00:09, 17.67it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:12<00:09, 17.66it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:12<00:08, 17.77it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:13<00:08, 18.01it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:13<00:07, 18.10it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:14<00:07, 18.10it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:14<00:06, 18.39it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:15<00:06, 18.40it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:15<00:06, 18.29it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:15<00:05, 18.36it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:16<00:05, 18.49it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:16<00:04, 18.62it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:17<00:04, 18.60it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:17<00:03, 18.54it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:18<00:03, 18.74it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:18<00:02, 18.73it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:18<00:02, 18.73it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:19<00:02, 18.49it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:19<00:01, 18.65it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:20<00:01, 18.66it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:20<00:00, 18.71it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:21<00:00, 18.76it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:21<00:00, 18.66it/s]
+North demo  model=CohereLabs/North-Mini-Code-1.0@d11e61a8  gpu=A100-80GB  source=modal-live  2026-11-06T06:56:20Z
+task=py_lru  prompt_len=164  baseline_spend_prior=$3.73 (22 logged runs)
+----------------------------------------------------------------------------------------------------
+step mode                           tok/s     cum   acc  accC  mem GB   run $  total $  text
+----------------------------------------------------------------------------------------------------
+--- mode switch -> plain ---
+   1 plain                            6.3     6.3   -     -      56.8  0.0359   3.7629  We
+   2 plain                           11.9     8.3   -     -      56.8  0.0359   3.7629   need
+   3 plain                           12.0     9.2   -     -      56.8  0.0360   3.7630   to
+   4 plain                           12.0     9.8   -     -      56.8  0.0361   3.7631   complete
+   5 plain                           12.0    10.2   -     -      56.8  0.0361   3.7631   the
+   6 plain                           12.1    10.4   -     -      56.8  0.0362   3.7632   LRU
+   7 plain                           12.1    10.7   -     -      56.8  0.0362   3.7632  Cache
+   8 plain                           12.0    10.8   -     -      56.8  0.0363   3.7633   class
+   9 plain                           12.1    10.9   -     -      56.8  0.0363   3.7633   with
+  10 plain                           12.0    11.0   -     -      56.8  0.0364   3.7634   O
+  11 plain                           12.3    11.1   -     -      56.8  0.0365   3.7635  (
+  12 plain                           12.3    11.2   -     -      56.8  0.0365   3.7635  1
+  13 plain                           12.2    11.3   -     -      56.8  0.0366   3.7636  )
+  14 plain                           12.2    11.4   -     -      56.8  0.0366   3.7636   get
+  15 plain                           12.3    11.4   -     -      56.8  0.0367   3.7637   and
+  16 plain                           12.2    11.5   -     -      56.8  0.0368   3.7638   put
+  17 plain                           12.3    11.5   -     -      56.8  0.0368   3.7638  .
+  18 plain                           12.2    11.5   -     -      56.8  0.0369   3.7639   The
+  19 plain                           12.4    11.6   -     -      56.8  0.0369   3.7639   problem
+  20 plain                           12.2    11.6   -     -      56.8  0.0370   3.7640   statement
+  21 plain                           12.3    11.6   -     -      56.8  0.0370   3.7640  :
+  22 plain                           12.4    11.7   -     -      56.8  0.0371   3.7641   "
+  23 plain                           12.3    11.7   -     -      56.8  0.0371   3.7641  Complete
+  24 plain                           12.4    11.7   -     -      56.8  0.0372   3.7642   this
+  25 plain                           12.3    11.7   -     -      56.8  0.0373   3.7643   Python
+  26 plain                           12.2    11.8   -     -      56.8  0.0373   3.7643   function
+  27 plain                           12.2    11.8   -     -      56.8  0.0374   3.7644  .
+  28 plain                           12.2    11.8   -     -      56.8  0.0374   3.7644   Output
+  29 plain                           12.0    11.8   -     -      56.8  0.0375   3.7645   only
+  30 plain                           12.0    11.8   -     -      56.8  0.0376   3.7646   code
+  31 plain                           11.9    11.8   -     -      56.8  0.0376   3.7646  ."
+  32 plain                           12.1    11.8   -     -      56.8  0.0377   3.7647   The
+  33 plain                           12.1    11.8   -     -      56.8  0.0377   3.7647   given
+  34 plain                           11.9    11.8   -     -      56.8  0.0378   3.7648   code
+  35 plain                           12.1    11.8   -     -      56.8  0.0378   3.7648   snippet
+  36 plain                           11.9    11.8   -     -      56.8  0.0379   3.7649  :\n\n
+  37 plain                           12.0    11.8   -     -      56.8  0.0380   3.7650  ```
+  38 plain                           12.1    11.9   -     -      56.8  0.0380   3.7650  python
+  39 plain                           11.9    11.9   -     -      56.8  0.0381   3.7651  \n
+  40 plain                           11.9    11.9   -     -      56.8  0.0381   3.7651  from
+  41 plain                           12.0    11.9   -     -      56.8  0.0382   3.7652   collections
+  42 plain                           12.0    11.9   -     -      56.8  0.0383   3.7653   import
+  43 plain                           12.3    11.9   -     -      56.8  0.0383   3.7653   Ordered
+  44 plain                           12.2    11.9   -     -      56.8  0.0384   3.7654  Dict
+  45 plain                           12.2    11.9   -     -      56.8  0.0384   3.7654  \n\n
+  46 plain                           12.4    11.9   -     -      56.8  0.0385   3.7655  class
+  47 plain                           12.3    11.9   -     -      56.8  0.0385   3.7655   LRU
+  48 plain                           12.3    11.9   -     -      56.8  0.0386   3.7656  Cache
+  49 plain                           12.3    11.9   -     -      56.8  0.0386   3.7656  :\n
+  50 plain                           12.3    11.9   -     -      56.8  0.0387   3.7657     
+  51 plain                           12.2    11.9   -     -      56.8  0.0388   3.7658   """
+  52 plain                           12.2    11.9   -     -      56.8  0.0388   3.7658  Fixed
+  53 plain                           12.2    11.9   -     -      56.8  0.0389   3.7659  -capacity
+  54 plain                           12.3    12.0   -     -      56.8  0.0389   3.7659   LRU
+  55 plain                           12.3    12.0   -     -      56.8  0.0390   3.7660   cache
+  56 plain                           12.1    12.0   -     -      56.8  0.0390   3.7660   with
+  57 plain                           12.2    12.0   -     -      56.8  0.0391   3.7661   O
+  58 plain                           12.3    12.0   -     -      56.8  0.0392   3.7662  (
+  59 plain                           12.3    12.0   -     -      56.8  0.0392   3.7662  1
+  60 plain                           12.3    12.0   -     -      56.8  0.0393   3.7663  )
+  61 plain                           12.4    12.0   -     -      56.8  0.0393   3.7663   get
+  62 plain                           12.2    12.0   -     -      56.8  0.0394   3.7664  /
+  63 plain                           12.1    12.0   -     -      56.8  0.0394   3.7664  put
+  64 plain                           12.3    12.0   -     -      56.8  0.0395   3.7665  ."""\n
+----------------------------------------------------------------------------------------------------
+done: 64 tokens in 5.33s gen = 12.0 tok/s committed; peak GPU mem 57.5 GB; this run $0.0395; cumulative optimisation cost $3.7665
+Throughput is single-stream decode on one A100/H100 with the reference executor (not an optimised engine); see RESULTS.md.
+--- mode switch -> selfspec ---
+   1 self-spec g4 [skip8]             2.4     2.4   0/4    0%    56.8  0.0400   3.7670  We
+   2 self-spec g4 [skip8]            13.4     7.6   4/4   50%    56.8  0.0403   3.7673   need to complete the LRU
+   3 self-spec g4 [skip8]            12.9     9.3   4/4   67%    56.8  0.0405   3.7675  Cache class with O(
+   4 self-spec g4 [skip8]            10.2     9.5   3/4   69%    56.8  0.0408   3.7678  1) get and
+   5 self-spec g4 [skip8]            10.5     9.7   3/4   70%    56.8  0.0411   3.7681   put. The problem
+   6 self-spec g4 [skip8]            13.2    10.3   4/4   75%    56.8  0.0413   3.7683   statement: "Complete this
+   7 self-spec g4 [skip8]            12.7    10.6   4/4   79%    56.8  0.0416   3.7686   Python function. Output only
+   8 self-spec g4 [skip8]             7.6    10.3   2/4   75%    56.8  0.0419   3.7689   code." The
+   9 self-spec g4 [skip8]             2.7     9.4   0/4   67%    56.8  0.0422   3.7692   given
+  10 self-spec g4 [skip8]             8.0     9.3   2/4   65%    56.8  0.0424   3.7694   code snippet:\n\n
+  11 self-spec g4 [skip8]            13.2     9.6   4/4   68%    56.8  0.0427   3.7697  ```python\nfrom collections
+  12 self-spec g4 [skip8]            12.9     9.9   4/4   71%    56.8  0.0430   3.7700   import OrderedDict\n\nclass
+  13 self-spec g4 [skip8]            12.7    10.1   4/4   73%    56.8  0.0432   3.7702   LRUCache:\n    """
+  14 self-spec g4 [skip8]            12.7    10.3   4/4   75%    56.8  0.0435   3.7705  Fixed-capacity LRU cache with
+  15 self-spec g4 [skip8]            12.6    10.5   4/4   77%    56.8  0.0438   3.7708   O(1) get
+  16 self-spec g4 [skip8]            12.6    10.6   4/4   78%    56.8  0.0441   3.7711  /put."""\n    def
+----------------------------------------------------------------------------------------------------
+done: 66 tokens in 6.22s gen = 10.6 tok/s committed; peak GPU mem 57.5 GB; this run $0.0441; cumulative optimisation cost $3.7711
+Throughput is single-stream decode on one A100/H100 with the reference executor (not an optimised engine); see RESULTS.md.
+trace saved: demo/traces/20261106T064655Z.jsonl
+[modal-client] 2026-11-06T01:56:44-0500 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-YQcDqwl0vuA9m4NTXOWz0M
