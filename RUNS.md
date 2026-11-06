@@ -13,7 +13,7 @@
 
 | 2026-11-06 | ap-pqB0aAizeEKtPTfQ2sG2JC | `modal run --detach src/approx/modal_sweep.py::main --tag quick1` | approx sweep quick preset (full/attn/expert/combined, 2 prompts, ctx 2K/8K). smoke1 (ap-duOM69y4JrsPm52eVxoci9) finished OK. Log logs/approx_sweep_quick1_client.log |
 
-| 2026-11-06 | $AP | \`modal run --detach modal/draft_sparse.py::main --tag ds4\` | H100 graphed draft-step cost with sparse-attn gather. Earlier tries: ds1 A100 failed (grouped_mm not graph-capturable on A100); ds3 oracle shape bug. Log logs/draft_sparse_ds4_client.log |
+| 2026-11-06 | $AP | `modal run --detach modal/draft_sparse.py::main --tag ds4` | H100 graphed draft-step cost with sparse-attn gather. Earlier tries: ds1 A100 failed (grouped_mm not graph-capturable on A100); ds3 oracle shape bug. Log logs/draft_sparse_ds4_client.log |
 
 ## Self-improve chain heads (external anchor for the unkeyed hash chain)
 
