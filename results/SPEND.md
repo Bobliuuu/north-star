@@ -30,3 +30,5 @@
 | 2026-11-06 01:56 | demo py_lru both | A100-80GB | 578 | 0.40 | wall incl. queue; trace in demo/traces |
 | 20261106T065947Z | kernel tunable sweep sweep1 (build 22s check 156s) | A100-80GB | 285 | 0.198 | True |
 | 20261106T074908Z | kernel tunable sweep combo1 (build 13s check 144s) | A100-80GB | 215 | 0.149 | True |
+| 20261106T072300Z | ctx_batch run2 (ap-ib0aezTWzOUPOaSI9I3RkL) | A100-80GB | 482 | 0.33 | True (mixed cell OOM, rerun as run3) |
+| 20261106T082100Z | ctx_batch run3 mixed (ap-ACwkUWV6NOmw6pSni19K3V, ap-X66dz8pjfyQZaZtcsnE9pU) | A100-80GB | 0 | 0.00 | never scheduled, stopped |

@@ -1,0 +1,20 @@
+[modal-client] 2026-11-06T03:01:28-0500 Warning: Received Status.RESOURCE_EXHAUSTED
+App create rate limit exceeded. Please wait and retry.
+for /modal.client.ModalClient/AppCreate (e5b1814d). Retrying...
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-X66dz8pjfyQZaZtcsnE9pU
+✓ Created objects.
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-ac0725f16db55e763/modal/ctx_
+│   batch.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-ac0725f16db55e763/tests
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-ac0725f16db55e763/src/norths
+│   tar
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-ac0725f16db55e763/harness
+├── ✓ Created Function ctx_batch_remote.
+└── ✓ Created Function ctx_batch2_remote.
