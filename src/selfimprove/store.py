@@ -45,6 +45,19 @@ class Store:
         recs = self.read_log()
         return recs[-1]["hash"] if recs else "0" * 64
 
+    def head_record(self, label: str = "") -> str:
+        """One line to commit to RUNS.md after every round (the external anchor): `selfimprove-head <store> n=<records> head=<hash>`."""
+        n = len(self.read_log())
+        return f"selfimprove-head {label or self.root.name} n={n} head={self.head()}"
+
+    def verify_anchor(self, anchored_head: str, exact: bool = True) -> bool:
+        """Chain verifies AND the externally anchored head matches. exact=True: it must be the CURRENT head (nothing appended/removed
+        since the anchor was committed). exact=False: it may be any earlier record hash in the chain (the log may have grown since);
+        a rewrite or truncation below the anchor still fails."""
+        if not self.verify_log(): return False
+        hs = [r["hash"] for r in self.read_log()] or ["0" * 64]
+        return hs[-1] == anchored_head if exact else anchored_head in hs
+
     def verify_log(self, expected_head: str | None = None) -> bool:
         prev = "0" * 64
         try:
@@ -183,8 +196,31 @@ class Store:
                     if ln.startswith("+") and not ln.startswith("+++"): out["north_lines_added"] += 1
                     elif ln.startswith("-") and not ln.startswith("---"): out["north_lines_removed"] += 1
             else: out["mock_versions"].append(m["version"])
+        out["cumulative_vs_v0000"] = self.cumulative(chain)
         out["any_mock_in_lineage"] = bool(out["mock_versions"])
         out["reportable_as_north_authored"] = bool(out["north_versions"]) and not out["mock_versions"]
+        return out
+
+    def cumulative(self, chain: list[dict] | None = None, extra_tested: int = 0) -> dict:
+        """Cumulative speed gain of CURRENT vs v0000 (compounded per-promotion gains, each measured vs its then-current baseline)
+        with CIs; n_tested = every logged proposal that reached the speed gate (selection-effect widening)."""
+        from .gates import cumulative_gain
+        if chain is None:
+            chain, v = [], self.current()
+            while v:
+                m = self.meta(v); chain.append(m); v = m["parent"]
+            chain.reverse()
+        n_tested = sum(1 for r in self.read_log() if r.get("event") == "proposal" and isinstance((r.get("gates") or {}).get("speed"), dict)
+                       and (r["gates"]["speed"].get("data") or {}))
+        n_tested += extra_tested
+        out = dict(baseline="v0000" if chain else None, n_tested=n_tested,
+                   note="steps compound; CI assumes independent steps; sel_adj_* widens alpha by n_tested proposals that reached the speed gate")
+        for split in ("dev", "heldout"):
+            steps = []
+            for m in chain:
+                d = (((m.get("gates") or {}).get("speed") or {}).get("data") or {}).get(split)
+                if isinstance(d, dict) and all(k in d for k in ("speedup", "ci_lo", "ci_hi")): steps.append(d)
+            out[split] = cumulative_gain(steps, n_tested=n_tested)
         return out
 
     def cost_summary(self) -> dict:

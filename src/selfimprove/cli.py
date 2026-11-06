@@ -6,7 +6,7 @@ from .store import Store
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["run", "rollback", "attribution", "verify-log", "cost"])
+    ap.add_argument("cmd", choices=["run", "rollback", "attribution", "verify-log", "cost", "head"])
     ap.add_argument("--store", default="results/selfimprove")
     ap.add_argument("--rounds", type=int, default=3)
     ap.add_argument("--max-usd", type=float, default=5.0)
@@ -15,15 +15,19 @@ def main(argv=None):
     ap.add_argument("--mode", choices=["structured", "diff"], default="structured", help="proposal mode (structured = JSON tunable edits rendered to a diff by the harness)")
     ap.add_argument("--track", choices=["kernel", "policy"], default="kernel", help="structured-edit module / default config (policy: spec_space.json)")
     ap.add_argument("--to")
+    ap.add_argument("--expected-head", help="verify-log: externally anchored head hash (from RUNS.md); must equal the CURRENT head")
+    ap.add_argument("--allow-newer", action="store_true", help="verify-log --expected-head: the anchor may be any earlier record in the chain")
+    ap.add_argument("--label", default="", help="head: label for the RUNS.md line (default: store dir name)")
     a = ap.parse_args(argv)
     st = Store(Path(a.store))
     if a.cmd == "attribution": print(json.dumps(st.attribution(), indent=1)); return 0
+    if a.cmd == "head": print(st.head_record(a.label)); return 0
     if a.cmd == "verify-log":
-        ok = st.verify_log()
+        ok = st.verify_log() if not a.expected_head else st.verify_anchor(a.expected_head, exact=not a.allow_newer)
         if ok:
             try: st.assert_healthy(allow_pending=True)
             except Exception as e: print(f"STORE INCONSISTENT: {e}"); return 1
-        print("log chain + versions + CURRENT OK" if ok else "LOG TAMPERED"); return 0 if ok else 1
+        print(("log chain + versions + CURRENT OK" + (" + head anchor OK" if a.expected_head else "")) if ok else "LOG TAMPERED OR HEAD ANCHOR MISMATCH"); return 0 if ok else 1
     if a.cmd == "cost": print(json.dumps(st.cost_summary(), indent=1)); return 0
     if a.cmd == "rollback": print(st.rollback(a.to, "cli")); return 0
     import runpy
