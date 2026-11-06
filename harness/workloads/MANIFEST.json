@@ -1,0 +1,11 @@
+{
+ "code.jsonl": "5d5f9877c2ee5741ce21ca0fd2fd872b57c2481da03fbbdffdbafa75e9a8616c",
+ "note": "terminal traces are hand-written synthetic multi-turn snippets, not real agent logs.",
+ "prose.jsonl": "9c7dd2b5ead69e7e97b404c631b50ab80a56c45c5d1349c211d760795dd3d0aa",
+ "split_counts": {
+  "calib": 7,
+  "dev": 8,
+  "heldout": 7
+ },
+ "terminal.jsonl": "d46d602e4cf298d548ed64d8f0031ee97a15816e85b4b52786f9ca8b7c9ebab0"
+}
