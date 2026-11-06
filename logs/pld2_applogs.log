@@ -1,0 +1,23 @@
+
+natural edit_difflib plain 93.5 tok/s; pld3_g4=1.16x pld3_g8=1.16x sam_g4=1.16x sam_g8=1.16x samw_g8=1.18x ngc_g4=1.21x pld2_g4=1.21x
+natural extract_textwrap plain 93.5 tok/s; pld3_g4=1.82x pld3_g8=2.02x sam_g4=1.81x sam_g8=2.05x samw_g8=2.00x ngc_g4=1.79x pld2_g4=1.74x
+natural extract_heapq plain 93.6 tok/s; pld3_g4=1.17x pld3_g8=1.20x sam_g4=1.17x sam_g8=1.19x samw_g8=1.19x ngc_g4=1.16x pld2_g4=1.17x
+natural summ_argparse plain 93.5 tok/s; pld3_g4=1.10x pld3_g8=1.09x sam_g4=1.10x sam_g8=1.09x samw_g8=1.10x ngc_g4=1.17x pld2_g4=1.17x
+natural summ_shutil plain 93.8 tok/s; pld3_g4=1.28x pld3_g8=1.32x sam_g4=1.30x sam_g8=1.32x samw_g8=1.33x ngc_g4=1.35x pld2_g4=1.28x
+ctx2048 graphs captured; cost T=1/4/9/13: [10.71, 13.27, 16.13, 17.37]
+ctx2048 py_lru plain 93.6 tok/s; pld3_g4=1.60x pld3_g8=1.73x sam_g4=1.59x sam_g8=1.73x samw_g8=1.65x ngc_g4=1.60x pld2_g4=1.61x
+ctx2048 py_dataclass plain 93.7 tok/s; pld3_g4=1.31x pld3_g8=1.37x sam_g4=1.31x sam_g8=1.37x samw_g8=1.35x ngc_g4=1.33x pld2_g4=1.30x
+ctx2048 pr_story plain 93.9 tok/s; pld3_g4=1.07x pld3_g8=1.08x sam_g4=1.07x sam_g8=1.08x samw_g8=1.08x ngc_g4=1.06x pld2_g4=1.06x
+ctx2048 term_make plain 93.6 tok/s; pld3_g4=1.06x pld3_g8=1.07x sam_g4=1.06x sam_g8=1.07x samw_g8=1.07x ngc_g4=1.13x pld2_g4=1.15x
+ctx2048 edit_shutil plain 93.6 tok/s; pld3_g4=2.84x pld3_g8=3.73x sam_g4=3.00x sam_g8=4.06x samw_g8=3.96x ngc_g4=2.80x pld2_g4=2.56x
+ctx2048 extract_textwrap plain 93.6 tok/s; pld3_g4=1.18x pld3_g8=1.19x sam_g4=1.18x sam_g8=1.19x samw_g8=1.19x ngc_g4=1.22x pld2_g4=1.23x
+ctx2048 summ_argparse plain 93.6 tok/s; pld3_g4=1.11x pld3_g8=1.11x sam_g4=1.10x sam_g8=1.10x samw_g8=1.12x ngc_g4=1.19x pld2_g4=1.19x
+ctx8192 graphs captured; cost T=1/4/9/13: [11.37, 14.34, 17.9, 19.62]
+ctx8192 py_lru plain 87.8 tok/s; pld3_g4=1.22x pld3_g8=1.27x sam_g4=1.22x sam_g8=1.26x samw_g8=1.24x ngc_g4=1.18x pld2_g4=1.19x
+ctx8192 py_dataclass plain 87.8 tok/s; pld3_g4=1.37x pld3_g8=1.46x sam_g4=1.36x sam_g8=1.44x samw_g8=1.41x ngc_g4=1.25x pld2_g4=1.34x
+ctx8192 pr_story plain 87.8 tok/s; pld3_g4=1.07x pld3_g8=1.08x sam_g4=1.07x sam_g8=1.07x samw_g8=1.07x ngc_g4=1.06x pld2_g4=1.07x
+ctx8192 term_make plain 88.0 tok/s; pld3_g4=1.03x pld3_g8=1.02x sam_g4=1.02x sam_g8=1.02x samw_g8=1.02x ngc_g4=1.00x pld2_g4=1.02x
+ctx8192 edit_shutil plain 88.0 tok/s; pld3_g4=2.78x pld3_g8=3.59x sam_g4=2.90x sam_g8=3.87x samw_g8=3.78x ngc_g4=2.67x pld2_g4=2.51x
+ctx8192 extract_textwrap plain 87.7 tok/s; pld3_g4=1.65x pld3_g8=1.20x sam_g4=1.69x sam_g8=1.19x samw_g8=1.13x ngc_g4=1.69x pld2_g4=1.68x
+ctx8192 summ_argparse plain 87.8 tok/s; pld3_g4=1.13x pld3_g8=1.13x sam_g4=1.13x sam_g8=1.13x samw_g8=1.14x ngc_g4=1.16x pld2_g4=1.19x
+PLD_DONE secs 682.8800177574158 est usd 0.7492711305949423

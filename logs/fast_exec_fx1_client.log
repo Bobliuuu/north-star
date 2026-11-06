@@ -1,0 +1,325 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-GvaDaKNFg6dF9bM9fPwZXn
+✓ Created objects.
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-a0ca33d96a765adf1/modal/fast
+│   _exec.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-a0ca33d96a765adf1/tests
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-a0ca33d96a765adf1/src/norths
+│   tar
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-a0ca33d96a765adf1/harness
+└── ✓ Created Function run_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:07, 48.68it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:15, 24.50it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:18, 20.37it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:19, 18.68it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:19, 18.17it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:19, 17.80it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:19, 17.61it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:03<00:18, 17.82it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:03<00:19, 17.00it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:18, 17.26it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:04<00:17, 17.31it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:04<00:17, 17.36it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:05<00:17, 17.04it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:05<00:16, 17.29it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:06<00:16, 17.32it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:06<00:15, 17.35it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:07<00:15, 17.37it/s]
+[1ALoading weights:  34%|███▍      | 133/394 [00:07<00:14, 17.47it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:07<00:14, 17.32it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:08<00:13, 17.66it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:08<00:13, 17.72it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:09<00:13, 17.59it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:09<00:12, 17.64it/s]
+[1ALoading weights:  44%|████▍     | 173/394 [00:09<00:12, 17.76it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:09<00:12, 17.32it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:10<00:11, 17.56it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:10<00:11, 17.37it/s]
+[1ALoading weights:  50%|█████     | 197/394 [00:11<00:11, 17.09it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:11<00:10, 17.98it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:11<00:10, 17.88it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:12<00:09, 17.75it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:12<00:09, 17.59it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:13<00:08, 17.68it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:13<00:08, 17.67it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:14<00:08, 17.67it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:14<00:07, 17.61it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:14<00:07, 17.73it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:15<00:06, 17.92it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:15<00:06, 17.83it/s]
+[1ALoading weights:  72%|███████▏  | 285/394 [00:15<00:06, 17.39it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:16<00:05, 17.97it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:16<00:05, 18.29it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:17<00:04, 18.41it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:17<00:04, 18.27it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:18<00:03, 18.32it/s]
+[1ALoading weights:  82%|████████▏ | 325/394 [00:18<00:03, 17.82it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:18<00:03, 18.41it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:18<00:02, 18.40it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:19<00:02, 18.34it/s]
+[1ALoading weights:  89%|████████▊ | 349/394 [00:19<00:02, 18.48it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:19<00:02, 17.94it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:20<00:01, 18.10it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:20<00:01, 18.15it/s]
+[1ALoading weights:  95%|█████████▍| 373/394 [00:20<00:01, 18.19it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:21<00:00, 18.10it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:21<00:00, 18.32it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:21<00:00, 18.26it/s]
+/usr/local/lib/python3.12/site-packages/torch/profiler/profiler.py:217: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.
+  _warn_once(
+profile base_ctx2048 kernels/fwd 3196.0 sum kernel ms 10.006
+timing 2048 base 10.725
+timing 2048 attn 8.178
+ERR moe e 120, in capture
+    fn()
+  File "/root/harness/graph_north.py", line 133, in fn
+    lg = self.forward(ids, kv, skip, r, parts, logits, sparse)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/harness/fast_north.py", line 90, in forward
+    x = x + a + m.reshape(self.Dm)
+                ^^^^^^^^^^^^^^^^^^
+RuntimeError: shape '[2048]' is invalid for input of size 16384
+
+ERR router+moe e 120, in capture
+    fn()
+  File "/root/harness/graph_north.py", line 133, in fn
+    lg = self.forward(ids, kv, skip, r, parts, logits, sparse)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/harness/fast_north.py", line 90, in forward
+    x = x + a + m.reshape(self.Dm)
+                ^^^^^^^^^^^^^^^^^^
+RuntimeError: shape '[2048]' is invalid for input of size 16384
+
+timing 2048 router+moe+resid 7.075
+timing 2048 attn+resid 7.404
+timing 2048 all 4.035
+tile 2048 {'BN1': 8, 'BK1': 256, 'BN2': 8, 'BK2': 256} 3.935
+tile 2048 {'BN1': 16, 'BK1': 128, 'BN2': 16, 'BK2': 128} 4.34
+tile 2048 {'BN1': 32, 'BK1': 256, 'BN2': 32, 'BK2': 256, 'nw1': 8, 'nw2': 8} 4.111
+tile 2048 {'BN1': 16, 'BK1': 512, 'BN2': 16, 'BK2': 256, 'nw1': 8, 'nw2': 4} 4.092
+tile 2048 {'BN1': 8, 'BK1': 512, 'BN2': 16, 'BK2': 256, 'nw1': 2, 'nw2': 4} 4.01
+profile fast_all_ctx2048 kernels/fwd 563.75 sum kernel ms 3.854
+timing 8192 base 11.409
+timing 8192 attn 8.307
+ERR moe e 120, in capture
+    fn()
+  File "/root/harness/graph_north.py", line 133, in fn
+    lg = self.forward(ids, kv, skip, r, parts, logits, sparse)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/harness/fast_north.py", line 90, in forward
+    x = x + a + m.reshape(self.Dm)
+                ^^^^^^^^^^^^^^^^^^
+RuntimeError: shape '[2048]' is invalid for input of size 16384
+
+ERR router+moe e 120, in capture
+    fn()
+  File "/root/harness/graph_north.py", line 133, in fn
+    lg = self.forward(ids, kv, skip, r, parts, logits, sparse)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/harness/fast_north.py", line 90, in forward
+    x = x + a + m.reshape(self.Dm)
+                ^^^^^^^^^^^^^^^^^^
+RuntimeError: shape '[2048]' is invalid for input of size 16384
+
+timing 8192 router+moe+resid 7.756
+timing 8192 attn+resid 7.52
+timing 8192 all 4.16
+tile 8192 {'BN1': 8, 'BK1': 256, 'BN2': 8, 'BK2': 256} 4.049
+tile 8192 {'BN1': 16, 'BK1': 128, 'BN2': 16, 'BK2': 128} 4.45
+tile 8192 {'BN1': 32, 'BK1': 256, 'BN2': 32, 'BK2': 256, 'nw1': 8, 'nw2': 8} 4.227
+tile 8192 {'BN1': 16, 'BK1': 512, 'BN2': 16, 'BK2': 256, 'nw1': 8, 'nw2': 4} 4.204
+tile 8192 {'BN1': 8, 'BK1': 512, 'BN2': 16, 'BK2': 256, 'nw1': 2, 'nw2': 4} 4.125
+correct py_lru base div 0 margin 0.000 11.15 ms/tok
+correct py_lru all div 0 margin 0.000 4.07 ms/tok
+correct py_lru attn div 0 margin 0.000 8.40 ms/tok
+correct py_lru router+moe+resid div 0 margin 0.000 7.21 ms/tok
+correct py_interval base div 0 margin 1.625 11.37 ms/tok
+correct py_interval all div 0 margin 1.625 4.07 ms/tok
+correct py_interval attn div 0 margin 1.625 8.42 ms/tok
+correct py_interval router+moe+resid div 0 margin 1.625 7.26 ms/tok
+correct rs_stack base div 0 margin 1.500 11.08 ms/tok
+correct rs_stack all div 0 margin 1.500 4.07 ms/tok
+correct rs_stack attn div 0 margin 1.500 8.46 ms/tok
+correct rs_stack router+moe+resid div 0 margin 1.500 7.12 ms/tok
+correct sh_logs base div 0 margin 2.000 10.94 ms/tok
+correct sh_logs all div 0 margin 2.000 4.06 ms/tok
+correct sh_logs attn div 0 margin 2.000 8.38 ms/tok
+correct sh_logs router+moe+resid div 0 margin 2.000 7.01 ms/tok
+correct term_pytest_fail base div 1 margin 0.125 10.92 ms/tok
+correct term_pytest_fail all div 1 margin 0.125 4.06 ms/tok
+correct term_pytest_fail attn div 1 margin 0.125 8.41 ms/tok
+correct term_pytest_fail router+moe+resid div 1 margin 0.125 7.09 ms/tok
+correct term_git_conflict base div 0 margin 0.000 11.30 ms/tok
+correct term_git_conflict all div 0 margin 0.000 4.06 ms/tok
+correct term_git_conflict attn div 0 margin 0.000 8.40 ms/tok
+correct term_git_conflict router+moe+resid div 0 margin 0.000 7.38 ms/tok
+correct pr_hbm base div 0 margin 3.625 11.28 ms/tok
+correct pr_hbm all div 0 margin 3.625 4.06 ms/tok
+correct pr_hbm attn div 0 margin 3.625 8.41 ms/tok
+correct pr_hbm router+moe+resid div 0 margin 3.625 7.34 ms/tok
+correct pr_tradeoff base div 0 margin 2.125 11.24 ms/tok
+correct pr_tradeoff all div 0 margin 2.125 4.04 ms/tok
+correct pr_tradeoff attn div 0 margin 2.125 8.39 ms/tok
+correct pr_tradeoff router+moe+resid div 0 margin 2.125 7.35 ms/tok
+correct code_ctx2048 base div None  11.22 ms/tok
+correct code_ctx2048 all div 0 margin 1.500 4.17 ms/tok
+correct code_ctx2048 attn div 0 margin 1.500 8.53 ms/tok
+correct code_ctx2048 router+moe+resid div 0 margin 1.500 7.34 ms/tok
+{"kernels_per_forward": 3196.0, "phase": "profile_summary", "sum_kernel_ms": 10.005606500000226, "tag": "base_ctx2048"}
+{"count_per_fwd": 96.0, "kernel": "_ZN7cutlass13device_kernelIN2at4cuda6detail25enable_3x_kernel_for_sm9xINS_4gemm6kernel13GemmUniversalINS5_17Gr", "ms_per_fwd": 2.342803250000042, "pct": 23.414904933548897, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 98.0, "kernel": "nvjet_tst_8x64_64x16_4x1_v_bz_TNN", "ms_per_fwd": 0.5341877499999781, "pct": 5.338884254542351, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 148.0, "kernel": "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl<at::native::BinaryFunctor<float, float", "ms_per_fwd": 0.4415792499999558, "pct": 4.413318173165672, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 51.0, "kernel": "nvjet_tst_64x8_64x16_4x1_v_bz_TNT", "ms_per_fwd": 0.42718099999998105, "pct": 4.26941635172212, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 50.0, "kernel": "nvjet_tst_64x8_64x16_4x1_v_bz_splitK_TNT", "ms_per_fwd": 0.41998475000002633, "pct": 4.197494174891016, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "nvjet_tst_512x8_64x3_2x1_v_bz_TNT", "ms_per_fwd": 0.37022525000001044, "pct": 3.700177995207008, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 125.0, "kernel": "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{la", "ms_per_fwd": 0.3175910000000542, "pct": 3.1741304237783785, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 49.0, "kernel": "nvjet_tst_64x8_64x16_2x1_v_bz_NNT", "ms_per_fwd": 0.2641152500000271, "pct": 2.6396725675752, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at::native::sbtopk::gatherTopK<c10::BFloat16, unsigned int, 1, false>(at::cuda::detail::TensorInfo<c10::B", "ms_per_fwd": 0.24824299999996652, "pct": 2.4810390054811857, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 98.0, "kernel": "void at::native::index_elementwise_kernel<128, 4, at::native::index_copy_kernel_impl<at::native::OpaqueType<2>", "ms_per_fwd": 0.24163075000005757, "pct": 2.4149535562891877, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 96.0, "kernel": "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<c10::", "ms_per_fwd": 0.24153400000000147, "pct": 2.4139865984135596, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "nvjet_tst_64x8_64x16_2x1_v_bz_TNT", "ms_per_fwd": 0.23966200000000232, "pct": 2.3952770879006375, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at::native::reduce_kernel<128, 4, at::native::ReduceOp<c10::BFloat16, at::native::func_wrapper_t<c10::BFl", "ms_per_fwd": 0.23816650000000072, "pct": 2.3803304677232244, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at::native::bitonicSortKVInPlace<-2, -1, 16, 16, c10::BFloat16, long, at::native::GTOp<c10::BFloat16, tru", "ms_per_fwd": 0.21555574999998475, "pct": 2.1543496638607555, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 193.0, "kernel": "Memcpy DtoD (Device -> Device)", "ms_per_fwd": 0.20952700000001823, "pct": 2.09409594510851, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 149.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_", "ms_per_fwd": 0.20771099999996215, "pct": 2.075946120806944, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 175.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::bfloat16_copy_kernel_cuda(at::TensorIteratorBase", "ms_per_fwd": 0.20620300000006125, "pct": 2.0608745706725182, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at::native::bitonicSortKVInPlace<-2, -1, 16, 16, long, long, at::native::LTOp<long, true>, unsigned int>(", "ms_per_fwd": 0.17552925000006916, "pct": 1.7543089466896902, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 49.0, "kernel": "nvjet_tss_64x8_64x16_1x1_v_bz_TNT", "ms_per_fwd": 0.17548175000000868, "pct": 1.7538342128486135, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 96.0, "kernel": "void at::cuda::detail::prepare_grouped_gemm_data<cutlass::bfloat16_t, cutlass::bfloat16_t, cutlass::bfloat16_t", "ms_per_fwd": 0.1642094999999439, "pct": 1.6411748753055615, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 96.0, "kernel": "void at::native::vectorized_gather_kernel<16, long>(char*, char*, long*, int, long, long, long, long, bool)", "ms_per_fwd": 0.13870299999995428, "pct": 1.3862527973686667, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 49.0, "kernel": "void at::native::(anonymous namespace)::cunn_SoftMaxForwardReg<float, float, float, at::native::(anonymous nam", "ms_per_fwd": 0.13619250000000444, "pct": 1.3611618646006252, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 98.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::CUDAFunctor_add<c10::BFloat16>, std::array<char*", "ms_per_fwd": 0.1238625000000228, "pct": 1.2379309540108339, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::native::(anonymous namespac", "ms_per_fwd": 0.11958899999999222, "pct": 1.1952198999629808, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 50.0, "kernel": "void at::native::reduce_kernel<512, 1, at::native::ReduceOp<float, at::native::MeanOps<float, float, float, fl", "ms_per_fwd": 0.11894399999999325, "pct": 1.188773514129209, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 74.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::neg_kernel_cuda(at:", "ms_per_fwd": 0.10531599999999548, "pct": 1.0525698766985598, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 49.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::bitwise_not_kernel_cuda(at::TensorIteratorBase&)", "ms_per_fwd": 0.1021885000000077, "pct": 1.0213124012023198, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 49.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::(anonymous namespac", "ms_per_fwd": 0.09865800000000309, "pct": 0.9860271838593778, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at::native::index_elementwise_kernel<128, 4, at::native::gpu_index_kernel<at::native::index_put_kernel_im", "ms_per_fwd": 0.09778599999997914, "pct": 0.9773120699877306, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at::native::index_elementwise_kernel<128, 4, at::native::gpu_index_kernel<at::native::index_kernel_impl<a", "ms_per_fwd": 0.09618799999999464, "pct": 0.9613410241547322, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 97.0, "kernel": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&,", "ms_per_fwd": 0.0929769999999715, "pct": 0.9292490165385716, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at_cuda_detail::cub::DeviceScanKernel<at_cuda_detail::cub::DeviceScanPolicy<int, std::plus<int> >::Policy", "ms_per_fwd": 0.09114075000000389, "pct": 0.9108968057058993, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 74.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctor_add<float>, std::array<char*, 3ul> >", "ms_per_fwd": 0.08880924999998456, "pct": 0.8875948699359959, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 50.0, "kernel": "void cublasLt::splitKreduce_kernel<32, 16, int, float, __nv_bfloat16, float, __nv_bfloat16, false, float, __nv", "ms_per_fwd": 0.08770775000003198, "pct": 0.8765860420358326, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 51.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float", "ms_per_fwd": 0.08349974999999397, "pct": 0.8345296209679252, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at::native::vectorized_elementwise_kernel<2, at::native::BUnaryFunctor<long, long, long, at::native::bina", "ms_per_fwd": 0.08072999999998978, "pct": 0.8068476408700258, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at::cuda::kernelHistogram1D<int, int, long, 1, 2, -1, (at::cuda::CUDAHistogramMemoryType)0, at::cuda::CUD", "ms_per_fwd": 0.07921125000001064, "pct": 0.7916686509709217, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::sigmoid_kernel_cuda(at::TensorIteratorBase&)::{l", "ms_per_fwd": 0.07213750000000106, "pct": 0.7209707877278546, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 51.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::BinaryFunctor<c10::BFloat16, c10::BFloat16, c10:", "ms_per_fwd": 0.06942924999996843, "pct": 0.6939034630231247, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 50.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::rsqrt_kernel_cuda(at::TensorIteratorBase&)::{lam", "ms_per_fwd": 0.06734725000000946, "pct": 0.6730951292158844, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 50.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<float>, std::array<char*, ", "ms_per_fwd": 0.06724775000003763, "pct": 0.6721006867503345, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{la", "ms_per_fwd": 0.06636275000003321, "pct": 0.6632556457225427, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 51.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<float, float, float, at::native::b", "ms_per_fwd": 0.06610600000000415, "pct": 0.6606895843845413, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 50.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::pow_tensor_scalar_kernel_", "ms_per_fwd": 0.055270500000043965, "pct": 0.55239529957572, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<int>, std::array<char*, 1ul> >(int, ", "ms_per_fwd": 0.047706249999964256, "pct": 0.4767951847792853, "phase": "profile_kernel", "tag": "base_ctx2048"}
+{"config": "base", "ctx": 2048, "graph_ms": 10.725152015686035, "ms_max": 11.57049560546875, "ms_min": 10.705056190490723, "phase": "fast_timing"}
+{"config": "attn", "ctx": 2048, "graph_ms": 8.178256034851074, "ms_max": 8.485247611999512, "ms_min": 8.133503913879395, "phase": "fast_timing"}
+{"config": "moe", "ctx": 2048, "err": "Traceback (most recent call last):\n  File \"/root/harness/bench_fast.py\", line 70, in timing\n    s = gnx.make_step(1, kv); s.set([ids[-1]], P - 1)\n        ^^^^^^^^^^^^^^^^^^^^\n  File \"/root/harness/graph_north.py\", line 136, in make_step\n    g, out = self.capture(fn)\n             ^^^^^^^^^^^^^^^^\n  File \"/root/harness/graph_north.py\", line 120, in capture\n    fn()\n  File \"/root/harness/graph_north.py\", line 133, in fn\n    lg = self.forward(ids, kv, skip, r, parts, logits, sparse)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/harness/fast_north.py\", line 90, in forward\n    x = x + a + m.reshape(self.Dm)\n                ^^^^^^^^^^^^^^^^^^\nRuntimeError: shape '[2048]' is invalid for input of size 16384\n", "phase": "fast_timing_error"}
+{"config": "router+moe", "ctx": 2048, "err": "Traceback (most recent call last):\n  File \"/root/harness/bench_fast.py\", line 70, in timing\n    s = gnx.make_step(1, kv); s.set([ids[-1]], P - 1)\n        ^^^^^^^^^^^^^^^^^^^^\n  File \"/root/harness/graph_north.py\", line 136, in make_step\n    g, out = self.capture(fn)\n             ^^^^^^^^^^^^^^^^\n  File \"/root/harness/graph_north.py\", line 120, in capture\n    fn()\n  File \"/root/harness/graph_north.py\", line 133, in fn\n    lg = self.forward(ids, kv, skip, r, parts, logits, sparse)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/harness/fast_north.py\", line 90, in forward\n    x = x + a + m.reshape(self.Dm)\n                ^^^^^^^^^^^^^^^^^^\nRuntimeError: shape '[2048]' is invalid for input of size 16384\n", "phase": "fast_timing_error"}
+{"config": "router+moe+resid", "ctx": 2048, "graph_ms": 7.075119972229004, "ms_max": 7.298079967498779, "ms_min": 7.053376197814941, "phase": "fast_timing"}
+{"config": "attn+resid", "ctx": 2048, "graph_ms": 7.40391993522644, "ms_max": 7.6216959953308105, "ms_min": 7.361248016357422, "phase": "fast_timing"}
+{"config": "all", "ctx": 2048, "graph_ms": 4.034976005554199, "ms_max": 4.065728187561035, "ms_min": 4.0272321701049805, "phase": "fast_timing"}
+{"ctx": 2048, "graph_ms": 3.9348798990249634, "kcfg": "{'BN1': 8, 'BK1': 256, 'BN2': 8, 'BK2': 256}", "phase": "fast_tile_sweep"}
+{"ctx": 2048, "graph_ms": 4.33950400352478, "kcfg": "{'BN1': 16, 'BK1': 128, 'BN2': 16, 'BK2': 128}", "phase": "fast_tile_sweep"}
+{"ctx": 2048, "graph_ms": 4.110624074935913, "kcfg": "{'BN1': 32, 'BK1': 256, 'BN2': 32, 'BK2': 256, 'nw1': 8, 'nw2': 8}", "phase": "fast_tile_sweep"}
+{"ctx": 2048, "graph_ms": 4.091808080673218, "kcfg": "{'BN1': 16, 'BK1': 512, 'BN2': 16, 'BK2': 256, 'nw1': 8, 'nw2': 4}", "phase": "fast_tile_sweep"}
+{"ctx": 2048, "graph_ms": 4.01039981842041, "kcfg": "{'BN1': 8, 'BK1': 512, 'BN2': 16, 'BK2': 256, 'nw1': 2, 'nw2': 4}", "phase": "fast_tile_sweep"}
+{"kernels_per_forward": 563.75, "phase": "profile_summary", "sum_kernel_ms": 3.8538077500000294, "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "_gateup_kernel", "ms_per_fwd": 1.0472427500000003, "pct": 27.17423436599795, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "_down_kernel", "ms_per_fwd": 0.4986214999999878, "pct": 12.93841136730248, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 51.0, "kernel": "nvjet_tst_64x8_64x16_4x1_v_bz_TNT", "ms_per_fwd": 0.48330125000000285, "pct": 12.540875968709107, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 50.0, "kernel": "nvjet_tst_64x8_64x16_4x1_v_bz_splitK_TNT", "ms_per_fwd": 0.41503724999999836, "pct": 10.769536959906606, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "nvjet_tst_512x8_64x3_2x1_v_bz_TNT", "ms_per_fwd": 0.3714302499999985, "pct": 9.638006722052902, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "nvjet_tst_64x8_64x16_2x1_v_bz_TNT", "ms_per_fwd": 0.2357190000000088, "pct": 6.116522029413818, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 49.0, "kernel": "_attn_split_kernel", "ms_per_fwd": 0.2170162500000042, "pct": 5.631216295104564, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 49.0, "kernel": "_rope_write_kernel", "ms_per_fwd": 0.14127975000000437, "pct": 3.6659781484949083, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 49.0, "kernel": "_resid_norm_kernel", "ms_per_fwd": 0.11968800000000113, "pct": 3.105707595299745, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 49.0, "kernel": "_attn_combine_kernel", "ms_per_fwd": 0.10499150000000543, "pct": 2.7243574877341667, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 48.0, "kernel": "_topk_kernel", "ms_per_fwd": 0.09715125000000467, "pct": 2.5209158396654305, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 50.0, "kernel": "void cublasLt::splitKreduce_kernel<32, 16, int, float, __nv_bfloat16, float, __nv_bfloat16, false, float, __nv", "ms_per_fwd": 0.08779925000001015, "pct": 2.278246754784524, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 2.0, "kernel": "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{la", "ms_per_fwd": 0.004416000000000565, "pct": 0.11458796822442768, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 3.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::bfloat16_copy_kernel_cuda(at::TensorIteratorBase", "ms_per_fwd": 0.0033759999999984983, "pct": 0.08760167135992895, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 2.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float", "ms_per_fwd": 0.0029600000000006618, "pct": 0.07680715261420705, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 2.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::BinaryFunctor<c10::BFloat16, c10::BFloat16, c10:", "ms_per_fwd": 0.002352000000000487, "pct": 0.061030548293450004, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 2.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<float, float, float, at::native::b", "ms_per_fwd": 0.002312249999999949, "pct": 0.0599991008892421, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "void at::native::reduce_kernel<512, 1, at::native::ReduceOp<float, at::native::MeanOps<float, float, float, fl", "ms_per_fwd": 0.002304249999999911, "pct": 0.05979151399028386, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "void at::native::(anonymous namespace)::indexSelectSmallIndex<c10::BFloat16, long, unsigned int, 2, 2, -2>(at:", "ms_per_fwd": 0.0021760000000003287, "pct": 0.05646363651638596, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::cos_kernel_cuda(at::TensorIteratorBase&)::{lambd", "ms_per_fwd": 0.0018800000000000522, "pct": 0.048782921254959796, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::sin_kernel_cuda(at::TensorIteratorBase&)::{lambd", "ms_per_fwd": 0.0018640000000002602, "pct": 0.04836774745705065, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::AUnaryFunctor<c10::BFloat16, c10::BFloat16, c10:", "ms_per_fwd": 0.001664000000001579, "pct": 0.043178074983153125, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::(anonymous namespace)::silu_kernel(at::TensorIte", "ms_per_fwd": 0.0015922499999988986, "pct": 0.04131627998306056, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<2, at::native::CUDAFunctor_add<long>, std::array<char*, 3ul> >(", "ms_per_fwd": 0.0014882500000003916, "pct": 0.03861765029665479, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::rsqrt_kernel_cuda(at::TensorIteratorBase&)::{lam", "ms_per_fwd": 0.0012240000000000464, "pct": 0.03176079554046351, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_", "ms_per_fwd": 0.0011922500000002287, "pct": 0.030936935035231573, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<float>, std::array<char*, ", "ms_per_fwd": 0.0011360000000002514, "pct": 0.02947733965193886, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::pow_tensor_scalar_kernel_", "ms_per_fwd": 0.0010722499999999968, "pct": 0.027823131550866506, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 1.0, "kernel": "Memset (Device)", "ms_per_fwd": 0.0007840000000005603, "pct": 0.020343516097826995, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"count_per_fwd": 0.75, "kernel": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scalar const&,", "ms_per_fwd": 0.0007362499999999273, "pct": 0.019104481794659362, "phase": "profile_kernel", "tag": "fast_all_ctx2048"}
+{"config": "base", "ctx": 8192, "graph_ms": 11.409088134765625, "ms_max": 11.957280158996582, "ms_min": 11.362688064575195, "phase": "fast_timing"}
+{"config": "attn", "ctx": 8192, "graph_ms": 8.307119846343994, "ms_max": 8.606335639953613, "ms_min": 8.263296127319336, "phase": "fast_timing"}
+{"config": "moe", "ctx": 8192, "err": "Traceback (most recent call last):\n  File \"/root/harness/bench_fast.py\", line 70, in timing\n    s = gnx.make_step(1, kv); s.set([ids[-1]], P - 1)\n        ^^^^^^^^^^^^^^^^^^^^\n  File \"/root/harness/graph_north.py\", line 136, in make_step\n    g, out = self.capture(fn)\n             ^^^^^^^^^^^^^^^^\n  File \"/root/harness/graph_north.py\", line 120, in capture\n    fn()\n  File \"/root/harness/graph_north.py\", line 133, in fn\n    lg = self.forward(ids, kv, skip, r, parts, logits, sparse)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/harness/fast_north.py\", line 90, in forward\n    x = x + a + m.reshape(self.Dm)\n                ^^^^^^^^^^^^^^^^^^\nRuntimeError: shape '[2048]' is invalid for input of size 16384\n", "phase": "fast_timing_error"}
+{"config": "router+moe", "ctx": 8192, "err": "Traceback (most recent call last):\n  File \"/root/harness/bench_fast.py\", line 70, in timing\n    s = gnx.make_step(1, kv); s.set([ids[-1]], P - 1)\n        ^^^^^^^^^^^^^^^^^^^^\n  File \"/root/harness/graph_north.py\", line 136, in make_step\n    g, out = self.capture(fn)\n             ^^^^^^^^^^^^^^^^\n  File \"/root/harness/graph_north.py\", line 120, in capture\n    fn()\n  File \"/root/harness/graph_north.py\", line 133, in fn\n    lg = self.forward(ids, kv, skip, r, parts, logits, sparse)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/harness/fast_north.py\", line 90, in forward\n    x = x + a + m.reshape(self.Dm)\n                ^^^^^^^^^^^^^^^^^^\nRuntimeError: shape '[2048]' is invalid for input of size 16384\n", "phase": "fast_timing_error"}
+{"config": "router+moe+resid", "ctx": 8192, "graph_ms": 7.756255865097046, "ms_max": 7.966623783111572, "ms_min": 7.733920097351074, "phase": "fast_timing"}
+{"config": "attn+resid", "ctx": 8192, "graph_ms": 7.519823789596558, "ms_max": 7.796895980834961, "ms_min": 7.507840156555176, "phase": "fast_timing"}
+{"config": "all", "ctx": 8192, "graph_ms": 4.1599040031433105, "ms_max": 4.201119899749756, "ms_min": 4.145279884338379, "phase": "fast_timing"}
+{"ctx": 8192, "graph_ms": 4.0486719608306885, "kcfg": "{'BN1': 8, 'BK1': 256, 'BN2': 8, 'BK2': 256}", "phase": "fast_tile_sweep"}
+{"ctx": 8192, "graph_ms": 4.450128078460693, "kcfg": "{'BN1': 16, 'BK1': 128, 'BN2': 16, 'BK2': 128}", "phase": "fast_tile_sweep"}
+{"ctx": 8192, "graph_ms": 4.2267680168151855, "kcfg": "{'BN1': 32, 'BK1': 256, 'BN2': 32, 'BK2': 256, 'nw1': 8, 'nw2': 8}", "phase": "fast_tile_sweep"}
+{"ctx": 8192, "graph_ms": 4.203792095184326, "kcfg": "{'BN1': 16, 'BK1': 512, 'BN2': 16, 'BK2': 256, 'nw1': 8, 'nw2': 4}", "phase": "fast_tile_sweep"}
+{"ctx": 8192, "graph_ms": 4.124624013900757, "kcfg": "{'BN1': 8, 'BK1': 512, 'BN2': 16, 'BK2': 256, 'nw1': 2, 'nw2': 4}", "phase": "fast_tile_sweep"}
+{"config": "base", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 11.153656770833464, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 164, "ref_margin_at_div": 0.0, "task": "py_lru"}
+{"config": "all", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 4.07004152083316, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 164, "ref_margin_at_div": 0.0, "task": "py_lru"}
+{"config": "attn", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 8.395858708333334, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 164, "ref_margin_at_div": 0.0, "task": "py_lru"}
+{"config": "router+moe+resid", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 7.212045833333273, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 164, "ref_margin_at_div": 0.0, "task": "py_lru"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "py_lru"}
+{"config": "base", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 11.37437895833345, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 162, "ref_margin_at_div": 1.625, "task": "py_interval"}
+{"config": "all", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 4.0692089999998515, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 162, "ref_margin_at_div": 1.625, "task": "py_interval"}
+{"config": "attn", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 8.420392729166615, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 162, "ref_margin_at_div": 1.625, "task": "py_interval"}
+{"config": "router+moe+resid", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 7.264937395833411, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 162, "ref_margin_at_div": 1.625, "task": "py_interval"}
+{"all_vs_base_first_div": 1, "phase": "fast_correct_vs_base", "task": "py_interval"}
+{"config": "base", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 11.078787208333255, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 168, "ref_margin_at_div": 1.5, "task": "rs_stack"}
+{"config": "all", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 4.071272166666695, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 168, "ref_margin_at_div": 1.5, "task": "rs_stack"}
+{"config": "attn", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 8.459864354166827, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 168, "ref_margin_at_div": 1.5, "task": "rs_stack"}
+{"config": "router+moe+resid", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 7.119807666666607, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 168, "ref_margin_at_div": 1.5, "task": "rs_stack"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "rs_stack"}
+{"config": "base", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 10.938217124999797, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 160, "ref_margin_at_div": 2.0, "task": "sh_logs"}
+{"config": "all", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 4.057247520833289, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 160, "ref_margin_at_div": 2.0, "task": "sh_logs"}
+{"config": "attn", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 8.381800187499936, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 160, "ref_margin_at_div": 2.0, "task": "sh_logs"}
+{"config": "router+moe+resid", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 7.014308562500145, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 160, "ref_margin_at_div": 2.0, "task": "sh_logs"}
+{"all_vs_base_first_div": 30, "phase": "fast_correct_vs_base", "task": "sh_logs"}
+{"config": "base", "first_div_vs_ref": 1, "host_loop_ms_per_tok": 10.920149520833236, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 232, "ref_margin_at_div": 0.125, "task": "term_pytest_fail"}
+{"config": "all", "first_div_vs_ref": 1, "host_loop_ms_per_tok": 4.058355250000052, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 232, "ref_margin_at_div": 0.125, "task": "term_pytest_fail"}
+{"config": "attn", "first_div_vs_ref": 1, "host_loop_ms_per_tok": 8.405794333333402, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 232, "ref_margin_at_div": 0.125, "task": "term_pytest_fail"}
+{"config": "router+moe+resid", "first_div_vs_ref": 1, "host_loop_ms_per_tok": 7.090344291666699, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 232, "ref_margin_at_div": 0.125, "task": "term_pytest_fail"}
+{"all_vs_base_first_div": 30, "phase": "fast_correct_vs_base", "task": "term_pytest_fail"}
+{"config": "base", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 11.29504312500007, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 175, "ref_margin_at_div": 0.0, "task": "term_git_conflict"}
+{"config": "all", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 4.060461416666605, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 175, "ref_margin_at_div": 0.0, "task": "term_git_conflict"}
+{"config": "attn", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 8.398387187500115, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 175, "ref_margin_at_div": 0.0, "task": "term_git_conflict"}
+{"config": "router+moe+resid", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 7.377112812500049, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 175, "ref_margin_at_div": 0.0, "task": "term_git_conflict"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "term_git_conflict"}
+{"config": "base", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 11.283524520833291, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 147, "ref_margin_at_div": 3.625, "task": "pr_hbm"}
+{"config": "all", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 4.055820375000074, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 147, "ref_margin_at_div": 3.625, "task": "pr_hbm"}
+{"config": "attn", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 8.406165895833281, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 147, "ref_margin_at_div": 3.625, "task": "pr_hbm"}
+{"config": "router+moe+resid", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 7.337220062500076, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 147, "ref_margin_at_div": 3.625, "task": "pr_hbm"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "pr_hbm"}
+{"config": "base", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 11.241038854166755, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 133, "ref_margin_at_div": 2.125, "task": "pr_tradeoff"}
+{"config": "all", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 4.044851770833506, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 133, "ref_margin_at_div": 2.125, "task": "pr_tradeoff"}
+{"config": "attn", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 8.387284687500163, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 133, "ref_margin_at_div": 2.125, "task": "pr_tradeoff"}
+{"config": "router+moe+resid", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 7.354857395833451, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 133, "ref_margin_at_div": 2.125, "task": "pr_tradeoff"}
+{"all_vs_base_first_div": 38, "phase": "fast_correct_vs_base", "task": "pr_tradeoff"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 11.220396312499936, "identical_to_ref": true, "n": 32, "phase": "fast_correct", "prompt_len": 2048, "ref_margin_at_div": null, "task": "code_ctx2048"}
+{"config": "all", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 4.1650775624999525, "identical_to_ref": false, "n": 32, "phase": "fast_correct", "prompt_len": 2048, "ref_margin_at_div": 1.5, "task": "code_ctx2048"}
+{"config": "attn", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 8.529108749999903, "identical_to_ref": false, "n": 32, "phase": "fast_correct", "prompt_len": 2048, "ref_margin_at_div": 1.5, "task": "code_ctx2048"}
+{"config": "router+moe+resid", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 7.337230437500342, "identical_to_ref": false, "n": 32, "phase": "fast_correct", "prompt_len": 2048, "ref_margin_at_div": 1.5, "task": "code_ctx2048"}
+{"all_vs_base_first_div": 0, "phase": "fast_correct_vs_base", "task": "code_ctx2048"}
+
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-GvaDaKNFg6dF9bM9fPwZXn

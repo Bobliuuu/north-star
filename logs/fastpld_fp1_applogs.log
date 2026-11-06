@@ -1,0 +1,51 @@
+val term_git_conflict 3 fast-hf 1.301 base-hf 1.204 fast-base 0.588 agree 3/3 (base 3) []
+val term_git_conflict 5 fast-hf 1.750 base-hf 1.391 fast-base 1.394 agree 5/5 (base 5) []
+val term_git_conflict 8 fast-hf 3.125 base-hf 3.125 fast-base 2.133 agree 8/8 (base 8) []
+val term_git_conflict 13 fast-hf 3.125 base-hf 3.125 fast-base 2.594 agree 13/13 (base 13) []
+val pr_hbm 2 fast-hf 0.986 base-hf 0.979 fast-base 0.570 agree 2/2 (base 2) []
+val pr_hbm 3 fast-hf 0.986 base-hf 0.979 fast-base 0.570 agree 3/3 (base 3) []
+val pr_hbm 5 fast-hf 0.986 base-hf 0.979 fast-base 0.562 agree 5/5 (base 5) []
+val pr_hbm 8 fast-hf 1.219 base-hf 0.979 fast-base 1.156 agree 8/8 (base 8) []
+val pr_hbm 13 fast-hf 2.766 base-hf 2.094 fast-base 2.641 agree 13/13 (base 13) []
+val pr_tradeoff 2 fast-hf 0.812 base-hf 0.689 fast-base 0.688 agree 2/2 (base 2) []
+val pr_tradeoff 3 fast-hf 0.812 base-hf 0.891 fast-base 0.836 agree 3/3 (base 3) []
+val pr_tradeoff 5 fast-hf 0.938 base-hf 0.891 fast-base 0.852 agree 5/5 (base 5) []
+val pr_tradeoff 8 fast-hf 0.938 base-hf 1.906 fast-base 2.000 agree 8/8 (base 8) []
+val pr_tradeoff 13 fast-hf 1.250 base-hf 1.906 fast-base 2.000 agree 13/13 (base 13) []
+val code_ctx2048 2 fast-hf 1.441 base-hf 1.629 fast-base 1.867 agree 2/2 (base 2) []
+val code_ctx2048 3 fast-hf 1.441 base-hf 1.629 fast-base 1.867 agree 3/3 (base 3) []
+val code_ctx2048 5 fast-hf 1.938 base-hf 1.629 fast-base 2.037 agree 5/5 (base 5) []
+val code_ctx2048 8 fast-hf 1.938 base-hf 1.629 fast-base 2.037 agree 8/8 (base 8) []
+val code_ctx2048 13 fast-hf 3.625 base-hf 3.219 fast-base 4.125 agree 13/13 (base 13) []
+val code_ctx8192 2 fast-hf 1.422 base-hf 1.219 fast-base 0.763 agree 2/2 (base 2) []
+val code_ctx8192 3 fast-hf 1.422 base-hf 1.219 fast-base 0.763 agree 3/3 (base 3) []
+val code_ctx8192 5 fast-hf 1.586 base-hf 1.438 fast-base 0.859 agree 5/5 (base 5) []
+val code_ctx8192 8 fast-hf 1.688 base-hf 1.750 fast-base 0.859 agree 8/8 (base 8) []
+val code_ctx8192 13 fast-hf 4.750 base-hf 3.062 fast-base 3.031 agree 13/13 (base 13) []
+cost 2048 1 3.921
+cost 2048 2 4.876
+cost 2048 3 5.79
+cost 2048 4 5.972
+cost 2048 5 6.486
+cost 2048 6 7.049
+cost 2048 7 7.999
+cost 2048 8 8.233
+cost 2048 9 8.641
+cost 2048 10 8.843
+cost 2048 11 9.044
+cost 2048 12 9.152
+cost 2048 13 9.311
+cost 8192 1 4.046
+cost 8192 2 4.961
+cost 8192 3 5.905
+cost 8192 4 6.146
+cost 8192 5 6.763
+cost 8192 6 7.265
+cost 8192 7 8.283
+cost 8192 8 8.474
+cost 8192 9 8.842
+cost 8192 10 8.999
+cost 8192 11 9.22
+cost 8192 12 9.288
+cost 8192 13 9.485
+FASTPLD_DONE secs 118.69946479797363 est usd 0.13023969054222106
