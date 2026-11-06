@@ -11,3 +11,154 @@ https://modal.com/apps/<workspace>/main/ap-CTNNaMehD5blEnPcWdbwnQ
 ├── ✓ Uploaded <home>/north-star/harness
 ├── ✓ Uploaded <home>/north-star/src/approx
 └── ✓ Created Function run_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:11, 33.49it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:01<00:26, 14.27it/s]
+[1ALoading weights:   5%|▌         | 21/394 [00:01<00:25, 14.63it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:02<00:33, 11.02it/s]
+[1ALoading weights:   8%|▊         | 33/394 [00:02<00:23, 15.61it/s]
+[1ALoading weights:   9%|▉         | 37/394 [00:03<00:37,  9.48it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:03<00:39,  8.94it/s]
+[1ALoading weights:  11%|█▏        | 45/394 [00:03<00:36,  9.63it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:04<00:37,  9.14it/s]
+[1ALoading weights:  13%|█▎        | 53/394 [00:04<00:35,  9.64it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:05<00:36,  9.24it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:05<00:34,  9.53it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:06<00:35,  9.25it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:06<00:34,  9.52it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:07<00:33,  9.57it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:07<00:33,  9.37it/s]
+[1ALoading weights:  22%|██▏       | 85/394 [00:08<00:31,  9.84it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:08<00:33,  8.97it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:09<00:33,  8.82it/s]
+[1ALoading weights:  25%|██▌       | 100/394 [00:09<00:33,  8.76it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:10<00:31,  9.15it/s]
+[1ALoading weights:  27%|██▋       | 108/394 [00:10<00:31,  9.09it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:11<00:28,  9.64it/s]
+[1ALoading weights:  29%|██▉       | 116/394 [00:11<00:31,  8.95it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:12<00:28,  9.47it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:13<00:28,  9.31it/s]
+[1ALoading weights:  35%|███▍      | 137/394 [00:13<00:20, 12.48it/s]
+[1ALoading weights:  36%|███▌      | 140/394 [00:14<00:29,  8.64it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:14<00:27,  8.85it/s]
+[1ALoading weights:  38%|███▊      | 149/394 [00:15<00:25,  9.46it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:15<00:25,  9.33it/s]
+[1ALoading weights:  40%|███▉      | 157/394 [00:15<00:23,  9.96it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:16<00:25,  9.17it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:17<00:24,  9.19it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:18<00:23,  9.19it/s]
+[1ALoading weights:  46%|████▌     | 181/394 [00:18<00:21,  9.81it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:19<00:22,  9.04it/s]
+[1ALoading weights:  48%|████▊     | 189/394 [00:19<00:21,  9.68it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:20<00:22,  9.01it/s]
+[1ALoading weights:  50%|█████     | 197/394 [00:20<00:20,  9.70it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:20<00:20,  9.10it/s]
+[1ALoading weights:  52%|█████▏    | 205/394 [00:21<00:19,  9.74it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:21<00:20,  9.03it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:22<00:18,  9.23it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:23<00:18,  9.22it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:24<00:16,  9.36it/s]
+[1ALoading weights:  60%|██████    | 237/394 [00:24<00:15,  9.87it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:25<00:16,  9.24it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:25<00:15,  9.24it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:26<00:14,  9.28it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:27<00:13,  9.25it/s]
+[1ALoading weights:  68%|██████▊   | 268/394 [00:27<00:13,  9.19it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:28<00:12,  9.33it/s]
+[1ALoading weights:  70%|███████   | 276/394 [00:28<00:12,  9.28it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:29<00:11,  9.35it/s]
+[1ALoading weights:  72%|███████▏  | 284/394 [00:29<00:12,  9.01it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:30<00:11,  9.34it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:31<00:09,  9.57it/s]
+[1ALoading weights:  76%|███████▌  | 300/394 [00:31<00:10,  9.07it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:31<00:09,  9.62it/s]
+[1ALoading weights:  78%|███████▊  | 308/394 [00:32<00:08,  9.57it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:32<00:08,  9.58it/s]
+[1ALoading weights:  80%|████████  | 316/394 [00:32<00:08,  9.51it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:33<00:07,  9.47it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:34<00:06,  9.24it/s]
+[1ALoading weights:  84%|████████▍ | 332/394 [00:34<00:06,  9.13it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:35<00:05,  9.35it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:36<00:05,  9.36it/s]
+[1ALoading weights:  88%|████████▊ | 348/394 [00:36<00:04,  9.33it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:37<00:04,  9.47it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:38<00:03,  9.10it/s]
+[1ALoading weights:  92%|█████████▏| 364/394 [00:38<00:03,  9.15it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:38<00:02,  8.67it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:39<00:01,  8.74it/s]
+[1ALoading weights:  96%|█████████▋| 380/394 [00:40<00:01,  8.73it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:40<00:00,  8.98it/s]Loading weights: 100%|██████████| 394/394 [00:40<00:00,  9.66it/s]
+loaded 59s; moe layers 48 H=2048 I=768 V=262144
+backup done 85s
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 987, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 266, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/se_run.py", line 59, in run_remote
+    tr_seqs = [_fit(build_ids(tok, cal_t[k % len(cal_t)], tr_len, rotate=50 + k), tr_len) for k in range(n_tr)]
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/harness/common.py", line 56, in build_ids
+    raise ValueError("task longer than target")
+ValueError: task longer than target
+Runner terminated.
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ <home>/north-star/modal/se_run.py:97 in main                           │
+│                                                                              │
+│    96 │   │   k, rounds, n_random, n_eval, n_cal, n_tr, seq_len, tr_len, n_n │
+│ ❱  97 │   res = run_remote.remote(tag, smoke, phase, k, group, rounds, n_ran │
+│    98 │   │   │   │   │   │   │   steps, lr, sens_n)                         │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_obj │
+│ ect.py:49 in wrapped                                                         │
+│                                                                              │
+│    48 │   │   await self.hydrate()                                           │
+│ ❱  49 │   │   return await method(self, *args, **kwargs)                     │
+│    50                                                                        │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:2081 in remote                                                     │
+│                                                                              │
+│   2080 │   │                                                                 │
+│ ❱ 2081 │   │   return await self._call_function(args, kwargs)                │
+│   2082                                                                       │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:2018 in _call_function                                             │
+│                                                                              │
+│   2017 │   │                                                                 │
+│ ❱ 2018 │   │   return await invocation.run_function()                        │
+│   2019                                                                       │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:517 in run_function                                                │
+│                                                                              │
+│    516 │   │   │   # No more retries left.                                   │
+│ ❱  517 │   │   │   return await _process_result(                             │
+│    518 │   │   │   │   await_response.output.result, await_response.output.d │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_uti │
+│ ls/function_utils.py:572 in _process_result                                  │
+│                                                                              │
+│   571 │   │   │                                                              │
+│ ❱ 572 │   │   │   raise exc_with_hints(exc)                                  │
+│   573                                                                        │
+│                                                                              │
+│     ...Remote call to Modal Function (ta-01M6RV891XBC5RM2BQ8DEWW3RR)...      │
+│                                                                              │
+│ /root/se_run.py:59 in run_remote                                             │
+│                                                                              │
+│ ❱ 59 tr_seqs = [_fit(build_ids(tok, cal_t[k % len(cal_t)], tr_len, rotate=50 │
+│                                                                              │
+│                                                                              │
+│ /root/harness/common.py:56 in build_ids                                      │
+│                                                                              │
+│ ❱ 56 raise ValueError("task longer than target")                             │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+ValueError: task longer than target
