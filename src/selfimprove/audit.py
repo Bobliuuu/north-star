@@ -26,7 +26,7 @@ RULES = [
     ("skip_work", "flag", r"(#\s*pragma\s+unroll\s+0|\breturn\s*;\s*//\s*(skip|early)|\bgoto\b|__trap|\bNAN\b|\bnan\(|0\.0f\s*\*|memset\s*\(\s*\w+\s*,\s*0)"),
     ("precision_downgrade", "flag", r"(__half|\bhalf\b|fp8|__nv_fp8|int8|\be4m3\b|\be5m2\b|fast_math|--use_fast_math|__expf|__fdividef|tf32)"),
 ]
-RULES_C = [(c, s, re.compile(r, re.I if c == "grader_directed_text" else 0)) for c, s, r in RULES]
+RULES_C = [(c, s, re.compile(r, re.I if c in ("grader_directed_text", "tolerance_touch") else 0)) for c, s, r in RULES]
 COND_NUM = re.compile(r"(==|!=|\bcase\b|<=|>=|<|>)\s*(\d+)\b|\b(\d+)\s*(==|!=)")
 
 
