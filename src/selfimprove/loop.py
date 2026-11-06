@@ -6,6 +6,7 @@ from pathlib import Path
 
 from . import audit as A, diffs as D, gates as G, sandbox as S
 from .policy import Scope, DEFAULT_SCOPE
+from . import structured as ST
 from .proposer import Proposer, ProposalRequest, extract_diff
 from .store import Store, sha256_text
 
@@ -130,7 +131,9 @@ class Evaluator:
 
 
 class Loop:
-    def __init__(self, cfg: EvalConfig, store: Store, proposer: Proposer, allow_mock_promotion: bool = False):
+    def __init__(self, cfg: EvalConfig, store: Store, proposer: Proposer, allow_mock_promotion: bool = False, mode: str = "diff"):
+        if mode not in ("diff", "structured"): raise ValueError(mode)
+        self.mode = mode
         self.cfg, self.store, self.proposer, self.ev = cfg, store, proposer, Evaluator(cfg)
         self.allow_mock_promotion = allow_mock_promotion
         if store.current() is None:
@@ -141,7 +144,7 @@ class Loop:
         base_v = st.current(); base_files = st.files(base_v)
         history = [f"{r['proposal_id'][:8]}: {r['verdict']}" for r in st.read_log() if r.get("event") == "proposal"]
         req = ProposalRequest(base_version=base_v, files=base_files, scope_description=scope_description(cfg.scope),
-                              profile_summary=profile_summary, dev_results=dev_results, history=history)
+                              profile_summary=profile_summary, dev_results=dev_results, history=history, mode=self.mode)
         pid = uuid.uuid4().hex
         rec = dict(event="proposal", proposal_id=pid, round=rnd, base_version=base_v, verdict=None, findings=[], gates={}, cost={})
         t0 = time.time()
@@ -152,10 +155,22 @@ class Loop:
             return st.log(rec)
         mock = resp.kind != "north"
         attested = resp.kind == "north" and resp.model_id == "CohereLabs/North-Mini-Code-1.0" and bool(resp.revision)
-        diff = extract_diff(resp.raw_response)
+        structured_err = None
+        if self.mode == "structured":
+            diff = None
+            try:
+                se = ST.parse_edits(resp.raw_response)
+                rec["structured"] = dict(edits=[dict(name=n, value=v) for n, v in se["edits"]], rationale=se["rationale"])
+                diff = ST.render_diff(se["edits"], base_files)       # '' for a no-op
+            except ST.StructuredEditError as e:
+                structured_err = str(e)
+        else:
+            diff = extract_diff(resp.raw_response)
+        label = "MOCK - NOT NORTH-AUTHORED" if mock else ("North-authored (structured edit)" if self.mode == "structured" else "North-authored (attested)")
         rec.update(proposer=dict(kind=resp.kind, model_id=resp.model_id, revision=resp.revision, backend=resp.backend,
                                  endpoint=resp.endpoint, response_id=resp.response_id, mock=mock, north_attested=attested,
-                                 label="MOCK - NOT NORTH-AUTHORED" if mock else "North-authored (attested)"),
+                                 label=label, mode=self.mode,
+                                 attribution_note=("North chose the values; harness only rendered the diff" if self.mode == "structured" and not mock else None)),
                    prompt=resp.prompt, prompt_sha256=sha256_text(resp.prompt),
                    raw_response=resp.raw_response, raw_response_sha256=sha256_text(resp.raw_response),
                    diff=diff, diff_sha256=sha256_text(diff) if diff else None, base_files_sha256={k: sha256_text(v) for k, v in base_files.items()})
@@ -168,6 +183,8 @@ class Loop:
             cost["total_wall_s"] = time.time() - t0
             return st.log(rec)
 
+        if structured_err is not None:
+            rec["reason"] = structured_err; return finish("invalid_edit")
         if not diff:
             return finish("no_change" if diff == "" else "no_diff_in_response")
         try:
@@ -190,7 +207,8 @@ class Loop:
             return finish("needs_review")          # passed all gates but static audit flagged: human decides, never auto-promoted
         if mock and not self.allow_mock_promotion:
             return finish("pass_mock_not_promoted")
-        v = st.promote(new_files, pid, "mock" if mock else "north", attested, diff, ev["gates"], mock)
+        v = st.promote(new_files, pid, "mock" if mock else "north", attested, diff, ev["gates"], mock,
+                       extra=dict(proposal_mode=self.mode, label=label))
         return finish("promoted", v)
 
     def run(self, rounds: int, max_total_usd: float = 5.0, **kw) -> list[dict]:

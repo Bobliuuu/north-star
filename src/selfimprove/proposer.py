@@ -19,6 +19,7 @@ class ProposalRequest:
     history: list[str] = field(default_factory=list)   # one-line summaries of earlier verdicts
     max_new_tokens: int = 2048
     temperature: float = 0.3
+    mode: str = "diff"               # 'diff' (unified diff) | 'structured' (JSON tunable edits, harness renders the diff)
 
 
 @dataclass
@@ -49,7 +50,29 @@ SYSTEM = (
 )
 
 
+SYSTEM_STRUCTURED = (
+    "You are North, optimizing your own inference kernel tunables. Reply with ONLY one JSON object of the form "
+    '{"edits":[{"name":"<TUNABLE>","value":<integer>}],"rationale":"<short>"} and nothing else. Choose values from the allowed '
+    "ranges listed in the task. You never write code or diffs; the harness applies your values. Your change is judged on numerical "
+    "correctness, held-out quality, and repeatable speed on shapes you have not seen. If you see no safe improvement reply with "
+    '{"edits":[],"rationale":"..."}.')
+
+
+def system_for(mode: str) -> str:
+    return SYSTEM_STRUCTURED if mode == "structured" else SYSTEM
+
+
 def build_prompt(req: ProposalRequest) -> str:
+    if req.mode == "structured":
+        from . import structured as ST
+        parts = [f"## Scope\n{req.scope_description}", f"## Base version\n{req.base_version}"]
+        if req.profile_summary: parts.append(f"## Profile summary\n{req.profile_summary}")
+        if req.dev_results: parts.append(f"## Dev results (dev split only)\n{req.dev_results}")
+        if req.history: parts.append("## Earlier proposals this session\n" + "\n".join(f"- {h}" for h in req.history[-10:]))
+        for p, t in sorted(req.files.items()):
+            parts.append(f"## File: {p}\n```\n{t}\n```")
+        parts.append(ST.prompt_section(req.files))
+        return "\n\n".join(parts)
     parts = [f"## Scope\n{req.scope_description}", f"## Base version\n{req.base_version}"]
     if req.profile_summary: parts.append(f"## Profile summary\n{req.profile_summary}")
     if req.dev_results: parts.append(f"## Dev results (dev split only)\n{req.dev_results}")
@@ -103,7 +126,7 @@ class NorthProposer(Proposer):
 
     def propose(self, req: ProposalRequest) -> ProposalResponse:
         prompt = build_prompt(req)
-        payload = dict(system=SYSTEM, prompt=prompt, max_new_tokens=req.max_new_tokens, temperature=req.temperature)
+        payload = dict(system=system_for(req.mode), prompt=prompt, max_new_tokens=req.max_new_tokens, temperature=req.temperature)
         t0 = time.time()
         out = (self.transport or self._modal_transport)(payload)
         if out.get("model_id") != NORTH_MODEL_ID or out.get("revision") != NORTH_REVISION:
@@ -114,7 +137,7 @@ class NorthProposer(Proposer):
                                 backend=out.get("backend", ""), endpoint=f"modal:{self.app_name}/{self.cls_name}",
                                 response_id=out.get("response_id", ""), tokens_in=out.get("tokens_in", 0),
                                 tokens_out=out.get("tokens_out", 0), gpu_seconds=out.get("gpu_seconds", 0.0),
-                                cost_usd=out.get("cost_usd", 0.0), latency_s=time.time() - t0, prompt=SYSTEM + "\n\n" + prompt,
+                                cost_usd=out.get("cost_usd", 0.0), latency_s=time.time() - t0, prompt=system_for(req.mode) + "\n\n" + prompt,
                                 extra=dict(out.get("extra", {})))
 
 
@@ -129,4 +152,4 @@ class MockProposer(Proposer):
     def propose(self, req: ProposalRequest) -> ProposalResponse:
         raw = self.responses[self.i % len(self.responses)]; self.i += 1
         return ProposalResponse(raw_response=raw, kind="mock", model_id=self.LABEL, revision="", backend="mock",
-                                endpoint="mock", prompt=SYSTEM + "\n\n" + build_prompt(req))
+                                endpoint="mock", prompt=system_for(req.mode) + "\n\n" + build_prompt(req))
