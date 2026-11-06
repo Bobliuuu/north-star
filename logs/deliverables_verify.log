@@ -1,0 +1,42 @@
+== pytest tests
+.......................................                                  [100%]
+39 passed in 11.45s
+== pytest src/approx
+...........................................                              [100%]
+43 passed in 3.80s
+== pytest src/kvm
+.....                                                                    [100%]
+5 passed in 1.49s
+== pytest src/opt
+...................                                                      [100%]
+19 passed in 3.13s
+== pytest src/selfimprove
+........................................................................ [ 43%]
+................................s..s.................................... [ 87%]
+.....................                                                    [100%]
+163 passed, 2 skipped in 77.91s (0:01:17)
+== pytest src/tage
+........                                                                 [100%]
+8 passed in 0.11s
+== correctness tests
+.......................................                                  [100%]
+39 passed in 13.11s
+== correctness src/approx
+...........................................                              [100%]
+43 passed in 3.73s
+== correctness src/kvm
+.....                                                                    [100%]
+5 passed in 1.93s
+CPU correctness only (tiny-fixture RefNorth vs HF, spec == plain greedy, approx never touches verifier, fused == two-pass numpy/torch reference).
+NOT checked here: CUDA fused kernel vs reference (needs GPU): see 'make bench' -> run_modal.py check, and RESULTS.md for recorded GPU checks.
+.venv/bin/python scripts/plots/plot_all.py
+[plots] wrote results/plots/kvm_a100_synthetic_routing.png
+[plots] wrote results/plots/kvm_h100_real_routing.png
+[plots] wrote results/plots/g0_cycle_saving.png
+[plots] wrote results/plots/h100_graph_block_cost.png
+[plots] wrote results/plots/h100_selfspec_speedup.png
+[plots] wrote results/plots/eager_selfspec_speedup.png
+[plots] wrote results/plots/overlap_byte_saving.png
+[plots] wrote results/plots/routing_union_by_K.png
+[plots] wrote results/plots/eager_baseline_decode.png
+[plots] wrote results/plots/opt_synthetic_regime_scan.png
