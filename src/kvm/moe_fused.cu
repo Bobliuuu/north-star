@@ -25,6 +25,7 @@
 #include <cstring>
 #include <cstdint>
 #include <vector>
+#include <array>
 #include <string>
 #include <algorithm>
 #include <numeric>
@@ -38,11 +39,26 @@ typedef __nv_bfloat16 bf16;
 #define CK(x) do { cudaError_t e_ = (x); if (e_ != cudaSuccess) { fprintf(stderr, "CUDA %s:%d %s\n", __FILE__, __LINE__, cudaGetErrorString(e_)); exit(2);} } while (0)
 
 constexpr int H = 2048, I = 768, TOPK = 8;
-constexpr int SL = 64;                 // intermediate columns per work item
+constexpr int SL = 64;                 // intermediate columns per work item (fixed: 4 warps x 16-col WMMA tiles)
 constexpr int NS = I / SL;             // 12 slices per expert
-constexpr int KC = 256;                // k chunk staged in smem for stage 1
-constexpr int LDX = KC + 8, LDH = SL + 8;
 constexpr int MAXTOK = 32;             // max tokens routed to one expert (Tv+Td <= 32)
+// ---- Self-improvement scope (src/selfimprove, docs/SELFIMPROVE.md): ONLY the lines between the markers may be edited
+// by the proposer. Every value below is a pure performance knob; the static_asserts after the region (protected) reject
+// values that would break the kernel's tiling, so an out-of-range tunable fails the build instead of corrupting results.
+// NS-EDITABLE-BEGIN tunables
+constexpr int KC = 256;                // k chunk of H staged in smem for stage 1 (multiple of 16 dividing H=2048)
+constexpr int XPAD = 8;                // smem row padding (bf16 elems) for the x tile, multiple of 8 (bank conflicts)
+constexpr int HPAD = 8;                // smem row padding (bf16 elems) for the h tile, multiple of 8
+constexpr int MT_SPLIT = 16;           // experts with pair_cnt > MT_SPLIT use the 2-row-tile path (<= 16)
+constexpr int MINB_PER_SM = 1;         // min resident blocks per SM hint for __launch_bounds__ (1..4)
+// NS-EDITABLE-END
+constexpr int LDX = KC + XPAD, LDH = SL + HPAD;
+static_assert(SL == 64, "SL is tied to the 4-warp x 16-column tiling");
+static_assert(KC % 16 == 0 && KC >= 16 && KC <= H && H % KC == 0, "KC must be a multiple of 16 dividing H");
+static_assert(XPAD % 8 == 0 && XPAD >= 0 && XPAD <= 64 && HPAD % 8 == 0 && HPAD >= 0 && HPAD <= 64, "pads: multiples of 8 in [0,64]");
+static_assert(MT_SPLIT >= 1 && MT_SPLIT <= 16, "MT_SPLIT must be in [1,16]");
+static_assert(MINB_PER_SM >= 1 && MINB_PER_SM <= 4, "MINB_PER_SM must be in [1,4]");
+static_assert((MAXTOK * LDX + MAXTOK * LDH) * 2 + 4 * 256 * 4 + MAXTOK * 8 <= 48 * 1024, "static smem must fit in 48KB");
 constexpr size_t EXPERT_BYTES = (size_t)3 * I * H * 2;
 
 // Task descriptor for one work item. Mirrors the ABI v2 intent (op, args, wait/publish versions); in this
@@ -138,7 +154,7 @@ __device__ __forceinline__ void run_item(const bf16* __restrict__ x, const bf16*
     }
 }
 
-__global__ void __launch_bounds__(128) moe_kernel(const bf16* __restrict__ x, const bf16* __restrict__ wg,
+__global__ void __launch_bounds__(128, MINB_PER_SM) moe_kernel(const bf16* __restrict__ x, const bf16* __restrict__ wg,
                                                   const bf16* __restrict__ wu, const bf16* __restrict__ wd,
                                                   const MoeTask* __restrict__ tasks, const int* __restrict__ prow,
                                                   const float* __restrict__ pw, float* __restrict__ out) {
@@ -148,7 +164,7 @@ __global__ void __launch_bounds__(128) moe_kernel(const bf16* __restrict__ x, co
     __shared__ int srow[MAXTOK];
     __shared__ float sw[MAXTOK];
     const MoeTask t = tasks[blockIdx.x];
-    if (t.pair_cnt > 16) run_item<2>(x, wg, wu, wd, t, prow, pw, out, xs, hs, scratch, srow, sw);
+    if (t.pair_cnt > MT_SPLIT) run_item<2>(x, wg, wu, wd, t, prow, pw, out, xs, hs, scratch, srow, sw);
     else run_item<1>(x, wg, wu, wd, t, prow, pw, out, xs, hs, scratch, srow, sw);
 }
 
@@ -275,14 +291,104 @@ static int check_mode(const std::string& dir) {
     return 0;
 }
 
+// ---------------- replay mode: REAL routing (from North traces) instead of synthetic modes ----------------
+// File format (text): repeated records
+//   <tag> <r> <Tv> <Td> <layer> <task_idx>\n   then Tv rows of 8 expert ids (verify tokens, native top-8, score order)
+//   then Td rows of 8 expert ids (draft tokens' OWN routing in score order; first r are used). Td may be 0.
+// Weights are synthetic sigmoid(sorted normals); they do not affect timing. Each record is timed with the same
+// variants as bench mode (verify_only, two_pass, fused, *_graph) and emitted as one JSON line.
+static int replay_mode(const std::string& inp, const std::string& outp, int reps) {
+    const int E = 128;
+    cudaDeviceProp prop; CK(cudaGetDeviceProperties(&prop, 0));
+    int sm = prop.major * 10 + prop.minor;
+    Dev D; size_t wn = (size_t)E * I * H;
+    CK(cudaMalloc(&D.wg, wn * 2)); CK(cudaMalloc(&D.wu, wn * 2)); CK(cudaMalloc(&D.wd, wn * 2));
+    CK(cudaMalloc(&D.x, (size_t)MAXTOK * H * 2)); CK(cudaMalloc(&D.out, (size_t)MAXTOK * H * 4));
+    fill_bf16<<<4096, 256>>>(D.wg, wn, 1, 0.03f); fill_bf16<<<4096, 256>>>(D.wu, wn, 2, 0.03f);
+    fill_bf16<<<4096, 256>>>(D.wd, wn, 3, 0.03f); fill_bf16<<<64, 256>>>(D.x, (size_t)MAXTOK * H, 4, 1.0f);
+    CK(cudaDeviceSynchronize());
+    size_t flush_n = (size_t)256 << 20; void* flush; CK(cudaMalloc(&flush, flush_n));
+    DevWL dv = alloc_wl(E * NS, E * MAXTOK), dd = alloc_wl(E * NS, E * MAXTOK), df = alloc_wl(E * NS, E * MAXTOK);
+    cudaStream_t st; CK(cudaStreamCreate(&st));
+    cudaEvent_t e0, e1; cudaEventCreate(&e0); cudaEventCreate(&e1);
+    FILE* fi = fopen(inp.c_str(), "r"); if (!fi) { fprintf(stderr, "cannot open %s\n", inp.c_str()); return 3; }
+    FILE* fo = fopen(outp.c_str(), "w");
+    const char* names[] = {"verify_only", "two_pass", "fused", "two_pass_graph", "fused_graph", "verify_only_graph", "draft_only_graph"};
+    char tag[64]; int r, tv, td, layer, task, nrec = 0;
+    std::mt19937 g(12345);
+    while (fscanf(fi, "%63s %d %d %d %d %d", tag, &r, &tv, &td, &layer, &task) == 6) {
+        std::vector<TokRoute> V, Dr; std::normal_distribution<float> nd(1.0f, 1.0f);
+        auto rd = [&](int row) { TokRoute t; t.row = row; std::vector<float> lg(TOPK); for (auto& v : lg) v = nd(g);
+            std::sort(lg.begin(), lg.end(), std::greater<float>());
+            for (int k = 0; k < TOPK; ++k) { if (fscanf(fi, "%d", &t.e[k]) != 1) exit(4); t.w[k] = 1.f / (1.f + expf(-lg[k])); } return t; };
+        for (int i = 0; i < tv; ++i) V.push_back(rd(i));
+        for (int i = 0; i < td; ++i) Dr.push_back(rd(tv + i));
+        WorkList wv = build(V, TOPK, E), wdr = build(Dr, r, E), wf;
+        { std::vector<std::vector<std::pair<int, float>>> per(E);
+          for (auto& t : V) for (int k = 0; k < TOPK; ++k) per[t.e[k]].push_back({t.row, t.w[k]});
+          for (auto& t : Dr) for (int k = 0; k < r; ++k) per[t.e[k]].push_back({t.row, t.w[k]});
+          for (int e = 0; e < E; ++e) { if (per[e].empty()) continue; wf.nexp++; int off = wf.prow.size();
+            for (auto& p : per[e]) { wf.prow.push_back(p.first); wf.pw.push_back(p.second); } wf.npairs += per[e].size();
+            for (int s = 0; s < NS; ++s) wf.tasks.push_back({e, s, off, (int)per[e].size(), KVM_NO_VAR, 0, KVM_NO_VAR, 0}); } }
+        upload(dv, wv); upload(dd, wdr); upload(df, wf);
+        auto body = [&](int v, cudaStream_t s) {
+            CK(cudaMemsetAsync(D.out, 0, (size_t)MAXTOK * H * 4, s));
+            if (v == 0) launch(D, dv, s);
+            else if (v == 1 || v == 3) { launch(D, dv, s); launch(D, dd, s); }
+            else if (v == 5) launch(D, dv, s);
+            else if (v == 6) launch(D, dd, s);
+            else launch(D, df, s);
+        };
+        cudaGraphExec_t ge[7] = {0};
+        for (int v = 3; v <= 6; ++v) { cudaGraph_t gr; CK(cudaStreamBeginCapture(st, cudaStreamCaptureModeGlobal)); body(v, st); CK(cudaStreamEndCapture(st, &gr));
+            CK(cudaGraphInstantiate(&ge[v], gr, 0)); cudaGraphDestroy(gr); }
+        double med[7], mn[7]; std::vector<float> outs[7];
+        for (int v = 0; v < 7; ++v) {
+            std::vector<float> ts;
+            for (int rep = -2; rep < reps; ++rep) {
+                CK(cudaMemsetAsync(flush, rep & 255, flush_n, st));
+                CK(cudaEventRecord(e0, st));
+                if (v >= 3) CK(cudaGraphLaunch(ge[v], st)); else body(v, st);
+                CK(cudaEventRecord(e1, st)); CK(cudaStreamSynchronize(st));
+                if (rep >= 0) { float ms; cudaEventElapsedTime(&ms, e0, e1); ts.push_back(ms * 1000.f); }
+            }
+            med[v] = median(ts); mn[v] = *std::min_element(ts.begin(), ts.end());
+            if (v == 1 || v == 2) { outs[v].resize((size_t)(tv + td) * H); CK(cudaMemcpy(outs[v].data(), D.out, outs[v].size() * 4, cudaMemcpyDeviceToHost)); }
+        }
+        double maxdiff = 0, maxref = 0;
+        for (size_t i = 0; i < outs[1].size(); ++i) { maxdiff = std::max<double>(maxdiff, fabs(outs[1][i] - outs[2][i])); maxref = std::max<double>(maxref, fabs(outs[1][i])); }
+        for (int v = 3; v <= 6; ++v) cudaGraphExecDestroy(ge[v]);
+        int inv = 0, tot = 0; { std::vector<char> inV(E, 0); for (auto& t : V) for (int k = 0; k < TOPK; ++k) inV[t.e[k]] = 1;
+          for (auto& t : Dr) for (int k = 0; k < r; ++k) { tot++; inv += inV[t.e[k]]; } }
+        int nv = wv.nexp, ndr = wdr.nexp, nu = wf.nexp;
+        double bytes[7] = {(double)nv * EXPERT_BYTES, (double)(nv + ndr) * EXPERT_BYTES, (double)nu * EXPERT_BYTES, (double)(nv + ndr) * EXPERT_BYTES, (double)nu * EXPERT_BYTES, (double)nv * EXPERT_BYTES, (double)ndr * EXPERT_BYTES};
+        fprintf(fo, "{\"gpu\":\"%s\",\"sm\":%d,\"tag\":\"%s\",\"r\":%d,\"Tv\":%d,\"Td\":%d,\"layer\":%d,\"task\":%d,\"experts_verify\":%d,\"experts_draft\":%d,"
+                    "\"experts_union\":%d,\"pairs_in_verify_union\":%.4f,\"fused_vs_two_maxabsdiff\":%.3e,\"out_maxabs\":%.3e,\"v\":{",
+                prop.name, sm, tag, r, tv, td, layer, task, nv, ndr, nu, tot ? (double)inv / tot : 0.0, maxdiff, maxref);
+        for (int v = 0; v < 7; ++v)
+            fprintf(fo, "%s\"%s\":{\"us_med\":%.2f,\"us_min\":%.2f,\"weight_bytes\":%.0f}", v ? "," : "", names[v], med[v], mn[v], bytes[v]);
+        fprintf(fo, "}}\n");
+        if (++nrec % 500 == 0) { fflush(fo); fprintf(stderr, "%d records\n", nrec); }
+    }
+    fclose(fo); fclose(fi);
+    fprintf(stderr, "replay done %d records\n", nrec);
+    return 0;
+}
+
 // ---------------- bench mode ----------------
 struct Stat { double med, mn; };
 int main(int argc, char** argv) {
     if (argc < 3) { fprintf(stderr, "usage\n"); return 1; }
     std::string mode = argv[1];
     if (mode == "check") return check_mode(argv[2]);
+    if (mode == "replay") { int reps = 9; for (int i = 4; i < argc; ++i) if (!strcmp(argv[i], "--reps")) reps = atoi(argv[++i]);
+        if (argc < 4) { fprintf(stderr, "usage: moe_fused replay <in.txt> <out.jsonl> [--reps N]\n"); return 1; } return replay_mode(argv[2], argv[3], reps); }
     std::string outp = argv[2]; bool full = false; int seeds = 1, reps = 15, rn = 0;
-    for (int i = 3; i < argc; ++i) { if (!strcmp(argv[i], "--full")) full = true; else if (!strcmp(argv[i], "--seeds")) seeds = atoi(argv[++i]); else if (!strcmp(argv[i], "--renorm")) rn = 1; else if (!strcmp(argv[i], "--reps")) reps = atoi(argv[++i]); }
+    std::vector<std::array<int, 3>> shapes; int rt_lo = 0, rt_hi = 3;   // evaluation harness: --shapes tv,td,r;tv,td,r  --routing 0|1|2
+    for (int i = 3; i < argc; ++i) {
+        if (!strcmp(argv[i], "--shapes")) { const char* q = argv[++i]; int a, b, c, n; while (sscanf(q, "%d,%d,%d%n", &a, &b, &c, &n) == 3) { shapes.push_back({a, b, c}); q += n; if (*q == ';') ++q; } }
+        else if (!strcmp(argv[i], "--routing")) { rt_lo = atoi(argv[++i]); rt_hi = rt_lo + 1; }
+        else if (!strcmp(argv[i], "--full")) full = true; else if (!strcmp(argv[i], "--seeds")) seeds = atoi(argv[++i]); else if (!strcmp(argv[i], "--renorm")) rn = 1; else if (!strcmp(argv[i], "--reps")) reps = atoi(argv[++i]); }
     const int E = 128;
     cudaDeviceProp prop; CK(cudaGetDeviceProperties(&prop, 0));
     int sm = prop.major * 10 + prop.minor;
@@ -311,10 +417,15 @@ int main(int argc, char** argv) {
     if (full) { for (int i = 1; i <= 16; ++i) { TV.push_back(i); TD.push_back(i); } for (int i = 1; i <= 8; ++i) RS.push_back(i); }
     else { TV = {1, 4, 8, 16}; TD = {1, 4, 8, 16}; RS = {1, 2, 4, 8}; }
     const char* names[] = {"verify_only", "two_pass", "fused", "two_pass_graph", "fused_graph"};
+    std::vector<std::array<int, 3>> combos;
+    if (!shapes.empty()) combos = shapes;
+    else for (int tv : TV) for (int td : TD) for (int r : RS) combos.push_back({tv, td, r});
+    for (auto& cb : combos) if (cb[0] < 1 || cb[1] < 1 || cb[2] < 1 || cb[2] > TOPK || cb[0] + cb[1] > MAXTOK) { fprintf(stderr, "bad shape\n"); return 1; }
     int ncfg = 0;
-    for (int routing = 0; routing < 3; ++routing)       // 0 = independent uniform, 1 = correlated (slot kept w.p. 0.75), 2 = draft routes identical to a verify token (overlap upper bound)
+    for (int routing = rt_lo; routing < rt_hi; ++routing)       // 0 = independent uniform, 1 = correlated (slot kept w.p. 0.75), 2 = draft routes identical to a verify token (overlap upper bound)
     for (int seed = 0; seed < seeds; ++seed)
-    for (int tv : TV) for (int td : TD) for (int r : RS) {
+    for (const auto& cb : combos) {
+        const int tv = cb[0], td = cb[1], r = cb[2];
         std::mt19937 g(1000003u * seed + 7919u * tv + 104729u * td + 13u * routing);
         std::vector<TokRoute> V, Dr;
         for (int i = 0; i < tv; ++i) V.push_back(make_route(g, i, E));
