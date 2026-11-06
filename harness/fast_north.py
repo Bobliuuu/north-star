@@ -5,15 +5,19 @@ Options (each independently switchable so wins can be ablated):
   moe    : top-k expert GEMV (Triton, reads only the 8 selected experts, no sort/histc/gather/grouped_mm)
   router : fused top-k + sigmoid kernel on the bf16 router logits (1 launch instead of topk/sigmoid/cast)
   resid  : fused (x + a + sum(expert outs)) + next-layer RMSNorm (one launch)
-T != 1 / skip / r / parts / sparse requests fall back to GraphNorth.forward (prefill, verify blocks, draft modes).
+T == 1: decode path. 2 <= T <= TBLK with logits='all' and all four options: multi-query VERIFY block (_forward_block: T-row cuBLAS
+qkv/o_proj/router GEMMs, T-row split-K causal attention, union-of-experts grouped GEMV, T-row fused resid+norm).
+skip / r / parts / sparse / prefill chunks (logits != 'all') fall back to GraphNorth.forward.
 Weights are the HF module weights (no change); only a merged qkv copy (0.5 GB) is added when attn is on."""
 import torch
 import torch.nn.functional as F
 
 from graph_north import GraphNorth, ALL
 import fast_kernels as fk
+import fast_kernels_blk as fb
 
 OPTS = ("attn", "moe", "router", "resid")
+TBLK = 16  # largest verify block handled by the fast block path
 
 
 class FastNorth(GraphNorth):
@@ -41,8 +45,52 @@ class FastNorth(GraphNorth):
                 at = layer.self_attn
                 self.wqkv[i] = torch.cat([at.q_proj.weight, at.k_proj.weight, at.v_proj.weight], 0).contiguous()
         self.nl = c.num_hidden_layers
+        self._blk = {}
+        self.kcfg_blk = None
+
+    def _blk_state(self, T):
+        if T not in self._blk:
+            c = self.cfg
+            k = c.num_experts_per_tok
+            z = lambda *s: torch.zeros(*s, dtype=torch.bfloat16, device=self.dev)
+            self._blk[T] = dict(ws=fb.AttnWSBlk(self.Hkv, self.G, self.D, self.ws.nsplit, T, self.dev),
+                                idx=torch.zeros(T, k, dtype=torch.int32, device=self.dev), sc=z(T, k),
+                                hb=z(T * k, c.intermediate_size), ob=z(T * k, self.Dm), x2=z(T, self.Dm), h2=z(T, self.Dm))
+        return self._blk[T]
+
+    def _forward_block(self, ids, kv):
+        cfg, T = self.cfg, ids.shape[1]
+        W = cfg.sliding_window
+        qpos = self.start + torch.arange(T, device=self.dev)
+        x = self.model.embed_tokens(ids).reshape(T, self.Dm)
+        cos, sin = self.model.rotary_emb(x.view(1, T, -1), qpos[None])
+        cos, sin = cos.reshape(T, -1).contiguous(), sin.reshape(T, -1).contiguous()
+        layers = self.model.layers
+        h = layers[0].input_layernorm(x).contiguous()
+        b = self._blk_state(T)
+        k = cfg.num_experts_per_tok
+        for i, layer in enumerate(layers):
+            sliding = cfg.layer_types[i] == "sliding_attention"
+            at = layer.self_attn
+            kc, vc = kv[i]
+            qkv = F.linear(h, self.wqkv[i])
+            ao = fb.verify_attention(b["ws"], qkv, cos, sin, self.start, kc, vc, self.Lmax, bool(sliding or at.force_rope), bool(sliding), W)
+            a = F.linear(ao, at.o_proj.weight)
+            mlp = layer.mlp
+            if not hasattr(mlp, "gate"):
+                m = mlp(h).reshape(T, self.Dm).contiguous()
+            else:
+                lg = F.linear(h, mlp.gate.weight)
+                fk.router_topk(lg, b["idx"], b["sc"], k)
+                m = fb.moe_gemv_blk(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg_blk)
+            wn = layers[i + 1].input_layernorm.weight if i + 1 < self.nl else self.model.norm.weight
+            fk.resid_norm(x, a, m, wn, b["x2"], b["h2"], layer.input_layernorm.variance_epsilon)
+            x, h = b["x2"], b["h2"]
+        return self.lm_head(h.view(1, T, -1)) * cfg.logit_scale
 
     def forward(self, ids, kv, skip=frozenset(), r=None, parts=ALL, logits="last", sparse=None):
+        if 1 < ids.shape[1] <= TBLK and logits == "all" and not skip and r is None and parts == ALL and sparse is None and self.opts >= frozenset(OPTS):
+            return self._forward_block(ids, kv)
         if ids.shape[1] != 1 or skip or r is not None or parts != ALL or logits != "last" or sparse is not None:
             return super().forward(ids, kv, skip, r, parts, logits, sparse)
         cfg, o = self.cfg, self.opts

@@ -113,6 +113,17 @@ class GraphNorth:
 
     # ---- graph helpers -------------------------------------------------------------------------
     def capture(self, fn, warmup=3):
+        # FIX (north-fast-pld): warmup + trace run the body at the current `start` = stale value left by eager_prefill, writing junk KV into
+        # live prefix slots (position 0 for prompts < 1024 tokens). Run them at a SCRATCH position in the unused tail of the Lmax buffer
+        # (callers need live positions + max block < Lmax-16) and restore `start` afterwards.
+        saved = self.start.clone()
+        self.start.fill_(max(0, self.Lmax - 16))
+        try:
+            return self._capture(fn, warmup)
+        finally:
+            self.start.copy_(saved)
+
+    def _capture(self, fn, warmup=3):
         s = torch.cuda.Stream()
         s.wait_stream(torch.cuda.current_stream())
         with torch.cuda.stream(s):

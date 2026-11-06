@@ -62,43 +62,45 @@ def moe_gemv(x, idx, sc, gate_up, down, hbuf, obuf, cfg=None):
 # ---------------------------------------------------------------- router top-k (+sigmoid) on bf16 logits
 @triton.jit
 def _topk_kernel(l_ptr, idx_ptr, sc_ptr, N: tl.constexpr, KK: tl.constexpr):
+    row = tl.program_id(0)
     r = tl.arange(0, N)
-    v = tl.load(l_ptr + r).to(tl.float32)
+    v = tl.load(l_ptr + row * N + r).to(tl.float32)
     for j in tl.static_range(KK):
         m = tl.max(v, axis=0)
         i = tl.min(tl.where(v == m, r, N), axis=0)
-        tl.store(idx_ptr + j, i)
-        tl.store(sc_ptr + j, tl.sigmoid(m).to(tl.bfloat16))
+        tl.store(idx_ptr + row * KK + j, i)
+        tl.store(sc_ptr + row * KK + j, tl.sigmoid(m).to(tl.bfloat16))
         v = tl.where(r == i, float("-inf"), v)
 
 
 def router_topk(logits, idx, sc, k):
-    _topk_kernel[(1,)](logits, idx, sc, N=logits.shape[-1], KK=k, num_warps=1)
+    _topk_kernel[(logits.shape[0],)](logits, idx, sc, N=logits.shape[-1], KK=k, num_warps=1)
 
 
 # ---------------------------------------------------------------- fused residual (x + a + sum(m rows)) + next RMSNorm
 @triton.jit
 def _resid_norm_kernel(x_ptr, a_ptr, m_ptr, w_ptr, xo_ptr, ho_ptr, eps, D: tl.constexpr, NB: tl.constexpr):
+    row = tl.program_id(0)
     r = tl.arange(0, D)
-    x = tl.load(x_ptr + r).to(tl.float32)
-    a = tl.load(a_ptr + r).to(tl.float32)
+    x = tl.load(x_ptr + row * D + r).to(tl.float32)
+    a = tl.load(a_ptr + row * D + r).to(tl.float32)
     t = (x + a).to(tl.bfloat16).to(tl.float32)            # (x + a) rounded to bf16, like torch
     ms = tl.zeros([D], dtype=tl.float32)
     for b in tl.static_range(NB):
-        ms += tl.load(m_ptr + b * D + r).to(tl.float32)
+        ms += tl.load(m_ptr + (row * NB + b) * D + r).to(tl.float32)
     ms = ms.to(tl.bfloat16).to(tl.float32)                # bf16 sum over experts
     xn = (t + ms).to(tl.bfloat16)
-    tl.store(xo_ptr + r, xn)
+    tl.store(xo_ptr + row * D + r, xn)
     xf = xn.to(tl.float32)
     var = tl.sum(xf * xf, axis=0) / D
     hn = (xf * tl.rsqrt(var + eps)).to(tl.bfloat16).to(tl.float32)   # HF: hidden.to(fp32)*rsqrt -> bf16
     w = tl.load(w_ptr + r).to(tl.float32)
-    tl.store(ho_ptr + r, (w * hn).to(tl.bfloat16))
+    tl.store(ho_ptr + row * D + r, (w * hn).to(tl.bfloat16))
 
 
 def resid_norm(x, a, m, w, xo, ho, eps):
     D = x.shape[-1]
-    _resid_norm_kernel[(1,)](x, a, m, w, xo, ho, eps, D=D, NB=m.numel() // D, num_warps=8)
+    _resid_norm_kernel[(x.numel() // D,)](x, a, m, w, xo, ho, eps, D=D, NB=m.numel() // x.numel(), num_warps=8)  # one program per row
 
 
 # ---------------------------------------------------------------- attention: rope + KV write
