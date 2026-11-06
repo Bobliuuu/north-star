@@ -50,14 +50,16 @@ constexpr int KC = 256;                // k chunk of H staged in smem for stage 
 constexpr int XPAD = 8;                // smem row padding (bf16 elems) for the x tile, multiple of 8 (bank conflicts)
 constexpr int HPAD = 8;                // smem row padding (bf16 elems) for the h tile, multiple of 8
 constexpr int MT_SPLIT = 16;           // experts with pair_cnt > MT_SPLIT use the 2-row-tile path (<= 16)
-constexpr int MINB_PER_SM = 1;         // min resident blocks per SM hint for __launch_bounds__ (1..4)
+constexpr int MINB_PER_SM = 1;         // min resident blocks per SM hint for __launch_bounds__ (1..8)
+constexpr int UNROLL_KS = 16;          // `#pragma unroll` factor of the stage-1 k-step loop (1..128; >= KC/16 means full unroll; 1 = no unroll)
 // NS-EDITABLE-END
 constexpr int LDX = KC + XPAD, LDH = SL + HPAD;
 static_assert(SL == 64, "SL is tied to the 4-warp x 16-column tiling");
 static_assert(KC % 16 == 0 && KC >= 16 && KC <= H && H % KC == 0, "KC must be a multiple of 16 dividing H");
 static_assert(XPAD % 8 == 0 && XPAD >= 0 && XPAD <= 64 && HPAD % 8 == 0 && HPAD >= 0 && HPAD <= 64, "pads: multiples of 8 in [0,64]");
 static_assert(MT_SPLIT >= 1 && MT_SPLIT <= 16, "MT_SPLIT must be in [1,16]");
-static_assert(MINB_PER_SM >= 1 && MINB_PER_SM <= 4, "MINB_PER_SM must be in [1,4]");
+static_assert(MINB_PER_SM >= 1 && MINB_PER_SM <= 8, "MINB_PER_SM must be in [1,8]");
+static_assert(UNROLL_KS >= 1 && UNROLL_KS <= 128, "UNROLL_KS must be in [1,128]");
 static_assert((MAXTOK * LDX + MAXTOK * LDH) * 2 + 4 * 256 * 4 + MAXTOK * 8 <= 48 * 1024, "static smem must fit in 48KB");
 constexpr size_t EXPERT_BYTES = (size_t)3 * I * H * 2;
 
@@ -94,7 +96,7 @@ __device__ __forceinline__ void run_item(const bf16* __restrict__ x, const bf16*
             *reinterpret_cast<uint4*>(xs + r * LDX + c) = v;
         }
         __syncthreads();
-#pragma unroll
+#pragma unroll UNROLL_KS
         for (int ks = 0; ks < KC / 16; ++ks) {
             wmma::fragment<wmma::matrix_b, 16, 16, 16, bf16, wmma::col_major> bg, bu;
             wmma::load_matrix_sync(bg, gp + kc + ks * 16, H);
