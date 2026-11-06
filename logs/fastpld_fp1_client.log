@@ -1,0 +1,164 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-cAzs1pGR4mKRI75ZrILm3a
+✓ Created objects.
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a7965d5f3d70b80df/modal/fast
+│   pld_run.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a7965d5f3d70b80df/tests
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a7965d5f3d70b80df/src/norths
+│   tar
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a7965d5f3d70b80df/harness
+└── ✓ Created Function remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:10, 38.26it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:17, 21.42it/s]
+[1ALoading weights:   6%|▌         | 22/394 [00:00<00:16, 22.58it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:21, 16.83it/s]
+[1ALoading weights:   8%|▊         | 30/394 [00:01<00:19, 18.49it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:23, 14.97it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:23, 15.01it/s]
+[1ALoading weights:  11%|█▏        | 45/394 [00:02<00:23, 15.03it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:22, 15.09it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:22, 15.13it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:03<00:21, 15.54it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:22, 14.73it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:21, 14.77it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:20, 14.89it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:20, 14.73it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:20, 14.53it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:06<00:20, 14.49it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:06<00:19, 14.94it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:18, 14.80it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:18, 14.79it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:08<00:17, 14.72it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:08<00:16, 15.04it/s]
+[1ALoading weights:  36%|███▌      | 141/394 [00:09<00:17, 14.63it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:09<00:16, 15.33it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:09<00:15, 15.18it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:10<00:15, 14.97it/s]
+[1ALoading weights:  42%|████▏     | 165/394 [00:10<00:15, 15.06it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:11<00:14, 15.02it/s]
+[1ALoading weights:  44%|████▍     | 173/394 [00:11<00:14, 15.50it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:11<00:14, 15.01it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:12<00:13, 15.28it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:12<00:13, 15.29it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:13<00:12, 15.55it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:13<00:11, 15.58it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:14<00:11, 15.43it/s]
+[1ALoading weights:  56%|█████▌    | 221/394 [00:14<00:11, 15.55it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:14<00:11, 15.16it/s]
+[1ALoading weights:  58%|█████▊    | 229/394 [00:14<00:11, 14.96it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:15<00:10, 15.22it/s]
+[1ALoading weights:  60%|██████    | 237/394 [00:15<00:10, 15.40it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:15<00:10, 15.01it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:16<00:09, 14.89it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:16<00:09, 14.67it/s]
+[1ALoading weights:  67%|██████▋   | 264/394 [00:16<00:07, 17.56it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:17<00:09, 14.10it/s]
+[1ALoading weights:  69%|██████▉   | 272/394 [00:17<00:06, 17.81it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:17<00:08, 13.40it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:18<00:07, 13.94it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:19<00:07, 14.20it/s]
+[1ALoading weights:  74%|███████▍  | 293/394 [00:19<00:06, 14.61it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:19<00:06, 14.65it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:20<00:05, 14.86it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:20<00:05, 14.93it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:21<00:04, 15.07it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:21<00:04, 15.30it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:22<00:03, 15.45it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:22<00:03, 15.56it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:23<00:02, 15.26it/s]
+[1ALoading weights:  92%|█████████▏| 361/394 [00:23<00:01, 18.60it/s]
+[1ALoading weights:  92%|█████████▏| 364/394 [00:23<00:02, 14.18it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:24<00:01, 14.75it/s]
+[1ALoading weights:  95%|█████████▍| 373/394 [00:24<00:01, 14.60it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:24<00:00, 15.03it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:25<00:00, 15.06it/s]Loading weights: 100%|██████████| 394/394 [00:25<00:00, 15.59it/s]
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-06T16:08:04Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "b75d56d0a2a7", "load_s": 58.04526996612549}
+val py_lru 2 fast-hf 0.688 base-hf 0.656 fast-base 0.312 agree 1/2 (base 1) [{'pos': 0, 'hf_top2_margin': 0.125, 'hf_gap_truth_minus_fast_tok': 0.125}]
+val py_lru 3 fast-hf 0.688 base-hf 0.656 fast-base 0.312 agree 2/3 (base 2) [{'pos': 0, 'hf_top2_margin': 0.125, 'hf_gap_truth_minus_fast_tok': 0.125}]
+val py_lru 5 fast-hf 0.672 base-hf 0.656 fast-base 0.375 agree 4/5 (base 4) [{'pos': 0, 'hf_top2_margin': 0.125, 'hf_gap_truth_minus_fast_tok': 0.125}]
+val py_lru 8 fast-hf 0.828 base-hf 0.656 fast-base 0.656 agree 7/8 (base 7) [{'pos': 0, 'hf_top2_margin': 0.125, 'hf_gap_truth_minus_fast_tok': 0.125}]
+val py_lru 13 fast-hf 1.312 base-hf 0.967 fast-base 1.234 agree 12/13 (base 12) [{'pos': 0, 'hf_top2_margin': 0.125, 'hf_gap_truth_minus_fast_tok': 0.125}]
+val py_interval 2 fast-hf 0.906 base-hf 0.828 fast-base 0.453 agree 2/2 (base 2) []
+val py_interval 3 fast-hf 0.906 base-hf 0.828 fast-base 0.453 agree 3/3 (base 3) []
+val py_interval 5 fast-hf 0.812 base-hf 0.828 fast-base 0.375 agree 5/5 (base 5) []
+val py_interval 8 fast-hf 1.312 base-hf 1.055 fast-base 1.125 agree 8/8 (base 8) []
+val py_interval 13 fast-hf 1.570 base-hf 1.273 fast-base 1.156 agree 13/13 (base 13) []
+val rs_stack 2 fast-hf 2.010 base-hf 1.809 fast-base 1.113 agree 2/2 (base 2) []
+val rs_stack 3 fast-hf 2.010 base-hf 1.809 fast-base 1.113 agree 3/3 (base 3) []
+val rs_stack 5 fast-hf 2.104 base-hf 1.809 fast-base 1.824 agree 5/5 (base 5) []
+val rs_stack 8 fast-hf 3.268 base-hf 3.168 fast-base 1.824 agree 8/8 (base 8) []
+val rs_stack 13 fast-hf 3.268 base-hf 3.375 fast-base 3.422 agree 13/13 (base 13) []
+val sh_logs 2 fast-hf 0.469 base-hf 0.625 fast-base 0.516 agree 2/2 (base 2) []
+val sh_logs 3 fast-hf 1.406 base-hf 1.188 fast-base 0.719 agree 3/3 (base 3) []
+val sh_logs 5 fast-hf 1.344 base-hf 1.188 fast-base 0.641 agree 5/5 (base 5) []
+val sh_logs 8 fast-hf 1.344 base-hf 1.188 fast-base 0.953 agree 8/8 (base 8) []
+val sh_logs 13 fast-hf 1.344 base-hf 1.188 fast-base 0.953 agree 13/13 (base 13) []
+val term_pytest_fail 2 fast-hf 1.594 base-hf 0.969 fast-base 1.852 agree 1/2 (base 2) [{'pos': 1, 'hf_top2_margin': 0.125, 'hf_gap_truth_minus_fast_tok': 0.125}]
+val term_pytest_fail 3 fast-hf 1.594 base-hf 0.969 fast-base 1.852 agree 2/3 (base 3) [{'pos': 1, 'hf_top2_margin': 0.125, 'hf_gap_truth_minus_fast_tok': 0.125}]
+val term_pytest_fail 5 fast-hf 0.781 base-hf 0.969 fast-base 0.562 agree 5/5 (base 5) []
+val term_pytest_fail 8 fast-hf 0.781 base-hf 0.969 fast-base 0.656 agree 8/8 (base 8) []
+val term_pytest_fail 13 fast-hf 1.094 base-hf 1.547 fast-base 1.625 agree 13/13 (base 13) []
+val term_git_conflict 2 fast-hf 1.301 base-hf 1.094 fast-base 0.588 agree 2/2 (base 2) []
+val term_git_conflict 3 fast-hf 1.301 base-hf 1.204 fast-base 0.588 agree 3/3 (base 3) []
+val term_git_conflict 5 fast-hf 1.750 base-hf 1.391 fast-base 1.394 agree 5/5 (base 5) []
+val term_git_conflict 8 fast-hf 3.125 base-hf 3.125 fast-base 2.133 agree 8/8 (base 8) []
+val term_git_conflict 13 fast-hf 3.125 base-hf 3.125 fast-base 2.594 agree 13/13 (base 13) []
+val pr_hbm 2 fast-hf 0.986 base-hf 0.979 fast-base 0.570 agree 2/2 (base 2) []
+val pr_hbm 3 fast-hf 0.986 base-hf 0.979 fast-base 0.570 agree 3/3 (base 3) []
+val pr_hbm 5 fast-hf 0.986 base-hf 0.979 fast-base 0.562 agree 5/5 (base 5) []
+val pr_hbm 8 fast-hf 1.219 base-hf 0.979 fast-base 1.156 agree 8/8 (base 8) []
+val pr_hbm 13 fast-hf 2.766 base-hf 2.094 fast-base 2.641 agree 13/13 (base 13) []
+val pr_tradeoff 2 fast-hf 0.812 base-hf 0.689 fast-base 0.688 agree 2/2 (base 2) []
+val pr_tradeoff 3 fast-hf 0.812 base-hf 0.891 fast-base 0.836 agree 3/3 (base 3) []
+val pr_tradeoff 5 fast-hf 0.938 base-hf 0.891 fast-base 0.852 agree 5/5 (base 5) []
+val pr_tradeoff 8 fast-hf 0.938 base-hf 1.906 fast-base 2.000 agree 8/8 (base 8) []
+val pr_tradeoff 13 fast-hf 1.250 base-hf 1.906 fast-base 2.000 agree 13/13 (base 13) []
+val code_ctx2048 2 fast-hf 1.441 base-hf 1.629 fast-base 1.867 agree 2/2 (base 2) []
+val code_ctx2048 3 fast-hf 1.441 base-hf 1.629 fast-base 1.867 agree 3/3 (base 3) []
+val code_ctx2048 5 fast-hf 1.938 base-hf 1.629 fast-base 2.037 agree 5/5 (base 5) []
+val code_ctx2048 8 fast-hf 1.938 base-hf 1.629 fast-base 2.037 agree 8/8 (base 8) []
+val code_ctx2048 13 fast-hf 3.625 base-hf 3.219 fast-base 4.125 agree 13/13 (base 13) []
+val code_ctx8192 2 fast-hf 1.422 base-hf 1.219 fast-base 0.763 agree 2/2 (base 2) []
+val code_ctx8192 3 fast-hf 1.422 base-hf 1.219 fast-base 0.763 agree 3/3 (base 3) []
+val code_ctx8192 5 fast-hf 1.586 base-hf 1.438 fast-base 0.859 agree 5/5 (base 5) []
+val code_ctx8192 8 fast-hf 1.688 base-hf 1.750 fast-base 0.859 agree 8/8 (base 8) []
+val code_ctx8192 13 fast-hf 4.750 base-hf 3.062 fast-base 3.031 agree 13/13 (base 13) []
+cost 2048 1 3.921
+cost 2048 2 4.876
+cost 2048 3 5.79
+cost 2048 4 5.972
+cost 2048 5 6.486
+cost 2048 6 7.049
+cost 2048 7 7.999
+cost 2048 8 8.233
+cost 2048 9 8.641
+cost 2048 10 8.843
+cost 2048 11 9.044
+cost 2048 12 9.152
+cost 2048 13 9.311
+cost 8192 1 4.046
+cost 8192 2 4.961
+cost 8192 3 5.905
+cost 8192 4 6.146
+cost 8192 5 6.763
+cost 8192 6 7.265
+cost 8192 7 8.283
+cost 8192 8 8.474
+cost 8192 9 8.842
+cost 8192 10 8.999
+cost 8192 11 9.22
+cost 8192 12 9.288
+cost 8192 13 9.485
+{'secs': 118.69946479797363, 'rows': 94}
+FASTPLD_DONE secs 118.69946479797363 est usd 0.13023969054222106
+[modal-client] 2026-11-06T11:09:19-0500 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-cAzs1pGR4mKRI75ZrILm3a

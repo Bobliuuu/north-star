@@ -1,0 +1,54 @@
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": 0, "task": "py_lru"}
+{"config": "base", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 10.760815791666545, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 164, "ref_margin_at_div": 0.0, "task": "py_lru"}
+{"config": "all", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 4.061716958333387, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 164, "ref_margin_at_div": 0.0, "task": "py_lru"}
+{"config": "attn", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 8.209835958333281, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 164, "ref_margin_at_div": 0.0, "task": "py_lru"}
+{"config": "router+moe+resid", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 7.037001749999956, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 164, "ref_margin_at_div": 0.0, "task": "py_lru"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "py_lru"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": 5, "task": "py_interval"}
+{"config": "base", "first_div_vs_ref": 17, "host_loop_ms_per_tok": 10.744834125000047, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 162, "ref_margin_at_div": 13.75, "task": "py_interval"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.065830479166681, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 162, "ref_margin_at_div": null, "task": "py_interval"}
+{"config": "attn", "first_div_vs_ref": 17, "host_loop_ms_per_tok": 8.239075937500099, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 162, "ref_margin_at_div": 13.75, "task": "py_interval"}
+{"config": "router+moe+resid", "first_div_vs_ref": 17, "host_loop_ms_per_tok": 7.035486604166567, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 162, "ref_margin_at_div": 13.75, "task": "py_interval"}
+{"all_vs_base_first_div": 17, "phase": "fast_correct_vs_base", "task": "py_interval"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "rs_stack"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 10.59778885416692, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 168, "ref_margin_at_div": null, "task": "rs_stack"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.05083899999988, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 168, "ref_margin_at_div": null, "task": "rs_stack"}
+{"config": "attn", "first_div_vs_ref": null, "host_loop_ms_per_tok": 8.215416979166612, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 168, "ref_margin_at_div": null, "task": "rs_stack"}
+{"config": "router+moe+resid", "first_div_vs_ref": null, "host_loop_ms_per_tok": 6.88571587500005, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 168, "ref_margin_at_div": null, "task": "rs_stack"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "rs_stack"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "sh_logs"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 10.612914270833329, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 160, "ref_margin_at_div": null, "task": "sh_logs"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.079506020833179, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 160, "ref_margin_at_div": null, "task": "sh_logs"}
+{"config": "attn", "first_div_vs_ref": null, "host_loop_ms_per_tok": 8.226898416666906, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 160, "ref_margin_at_div": null, "task": "sh_logs"}
+{"config": "router+moe+resid", "first_div_vs_ref": null, "host_loop_ms_per_tok": 6.872956916666635, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 160, "ref_margin_at_div": null, "task": "sh_logs"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "sh_logs"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "term_pytest_fail"}
+{"config": "base", "first_div_vs_ref": 30, "host_loop_ms_per_tok": 10.61206335416672, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 232, "ref_margin_at_div": 0.125, "task": "term_pytest_fail"}
+{"config": "all", "first_div_vs_ref": 1, "host_loop_ms_per_tok": 4.066390145833172, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 232, "ref_margin_at_div": 0.125, "task": "term_pytest_fail"}
+{"config": "attn", "first_div_vs_ref": 1, "host_loop_ms_per_tok": 8.258436395833494, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 232, "ref_margin_at_div": 0.125, "task": "term_pytest_fail"}
+{"config": "router+moe+resid", "first_div_vs_ref": 1, "host_loop_ms_per_tok": 6.9682316458334155, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 232, "ref_margin_at_div": 0.125, "task": "term_pytest_fail"}
+{"all_vs_base_first_div": 1, "phase": "fast_correct_vs_base", "task": "term_pytest_fail"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "term_git_conflict"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 10.95305906250014, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 175, "ref_margin_at_div": null, "task": "term_git_conflict"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.045424458333298, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 175, "ref_margin_at_div": null, "task": "term_git_conflict"}
+{"config": "attn", "first_div_vs_ref": null, "host_loop_ms_per_tok": 8.221443770833226, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 175, "ref_margin_at_div": null, "task": "term_git_conflict"}
+{"config": "router+moe+resid", "first_div_vs_ref": null, "host_loop_ms_per_tok": 7.241563124999868, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 175, "ref_margin_at_div": null, "task": "term_git_conflict"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "term_git_conflict"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "pr_hbm"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 10.927198374999966, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 147, "ref_margin_at_div": null, "task": "pr_hbm"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.0819796250000095, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 147, "ref_margin_at_div": null, "task": "pr_hbm"}
+{"config": "attn", "first_div_vs_ref": null, "host_loop_ms_per_tok": 8.262473354166744, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 147, "ref_margin_at_div": null, "task": "pr_hbm"}
+{"config": "router+moe+resid", "first_div_vs_ref": null, "host_loop_ms_per_tok": 7.273986333333464, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 147, "ref_margin_at_div": null, "task": "pr_hbm"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "pr_hbm"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "pr_tradeoff"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 10.920352270833137, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 133, "ref_margin_at_div": null, "task": "pr_tradeoff"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.046622791666603, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 133, "ref_margin_at_div": null, "task": "pr_tradeoff"}
+{"config": "attn", "first_div_vs_ref": null, "host_loop_ms_per_tok": 8.237260854166687, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 133, "ref_margin_at_div": null, "task": "pr_tradeoff"}
+{"config": "router+moe+resid", "first_div_vs_ref": 41, "host_loop_ms_per_tok": 7.217187125000042, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 133, "ref_margin_at_div": 0.125, "task": "pr_tradeoff"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "pr_tradeoff"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "code_ctx2048"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 10.93745946874991, "identical_to_ref": true, "n": 32, "phase": "fast_correct", "prompt_len": 2048, "ref_margin_at_div": null, "task": "code_ctx2048"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.1653490312500985, "identical_to_ref": true, "n": 32, "phase": "fast_correct", "prompt_len": 2048, "ref_margin_at_div": null, "task": "code_ctx2048"}
+{"config": "attn", "first_div_vs_ref": null, "host_loop_ms_per_tok": 8.385750531250125, "identical_to_ref": true, "n": 32, "phase": "fast_correct", "prompt_len": 2048, "ref_margin_at_div": null, "task": "code_ctx2048"}
+{"config": "router+moe+resid", "first_div_vs_ref": null, "host_loop_ms_per_tok": 7.242216749999919, "identical_to_ref": true, "n": 32, "phase": "fast_correct", "prompt_len": 2048, "ref_margin_at_div": null, "task": "code_ctx2048"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "code_ctx2048"}

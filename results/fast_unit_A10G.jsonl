@@ -1,0 +1,30 @@
+{"test": "moe_gemv", "rel_err": 0.0002840909000951797}
+{"test": "moe_gemv_cfg", "cfg": {"BN1": 8, "BK1": 512, "BN2": 8, "BK2": 256}, "rel_err": 0.0002840909000951797}
+{"test": "moe_gemv_cfg", "cfg": {"BN1": 32, "BK1": 128, "BN2": 32, "BK2": 128, "nw1": 8, "nw2": 8}, "rel_err": 0.0002840909000951797}
+{"test": "router", "scores_eq": true, "idx_set_eq": true, "idx_order_eq": true}
+{"test": "resid_norm", "x_rel": 0.0, "h_rel": 0.0, "x_exact": true, "h_exact": true}
+{"test": "attn", "sliding": false, "rope": false, "start": 0, "rel_err": 0.0, "kv_written": true}
+{"test": "attn", "sliding": false, "rope": false, "start": 5, "rel_err": 0.005747126415371895, "kv_written": true}
+{"test": "attn", "sliding": false, "rope": false, "start": 63, "rel_err": 0.005154639016836882, "kv_written": true}
+{"test": "attn", "sliding": false, "rope": false, "start": 64, "rel_err": 0.0034722222480922937, "kv_written": true}
+{"test": "attn", "sliding": false, "rope": false, "start": 1000, "rel_err": 0.0043668122962117195, "kv_written": true}
+{"test": "attn", "sliding": false, "rope": false, "start": 5000, "rel_err": 0.005347593687474728, "kv_written": true}
+{"test": "attn", "sliding": false, "rope": true, "start": 0, "rel_err": 0.0, "kv_written": true}
+{"test": "attn", "sliding": false, "rope": true, "start": 5, "rel_err": 0.003937007859349251, "kv_written": true}
+{"test": "attn", "sliding": false, "rope": true, "start": 63, "rel_err": 0.004347825888544321, "kv_written": true}
+{"test": "attn", "sliding": false, "rope": true, "start": 64, "rel_err": 0.004854368977248669, "kv_written": true}
+{"test": "attn", "sliding": false, "rope": true, "start": 1000, "rel_err": 0.005050505045801401, "kv_written": true}
+{"test": "attn", "sliding": false, "rope": true, "start": 5000, "rel_err": 0.0028248587623238564, "kv_written": true}
+{"test": "attn", "sliding": true, "rope": false, "start": 0, "rel_err": 0.0, "kv_written": true}
+{"test": "attn", "sliding": true, "rope": false, "start": 5, "rel_err": 0.0042553190141916275, "kv_written": true}
+{"test": "attn", "sliding": true, "rope": false, "start": 63, "rel_err": 0.003289473708719015, "kv_written": true}
+{"test": "attn", "sliding": true, "rope": false, "start": 64, "rel_err": 0.005347593687474728, "kv_written": true}
+{"test": "attn", "sliding": true, "rope": false, "start": 1000, "rel_err": 0.005154639016836882, "kv_written": true}
+{"test": "attn", "sliding": true, "rope": false, "start": 5000, "rel_err": 0.005102040711790323, "kv_written": true}
+{"test": "attn", "sliding": true, "rope": true, "start": 0, "rel_err": 0.0, "kv_written": true}
+{"test": "attn", "sliding": true, "rope": true, "start": 5, "rel_err": 0.003289473708719015, "kv_written": true}
+{"test": "attn", "sliding": true, "rope": true, "start": 63, "rel_err": 0.004524887073785067, "kv_written": true}
+{"test": "attn", "sliding": true, "rope": true, "start": 64, "rel_err": 0.00413223123177886, "kv_written": true}
+{"test": "attn", "sliding": true, "rope": true, "start": 1000, "rel_err": 0.0051282052882015705, "kv_written": true}
+{"test": "attn", "sliding": true, "rope": true, "start": 5000, "rel_err": 0.005376344081014395, "kv_written": true}
+{"test": "graph_replay_vs_eager", "rel_err": [0.0, 0.0]}

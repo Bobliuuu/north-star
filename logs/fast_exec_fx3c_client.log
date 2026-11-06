@@ -1,0 +1,174 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-mHt2JUiNUAcLajZ9Rtu3N3
+✓ Created objects.
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a0ca33d96a765adf1/modal/fast
+│   _exec.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a0ca33d96a765adf1/tests
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a0ca33d96a765adf1/src/norths
+│   tar
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a0ca33d96a765adf1/harness
+└── ✓ Created Function run_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:09, 41.35it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:17, 21.90it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:20, 18.06it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:21, 16.41it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:22, 15.86it/s]
+[1ALoading weights:  12%|█▏        | 48/394 [00:02<00:18, 18.70it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:03<00:23, 14.34it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:22, 14.64it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:22, 14.38it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:21, 14.81it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:20, 14.84it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:20, 14.93it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:19, 14.93it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:06<00:18, 15.16it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:18, 15.26it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:17, 15.15it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:08<00:17, 15.27it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:08<00:16, 15.29it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:09<00:16, 15.25it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:09<00:15, 15.03it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:10<00:15, 14.86it/s]
+[1ALoading weights:  42%|████▏     | 165/394 [00:10<00:15, 15.12it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:10<00:15, 14.85it/s]
+[1ALoading weights:  44%|████▍     | 173/394 [00:11<00:14, 15.16it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:11<00:14, 14.74it/s]
+[1ALoading weights:  46%|████▌     | 181/394 [00:11<00:14, 14.71it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:12<00:13, 14.91it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:12<00:13, 15.23it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:13<00:12, 15.03it/s]
+[1ALoading weights:  52%|█████▏    | 205/394 [00:13<00:12, 15.42it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:13<00:12, 14.92it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:14<00:11, 15.05it/s]
+[1ALoading weights:  56%|█████▌    | 221/394 [00:14<00:11, 14.96it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:14<00:11, 15.07it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:15<00:10, 14.73it/s]
+[1ALoading weights:  60%|██████    | 237/394 [00:15<00:10, 14.73it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:15<00:10, 14.61it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:16<00:09, 14.66it/s]
+[1ALoading weights:  64%|██████▍   | 253/394 [00:16<00:09, 14.82it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:16<00:09, 14.52it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:17<00:08, 14.73it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:17<00:08, 14.78it/s]
+[1ALoading weights:  70%|███████   | 277/394 [00:18<00:08, 14.61it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:18<00:07, 14.88it/s]
+[1ALoading weights:  73%|███████▎  | 289/394 [00:18<00:05, 19.52it/s]
+[1ALoading weights:  74%|███████▍  | 292/394 [00:19<00:07, 13.03it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:19<00:06, 14.74it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:20<00:05, 15.06it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:20<00:05, 15.23it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:21<00:04, 15.14it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:21<00:04, 15.05it/s]
+[1ALoading weights:  85%|████████▌ | 335/394 [00:21<00:03, 17.04it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:22<00:03, 14.28it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:22<00:03, 14.55it/s]
+[1ALoading weights:  89%|████████▊ | 349/394 [00:22<00:02, 15.02it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:23<00:02, 14.46it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:23<00:02, 14.82it/s]
+[1ALoading weights:  93%|█████████▎| 365/394 [00:23<00:01, 14.61it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:24<00:01, 14.92it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:24<00:01, 14.90it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:25<00:00, 14.93it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:25<00:00, 15.50it/s]
+correct py_lru base div 0 margin 0.000 10.76 ms/tok
+correct py_lru all div 0 margin 0.000 4.06 ms/tok
+correct py_lru attn div 0 margin 0.000 8.21 ms/tok
+correct py_lru router+moe+resid div 0 margin 0.000 7.04 ms/tok
+correct py_interval base div 17 margin 13.750 10.74 ms/tok
+correct py_interval all div None  4.07 ms/tok
+correct py_interval attn div 17 margin 13.750 8.24 ms/tok
+correct py_interval router+moe+resid div 17 margin 13.750 7.04 ms/tok
+correct rs_stack base div None  10.60 ms/tok
+correct rs_stack all div None  4.05 ms/tok
+correct rs_stack attn div None  8.22 ms/tok
+correct rs_stack router+moe+resid div None  6.89 ms/tok
+correct sh_logs base div None  10.61 ms/tok
+correct sh_logs all div None  4.08 ms/tok
+correct sh_logs attn div None  8.23 ms/tok
+correct sh_logs router+moe+resid div None  6.87 ms/tok
+correct term_pytest_fail base div 30 margin 0.125 10.61 ms/tok
+correct term_pytest_fail all div 1 margin 0.125 4.07 ms/tok
+correct term_pytest_fail attn div 1 margin 0.125 8.26 ms/tok
+correct term_pytest_fail router+moe+resid div 1 margin 0.125 6.97 ms/tok
+correct term_git_conflict base div None  10.95 ms/tok
+correct term_git_conflict all div None  4.05 ms/tok
+correct term_git_conflict attn div None  8.22 ms/tok
+correct term_git_conflict router+moe+resid div None  7.24 ms/tok
+correct pr_hbm base div None  10.93 ms/tok
+correct pr_hbm all div None  4.08 ms/tok
+correct pr_hbm attn div None  8.26 ms/tok
+correct pr_hbm router+moe+resid div None  7.27 ms/tok
+correct pr_tradeoff base div None  10.92 ms/tok
+correct pr_tradeoff all div None  4.05 ms/tok
+correct pr_tradeoff attn div None  8.24 ms/tok
+correct pr_tradeoff router+moe+resid div 41 margin 0.125 7.22 ms/tok
+correct code_ctx2048 base div None  10.94 ms/tok
+correct code_ctx2048 all div None  4.17 ms/tok
+correct code_ctx2048 attn div None  8.39 ms/tok
+correct code_ctx2048 router+moe+resid div None  7.24 ms/tok
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": 0, "task": "py_lru"}
+{"config": "base", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 10.760815791666545, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 164, "ref_margin_at_div": 0.0, "task": "py_lru"}
+{"config": "all", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 4.061716958333387, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 164, "ref_margin_at_div": 0.0, "task": "py_lru"}
+{"config": "attn", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 8.209835958333281, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 164, "ref_margin_at_div": 0.0, "task": "py_lru"}
+{"config": "router+moe+resid", "first_div_vs_ref": 0, "host_loop_ms_per_tok": 7.037001749999956, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 164, "ref_margin_at_div": 0.0, "task": "py_lru"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "py_lru"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": 5, "task": "py_interval"}
+{"config": "base", "first_div_vs_ref": 17, "host_loop_ms_per_tok": 10.744834125000047, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 162, "ref_margin_at_div": 13.75, "task": "py_interval"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.065830479166681, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 162, "ref_margin_at_div": null, "task": "py_interval"}
+{"config": "attn", "first_div_vs_ref": 17, "host_loop_ms_per_tok": 8.239075937500099, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 162, "ref_margin_at_div": 13.75, "task": "py_interval"}
+{"config": "router+moe+resid", "first_div_vs_ref": 17, "host_loop_ms_per_tok": 7.035486604166567, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 162, "ref_margin_at_div": 13.75, "task": "py_interval"}
+{"all_vs_base_first_div": 17, "phase": "fast_correct_vs_base", "task": "py_interval"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "rs_stack"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 10.59778885416692, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 168, "ref_margin_at_div": null, "task": "rs_stack"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.05083899999988, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 168, "ref_margin_at_div": null, "task": "rs_stack"}
+{"config": "attn", "first_div_vs_ref": null, "host_loop_ms_per_tok": 8.215416979166612, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 168, "ref_margin_at_div": null, "task": "rs_stack"}
+{"config": "router+moe+resid", "first_div_vs_ref": null, "host_loop_ms_per_tok": 6.88571587500005, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 168, "ref_margin_at_div": null, "task": "rs_stack"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "rs_stack"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "sh_logs"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 10.612914270833329, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 160, "ref_margin_at_div": null, "task": "sh_logs"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.079506020833179, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 160, "ref_margin_at_div": null, "task": "sh_logs"}
+{"config": "attn", "first_div_vs_ref": null, "host_loop_ms_per_tok": 8.226898416666906, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 160, "ref_margin_at_div": null, "task": "sh_logs"}
+{"config": "router+moe+resid", "first_div_vs_ref": null, "host_loop_ms_per_tok": 6.872956916666635, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 160, "ref_margin_at_div": null, "task": "sh_logs"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "sh_logs"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "term_pytest_fail"}
+{"config": "base", "first_div_vs_ref": 30, "host_loop_ms_per_tok": 10.61206335416672, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 232, "ref_margin_at_div": 0.125, "task": "term_pytest_fail"}
+{"config": "all", "first_div_vs_ref": 1, "host_loop_ms_per_tok": 4.066390145833172, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 232, "ref_margin_at_div": 0.125, "task": "term_pytest_fail"}
+{"config": "attn", "first_div_vs_ref": 1, "host_loop_ms_per_tok": 8.258436395833494, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 232, "ref_margin_at_div": 0.125, "task": "term_pytest_fail"}
+{"config": "router+moe+resid", "first_div_vs_ref": 1, "host_loop_ms_per_tok": 6.9682316458334155, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 232, "ref_margin_at_div": 0.125, "task": "term_pytest_fail"}
+{"all_vs_base_first_div": 1, "phase": "fast_correct_vs_base", "task": "term_pytest_fail"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "term_git_conflict"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 10.95305906250014, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 175, "ref_margin_at_div": null, "task": "term_git_conflict"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.045424458333298, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 175, "ref_margin_at_div": null, "task": "term_git_conflict"}
+{"config": "attn", "first_div_vs_ref": null, "host_loop_ms_per_tok": 8.221443770833226, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 175, "ref_margin_at_div": null, "task": "term_git_conflict"}
+{"config": "router+moe+resid", "first_div_vs_ref": null, "host_loop_ms_per_tok": 7.241563124999868, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 175, "ref_margin_at_div": null, "task": "term_git_conflict"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "term_git_conflict"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "pr_hbm"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 10.927198374999966, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 147, "ref_margin_at_div": null, "task": "pr_hbm"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.0819796250000095, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 147, "ref_margin_at_div": null, "task": "pr_hbm"}
+{"config": "attn", "first_div_vs_ref": null, "host_loop_ms_per_tok": 8.262473354166744, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 147, "ref_margin_at_div": null, "task": "pr_hbm"}
+{"config": "router+moe+resid", "first_div_vs_ref": null, "host_loop_ms_per_tok": 7.273986333333464, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 147, "ref_margin_at_div": null, "task": "pr_hbm"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "pr_hbm"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "pr_tradeoff"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 10.920352270833137, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 133, "ref_margin_at_div": null, "task": "pr_tradeoff"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.046622791666603, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 133, "ref_margin_at_div": null, "task": "pr_tradeoff"}
+{"config": "attn", "first_div_vs_ref": null, "host_loop_ms_per_tok": 8.237260854166687, "identical_to_ref": true, "n": 48, "phase": "fast_correct", "prompt_len": 133, "ref_margin_at_div": null, "task": "pr_tradeoff"}
+{"config": "router+moe+resid", "first_div_vs_ref": 41, "host_loop_ms_per_tok": 7.217187125000042, "identical_to_ref": false, "n": 48, "phase": "fast_correct", "prompt_len": 133, "ref_margin_at_div": 0.125, "task": "pr_tradeoff"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "pr_tradeoff"}
+{"phase": "ref_vs_hf", "ref_first_div_vs_hf": null, "task": "code_ctx2048"}
+{"config": "base", "first_div_vs_ref": null, "host_loop_ms_per_tok": 10.93745946874991, "identical_to_ref": true, "n": 32, "phase": "fast_correct", "prompt_len": 2048, "ref_margin_at_div": null, "task": "code_ctx2048"}
+{"config": "all", "first_div_vs_ref": null, "host_loop_ms_per_tok": 4.1653490312500985, "identical_to_ref": true, "n": 32, "phase": "fast_correct", "prompt_len": 2048, "ref_margin_at_div": null, "task": "code_ctx2048"}
+{"config": "attn", "first_div_vs_ref": null, "host_loop_ms_per_tok": 8.385750531250125, "identical_to_ref": true, "n": 32, "phase": "fast_correct", "prompt_len": 2048, "ref_margin_at_div": null, "task": "code_ctx2048"}
+{"config": "router+moe+resid", "first_div_vs_ref": null, "host_loop_ms_per_tok": 7.242216749999919, "identical_to_ref": true, "n": 32, "phase": "fast_correct", "prompt_len": 2048, "ref_margin_at_div": null, "task": "code_ctx2048"}
+{"all_vs_base_first_div": null, "phase": "fast_correct_vs_base", "task": "code_ctx2048"}
+
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-mHt2JUiNUAcLajZ9Rtu3N3

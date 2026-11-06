@@ -1,0 +1,41 @@
+
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-06T16:10:56Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "b75d56d0a2a7", "load_s": 41.66616439819336}
+natural captured; fast cost T=1/4/9/13 [3.89, 6.0, 8.5, 9.25]
+natural py_lru base 92.8 fast 254.2 tok/s; sam2_g12=1.17x sam2_g12=1.17x pld3_g8=1.20x pld3_g8=1.20x
+natural py_interval base 92.9 fast 254.6 tok/s; sam2_g12=1.04x sam2_g12=1.05x pld3_g8=1.04x pld3_g8=1.04x
+natural py_dataclass base 92.9 fast 254.8 tok/s; sam2_g12=1.34x sam2_g12=1.35x pld3_g8=1.31x pld3_g8=1.31x
+natural rs_stack base 92.8 fast 254.5 tok/s; sam2_g12=1.25x sam2_g12=1.25x pld3_g8=1.23x pld3_g8=1.23x
+natural go_worker base 93.1 fast 255.0 tok/s; sam2_g12=1.14x sam2_g12=1.15x pld3_g8=1.09x pld3_g8=1.10x
+natural sql_topn base 92.4 fast 254.6 tok/s; sam2_g12=1.14x sam2_g12=1.14x pld3_g8=1.20x pld3_g8=1.19x
+natural sh_logs base 92.8 fast 254.9 tok/s; sam2_g12=1.07x sam2_g12=1.08x pld3_g8=1.06x pld3_g8=1.06x
+natural term_pytest_fail base 92.9 fast 254.8 tok/s; sam2_g12=1.09x sam2_g12=1.09x pld3_g8=1.11x pld3_g8=1.11x
+natural term_git_conflict base 92.8 fast 254.7 tok/s; sam2_g12=1.13x sam2_g12=1.13x pld3_g8=1.08x pld3_g8=1.07x
+natural term_make base 92.9 fast 254.3 tok/s; sam2_g12=1.05x sam2_g12=1.05x pld3_g8=1.02x pld3_g8=1.02x
+natural term_docker base 92.1 fast 254.6 tok/s; sam2_g12=1.04x sam2_g12=1.05x pld3_g8=1.06x pld3_g8=1.06x
+natural pr_hbm base 92.2 fast 254.5 tok/s; sam2_g12=1.13x sam2_g12=1.13x pld3_g8=1.10x pld3_g8=1.10x
+natural pr_story base 92.8 fast 254.5 tok/s; sam2_g12=1.15x sam2_g12=1.15x pld3_g8=1.16x pld3_g8=1.16x
+natural pr_tradeoff base 92.1 fast 254.5 tok/s; sam2_g12=1.02x sam2_g12=1.03x pld3_g8=1.00x pld3_g8=1.00x
+natural pr_reason base 92.3 fast 255.0 tok/s; sam2_g12=1.11x sam2_g12=1.11x pld3_g8=1.00x pld3_g8=1.00x
+natural edit_shutil base 92.1 fast 254.0 tok/s; sam2_g12=1.10x sam2_g12=1.10x pld3_g8=1.07x pld3_g8=1.06x
+natural edit_difflib base 92.9 fast 253.3 tok/s; sam2_g12=1.17x sam2_g12=1.17x pld3_g8=1.10x pld3_g8=1.10x
+natural extract_textwrap base 92.1 fast 252.7 tok/s; sam2_g12=1.77x sam2_g12=1.77x pld3_g8=1.84x pld3_g8=1.84x
+natural extract_heapq base 92.9 fast 251.7 tok/s; sam2_g12=1.14x sam2_g12=1.14x pld3_g8=1.15x pld3_g8=1.15x
+natural summ_argparse base 92.0 fast 252.3 tok/s; sam2_g12=1.09x sam2_g12=1.09x pld3_g8=1.03x pld3_g8=0.99x
+natural summ_shutil base 92.1 fast 252.4 tok/s; sam2_g12=1.23x sam2_g12=1.23x pld3_g8=1.21x pld3_g8=1.21x
+ctx2048 captured; fast cost T=1/4/9/13 [3.96, 5.98, 8.64, 9.33]
+ctx2048 py_lru base 92.2 fast 248.6 tok/s; sam2_g12=1.56x sam2_g12=1.57x pld3_g8=1.59x pld3_g8=1.59x
+ctx2048 py_dataclass base 92.2 fast 248.6 tok/s; sam2_g12=1.30x sam2_g12=1.30x pld3_g8=1.33x pld3_g8=1.33x
+ctx2048 pr_story base 93.0 fast 248.7 tok/s; sam2_g12=1.04x sam2_g12=1.05x pld3_g8=1.07x pld3_g8=1.07x
+ctx2048 term_make base 92.9 fast 248.4 tok/s; sam2_g12=1.08x sam2_g12=1.09x pld3_g8=1.19x pld3_g8=1.19x
+ctx2048 edit_shutil base 92.2 fast 248.2 tok/s; sam2_g12=3.78x sam2_g12=3.78x pld3_g8=2.86x pld3_g8=2.86x
+ctx2048 extract_textwrap base 92.1 fast 248.0 tok/s; sam2_g12=2.09x sam2_g12=2.09x pld3_g8=1.96x pld3_g8=2.01x
+ctx2048 summ_argparse base 92.9 fast 248.0 tok/s; sam2_g12=1.10x sam2_g12=1.10x pld3_g8=1.09x pld3_g8=1.09x
+ctx8192 captured; fast cost T=1/4/9/13 [4.08, 6.16, 8.84, 9.49]
+ctx8192 py_lru base 87.1 fast 243.3 tok/s; sam2_g12=1.14x sam2_g12=1.14x pld3_g8=1.21x pld3_g8=1.21x
+ctx8192 py_dataclass base 87.0 fast 243.4 tok/s; sam2_g12=1.33x sam2_g12=1.33x pld3_g8=1.38x pld3_g8=1.38x
+ctx8192 pr_story base 87.0 fast 243.1 tok/s; sam2_g12=1.03x sam2_g12=1.04x pld3_g8=1.06x pld3_g8=1.06x
+ctx8192 term_make base 87.0 fast 243.4 tok/s; sam2_g12=1.33x sam2_g12=1.33x pld3_g8=1.21x pld3_g8=1.21x
+ctx8192 edit_shutil base 87.1 fast 243.4 tok/s; sam2_g12=3.53x sam2_g12=3.55x pld3_g8=2.86x pld3_g8=2.87x
+ctx8192 extract_textwrap base 87.1 fast 243.3 tok/s; sam2_g12=1.72x sam2_g12=1.71x pld3_g8=1.72x pld3_g8=1.72x
+ctx8192 summ_argparse base 87.0 fast 243.3 tok/s; sam2_g12=1.10x sam2_g12=1.09x pld3_g8=1.08x pld3_g8=1.08x
+FASTPLD_DONE secs 634.8680982589722 est usd 0.6965913855897056
