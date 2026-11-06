@@ -1,0 +1,16 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-2UCxtRGdXi1rVUqdhFdOBa
+✓ Created objects.
+├── ✓ Uploaded /Users/jhome/north-star/modal/draft_sparse.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded /Users/jhome/north-star/src/northstar
+├── ✓ Uploaded /Users/jhome/north-star/tests
+├── ✓ Uploaded /Users/jhome/north-star/harness
+└── ✓ Created Function run_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:06, 55.00it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:14, 25.28it/s]
+[1ALoading weights:   6%|▌         | 23/394 [00:00<00:13, 27.51it/s][modal-client] 2026-11-06T15:04:35+0000 Modal Client → Modal Worker Heartbeat attempt failed (attempt_dur=68.27, time_since_heartbeat_success=68.27, error=ConnectionError('Deadline exceeded'))
+

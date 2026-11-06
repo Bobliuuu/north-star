@@ -173,3 +173,16 @@ Source: results/approx_sweep_quick1.json (Modal ap-pqB0aAizeEKtPTfQ2sG2JC, A100-
 | combined oracle k1024 + top4 renorm | 0.630 | 2.68 | 0.52 |
 Findings (MEASURED): (1) sparse attention to 19-21% of keys keeps agreement >= 0.96, so attention approximation is nearly free in acceptance. (2) top-4 experts costs agreement; renormalised gates are much worse than raw sigmoid (0.63-0.69 vs 0.86-0.88). (3) Combined acceptance is below its attention-only component (0.875 vs 0.961 at k256). Small n, one seed, 2 prompts: indicative only.
 NOT established: G2 (docs/THESIS.md) needs draft step COST per config. The sweep measured acceptance, not time, so combined-vs-best-single in speedup is unevaluated. Per H5 attention is ~4 ms of a 9-10 ms draft step, so a cheap sparse-attention kernel is the lever; none is timed here.
+
+## H8: graphed draft-step cost with real sparse-attention gather (MEASURED, H100, T=1, bmm executor)
+Source: results/draft_sparse_ds4.jsonl (ap-twoX9LH4XIEsXdoMboHoV8; harness/bench_draft_sparse.py, GraphNorth sparse=). Median ms of CUDA-graph replay, 50 reps. Modes: base = padded bmm attention (as H5); slwin = sliding layers gather last W; fixedK = slwin + global layers gather sink4+K+window128 slots (index NOT content-selected; pure gather+attend cost); oracleK = same but index from q.K scan over all slots + topk (selector cost included). Timing only, outputs not validated here.
+| mode | ctx2048 r=all | ctx2048 top4 | ctx8192 r=all | ctx8192 top4 |
+|---|---|---|---|---|
+| base | 10.70 | 9.80 | 11.38 | 10.47 |
+| slwin | 11.13 | 10.30 | 11.74 | 10.88 |
+| fixed256 | 11.44 | 10.58 | 11.83 | 11.00 |
+| oracle256 | 12.13 | 11.30 | 13.03 | 12.19 |
+| fixed1024 | 11.56 | 10.72 | 11.98 | 11.14 |
+| oracle1024 | 12.27 | 11.44 | 13.21 | 12.39 |
+Findings (MEASURED): every sparse-attention draft step is SLOWER than the dense padded draft (+3-17%), also at 8K ctx; top-4 experts saves ~0.9 ms in every row and nothing more is gained from attention. Gather via torch.gather materialises K/V copies and adds launches; at <=8K the dense attention it replaces is cheap in this executor, so there is no byte or launch saving to harvest. Combined with H7 (acceptance), no approximation tested yields a cheaper draft step, so G2 cannot be met with these implementations.
+Caveat: a fused sparse-attention kernel (no copy) was not built; it could remove the gather overhead but cannot cut below the non-attention floor (experts/router/lm_head ~6+ ms), so the best case is bounded by the dense attention cost (H5: ~4 ms at its ctx) and only matters at much longer contexts (32K+, untested for draft cost).

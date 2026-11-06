@@ -1,0 +1,235 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-DfHq0xMSJ0aKqZHFzuI6az
+✓ Created objects.
+├── ✓ Uploaded /Users/jhome/north-star/modal/draft_sparse.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded /Users/jhome/north-star/src/northstar
+├── ✓ Uploaded /Users/jhome/north-star/tests
+├── ✓ Uploaded /Users/jhome/north-star/harness
+└── ✓ Created Function run_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:07, 48.93it/s]
+[1ALoading weights:   4%|▍         | 16/394 [00:00<00:08, 43.99it/s]
+[1ALoading weights:   5%|▌         | 21/394 [00:00<00:20, 18.61it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:25, 14.14it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:02<00:26, 13.70it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:26, 13.49it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:03<00:25, 13.25it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:25, 13.00it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:04<00:24, 13.40it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:26, 12.58it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:04<00:24, 13.05it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:05<00:24, 13.16it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:21, 14.39it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:06<00:19, 15.44it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:18, 16.11it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:07<00:17, 16.67it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:16, 16.74it/s]
+[1ALoading weights:  30%|██▉       | 117/394 [00:07<00:16, 17.02it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:16, 16.72it/s]
+[1ALoading weights:  32%|███▏      | 125/394 [00:08<00:15, 16.85it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:08<00:15, 16.88it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:08<00:14, 17.41it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:09<00:14, 17.51it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:09<00:13, 17.42it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:10<00:13, 17.48it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:10<00:12, 17.71it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:11<00:12, 17.90it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:11<00:11, 17.86it/s]
+[1ALoading weights:  48%|████▊     | 189/394 [00:11<00:11, 18.00it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:11<00:11, 18.07it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:12<00:10, 18.14it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:12<00:10, 18.05it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:13<00:09, 17.91it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:13<00:09, 17.72it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:14<00:08, 17.81it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:14<00:08, 17.84it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:15<00:07, 17.88it/s]
+[1ALoading weights:  64%|██████▍   | 253/394 [00:15<00:07, 17.87it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:15<00:07, 17.93it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:16<00:07, 17.92it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:16<00:06, 18.18it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:16<00:06, 18.23it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:17<00:05, 18.07it/s]
+[1ALoading weights:  74%|███████▍  | 293/394 [00:17<00:05, 18.01it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:17<00:05, 18.00it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:18<00:04, 18.08it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:18<00:04, 18.16it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:19<00:03, 18.11it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:19<00:03, 18.39it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:19<00:02, 18.36it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:20<00:02, 18.50it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:20<00:02, 18.38it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:21<00:01, 18.27it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:21<00:01, 18.24it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:22<00:00, 18.24it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:22<00:00, 18.17it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:22<00:00, 17.43it/s]
+Traceback (most recent call last):
+  File "/root/harness/graph_north.py", line 125, in capture
+    out = fn()
+          ^^^^
+  File "/root/harness/graph_north.py", line 133, in fn
+    lg = self.forward(ids, kv, skip, r, parts, logits, sparse)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/harness/graph_north.py", line 104, in forward
+    m = mlp.experts(hf, ix, sc).reshape(1, T, -1)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1776, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/integrations/moe.py", line 602, in forward
+    return experts_forward(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/integrations/moe.py", line 458, in grouped_mm_experts_forward
+    proj_out = _grouped_linear(
+               ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/integrations/moe.py", line 383, in _grouped_linear
+    out = _grouped_mm(input, weight.transpose(-2, -1), offs=offs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/transformers/integrations/moe.py", line 347, in _grouped_mm
+    return torch.nn.functional.grouped_mm(input.to(weight.dtype), weight, offs=offs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/functional.py", line 6688, in grouped_mm
+    return torch._grouped_mm(mat_a, mat_b, offs=offs, bias=bias, out_dtype=out_dtype)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: operation not permitted when stream is capturing
+Search for `cudaErrorStreamCaptureUnsupported' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 987, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 266, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/draft_sparse.py", line 16, in run_remote
+    txt = bench_draft_sparse.run(m, tok, ctxs=tuple(int(c) for c in ctxs.split(","))).text()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/harness/bench_draft_sparse.py", line 23, in run
+    s = gn.make_step(1, kv, r=r, sparse=sp); s.set([ids[-1]], P - 1)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/harness/graph_north.py", line 136, in make_step
+    g, out = self.capture(fn)
+             ^^^^^^^^^^^^^^^^
+  File "/root/harness/graph_north.py", line 124, in capture
+    with torch.cuda.graph(g):
+         ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/cuda/graphs.py", line 268, in __exit__
+    self.cuda_graph.capture_end()
+  File "/usr/local/lib/python3.12/site-packages/torch/cuda/graphs.py", line 130, in capture_end
+    super().capture_end()
+torch.AcceleratorError: CUDA error: operation failed due to a previous error during capture
+Search for `cudaErrorStreamCaptureInvalidated' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+Runner terminated.
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /Users/jhome/north-star/modal/draft_sparse.py:26 in main                     │
+│                                                                              │
+│   25 def main(tag: str = "ds1", ctxs: str = "2048,8192"):                    │
+│ ❱ 26 │   res = run_remote.remote(tag, ctxs)                                  │
+│   27 │   pathlib.Path("results").mkdir(exist_ok=True)                        │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_obj │
+│ ect.py:49 in wrapped                                                         │
+│                                                                              │
+│    48 │   │   await self.hydrate()                                           │
+│ ❱  49 │   │   return await method(self, *args, **kwargs)                     │
+│    50                                                                        │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:2081 in remote                                                     │
+│                                                                              │
+│   2080 │   │                                                                 │
+│ ❱ 2081 │   │   return await self._call_function(args, kwargs)                │
+│   2082                                                                       │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:2018 in _call_function                                             │
+│                                                                              │
+│   2017 │   │                                                                 │
+│ ❱ 2018 │   │   return await invocation.run_function()                        │
+│   2019                                                                       │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:517 in run_function                                                │
+│                                                                              │
+│    516 │   │   │   # No more retries left.                                   │
+│ ❱  517 │   │   │   return await _process_result(                             │
+│    518 │   │   │   │   await_response.output.result, await_response.output.d │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_uti │
+│ ls/function_utils.py:572 in _process_result                                  │
+│                                                                              │
+│   571 │   │   │                                                              │
+│ ❱ 572 │   │   │   raise exc_with_hints(exc)                                  │
+│   573                                                                        │
+│                                                                              │
+│     ...Remote call to Modal Function (ta-01M6RP16ZG7SRNVR7PADSG7JZR)...      │
+│                                                                              │
+│ /root/draft_sparse.py:16 in run_remote                                       │
+│                                                                              │
+│ ❱ 16 txt = bench_draft_sparse.run(m, tok, ctxs=tuple(int(c) for c in ctxs.sp │
+│                                                                              │
+│                                                                              │
+│ /usr/local/lib/python3.12/site-packages/torch/utils/_contextlib.py:124 in    │
+│ decorate_context                                                             │
+│                                                                              │
+│ ❱ 124 return func(*args, **kwargs)                                           │
+│                                                                              │
+│                                                                              │
+│ /root/harness/bench_draft_sparse.py:23 in run                                │
+│                                                                              │
+│ ❱ 23 s = gn.make_step(1, kv, r=r, sparse=sp); s.set([ids[-1]], P - 1)        │
+│                                                                              │
+│                                                                              │
+│ /root/harness/graph_north.py:136 in make_step                                │
+│                                                                              │
+│ ❱ 136 g, out = self.capture(fn)                                              │
+│                                                                              │
+│                                                                              │
+│ /root/harness/graph_north.py:124 in capture                                  │
+│                                                                              │
+│ ❱ 124 with torch.cuda.graph(g):                                              │
+│                                                                              │
+│                                                                              │
+│ /usr/local/lib/python3.12/site-packages/torch/cuda/graphs.py:268 in __exit__ │
+│                                                                              │
+│ ❱ 268 self.cuda_graph.capture_end()                                          │
+│                                                                              │
+│                                                                              │
+│ /usr/local/lib/python3.12/site-packages/torch/cuda/graphs.py:130 in          │
+│ capture_end                                                                  │
+│                                                                              │
+│ ❱ 130 super().capture_end()                                                  │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+AcceleratorError: CUDA error: operation failed due to a previous error during 
+capture
+Search for `cudaErrorStreamCaptureInvalidated' in 
+https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more
+information.
+CUDA kernel errors might be asynchronously reported at some other API call, so 
+the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
