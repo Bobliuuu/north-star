@@ -37,7 +37,32 @@ Draft-vs-verifier expert coverage, SAME tokens (teacher-forced). Metric = fracti
 
 INFERENCE (not measured): real consecutive-token overlap ~0.5 sits between the synthetic uniform (0.39, ~16% MoE-layer saving) and corr75 (0.84, ~27%) rows, so an MoE-layer saving of very roughly 15-25% is plausible. Cycle-level G0 still needs attention/LM-head costs and the cross-token draft overlap.
 
-PENDING (baseline agent): G0 ceiling, greedy tok/s, accepted-length distributions.
+### Phase 0/1 on real North (eager HF/PyTorch, A100-80GB, bf16, batch 1 unless noted). Raw: `results/*.jsonl`, summary `results/PHASE01.md`
+IMPORTANT: eager PyTorch is LAUNCH-BOUND (~97 ms/token vs ~3.2 ms weight-stream floor, ~30x gap). Every timing below is an eager number, not a hardware limit and not a megakernel/CUDA-graph number. G0 (HBM- vs compute-bound) is NOT decided.
+
+| item | result |
+|---|---|
+| plain greedy decode | 96.6 ms/token (10.4 tok/s) at 2K, 98.7 ms at 8K; batch 8: 120.6 ms/step |
+| block-verify K=16 vs 16 decodes | 1.5x cost of one token => eager ceiling 11.8x (2K), 10.7x (8K); launch-bound, optimistic |
+| distinct experts/layer by block K=1/2/4/8/16 | 8 / 12.3 / 18.5 / 26.4 / 36.9 |
+| bandwidth-floor ceiling (computed from measured expert unions, perfect draft) | ~2.3x K=4, ~3.5x K=8, ~5.4x K=16 (analytic, not a GPU measurement) |
+| decode components (126.9 ms CUDA-event timeline, 2K) | experts 71.5, attention 26.7, norm 8.6, router 5.5, lm_head 0.6 |
+
+Self-speculation, greedy, 8 tasks x 64 tokens, gamma=4, zero new weights (eager => wall speedup <1x is expected and says nothing about a fused executor):
+| draft | accepted/round | committed/round | wall vs plain | identical to plain |
+|---|---|---|---|---|
+| top-4 experts | 2.77 | 3.71 | 0.70x | 8/8 |
+| top-2 experts | 1.80 | 2.74 | 0.54x | 7/8 |
+| 8-layer skip | 2.45 | 3.37 | 0.71x | 5/8 |
+| 16-layer skip | 1.50 | 2.48 | 0.59x | 5/8 |
+| skip8 + top-4 | 1.94 | 2.87 | 0.52x | 4/8 |
+| top-4, gamma=2 / gamma=8 | 1.57 / 4.23 | 2.54 / 5.05 | 0.76x / 0.54x | 5/8 / 4/8 |
+8K, top-4, gamma=4: 3.0 accepted/round, token-identical, 6.5 vs 9.6 tok/s.
+Divergences: mostly bf16 near-ties (top-1/top-2 margin <0.25), but one 8-layer-skip divergence is unexplained. RefNorth itself differs from HF generate on 3/8 tasks (first mismatch token 41-55), so "identical" holds only up to bf16 ties. Greedy only; no RNG/sampling path.
+
+Reading: a training-free top-4-expert draft accepts ~2.8 of 4 on real North, so draft quality is not the blocker. Cost is: in eager mode a draft step costs about as much as a full step. Whether a fused/persistent executor changes that is the open question and the reason for the H100 phase.
+
+NOT RUN: 32K/128K contexts, batch>1 self-spec, mixed lengths, sampling, vLLM and cohere-megakernel baselines, CUDA-graph timing.
 
 ## Simulated / modeled
 - Joint optimizer (`docs/OPT.md`): on measured A100 MoE costs plus INVENTED acceptance, plain decode (~146 tok/s modeled) beats most speculative configs; only gamma=1 + fused wins (~+10%, entirely from invented carry-hit 0.6 / accept 0.9). Joint > independent by up to 11.5% in 36/48 synthetic scenarios. Not a speedup claim.
