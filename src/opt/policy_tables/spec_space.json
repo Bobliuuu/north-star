@@ -1,0 +1,5 @@
+{
+ "gammas": [1, 2, 3, 4, 6, 8],
+ "modes": ["two_pass", "spec_two_pass", "fused"],
+ "n_groups": 6
+}
