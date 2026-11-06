@@ -94,7 +94,7 @@ def timing(ref, tok, j, ctxs=(2048, 8192), reps=50):
 
 
 @torch.no_grad()
-def correctness(ref, tok, j, ngen=48, long_ctx=2048):
+def correctness(m, ref, tok, j, ngen=48, long_ctx=2048):
     rows = by_split(load_workloads(), "dev")
     cells = [(r["id"], build_ids(tok, r)) for r in rows]
     code = [r for r in rows if r["kind"] == "code"]
@@ -106,6 +106,10 @@ def correctness(ref, tok, j, ngen=48, long_ctx=2048):
             n = ngen if P < 1500 else 32
             pg = plain_greedy(ref, ids, n)
             rt, margins = pg["tokens"], pg["margins"]
+            hf = m.generate(torch.tensor([ids], device=ref.device), max_new_tokens=n, do_sample=False)[0, P:].tolist()
+            fdr = next((i for i, (a, b) in enumerate(zip(rt, hf)) if a != b), None)
+            j.add(phase="ref_vs_hf", task=tid, ref_first_div_vs_hf=fdr)
+            rt = hf  # truth = HF generate greedy
             base = GraphNorth(ref, P + n + 24, "bmm"); kv = base.new_kv(); base.eager_prefill(ids[:-1], kv)
             fast = FastNorth(ref, P + n + 24, opts=("attn", "moe", "router", "resid"))
             outs = {}
@@ -115,6 +119,7 @@ def correctness(ref, tok, j, ngen=48, long_ctx=2048):
                 if opts is not None:
                     fast.opts = frozenset(opts)
                 s = g.make_step(1, kv)
+                g.eager_prefill(ids[:-1], kv)  # capture warmup/trace runs the graph body at the stale `start` and clobbers KV there: re-prefill
                 toks, cur = [], ids[-1]
                 torch.cuda.synchronize(); t0 = time.perf_counter()
                 for i in range(n):
@@ -123,8 +128,8 @@ def correctness(ref, tok, j, ngen=48, long_ctx=2048):
                 outs[name] = toks
                 fd = next((i for i, (a, b) in enumerate(zip(toks, rt)) if a != b), None)
                 j.add(phase="fast_correct", task=tid, prompt_len=P, config=name, n=n, identical_to_ref=fd is None, first_div_vs_ref=fd,
-                      ref_margin_at_div=None if fd is None else float(margins[fd]), host_loop_ms_per_tok=1e3 * dt / n)
-                print("correct", tid, name, "div", fd, "" if fd is None else "margin %.3f" % margins[fd], "%.2f ms/tok" % (1e3 * dt / n), flush=True)
+                      ref_margin_at_div=None if fd is None or fd >= len(margins) else float(margins[fd]), host_loop_ms_per_tok=1e3 * dt / n)
+                print("correct", tid, name, "div", fd, "" if fd is None else "margin %.3f" % margins[fd] if fd < len(margins) else "", "%.2f ms/tok" % (1e3 * dt / n), flush=True)
                 del s
             fd = next((i for i, (a, b) in enumerate(zip(outs["all"], outs["base"])) if a != b), None)
             j.add(phase="fast_correct_vs_base", task=tid, all_vs_base_first_div=fd)
@@ -173,5 +178,5 @@ def run(m, tok, sections="tc"):
         except Exception:
             j.add(phase="debug_error", err=traceback.format_exc()[-800:])
     if "c" in sections:
-        correctness(ref, tok, j)
+        correctness(m, ref, tok, j)
     return j
