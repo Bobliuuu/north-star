@@ -68,6 +68,7 @@ class LLMProposer:
                 "Reply with ONE JSON recipe object and nothing else.")
 
     def propose(self, history):
+        text = ""
         try:
             text = self.gen(self.prompt(history))
             d = extract_json(text)
@@ -77,7 +78,7 @@ class LLMProposer:
             return d, dict(source="llm", raw=text[:500])
         except Exception as e:  # noqa: BLE001 - any failure -> recorded fallback
             d, meta = self.fallback.propose(history)
-            return d, dict(source="fallback", error=f"{type(e).__name__}: {e}")
+            return d, dict(source="fallback", error=f"{type(e).__name__}: {e}", raw=text[-800:])
 
 
 def run_round(m, proposer, store: EditStore, train_seqs, train_from, gate_seqs, gate_from, history, cache=None,
