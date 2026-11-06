@@ -10,3 +10,78 @@ https://modal.com/apps/<workspace>/main/ap-dWB0aBP53xCpgNSW7gVHYF
 ├── ✓ Uploaded <home>/north-star/harness
 ├── ✓ Uploaded <home>/north-star/src/approx
 └── ✓ Created Function run_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:08, 47.35it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:18, 20.40it/s]
+[1ALoading weights:   6%|▌         | 22/394 [00:01<00:19, 19.31it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:22, 16.02it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:02<00:24, 14.60it/s]
+[1ALoading weights:   9%|▉         | 37/394 [00:02<00:25, 14.06it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:24, 14.48it/s]
+[1ALoading weights:  11%|█▏        | 45/394 [00:02<00:23, 14.70it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:03<00:24, 13.92it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:24, 13.80it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:03<00:23, 14.36it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:25, 12.93it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:05<00:24, 13.26it/s]
+[1ALoading weights:  20%|█▉        | 77/394 [00:05<00:22, 13.79it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:24, 12.61it/s]
+[1ALoading weights:  22%|██▏       | 85/394 [00:05<00:23, 13.17it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:06<00:23, 12.65it/s]
+[1ALoading weights:  24%|██▎       | 93/394 [00:06<00:23, 12.81it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:23, 12.70it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:07<00:22, 13.31it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:07<00:22, 12.60it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:08<00:20, 13.34it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:08<00:20, 13.36it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:09<00:19, 13.26it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:09<00:18, 13.61it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:10<00:18, 13.37it/s]
+[1ALoading weights:  38%|███▊      | 149/394 [00:10<00:18, 13.59it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:11<00:18, 13.12it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:11<00:17, 13.52it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:12<00:15, 13.98it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:12<00:15, 14.11it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:13<00:14, 14.15it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:13<00:13, 14.34it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:14<00:13, 14.25it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:14<00:12, 14.30it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:15<00:12, 14.32it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:16<00:11, 14.27it/s]
+[1ALoading weights:  58%|█████▊    | 229/394 [00:16<00:11, 14.40it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:16<00:10, 14.63it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:17<00:10, 14.59it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:17<00:09, 14.80it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:18<00:09, 14.73it/s]
+[1ALoading weights:  66%|██████▌   | 261/394 [00:18<00:08, 15.11it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:18<00:08, 14.85it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:19<00:07, 15.08it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:19<00:07, 15.07it/s]
+[1ALoading weights:  72%|███████▏  | 285/394 [00:19<00:07, 15.37it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:20<00:06, 14.95it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:20<00:06, 14.82it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:21<00:05, 14.97it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:21<00:05, 14.80it/s]
+[1ALoading weights:  80%|████████  | 317/394 [00:22<00:05, 14.83it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:22<00:04, 14.90it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:23<00:04, 15.02it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:23<00:03, 15.03it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:24<00:03, 15.11it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:24<00:02, 14.80it/s]
+[1ALoading weights:  91%|█████████ | 357/394 [00:24<00:02, 14.59it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:25<00:02, 15.12it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:25<00:01, 15.10it/s]
+[1ALoading weights:  95%|█████████▌| 375/394 [00:25<00:01, 17.08it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:26<00:01, 14.54it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:26<00:00, 14.85it/s]Loading weights: 100%|██████████| 394/394 [00:26<00:00, 14.72it/s]
+  step 0 kl=2.3389
+  step 10 kl=4.0044
+  step 20 kl=1.1871
+  step 30 kl=1.8931
+  step 40 kl=2.3930
+  step 50 kl=1.7215
+  step 60 kl=2.0491
+  step 70 kl=1.6854
+  step 80 kl=1.8328
+  step 90 kl=1.3883
