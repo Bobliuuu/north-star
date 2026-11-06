@@ -1,4 +1,4 @@
-"""Quality track (kernel): numerical agreement on HELD-OUT real routing traces (results/routing_traces.json, split 'calib').
+"""Quality track (kernel): numerical agreement on HELD-OUT real routing traces (routing_traces.json, split 'calib', delivered by fd, never in the workspace).
 
 These traces are never put in the proposer prompt (only the dev split is described there, see config.py). Each item takes a
 real window of North's top-8 expert ids at one MoE layer (2 verify + 2 draft tokens, draft budget r=4), remaps the used experts
@@ -12,7 +12,7 @@ common.limit_threads(2)
 sys.path.insert(0, os.path.join(common.WS, "src", "kvm"))
 from ref import moe_ref as m
 
-TRACES = json.load(open(os.path.join(common.WS, "results", "routing_traces.json")))
+TRACES = common.heldout_json("routing_traces.json")      # fd from the evaluator, not a workspace file
 HELDOUT_SPLIT = "calib"
 LAYER_IDX = (0, 11, 23, 35, 47)          # index into the 48 MoE layers
 TV, TD, R = 2, 2, 4

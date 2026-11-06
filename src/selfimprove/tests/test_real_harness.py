@@ -128,14 +128,19 @@ def fake(ws, noise=1e-5, diff=0.0, us=10.0):
 def kws(tmp_path):
     ws = tmp_path / "ws"
     for rel in ("src/kvm", "harness/selfimprove"): shutil.copytree(REPO / rel, ws / rel, ignore=shutil.ignore_patterns("__pycache__"))
-    (ws / "results").mkdir(); shutil.copy(REPO / "results/routing_traces.json", ws / "results"); (ws / "_scratch").mkdir(); (ws / "build").mkdir()
+    (ws / "_scratch").mkdir(); (ws / "build").mkdir()
     fake(ws)
     return ws
 
 
 def run_h(ws, script, seed="123", split="dev", args=(), timeout=400):
     nonce = "n0nce"
-    r = S.run([sys.executable, f"harness/selfimprove/{script}", *args], ws, timeout, {"NS_NONCE": nonce, "NS_SEED": seed, "NS_SPLIT": split})
+    env = {"NS_NONCE": nonce, "NS_SEED": seed, "NS_SPLIT": split}; fds = ()
+    if script == "kernel_quality.py":                              # same delivery as the Evaluator: an unlinked fd, no workspace file
+        import tempfile
+        f = tempfile.TemporaryFile(); f.write((REPO / "results/routing_traces.json").read_bytes()); f.flush()
+        env["NS_HELDOUT_FDS"] = json.dumps({"routing_traces.json": f.fileno()}); fds = (f.fileno(),)
+    r = S.run([sys.executable, f"harness/selfimprove/{script}", *args], ws, timeout, env, pass_fds=fds)
     assert r.rc == 0, r.stderr[-800:]
     return r, r.json(nonce)
 
@@ -179,7 +184,8 @@ def test_kernel_quality_items_heldout_only(kws):
 def test_quality_items_come_from_heldout_split_only(kws):
     src = (kws / "harness/selfimprove/kernel_quality.py").read_text()
     assert 'HELDOUT_SPLIT = "calib"' in src
-    traces = json.load(open(kws / "results/routing_traces.json"))
+    assert not (kws / "results").exists()                      # held-out data is not in the workspace
+    traces = json.load(open(REPO / "results/routing_traces.json"))
     n = sum(1 for v in traces.values() if v["split"] == "calib") * 5
     assert n >= 20
 

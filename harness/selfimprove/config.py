@@ -36,14 +36,15 @@ def make_config(repo, track="kernel", python="python3", require_measured_calibra
     repo = Path(repo); h = "harness/selfimprove"
     if track == "kernel":
         return EvalConfig(
-            repo=repo, subdirs=["src/kvm", h, "results/routing_traces.json"],
+            repo=repo, subdirs=["src/kvm", h],
+            heldout_files={"routing_traces.json": repo / "results" / "routing_traces.json"}, timer=gates.TimerSpec(),
             build_cmd=[python, f"{h}/kernel_build.py"], correctness_cmd=[python, f"{h}/kernel_check.py"],
             quality_cmd=[python, f"{h}/kernel_quality.py"], bench_cmd=[python, f"{h}/kernel_bench.py"],
             scope=Scope([ScopeRule("src/kvm/moe_fused.cu", regions_only=True)], Limits(max_files=1, max_hunks=4, max_changed_lines=30)),
             correctness=gates.CorrectnessSpec(rel_l2_tol=1e-3, min_cases=16),
             quality=gates.QualitySpec(margin=1e-5, min_items=20),
             speed=gates.SpeedSpec(n_runs=9, min_gain=0.03),
-            build_timeout_s=420, check_timeout_s=900, bench_timeout_s=180,
+            build_timeout_s=420, check_timeout_s=900, bench_timeout_s=330,
             dev_shapes=_ints(DEV_KERNEL_SHAPES), heldout_shapes=_ints(HELDOUT_KERNEL_SHAPES), usd_per_hour=2.5)
     if track == "policy":
         if require_measured_calibration and not _calibration_is_measured(repo / "results" / "accept_calibration.jsonl"):

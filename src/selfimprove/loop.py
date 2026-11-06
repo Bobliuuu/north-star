@@ -1,6 +1,6 @@
 """Orchestrator: propose -> validate/apply -> audit -> sandboxed build -> correctness -> quality -> speed -> promote/log."""
 from __future__ import annotations
-import secrets, time, uuid
+import hashlib, json, secrets, tempfile, time, uuid
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
 
@@ -29,6 +29,8 @@ class EvalConfig:
     usd_per_hour: float = 2.5                  # evaluator hardware, for cost accounting only
     tmp_parent: Path | None = None
     keep_workspaces: bool = False
+    timer: G.TimerSpec | None = None           # independent wall-clock cross-check of the bench's self-reported time (None = off)
+    heldout_files: dict[str, Path] = field(default_factory=dict)   # name -> evaluator-side path OUTSIDE every workspace; fd-delivered to quality_cmd only
 
 
 def scope_description(scope: Scope) -> str:
@@ -47,13 +49,34 @@ def editable_files_in_repo(repo: Path, scope: Scope) -> dict[str, str]:
     return out
 
 
+def abba_order(n_runs: int) -> list[bool]:
+    """Per-pair order (True = baseline first) in balanced ABBA blocks: b,k,k,b,b,k,k,b ... Any EVEN count has exactly half
+    base-first (linear drift also cancels). An odd n_runs is rounded UP by one pair, because an odd count cannot be balanced
+    (the old alternation left a 5-vs-4 position bias at n=9)."""
+    n = n_runs + (n_runs % 2)
+    return [i % 4 in (0, 3) for i in range(n)]
+
+
 class Evaluator:
     def __init__(self, cfg: EvalConfig):
         self.cfg = cfg
 
-    def _run(self, ws: S.Workspace, cmd, timeout, env=None):
+    def _run(self, ws: S.Workspace, cmd, timeout, env=None, heldout: bool = False):
         nonce = secrets.token_hex(16)
-        r = S.run(cmd, ws.root, timeout, {**(env or {}), "NS_NONCE": nonce})
+        env = {**(env or {}), "NS_NONCE": nonce}
+        files = []
+        try:
+            if heldout and self.cfg.heldout_files:
+                # Held-out inputs go to THIS harness process only, as unlinked, already-open fds, after build/audit have finished.
+                # They were never in the workspace, so neither the candidate's source, nor its compile step, nor the later
+                # correctness/bench commands can see them; spawned children (the candidate-built binary) do not inherit the fds.
+                m = {}
+                for name, path in self.cfg.heldout_files.items():
+                    f = tempfile.TemporaryFile(); f.write(Path(path).read_bytes()); f.flush(); files.append(f); m[name] = f.fileno()
+                env["NS_HELDOUT_FDS"] = json.dumps(m)
+            r = S.run(cmd, ws.root, timeout, env, pass_fds=tuple(f.fileno() for f in files))
+        finally:
+            for f in files: f.close()
         ws.verify()                       # raises SandboxViolation
         r.parsed = r.json(nonce) if (r.rc == 0 and not r.timed_out) else None   # crashed/hung harness: any line it printed is untrusted
         return r
@@ -73,6 +96,13 @@ class Evaluator:
             if wb.protected_hashes != wc.protected_hashes:
                 out["verdict"] = "sandbox_violation"; out["sandbox"] = {"error": "protected trees differ"}; return out
             out["sandbox"]["protected_digest"] = S.manifest_digest(wc.protected_hashes)
+            if c.heldout_files:       # held-out data must not be reachable through the candidate-writable workspace at all
+                hs = {hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in c.heldout_files.values()}
+                hn = {Path(p).name for p in c.heldout_files.values()}
+                for w in (wb, wc):
+                    leaked = [k for k, v in {**w.protected_hashes, **w.editable_hashes}.items() if v in hs or Path(k).name in hn]
+                    if leaked:
+                        out["verdict"] = "sandbox_violation"; out["sandbox"] = {"error": f"held-out data present in workspace: {leaked[:3]}"}; return out
             if c.build_cmd:
                 for tag, ws in (("base", wb), ("cand", wc)):
                     r = self._run(ws, c.build_cmd, c.build_timeout_s)
@@ -92,22 +122,28 @@ class Evaluator:
             g = G.correctness_gate(rc_.parsed, rb_.parsed, c.correctness); out["gates"]["correctness"] = g.to_dict()
             if not g.passed: out["verdict"] = "gate_fail:correctness"; return out
             # (2) held-out quality (fixed seed, paired)
-            qc = self._run(wc, c.quality_cmd, c.check_timeout_s, {"NS_SEED": "0"})
-            qb = self._run(wb, c.quality_cmd, c.check_timeout_s, {"NS_SEED": "0"})
+            qc = self._run(wc, c.quality_cmd, c.check_timeout_s, {"NS_SEED": "0"}, heldout=True)
+            qb = self._run(wb, c.quality_cmd, c.check_timeout_s, {"NS_SEED": "0"}, heldout=True)
             g = G.quality_gate(qc.parsed, qb.parsed, c.quality); out["gates"]["quality"] = g.to_dict()
             if not g.passed: out["verdict"] = "gate_fail:quality"; return out
             # (3) speed: interleaved A/B per split, order alternated to cancel drift
             splits = {}
             for split in ("dev", "heldout"):
                 b, k = [], []
-                for i in range(c.speed.n_runs):
-                    order = (("b", wb), ("k", wc)) if i % 2 == 0 else (("k", wc), ("b", wb))
+                for base_first in abba_order(c.speed.n_runs):
+                    order = (("b", wb), ("k", wc)) if base_first else (("k", wc), ("b", wb))
                     for tag, ws in order:
                         r = self._run(ws, c.bench_cmd, c.bench_timeout_s, {"NS_SPLIT": split, "NS_SEED": str(secrets.randbits(32))})
                         j = r.parsed
                         if r.timed_out or not j or not isinstance(j.get("time_ms"), (int, float)):
                             out["gates"]["speed"] = G.GateResult("speed", False, f"{split}: bench failed/timeout/unparsable").to_dict()
                             out["verdict"] = "gate_fail:speed"; return out
+                        if c.timer is not None:       # independent harness-side clock vs the (candidate-built) binary's self-report
+                            tg = G.timer_crosscheck(j, r.wall_s, c.timer)
+                            if not tg.passed:
+                                out["gates"]["timer"] = tg.to_dict()
+                                out["gates"]["speed"] = G.GateResult("speed", False, f"{split}/{tag}: timer cross-check failed: {tg.reason}").to_dict()
+                                out["verdict"] = "gate_fail:timer"; return out
                         (b if tag == "b" else k).append(float(j["time_ms"]))
                 splits[split] = (b, k)
             g = G.speed_gate(splits, c.speed); out["gates"]["speed"] = g.to_dict()
@@ -228,6 +264,9 @@ class Loop:
             return finish("pass_mock_not_promoted")
         v = st.promote(new_files, pid, "mock" if mock else "north", attested, diff, ev["gates"], mock,
                        extra=dict(proposal_mode=self.mode, label=label))
+        # the gates above compared the candidate with the CURRENT baseline (base_files = store.files(current)); also report the
+        # compounded gain vs the original v0000 with a CI, widened for how many candidates reached the speed gate (selection effect)
+        rec["cumulative_vs_v0000"] = st.cumulative(extra_tested=1)   # +1: this proposal is not logged yet
         return finish("promoted", v)
 
     def run(self, rounds: int, max_total_usd: float = 5.0, **kw) -> list[dict]:
