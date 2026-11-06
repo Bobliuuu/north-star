@@ -15,6 +15,7 @@ def _prompts(tok, ctx, n):
 def _cell(emit, name, ln, B, T, kv, P, reps=30, **kw):
     t0 = time.time()
     try:
+        ln.tri_kw = kw.pop("trikw", {})
         s = ln.make_step(B, T, kv, **kw)
         s.set([ln.tails[b][-T:] for b in range(B)], P - 1)  # real prompt tokens (diverse routing), not a constant token
         med, mn, mx = time_graph(s, n=reps)
@@ -159,3 +160,25 @@ def run_kernel(emit):
 
 def triton_cdiv(a, b):
     return -(-a // b)
+
+
+@torch.no_grad()
+def run_long_tuned(m, tok, emit, ctxs=(32768, 131072)):
+    """Re-time the Triton-dense cells with the kernel configs picked by the lcK1 microbench (T=1: bn256/it8/w8/s2; T>1: bn128/it8/w4/s2)."""
+    ref = RefNorth(m)
+    t1 = dict(bn=256, iters=8, warps=8, stages=2); tv = dict(bn=128, iters=8, warps=4, stages=2)
+    for ctx in ctxs:
+        t0 = time.time()
+        ids = _prompts(tok, ctx, 1)[0]; P = len(ids)
+        ln = LCNorth(ref, P + 64); ln.wlo = max(0, P - 1 - 4096 - 16); ln.tails = [ids[-16:]]
+        kv = ln.new_kv(1)
+        ln.prefill(ids[:-1], kv, chunk=1024 if ctx <= 32768 else 512)
+        emit(kind="prefill", ctx=P, seconds=time.time() - t0)
+        for r in (None, 4):
+            for nm, kw in (("win", dict(sl="bmm", gl="bmm")), ("tuned_tri", dict(sl="bmm", gl="tri", trikw=t1)), ("tuned_tri_swtri", dict(sl="tri", gl="tri", trikw=t1))):
+                s = _cell(emit, f"T1_r{r}_{nm}", ln, 1, 1, kv, P, r=r, **kw); del s
+            s = _cell(emit, f"T1_r{r}_triidx_fixed256", ln, 1, 1, kv, P, r=r, sl="bmm", gl=("tri_idx", "fixed", 256)); del s
+        for T in (3, 5, 9):
+            s = _cell(emit, f"verify_K{T}_win", ln, 1, T, kv, P, sl="bmm", gl="bmm"); del s
+            s = _cell(emit, f"verify_K{T}_tuned_tri", ln, 1, T, kv, P, sl="bmm", gl="tri", trikw=tv); del s
+        del kv, ln; torch.cuda.empty_cache()

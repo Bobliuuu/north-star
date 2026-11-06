@@ -147,3 +147,7 @@ LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8
 LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8, "warps": 4, "stages": 3, "ms": 0.5853440165519714, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 493.4}
 LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8, "warps": 4, "stages": 4, "ms": 0.5848960280418396, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 508.1}
 LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8, "warps": 8, "stages": 2, "ms": 0.8971520066261292, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 520.7}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8, "warps": 8, "stages": 3, "ms": 0.8970239758491516, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 533.4}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8, "warps": 8, "stages": 4, "ms": 0.8984959721565247, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 545.4}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "bmm_padded", "ms": 0.10463999956846237, "floor_ms": 0.020032496716417908, "t_s": 548.0}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 4, "stages": 2, "ms": 0.4113599956035614, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 550.0}
