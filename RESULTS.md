@@ -62,7 +62,14 @@ Divergences: mostly bf16 near-ties (top-1/top-2 margin <0.25), but one 8-layer-s
 
 Reading: a training-free top-4-expert draft accepts ~2.8 of 4 on real North, so draft quality is not the blocker. Cost is: in eager mode a draft step costs about as much as a full step. Whether a fused/persistent executor changes that is the open question and the reason for the H100 phase.
 
-NOT RUN: 32K/128K contexts, batch>1 self-spec, mixed lengths, sampling, vLLM and cohere-megakernel baselines, CUDA-graph timing.
+MEASURED 32K (`results/ctx_batch_run1.jsonl`, `modal/ctx_batch.py`, A100-80GB PCIe, bf16, eager HF/PyTorch grouped_mm+sdpa, greedy, code task + CPython-stdlib filler to exact length, prefill reported separately and NOT in tok/s; 44 post-warmup steps median / 32 new tokens):
+| ctx | batch | plain decode ms/step | tok/s | prefill s |
+|---|---|---|---|---|
+| 8K | 1 / 2 / 4 | 85.8 / 96.6 / 116.3 | 11.7 / 20.7 / 34.4 | 1.4 / 2.1 / 3.7 |
+| 32K | 1 / 2 / 4 | 85.4 / 96.0 / 117.2 | 11.7 / 20.8 / 34.1 | 7.0 / 11.7 / 21.3 |
+Plain step cost is flat 8K->32K (36/49 layers are sliding-window 4096; only 13 global). Self-spec (top-4 experts draft, gamma=4, batch 1, RefNorth executor, 1 task, 32 tokens): 8K plain 82.1 ms/tok vs 419 ms/round (catch-up 78 + draft 234 + verify 106) at 3.2 committed/round = 7.55 tok/s (0.62x); 32K plain 81.6 ms vs 441 ms/round (verify 125) = 7.15 tok/s (0.58x); accepted 2.4 / 2.2 of 4; output identical to plain at 32K, not at 8K (1 task, bf16 ties not classified). Eager/launch-bound, one prompt: not a megakernel or CUDA-graph claim.
+
+NOT RUN: 128K contexts, batch>1 self-spec, mixed lengths, sampling, vLLM and cohere-megakernel baselines, CUDA-graph timing.
 
 ## Simulated / modeled
 - Joint optimizer (`docs/OPT.md`): on measured A100 MoE costs plus INVENTED acceptance, plain decode (~146 tok/s modeled) beats most speculative configs; only gamma=1 + fused wins (~+10%, entirely from invented carry-hit 0.6 / accept 0.9). Joint > independent by up to 11.5% in 36/48 synthetic scenarios. Not a speedup claim.

@@ -1,0 +1,22 @@
+{
+ "meta": {
+  "python": "3.12.16",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.22.1",
+  "model": "CohereLabs/North-Mini-Code-1.0",
+  "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37",
+  "time": "2026-11-06T06:46:23Z",
+  "gpu": "NVIDIA A100 80GB PCIe",
+  "cuda": "12.8",
+  "gpu_mem_gb": 79.3,
+  "pip_freeze_sha": "b75d56d0a2a7"
+ },
+ "load_s": 28.344908714294434,
+ "notes": {
+  "engine": "HF transformers eager, grouped_mm experts, sdpa attn, bf16, A100-80GB, greedy",
+  "prompts": "first dev 'code' task chat-templated + CPython stdlib filler to EXACT ctx; batch rows rotate filler/task per sequence",
+  "hf_cell": "DynamicCache, prefill chunk 2048 timed separately (prefill_s), decode_ms = median of 44 post-warmup steps, n_dec=48, logits_to_keep=1",
+  "spec": "RefNorth KV cache; plain_greedy vs SelfSpec(top-4 experts draft, gamma=4), batch 1, n_new tokens, prefill excluded from gen times"
+ },
+ "_gpu_seconds": 161.3157229423523
+}
