@@ -56,12 +56,17 @@ def build_prompt(req: ProposalRequest) -> str:
     if req.history: parts.append("## Earlier proposals this session\n" + "\n".join(f"- {h}" for h in req.history[-10:]))
     for p, t in sorted(req.files.items()):
         parts.append(f"## File: {p}\n```\n{t}\n```")
-    parts.append("## Task\nPropose one bounded improvement as a unified diff against the files above.")
+    parts.append("## Task\nPropose one bounded improvement as a unified diff against the files above.\n"
+                 "Output format (strict): one ```diff fenced block and nothing else. It must start with file headers, e.g.\n"
+                 "--- a/<path>\n+++ b/<path>\n@@ -<old_start>,<old_len> +<new_start>,<new_len> @@\n"
+                 " <context line>\n-<old line>\n+<new line>\n <context line>\n"
+                 "Change as few lines as possible, only lines inside the editable markers, with at most 3 context lines per hunk. "
+                 "Do not rewrite or repeat unchanged lines. Close the fence.")
     return "\n\n".join(parts)
 
 
 _THINK = re.compile(r"<think>.*?</think>", re.S)
-_FENCE = re.compile(r"```(?:diff|patch)[^\n]*\n(.*?)```", re.S)
+_FENCE = re.compile(r"```(?:diff|patch)[^\n]*\n(.*?)(?:```|\Z)", re.S)   # tolerate an unclosed fence (truncated output); the strict parser then rejects it
 
 
 def extract_diff(raw: str) -> str | None:
