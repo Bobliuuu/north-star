@@ -70,7 +70,7 @@ NOT RUN: 32K/128K contexts, batch>1 self-spec, mixed lengths, sampling, vLLM and
 
 ## Built, not yet run on North
 - Draft approximations (`docs/APPROX.md`): top-r, EAT-inspired, sparse global attention (oracle top-k, LSA-inspired, SubQ-style approximation), layer skip. 43 CPU tests; verifier path proven untouched on tiny fixtures.
-- Self-improvement loop (`docs/SELFIMPROVE.md`): North-only proposer, sandbox, gates, audit, rollback. 95 CPU tests. No North-authored result exists.
+- Self-improvement loop (`docs/SELFIMPROVE.md`): North-only proposer, sandbox, gates, audit, rollback. 95 CPU tests at first write (154 pass + 2 skipped on 2026-11-06; NS_SLOW subset: 21 pass). No North-authored result has passed the gates. Live kernel-track North rounds (`results/selfimprove_kernel*`): diff mode 4/4 `invalid_diff` and 3 attempts `no_diff_in_response`; structured mode run 1 3/3 `audit_reject` (audit rule later fixed, disclosed in `docs/SELFIMPROVE.md`); structured mode second run 6/6 `gate_fail:speed` with dev speedups 0.87-0.98x (CI lo below 1.03 threshold; all candidates slower than baseline). Policy track: CPU mock dry run verified end to end (verdict `gate_fail:speed`, 1.00x); live policy run blocked until `results/accept_calibration.jsonl` exists; see `docs/SELFIMPROVE_POLICY_RUNBOOK.md`.
 
 ## Not done
 H100 work, KVM executor port, Phase 5 async speculation live, Phase 7, live self-improvement run.
