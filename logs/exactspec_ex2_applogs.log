@@ -1,0 +1,42 @@
+
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-06T17:00:49Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "b75d56d0a2a7", "load_s": 46.1533989906311}
+natural captured
+natural py_lru exact plain 222.8 old plain 259.4; exact:=270/0 exact:=270/1 old:!301/0 old:!303/1
+natural py_interval exact plain 223.0 old plain 259.9; exact:=221/0 exact:=221/1 old:=271/0 old:=270/1
+natural py_dataclass exact plain 222.5 old plain 259.7; exact:=325/0 exact:=326/1 old:!348/0 old:!348/1
+natural rs_stack exact plain 222.9 old plain 259.8; exact:=284/0 exact:=285/1 old:!324/0 old:!324/1
+natural go_worker exact plain 222.7 old plain 259.3; exact:=261/0 exact:=262/1 old:!297/0 old:!294/1
+natural sql_topn exact plain 222.3 old plain 259.1; exact:=259/0 exact:=260/1 old:!296/0 old:!296/1
+natural sh_logs exact plain 223.0 old plain 259.7; exact:=256/0 exact:=257/1 old:!278/0 old:!279/1
+natural term_pytest_fail exact plain 222.2 old plain 259.9; exact:=229/0 exact:=230/1 old:!282/0 old:!281/1
+natural term_git_conflict exact plain 222.8 old plain 259.8; exact:=263/0 exact:=263/1 old:!293/0 old:!294/1
+natural term_make exact plain 222.1 old plain 259.6; exact:=237/0 exact:=236/1 old:!273/0 old:!272/1
+natural term_docker exact plain 222.3 old plain 259.6; exact:=237/0 exact:=237/1 old:=271/0 old:=272/1
+natural pr_hbm exact plain 223.2 old plain 259.8; exact:=257/0 exact:=257/1 old:!293/0 old:!293/1
+natural pr_story exact plain 223.3 old plain 259.6; exact:=268/0 exact:=269/1 old:!298/0 old:!298/1
+natural pr_tradeoff exact plain 223.2 old plain 259.6; exact:=227/0 exact:=227/1 old:!265/0 old:!265/1
+natural pr_reason exact plain 223.0 old plain 259.7; exact:=249/0 exact:=249/1 old:!288/0 old:!288/1
+natural edit_shutil exact plain 222.1 old plain 259.0; exact:=271/0 exact:=272/1 old:!286/0 old:!286/1
+natural edit_difflib exact plain 221.5 old plain 258.2; exact:=265/0 exact:=266/1 old:!302/0 old:!303/1
+natural extract_textwrap exact plain 221.5 old plain 258.0; exact:=402/0 exact:=401/1 old:=455/0 old:=455/1
+natural extract_heapq exact plain 220.9 old plain 257.2; exact:=254/0 exact:=254/1 old:!292/0 old:!291/1
+natural summ_argparse exact plain 221.1 old plain 257.3; exact:=251/0 exact:=251/1 old:!280/0 old:!280/1
+natural summ_shutil exact plain 221.6 old plain 258.0; exact:=281/0 exact:=281/1 old:!315/0 old:!316/1
+ctx2048 captured
+ctx2048 py_lru exact plain 220.6 old plain 253.7; exact:=296/0 exact:=299/1 old:=398/0 old:=399/1
+ctx2048 py_dataclass exact plain 220.0 old plain 254.2; exact:=310/0 exact:=311/1 old:!331/0 old:!332/1
+ctx2048 pr_story exact plain 220.7 old plain 254.3; exact:=231/0 exact:=232/1 old:!267/0 old:!267/1
+ctx2048 term_make exact plain 220.7 old plain 255.0; exact:=260/0 exact:=262/1 old:!279/0 old:!279/1
+ctx2048 edit_shutil exact plain 220.1 old plain 254.4; exact:=912/0 exact:=910/1 old:=962/0 old:=963/1
+ctx2048 extract_textwrap exact plain 220.6 old plain 254.5; exact:=486/0 exact:=486/1 old:!527/0 old:!526/1
+ctx2048 summ_argparse exact plain 220.7 old plain 254.5; exact:=243/0 exact:=243/1 old:!280/0 old:!280/1
+ctx8192 captured
+ctx8192 py_lru exact plain 216.4 old plain 247.9; exact:=219/0 exact:=220/1 old:!284/0 old:!285/1
+ctx8192 py_dataclass exact plain 216.2 old plain 247.5; exact:=296/0 exact:=296/1 old:!330/0 old:!329/1
+ctx8192 pr_story exact plain 216.4 old plain 247.8; exact:=222/0 exact:=222/1 old:!258/0 old:!257/1
+ctx8192 term_make exact plain 216.1 old plain 247.9; exact:=215/0 exact:=215/1 old:!332/0 old:!331/1
+ctx8192 edit_shutil exact plain 216.3 old plain 248.1; exact:=858/0 exact:=846/1 old:=886/0 old:=886/1
+ctx8192 extract_textwrap exact plain 216.4 old plain 248.1; exact:=262/0 exact:=261/1 old:!427/0 old:!428/1
+ctx8192 summ_argparse exact plain 216.5 old plain 247.9; exact:=245/0 exact:=247/1 old:!272/0 old:!272/1
+FASTPLD_DONE secs 471.4683406352997 est usd 0.5173055404192872
+Runner terminated.
