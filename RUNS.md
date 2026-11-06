@@ -11,6 +11,8 @@
 
 | 2026-11-06 | ap-duOM69y4JrsPm52eVxoci9 | `modal run --detach src/approx/modal_sweep.py::main --smoke --tag smoke1` | first ever run of draft-approximation sweep on North (1 prompt, ctx 2048, 8 configs). Log logs/approx_sweep_smoke1_client.log |
 
+| 2026-11-06 | ap-pqB0aAizeEKtPTfQ2sG2JC | `modal run --detach src/approx/modal_sweep.py::main --tag quick1` | approx sweep quick preset (full/attn/expert/combined, 2 prompts, ctx 2K/8K). smoke1 (ap-duOM69y4JrsPm52eVxoci9) finished OK. Log logs/approx_sweep_quick1_client.log |
+
 ## Self-improve chain heads (external anchor for the unkeyed hash chain)
 
 After EVERY self-improvement round run `PYTHONPATH=src python -m selfimprove.cli head --store results/<store> --label <store>` and commit the
