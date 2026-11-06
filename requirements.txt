@@ -1,0 +1,9 @@
+# Pinned to the versions actually used (see SETUP.md). CPU tests + plots only; GPU images are pinned in modal/*.py.
+torch==2.10.0
+transformers==5.22.1
+accelerate==1.15.0
+numpy==2.2.5
+ortools==9.15.6755
+protobuf==6.33.6
+pytest==8.3.5
+matplotlib==3.10.8
