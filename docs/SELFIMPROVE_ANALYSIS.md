@@ -49,3 +49,19 @@ the baseline is already near the HBM roofline (~0.7 of peak), so even a good tun
 
 ## Next run suggestion
 Seed with `history_from_store` of both structured stores and run 3 rounds; cost as in docs/SELFIMPROVE.md (not run here).
+
+## Human OFAT sweep (MEASURED, A100-80GB, 2026-11-06; results/kernel_sweep_sweep1_20261106T065947Z.jsonl, app ap-kYajfWtgyO3OPmzJ1fSN0O)
+One factor at a time from the baseline (KC256 XPAD8 HPAD8 MT16 MINB1 UNROLL16), dev shapes, 3 interleaved passes, run-to-run spread ~0.3%.
+Correctness (check_cuda.py vs torch CPU ref, worst rel_l2 2.1e-4) PASS for baseline and every UNROLL_KS / MINB_PER_SM config. dev_x = baseline_time / time.
+
+| change | dev_x | held-out_x | regs |
+|---|---|---|---|
+| KC=64 | 1.054 | 1.042 | 112 (base 252) |
+| UNROLL_KS=4 | 1.040 | 1.037 | 118 |
+| MINB_PER_SM=3 | 1.023 | 1.072 | 167 |
+| KC=512 + UNROLL_KS=8 | 1.013 | 1.016 | 178 |
+| KC=128, XPAD16/24, HPAD16/24, MT_SPLIT 4/8/12, MINB2, UNROLL8 | 0.99-1.003 | ~1.0 | |
+| MINB4 / XPAD0 / HPAD0 | 0.981 / 0.961 / 0.942 | | MINB4 spills |
+| UNROLL_KS=2 / MINB6 / MINB8 / UNROLL_KS=1 | 0.871 / 0.799 / 0.733 / 0.724 | | MINB6,8 spill |
+
+So the baseline is NOT at a local optimum for speed: the 252-register full unroll costs ~4-5%; capping registers (KC=64, UNROLL_KS=4, MINB=3) recovers it. MINB>=6 and UNROLL_KS<=2 are strongly harmful, so the relaxed MINB cap of 8 is a trap, not a gain.
