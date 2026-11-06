@@ -25,16 +25,20 @@ def sha256_file(p: Path) -> str:
     return h.hexdigest()
 
 
-def manifest(root: Path) -> dict[str, str]:
+def manifest(root: Path, ignore_dirs=None, skip_pyc: bool = True) -> dict[str, str]:
+    """sha256 of every file under root. Defaults skip build/cache dirs (used for the REAL repo, which accumulates caches).
+    Workspace verification passes a strict view (see Workspace._vmanifest): pyc files and __pycache__ dirs are NOT ignored there,
+    because Python would happily import a planted .pyc whose header matches the source mtime/size."""
     m = {}
+    ign = IGNORE_DIRS if ignore_dirs is None else ignore_dirs
     for dp, dns, fns in os.walk(root, followlinks=False):
-        dns[:] = sorted(d for d in dns if d not in IGNORE_DIRS)
+        dns[:] = sorted(d for d in dns if d not in ign)
         for fn in sorted(fns):
             p = Path(dp) / fn
             rel = p.relative_to(root).as_posix()
             if p.is_symlink():
                 m[rel] = "symlink:" + os.readlink(p)
-            elif fn.endswith(".pyc"):
+            elif skip_pyc and fn.endswith(".pyc"):
                 continue
             else:
                 m[rel] = sha256_file(p)
@@ -61,6 +65,19 @@ class Workspace:
     editable: set[str]                 # rel paths the evaluator is allowed to have written
     protected_hashes: dict[str, str]   # frozen at creation (after diff application)
     editable_hashes: dict = None
+    build_hashes: dict | None = None   # None until freeze_build(); build/ is writable only by the build command
+
+    # directories legitimately written by harness commands; everything else (incl. __pycache__, *.pyc, .git) is strictly hashed
+    WRITABLE = ("_scratch", "build")
+
+    def _vmanifest(self) -> dict[str, str]:
+        return manifest(self.root, ignore_dirs=set(self.WRITABLE), skip_pyc=False)
+
+    def freeze_build(self):
+        """Call right after the build step (or immediately when there is none): from then on build/ must not change, so a
+        candidate-run binary cannot swap the (baseline or candidate) binary or plant files for later commands."""
+        b = self.root / "build"
+        self.build_hashes = manifest(b, ignore_dirs=set(), skip_pyc=False) if b.exists() else {}
 
     @classmethod
     def create(cls, repo: Path, subdirs: list[str], overrides: dict[str, str], editable_paths: set[str], tmp_parent: Path | None = None):
@@ -72,8 +89,9 @@ class Workspace:
             p.write_text(text)
         (root / "_scratch").mkdir(exist_ok=True)
         ws = cls(root, set(editable_paths), {})
-        ws.protected_hashes = {k: v for k, v in manifest(root).items() if k not in ws.editable}
-        ws.editable_hashes = {k: v for k, v in manifest(root).items() if k in ws.editable}
+        vm = ws._vmanifest()
+        ws.protected_hashes = {k: v for k, v in vm.items() if k not in ws.editable}
+        ws.editable_hashes = {k: v for k, v in vm.items() if k in ws.editable}
         ws.lock()
         return ws
 
@@ -87,8 +105,13 @@ class Workspace:
     def verify(self):
         """Raise SandboxViolation if any protected file changed/vanished, any unexpected file appeared, or editable
         files differ from what the evaluator wrote (a build must not rewrite its own source)."""
-        cur = manifest(self.root)
+        cur = self._vmanifest()
         bad = []
+        if self.build_hashes is not None:
+            b = self.root / "build"
+            cb = manifest(b, ignore_dirs=set(), skip_pyc=False) if b.exists() else {}
+            if cb != self.build_hashes:
+                bad.append(("build_changed", sorted(set(cb) ^ set(self.build_hashes) or {k for k in cb if cb[k] != self.build_hashes.get(k)})[:5]))
         for k, v in self.protected_hashes.items():
             if cur.get(k) != v:
                 bad.append(("protected_changed", k))
@@ -119,14 +142,18 @@ class RunResult:
     def json(self, nonce: str | None = None):
         """Last JSON object line on stdout carrying the per-run nonce (harness protocol). Lines without the matching
         nonce are ignored, so candidate code that merely prints a forged result line cannot be mistaken for the harness."""
+        found = []
         for ln in reversed(self.stdout.strip().splitlines()):
             ln = ln.strip()
             if ln.startswith("{") and ln.endswith("}"):
                 try: o = json.loads(ln)
                 except json.JSONDecodeError: continue
                 if nonce is None or (isinstance(o, dict) and o.get("nonce") == nonce):
-                    return o
-        return None
+                    if nonce is None: return o
+                    found.append(o)
+        # a well-behaved harness emits exactly ONE nonce-bearing line; two means someone else knew the nonce (e.g. read it from
+        # /proc/<ppid>/environ) and wrote a line: ambiguous, so trust neither.
+        return found[0] if len(found) == 1 else None
 
 
 def _limits(cpu_s: int, fsize_mb: int, nproc: int | None):

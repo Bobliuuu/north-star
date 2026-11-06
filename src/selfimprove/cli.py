@@ -18,7 +18,12 @@ def main(argv=None):
     a = ap.parse_args(argv)
     st = Store(Path(a.store))
     if a.cmd == "attribution": print(json.dumps(st.attribution(), indent=1)); return 0
-    if a.cmd == "verify-log": ok = st.verify_log(); print("log chain OK" if ok else "LOG TAMPERED"); return 0 if ok else 1
+    if a.cmd == "verify-log":
+        ok = st.verify_log()
+        if ok:
+            try: st.assert_healthy(allow_pending=True)
+            except Exception as e: print(f"STORE INCONSISTENT: {e}"); return 1
+        print("log chain + versions + CURRENT OK" if ok else "LOG TAMPERED"); return 0 if ok else 1
     if a.cmd == "cost": print(json.dumps(st.cost_summary(), indent=1)); return 0
     if a.cmd == "rollback": print(st.rollback(a.to, "cli")); return 0
     import runpy
