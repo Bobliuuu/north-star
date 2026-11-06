@@ -63,6 +63,37 @@ plain = T1_rNone_win (window-aware dense). verify = verify_K{gamma+1}_win. Draft
 | 131072 | 4 | fixed256 attn-only (cached index) | 10.91 | 65.0 | 4.70 | 1.03x |
 | 131072 | 4 | oracle256 attn-only | 16.16 | 86.0 | 4.70 | 0.78x |
 
+## A3. Tuned Triton dense kernel (lcT1; separate container, +-10% run-to-run drift vs lcA1) and best-case projection (INFERRED)
+
+plain = best dense (tuned tri). 'ideal verify' (INFERRED, NOT measured) = verify_K5 at 8K (lcA1 win, 14.49 ms is the 8K bmm value; here the 8K-equivalent non-KV cost) + 13 global layers x 268 MB / 3.35 TB/s = +1.04 ms.
+
+| ctx | gamma | draft | T_draft | verify used | round ms | committed | speedup vs best dense plain |
+|---|---|---|---|---|---|---|---|
+| 32768 | 2 | fixed256+top4 (cached idx) | 10.23 | measured 12.8 | 33.3 | 2.65 | 0.92x |
+| 32768 | 2 | fixed256+top4 (cached idx) | 10.23 | ideal (INFERRED) 14.1 | 34.6 | 2.65 | 0.88x |
+| 32768 | 2 | fixed256 attn-only (cached idx) | 11.07 | measured 12.8 | 35.0 | 2.91 | 0.96x |
+| 32768 | 2 | fixed256 attn-only (cached idx) | 11.07 | ideal (INFERRED) 14.1 | 36.2 | 2.91 | 0.92x |
+| 32768 | 2 | dense tuned +top4 | 10.63 | measured 12.8 | 34.1 | 2.59 | 0.87x |
+| 32768 | 2 | dense tuned +top4 | 10.63 | ideal (INFERRED) 14.1 | 35.4 | 2.59 | 0.84x |
+| 32768 | 4 | fixed256+top4 (cached idx) | 10.23 | measured 14.1 | 55.0 | 3.93 | 0.82x |
+| 32768 | 4 | fixed256+top4 (cached idx) | 10.23 | ideal (INFERRED) 15.5 | 56.4 | 3.93 | 0.80x |
+| 32768 | 4 | fixed256 attn-only (cached idx) | 11.07 | measured 14.1 | 58.4 | 4.70 | 0.93x |
+| 32768 | 4 | fixed256 attn-only (cached idx) | 11.07 | ideal (INFERRED) 15.5 | 59.8 | 4.70 | 0.90x |
+| 32768 | 4 | dense tuned +top4 | 10.63 | measured 14.1 | 56.6 | 3.76 | 0.76x |
+| 32768 | 4 | dense tuned +top4 | 10.63 | ideal (INFERRED) 15.5 | 58.0 | 3.76 | 0.74x |
+| 131072 | 2 | fixed256+top4 (cached idx) | 10.27 | measured 16.7 | 37.2 | 2.65 | 0.94x |
+| 131072 | 2 | fixed256+top4 (cached idx) | 10.27 | ideal (INFERRED) 14.1 | 34.6 | 2.65 | 1.01x |
+| 131072 | 2 | fixed256 attn-only (cached idx) | 11.09 | measured 16.7 | 38.8 | 2.91 | 0.99x |
+| 131072 | 2 | fixed256 attn-only (cached idx) | 11.09 | ideal (INFERRED) 14.1 | 36.3 | 2.91 | 1.06x |
+| 131072 | 2 | dense tuned +top4 | 12.41 | measured 16.7 | 41.5 | 2.59 | 0.82x |
+| 131072 | 2 | dense tuned +top4 | 12.41 | ideal (INFERRED) 14.1 | 38.9 | 2.59 | 0.88x |
+| 131072 | 4 | fixed256+top4 (cached idx) | 10.27 | measured 18.9 | 60.0 | 3.93 | 0.86x |
+| 131072 | 4 | fixed256+top4 (cached idx) | 10.27 | ideal (INFERRED) 15.5 | 56.6 | 3.93 | 0.92x |
+| 131072 | 4 | fixed256 attn-only (cached idx) | 11.09 | measured 18.9 | 63.3 | 4.70 | 0.98x |
+| 131072 | 4 | fixed256 attn-only (cached idx) | 11.09 | ideal (INFERRED) 15.5 | 59.9 | 4.70 | 1.04x |
+| 131072 | 4 | dense tuned +top4 | 12.41 | measured 18.9 | 68.5 | 3.76 | 0.72x |
+| 131072 | 4 | dense tuned +top4 | 12.41 | ideal (INFERRED) 15.5 | 65.2 | 3.76 | 0.76x |
+
 ## B. Batched lock-step step cost, H100 graphed (MEASURED, lcB*; window-slice bmm attention 'win', Triton 'tri')
 
 | ctx | B | plain step | draft r4 | verify K3 | verify K5 | verify K9 | plain/seq | noattn T1 | noattn K5 |

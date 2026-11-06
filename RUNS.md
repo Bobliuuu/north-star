@@ -44,3 +44,5 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-06 | ap-kiiBVXnLWGsnpa47tykm7c | `modal run --detach modal/longctx.py::main --tag lcA1 --part A` | branch longctx-batch: H100 graphed draft/verify cost at ctx 8K/32K/128K incl. Triton split-K kernel; incremental rows in Volume northstar-results:/longctx_lcA1.jsonl; log logs/longctx_lcA1_client.log |
 | 2026-11-06 | ap-XROqUxe4vkuYkvgTak45Fg | `modal run --detach modal/longctx.py::main --tag lcB1 --part B` | branch longctx-batch: H100 graphed batch 1/2/4/8 step cost (plain, draft r4, verify K3/5/9) at 2K/8K/32K; log logs/longctx_lcB1_client.log |
 | 2026-11-06 | (see logs/longctx_lcK1_client.log) | `modal run --detach modal/longctx.py::main --tag lcK1 --part K` | split-K kernel tuning microbench (no model) at L=32K/128K, T=1/5 |
+| 2026-11-06 | ap-nFhCdfbMfvUgE2GyBCx3pd | (stopped early) | lcK1 kernel microbench: stopped after 137 rows (L=131072 T=1,5 complete, 32K partial); results/longctx_lcK1_partial.jsonl |
+| 2026-11-06 | ap-DxAmLXiOiaFBPK3rOEPSY0 | `modal run --detach modal/longctx.py::main --tag lcT1 --part T` | tuned Triton dense kernel rerun at 32K/128K |
