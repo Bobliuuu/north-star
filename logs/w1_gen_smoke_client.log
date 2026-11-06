@@ -1,0 +1,77 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-hRe9g3Yvu2BLrwmRIy71FB
+✓ Created objects.
+├── ✓ Uploaded <home>/north-star/modal/w1_gen.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded <home>/north-star/tests
+├── ✓ Uploaded <home>/north-star/harness
+├── ✓ Uploaded <home>/north-star/src/northstar
+└── ✓ Created Function gen_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:08, 46.47it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:16, 22.35it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:20, 18.28it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:20, 17.17it/s]
+[1ALoading weights:  10%|█         | 41/394 [00:01<00:16, 21.55it/s]
+[1ALoading weights:  11%|█▏        | 45/394 [00:02<00:21, 16.56it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:21, 15.88it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:20, 16.25it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:03<00:20, 16.10it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:03<00:19, 16.40it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:19, 16.67it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:04<00:18, 16.83it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:17, 16.95it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:05<00:17, 16.89it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:06<00:16, 17.06it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:06<00:16, 17.24it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:15, 17.12it/s]
+[1ALoading weights:  33%|███▎      | 129/394 [00:07<00:12, 20.71it/s]
+[1ALoading weights:  34%|███▎      | 132/394 [00:07<00:16, 16.06it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:07<00:15, 16.41it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:08<00:14, 16.59it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:08<00:14, 16.91it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:09<00:13, 16.86it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:09<00:12, 17.17it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:10<00:12, 17.38it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:10<00:11, 17.59it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:11<00:11, 17.76it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:11<00:10, 17.96it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:12<00:10, 17.94it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:12<00:09, 17.76it/s]
+[1ALoading weights:  56%|█████▌    | 221/394 [00:12<00:09, 17.82it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:12<00:09, 17.44it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:13<00:08, 17.84it/s]
+[1ALoading weights:  61%|██████    | 239/394 [00:13<00:07, 20.01it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:13<00:08, 17.35it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:14<00:08, 17.50it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:14<00:07, 17.49it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:15<00:07, 17.65it/s]
+[1ALoading weights:  68%|██████▊   | 269/394 [00:15<00:07, 17.78it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:15<00:06, 17.41it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:16<00:06, 17.47it/s]
+[1ALoading weights:  73%|███████▎  | 289/394 [00:16<00:04, 21.82it/s]
+[1ALoading weights:  74%|███████▍  | 292/394 [00:16<00:06, 15.28it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:16<00:05, 17.29it/s]
+[1ALoading weights:  77%|███████▋  | 302/394 [00:17<00:05, 18.16it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:17<00:05, 17.05it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:17<00:04, 17.27it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:18<00:04, 17.32it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:18<00:03, 17.38it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:19<00:03, 17.66it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:19<00:02, 17.59it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:20<00:02, 17.43it/s]
+[1ALoading weights:  91%|█████████ | 357/394 [00:20<00:02, 17.61it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:20<00:01, 17.57it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:21<00:01, 17.63it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:21<00:00, 17.60it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:21<00:00, 17.70it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:22<00:00, 17.91it/s]
+META_JSON {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-06T16:34:50Z", "gpu": "NVIDIA A100-SXM4-80GB", "cuda": "12.8", "gpu_mem_gb": 79.3, "pip_freeze_sha": "b75d56d0a2a7"}
+{'requests': 1, 'gpu_seconds': 114.2034523487091}
+W1_REC {"id": "openhands-111f5c5e0a6d40eb9a03c33d-turn0", "session": "openhands-111f5c5e0a6d40eb9a03c33d", "turn": 0, "P": 37875, "n_out": 50, "capped": false, "prefill_s": 25.004573106765747, "total_s": 33.78738594055176, "out_ids": [255014, 16512, 298, 11595, 20178, 36417, 1745, 1023, 373, 3501, 728, 373, 20178, 2980, 1023, 373, 32390, 2825, 1280, 728, 373, 18188, 1023, 11595, 8097, 1023, 373, 4855, 855, 51051, 66105, 50209, 534, 716, 17748, 50209, 534, 716, 20, 18, 24, 2353, 14312, 11074, 10509, 8035, 167103, 65, 255015, 255001]}
+W1_DONE requests=1 gpu_seconds=114
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-hRe9g3Yvu2BLrwmRIy71FB
