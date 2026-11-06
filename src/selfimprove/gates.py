@@ -91,6 +91,35 @@ class SpeedSpec:
     require_heldout_split: bool = True
 
 
+@dataclass
+class TimerSpec:
+    """Independent cross-check of the candidate-reported time (closes review risk 1). The BENCH HARNESS (protected, not the candidate)
+    wall-clocks the child with a FIXED iteration count it chose, and derives ref_ms, a per-iteration time comparable to the
+    candidate-reported time_ms (marginal wall of N iterations minus wall of 1, divided by N-1; the candidate cannot change N).
+    The evaluator then (a) bounds the harness's claimed wall by ITS OWN clock around the whole child and (b) rejects when
+    time_ms and ref_ms disagree by more than ratio_tol in either direction. ratio_tol is deliberately loose by default because
+    ref_ms includes un-modelled work (cache flush, launch); calibrate it on the first live run, never widen it silently."""
+    ratio_tol: float = 4.0
+    wall_slack_ms: float = 250.0     # scheduling jitter between the harness's clock and the evaluator's clock
+    wall_slack_rel: float = 0.05
+
+
+def timer_crosscheck(j: dict | None, eval_wall_s: float, spec: TimerSpec) -> GateResult:
+    if not isinstance(j, dict): return GateResult("timer", False, "no bench result")
+    try:
+        t, ref, wall, n = float(j["time_ms"]), float(j["ref_ms"]), float(j["harness_wall_ms"]), int(j["n_iters"])
+    except (KeyError, TypeError, ValueError):
+        return GateResult("timer", False, "bench result lacks harness-measured ref_ms/harness_wall_ms/n_iters")
+    if not all(math.isfinite(x) and x > 0 for x in (t, ref, wall)) or n < 2:
+        return GateResult("timer", False, "non-positive / non-finite timer fields")
+    if wall > eval_wall_s * 1000.0 * (1 + spec.wall_slack_rel) + spec.wall_slack_ms:
+        return GateResult("timer", False, f"harness wall {wall:.0f}ms exceeds evaluator-measured {eval_wall_s*1000:.0f}ms")
+    r = max(t / ref, ref / t)
+    if r > spec.ratio_tol:
+        return GateResult("timer", False, f"self-reported {t:.4g}ms vs harness-measured {ref:.4g}ms disagree x{r:.2f} > {spec.ratio_tol}", {"ratio": r})
+    return GateResult("timer", True, "ok", {"ratio": r})
+
+
 def _median(x): return statistics.median(x)
 
 
@@ -137,3 +166,27 @@ def speed_gate(splits: dict[str, tuple[list[float], list[float]]], spec: SpeedSp
     if h and h["speedup"] < 1 + 0.25 * (d["speedup"] - 1):
         return GateResult("speed", False, f"gain does not transfer to held-out shapes (dev {d['speedup']:.3f}, held-out {h['speedup']:.3f})", res)
     return GateResult("speed", True, f"dev speedup {d['speedup']:.3f} (CI lo {d['ci_lo']:.3f})", res)
+
+
+# ---- cumulative gain vs the original baseline (selection effect, review risk 6) ---------------------------------------
+def _z(alpha: float) -> float:
+    return statistics.NormalDist().inv_cdf(1 - alpha / 2)
+
+
+def cumulative_gain(steps: list[dict], alpha: float = 0.05, n_tested: int = 1) -> dict:
+    """steps: per-promotion speed-split dicts {'speedup','ci_lo','ci_hi'}, each measured against ITS then-current baseline.
+    Speedups multiply; each step's log-SE is recovered from its 95% bootstrap CI and, treating steps as independent, variances add.
+    ci_* uses the nominal alpha; sel_adj_* uses alpha/n_tested (Bonferroni-style widening over every proposal that reached the speed
+    gate: an upper bound on how many chances noise had to win). n_tested counts CANDIDATES that reached speed, not promotions."""
+    n_tested = max(1, n_tested)
+    if not steps:
+        return dict(n_steps=0, speedup=1.0, ci_lo=1.0, ci_hi=1.0, sel_adj_ci_lo=1.0, sel_adj_ci_hi=1.0, n_tested=n_tested, alpha=alpha)
+    ls = var = 0.0
+    for s in steps:
+        ls += math.log(s["speedup"])
+        se = (math.log(s["ci_hi"]) - math.log(s["ci_lo"])) / (2 * _z(0.05))
+        var += se * se
+    sd = math.sqrt(var)
+    za, zs = _z(alpha), _z(alpha / n_tested)
+    return dict(n_steps=len(steps), speedup=math.exp(ls), ci_lo=math.exp(ls - za * sd), ci_hi=math.exp(ls + za * sd),
+                sel_adj_ci_lo=math.exp(ls - zs * sd), sel_adj_ci_hi=math.exp(ls + zs * sd), n_tested=n_tested, alpha=alpha)
