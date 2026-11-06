@@ -25,7 +25,7 @@ def run_remote(tag: str, part: str, ctxs: str):
     emit(kind="meta", meta=env_meta(), part=part)
     if "K" in part:
         bl.run_kernel(emit)
-    if "A" not in part and "B" not in part:
+    if not any(c in part for c in "ABT"):
         emit(kind="done", gpu_seconds=time.time() - t)
         return time.time() - t
     m, tok = load_model(MODEL_DIR, "grouped_mm")
@@ -33,6 +33,8 @@ def run_remote(tag: str, part: str, ctxs: str):
     if "A" in part:
         bl.check_vs_old(m, tok, emit)
         bl.run_long(m, tok, emit, ctxs=tuple(int(c) for c in ctxs.split(",")))
+    if "T" in part:
+        bl.run_long_tuned(m, tok, emit)
     if "B" in part:
         bl.run_batch(m, tok, emit)
     emit(kind="done", gpu_seconds=time.time() - t)
