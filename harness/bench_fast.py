@@ -133,6 +133,33 @@ def correctness(ref, tok, j, ngen=48, long_ctx=2048):
             j.add(phase="fast_correct_error", task=tid, err=traceback.format_exc()[-800:]); print("ERR", tid, traceback.format_exc()[-500:], flush=True)
 
 
+@torch.no_grad()
+def debug(m, ref, tok, j):
+    """Last-position logits of each executor vs HF full-sequence forward (truth) at a short prompt and at 2K."""
+    rows = by_split(load_workloads(), "dev"); code = [r for r in rows if r["kind"] == "code"]
+    for tid, ids in (("py_interval", build_ids(tok, [r for r in rows if r["id"] == "py_interval"][0])), ("code_ctx2048", build_ids(tok, code[0], 2048))):
+        P = len(ids)
+        truth = m(torch.tensor([ids], device=ref.device)).logits[0, -1].float()
+        t2 = truth.topk(2)
+        base = GraphNorth(ref, P + 24, "bmm"); kv = base.new_kv(); base.eager_prefill(ids[:-1], kv)
+        fast = FastNorth(ref, P + 24, opts=("attn", "moe", "router", "resid"))
+        cfgs = dict(CONFIGS); cfgs["router"] = ("router",); cfgs["resid"] = ("resid",)
+        ref_lg = None
+        for name, opts in cfgs.items():
+            g = base if opts is None else fast
+            if opts is not None:
+                fast.opts = frozenset(opts)
+            g.start.fill_(P - 1)
+            lg = g.forward(torch.tensor([[ids[-1]]], device=ref.device), kv)[0, 0].float()
+            if name == "base":
+                ref_lg = lg
+            j.add(phase="debug_logits", task=tid, config=name, argmax=int(lg.argmax()), truth_argmax=int(truth.argmax()), truth_top2=[float(t2.values[0]), float(t2.values[1])],
+                  maxabs_vs_truth=float((lg - truth).abs().max()), maxabs_vs_base=float((lg - ref_lg).abs().max()), logit_of_truth_tok=float(lg[int(truth.argmax())]),
+                  top2_of_this=[int(i) for i in lg.topk(2).indices])
+            print("debug", tid, name, int(lg.argmax()), int(truth.argmax()), "vs truth %.3f vs base %.3f" % (float((lg - truth).abs().max()), float((lg - ref_lg).abs().max())), flush=True)
+        del base, fast, kv; torch.cuda.empty_cache()
+
+
 def run(m, tok, sections="tc"):
     ref = RefNorth(m); j = Jsonl()
     if "t" in sections:
@@ -140,6 +167,11 @@ def run(m, tok, sections="tc"):
             timing(ref, tok, j)
         except Exception:
             j.add(phase="timing_fatal", err=traceback.format_exc()[-800:])
+    if "d" in sections:
+        try:
+            debug(m, ref, tok, j)
+        except Exception:
+            j.add(phase="debug_error", err=traceback.format_exc()[-800:])
     if "c" in sections:
         correctness(ref, tok, j)
     return j

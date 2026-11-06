@@ -79,6 +79,8 @@ class FastNorth(GraphNorth):
                     idx, sc = ix.reshape(-1), sc_.reshape(-1).to(h.dtype)
                 if "moe" in o:
                     m = fk.moe_gemv(h, idx, sc, mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg)
+                    if "resid" not in o:
+                        m = m.sum(0, keepdim=True)
                 else:
                     m = mlp.experts(h.view(1, -1), idx.view(1, -1), sc.view(1, -1)).reshape(1, self.Dm)
             wn = layers[i + 1].input_layernorm.weight if i + 1 < self.nl else self.model.norm.weight
