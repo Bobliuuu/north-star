@@ -15,14 +15,14 @@ def mem():
 
 
 @torch.no_grad()
-def run_blocks(m, tok, ctxs=(2048, 8192), KS=range(1, 17), NGEN=40, check_eager=True):
+def run_blocks(m, tok, ctxs=(2048, 8192), KS=range(1, 17), NGEN=40, check_eager=True, attn_impl="bmm"):
     ref = RefNorth(m)
     j = Jsonl()
     code = [r for r in by_split(load_workloads(), "dev") if r["kind"] == "code"]
     for ctx in ctxs:
         ids = build_ids(tok, code[0], ctx)
         P = len(ids)
-        gn = GraphNorth(ref, P + NGEN + 24)
+        gn = GraphNorth(ref, P + NGEN + 24, attn_impl)
         kv = gn.new_kv()
         gn.eager_prefill(ids[:-1], kv)
         # greedy generation with the graphed T=1 step (real tokens)
@@ -33,13 +33,13 @@ def run_blocks(m, tok, ctxs=(2048, 8192), KS=range(1, 17), NGEN=40, check_eager=
         tf = [ids[-1]] + toks  # teacher-forced inputs at positions P-1 ...
         sb = gn.make_step(8, kv, logits="all"); sb.set(tf[:8], P - 1)
         pb = sb.run()[0].tolist()
-        j.add(phase="g_block_consistency", ctx=P, block8_argmax_equals_sequential=int(sum(a == b for a, b in zip(pb, toks[:8]))), of=8)
+        j.add(phase="g_block_consistency", attn_impl=attn_impl, ctx=P, block8_argmax_equals_sequential=int(sum(a == b for a, b in zip(pb, toks[:8]))), of=8)
         del sb
         if check_eager and ctx == ctxs[0]:
             from northstar.spec import plain_greedy
             pg = plain_greedy(ref, ids, 16)["tokens"]
             first = next((i for i, (a, b) in enumerate(zip(pg, toks)) if a != b), 16)
-            j.add(phase="g_correctness", ctx=P, graph_vs_refnorth_first_div_in_16=first, same16=bool(pg == toks[:16]))
+            j.add(phase="g_correctness", attn_impl=attn_impl, ctx=P, graph_vs_refnorth_first_div_in_16=first, same16=bool(pg == toks[:16]))
             print("graph vs ref first div:", first, flush=True)
             del pg
         # ---- block verify timing, graphed ----
@@ -52,7 +52,7 @@ def run_blocks(m, tok, ctxs=(2048, 8192), KS=range(1, 17), NGEN=40, check_eager=
             eager = None
             if K in (1, 4, 8, 16):
                 eager = time_eager(lambda: (gn.start.fill_(P - 1), gn.forward(step.ids, kv, logits="all")))
-            j.add(phase="g_block", ctx=P, K=K, graph_ms=med, graph_ms_min=mn, graph_ms_max=mx, eager_same_fwd_ms=eager,
+            j.add(phase="g_block", attn_impl=attn_impl, ctx=P, K=K, graph_ms=med, graph_ms_min=mn, graph_ms_max=mx, eager_same_fwd_ms=eager,
                   seq_K_decodes_ms=K * base_ms, verify_only_speedup=K * base_ms / med, cost_vs_one_token=med / base_ms)
             print("blk", P, K, round(med, 3), "ms", flush=True)
             del step
@@ -66,7 +66,7 @@ def run_blocks(m, tok, ctxs=(2048, 8192), KS=range(1, 17), NGEN=40, check_eager=
             no_attn = t(frozenset({"router", "experts", "lm"}))
             no_lm = t(frozenset({"attn", "router", "experts"}))
             router_only = t(frozenset({"router"}), "none")
-            j.add(phase="g_components", ctx=P, K=K, full_ms=full, experts_ms=full - no_exp, attn_ms=full - no_attn, lm_head_ms=full - no_lm,
+            j.add(phase="g_components", attn_impl=attn_impl, ctx=P, K=K, full_ms=full, experts_ms=full - no_exp, attn_ms=full - no_attn, lm_head_ms=full - no_lm,
                   router_norm_embed_resid_ms=router_only, rest_ms=full - (full - no_exp) - (full - no_attn) - (full - no_lm) - router_only,
                   noexperts_ms=no_exp, noattn_ms=no_attn, nolm_ms=no_lm)
             print("comp", P, K, round(full, 3), "exp", round(full - no_exp, 3), "attn", round(full - no_attn, 3), "lm", round(full - no_lm, 3), flush=True)
@@ -76,7 +76,7 @@ def run_blocks(m, tok, ctxs=(2048, 8192), KS=range(1, 17), NGEN=40, check_eager=
             for T in (1, 2):
                 s = gn.make_step(T, kv, skip=skip, r=r); s.set(tf[:T], P - 1)
                 med, mn, mx = time_graph(s)
-                j.add(phase="g_draft_step", ctx=P, mode=name, T=T, graph_ms=med)
+                j.add(phase="g_draft_step", attn_impl=attn_impl, ctx=P, mode=name, T=T, graph_ms=med)
                 print("draft", name, T, round(med, 3), flush=True); del s
         del kv, gn, s1
         torch.cuda.empty_cache()
@@ -84,7 +84,7 @@ def run_blocks(m, tok, ctxs=(2048, 8192), KS=range(1, 17), NGEN=40, check_eager=
 
 
 @torch.no_grad()
-def run_spec(m, tok, ntasks=4, n_new=64, long_ctx=2048):
+def run_spec(m, tok, ntasks=4, n_new=64, long_ctx=2048, attn_impl="bmm"):
     ref = RefNorth(m)
     j = Jsonl()
     eos = m.config.eos_token_id
@@ -95,7 +95,7 @@ def run_spec(m, tok, ntasks=4, n_new=64, long_ctx=2048):
     if long_ctx:
         cells.append(("ctx%d" % long_ctx, code[:2], long_ctx, long_ctx + n_new + 40))
     for cname, tasks, tl, Lmax in cells:
-        gn = GraphNorth(ref, Lmax)
+        gn = GraphNorth(ref, Lmax, attn_impl)
         vkv = gn.new_kv()
         modes = [("r4_g4", 0, 4, 4), ("skip8_g4", 8, None, 4), ("r4_g2", 0, 4, 2), ("r4_g8", 0, 4, 8)]
         s_plain = gn.make_step(1, vkv)

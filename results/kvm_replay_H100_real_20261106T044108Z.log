@@ -1,0 +1,58 @@
+name, driver_version
+NVIDIA H100 80GB HBM3, 610.57.04
+
+$ cd /work/kvm && nvcc -O3 -std=c++17 -arch=sm_90 -o /work/moe_fused moe_fused.cu
+[rc=0]
+$ /work/moe_fused replay /work/replay_in.txt /work/replay_out.jsonl --reps 7
+500 records
+1000 records
+1500 records
+2000 records
+2500 records
+3000 records
+3500 records
+4000 records
+4500 records
+5000 records
+5500 records
+6000 records
+6500 records
+7000 records
+7500 records
+8000 records
+8500 records
+9000 records
+9500 records
+10000 records
+10500 records
+11000 records
+11500 records
+12000 records
+12500 records
+13000 records
+13500 records
+14000 records
+14500 records
+15000 records
+15500 records
+16000 records
+16500 records
+17000 records
+17500 records
+18000 records
+18500 records
+19000 records
+19500 records
+20000 records
+20500 records
+21000 records
+21500 records
+22000 records
+22500 records
+23000 records
+23500 records
+24000 records
+24500 records
+25000 records
+replay done 25344 records
+[rc=0]

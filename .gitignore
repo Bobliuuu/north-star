@@ -3,3 +3,4 @@ __pycache__/
 .pytest_cache/
 __pycache__/
 *.pyc
+src/kvm/replay_input.txt

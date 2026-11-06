@@ -1,0 +1,43 @@
+$ nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
+[rc=0 0s]
+name, driver_version, memory.total [MiB]
+NVIDIA H100 80GB HBM3, 610.57.04, 81559 MiB
+
+--stderr--
+
+
+$ python src/runner.py --mk --lib-path /mk/build/libmk_release.so --num-sms 132 --frac-vram-utilization 0.85 --cpp-decode-runtime --fast --real-weight --checkpoint /weights/north-mini-code-d11e61a8 --batch-size 1 --max-new-tokens 256 --fake-prompt-len 2048 2>&1 | grep -E 'tok/s|mean/step|rror' | tail -4
+[rc=0 40s]
+[mk-release] decode done driver=cpp-runtime steps=255 active_rows=1/1 total=846.942 ms tpot=3.321 ms (301.08 tok/s)
+  decode  :      846.942 ms      256 tok       302.26 tok/s  (batch=1, steps=255, ragged)
+  decode  :      846.942 ms  mean/step     3.3213 ms
+
+--stderr--
+
+
+$ python src/runner.py --mk --lib-path /mk/build/libmk_release.so --num-sms 132 --frac-vram-utilization 0.85 --cpp-decode-runtime --fast --real-weight --checkpoint /weights/north-mini-code-d11e61a8 --batch-size 2 --max-new-tokens 256 --fake-prompt-len 2048 2>&1 | grep -E 'tok/s|mean/step|rror' | tail -4
+[rc=0 35s]
+[mk-release] decode done driver=cpp-runtime steps=255 active_rows=2/2 total=1044.763 ms tpot=4.097 ms (488.15 tok/s)
+  decode  :     1044.763 ms      512 tok       490.06 tok/s  (batch=2, steps=255, ragged)
+  decode  :     1044.763 ms  mean/step     4.0971 ms
+
+--stderr--
+
+
+$ python src/runner.py --mk --lib-path /mk/build/libmk_release.so --num-sms 132 --frac-vram-utilization 0.85 --cpp-decode-runtime --fast --real-weight --checkpoint /weights/north-mini-code-d11e61a8 --batch-size 4 --max-new-tokens 256 --fake-prompt-len 2048 2>&1 | grep -E 'tok/s|mean/step|rror' | tail -4
+[rc=0 33s]
+[mk-release] decode done driver=cpp-runtime steps=255 active_rows=4/4 total=1348.332 ms tpot=5.288 ms (756.49 tok/s)
+  decode  :     1348.332 ms     1024 tok       759.46 tok/s  (batch=4, steps=255, ragged)
+  decode  :     1348.332 ms  mean/step     5.2876 ms
+
+--stderr--
+
+
+$ python src/runner.py --mk --lib-path /mk/build/libmk_release.so --num-sms 132 --frac-vram-utilization 0.85 --cpp-decode-runtime --fast --real-weight --checkpoint /weights/north-mini-code-d11e61a8 --batch-size 8 --max-new-tokens 256 --fake-prompt-len 2048 2>&1 | grep -E 'tok/s|mean/step|rror' | tail -4
+[rc=0 33s]
+[mk-release] decode done driver=cpp-runtime steps=255 active_rows=8/8 total=1884.389 ms tpot=7.390 ms (1082.58 tok/s)
+  decode  :     1884.389 ms     2048 tok      1086.82 tok/s  (batch=8, steps=255, ragged)
+  decode  :     1884.389 ms  mean/step     7.3898 ms
+
+--stderr--
+

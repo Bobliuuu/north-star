@@ -59,6 +59,9 @@ def bench(which: str = "all"):
     if which in ("all", "real"):
         for L in (2048, 8192):
             log.append(sh(COMMON + f"--fast --real-weight --checkpoint {CKPT} --batch-size 1 --max-new-tokens 512 --fake-prompt-len {L} 2>&1 | grep -E 'metrics|tok/s|mean/step|rror' | tail -8", 500))
+    if which in ("all", "bs"):  # step time vs tokens-in-flight (independent sequences; union of experts grows ~ like a verify block's)
+        for B in (1, 2, 4, 8):
+            log.append(sh(COMMON + f"--fast --real-weight --checkpoint {CKPT} --batch-size {B} --max-new-tokens 256 --fake-prompt-len 2048 2>&1 | grep -E 'tok/s|mean/step|rror' | tail -4", 500))
     if which in ("all", "prompt"):
         log.append(sh(COMMON + f"--checkpoint {CKPT} --batch-size 1 --msgs 'Write a Python function that merges two sorted lists, with tests.' --max-new-tokens 512 2>&1 | grep -E 'tok/s|mean/step|rror' | tail -8", 500))
     jit_vol.commit()

@@ -15,7 +15,8 @@ ALL = frozenset({"attn", "router", "experts", "lm"})
 
 
 class GraphNorth:
-    def __init__(self, ref, Lmax):
+    def __init__(self, ref, Lmax, attn_impl="bmm"):
+        self.attn_impl = attn_impl
         self.ref, self.cfg, self.model, self.lm_head = ref, ref.cfg, ref.model, ref.lm_head
         self.Lmax, self.dev, self.dtype = Lmax, ref.device, ref.dtype
         self.pool = torch.cuda.graph_pool_handle()
@@ -55,7 +56,14 @@ class GraphNorth:
                 kc.index_copy_(2, qpos, k)
                 vc.index_copy_(2, qpos, v)
                 qg = q.reshape(1, Hkv, G, T, D).reshape(1, Hkv, G * T, D)
-                o = F.scaled_dot_product_attention(qg, kc, vc, attn_mask=msl if sliding else mfull)
+                mk = msl if sliding else mfull
+                if self.attn_impl == "sdpa_mask":
+                    o = F.scaled_dot_product_attention(qg, kc, vc, attn_mask=mk)
+                else:  # bmm: scores in fp32 (out_dtype), fp32 softmax, bf16 P@V  -- memory-bound, no mask-SDPA inefficiency
+                    sc = torch.bmm(qg[0], kc[0].transpose(1, 2), out_dtype=torch.float32) * (D ** -0.5)
+                    sc = sc.masked_fill(~mk[None], float("-inf"))
+                    p_ = torch.softmax(sc, dim=-1).to(vc.dtype)
+                    o = torch.bmm(p_, vc[0])[None]
                 o = o.reshape(1, Hkv, G, T, D).reshape(1, H, T, D).transpose(1, 2).reshape(1, T, H * D)
                 a = at.o_proj(o)
             m = 0
