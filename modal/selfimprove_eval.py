@@ -8,7 +8,7 @@
 
   Commands (confirm cost first; nothing here runs unless you invoke it):
     modal run modal/selfimprove_eval.py --track kernel --proposer mock --rounds 1          # DRY RUN, mock, never North's
-    modal run modal/selfimprove_eval.py --track kernel --proposer north --rounds 1 --confirm-cost   # LIVE (needs deployed proposer)
+    modal run modal/selfimprove_eval.py --track kernel --proposer north --rounds 1 --confirm-cost   # LIVE (needs deployed proposer); kernel default = structured edits, --mode diff for raw diffs
   Est. cost: see estimate_cost() (printed before every run; ~USD 0.8-1.2 per round after the first, A100-80GB @ $2.50/h list).
 """
 import json, os, pathlib, subprocess, sys, time
@@ -95,7 +95,7 @@ def _prep_store_guard(store_dir, proposer):
 
 @app.local_entrypoint()
 def main(track: str = "kernel", rounds: int = 1, proposer: str = "mock", max_usd: float = 3.0, store: str = "",
-         confirm_cost: bool = False, temperature: float = 0.3, max_new_tokens: int = 2048):
+         confirm_cost: bool = False, mode: str = "", temperature: float = 0.3, max_new_tokens: int = 2048):
     sys.path.insert(0, str(ROOT / "src"))
     from selfimprove.loop import Loop
     from selfimprove.proposer import NorthProposer, MockProposer
@@ -103,10 +103,14 @@ def main(track: str = "kernel", rounds: int = 1, proposer: str = "mock", max_usd
     import runpy
     H = runpy.run_path(str(ROOT / "harness/selfimprove/config.py"))
     dry = proposer == "mock"
+    mode = mode or ("structured" if track == "kernel" else "diff")      # structured edits are defined for the kernel tunables track only
+    if mode not in ("structured", "diff") or (mode == "structured" and track != "kernel"):
+        raise SystemExit("--mode must be 'diff', or 'structured' (kernel track only)")
     store_dir = pathlib.Path(store or ROOT / "results" / (f"selfimprove_dryrun_{track}" if dry else f"selfimprove_{track}"))
     if dry and "dryrun" not in store_dir.name:
         raise SystemExit("mock proposer must write to a store whose directory name contains 'dryrun'")
     est = estimate_cost(track, rounds, with_proposer=not dry)
+    print(f"[mode] {mode}")
     print(f"[estimate] ~{est['minutes']:.0f} A100-80GB minutes, ~USD {est['usd']:.2f} for {rounds} round(s) (hard cap --max-usd {max_usd})")
     if dry:
         print("=" * 100 + f"\n{H['MOCK_BANNER']}\n" + "=" * 100)
@@ -117,10 +121,11 @@ def main(track: str = "kernel", rounds: int = 1, proposer: str = "mock", max_usd
     st = Store(store_dir)
     if dry:
         from selfimprove.loop import editable_files_in_repo
-        prop = MockProposer([H["mock_diff"](track, editable_files_in_repo(ROOT, cfg.scope))])
+        base = editable_files_in_repo(ROOT, cfg.scope)
+        prop = MockProposer(['{"edits":[{"name":"KC","value":128}],"rationale":"MOCK"}'] if mode == "structured" else [H["mock_diff"](track, base)])
     else:
         prop = NorthProposer()
-    lp = Loop(cfg, st, prop)
+    lp = Loop(cfg, st, prop, mode=mode)
     lp.ev = RemoteEvaluator(track)
     res = lp.run(rounds, max_total_usd=max_usd, profile_summary=H["profile_summary"](track), dev_results=H["dev_results"](track))
     for r in res:

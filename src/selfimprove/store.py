@@ -79,14 +79,14 @@ class Store:
         self._set_current(v); self.log(dict(event="init", version=v)); return v
 
     def promote(self, new_files: dict[str, str], proposal_id: str, authored_by: str, north_attested: bool, diff: str,
-                gates: dict, mock: bool) -> str:
+                gates: dict, mock: bool, extra: dict | None = None) -> str:
         assert authored_by in ("north", "mock"), authored_by
         if authored_by == "north" and (mock or not north_attested):
             raise RuntimeError("refusing to label a version North-authored without attestation")
         parent = self.current()
         files = dict(self.files(parent)); files.update(new_files)
         v = self._commit_version(files, dict(parent=parent, authored_by=authored_by, north_attested=north_attested, mock=mock,
-                                             proposal_id=proposal_id, diff=diff, diff_sha256=sha256_text(diff), gates=gates))
+                                             proposal_id=proposal_id, diff=diff, diff_sha256=sha256_text(diff), gates=gates, **(extra or {})))
         self._set_current(v); self.log(dict(event="promote", version=v, parent=parent, proposal_id=proposal_id, authored_by=authored_by))
         return v
 

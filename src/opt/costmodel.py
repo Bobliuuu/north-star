@@ -42,11 +42,23 @@ def _v(name, parts, bw, sm):
                    tuple(sorted(parts.items())))
 
 
+_MB_KEYS = ("gpu", "routing", "r", "Tv", "Td", "v", "peak_read_GBs")
+
+
+def is_microbench_row(r) -> bool:
+    """True only for kvm_fused microbench rows; results/*.jsonl also holds rows from unrelated benches (skipped, not an error)."""
+    if not isinstance(r, dict) or any(k not in r for k in _MB_KEYS):
+        return False
+    v = r["v"]
+    return (isinstance(v, dict) and all(isinstance(v.get(m), dict) for m in ("verify_only", "two_pass", "fused"))
+            and "us_med" in v["verify_only"] and "us_med" in v["two_pass"] and "us_med" in v["fused"] and "GBs" in v["fused"])
+
+
 class MicrobenchTable:
     """Fit from results/*.jsonl rows of the kvm_fused microbench. Median over seeds/repeats."""
 
     def __init__(self, rows):
-        self.rows = [r for r in rows if "v" in r]
+        self.rows = [r for r in rows if is_microbench_row(r)]
         if not self.rows:
             raise ValueError("no microbench rows")
         self.gpus = sorted({r["gpu"] for r in self.rows})

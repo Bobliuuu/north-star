@@ -1,7 +1,7 @@
 import pytest
 from selfimprove import diffs as D
 from selfimprove.policy import Scope, ScopeRule, Limits
-from conftest import CU, POLICY
+from .conftest import CU, POLICY
 
 SC = Scope(rules=[ScopeRule("src/kvm/moe_fused.cu", regions_only=True), ScopeRule("src/opt/policy_tables/*.json"),
                   ScopeRule("src/opt/new_*.py", allow_create=True)])

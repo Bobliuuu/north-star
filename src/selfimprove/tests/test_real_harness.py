@@ -239,7 +239,7 @@ def test_remote_evaluator_error_is_a_non_promoting_verdict_and_label_guard(tmp_p
 
 def test_loop_with_remote_evaluator_wired_to_local_toy_evaluator(toy, tmp_path):
     m = _modal_module()
-    from test_loop import cu_diff
+    from .test_loop import cu_diff
     local = L.Evaluator(toy)
     lp = L.Loop(toy, Store(tmp_path / "s_dryrun"), PR.MockProposer([cu_diff(64, 128)]), allow_mock_promotion=False)
     lp.ev = m.RemoteEvaluator("kernel", call=lambda p: local.evaluate(p["base_files"], p["new_files"]))

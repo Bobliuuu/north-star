@@ -83,3 +83,21 @@ Tests: `NS_SLOW=1` also runs the full CPU dry-run loop on the policy track and t
 - Held-out data lives inside the sandbox copy (hash-protected, readable): the kernel candidate is compiled code whose file I/O the audit rejects, and the policy candidate is a JSON data file parsed with a strict whitelist; neither is executed as Python.
 
 Tests: `cd src && python -m pytest -q selfimprove/tests` (about 30 s, CPU).
+
+## Structured-edit proposal mode (kernel tunables track; default)
+
+Four live diff-mode rounds (results/selfimprove_kernel*) all died in the strict diff parser: North named the right intent but got
+hunk line counts wrong, emitted whitespace-only edits, or edited a protected line (MAXTOK). In `--mode structured` North outputs ONLY
+
+    {"edits":[{"name":"KC|XPAD|HPAD|MT_SPLIT|MINB_PER_SM","value":<int>}], "rationale":"..."}
+
+(at most 5 edits, each name once, ints within the ranges in `src/selfimprove/structured.py`, which mirror the source comments and static_asserts;
+unknown keys/names, non-ints, out-of-range values, KC not dividing 2048 and combined static smem > 48KB are rejected as `invalid_edit`).
+The harness rewrites only the value on `constexpr int NAME = <n>;` lines inside NS-EDITABLE-BEGIN/END and renders the unified diff with difflib,
+then the unchanged strict parser, audit, sandbox, gates, store and attribution run on it. A no-op is `no_change`. The log keeps the raw North
+response, the parsed edits, the rendered diff, and the label `North-authored (structured edit)`: North chose every value, the harness only formatted.
+Diff mode remains available (`--mode diff`). The prompt shows the dev profile and current values only, never held-out data.
+
+Launch (live, GPU spend; confirm cost first; proposer must be deployed, `modal deploy src/selfimprove/modal_north.py`):
+
+    modal run modal/selfimprove_eval.py --track kernel --proposer north --mode structured --rounds 3 --max-usd 5 --confirm-cost --store results/selfimprove_kernel_structured
