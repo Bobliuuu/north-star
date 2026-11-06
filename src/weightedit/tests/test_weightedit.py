@@ -145,7 +145,7 @@ def test_loop_end_to_end(tmp_path):
     m = tiny_model()
     tr, ga = seqs(8, 64, 5), seqs(8, 64, 6)
     st = EditStore(tmp_path)
-    prop = GridProposer(rs=(2,), ranks=(8,), lrs=(3e-3,), steps=150, window=32, batch=4)
+    prop = GridProposer(rs=(2,), ranks=(8,), lrs=(3e-3, 2e-3), steps=150, window=32, batch=4)
     hist = run_loop(m, prop, st, tr, [0] * 8, ga, [0] * 8, rounds=2, log=lambda *_: None, margin=0.0, boot=200)
     assert len(hist) == 2 and len(st.ledger()) == 2
     for h in hist:
