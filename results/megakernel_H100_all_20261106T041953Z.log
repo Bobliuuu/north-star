@@ -1,0 +1,58 @@
+$ nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
+[rc=0 0s]
+name, driver_version, memory.total [MiB]
+NVIDIA H100 80GB HBM3, 610.57.04, 81559 MiB
+
+--stderr--
+
+
+$ python src/runner.py --mk --lib-path /mk/build/libmk_release.so --num-sms 132 --frac-vram-utilization 0.85 --cpp-decode-runtime --fast --batch-size 1 --max-new-tokens 512 --fake-prompt-len 2048 2>&1 | grep -E 'metrics|tok/s|mean/step|rror' | tail -8
+[rc=0 10s]
+[mk-release] decode done driver=cpp-runtime steps=511 active_rows=1/1 total=1673.231 ms tpot=3.274 ms (305.40 tok/s)
+  decode  :     1673.231 ms      512 tok       305.99 tok/s  (batch=1, steps=511, ragged)
+  decode  :     1673.231 ms  mean/step     3.2744 ms
+[mk-release] metrics = {'decode_wall_ms': 1673.2306220000003, 'setup_ms': 203.78063400000013, 'jit_ms': 1359.8741899999993, 'total_inst': 30761, 'max_inst_per_sm': 234, 'decode_driver': 'cpp-runtime', 'num_context_buckets': 1, 'num_unique_schedules': 1, 'rr_dependency_affinity': False, 'ablation': False, 'prompt_len': 2048, 'cache_seqlen': 2558, 'row_active': [1], 'num_active_rows': 1, 'tpot_ms': 3.2744239178082197, 'throughput_tok_s': 305.3972317272113, 'num_output_tokens': 511}
+
+--stderr--
+
+
+$ python src/runner.py --mk --lib-path /mk/build/libmk_release.so --num-sms 132 --frac-vram-utilization 0.85 --cpp-decode-runtime --fast --batch-size 1 --max-new-tokens 512 --fake-prompt-len 8192 2>&1 | grep -E 'metrics|tok/s|mean/step|rror' | tail -8
+[rc=0 7s]
+[mk-release] decode done driver=cpp-runtime steps=511 active_rows=1/1 total=1731.503 ms tpot=3.388 ms (295.12 tok/s)
+  decode  :     1731.503 ms      512 tok       295.70 tok/s  (batch=1, steps=511, ragged)
+  decode  :     1731.503 ms  mean/step     3.3885 ms
+[mk-release] metrics = {'decode_wall_ms': 1731.5030269999986, 'setup_ms': 200.2960569999992, 'jit_ms': 24.3653220000013, 'total_inst': 30761, 'max_inst_per_sm': 234, 'decode_driver': 'cpp-runtime', 'num_context_buckets': 1, 'num_unique_schedules': 1, 'rr_dependency_affinity': False, 'ablation': False, 'prompt_len': 8192, 'cache_seqlen': 8702, 'row_active': [1], 'num_active_rows': 1, 'tpot_ms': 3.388459935420741, 'throughput_tok_s': 295.1193223643151, 'num_output_tokens': 511}
+
+--stderr--
+
+
+$ python src/runner.py --mk --lib-path /mk/build/libmk_release.so --num-sms 132 --frac-vram-utilization 0.85 --cpp-decode-runtime --fast --real-weight --checkpoint /weights/north-mini-code-d11e61a8 --batch-size 1 --max-new-tokens 512 --fake-prompt-len 2048 2>&1 | grep -E 'metrics|tok/s|mean/step|rror' | tail -8
+[rc=0 33s]
+[mk-release] decode done driver=cpp-runtime steps=511 active_rows=1/1 total=1660.479 ms tpot=3.249 ms (307.74 tok/s)
+  decode  :     1660.479 ms      512 tok       308.34 tok/s  (batch=1, steps=511, ragged)
+  decode  :     1660.479 ms  mean/step     3.2495 ms
+[mk-release] metrics = {'decode_wall_ms': 1660.4791829999997, 'setup_ms': 157.58242999999794, 'jit_ms': 21.792990999998096, 'total_inst': 30761, 'max_inst_per_sm': 234, 'decode_driver': 'cpp-runtime', 'num_context_buckets': 1, 'num_unique_schedules': 1, 'rr_dependency_affinity': False, 'ablation': False, 'prompt_len': 2048, 'cache_seqlen': 2558, 'row_active': [1], 'num_active_rows': 1, 'tpot_ms': 3.2494700254403126, 'throughput_tok_s': 307.7424909818939, 'num_output_tokens': 511}
+
+--stderr--
+
+
+$ python src/runner.py --mk --lib-path /mk/build/libmk_release.so --num-sms 132 --frac-vram-utilization 0.85 --cpp-decode-runtime --fast --real-weight --checkpoint /weights/north-mini-code-d11e61a8 --batch-size 1 --max-new-tokens 512 --fake-prompt-len 8192 2>&1 | grep -E 'metrics|tok/s|mean/step|rror' | tail -8
+[rc=0 16s]
+[mk-release] decode done driver=cpp-runtime steps=511 active_rows=1/1 total=1728.594 ms tpot=3.383 ms (295.62 tok/s)
+  decode  :     1728.594 ms      512 tok       296.19 tok/s  (batch=1, steps=511, ragged)
+  decode  :     1728.594 ms  mean/step     3.3828 ms
+[mk-release] metrics = {'decode_wall_ms': 1728.5940489999944, 'setup_ms': 163.89217200000417, 'jit_ms': 27.85432100000662, 'total_inst': 30761, 'max_inst_per_sm': 234, 'decode_driver': 'cpp-runtime', 'num_context_buckets': 1, 'num_unique_schedules': 1, 'rr_dependency_affinity': False, 'ablation': False, 'prompt_len': 8192, 'cache_seqlen': 8702, 'row_active': [1], 'num_active_rows': 1, 'tpot_ms': 3.382767219178071, 'throughput_tok_s': 295.61596622157623, 'num_output_tokens': 511}
+
+--stderr--
+
+
+$ python src/runner.py --mk --lib-path /mk/build/libmk_release.so --num-sms 132 --frac-vram-utilization 0.85 --cpp-decode-runtime --checkpoint /weights/north-mini-code-d11e61a8 --batch-size 1 --msgs 'Write a Python function that merges two sorted lists, with tests.' --max-new-tokens 512 2>&1 | grep -E 'tok/s|mean/step|rror' | tail -8
+[rc=0 28s]
+[mk-release] prefill throughput=20.42 tok/s tokens=129 time=6316.599 ms
+[mk-release] decode done driver=cpp-runtime steps=511 active_rows=1/1 total=1627.476 ms tpot=3.185 ms (313.98 tok/s)
+  prefill :     6316.599 ms      129 tok        20.42 tok/s
+  decode  :     1627.476 ms      512 tok       314.60 tok/s  (batch=1, steps=511, ragged)
+  decode  :     1627.476 ms  mean/step     3.1849 ms
+
+--stderr--
+

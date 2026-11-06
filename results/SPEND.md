@@ -12,3 +12,9 @@
 | 2026-11-05 21:55 | spec (aborted attempt, slow volume load, killed) | A100-80GB | 740 | 0.51 | estimated from log timestamps (12 min); no results |
 
 **Cumulative est. total: $2.35 of $30 cap** (CPU download/test containers not included, negligible).
+| 20261106T033917Z | tiny graph test (debug) | A100-40GB | 8 | 0.00 | True |
+| 20261106T034013Z | tiny graph test (debug) | A100-40GB | 9 | 0.01 | True |
+| 20261106T034201Z | tiny graph test (debug) | A100-40GB | 9 | 0.01 | True |
+| 20261106T034226Z | tiny graph test (debug, tiny model) | H100 | 9 | 0.01 | True |
+| 20261106T034431Z | megakernel all | H100 | 101 | 0.11 | |
+| 20261106T041953Z | megakernel all | H100 | 95 | 0.10 | |
