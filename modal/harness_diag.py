@@ -68,6 +68,43 @@ def diag(n_seeds: int = 24, n_aa: int = 18):
     return out
 
 
+@app.function(gpu=["A100-80GB", "A100-40GB"], timeout=2400, cpu=8, memory=32768, scaledown_window=2, max_containers=1)
+def diag2(seeds: list):
+    """SEQUENTIAL (no concurrency) repeat of failing seeds; reports the failing case parameters and whether failures repeat."""
+    import random, sys, torch, numpy as np
+    sys.path.insert(0, "/repo/src/kvm")
+    from ref import moe_ref as m
+    os.makedirs("/work", exist_ok=True)
+    ws = {n: make_ws(n, v) for n, v in VARIANTS.items()}
+    rows = []
+    for seed in seeds:
+        rng = random.Random(seed * 7919 + 13)
+        cases = [(16, 16, 8, 0), (1, 1, 1, 0)]
+        while len(cases) < 8: cases.append((rng.randint(1, 16), rng.randint(1, 16), rng.randint(1, 8), rng.randint(0, 1)))
+        info = []
+        for ci, (Tv, Td, r, rn) in enumerate(cases):
+            x, wg, wu, wd, idx, w = m.make_inputs(16, Tv, Td, seed=(seed * 1000 + ci) % (2**31 - 1))
+            cnt = torch.zeros(16, dtype=torch.int64)
+            for t in range(Tv + Td):
+                for k in range(8 if t < Tv else r): cnt[int(idx[t, k])] += 1
+            info.append(dict(ci=ci, Tv=Tv, Td=Td, r=r, rn=rn, maxcnt=int(cnt.max()), counts_9_16=int(((cnt > 8) & (cnt <= 16)).sum()), counts_gt16=int((cnt > 16).sum())))
+        for nm in VARIANTS:
+            reps = []
+            for rep in range(2):
+                j, _ = run_h(ws[nm], "kernel_check.py", seed=seed)
+                reps.append({c["name"]: round(c["rel_l2"], 4) for c in j.get("cases", []) if not c["rel_l2"] <= 1e-3} or j.get("error"))
+            rows.append(dict(seed=seed, variant=nm, fails_rep1=reps[0], fails_rep2=reps[1]))
+        rows.append(dict(seed=seed, cases=info)); print("seed", seed, "done", flush=True)
+    return rows
+
+
+@app.local_entrypoint()
+def main2(tag: str = "diag2", seeds: str = "15841,23760,39598,7922,7919"):
+    r = diag2.remote([int(s) for s in seeds.split(",")])
+    ts = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    path = os.path.join(ROOT, "results", f"harness_diag_{tag}_{ts}.json"); json.dump(r, open(path, "w"), indent=1); print(path)
+
+
 @app.local_entrypoint()
 def main(tag: str = "diag1", n_seeds: int = 24, n_aa: int = 18):
     r = diag.remote(n_seeds, n_aa)
