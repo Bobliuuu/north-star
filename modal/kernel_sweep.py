@@ -22,6 +22,10 @@ OFAT = ([("KC", v) for v in (64, 128, 512)] + [("XPAD", v) for v in (0, 16, 24)]
         + [("MT_SPLIT", v) for v in (4, 8, 12)] + [("MINB_PER_SM", v) for v in (2, 3, 4, 6, 8)]
         + [("UNROLL_KS", v) for v in (1, 2, 4, 8)])
 CONFIGS = [dict(BASE)] + [dict(BASE, **{k: v}) for k, v in OFAT] + [dict(BASE, KC=512, UNROLL_KS=8), dict(BASE, KC=128, UNROLL_KS=8)]
+COMBO = [dict(BASE, **d) for d in (dict(KC=32), dict(KC=64), dict(KC=64, UNROLL_KS=4), dict(KC=64, UNROLL_KS=2), dict(KC=64, UNROLL_KS=8),
+         dict(KC=64, MINB_PER_SM=3), dict(KC=64, MINB_PER_SM=2), dict(UNROLL_KS=4, MINB_PER_SM=3), dict(KC=64, UNROLL_KS=4, MINB_PER_SM=3),
+         dict(KC=64, UNROLL_KS=4, MINB_PER_SM=2), dict(KC=32, UNROLL_KS=4), dict(KC=64, UNROLL_KS=4, MINB_PER_SM=3, XPAD=24, HPAD=24))]
+COMBO = [dict(BASE)] + COMBO
 NEW = {"UNROLL_KS", "MINB_PER_SM"}
 
 image = (modal.Image.from_registry("nvidia/cuda:12.4.1-devel-ubuntu22.04", add_python="3.11")
@@ -66,8 +70,10 @@ def _bench(nm, shapes):
     return [r["v"]["fused"]["us_med"] for r in rows]
 
 
-@app.function(gpu="A100-80GB", timeout=2400, cpu=8, memory=32768, scaledown_window=2, max_containers=1)
-def sweep(passes: int = 3):
+@app.function(gpu=["A100-80GB", "A100-40GB"], timeout=2400, cpu=8, memory=32768, scaledown_window=2, max_containers=1)
+def sweep(passes: int = 3, preset: str = "ofat"):
+    global CONFIGS
+    if preset == "combo": CONFIGS = COMBO
     from concurrent.futures import ThreadPoolExecutor
     t0 = time.time(); res = {}
     gpu = subprocess.run("nvidia-smi --query-gpu=name,driver_version --format=csv,noheader", shell=True, capture_output=True, text=True).stdout.strip()
@@ -80,7 +86,7 @@ def sweep(passes: int = 3):
     cfg = {_name(c): c for c in CONFIGS}
     # correctness (A100 binary vs torch CPU reference, same cases as tests/check_cuda.py) for baseline and every config touching a NEW tunable
     for nm, c in cfg.items():
-        if res[nm]["build"]["rc"] or not (nm == "base" or any(BASE[k] != v and k in NEW for k, v in c.items())): continue
+        if res[nm]["build"]["rc"] or not (preset == "combo" or nm == "base" or any(BASE[k] != v and k in NEW for k, v in c.items())): continue
         p = subprocess.run(["python", "/work/kvm/tests/check_cuda.py", f"/work/b/{nm}/bin", f"/work/b/{nm}/chk"], capture_output=True, text=True)
         rels = [json.loads(l) for l in p.stdout.splitlines() if l.startswith("{")]
         worst = max([r[k]["rel_l2"] for r in rels for k in ("fused", "two")] or [None]) if rels else None
@@ -115,8 +121,8 @@ def sweep(passes: int = 3):
 
 
 @app.local_entrypoint()
-def main(tag: str = "sweep1", passes: int = 3):
-    r = sweep.remote(passes)
+def main(tag: str = "sweep1", passes: int = 3, preset: str = "ofat"):
+    r = sweep.remote(passes, preset)
     ts = datetime.datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
     path = os.path.join(ROOT, "results", f"kernel_sweep_{tag}_{ts}.jsonl")
     with open(path, "w") as f:
