@@ -8,3 +8,7 @@
 | 2026-11-05 21:41 | routing | A100-80GB | 196 | 0.14 |  |
 | 2026-11-05 21:46 | baseline | A100-80GB | 245 | 0.17 |  |
 | 2026-11-05 21:54 | ceiling | A100-80GB | 987 | 0.68 |  |
+| 2026-11-05 22:08 | spec | A100-80GB | 868 | 0.60 |  |
+| 2026-11-05 21:55 | spec (aborted attempt, slow volume load, killed) | A100-80GB | 740 | 0.51 | estimated from log timestamps (12 min); no results |
+
+**Cumulative est. total: $2.35 of $30 cap** (CPU download/test containers not included, negligible).
