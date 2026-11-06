@@ -49,3 +49,10 @@ recompute of committed state.
   `wb_fused_n8` / `wb_two_n8` quantify this; our own WMMA kernel handles up to 32 tokens/expert in one tile.
 - Draft routing-weight convention is configurable (`--renorm`: w/sum(top-r) vs raw sigmoid scores). Default raw, as top-k is
   taken on raw logits then sigmoid with no renorm (docs/NORTH_ARCH.md).
+
+### Measured (A100-80GB SXM4, bf16, one MoE layer, synthetic routing; results/kvm_fused_A100-80GB_fullsweep_*.jsonl, summary in results/kvm_fused_A100_summary.txt)
+Median fused-vs-two-pass time saving over the full r(1..8) x Tv(1..16) x Td(1..16) grid: uniform independent routing 16.2%,
+75%-correlated draft routing 27.4%, identical routing (upper bound) 32.7%. CUDA graphs change little (15.8 / 27.1 / 32.4%).
+Fraction of grid points with saving >= 15% (gate G0 threshold, MoE layer only): 56% / 89% / 93%. Saving depends on
+draft-expert overlap with the verify set (measured 0.39 / 0.84 / 1.0), not on r alone. Fused and two-pass outputs agree on all
+6144 configs; CUDA vs torch reference rel L2 <= 2e-4.
