@@ -1,0 +1,44 @@
+wrote /Users/jhome/north-star/.claude/worktrees/agent-a2c392bb55fef99c4/results/async_spec_model_SIMULATED.json
+{
+ "h100_graphed_pytorch_MEASURED": {
+  "r4_g4": {
+   "max_beta_to_beat_serial_spec": 0.758,
+   "max_beta_to_beat_plain_decode": null
+  },
+  "skip8_g4": {
+   "max_beta_to_beat_serial_spec": 0.695,
+   "max_beta_to_beat_plain_decode": null
+  },
+  "r4_g2": {
+   "max_beta_to_beat_serial_spec": 0.816,
+   "max_beta_to_beat_plain_decode": 0.622
+  },
+  "r4_g8": {
+   "max_beta_to_beat_serial_spec": 0.643,
+   "max_beta_to_beat_plain_decode": null
+  }
+ },
+ "megakernel_projection_INFERRED": {
+  "r4_g2": {
+   "max_beta_to_beat_serial_spec": 0.816,
+   "max_beta_to_beat_plain_decode": 0.751
+  },
+  "r4_g4": {
+   "max_beta_to_beat_serial_spec": 0.758,
+   "max_beta_to_beat_plain_decode": 0.538
+  },
+  "r4_g8": {
+   "max_beta_to_beat_serial_spec": 0.643,
+   "max_beta_to_beat_plain_decode": null
+  }
+ }
+}
+h100_graphed_pytorch_MEASURED
+  r4_g4 {'0.45': (1, 1.152, 0.5169), '0.6': (1, 1.088, 0.5169), '0.8': (1, 0.9792, 0.5169), '1.0': (1, 0.8902, 0.5169)} UB 3.917 bestany 1.152 serial_vs_plain 0.7704 bestVsPlainAny 0.8875 nominal 0.8875 n>1 48 / 432
+  skip8_g4 {'0.45': (1, 1.1178, 0.39), '0.6': (1, 1.0541, 0.39), '0.8': (1, 0.9463, 0.39), '1.0': (1, 0.8585, 0.39)} UB 3.7 bestany 1.1178 serial_vs_plain 0.796 bestVsPlainAny 0.8898 nominal 0.8898 n>1 46 / 432
+  r4_g2 {'0.45': (1, 1.315, 0.6311), '0.6': (1, 1.1956, 0.6311), '0.8': (1, 1.0119, 0.6311), '1.0': (1, 0.8772, 0.6311)} UB 2.635 bestany 1.315 serial_vs_plain 0.8534 bestVsPlainAny 1.1222 nominal 1.1222 n>1 89 / 432
+  r4_g8 {'0.45': (1, 1.0484, 0.2862), '0.6': (1, 1.0141, 0.2862), '0.8': (1, 0.9518, 0.2862), '1.0': (1, 0.8967, 0.2862)} UB 6.194 bestany 1.0484 serial_vs_plain 0.6406 bestVsPlainAny 0.6716 nominal 0.6716 n>1 28 / 432
+megakernel_projection_INFERRED
+  r4_g2 {'0.45': (1, 1.454, 0.6311), '0.6': (1, 1.2711, 0.6311), '0.8': (1, 1.0156, 0.6311), '1.0': (1, 0.8457, 0.6311)} UB 2.021 bestany 1.454 serial_vs_plain 0.9358 bestVsPlainAny 1.3606 nominal 1.3606 n>1 121 / 432
+  r4_g4 {'0.45': (1, 1.2417, 0.5169), '0.6': (1, 1.1355, 0.5169), '0.8': (1, 0.9696, 0.5169), '1.0': (1, 0.8461, 0.5169)} UB 2.655 bestany 1.2417 serial_vs_plain 0.8336 bestVsPlainAny 1.0352 nominal 1.0352 n>1 72 / 432
+  r4_g8 {'0.45': (1, 1.091, 0.2862), '0.6': (1, 1.0258, 0.2862), '0.8': (1, 0.9162, 0.2862), '1.0': (1, 0.8277, 0.2862)} UB 3.43 bestany 1.091 serial_vs_plain 0.6902 bestVsPlainAny 0.753 nominal 0.753 n>1 45 / 432
