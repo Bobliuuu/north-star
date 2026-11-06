@@ -41,3 +41,44 @@ https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
 
 A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
 
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+c1d9b9d5 gate_fail:speed | North-authored (structured edit) | cost {'proposer_usd': 0.005, 'proposer_gpu_s': 7.126, 'proposer_latency_s': 674.141, 'eval_wall_s': 130.372, 'eval_usd': 0.091, 'total_wall_s': 949.034}
+6934d827 gate_fail:speed | North-authored (structured edit) | cost {'proposer_usd': 0.009, 'proposer_gpu_s': 12.895, 'proposer_latency_s': 509.308, 'eval_wall_s': 136.87, 'eval_usd': 0.095, 'total_wall_s': 650.209}
+90f4a59a gate_fail:correctness | North-authored (structured edit) | cost {'proposer_usd': 0.005, 'proposer_gpu_s': 7.865, 'proposer_latency_s': 660.078, 'eval_wall_s': 42.248, 'eval_usd': 0.029, 'total_wall_s': 2380.373}
+{
+ "current": "v0000",
+ "north_versions": [],
+ "mock_versions": [],
+ "developer_versions": [
+  "v0000"
+ ],
+ "north_lines_added": 0,
+ "north_lines_removed": 0,
+ "note": "'north' only counts versions whose proposer was attested as the pinned North endpoint",
+ "any_mock_in_lineage": false,
+ "reportable_as_north_authored": false
+}
+{
+ "proposals": 9,
+ "proposer_usd": 0.062088701791233485,
+ "proposer_gpu_s": 89.40773057937622,
+ "eval_wall_s": 1086.6572177410126,
+ "eval_usd": 0.7546230678757032,
+ "mock_proposals": 0
+}
+✓ App completed. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-B0wZK4IVQWioxxurZCKpLO
