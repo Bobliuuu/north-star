@@ -13,7 +13,8 @@ vLLM with cohere2_moe support, UNVERIFIED here: deploy with NS_WITH_VLLM=1 and a
 import os, sys, time, uuid, pathlib
 import modal
 
-_ROOT = pathlib.Path(__file__).resolve().parents[2]
+_here = pathlib.Path(__file__).resolve()
+_ROOT = _here.parents[2] if len(_here.parents) > 2 else _here.parent   # container path is /root/modal_north.py
 sys.path.insert(0, str(_ROOT / "modal"))
 try:                                     # reuse the other agent's constants/volume rather than duplicating them
     from common import weights_vol, WEIGHTS, MODEL_DIR, MODEL_ID, MODEL_REV, image as _base_image
