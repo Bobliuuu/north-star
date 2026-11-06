@@ -54,7 +54,7 @@ def run(m, tok, quick=False):
     impl = str(m.config._experts_implementation)
     # warmup (kernels / allocator)
     hf_cell(m, tok, [build_ids(tok, code[0], 512)], n_dec=8)
-    ctxs = [2048] if quick else [2048, 8192, 32768]
+    ctxs = [2048] if quick else [2048, 8192]
     for ctx in ctxs:
         for B in (1, 2, 4, 8):
             ids = [build_ids(tok, code[b % len(code)], ctx, rotate=b) for b in range(B)]
