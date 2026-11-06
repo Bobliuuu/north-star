@@ -1,0 +1,62 @@
+{
+ "n": 99,
+ "per_category": {
+  "canitedit": {
+   "license": "MIT",
+   "n": 9,
+   "source": "nuprl/CanItEdit"
+  },
+  "cnn_summ": {
+   "license": "Apache-2.0",
+   "n": 9,
+   "source": "abisee/cnn_dailymail 3.0.0"
+  },
+  "glaive_tool": {
+   "license": "Apache-2.0",
+   "n": 9,
+   "source": "glaiveai/glaive-function-calling-v2"
+  },
+  "gov4k": {
+   "license": "public-domain US gov reports",
+   "n": 9,
+   "source": "ccdv/govreport-summarization"
+  },
+  "gov8k": {
+   "license": "public-domain US gov reports",
+   "n": 9,
+   "source": "ccdv/govreport-summarization"
+  },
+  "humaneval": {
+   "license": "MIT",
+   "n": 9,
+   "source": "openai/openai_humaneval"
+  },
+  "mbpp": {
+   "license": "CC-BY-4.0",
+   "n": 9,
+   "source": "google-research-datasets/mbpp"
+  },
+  "quality_qa": {
+   "license": "CC-BY-4.0",
+   "n": 9,
+   "source": "emozilla/quality"
+  },
+  "squad_qa": {
+   "license": "CC-BY-SA-4.0",
+   "n": 9,
+   "source": "rajpurkar/squad_v2"
+  },
+  "ultrachat": {
+   "license": "MIT",
+   "n": 9,
+   "source": "HuggingFaceH4/ultrachat_200k"
+  },
+  "xsum_summ": {
+   "license": "see dataset card",
+   "n": 9,
+   "source": "EdinburghNLP/xsum"
+  }
+ },
+ "seed": 20261106,
+ "sha256": "4f0826059dddccfc760bd40b52dd05ca31b3e696027d2d9686957d7053b74c0a"
+}
