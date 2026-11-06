@@ -151,3 +151,59 @@ LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8
 LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8, "warps": 8, "stages": 4, "ms": 0.8984959721565247, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 545.4}
 LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "bmm_padded", "ms": 0.10463999956846237, "floor_ms": 0.020032496716417908, "t_s": 548.0}
 LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 4, "stages": 2, "ms": 0.4113599956035614, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 550.0}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 4, "stages": 3, "ms": 0.41075199842453003, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 552.2}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 4, "stages": 4, "ms": 0.4105919897556305, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 554.3}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 8, "stages": 2, "ms": 0.42239999771118164, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 556.1}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 8, "stages": 3, "ms": 0.4242880046367645, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 558.0}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 8, "stages": 4, "ms": 0.4243519902229309, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 559.9}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 4, "stages": 2, "ms": 0.23084799945354462, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 562.0}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 4, "stages": 3, "ms": 0.2303999960422516, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 563.8}
+Stopping app - user stopped from CLI.
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 4, "stages": 4, "ms": 0.23030400276184082, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 565.9}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 8, "stages": 2, "ms": 0.23529599606990814, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 567.7}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 8, "stages": 3, "ms": 0.23443199694156647, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 570.0}
+Runner terminated.
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ <home>/north-star/.claude/worktrees/agent-a4e541eafc9035086/modal/long │
+│ ctx.py:44 in main                                                            │
+│                                                                              │
+│   43                                                                         │
+│ ❱ 44 @app.local_entrypoint()                                                 │
+│   45 def main(tag: str = "lc1", part: str = "A", ctxs: str = "8192,32768,131 │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_obj │
+│ ect.py:49 in wrapped                                                         │
+│                                                                              │
+│    48 │   │   await self.hydrate()                                           │
+│ ❱  49 │   │   return await method(self, *args, **kwargs)                     │
+│    50                                                                        │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:2081 in remote                                                     │
+│                                                                              │
+│   2080 │   │                                                                 │
+│ ❱ 2081 │   │   return await self._call_function(args, kwargs)                │
+│   2082                                                                       │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:2018 in _call_function                                             │
+│                                                                              │
+│   2017 │   │                                                                 │
+│ ❱ 2018 │   │   return await invocation.run_function()                        │
+│   2019                                                                       │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:498 in run_function                                                │
+│                                                                              │
+│    497 │   │   │   if await_response.output.result.status in TERMINAL_STATUS │
+│ ❱  498 │   │   │   │   return await _process_result(                         │
+│    499 │   │   │   │   │   await_response.output.result, await_response.outp │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_uti │
+│ ls/function_utils.py:574 in _process_result                                  │
+│                                                                              │
+│   573 │   │                                                                  │
+│ ❱ 574 │   │   raise RemoteError(result.exception)                            │
+│   575                                                                        │
+╰──────────────────────────────────────────────────────────────────────────────╯
+RemoteError

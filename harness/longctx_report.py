@@ -63,6 +63,26 @@ def main(out="results/longctx_report.md"):
                 p = p_of(ACC[an]); com = acc(p, g) + 1
                 rnd = g * td + vk
                 P(f"| {c} | {g} | {nm} | {td:.2f} | {rnd:.1f} | {com:.2f} | {plain * com / rnd:.2f}x |")
+    # A3: tuned kernel (lcT1)
+    T = {}
+    for r in load("results/longctx_lcT1.jsonl"):
+        if r.get("kind") == "cell" and "ms" in r:
+            T[(r["ctx"], r["cell"])] = r["ms"]
+    P("\n## A3. Tuned Triton dense kernel (lcT1; separate container, +-10% run-to-run drift vs lcA1) and best-case projection (INFERRED)\n")
+    P("plain = best dense (tuned tri). 'ideal verify' (INFERRED, NOT measured) = verify_K5 at 8K (lcA1 win, 14.49 ms is the 8K bmm value; here the 8K-equivalent non-KV cost) + 13 global layers x 268 MB / 3.35 TB/s = +1.04 ms.\n")
+    P("| ctx | gamma | draft | T_draft | verify used | round ms | committed | speedup vs best dense plain |\n|---|---|---|---|---|---|---|---|")
+    for c in sorted({c for c, _ in T}):
+        plain = T[(c, "T1_rNone_tuned_tri_swtri")]
+        for g in (2, 4):
+            vm = T[(c, f"verify_K{g + 1}_tuned_tri")]
+            vi = A.get((8192, f"verify_K{g + 1}_win"), 14.49) - 0.0 + 1.04 if g == 4 else A.get((8192, "verify_K3_win"), 13.06) + 1.04
+            for nm, key, an in [("fixed256+top4 (cached idx)", "T1_r4_triidx_fixed256", "attn256+top4"), ("fixed256 attn-only (cached idx)", "T1_rNone_triidx_fixed256", "attn256"),
+                                ("dense tuned +top4", "T1_r4_tuned_tri_swtri", "top4")]:
+                td = T[(c, key)]
+                p = p_of(ACC[an]); com = acc(p, g) + 1
+                for vn, v in (("measured", vm), ("ideal (INFERRED)", vi)):
+                    rnd = g * td + v
+                    P(f"| {c} | {g} | {nm} | {td:.2f} | {vn} {v:.1f} | {rnd:.1f} | {com:.2f} | {plain * com / rnd:.2f}x |")
     # B
     Bm = {}
     for r in load("results/longctx_lcB*.jsonl"):
