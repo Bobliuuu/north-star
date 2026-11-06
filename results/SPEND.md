@@ -36,3 +36,4 @@
 | 2026-11-06 09:08 | approx_sweep_quick1 | A100-80GB | 148 | 0.10 |  |
 | 2026-11-06 10:08 | draft_sparse_ds4 | H100 | 82 | nan |  |
 | 20261106T153920Z | mk_selfspec phase A | H100 | 234 | 0.26 | |
+| 20261106T154507Z | mk_selfspec phase B | H100 | 312 | 0.34 | |
