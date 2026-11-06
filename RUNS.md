@@ -43,3 +43,7 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-06 03:21 EST | ap-ACwkUWV6NOmw6pSni19K3V, ap-X66dz8pjfyQZaZtcsnE9pU | (result) | run3 mixed: both launches never got a container (0 tasks, no logs for 40 min / 20 min), stopped by me; 0 GPU s. Mixed-length cell remains NOT RUN beyond the run2 OOM. |
 
 | 2026-11-06 | ap-XWryUYU2rvuYtMXljmhmgO | `modal run --detach modal/fast_unit.py` | fast-exec Triton kernel unit tests, A10G (~$0.03). All pass: results/fast_unit_A10G.jsonl, logs/fast_unit_client.log |
+
+| 2026-11-06 | ap-GvaDaKNFg6dF9bM9fPwZXn | `modal run --detach modal/fast_exec.py::main --tag fx1` | fast-exec H100: profile + option ablation timing (2K/8K) + token identity. Timing valid; token-identity section invalid (harness bug: capture warmup clobbers KV at stale `start`). results/fast_exec_fx1.jsonl |
+| 2026-11-06 | ap-YbrJxAQgqpQG5XeYQ27wfN | `modal run --detach modal/fast_exec.py::main --tag fx2dbg --sections d` | eager last-position logits per option vs HF full forward (all argmax == HF). results/fast_exec_fx2dbg.jsonl |
+| 2026-11-06 | ap-mHt2JUiNUAcLajZ9Rtu3N3 | `modal run --detach modal/fast_exec.py::main --tag fx3c --sections c` | token identity vs HF generate + RefNorth after re-prefill fix. logs/fast_exec_fx3c_client.log |

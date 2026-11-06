@@ -75,8 +75,8 @@ def timing(ref, tok, j, ctxs=(2048, 8192), reps=50):
                 j.add(phase="fast_timing_error", ctx=P, config=name, err=traceback.format_exc()[-800:]); print("ERR", name, traceback.format_exc()[-400:], flush=True)
         # moe kernel tile sweep on 'all'
         fast.opts = frozenset(CONFIGS["all"])
-        for kc in (dict(BN1=8, BK1=256, BN2=8, BK2=256), dict(BN1=16, BK1=128, BN2=16, BK2=128), dict(BN1=32, BK1=256, BN2=32, BK2=256, nw1=8, nw2=8),
-                   dict(BN1=16, BK1=512, BN2=16, BK2=256, nw1=8, nw2=4), dict(BN1=8, BK1=512, BN2=16, BK2=256, nw1=2, nw2=4)):
+        for kc in (dict(BN1=8, BK1=256, BN2=8, BK2=256), dict(BN1=4, BK1=256, BN2=4, BK2=256), dict(BN1=8, BK1=256, BN2=8, BK2=256, nw1=2, nw2=2),
+                   dict(BN1=8, BK1=128, BN2=8, BK2=128), dict(BN1=4, BK1=512, BN2=4, BK2=256, nw1=2, nw2=2), dict(BN1=8, BK1=512, BN2=8, BK2=256, nw1=8, nw2=4)):
             try:
                 fast.kcfg = kc
                 s = fast.make_step(1, kv); s.set([ids[-1]], P - 1)
@@ -109,6 +109,7 @@ def correctness(m, ref, tok, j, ngen=48, long_ctx=2048):
             hf = m.generate(torch.tensor([ids], device=ref.device), max_new_tokens=n, do_sample=False)[0, P:].tolist()
             fdr = next((i for i, (a, b) in enumerate(zip(rt, hf)) if a != b), None)
             j.add(phase="ref_vs_hf", task=tid, ref_first_div_vs_hf=fdr)
+            rtok = rt
             rt = hf  # truth = HF generate greedy
             base = GraphNorth(ref, P + n + 24, "bmm"); kv = base.new_kv(); base.eager_prefill(ids[:-1], kv)
             fast = FastNorth(ref, P + n + 24, opts=("attn", "moe", "router", "resid"))
@@ -127,9 +128,14 @@ def correctness(m, ref, tok, j, ngen=48, long_ctx=2048):
                 torch.cuda.synchronize(); dt = time.perf_counter() - t0
                 outs[name] = toks
                 fd = next((i for i, (a, b) in enumerate(zip(toks, rt)) if a != b), None)
-                j.add(phase="fast_correct", task=tid, prompt_len=P, config=name, n=n, identical_to_ref=fd is None, first_div_vs_ref=fd,
-                      ref_margin_at_div=None if fd is None or fd >= len(margins) else float(margins[fd]), host_loop_ms_per_tok=1e3 * dt / n)
-                print("correct", tid, name, "div", fd, "" if fd is None else "margin %.3f" % margins[fd] if fd < len(margins) else "", "%.2f ms/tok" % (1e3 * dt / n), flush=True)
+                gap = None
+                if fd is not None:  # HF logit gap between HF's token and this executor's token, teacher-forced on HF's prefix
+                    lgt = m(torch.tensor([ids + rt[:fd]], device=ref.device)).logits[0, -1].float()
+                    gap = [float(lgt[rt[fd]] - lgt[toks[fd]]), float(lgt.topk(2).values[0] - lgt.topk(2).values[1])]
+                fdr2 = next((i for i, (a, b) in enumerate(zip(toks, rtok)) if a != b), None)
+                j.add(phase="fast_correct", task=tid, prompt_len=P, config=name, n=n, identical_to_hf=fd is None, first_div_vs_hf=fd, first_div_vs_refnorth=fdr2,
+                      hf_logit_gap_hf_tok_minus_exec_tok_and_top2margin=gap, host_loop_ms_per_tok=1e3 * dt / n)
+                print("correct", tid, name, "div_hf", fd, "gap", gap, "div_ref", fdr2, "%.2f ms/tok" % (1e3 * dt / n), flush=True)
                 del s
             fd = next((i for i, (a, b) in enumerate(zip(outs["all"], outs["base"])) if a != b), None)
             j.add(phase="fast_correct_vs_base", task=tid, all_vs_base_first_div=fd)
