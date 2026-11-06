@@ -17,9 +17,10 @@ TUNABLES = {
     "XPAD": (0, 64, 8, "smem row padding (bf16 elems) for the x tile; multiple of 8"),
     "HPAD": (0, 64, 8, "smem row padding (bf16 elems) for the h tile; multiple of 8"),
     "MT_SPLIT": (1, 16, 1, "experts with pair_cnt > MT_SPLIT use the 2-row-tile path"),
-    "MINB_PER_SM": (1, 4, 1, "min resident blocks per SM hint for __launch_bounds__"),
+    "MINB_PER_SM": (1, 8, 1, "min resident blocks per SM hint for __launch_bounds__"),
+    "UNROLL_KS": (1, 128, 1, "#pragma unroll factor of the stage-1 k-step loop (>= KC/16 = full unroll, 1 = none)"),
 }
-MAX_EDITS = 5
+MAX_EDITS = 6
 STATIC_SMEM_LIMIT = 48 * 1024
 
 

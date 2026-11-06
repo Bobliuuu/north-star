@@ -49,8 +49,8 @@ CLI: `PYTHONPATH=src python -m selfimprove.cli {run,rollback,attribution,verify-
 
 ## Running it live on Modal (developer infrastructure now in place; NO live run has happened)
 Done (developer-authored, outside North's reach):
-- `src/kvm/moe_fused.cu`: `NS-EDITABLE-BEGIN/END` around `KC, XPAD, HPAD, MT_SPLIT, MINB_PER_SM` only (defaults identical to the old
-  literals: 256, 8, 8, 16, launch bounds default). `H, I, SL, MAXTOK`, kernel body, host code and a protected block of `static_assert`s
+- `src/kvm/moe_fused.cu`: `NS-EDITABLE-BEGIN/END` around `KC, XPAD, HPAD, MT_SPLIT, MINB_PER_SM, UNROLL_KS` only (defaults identical to the old
+  literals: 256, 8, 8, 16, launch bounds default, full unroll=16; MINB cap 8, UNROLL_KS 1..128). `H, I, SL, MAXTOK`, kernel body, host code and a protected block of `static_assert`s
   (tiling, <=48KB smem, ranges) stay outside, so a bad value fails the build. Added bench flags `--shapes tv,td,r;...` and `--routing k`
   (defaults unchanged). NOT compiled here (no nvcc on the dev box): the first nvcc build happens on Modal; fix compile errors there.
 - `src/opt/policy_tables/spec_space.json` (gammas, modes, n_groups = the Phase-3 search space; baseline = current defaults).
@@ -89,9 +89,9 @@ Tests: `cd src && python -m pytest -q selfimprove/tests` (about 30 s, CPU).
 Four live diff-mode rounds (results/selfimprove_kernel*) all died in the strict diff parser: North named the right intent but got
 hunk line counts wrong, emitted whitespace-only edits, or edited a protected line (MAXTOK). In `--mode structured` North outputs ONLY
 
-    {"edits":[{"name":"KC|XPAD|HPAD|MT_SPLIT|MINB_PER_SM","value":<int>}], "rationale":"..."}
+    {"edits":[{"name":"KC|XPAD|HPAD|MT_SPLIT|MINB_PER_SM|UNROLL_KS","value":<int>}], "rationale":"..."}
 
-(at most 5 edits, each name once, ints within the ranges in `src/selfimprove/structured.py`, which mirror the source comments and static_asserts;
+(at most 6 edits, each name once, ints within the ranges in `src/selfimprove/structured.py`, which mirror the source comments and static_asserts;
 unknown keys/names, non-ints, out-of-range values, KC not dividing 2048 and combined static smem > 48KB are rejected as `invalid_edit`).
 The harness rewrites only the value on `constexpr int NAME = <n>;` lines inside NS-EDITABLE-BEGIN/END and renders the unified diff with difflib,
 then the unchanged strict parser, audit, sandbox, gates, store and attribution run on it. A no-op is `no_change`. The log keeps the raw North

@@ -17,7 +17,7 @@ def test_markers_wrap_only_tunables_with_unchanged_defaults():
     inside = [l.strip() for l, m in zip(lines, mask) if m]
     code = [l.split("//")[0] for l in inside]
     names = [re.match(r"constexpr int (\w+) = (\d+);", l).groups() for l in inside]
-    assert dict(names) == {"KC": "256", "XPAD": "8", "HPAD": "8", "MT_SPLIT": "16", "MINB_PER_SM": "1"}
+    assert dict(names) == {"KC": "256", "XPAD": "8", "HPAD": "8", "MT_SPLIT": "16", "MINB_PER_SM": "1", "UNROLL_KS": "16"}
     for protected in ("H = 2048", "SL = 64", "MAXTOK = 32", "NS = I / SL", "LDX = KC + XPAD", "static_assert", "launch_bounds", "int main"):
         assert not any(protected in l for l in code)
     assert text.count("NS-EDITABLE-BEGIN") == 1 and text.count("NS-EDITABLE-END") == 1
