@@ -1,0 +1,63 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-duOM69y4JrsPm52eVxoci9
+✓ Created objects.
+├── ✓ Uploaded /Users/jhome/north-star/src/approx/modal_sweep.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded /Users/jhome/north-star/src/northstar
+├── ✓ Uploaded /Users/jhome/north-star/tests
+├── ✓ Uploaded /Users/jhome/north-star/harness
+├── ✓ Uploaded /Users/jhome/north-star/src/approx
+└── ✓ Created Function sweep_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:11, 33.60it/s]
+[1ALoading weights:   4%|▍         | 15/394 [00:00<00:11, 32.24it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:01<00:29, 12.52it/s]
+[1ALoading weights:   5%|▌         | 21/394 [00:01<00:28, 13.20it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:02<00:36, 10.14it/s]
+[1ALoading weights:   7%|▋         | 29/394 [00:02<00:32, 11.09it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:02<00:38,  9.28it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:03<00:37,  9.34it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:04<00:37,  9.24it/s]
+[1ALoading weights:  13%|█▎        | 53/394 [00:04<00:34,  9.78it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:05<00:36,  9.07it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:06<00:36,  9.03it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:06<00:35,  9.13it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:07<00:34,  9.31it/s]
+[1ALoading weights:  20%|█▉        | 77/394 [00:07<00:33,  9.58it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:08<00:32,  9.48it/s]
+[1ALoading weights:  22%|██▏       | 85/394 [00:08<00:30,  9.99it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:08<00:31,  9.48it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:09<00:31,  9.49it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:09<00:29, 10.07it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:10<00:30,  9.54it/s]
+[1ALoading weights:  28%|██▊       | 109/394 [00:10<00:27, 10.26it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:11<00:29,  9.40it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:12<00:28,  9.41it/s]
+[1ALoading weights:  32%|███▏      | 126/394 [00:12<00:24, 10.78it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:13<00:29,  8.93it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:13<00:27,  9.18it/s]
+[1ALoading weights:  36%|███▌      | 141/394 [00:14<00:25,  9.87it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:14<00:27,  9.07it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:15<00:25,  9.20it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:16<00:25,  9.11it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:17<00:24,  9.24it/s]
+[1ALoading weights:  44%|████▍     | 173/394 [00:17<00:22,  9.80it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:18<00:23,  9.10it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:19<00:22,  9.19it/s]
+[1ALoading weights:  48%|████▊     | 189/394 [00:19<00:21,  9.71it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:19<00:21,  9.07it/s]
+[1ALoading weights:  51%|█████     | 199/394 [00:20<00:17, 11.17it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:20<00:22,  8.65it/s]
+[1ALoading weights:  52%|█████▏    | 205/394 [00:21<00:20,  9.02it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:21<00:20,  8.94it/s]
+[1ALoading weights:  54%|█████▍    | 213/394 [00:21<00:18,  9.72it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:22<00:19,  8.94it/s]
+[1ALoading weights:  56%|█████▌    | 221/394 [00:22<00:17,  9.62it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:23<00:18,  9.06it/s]
+[1ALoading weights:  58%|█████▊    | 229/394 [00:23<00:16,  9.84it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:24<00:19,  8.15it/s]
+[1ALoading weights:  60%|██████    | 237/394 [00:24<00:17,  8.90it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:25<00:17,  8.49it/s]
+[1ALoading weights:  62%|██████▏   | 245/394 [00:25<00:16,  9.08it/s]
