@@ -6,7 +6,7 @@ from pathlib import Path
 
 from . import audit as A, diffs as D, gates as G, sandbox as S
 from .policy import Scope, DEFAULT_SCOPE
-from . import structured as ST
+from . import structured as ST, structured_policy as SP
 from .proposer import Proposer, ProposalRequest, extract_diff
 from .store import Store, sha256_text
 
@@ -132,9 +132,11 @@ class Evaluator:
 
 class Loop:
     def __init__(self, cfg: EvalConfig, store: Store, proposer: Proposer, allow_mock_promotion: bool = False, mode: str = "diff",
-                 prior_history: list[str] | None = None):
+                 prior_history: list[str] | None = None, track: str = "kernel"):
         if mode not in ("diff", "structured"): raise ValueError(mode)
-        self.mode = mode
+        if track not in ("kernel", "policy"): raise ValueError(track)
+        self.mode, self.track = mode, track
+        self.SM = SP if track == "policy" else ST          # structured-edit module of this track (parse_edits/render_diff/history_line)
         self.prior_history = list(prior_history or [])      # dev-only one-liners from earlier stores (see ST.history_from_store)
         self.cfg, self.store, self.proposer, self.ev = cfg, store, proposer, Evaluator(cfg)
         self.allow_mock_promotion = allow_mock_promotion
@@ -144,9 +146,9 @@ class Loop:
     def step(self, profile_summary: str = "", dev_results: str = "", rnd: int = 0) -> dict:
         cfg, st = self.cfg, self.store
         base_v = st.current(); base_files = st.files(base_v)
-        history = list(self.prior_history) + [ST.history_line(r) for r in st.read_log() if r.get("event") == "proposal"]
+        history = list(self.prior_history) + [self.SM.history_line(r) for r in st.read_log() if r.get("event") == "proposal"]
         req = ProposalRequest(base_version=base_v, files=base_files, scope_description=scope_description(cfg.scope),
-                              profile_summary=profile_summary, dev_results=dev_results, history=history, mode=self.mode)
+                              profile_summary=profile_summary, dev_results=dev_results, history=history, mode=self.mode, track=self.track)
         pid = uuid.uuid4().hex
         rec = dict(event="proposal", proposal_id=pid, round=rnd, base_version=base_v, verdict=None, findings=[], gates={}, cost={})
         t0 = time.time()
@@ -161,9 +163,9 @@ class Loop:
         if self.mode == "structured":
             diff = None
             try:
-                se = ST.parse_edits(resp.raw_response)
+                se = self.SM.parse_edits(resp.raw_response)
                 rec["structured"] = dict(edits=[dict(name=n, value=v) for n, v in se["edits"]], rationale=se["rationale"])
-                diff = ST.render_diff(se["edits"], base_files)       # '' for a no-op
+                diff = self.SM.render_diff(se["edits"], base_files)       # '' for a no-op
             except ST.StructuredEditError as e:
                 structured_err = str(e)
         else:
