@@ -1,0 +1,9 @@
+wrote /Users/jhome/north-star/.claude/worktrees/agent-a9423627d29de6227/results/adapt_sched_model_SIMULATED.json
+none                     p99=     7.39ms viol=0.000 max=7ms over=0/1615134 req_p99=    1.54s done=0/0 finish=None gpu_s=0
+sequential_1perwindow    p99=     7.39ms viol=0.000 max=130500ms over=40/1615174 req_p99=  461.68s done=6/6 finish=1143.0382 gpu_s=783
+sequential_allatonce     p99=     7.39ms viol=0.000 max=783000ms over=4/1615138 req_p99=  770.01s done=6/6 finish=843.0042 gpu_s=783
+static_u0.25             p99=     7.57ms viol=0.000 max=8ms over=0/1615128 req_p99=    1.63s done=5/6 finish=None gpu_s=955
+static_u0.5              p99=     7.76ms viol=0.000 max=8ms over=0/1615134 req_p99=    1.69s done=6/6 finish=2006.2436 gpu_s=1056
+static_u1.0              p99=     8.94ms viol=0.000 max=9ms over=0/1615134 req_p99=    2.04s done=6/6 finish=1338.1935 gpu_s=1120
+adaptive_timing_idle_only p99=     7.80ms viol=0.000 max=9ms over=0/1615134 req_p99=    1.63s done=4/6 finish=None gpu_s=597
+adaptive_timing_shared   p99=     8.46ms viol=0.000 max=9ms over=0/1615134 req_p99=    1.75s done=6/6 finish=1433.9025 gpu_s=1100
