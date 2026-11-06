@@ -32,7 +32,7 @@ def _seqs(m, tok, tasks, n, ctx, n_new, rotate0):
                volumes={WEIGHTS: weights_vol, "/results": results_vol},
               timeout=4 * 3600, memory=65536)
 def run_remote(proposer: str, rounds: int, tag: str, smoke: bool, seq_len: int, n_new: int, n_train: int, n_gate: int,
-               experts_impl: str, steps: int, window: int):
+               experts_impl: str, steps: int, window: int, quants: str, rs: str, batch: int):
     sys.path.insert(0, "/root"); sys.path.insert(0, "/root/harness")
     import torch
     from loader import load_model
@@ -45,7 +45,8 @@ def run_remote(proposer: str, rounds: int, tag: str, smoke: bool, seq_len: int, 
     tr, tr_lo = _seqs(m, tok, by_split(rows, "calib"), n_train, seq_len, n_new, 0)
     ga, ga_lo = _seqs(m, tok, by_split(rows, "dev"), n_gate, seq_len, n_new, 100)
     store = EditStore(f"/results/weightedit_{tag}")
-    grid = GridProposer(rs=(2, 3), ranks=(4, 8), lrs=(1e-3, 3e-3), steps=steps, window=window, batch=1)
+    grid = GridProposer(rs=tuple(int(x) for x in rs.split(',')), ranks=(4,), lrs=(1e-3,), steps=steps, window=window, batch=batch,
+                        quants=tuple(quants.split(',')))
 
     def gen(prompt):  # North in VERIFIER mode (no patch installed during proposal)
         ids = tok.apply_chat_template([{"role": "user", "content": prompt}], add_generation_prompt=True,
@@ -73,10 +74,10 @@ def run_remote(proposer: str, rounds: int, tag: str, smoke: bool, seq_len: int, 
 @app.local_entrypoint()
 def main(proposer: str = "grid", rounds: int = 6, tag: str = "", smoke: bool = False, seq_len: int = 2048,
          n_new: int = 96, n_train: int = 8, n_gate: int = 8, experts_impl: str = "eager", steps: int = 100,
-         window: int = 256):
+         window: int = 256, quants: str = "none", rs: str = "2,3", batch: int = 1):
     tag = tag or time.strftime("%Y%m%d-%H%M")
     if smoke:
         seq_len, n_train, n_gate, steps, window, n_new = 1024, 2, 3, 5, 128, 32
-    res = run_remote.remote(proposer, rounds, tag, smoke, seq_len, n_new, n_train, n_gate, experts_impl, steps, window)
+    res = run_remote.remote(proposer, rounds, tag, smoke, seq_len, n_new, n_train, n_gate, experts_impl, steps, window, quants, rs, batch)
     out = pathlib.Path("results"); out.mkdir(exist_ok=True)
     (out / f"weightedit_{tag}.json").write_text(json.dumps(res, default=float, indent=1))

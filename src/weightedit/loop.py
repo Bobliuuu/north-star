@@ -16,8 +16,9 @@ from .store import EditStore
 
 class GridProposer:
     """Deterministic baseline proposer (no model). Cycles a small grid; source='grid'."""
-    def __init__(self, rs=(2, 3), ranks=(4, 8), lrs=(1e-3, 3e-3), steps=100, **base):
-        self.grid = [dict(expert_r=r, rank=k, lr=l, steps=steps, **base) for r, k, l in itertools.product(rs, ranks, lrs)]
+    def __init__(self, rs=(2, 3), ranks=(4, 8), lrs=(1e-3, 3e-3), steps=100, quants=("none",), **base):
+        self.grid = [dict(expert_r=r, rank=k, lr=l, steps=steps, expert_quant=q, **base)
+                     for q, r, k, l in itertools.product(quants, rs, ranks, lrs)]
         self.i = 0
 
     def propose(self, history):
@@ -74,7 +75,10 @@ class LLMProposer:
         return ("You are North. You are improving your own cheap DRAFT (top-r experts) by training a small router "
                 "adapter that distills your full model. Goal: raise draft/verifier top-1 agreement on a held-out "
                 f"split without more active experts. {SCHEMA_TEXT}\nPast rounds:\n{history_text(history)}\n"
-                "Reply with ONE JSON recipe object and nothing else.")
+                "Do NOT repeat a recipe from past rounds: change at least one field (e.g. expert_r, rank, lr, steps, "
+                "window, batch, expert_quant nvfp4/int4 for a cheaper 4-bit draft). A round that FAILED a gate "
+                "(see 'failed') should be changed in the direction that could fix that gate. "
+                "Reply with ONE flat JSON recipe object (the fields above, no 'recipe' wrapper) and nothing else.")
 
     def propose(self, history):
         text = ""
@@ -83,6 +87,8 @@ class LLMProposer:
             d = extract_json(text)
             if d is None:
                 raise RecipeError("no json object in reply")
+            if isinstance(d.get("recipe"), dict):  # model echoed a history entry: take its recipe part
+                d = d["recipe"]
             Recipe.from_dict(d).validate(self.mc)
             return d, dict(source="llm", raw=text[-800:])
         except Exception as e:  # noqa: BLE001 - any failure -> recorded fallback

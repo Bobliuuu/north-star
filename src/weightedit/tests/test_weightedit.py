@@ -180,3 +180,15 @@ def test_duplicate_recipe_skipped(tmp_path):
     run_round(m, Same(), st, tr, [0] * 4, ga, [0] * 4, hist, log=lambda *_: None, boot=50)
     e = run_round(m, Same(), st, tr, [0] * 4, ga, [0] * 4, hist, log=lambda *_: None, boot=50)
     assert not e["passed"] and "duplicate" in e["error"]
+
+
+def test_llm_proposer_unwraps_history_style_reply():
+    m = tiny_model()
+    p = LLMProposer(lambda _: 'x {"recipe": {"expert_r": 3, "rank": 2}, "passed": true, "agree_base": 0.5}', m.config)
+    d, meta = p.propose([])
+    assert meta["source"] == "llm" and d == {"expert_r": 3, "rank": 2}
+
+
+def test_grid_quants():
+    g = GridProposer(rs=(2,), ranks=(4,), lrs=(1e-3,), quants=("nvfp4", "int4"))
+    assert [g.propose([])[0]["expert_quant"] for _ in range(2)] == ["nvfp4", "int4"]
