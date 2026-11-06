@@ -30,10 +30,11 @@ class DraftStats:
     layers_skipped: int = 0
 
     def summary(self):
-        d = self.attn.summary()
-        d.update(expert_tokens=self.expert_tokens,
-                 experts_per_token=self.expert_slots_active / max(self.expert_tokens, 1),
-                 experts_native_per_token=self.expert_slots_native / max(self.expert_tokens, 1))
+        d = self.attn.summary() if self.attn.queries else {}
+        if self.expert_tokens:
+            d.update(expert_tokens=self.expert_tokens,
+                     experts_per_token=self.expert_slots_active / self.expert_tokens,
+                     experts_native_per_token=self.expert_slots_native / self.expert_tokens)
         return d
 
 
