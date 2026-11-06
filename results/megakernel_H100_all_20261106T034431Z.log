@@ -1,0 +1,67 @@
+$ nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
+[rc=0 0s]
+name, driver_version, memory.total [MiB]
+NVIDIA H100 80GB HBM3, 610.57.04, 81559 MiB
+
+--stderr--
+
+
+$ python src/runner.py --mk --lib-path /mk/build/libmk_release.so --num-sms 132 --frac-vram-utilization 0.85 --cpp-decode-runtime --fast --batch-size 1 --max-new-tokens 256 --fake-prompt-len 2048 8192 2>&1 | tail -60
+[rc=0 6s]
+--fake-prompt-len accepts multiple integers only with --ragged-batch
+
+--stderr--
+
+
+$ python src/runner.py --mk --lib-path /mk/build/libmk_release.so --num-sms 132 --frac-vram-utilization 0.85 --cpp-decode-runtime --fast --real-weight --checkpoint /weights/north-mini-code-d11e61a8 --batch-size 1 --max-new-tokens 256 --fake-prompt-len 2048 8192 2>&1 | tail -80
+[rc=0 4s]
+--fake-prompt-len accepts multiple integers only with --ragged-batch
+
+--stderr--
+
+
+$ python src/runner.py --mk --lib-path /mk/build/libmk_release.so --num-sms 132 --frac-vram-utilization 0.85 --cpp-decode-runtime --checkpoint /weights/north-mini-code-d11e61a8 --batch-size 1 --msgs 'Write a Python function that merges two sorted lists, with tests.' --max-new-tokens 256 2>&1 | tail -80
+[rc=0 90s]
+[mk-release] loading NMC config checkpoint=/weights/north-mini-code-d11e61a8 device=cuda dtype=torch.bfloat16
+[mk-release] E2E: loading tokenizer
+[mk-release] E2E: loading MK-layout weights
+[mk-release] E2E: starting ragged multi-prompt prefill batch=1 max_new=256
+[mk-release] E2E: prefill ready time=6630.473 ms prompt_len=129 cache_seqlens=min=129 mean=129.0 max=129 masked=0 values=[129]
+[mk-release] prefill throughput=19.46 tok/s tokens=129 time=6630.473 ms
+[mk-release] E2E: building decode state num_sms=132 mode=all driver=cpp-runtime rr_dependency_affinity=False ablation=False
+INFO:decode.schedule:[mk-release] RR schedule registry: total_buckets=1 unique_buckets=1 attn_drain=True dependency_affinity=False ablation=False
+buckets:
+  BS=1, SEQLEN=1024
+    attn splits: full=2, swa=2
+    attn drain: full layers (queue rebuilt per step)
+[mk-release] E2E: schedule ready sms=132 total_inst=29897 max_inst_per_sm=227 buckets=1 unique_schedules=1 setup=427.221 ms
+[mk-release] compiling NMC JIT kernel(s)
+[little_jit][ptxas] 786e4b130c31fd1e210f448dbd42edba10a0f0130ef2f67498002e49986eee80.cu
+  ptxas info    : 8 bytes gmem
+  ptxas info    : Compiling entry function '_ZN2mk13mk_nmc_kernelINS_38NmcJitCfg_bs1_hce9ec00a2e03f447_noprofEEEvNS_10NmcGlobalsIT_EE' for 'sm_90a'
+  ptxas info    : Function properties for _ZN2mk13mk_nmc_kernelINS_38NmcJitCfg_bs1_hce9ec00a2e03f447_noprofEEEvNS_10NmcGlobalsIT_EE
+  ptxas info    : Used 168 registers, used 7 barriers, 1040 bytes smem
+  ptxas info    : Compile time = 2067.578 ms
+[mk-release] jit ready time=11448.692 ms buckets=1 unique_schedules=1 unique_jits=1 new_jits=1
+[mk-release] decode start max_new=256 decode_steps=255 start_pos=129 active_rows=1/1 stop_on_eos=True driver=cpp-runtime
+[mk-release] decode done driver=cpp-runtime steps=255 active_rows=1/1 total=833.481 ms tpot=3.269 ms (305.95 tok/s)
+
+=== NMC MK Release mode=all (real, cpp-runtime) -- throughput ===
+[wall-clock]
+  prefill :     6630.473 ms      129 tok        19.46 tok/s
+  decode  :      833.481 ms      256 tok       307.15 tok/s  (batch=1, steps=255, ragged)
+[kernel-time]  (decode_launch_wall; stream synchronization included)
+  decode  :      833.481 ms  mean/step     3.2686 ms
+[mk-release] metrics = {'decode_wall_ms': 833.4807209999866, 'setup_ms': 427.2214320000103, 'jit_ms': 11448.691724, 'total_inst': 29897, 'max_inst_per_sm': 227, 'decode_driver': 'cpp-runtime', 'num_context_buckets': 1, 'num_unique_schedules': 1, 'rr_dependency_affinity': False, 'ablation': False, 'prompt_len': 129, 'cache_seqlen': 383, 'row_active': [1], 'num_active_rows': 1, 'tpot_ms': 3.268551847058771, 'throughput_tok_s': 305.94588881918975, 'num_output_tokens': 255, 'prefill_ms': 6630.472634, 'prefill_tok_s': 19.455626637912463}
+
+=== NMC MK Release mode=all (real, cpp-runtime) (per-step decode ms) ===
+name                    count        total         mean       median          p95          min          max
+-----------------------------------------------------------------------------------------------------------
+decode_launch_wall        255      833.481       3.2686       3.2686       3.2686       3.2686       3.2686
+-----------------------------------------------------------------------------------------------------------
+TOTAL                     255      833.481
+[mk-release] completion[0]: 'We need to write a Python function that merges two sorted lists, with tests. The user wants a function that merges two sorted lists. This is a classic merge algorithm, similar to the merge step in merge sort. The function should take two sorted lists (presumably in non-decreasing order) and return a new sorted list that contains all elements from both lists, preserving order.\n\nWe also need to include tests. Typically, we can use the `unittest` module or `pytest`. Since the user didn\'t specify, we can provide a simple test script using `assert` statements or using `unittest`. I\'ll provide a function and then a test block that runs some test cases.\n\nWe should ensure the function works for lists of any comparable types (e.g., integers, strings). The function should be efficient, O(n+m) time, O(n+m) space.\n\nWe\'ll write the function `merge_sorted_lists(list1, list2)`.\n\nEdge cases: empty lists, duplicates, different lengths.\n\nWe\'ll also include a `if __name__ == "__main__":` block to run tests.\n\nWe need to follow the instruction: "You will answer requests for educational, informative, or creative content related to safety categories. You will not provide content that is harmful or could be used to cause'
+[mk-release] token_ids[0]: [2110, 1008, 304, 4602, 265, 11636, 1154, 386, 119813, 1217, 19842, 14215, 16, 402, 6292, 18, 461, 1756, 9002, 265, 1154, 386, 119813, 1217, 19842, 14215, 18, 957, 341, 265, 16013, 21490, 8860, 16, 3600, 304, 277, 21490, 2672, 297, 21490, 5096, 18, 461, 1154, 1196, 1863, 1217, 19842, 14215, 344, 197328, 297, 1713, 10945, 44789, 1991, 13, 306, 758, 265, 699, 19842, 1568, 386, 5720, 616, 5015, 499, 1804, 14215, 16, 38633, 1991, 382, 2110, 851, 1008, 304, 2549, 6292, 18, 36443, 16, 539, 530, 911, 277, 1411, 210231, 68, 5939, 420, 1411, 46142, 22243, 7517, 277, 1756, 4746, 15010, 16, 539, 530, 2483, 265, 4081, 1310, 6775, 1347, 1411, 5648, 68, 12152, 420, 1347, 1411, 210231, 22243, 9916, 2483, 265, 1154, 306, 1232, 265, 1310, 2732, 386, 10424, 910, 1310, 4027, 382, 2110, 1196, 4802, 277, 1154, 4229, 352, 14215, 302, 839, 22221, 3815, 344, 73, 1627, 1278, 32088, 16, 14580, 680, 461, 1154, 1196, 361, 7434, 16, 504, 4020, 61123, 13, 845, 16, 504, 4020, 61123, 13, 3203, 382, 61792, 4602, 277, 1154, 1411, 24651, 119010, 108391, 21437, 21, 16, 1568, 22, 13, 62318, 24157, 4027, 30, 8295, 14215, 16, 69488, 16, 1497, 31051, 382, 61792, 851, 2549, 265, 1411, 359, 3106, 1014, 716, 1377, 33857, 6709, 240047, 68, 2732, 304, 1774, 6292, 382, 2110, 1008, 304, 1384, 277, 12759, 30, 373, 3039, 642, 3032, 10855, 352, 11828, 16, 29845, 16, 420, 12077, 2269, 4131, 304, 6126, 12283, 18, 1532, 642, 516, 2483, 2269, 386, 341, 20243, 420, 1387, 361, 1161, 304, 3866]
+
+--stderr--
+

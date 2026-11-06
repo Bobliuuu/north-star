@@ -54,6 +54,41 @@ def run_h100(arch="sm_90", full=False, seeds=1, reps=15, skip_check=False):
     return _body(arch, full, seeds, reps, skip_check)
 
 
+@app.function(timeout=900)
+def compile_check(arch="sm_90"):
+    log = []
+    rc = _sh(f"cd /work/kvm && nvcc -O3 -std=c++17 -arch={arch} -o /work/moe_fused moe_fused.cu", log)
+    return rc, "\n".join(log)
+
+
+@app.function(gpu="H100", timeout=1200, scaledown_window=2, max_containers=1)
+def replay_h100(inp: str, reps: int = 9, arch: str = "sm_90"):
+    import time
+    t0 = time.time(); log = []
+    log.append(subprocess.run("nvidia-smi --query-gpu=name,driver_version --format=csv", shell=True, capture_output=True, text=True).stdout)
+    rc = _sh(f"cd /work/kvm && nvcc -O3 -std=c++17 -arch={arch} -o /work/moe_fused moe_fused.cu", log)
+    if rc: return dict(log="\n".join(log), jsonl="", ok=False, secs=time.time() - t0)
+    open("/work/replay_in.txt", "w").write(inp)
+    rc = _sh(f"/work/moe_fused replay /work/replay_in.txt /work/replay_out.jsonl --reps {reps}", log)
+    jsonl = open("/work/replay_out.jsonl").read() if rc == 0 else ""
+    return dict(log="\n".join(log), jsonl=jsonl, ok=rc == 0, secs=time.time() - t0)
+
+
+@app.local_entrypoint()
+def replay(inpath: str = "src/kvm/replay_input.txt", reps: int = 9, tag: str = "replay", check_only: bool = False):
+    if check_only:
+        rc, log = compile_check.remote(); print(rc, log[-1500:]); return
+    r = replay_h100.remote(open(os.path.join(ROOT, inpath)).read(), reps)
+    ts = datetime.datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+    base = os.path.join(ROOT, "results", f"kvm_replay_H100_{tag}_{ts}")
+    open(base + ".log", "w").write(r["log"])
+    if r["jsonl"]: open(base + ".jsonl", "w").write(r["jsonl"])
+    cost = r["secs"] / 3600 * RATE["H100"]
+    with open(os.path.join(ROOT, "results", "SPEND.md"), "a") as f:
+        f.write(f"| {ts} | kvm-fused REAL-routing replay {tag} | H100 | {r['secs']:.0f} | {cost:.3f} | {r['ok']} |\n")
+    print(r["log"][-2500:]); print("ok:", r["ok"], "est $%.3f" % cost, "->", base)
+
+
 @app.local_entrypoint()
 def main(gpu: str = "A100-80GB", arch: str = "", full: bool = False, seeds: int = 1, reps: int = 15,
          skip_check: bool = False, tag: str = "run"):

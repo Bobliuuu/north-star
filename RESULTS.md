@@ -77,3 +77,16 @@ H100 work, KVM executor port, Phase 5 async speculation live, Phase 7, live self
 
 ## Spend
 See `results/SPEND.md`.
+
+## H100 (Gate G0 on real hardware; Modal H100 80GB HBM3; budget cap 4 GPU-h / ~$16, log in `results/SPEND.md`)
+Labels: MEASURED = run on H100 in this section; INFERRED = arithmetic on measured numbers. Sub-sections are filled as runs land.
+
+### H1. cohere-megakernel plain decode on North (MEASURED)
+Engine `cohere-ai/cohere-megakernel` @ `67d0b9ca22ea` built unmodified (CUDA 13.0.1, torch 2.14+cu130, sm_90a), Modal H100 80GB, bf16, batch 1, `--cpp-decode-runtime`, 132 SMs, greedy, 512 new tokens. Runner `modal/mk.py`, raw `results/megakernel_H100_all_*.log`.
+| setup | ms/token | tok/s |
+|---|---|---|
+| real weights, synthetic KV, ctx 2048 | 3.25 | 308 |
+| real weights, synthetic KV, ctx 8192 | 3.38 | 296 |
+| uniform-routing synthetic weights, ctx 2048 / 8192 | 3.27 / 3.39 | 306 / 295 |
+| real prompt (129 tok, real prefill, real weights) | 3.18 | 314 |
+Cohere's published BS=1 number is 292 tok/s at 8K; we reproduce 296 tok/s (+1%). Weight-stream floor 6.6 GB / 3.35 TB/s = 1.97 ms/token, so the megakernel is at ~60% of the HBM floor (Cohere: 62% of their speed-of-light). Eager HF/PyTorch on A100 was 96.6 ms/token, ~30x slower. Caveat: megakernel prefill here is the unoptimised PyTorch path (6.3 s for 129 tokens, includes first-call setup) and is irrelevant to decode numbers.
