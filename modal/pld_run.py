@@ -8,7 +8,7 @@ from nsapp import app, weights_vol, results_vol, WEIGHTS, MODEL_DIR
 
 
 @app.function(gpu="H100", timeout=2700, volumes={WEIGHTS: weights_vol, "/results": results_vol}, memory=65536, scaledown_window=2, max_containers=1)
-def pld_remote(tag: str = "pld1", n_new: int = 192, ctxs=(2048, 8192)):
+def pld_remote(tag: str = "pld1", n_new: int = 192, ctxs=(2048, 8192), live_set: str = ""):
     sys.path.insert(0, "/root"); sys.path.insert(0, "/root/harness")
     from loader import load_model
     from common import env_meta
@@ -20,7 +20,7 @@ def pld_remote(tag: str = "pld1", n_new: int = 192, ctxs=(2048, 8192)):
     from common import Jsonl
     j = Jsonl()
     try:
-        bench_pld.run(m, tok, n_new=n_new, ctxs=tuple(ctxs), emit=lambda *a: print(*a, flush=True), j=j)
+        bench_pld.run(m, tok, n_new=n_new, ctxs=tuple(ctxs), emit=lambda *a: print(*a, flush=True), j=j, live=[(a.split(':')[0], int(a.split(':')[1])) for a in live_set.split(',')] if live_set else None)
     except Exception:
         import traceback; print("PLD FAILED", traceback.format_exc(), flush=True)
     text = j.text()
@@ -33,5 +33,5 @@ def pld_remote(tag: str = "pld1", n_new: int = 192, ctxs=(2048, 8192)):
 
 
 @app.local_entrypoint()
-def main(tag: str = "pld1", n_new: int = 192):
-    print(pld_remote.remote(tag, n_new))
+def main(tag: str = "pld1", n_new: int = 192, live_set: str = ""):
+    print(pld_remote.remote(tag, n_new, (2048, 8192), live_set))
