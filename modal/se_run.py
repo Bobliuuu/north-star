@@ -14,8 +14,16 @@ se_image = (image.add_local_dir("src/approx", "/root/approx", copy=False)
             .add_local_dir("src/selfedit", "/root/selfedit", copy=False))
 
 
-def _fit(ids, L):
-    assert len(ids) >= L, f"prompt shorter than {L}: {len(ids)}"
+def _build(tok, tasks, k, L, rotate):
+    """Exact-length ids for the k-th task that fits in L tokens (skip too-long tasks); fall back to truncation."""
+    from common import build_ids
+    for j in range(len(tasks)):
+        try:
+            return build_ids(tok, tasks[(k + j) % len(tasks)], L, rotate=rotate)
+        except ValueError:
+            continue
+    ids = build_ids(tok, tasks[k % len(tasks)])
+    assert len(ids) >= L
     return ids[:L]
 
 
@@ -26,7 +34,7 @@ def run_remote(tag: str, smoke: bool, phase: str, K: int, group: int, rounds: in
     sys.path.insert(0, "/root"); sys.path.insert(0, "/root/harness")
     import torch
     from loader import load_model
-    from common import env_meta, by_split, load_workloads, build_ids
+    from common import env_meta, by_split, load_workloads
     from selfedit.experiment import run_experiment_A
     from selfedit.metrics import teacher_cache
     from selfedit.quant import ExpertQuantEditor
@@ -51,12 +59,12 @@ def run_remote(tag: str, smoke: bool, phase: str, K: int, group: int, rounds: in
     lo = 128
     dev_seqs = []
     for k in range(n_eval):
-        ids = _fit(build_ids(tok, dev_t[k % len(dev_t)], seq_len, rotate=100 + k), seq_len)
+        ids = _build(tok, dev_t, k, seq_len, 100 + k)
         with torch.no_grad():
             g = m.generate(torch.tensor([ids], device=m.device), max_new_tokens=n_new, do_sample=False)
         dev_seqs.append(g[0].tolist())
-    cal_seqs = [_fit(build_ids(tok, cal_t[k % len(cal_t)], seq_len, rotate=k), seq_len) for k in range(n_cal)]
-    tr_seqs = [_fit(build_ids(tok, cal_t[k % len(cal_t)], tr_len, rotate=50 + k), tr_len) for k in range(n_tr)]
+    cal_seqs = [_build(tok, cal_t, k, seq_len, k) for k in range(n_cal)]
+    tr_seqs = [_build(tok, cal_t, k, tr_len, 50 + k) for k in range(n_tr)]
     data = dict(dev_seqs=dev_seqs, dev_lo=lo, dev_cache=teacher_cache(m, dev_seqs, lo),
                 cal_seqs=cal_seqs, cal_lo=lo, cal_cache=teacher_cache(m, cal_seqs, lo))
     train = dict(tr_seqs=tr_seqs, tr_lo=16, tr_cache=teacher_cache(m, tr_seqs, 16))
