@@ -1,0 +1,11 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-B0wZK4IVQWioxxurZCKpLO
+✓ Created objects.
+├── ✓ Uploaded <home>/north-star/modal/selfimprove_eval.py
+├── ✓ Uploaded <home>/north-star/harness/selfimprove
+├── ✓ Uploaded <home>/north-star/src/selfimprove
+├── ✓ Uploaded <home>/north-star/src/opt
+├── ✓ Uploaded <home>/north-star/src/kvm
+├── ✓ Uploaded <home>/north-star/results
+└── ✓ Created Function evaluate_candidate.
