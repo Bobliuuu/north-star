@@ -100,14 +100,42 @@ def make(name):
 PROPOSERS = ("pld2", "pld3", "pld4", "pld3b", "sam", "samw", "sam2", "ngc", "ngc2")
 
 
-def spec_loop(prop, prompt_ids, n_new, g, verify, eos=None):
+class Policy:
+    """Adaptive draft control. mode: 'fixed' (always draft up to g), 'bo' (backoff: halve the draft cap after a round with a rejected draft token,
+    double it back toward g after a fully accepted draft), 'off' (switch drafting off for `cool` rounds when the EMA of accepted tokens per draft
+    round falls below `thr`; re-enable with EMA reset), 'bo+off' (both)."""
+
+    def __init__(self, mode, g, thr=0.4, alpha=0.3, cool=16, gmin=2):
+        self.bo, self.off = "bo" in mode, "off" in mode
+        self.g, self.cap, self.thr, self.alpha, self.cool0, self.gmin = g, g, thr, alpha, cool, gmin
+        self.ema, self.cool = 1.0, 0
+
+    def cap_now(self):
+        if self.off and self.cool > 0:
+            self.cool -= 1
+            return 0
+        return self.cap
+
+    def update(self, d, a):
+        if d == 0:
+            return
+        if self.bo:
+            self.cap = max(self.gmin, self.cap // 2) if a < d else min(self.g, self.cap * 2)
+        if self.off:
+            self.ema = (1 - self.alpha) * self.ema + self.alpha * a
+            if self.ema < self.thr:
+                self.cool, self.ema = self.cool0, 1.0
+
+
+def spec_loop(prop, prompt_ids, n_new, g, verify, eos=None, policy=None):
     """Greedy speculative decode. verify(tcur, drafts) -> list of len(drafts)+1 greedy next-tokens
     (pred[i] = model argmax after tcur+drafts[:i]). Returns (out, rounds), rounds = [(n_drafts, n_accepted), ...]."""
     prop.extend(prompt_ids)
     tcur, out, rounds = list(prompt_ids), [], []
     done = False
     while len(out) < n_new and not done:
-        drafts, _ = prop.propose(g)
+        gg = g if policy is None else policy.cap_now()
+        drafts = prop.propose(gg)[0] if gg > 0 else []
         pred = verify(tcur, drafts)
         a = 0
         while a < len(drafts) and drafts[a] == pred[a]:
@@ -117,6 +145,8 @@ def spec_loop(prop, prompt_ids, n_new, g, verify, eos=None):
             new = new[: new.index(eos) + 1]; done = True
         tcur += new; out += new; prop.extend(new)
         rounds.append((len(drafts), a))
+        if policy is not None:
+            policy.update(len(drafts), a)
     return out[:n_new], rounds
 
 
