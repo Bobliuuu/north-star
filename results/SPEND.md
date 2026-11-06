@@ -26,3 +26,4 @@
 | 20261106T043309Z | kvm-fused REAL-routing replay dbg | H100 | 4 | 0.004 | False |
 | 20261106T044108Z | kvm-fused REAL-routing replay real | H100 | 436 | 0.478 | True |
 | 20261106T044337Z | h100_spec | H100 | 88 | 0.10 | True |
+| 20261106T064800Z | ctx_batch run1 (ap-QTZcDdQdbs3jmaGllyYwHa) | A100-80GB | 161 | 0.11 | True |
