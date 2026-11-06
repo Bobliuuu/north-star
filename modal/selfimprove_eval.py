@@ -7,8 +7,8 @@
                           (correctness -> quality -> speed) run as child processes with hard timeouts.
 
   Commands (confirm cost first; nothing here runs unless you invoke it):
-    modal run modal/selfimprove_eval.py --track kernel --proposer mock --rounds 1          # DRY RUN, mock, never North's
-    modal run modal/selfimprove_eval.py --track kernel --proposer north --rounds 1 --confirm-cost   # LIVE (needs deployed proposer); kernel default = structured edits, --mode diff for raw diffs
+    modal run modal/selfimprove_eval.py::main --track kernel --proposer mock --rounds 1          # DRY RUN, mock, never North's
+    modal run modal/selfimprove_eval.py::main --track kernel --proposer north --rounds 1 --confirm-cost   # LIVE (needs deployed proposer); kernel default = structured edits, --mode diff for raw diffs
   Est. cost: see estimate_cost() (printed before every run; ~USD 0.8-1.2 per round after the first, A100-80GB @ $2.50/h list).
 """
 import json, os, pathlib, subprocess, sys, time
@@ -91,6 +91,71 @@ def _prep_store_guard(store_dir, proposer):
         raise SystemExit(f"refusing: store {store_dir} has MOCK versions in its lineage; use a fresh --store for North runs")
     if proposer == "mock" and att.get("north_versions"):
         raise SystemExit(f"refusing: store {store_dir} holds North-authored versions; mock dry runs need their own store")
+
+
+# ---- laptop-death-proof mode: orchestrator runs ON Modal (CPU); store lives on a Volume --------------------------------------
+STORE_VOL = "northstar-selfimprove-store"
+store_vol = modal.Volume.from_name(STORE_VOL, create_if_missing=True)
+orch_image = (modal.Image.debian_slim(python_version="3.12").pip_install("numpy==2.2.5", "modal")
+              .add_local_dir(str(ROOT / "src/kvm"), "/repo/src/kvm", copy=False, ignore=IGN)
+              .add_local_dir(str(ROOT / "src/opt"), "/repo/src/opt", copy=False, ignore=IGN + ["**/tests/**"])
+              .add_local_dir(str(ROOT / "src/selfimprove"), "/repo/src/selfimprove", copy=False, ignore=IGN + ["**/tests/**"])
+              .add_local_dir(str(ROOT / "harness/selfimprove"), "/repo/harness/selfimprove", copy=False, ignore=IGN)
+              .add_local_dir(str(ROOT / "results"), "/repo/results", copy=False, ignore=IGN + ["selfimprove*/**"]))
+
+
+@app.function(image=orch_image, cpu=1, memory=2048, timeout=24 * 3600, volumes={"/vol": store_vol}, max_containers=1)
+def run_loop_remote(p: dict) -> dict:
+    """p: {track, rounds, proposer, mode, max_usd, store}. Runs the unchanged Loop here (no laptop needed). Each proposal record is
+    printed as `NS_PROPOSAL_JSON {...}` to app logs and the Volume is committed after every store write. Evaluation runs on the
+    network-blocked GPU function `evaluate_candidate`; the proposer is the deployed NorthProposerService (or MockProposer)."""
+    repo = "/repo"
+    sys.path.insert(0, f"{repo}/src")
+    import runpy
+    from selfimprove.remote_loop import run_remote_loop
+    from selfimprove.proposer import NorthProposer, MockProposer
+    from selfimprove.loop import editable_files_in_repo
+    H = runpy.run_path(f"{repo}/harness/selfimprove/config.py")
+    track, mock = p["track"], p["proposer"] == "mock"
+    cfg = H["make_config"](repo, track, require_measured_calibration=not mock)
+    if mock:
+        base = editable_files_in_repo(pathlib.Path(repo), cfg.scope)
+        prop = MockProposer(['{"edits":[{"name":"KC","value":128}],"rationale":"MOCK"}'] if p["mode"] == "structured" else [H["mock_diff"](track, base)])
+    else:
+        prop = NorthProposer()
+    return run_remote_loop(p, pathlib.Path("/vol") / p["store"], cfg, prop, RemoteEvaluator(track),
+                           profile_summary=H["profile_summary"](track), dev_results=H["dev_results"](track),
+                           on_log=store_vol.commit)
+
+
+@app.local_entrypoint()
+def remote(track: str = "kernel", rounds: int = 1, proposer: str = "mock", max_usd: float = 3.0, store: str = "",
+           confirm_cost: bool = False, mode: str = ""):
+    """Launch: `modal run --detach modal/selfimprove_eval.py::remote --track kernel --proposer mock --rounds 1`.
+    The loop keeps running if this client dies. Pull results: `modal run modal/selfimprove_eval.py::pull --store NAME`."""
+    dry = proposer == "mock"
+    mode = mode or ("structured" if track == "kernel" else "diff")
+    if mode not in ("structured", "diff") or (mode == "structured" and track != "kernel"):
+        raise SystemExit("--mode must be 'diff', or 'structured' (kernel track only)")
+    store = store or (f"selfimprove_dryrun_{track}" if dry else f"selfimprove_{track}")
+    if dry and "dryrun" not in store: raise SystemExit("mock proposer must write to a store whose name contains 'dryrun'")
+    if not dry and not confirm_cost: raise SystemExit("live North run needs --confirm-cost (spends GPU money on the proposer AND the evaluator)")
+    est = estimate_cost(track, rounds, with_proposer=not dry)
+    print(f"[remote] mode={mode} store=Volume {STORE_VOL}:/{store} ~USD {est['usd']:.2f} (hard cap --max-usd {max_usd})")
+    out = run_loop_remote.remote(dict(track=track, rounds=rounds, proposer=proposer, max_usd=max_usd, store=store, mode=mode))
+    print(json.dumps(out, indent=1, default=str))
+
+
+@app.local_entrypoint()
+def pull(store: str, dest: str = ""):
+    """Copy Volume store `store` into results/<store> (or --dest) and verify the hash chain. Never overwrites a diverged local log."""
+    sys.path.insert(0, str(ROOT / "src"))
+    from selfimprove.remote_loop import pull_tree
+    vol = modal.Volume.from_name(STORE_VOL)
+    lst = lambda d: [(e.path, e.type == modal.volume.FileEntryType.DIRECTORY) for e in vol.listdir(d)]
+    rd = lambda f: b"".join(vol.read_file(f))
+    got = pull_tree(lst, rd, store, pathlib.Path(dest or ROOT / "results" / store))
+    print(f"pulled {len(got)} files -> {dest or ROOT / 'results' / store}")
 
 
 @app.local_entrypoint()
