@@ -101,3 +101,6 @@ Diff mode remains available (`--mode diff`). The prompt shows the dev profile an
 Launch (live, GPU spend; confirm cost first; proposer must be deployed, `modal deploy src/selfimprove/modal_north.py`):
 
     modal run modal/selfimprove_eval.py --track kernel --proposer north --mode structured --rounds 3 --max-usd 5 --confirm-cost --store results/selfimprove_kernel_structured
+
+## Harness changes made after live North runs (disclosure)
+- 2026-11-06: `audit.py` shape-specialization rule now ignores `//` comment text. Live structured run 1 (`results/selfimprove_kernel_structured/`, 3 rounds, all `audit_reject`) was rejected because the `MT_SPLIT` line's comment contains `(<= 16)` and 16 is a dev-only shape; any edit to that line would have been rejected. This was changed AFTER seeing the rejection; the rejected run is kept as-is. Real conditionals on dev-only shapes are still rejected (regression test in `test_structured.py`). The held-out-shape speed gate is unchanged.

@@ -39,7 +39,7 @@ def audit_diff(diffs: list[FileDiff], dev_only_shapes: set[int] = frozenset(), b
                 if rx.search(code_part):
                     out.append(Finding(code, sev, fd.path, t.strip()[:160]))
             # shape specialization: conditionals on integers that are dev-benchmark-only shapes
-            for m in COND_NUM.finditer(t):
+            for m in COND_NUM.finditer(re.sub(r"//.*$", "", t)):   # comment text cannot specialize behavior (other rules scan the full line)
                 n = int(m.group(2) or m.group(3))
                 if n in dev_only_shapes:
                     out.append(Finding("shape_specialization", "reject", fd.path, t.strip()[:160]))
