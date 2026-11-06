@@ -72,7 +72,7 @@ class GraphNorth:
                             idx = torch.cat([self.ar[:4], core, wi])[None, None, :].expand(1, Hkv, -1)
                         else:
                             qm = qg.reshape(1, Hkv, G, D).float().mean(2)
-                            scs = torch.bmm(qm, kc[0].transpose(1, 2).float()).masked_fill(~(self.ar[None, :] <= self.start), float("-inf"))
+                            scs = torch.bmm(qm[0][:, None, :], kc[0].transpose(1, 2).float())[:, 0].masked_fill(~(self.ar[None, :] <= self.start), float("-inf"))
                             top = scs.topk(KK, dim=-1).indices[None]
                             idx = torch.cat([self.ar[:4][None, None].expand(1, Hkv, 4), top, wi[None, None].expand(1, Hkv, 128)], -1)
                     ix = idx[..., None].expand(1, Hkv, idx.shape[-1], D)
