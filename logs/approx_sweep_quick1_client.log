@@ -9,3 +9,178 @@ https://modal.com/apps/jerry-zhu/main/ap-pqB0aAizeEKtPTfQ2sG2JC
 ├── ✓ Uploaded /Users/jhome/north-star/harness
 ├── ✓ Uploaded /Users/jhome/north-star/src/approx
 └── ✓ Created Function sweep_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:06, 54.73it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:13, 27.42it/s]
+[1ALoading weights:   6%|▌         | 23/394 [00:00<00:12, 29.82it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:17, 20.74it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:18, 19.61it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:01<00:18, 18.88it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:18, 18.38it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:02<00:18, 18.27it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:03<00:18, 18.06it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:03<00:17, 18.12it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:03<00:17, 17.76it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:04<00:17, 17.74it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:04<00:17, 17.73it/s]
+[1ALoading weights:  24%|██▎       | 93/394 [00:04<00:16, 17.75it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:05<00:16, 18.01it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:05<00:15, 18.24it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:05<00:15, 18.36it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:06<00:14, 18.39it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:06<00:14, 18.20it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:07<00:14, 17.96it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:07<00:13, 17.82it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:08<00:13, 17.72it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:08<00:13, 17.64it/s]
+[1ALoading weights:  42%|████▏     | 165/394 [00:08<00:12, 17.63it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:09<00:12, 17.56it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:09<00:12, 17.55it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:10<00:11, 17.67it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:10<00:11, 18.02it/s]
+[1ALoading weights:  50%|█████     | 197/394 [00:10<00:10, 17.92it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:10<00:10, 18.34it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:11<00:10, 18.28it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:11<00:09, 18.07it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:12<00:09, 18.04it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:12<00:08, 18.04it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:13<00:08, 18.11it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:13<00:07, 18.12it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:13<00:07, 18.20it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:14<00:06, 18.24it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:14<00:06, 18.26it/s]
+[1ALoading weights:  71%|███████   | 280/394 [00:14<00:05, 21.07it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:15<00:06, 17.51it/s]
+[1ALoading weights:  73%|███████▎  | 286/394 [00:15<00:05, 18.91it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:15<00:05, 17.40it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:16<00:05, 17.67it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:16<00:04, 17.79it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:17<00:04, 17.76it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:17<00:04, 17.70it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:17<00:03, 18.00it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:18<00:03, 18.00it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:18<00:02, 18.01it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:19<00:02, 18.10it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:19<00:01, 18.34it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:20<00:01, 18.31it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:20<00:00, 18.46it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:21<00:00, 18.38it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:21<00:00, 18.74it/s]
+EAT calibration done (2 calib prompts, ctx 2048) 8s
+ctx=2048 prompt=py_lru P=2048 verifier-vs-teacher match=0.979
+  [full] full: agree=1.000 g2:2.99 g4:4.94 g8:8.71
+  [attn_only] attn:oracle_topk:k256: agree=0.979 g2:2.94 g4:4.79 g8:8.25
+  [attn_only] attn:oracle_topk:k1024: agree=0.979 g2:2.94 g4:4.79 g8:8.25
+  [attn_only] attn:lsa_tree:k256: agree=0.990 g2:2.97 g4:4.90 g8:8.62
+  [attn_only] attn:lsa_tree:k1024: agree=0.979 g2:2.94 g4:4.79 g8:8.25
+  [expert_only] topr:r2:raw_sigmoid: agree=0.688 g2:2.18 g4:2.78 g8:3.32
+  [expert_only] topr:r2:renorm: agree=0.521 g2:1.81 g4:2.09 g8:2.26
+  [expert_only] topr:r4:raw_sigmoid: agree=0.885 g2:2.70 g4:4.11 g8:6.36
+  [expert_only] topr:r4:renorm: agree=0.760 g2:2.39 g4:3.36 g8:4.70
+  [expert_only] topr:r6:raw_sigmoid: agree=0.958 g2:2.88 g4:4.61 g8:7.72
+  [expert_only] topr:r6:renorm: agree=0.656 g2:2.16 g4:2.85 g8:3.43
+  [expert_only] eat:tau1.0:renorm: agree=0.500 g2:1.81 g4:2.17 g8:2.43
+  [combined] attn:oracle_topk:k256+topr:r4:raw_sigmoid: agree=0.833 g2:2.57 g4:3.83 g8:5.74
+  [combined] attn:oracle_topk:k256+topr:r4:renorm: agree=0.719 g2:2.29 g4:3.14 g8:4.16
+  [combined] attn:oracle_topk:k1024+topr:r4:raw_sigmoid: agree=0.865 g2:2.66 g4:4.04 g8:6.30
+  [combined] attn:oracle_topk:k1024+topr:r4:renorm: agree=0.740 g2:2.32 g4:3.22 g8:4.44
+  [combined] attn:lsa_tree:k256+topr:r4:raw_sigmoid: agree=0.896 g2:2.70 g4:4.03 g8:6.08
+  [combined] attn:lsa_tree:k256+topr:r4:renorm: agree=0.740 g2:2.34 g4:3.28 g8:4.58
+  [combined] attn:lsa_tree:k1024+topr:r4:raw_sigmoid: agree=0.885 g2:2.70 g4:4.15 g8:6.66
+  [combined] attn:lsa_tree:k1024+topr:r4:renorm: agree=0.750 g2:2.36 g4:3.32 g8:4.62
+ctx=2048 prompt=py_interval P=2048 verifier-vs-teacher match=0.979
+  [full] full: agree=1.000 g2:2.99 g4:4.94 g8:8.71
+  [attn_only] attn:oracle_topk:k256: agree=0.969 g2:2.90 g4:4.66 g8:7.80
+  [attn_only] attn:oracle_topk:k1024: agree=0.990 g2:2.96 g4:4.83 g8:8.33
+  [attn_only] attn:lsa_tree:k256: agree=0.969 g2:2.90 g4:4.66 g8:7.80
+  [attn_only] attn:lsa_tree:k1024: agree=1.000 g2:2.99 g4:4.94 g8:8.71
+  [expert_only] topr:r2:raw_sigmoid: agree=0.760 g2:2.39 g4:3.34 g8:4.43
+  [expert_only] topr:r2:renorm: agree=0.781 g2:2.42 g4:3.38 g8:4.47
+  [expert_only] topr:r4:raw_sigmoid: agree=0.854 g2:2.60 g4:3.94 g8:6.21
+  [expert_only] topr:r4:renorm: agree=0.792 g2:2.46 g4:3.50 g8:4.70
+  [expert_only] topr:r6:raw_sigmoid: agree=0.969 g2:2.90 g4:4.62 g8:7.58
+  [expert_only] topr:r6:renorm: agree=0.719 g2:2.28 g4:3.11 g8:3.92
+  [expert_only] eat:tau1.0:renorm: agree=0.646 g2:2.15 g4:2.83 g8:3.47
+  [combined] attn:oracle_topk:k256+topr:r4:raw_sigmoid: agree=0.896 g2:2.69 g4:4.08 g8:6.20
+  [combined] attn:oracle_topk:k256+topr:r4:renorm: agree=0.781 g2:2.45 g4:3.49 g8:4.68
+  [combined] attn:oracle_topk:k1024+topr:r4:raw_sigmoid: agree=0.896 g2:2.71 g4:4.16 g8:6.44
+  [combined] attn:oracle_topk:k1024+topr:r4:renorm: agree=0.802 g2:2.48 g4:3.54 g8:4.88
+  [combined] attn:lsa_tree:k256+topr:r4:raw_sigmoid: agree=0.896 g2:2.71 g4:4.18 g8:6.50
+  [combined] attn:lsa_tree:k256+topr:r4:renorm: agree=0.781 g2:2.44 g4:3.49 g8:4.79
+  [combined] attn:lsa_tree:k1024+topr:r4:raw_sigmoid: agree=0.885 g2:2.67 g4:4.03 g8:6.16
+  [combined] attn:lsa_tree:k1024+topr:r4:renorm: agree=0.792 g2:2.46 g4:3.50 g8:4.72
+ctx=8192 prompt=py_lru P=8192 verifier-vs-teacher match=0.958
+  [full] full: agree=1.000 g2:2.99 g4:4.94 g8:8.71
+  [attn_only] attn:oracle_topk:k256: agree=0.948 g2:2.83 g4:4.42 g8:6.83
+  [attn_only] attn:oracle_topk:k1024: agree=0.938 g2:2.82 g4:4.47 g8:7.26
+  [attn_only] attn:lsa_tree:k256: agree=0.885 g2:2.68 g4:4.04 g8:6.01
+  [attn_only] attn:lsa_tree:k1024: agree=0.917 g2:2.76 g4:4.23 g8:6.30
+  [expert_only] topr:r2:raw_sigmoid: agree=0.688 g2:2.15 g4:2.66 g8:2.98
+  [expert_only] topr:r2:renorm: agree=0.615 g2:2.05 g4:2.58 g8:2.90
+  [expert_only] topr:r4:raw_sigmoid: agree=0.750 g2:2.33 g4:3.19 g8:4.24
+  [expert_only] topr:r4:renorm: agree=0.448 g2:1.64 g4:1.79 g8:1.81
+  [expert_only] topr:r6:raw_sigmoid: agree=0.885 g2:2.68 g4:4.04 g8:6.12
+  [expert_only] topr:r6:renorm: agree=0.260 g2:1.32 g4:1.33 g8:1.33
+  [expert_only] eat:tau1.0:renorm: agree=0.188 g2:1.23 g4:1.24 g8:1.24
+  [combined] attn:oracle_topk:k256+topr:r4:raw_sigmoid: agree=0.781 g2:2.40 g4:3.29 g8:4.36
+  [combined] attn:oracle_topk:k256+topr:r4:renorm: agree=0.635 g2:2.07 g4:2.64 g8:3.21
+  [combined] attn:oracle_topk:k1024+topr:r4:raw_sigmoid: agree=0.792 g2:2.43 g4:3.32 g8:4.32
+  [combined] attn:oracle_topk:k1024+topr:r4:renorm: agree=0.438 g2:1.62 g4:1.74 g8:1.75
+  [combined] attn:lsa_tree:k256+topr:r4:raw_sigmoid: agree=0.792 g2:2.40 g4:3.24 g8:4.29
+  [combined] attn:lsa_tree:k256+topr:r4:renorm: agree=0.635 g2:2.08 g4:2.68 g8:3.25
+  [combined] attn:lsa_tree:k1024+topr:r4:raw_sigmoid: agree=0.771 g2:2.39 g4:3.27 g8:4.25
+  [combined] attn:lsa_tree:k1024+topr:r4:renorm: agree=0.438 g2:1.66 g4:1.82 g8:1.93
+ctx=8192 prompt=py_interval P=8192 verifier-vs-teacher match=1.000
+  [full] full: agree=1.000 g2:2.99 g4:4.94 g8:8.71
+  [attn_only] attn:oracle_topk:k256: agree=1.000 g2:2.99 g4:4.94 g8:8.71
+  [attn_only] attn:oracle_topk:k1024: agree=1.000 g2:2.99 g4:4.94 g8:8.71
+  [attn_only] attn:lsa_tree:k256: agree=1.000 g2:2.99 g4:4.94 g8:8.71
+  [attn_only] attn:lsa_tree:k1024: agree=1.000 g2:2.99 g4:4.94 g8:8.71
+  [expert_only] topr:r2:raw_sigmoid: agree=0.760 g2:2.33 g4:3.18 g8:4.36
+  [expert_only] topr:r2:renorm: agree=0.594 g2:2.00 g4:2.55 g8:3.17
+  [expert_only] topr:r4:raw_sigmoid: agree=0.854 g2:2.58 g4:3.79 g8:5.44
+  [expert_only] topr:r4:renorm: agree=0.500 g2:1.77 g4:2.04 g8:2.25
+  [expert_only] topr:r6:raw_sigmoid: agree=0.948 g2:2.83 g4:4.42 g8:6.90
+  [expert_only] topr:r6:renorm: agree=0.552 g2:1.91 g4:2.30 g8:2.57
+  [expert_only] eat:tau1.0:renorm: agree=0.219 g2:1.28 g4:1.33 g8:1.34
+  [combined] attn:oracle_topk:k256+topr:r4:raw_sigmoid: agree=0.896 g2:2.70 g4:4.08 g8:6.10
+  [combined] attn:oracle_topk:k256+topr:r4:renorm: agree=0.562 g2:1.92 g4:2.31 g8:2.55
+  [combined] attn:oracle_topk:k1024+topr:r4:raw_sigmoid: agree=0.896 g2:2.69 g4:4.03 g8:6.00
+  [combined] attn:oracle_topk:k1024+topr:r4:renorm: agree=0.542 g2:1.86 g4:2.23 g8:2.47
+  [combined] attn:lsa_tree:k256+topr:r4:raw_sigmoid: agree=0.917 g2:2.76 g4:4.27 g8:6.80
+  [combined] attn:lsa_tree:k256+topr:r4:renorm: agree=0.604 g2:2.03 g4:2.60 g8:3.06
+  [combined] attn:lsa_tree:k1024+topr:r4:raw_sigmoid: agree=0.885 g2:2.67 g4:3.98 g8:5.94
+  [combined] attn:lsa_tree:k1024+topr:r4:renorm: agree=0.646 g2:2.14 g4:2.80 g8:3.51
+{
+ "attn_only": {
+  "group": "attn_only",
+  "name": "attn:oracle_topk:k1024",
+  "n": 4,
+  "agree": 0.9765625,
+  "committed": 4.7578125,
+  "experts_per_token": NaN,
+  "attended_frac": 0.5235084955015433
+ },
+ "expert_only": {
+  "group": "expert_only",
+  "name": "topr:r6:raw_sigmoid",
+  "n": 4,
+  "agree": 0.9401041666666666,
+  "committed": 4.424479166666666,
+  "experts_per_token": 6.0,
+  "attended_frac": NaN
+ },
+ "combined": {
+  "group": "combined",
+  "name": "attn:lsa_tree:k256+topr:r4:raw_sigmoid",
+  "n": 4,
+  "agree": 0.875,
+  "committed": 3.9296875000000004,
+  "experts_per_token": 4.0,
+  "attended_frac": 0.19419456892818718
+ },
+ "layerskip": null
+}
+✓ App completed. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-pqB0aAizeEKtPTfQ2sG2JC

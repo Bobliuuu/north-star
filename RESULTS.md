@@ -158,3 +158,18 @@ Projection to a megakernel-class executor (INFERRED, not measured; plain 3.32 ms
 - Plain North decode on the megakernel is 3.25 ms/token (308 tok/s, ~60% of the HBM floor); graphed self-spec in PyTorch is 0.6-0.86x of plain graphed decode; the byte projection puts a megakernel self-spec at ~0.7-1.0x without fusion. The negative-result branch of the thesis (G0: fused saving < 15% of cycle time) is the supported reading.
 Not done / caveats: ctx 32K/128K; batch>1 spec; the KVM executor (VM dispatch cost unmeasured); a fused kernel inside the real megakernel (our WMMA kernel is not Cohere's N=8 wgmma tile); sampling; only 22 short prompts x 64 tokens for routing (single seed), one microbench kernel; PyTorch executor attention at 8K is padded (over-reads sliding layers).
 Spend this task: ~$1.4 / 0.35 H100-GPU-hours of the 4 h / $16 cap (see `results/SPEND.md`; includes ~$0.04 of tiny-model debug runs on A100-40GB/H100 and a failed 4 s replay launch).
+
+## H7: draft-approximation sweep on North (MEASURED acceptance only; draft COST NOT measured)
+Source: results/approx_sweep_quick1.json (Modal ap-pqB0aAizeEKtPTfQ2sG2JC, A100-80GB, 148 s GPU, 80 rows; 2 prompts x ctx 2K/8K, n=4 cells per config, single seed). `agree` = draft top-1 agrees with verifier; `committed` = tokens committed per verify block.
+| approx | agree | committed | attended frac |
+|---|---|---|---|
+| attn oracle_topk k1024 | 0.977 | 4.76 | 0.52 |
+| attn lsa_tree k1024 | 0.974 | 4.72 | 0.51 |
+| attn oracle_topk k256 | 0.974 | 4.70 | 0.21 |
+| attn lsa_tree k256 | 0.961 | 4.63 | 0.19 |
+| combined lsa k256 + top4 raw_sigmoid | 0.875 | 3.93 | 0.19 |
+| combined oracle k1024 + top4 raw_sigmoid | 0.862 | 3.89 | 0.52 |
+| combined lsa k256 + top4 renorm | 0.690 | 3.01 | 0.19 |
+| combined oracle k1024 + top4 renorm | 0.630 | 2.68 | 0.52 |
+Findings (MEASURED): (1) sparse attention to 19-21% of keys keeps agreement >= 0.96, so attention approximation is nearly free in acceptance. (2) top-4 experts costs agreement; renormalised gates are much worse than raw sigmoid (0.63-0.69 vs 0.86-0.88). (3) Combined acceptance is below its attention-only component (0.875 vs 0.961 at k256). Small n, one seed, 2 prompts: indicative only.
+NOT established: G2 (docs/THESIS.md) needs draft step COST per config. The sweep measured acceptance, not time, so combined-vs-best-single in speedup is unevaluated. Per H5 attention is ~4 ms of a 9-10 ms draft step, so a cheap sparse-attention kernel is the lever; none is timed here.
