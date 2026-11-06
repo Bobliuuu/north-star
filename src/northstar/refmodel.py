@@ -74,11 +74,16 @@ class KVCache:
 class SectionTimer:
     """CUDA-event section timer. Usage: with timer.sec('attn'): ... ; timer.collect() -> {name: ms}."""
 
-    def __init__(self):
+    def __init__(self, use_profiler=False):
         self.pending = []
+        self.use_profiler = use_profiler  # annotate with record_function instead of events
 
     @contextlib.contextmanager
     def sec(self, name):
+        if self.use_profiler:
+            with torch.profiler.record_function("sec::" + name):
+                yield
+            return
         a, b = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
         a.record()
         yield
