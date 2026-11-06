@@ -26,21 +26,30 @@ class GridProposer:
         return dict(d), dict(source="grid")
 
 
-def extract_json(text):
-    """First balanced {...} object in text, parsed; None if none."""
-    start = text.find("{")
-    while start != -1:
-        depth = 0
-        for j in range(start, len(text)):
+def extract_json(text, last=True):
+    """Balanced {...} objects in text that parse to dicts; returns the LAST one (the final answer comes after any
+    quoted examples in the model's reasoning) or the first if last=False. None if none."""
+    found, i = [], text.find("{")
+    while i != -1:
+        depth, end = 0, None
+        for j in range(i, len(text)):
             depth += text[j] == "{"
             depth -= text[j] == "}"
             if depth == 0:
-                try:
-                    return json.loads(text[start:j + 1])
-                except json.JSONDecodeError:
-                    break
-        start = text.find("{", start + 1)
-    return None
+                end = j
+                break
+        if end is None:
+            break
+        try:
+            d = json.loads(text[i:end + 1])
+            if isinstance(d, dict):
+                found.append(d)
+            i = text.find("{", end + 1)
+        except json.JSONDecodeError:
+            i = text.find("{", i + 1)
+    if not found:
+        return None
+    return found[-1] if last else found[0]
 
 
 def history_text(history, k=6):
@@ -75,7 +84,7 @@ class LLMProposer:
             if d is None:
                 raise RecipeError("no json object in reply")
             Recipe.from_dict(d).validate(self.mc)
-            return d, dict(source="llm", raw=text[:500])
+            return d, dict(source="llm", raw=text[-800:])
         except Exception as e:  # noqa: BLE001 - any failure -> recorded fallback
             d, meta = self.fallback.propose(history)
             return d, dict(source="fallback", error=f"{type(e).__name__}: {e}", raw=text[-800:])
@@ -90,6 +99,13 @@ def run_round(m, proposer, store: EditStore, train_seqs, train_from, gate_seqs, 
         entry = dict(passed=False, error=f"invalid recipe: {e}", recipe=d, **meta)
         store.reject(None, {}, meta["source"], reason=entry["error"])
         history.append(entry)
+        return entry
+    prev = [h.get("recipe") for h in history]
+    if recipe.to_dict() in prev:  # same recipe already trained: no information, do not spend GPU
+        entry = dict(passed=False, error="duplicate recipe (skipped, not trained)", recipe=recipe.to_dict(), **meta)
+        store.reject(recipe, {}, meta["source"], reason=entry["error"])
+        history.append(entry)
+        log("round: duplicate recipe skipped")
         return entry
     fp0 = fingerprint(m, fp_mode)
     adapters = RouterAdapters(m.config, recipe)

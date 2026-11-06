@@ -103,6 +103,8 @@ def test_extract_json():
     assert extract_json('sure {"a": {"b": 1}} ok') == {"a": {"b": 1}}
     assert extract_json("none") is None
     assert extract_json('{bad} {"x":2}') == {"x": 2}
+    assert extract_json('ex {"a":1} final {"b":2}') == {"b": 2}
+    assert extract_json('ex {"a":1} final {"b":2}', last=False) == {"a": 1}
 
 
 def test_llm_proposer_valid_and_fallback():
@@ -166,3 +168,15 @@ def test_train_ckpt_same_as_plain():
         with EditedDraft(m, ad, 2) as e:
             outs.append(train(m, ad, e, seqs(4, 40, 2), r, log=lambda *_: None, ckpt=ck)["loss"])
     assert all(abs(a - b) < 1e-4 for a, b in zip(*outs)), outs
+
+
+def test_duplicate_recipe_skipped(tmp_path):
+    m = tiny_model()
+    tr, ga = seqs(4, 64, 5), seqs(4, 64, 6)
+    st = EditStore(tmp_path)
+    class Same:
+        def propose(self, h): return dict(expert_r=2, steps=3, window=32, batch=2), dict(source="grid")
+    hist = []
+    run_round(m, Same(), st, tr, [0] * 4, ga, [0] * 4, hist, log=lambda *_: None, boot=50)
+    e = run_round(m, Same(), st, tr, [0] * 4, ga, [0] * 4, hist, log=lambda *_: None, boot=50)
+    assert not e["passed"] and "duplicate" in e["error"]
