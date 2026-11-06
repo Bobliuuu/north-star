@@ -9,3 +9,20 @@ https://modal.com/apps/jerry-zhu/main/ap-B0wZK4IVQWioxxurZCKpLO
 ├── ✓ Uploaded /Users/jhome/north-star/src/kvm
 ├── ✓ Uploaded /Users/jhome/north-star/results
 └── ✓ Created Function evaluate_candidate.
+[mode] structured
+[estimate] ~66 A100-80GB minutes, ~USD 2.75 for 3 round(s) (hard cap --max-usd 5.0)
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
