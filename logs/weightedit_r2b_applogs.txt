@@ -1,0 +1,95 @@
+
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:18, 20.40it/s]
+[1ALoading weights:   6%|▌         | 22/394 [00:01<00:19, 19.31it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:22, 16.02it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:02<00:24, 14.60it/s]
+[1ALoading weights:   9%|▉         | 37/394 [00:02<00:25, 14.06it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:24, 14.48it/s]
+[1ALoading weights:  11%|█▏        | 45/394 [00:02<00:23, 14.70it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:03<00:24, 13.92it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:24, 13.80it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:03<00:23, 14.36it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:25, 12.93it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:05<00:24, 13.26it/s]
+[1ALoading weights:  20%|█▉        | 77/394 [00:05<00:22, 13.79it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:24, 12.61it/s]
+[1ALoading weights:  22%|██▏       | 85/394 [00:05<00:23, 13.17it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:06<00:23, 12.65it/s]
+[1ALoading weights:  24%|██▎       | 93/394 [00:06<00:23, 12.81it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:23, 12.70it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:07<00:22, 13.31it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:07<00:22, 12.60it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:08<00:20, 13.34it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:08<00:20, 13.36it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:09<00:19, 13.26it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:09<00:18, 13.61it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:10<00:18, 13.37it/s]
+[1ALoading weights:  38%|███▊      | 149/394 [00:10<00:18, 13.59it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:11<00:18, 13.12it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:11<00:17, 13.52it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:12<00:15, 13.98it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:12<00:15, 14.11it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:13<00:14, 14.15it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:13<00:13, 14.34it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:14<00:13, 14.25it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:14<00:12, 14.30it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:15<00:12, 14.32it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:16<00:11, 14.27it/s]
+[1ALoading weights:  58%|█████▊    | 229/394 [00:16<00:11, 14.40it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:16<00:10, 14.63it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:17<00:10, 14.59it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:17<00:09, 14.80it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:18<00:09, 14.73it/s]
+[1ALoading weights:  66%|██████▌   | 261/394 [00:18<00:08, 15.11it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:18<00:08, 14.85it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:19<00:07, 15.08it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:19<00:07, 15.07it/s]
+[1ALoading weights:  72%|███████▏  | 285/394 [00:19<00:07, 15.37it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:20<00:06, 14.95it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:20<00:06, 14.82it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:21<00:05, 14.97it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:21<00:05, 14.80it/s]
+[1ALoading weights:  80%|████████  | 317/394 [00:22<00:05, 14.83it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:22<00:04, 14.90it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:23<00:04, 15.02it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:23<00:03, 15.03it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:24<00:03, 15.11it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:24<00:02, 14.80it/s]
+[1ALoading weights:  91%|█████████ | 357/394 [00:24<00:02, 14.59it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:25<00:02, 15.12it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:25<00:01, 15.10it/s]
+[1ALoading weights:  95%|█████████▌| 375/394 [00:25<00:01, 17.08it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:26<00:01, 14.54it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:26<00:00, 14.85it/s]Loading weights: 100%|██████████| 394/394 [00:26<00:00, 14.72it/s]
+  step 0 kl=2.3389
+  step 10 kl=4.0044
+  step 20 kl=1.1871
+  step 30 kl=1.8931
+  step 40 kl=2.3930
+  step 50 kl=1.7215
+  step 60 kl=2.0491
+  step 70 kl=1.6854
+  step 80 kl=1.8328
+  step 90 kl=1.3883
+round: llm passed=False gates={'lossless': True, 'gain': False, 'overfit': True, 'cost': True} agree 0.755->0.783
+ROUND_JSON {"recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 64, "batch": 2, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "passed": false, "gates": {"lossless": true, "gain": false, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.7553816046966731, "agree_edit": 0.7827788649706457, "agree_train": 0.759765625, "gain": 0.0273972602739726, "committed_base": 3.2046750992063493, "committed_edit": 3.4176277281746033, "gain_ci_lower_agree": -0.0018616691468254175, "gain_ci_lower_committed": 0.04315166170634917, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 417840, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_expert_bytes_frac": 0.25}, "train": {"first": 2.338864326477051, "last": 1.3093466758728027, "seconds": 517.5859167575836}, "source": "llm", "raw": "<|START_TEXT|>{\n  \"expert_r\": 2,\n  \"kind\": \"router_lowrank\",\n  \"rank\": 4,\n  \"layers\": \"all\",\n  \"steps\": 100,\n  \"lr\": 1e-3,\n  \"window\": 64,\n  \"batch\": 2,\n  \"temperature\": 1.0,\n  \"gain\": true,\n  \"seed\": 0,\n  \"expert_quant\": \"none\"\n}<|END_TEXT|>"}
+  step 0 kl=2.1017
+  step 10 kl=1.5598
+  step 20 kl=2.1381
+  step 30 kl=2.1225
+  step 40 kl=1.4008
+  step 50 kl=1.2111
+  step 60 kl=1.2751
+  step 70 kl=1.1214
+  step 80 kl=1.3105
+  step 90 kl=1.3812
+round: fallback passed=True gates={'lossless': True, 'gain': True, 'overfit': True, 'cost': True} agree 0.755->0.789
+ROUND_JSON {"recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 256, "batch": 1, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "passed": true, "gates": {"lossless": true, "gain": true, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.7553816046966731, "agree_edit": 0.7886497064579256, "agree_train": 0.767578125, "gain": 0.0332681017612525, "committed_base": 3.2046750992063493, "committed_edit": 3.4738653273809526, "gain_ci_lower_agree": 0.009579613095238082, "gain_ci_lower_committed": 0.1144546750992064, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 417840, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_expert_bytes_frac": 0.25}, "train": {"first": 2.1017284393310547, "last": 1.0699211359024048, "seconds": 575.4707727432251}, "source": "fallback", "error": "RecipeError: unknown fields ['agree_base', 'agree_edit', 'error', 'failed', 'passed', 'recipe']", "raw": "<|START_TEXT|>{\"recipe\": {\"expert_r\": 2, \"kind\": \"router_lowrank\", \"rank\": 4, \"layers\": \"all\", \"steps\": 100, \"lr\": 0.001, \"window\": 64, \"batch\": 2, \"temperature\": 1.0, \"gain\": true, \"seed\": 0, \"expert_quant\": \"none\"}, \"passed\": true, \"agree_base\": 0.7553816046966731, \"agree_edit\": 0.7827788649706457, \"failed\": [], \"error\": null}<|END_TEXT|>", "version": "v001"}
+round: duplicate recipe skipped
+ROUND_JSON {"passed": false, "error": "duplicate recipe (skipped, not trained)", "recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 64, "batch": 2, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "source": "llm", "raw": "<|START_TEXT|>{\"expert_r\":2,\"kind\":\"router_lowrank\",\"rank\":4,\"layers\":\"all\",\"steps\":100,\"lr\":0.001,\"window\":64,\"batch\":2,\"temperature\":1.0,\"gain\":true,\"seed\":0,\"expert_quant\":\"none\"}<|END_TEXT|>"}
+round: duplicate recipe skipped
+ROUND_JSON {"passed": false, "error": "duplicate recipe (skipped, not trained)", "recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 64, "batch": 2, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "source": "llm", "raw": "<|START_TEXT|>{\"expert_r\":2,\"kind\":\"router_lowrank\",\"rank\":4,\"layers\":\"all\",\"steps\":100,\"lr\":0.001,\"window\":64,\"batch\":2,\"temperature\":1.0,\"gain\":true,\"seed\":0,\"expert_quant\":\"none\"}<|END_TEXT|>"}
+round: duplicate recipe skipped
+ROUND_JSON {"passed": false, "error": "duplicate recipe (skipped, not trained)", "recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 64, "batch": 2, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "source": "llm", "raw": "<|START_TEXT|>{\"expert_r\":2,\"kind\":\"router_lowrank\",\"rank\":4,\"layers\":\"all\",\"steps\":100,\"lr\":0.001,\"window\":64,\"batch\":2,\"temperature\":1.0,\"gain\":true,\"seed\":0,\"expert_quant\":\"none\"}<|END_TEXT|>"}
+RESULT_JSON {"meta": {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-06T16:48:54Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "b75d56d0a2a7"}, "gpu_seconds": 1657.8440473079681, "proposer": "north", "history": [{"recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 64, "batch": 2, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "passed": false, "gates": {"lossless": true, "gain": false, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.7553816046966731, "agree_edit": 0.7827788649706457, "agree_train": 0.759765625, "gain": 0.0273972602739726, "committed_base": 3.2046750992063493, "committed_edit": 3.4176277281746033, "gain_ci_lower_agree": -0.0018616691468254175, "gain_ci_lower_committed": 0.04315166170634917, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 417840, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_expert_bytes_frac": 0.25}, "train": {"first": 2.338864326477051, "last": 1.3093466758728027, "seconds": 517.5859167575836}, "source": "llm", "raw": "<|START_TEXT|>{\n  \"expert_r\": 2,\n  \"kind\": \"router_lowrank\",\n  \"rank\": 4,\n  \"layers\": \"all\",\n  \"steps\": 100,\n  \"lr\": 1e-3,\n  \"window\": 64,\n  \"batch\": 2,\n  \"temperature\": 1.0,\n  \"gain\": true,\n  \"seed\": 0,\n  \"expert_quant\": \"none\"\n}<|END_TEXT|>"}, {"recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 256, "batch": 1, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "passed": true, "gates": {"lossless": true, "gain": true, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.7553816046966731, "agree_edit": 0.7886497064579256, "agree_train": 0.767578125, "gain": 0.0332681017612525, "committed_base": 3.2046750992063493, "committed_edit": 3.4738653273809526, "gain_ci_lower_agree": 0.009579613095238082, "gain_ci_lower_committed": 0.1144546750992064, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 417840, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_expert_bytes_frac": 0.25}, "train": {"first": 2.1017284393310547, "last": 1.0699211359024048, "seconds": 575.4707727432251}, "source": "fallback", "error": "RecipeError: unknown fields ['agree_base', 'agree_edit', 'error', 'failed', 'passed', 'recipe']", "raw": "<|START_TEXT|>{\"recipe\": {\"expert_r\": 2, \"kind\": \"router_lowrank\", \"rank\": 4, \"layers\": \"all\", \"steps\": 100, \"lr\": 0.001, \"window\": 64, \"batch\": 2, \"temperature\": 1.0, \"gain\": true, \"seed\": 0, \"expert_quant\": \"none\"}, \"passed\": true, \"agree_base\": 0.7553816046966731, \"agree_edit\": 0.7827788649706457, \"failed\": [], \"error\": null}<|END_TEXT|>", "version": "v001"}, {"passed": false, "error": "duplicate recipe (skipped, not trained)", "recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 64, "batch": 2, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "source": "llm", "raw": "<|START_TEXT|>{\"expert_r\":2,\"kind\":\"router_lowrank\",\"rank\":4,\"layers\":\"all\",\"steps\":100,\"lr\":0.001,\"window\":64,\"batch\":2,\"temperature\":1.0,\"gain\":true,\"seed\":0,\"expert_quant\":\"none\"}<|END_TEXT|>"}, {"passed": false, "error": "duplicate recipe (skipped, not trained)", "recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 64, "batch": 2, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "source": "llm", "raw": "<|START_TEXT|>{\"expert_r\":2,\"kind\":\"router_lowrank\",\"rank\":4,\"layers\":\"all\",\"steps\":100,\"lr\":0.001,\"window\":64,\"batch\":2,\"temperature\":1.0,\"gain\":true,\"seed\":0,\"expert_quant\":\"none\"}<|END_TEXT|>"}, {"passed": false, "error": "duplicate recipe (skipped, not trained)", "recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 64, "batch": 2, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "source": "llm", "raw": "<|START_TEXT|>{\"expert_r\":2,\"kind\":\"router_lowrank\",\"rank\":4,\"layers\":\"all\",\"steps\":100,\"lr\":0.001,\"window\":64,\"batch\":2,\"temperature\":1.0,\"gain\":true,\"seed\":0,\"expert_quant\":\"none\"}<|END_TEXT|>"}], "ledger": [{"time": "2026-11-06T16:36:49Z", "event": "reject", "source": "llm", "recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 64, "batch": 2, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "passed": false, "gates": {"lossless": true, "gain": false, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.7553816046966731, "agree_edit": 0.7827788649706457, "agree_train": 0.759765625, "gain": 0.0273972602739726, "committed_base": 3.2046750992063493, "committed_edit": 3.4176277281746033, "gain_ci_lower_agree": -0.0018616691468254175, "gain_ci_lower_committed": 0.04315166170634917, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 417840, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_expert_bytes_frac": 0.25}, "reason": ""}, {"time": "2026-11-06T16:48:08Z", "event": "commit", "version": "v001", "source": "fallback", "hash": "3038ffe8c3a18e9f710af35ce870779738a69d4c2b99182a2a330ec2e0568cca", "passed": true, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.7553816046966731, "agree_edit": 0.7886497064579256, "agree_train": 0.767578125, "gain": 0.0332681017612525, "committed_base": 3.2046750992063493, "committed_edit": 3.4738653273809526, "gain_ci_lower_agree": 0.009579613095238082, "gain_ci_lower_committed": 0.1144546750992064, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 417840, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_expert_bytes_frac": 0.25}}, {"time": "2026-11-06T16:48:23Z", "event": "reject", "source": "llm", "recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 64, "batch": 2, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "passed": false, "gates": null, "numbers": null, "reason": "duplicate recipe (skipped, not trained)"}, {"time": "2026-11-06T16:48:38Z", "event": "reject", "source": "llm", "recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 64, "batch": 2, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "passed": false, "gates": null, "numbers": null, "reason": "duplicate recipe (skipped, not trained)"}, {"time": "2026-11-06T16:48:53Z", "event": "reject", "source": "llm", "recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 64, "batch": 2, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "none"}, "passed": false, "gates": null, "numbers": null, "reason": "duplicate recipe (skipped, not trained)"}], "current": "v001"}
+Runner terminated.

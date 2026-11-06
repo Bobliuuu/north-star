@@ -49,3 +49,4 @@
 | 2026-11-06 | longctx lcB1 (ap-XROqUxe4vkuYkvgTak45Fg) | H100 | 456 | ~0.50 (est) | batch step costs |
 | 2026-11-06 | longctx lcK1 (ap-nFhCdfbMfvUgE2GyBCx3pd) | H100 | ~900 | ~1.0 (est; stopped early) | kernel microbench |
 | 2026-11-06 | longctx lcT1 (ap-DxAmLXiOiaFBPK3rOEPSY0) | H100 | ~420 | ~0.46 (est) | tuned kernel rerun |
+| 2026-11-06 11:51 | weightedit_r2b | H100-80GB | 1658 | nan | H100 list ~$0.0011/s assumed; est $1.8 |
