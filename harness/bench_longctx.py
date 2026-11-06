@@ -113,3 +113,49 @@ def run_batch(m, tok, emit, plan=((2048, (1, 2, 4, 8)), (8192, (1, 2, 4, 8)), (3
             s = _cell(emit, "T1_noattn", ln, B, 1, kv, P, parts=frozenset({"router", "experts", "lm"})); del s
             s = _cell(emit, "verify_K5_noattn", ln, B, 5, kv, P, parts=frozenset({"router", "experts", "lm"})); del s
         del kv, ln; torch.cuda.empty_cache()
+
+
+@torch.no_grad()
+def run_kernel(emit):
+    """Microbench of the split-K decode kernel alone (random bf16 KV, Hkv=4, G=8, D=128) vs padded bmm and the HBM floor."""
+    import itertools
+    from longctx_north import tri_attn
+    Hkv, G, D = 4, 8, 128
+    dev = "cuda"
+    for L, T in ((131072, 1), (131072, 5), (32768, 1), (32768, 5)):
+        kc = torch.randn(1, Hkv, L, D, device=dev, dtype=torch.bfloat16); vc = torch.randn_like(kc)
+        qg = torch.randn(1, Hkv, G * T, D, device=dev, dtype=torch.bfloat16)
+        start = torch.tensor(L - T, device=dev)
+        floor_ms = 2 * Hkv * L * D * 2 / 3.35e12 * 1e3
+        ar = torch.arange(L, device=dev); qpos = start + torch.arange(T, device=dev)
+        mk = (ar[None, :] <= qpos[:, None]).repeat(G, 1)
+
+        def bm():
+            sc = torch.bmm(qg.reshape(Hkv, G * T, D), kc.reshape(Hkv, L, D).transpose(1, 2), out_dtype=torch.float32) * D ** -0.5
+            sc = sc.masked_fill(~mk[None], float("-inf"))
+            return torch.bmm(torch.softmax(sc, -1).to(vc.dtype), vc.reshape(Hkv, L, D)).view(1, Hkv, G * T, D)
+
+        def tm(f, n=30):
+            for _ in range(5): f()
+            torch.cuda.synchronize()
+            ev = [(torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)) for _ in range(n)]
+            for a, b in ev:
+                a.record(); f(); b.record()
+            torch.cuda.synchronize()
+            return sorted(a.elapsed_time(b) for a, b in ev)[n // 2]
+        ref = bm().float()
+        emit(kind="kern", L=L, T=T, impl="bmm_padded", ms=tm(bm), floor_ms=floor_ms)
+        for bn, it, w, stg in itertools.product((64, 128, 256), (1, 2, 4, 8), (4, 8), (2, 3, 4)):
+            if triton_cdiv(L, bn * it) > 1024:
+                continue
+            try:
+                f = lambda: tri_attn(qg, kc, vc, start, G, T, 0, bn=bn, iters=it, warps=w, stages=stg)
+                err = float((f().float() - ref).abs().max())
+                emit(kind="kern", L=L, T=T, impl="tri", bn=bn, iters=it, warps=w, stages=stg, ms=tm(f), maxerr=err, floor_ms=floor_ms)
+            except Exception as e:
+                emit(kind="kern", L=L, T=T, impl="tri", bn=bn, iters=it, warps=w, stages=stg, err=repr(e)[:120])
+        del kc, vc; torch.cuda.empty_cache()
+
+
+def triton_cdiv(a, b):
+    return -(-a // b)

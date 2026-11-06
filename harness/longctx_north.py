@@ -95,7 +95,7 @@ def _combine_kernel(PO, PM, PL, O, HKV: tl.constexpr, RP: tl.constexpr, D: tl.co
 NEG_C = tl.constexpr(NEG)
 
 
-def tri_attn(qg, kc, vc, start, G, T, win, idx=None, bn=128, iters=None):
+def tri_attn(qg, kc, vc, start, G, T, win, idx=None, bn=128, iters=None, warps=4, stages=2):
     """qg [B,Hkv,G*T,D] bf16 -> out [B,Hkv,G*T,D]. Valid keys: pos<=start+t (causal) and pos>start+t-win if win>0.
     idx: None (contiguous: whole [0,Lmax) if win==0 else the window) or int tensor [B,Hkv,N] of slot indices (gather)."""
     B, Hkv, R, D = qg.shape
@@ -119,7 +119,7 @@ def tri_attn(qg, kc, vc, start, G, T, win, idx=None, bn=128, iters=None):
     _partial_kernel[(NS, Hkv, B)](q, kc, vc, idx if gather else q, start, po, pm, pl,
                                   kc.stride(0), kc.stride(1), kc.stride(2), vc.stride(0), vc.stride(1), vc.stride(2),
                                   N, D ** -0.5, HKV=Hkv, G=G, T=T, RP=RP, D=D, BN=bn, ITERS=it, WIN=win, GATHER=gather, NS=NS,
-                                  num_warps=4, num_stages=2)
+                                  num_warps=warps, num_stages=stages)
     out = torch.empty(B, Hkv, RP, D, dtype=qg.dtype, device=qg.device)
     _combine_kernel[(Hkv, B)](po, pm, pl, out, HKV=Hkv, RP=RP, D=D, NS=NS, num_warps=4)
     return out[:, :, :R]
@@ -131,6 +131,7 @@ class LCNorth:
         self.Lmax, self.dev, self.dtype = Lmax, ref.device, ref.dtype
         self.start = torch.zeros((), dtype=torch.int64, device=self.dev)
         self.ar = torch.arange(Lmax, device=self.dev)
+        self.tri_kw = {}  # dense-kernel tuning (bn, iters, warps, stages), set by the runner
         self.wlo = 0  # static python offset of the sliding-window slice (set to ctx - W - 16 by the caller)
 
     def new_kv(self, B):
@@ -171,7 +172,7 @@ class LCNorth:
                 scale = D ** -0.5
                 mode = sl if sliding else gl
                 if mode == "tri":
-                    o = tri_attn(qg, kc, vc, self.start, G, T, W if sliding else 0)
+                    o = tri_attn(qg, kc, vc, self.start, G, T, W if sliding else 0, **(self.tri_kw if not sliding else {}))
                 elif isinstance(mode, tuple) and mode[0] in ("gather", "tri_idx") and not sliding:
                     assert B == 1 and T == 1
                     impl, kind, KK = mode

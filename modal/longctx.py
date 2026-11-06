@@ -22,8 +22,14 @@ def run_remote(tag: str, part: str, ctxs: str):
         s = json.dumps(kw, default=float)
         print("LCROW", s, flush=True); f.write(s + "\n"); f.flush(); results_vol.commit()
 
+    emit(kind="meta", meta=env_meta(), part=part)
+    if "K" in part:
+        bl.run_kernel(emit)
+    if "A" not in part and "B" not in part:
+        emit(kind="done", gpu_seconds=time.time() - t)
+        return time.time() - t
     m, tok = load_model(MODEL_DIR, "grouped_mm")
-    emit(kind="meta", meta=env_meta(), load_s=time.time() - t, part=part)
+    emit(kind="loaded", load_s=time.time() - t)
     if "A" in part:
         bl.check_vs_old(m, tok, emit)
         bl.run_long(m, tok, emit, ctxs=tuple(int(c) for c in ctxs.split(",")))
