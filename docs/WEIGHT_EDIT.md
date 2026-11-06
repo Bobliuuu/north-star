@@ -2,6 +2,10 @@
 
 Status: PROTOTYPE (CPU-tested on a tiny Cohere2Moe config). No GPU run, no North result yet. Nothing here is a measurement on North.
 
+## Prototype status (2026-11-06)
+* `src/weightedit/` + `modal/weightedit.py`; 20 CPU tests pass (`make test`). Modal script compiled, NOT launched.
+* Tiny random-model demo (`scripts/weightedit_tiny_demo.py`, `results/weightedit_tiny_demo.json`): KL falls (5.52->4.92, 2.54->2.39) but gate-split agreement does not improve (0.288->0.279, 0.459->0.456), so G-gain correctly REJECTS both. Random model + random tokens: proves plumbing and that the gate does not rubber-stamp, says nothing about North.
+
 ## Idea
 The kernel self-improve loop (docs/SELFIMPROVE.md) lets North propose kernel/schedule patches: 0 of 6 live proposals passed the speed gate. This track gives North a different action space: **weights**. North does not write weight deltas as text (hopeless: huge, no gradient). North proposes a *recipe* (small JSON); the harness executes it (distillation), gates the result independently, and versions the outcome with rollback.
 

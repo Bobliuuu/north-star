@@ -1,0 +1,187 @@
+{
+ "note": "random tiny model, random tokens; plumbing demo only",
+ "history": [
+  {
+   "recipe": {
+    "expert_r": 2,
+    "kind": "router_lowrank",
+    "rank": 8,
+    "layers": "all",
+    "steps": 300,
+    "lr": 0.003,
+    "window": 32,
+    "batch": 4,
+    "temperature": 1.0,
+    "gain": true,
+    "seed": 0
+   },
+   "passed": false,
+   "gates": {
+    "lossless": true,
+    "gain": false,
+    "overfit": true,
+    "cost": true
+   },
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "full",
+    "agree_base": 0.2876984126984127,
+    "agree_edit": 0.2787698412698413,
+    "agree_train": 0.2857142857142857,
+    "gain": -0.008928571428571397,
+    "committed_base": 1.4037698412698412,
+    "committed_edit": 1.3888888888888888,
+    "gain_ci_lower_agree": -0.027827380952380947,
+    "gain_ci_lower_committed": -0.05560515873015875,
+    "gamma": 4,
+    "n_gate_seqs": 16,
+    "adapter_params": 2308,
+    "adapter_flops_frac": 0.046875,
+    "active_experts_exact": true
+   },
+   "train": {
+    "first": 5.521477699279785,
+    "last": 4.9163079261779785,
+    "seconds": 2.4813737869262695
+   },
+   "source": "grid"
+  },
+  {
+   "recipe": {
+    "expert_r": 3,
+    "kind": "router_lowrank",
+    "rank": 8,
+    "layers": "all",
+    "steps": 300,
+    "lr": 0.003,
+    "window": 32,
+    "batch": 4,
+    "temperature": 1.0,
+    "gain": true,
+    "seed": 0
+   },
+   "passed": false,
+   "gates": {
+    "lossless": true,
+    "gain": false,
+    "overfit": true,
+    "cost": true
+   },
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "full",
+    "agree_base": 0.4593253968253968,
+    "agree_edit": 0.45634920634920634,
+    "agree_train": 0.44642857142857145,
+    "gain": -0.0029761904761904656,
+    "committed_base": 1.7847222222222223,
+    "committed_edit": 1.7966269841269842,
+    "gain_ci_lower_agree": -0.023859126984126997,
+    "gain_ci_lower_committed": -0.09523809523809529,
+    "gamma": 4,
+    "n_gate_seqs": 16,
+    "adapter_params": 2308,
+    "adapter_flops_frac": 0.03125,
+    "active_experts_exact": true
+   },
+   "train": {
+    "first": 2.5406243801116943,
+    "last": 2.3900089263916016,
+    "seconds": 2.313474178314209
+   },
+   "source": "grid"
+  }
+ ],
+ "ledger": [
+  {
+   "time": "2026-11-06T15:32:50Z",
+   "event": "reject",
+   "source": "grid",
+   "recipe": {
+    "expert_r": 2,
+    "kind": "router_lowrank",
+    "rank": 8,
+    "layers": "all",
+    "steps": 300,
+    "lr": 0.003,
+    "window": 32,
+    "batch": 4,
+    "temperature": 1.0,
+    "gain": true,
+    "seed": 0
+   },
+   "passed": false,
+   "gates": {
+    "lossless": true,
+    "gain": false,
+    "overfit": true,
+    "cost": true
+   },
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "full",
+    "agree_base": 0.2876984126984127,
+    "agree_edit": 0.2787698412698413,
+    "agree_train": 0.2857142857142857,
+    "gain": -0.008928571428571397,
+    "committed_base": 1.4037698412698412,
+    "committed_edit": 1.3888888888888888,
+    "gain_ci_lower_agree": -0.027827380952380947,
+    "gain_ci_lower_committed": -0.05560515873015875,
+    "gamma": 4,
+    "n_gate_seqs": 16,
+    "adapter_params": 2308,
+    "adapter_flops_frac": 0.046875,
+    "active_experts_exact": true
+   },
+   "reason": ""
+  },
+  {
+   "time": "2026-11-06T15:32:52Z",
+   "event": "reject",
+   "source": "grid",
+   "recipe": {
+    "expert_r": 3,
+    "kind": "router_lowrank",
+    "rank": 8,
+    "layers": "all",
+    "steps": 300,
+    "lr": 0.003,
+    "window": 32,
+    "batch": 4,
+    "temperature": 1.0,
+    "gain": true,
+    "seed": 0
+   },
+   "passed": false,
+   "gates": {
+    "lossless": true,
+    "gain": false,
+    "overfit": true,
+    "cost": true
+   },
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "full",
+    "agree_base": 0.4593253968253968,
+    "agree_edit": 0.45634920634920634,
+    "agree_train": 0.44642857142857145,
+    "gain": -0.0029761904761904656,
+    "committed_base": 1.7847222222222223,
+    "committed_edit": 1.7966269841269842,
+    "gain_ci_lower_agree": -0.023859126984126997,
+    "gain_ci_lower_committed": -0.09523809523809529,
+    "gamma": 4,
+    "n_gate_seqs": 16,
+    "adapter_params": 2308,
+    "adapter_flops_frac": 0.03125,
+    "active_experts_exact": true
+   },
+   "reason": ""
+  }
+ ]
+}
