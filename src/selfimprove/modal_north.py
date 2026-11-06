@@ -34,7 +34,7 @@ if os.environ.get("NS_WITH_VLLM") == "1":
 app = modal.App("northstar-selfimprove", image=image)
 
 
-@app.cls(gpu="A100-80GB", volumes={WEIGHTS: weights_vol}, memory=65536, timeout=1800, scaledown_window=60,
+@app.cls(gpu="A100-80GB", volumes={WEIGHTS: weights_vol}, memory=65536, timeout=1800, scaledown_window=600,
          max_containers=1)
 class NorthProposerService:
     @modal.enter()

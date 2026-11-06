@@ -297,3 +297,12 @@ def test_timer_calibrated_relative_to_baseline():
     assert G.timer_calibrated(base + [("k", mk(0.37, 3.7))], spec).passed             # genuinely faster kernel, same harness overhead
     assert not G.timer_calibrated(base + [("k", mk(0.10, 3.7))], spec).passed         # under-report 4x vs harness clock
     assert not G.timer_calibrated([("k", mk(0.39, 3.7))], spec).passed                # no baseline run to calibrate against
+
+
+def test_timer_calibrated_tolerates_single_run_jitter_but_not_median_shift():
+    spec = G.TimerSpec(calibrate=True, ratio_tol=1.5)
+    base = [("b", dict(time_ms=0.40, ref_ms=3.0)) for _ in range(8)]
+    jitter = [("k", dict(time_ms=0.40, ref_ms=3.0)) for _ in range(8)] + [("k", dict(time_ms=0.40, ref_ms=5.0))]     # one 1.7x ref outlier
+    assert G.timer_calibrated(base + jitter, spec).passed
+    shifted = [("k", dict(time_ms=0.25, ref_ms=3.0)) for _ in range(9)]                                         # every run under-reports 1.6x
+    assert not G.timer_calibrated(base + shifted, spec).passed

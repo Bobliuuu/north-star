@@ -36,3 +36,4 @@
 | 2026-11-06 09:08 | approx_sweep_quick1 | A100-80GB | 148 | 0.10 |  |
 | 2026-11-06 10:08 | draft_sparse_ds4 | H100 | 82 | nan |  |
 | 20261106T153422Z | harness diag diag1 | A100 | 203 | 0.141 | True |
+| 20261106T160035Z | harness diag diag3 | A100 | 221 | 0.154 | True |
