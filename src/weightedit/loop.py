@@ -109,7 +109,7 @@ def run_round(m, proposer, store: EditStore, train_seqs, train_from, gate_seqs, 
         return entry
     fp0 = fingerprint(m, fp_mode)
     adapters = RouterAdapters(m.config, recipe)
-    with EditedDraft(m, adapters, recipe.expert_r) as patch:
+    with EditedDraft(m, adapters, recipe.expert_r, recipe.expert_quant) as patch:
         tr = train(m, adapters, patch, train_seqs, recipe, log=log, ckpt=ckpt)
         patch.tokens = patch.slots_active = 0
         with torch.no_grad():

@@ -67,7 +67,16 @@ def boot_lower(a, b, gamma, n=1000, seed=0, q=5):
     return float(np.percentile(da, q)), float(np.percentile(dc, q))
 
 
-def baseline_ctx(m, r):
+def baseline_ctx(m, r, quant="none", recipe=None):
+    if quant != "none":  # unedited draft with the SAME fake-quantized experts (isolates the adapter's gain)
+        ident = RouterAdapters(m.config, recipe)
+        def f():
+            p = EditedDraft(m, ident, r, quant).install()
+            class C:
+                def __enter__(s): p.active = True; return p
+                def __exit__(s, *a): p.remove()
+            return C()
+        return f
     cfg = DraftConfig(expert_r=r, weight_convention="raw_sigmoid")
     def f():
         p = DraftPatch(m, cfg).install()
@@ -91,11 +100,11 @@ def run_gates(m, patch: EditedDraft, adapters: RouterAdapters, recipe: Recipe, t
     plain = [_vpred_and_logits(m, s) for s in gate_seqs[:2]]
     patch.remove()
     ref = [_vpred_and_logits(m, s) for s in gate_seqs[:2]]
-    key = ("base", recipe.expert_r, len(gate_seqs))  # baseline needs the module forwards free (DraftPatch asserts)
+    key = ("base", recipe.expert_r, recipe.expert_quant, len(gate_seqs))  # baseline needs the module forwards free (DraftPatch asserts)
     if cache is not None and key in cache:
         base_g = cache[key]
     else:
-        base_g = agreement(m, gate_seqs, gate_from, baseline_ctx(m, recipe.expert_r))
+        base_g = agreement(m, gate_seqs, gate_from, baseline_ctx(m, recipe.expert_r, recipe.expert_quant, recipe))
         if cache is not None:
             cache[key] = base_g
     patch.install()
@@ -126,6 +135,8 @@ def run_gates(m, patch: EditedDraft, adapters: RouterAdapters, recipe: Recipe, t
     exact_r = patch.tokens == 0 or patch.slots_active == patch.tokens * recipe.expert_r
     rep["numbers"].update(adapter_params=adapters.n_params(), adapter_flops_frac=ad_flops / exp_flops,
                           active_experts_exact=bool(exact_r))
+    from .quant import bytes_frac
+    rep["numbers"]["draft_expert_bytes_frac"] = bytes_frac(recipe.expert_quant) * recipe.expert_r / mc.num_experts_per_tok
     rep["gates"]["cost"] = bool(exact_r and ad_flops / exp_flops <= c["max_adapter_flops_frac"])
     rep["passed"] = all(rep["gates"].values())
     return rep

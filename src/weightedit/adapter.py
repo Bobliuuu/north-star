@@ -11,6 +11,9 @@ import contextlib
 import torch
 import torch.nn as nn
 
+from torch.func import functional_call
+
+from .quant import fake_quant
 from .recipe import Recipe, moe_layers
 
 
@@ -61,8 +64,9 @@ class EditedDraft:
     """Context manager: patches MoE blocks (instance-level forward, same pattern as approx.DraftPatch).
     Layers without an adapter still run plain top-r (gain 1, no delta) in draft mode, so the draft is consistent."""
 
-    def __init__(self, model, adapters: RouterAdapters, expert_r: int):
+    def __init__(self, model, adapters: RouterAdapters, expert_r: int, expert_quant: str = "none"):
         self.model, self.adapters, self.r = model, adapters, expert_r
+        self.quant = expert_quant
         self.mc = model.config
         assert getattr(self.mc, "num_shared_experts", 0) == 0
         assert self.mc.expert_selection_fn == "sigmoid"
@@ -119,5 +123,11 @@ class EditedDraft:
             w = torch.sigmoid(top.values) * self.adapters.gain(i, flat.device)
             self.tokens += flat.shape[0]
             self.slots_active += top.indices.numel()
-            return mlp.experts(flat, top.indices, w.to(w_native.dtype)).reshape(B, T, Dm)
+            if self.quant != "none":  # draft-only 4-bit copy: dequantised on the fly, original params untouched
+                ex = mlp.experts
+                qp = {n: fake_quant(getattr(ex, n).detach(), self.quant) for n in ("gate_up_proj", "down_proj")}
+                out = functional_call(ex, qp, (flat, top.indices, w.to(w_native.dtype)))
+            else:
+                out = mlp.experts(flat, top.indices, w.to(w_native.dtype))
+            return out.reshape(B, T, Dm)
         return fwd

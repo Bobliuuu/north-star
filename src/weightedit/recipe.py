@@ -5,6 +5,7 @@ import json
 from dataclasses import dataclass, asdict, fields
 
 KINDS = ("router_lowrank", "router_bias")
+QUANTS = ("none", "nvfp4", "int4")
 
 
 class RecipeError(ValueError):
@@ -24,6 +25,7 @@ class Recipe:
     temperature: float = 1.0
     gain: bool = True
     seed: int = 0
+    expert_quant: str = "none"   # draft-only fake-quantized expert weights (verifier unchanged)
 
     def validate(self, mc) -> "Recipe":
         """mc = HF model config. Raises RecipeError on any out-of-range value."""
@@ -43,6 +45,7 @@ class Recipe:
         need(isinstance(self.temperature, (int, float)) and 0.5 <= self.temperature <= 2.0, "temperature in 0.5..2")
         need(isinstance(self.gain, bool), "gain is bool")
         need(isinstance(self.seed, int), "seed is int")
+        need(self.expert_quant in QUANTS, f"expert_quant must be one of {QUANTS}")
         if self.layers != "all":
             need(isinstance(self.layers, (list, tuple)) and len(self.layers) > 0, "layers: 'all' or non-empty list")
             need(all(isinstance(i, int) and i in moe for i in self.layers), f"layers must be MoE layer ids {moe[:4]}..")
@@ -85,5 +88,5 @@ SCHEMA_TEXT = (
     "Recipe JSON fields (all optional, defaults shown): "
     '{"expert_r":2 (int 1..K-1), "kind":"router_lowrank"|"router_bias", "rank":4 (1..16), '
     '"layers":"all" or [MoE layer ids], "steps":100 (1..2000), "lr":1e-3 (1e-5..1e-2), "window":64 (16..2048), '
-    '"batch":2 (1..16), "temperature":1.0 (0.5..2), "gain":true, "seed":0}'
+    '"batch":2 (1..16), "temperature":1.0 (0.5..2), "gain":true, "seed":0, "expert_quant":"none"|"nvfp4"|"int4"}'
 )
