@@ -49,7 +49,7 @@ def _down_kernel(h_ptr, idx_ptr, sc_ptr, w_ptr, out_ptr, K: tl.constexpr, N: tl.
 
 def moe_gemv(x, idx, sc, gate_up, down, hbuf, obuf, cfg=None):
     """x [Dm] bf16, idx [k] int, sc [k] bf16, gate_up [E,2I,Dm], down [E,Dm,I] -> obuf [k,Dm] bf16 (weighted per-expert outs)."""
-    c = dict(BN1=16, BK1=256, BN2=16, BK2=256, nw1=4, nw2=4)
+    c = dict(BN1=8, BK1=256, BN2=8, BK2=256, nw1=4, nw2=4)  # best of the fx1 tile sweep (3.94 vs 4.04 ms)
     if cfg:
         c.update(cfg)
     k = idx.shape[-1]
