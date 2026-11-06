@@ -1,0 +1,36 @@
+
+== corpus bobliu-os: 36 files, 62115 Qwen3-BPE tokens
+-- warm-session
+method                 tok/step draft% first-hit tok-prec  a=.05  a=.15  a=.30
+pld(n=3..1)              1.723  70.7     0.372    0.135  1.36   0.95   0.66
+pld(n=3..2)              1.546  40.5     0.465    0.175  1.34   1.05   0.80
+suffix-last              1.842  86.8     0.339    0.125  1.38   0.92   0.61
+suffix-last(min3)        1.494  29.3     0.527    0.215  1.34   1.11   0.88
+suffix-freq              1.743  87.6     0.315    0.106  1.29   0.85   0.56
+suffix+gate th=0.3       1.602  41.9     0.465    0.183  1.38   1.07   0.81
+suffix+gate th=0.5       1.404  21.0     0.579    0.245  1.30   1.13   0.94
+tage k=8 fixed           1.795  88.3     0.324    0.113  1.33   0.87   0.58
+     two-ahead: {'P_full_accept': 0.032, 'P_bonus_pred_given_full': 0.801, 'P_alt_hit_given_reject': 0.053, 'outcome_coverage_top1_plus_alt': 0.077, 'outcome_coverage_top1_only': 0.026}
+tage k=8 theta=0.3       1.507  41.2     0.595    0.560  1.44   1.33   1.18
+     two-ahead: {'P_full_accept': 0.45, 'P_bonus_pred_given_full': 0.495, 'P_alt_hit_given_reject': 0.071, 'outcome_coverage_top1_plus_alt': 0.262, 'outcome_coverage_top1_only': 0.223}
+tage k=8 theta=0.5       1.375  29.0     0.699    0.697  1.34   1.27   1.18
+     two-ahead: {'P_full_accept': 0.628, 'P_bonus_pred_given_full': 0.512, 'P_alt_hit_given_reject': 0.064, 'outcome_coverage_top1_plus_alt': 0.346, 'outcome_coverage_top1_only': 0.322}
+tage k=16 theta=0.5      1.376  29.0     0.699    0.695  1.34   1.27   1.18
+     two-ahead: {'P_full_accept': 0.627, 'P_bonus_pred_given_full': 0.511, 'P_alt_hit_given_reject': 0.065, 'outcome_coverage_top1_plus_alt': 0.344, 'outcome_coverage_top1_only': 0.32}
+-- cold-per-file
+method                 tok/step draft% first-hit tok-prec  a=.05  a=.15  a=.30
+pld(n=3..1)              1.723  70.7     0.372    0.135  1.36   0.95   0.66
+pld(n=3..2)              1.546  40.5     0.465    0.175  1.34   1.05   0.80
+suffix-last              1.728  70.6     0.368    0.135  1.36   0.96   0.66
+suffix-last(min3)        1.402  22.1     0.580    0.234  1.29   1.11   0.93
+suffix-freq              1.694  71.2     0.362    0.122  1.32   0.91   0.63
+suffix+gate th=0.3       1.587  45.5     0.444    0.168  1.35   1.04   0.78
+suffix+gate th=0.5       1.366  18.8     0.601    0.250  1.27   1.12   0.95
+tage k=8 fixed           1.717  71.0     0.365    0.127  1.34   0.93   0.64
+     two-ahead: {'P_full_accept': 0.033, 'P_bonus_pred_given_full': 0.777, 'P_alt_hit_given_reject': 0.049, 'outcome_coverage_top1_plus_alt': 0.073, 'outcome_coverage_top1_only': 0.025}
+tage k=8 theta=0.3       1.469  43.4     0.575    0.592  1.41   1.31   1.19
+     two-ahead: {'P_full_accept': 0.486, 'P_bonus_pred_given_full': 0.493, 'P_alt_hit_given_reject': 0.061, 'outcome_coverage_top1_plus_alt': 0.271, 'outcome_coverage_top1_only': 0.24}
+tage k=8 theta=0.5       1.332  26.4     0.721    0.741  1.30   1.25   1.17
+     two-ahead: {'P_full_accept': 0.673, 'P_bonus_pred_given_full': 0.542, 'P_alt_hit_given_reject': 0.065, 'outcome_coverage_top1_plus_alt': 0.386, 'outcome_coverage_top1_only': 0.365}
+tage k=16 theta=0.5      1.333  26.4     0.720    0.738  1.30   1.25   1.17
+     two-ahead: {'P_full_accept': 0.672, 'P_bonus_pred_given_full': 0.54, 'P_alt_hit_given_reject': 0.065, 'outcome_coverage_top1_plus_alt': 0.384, 'outcome_coverage_top1_only': 0.363}
