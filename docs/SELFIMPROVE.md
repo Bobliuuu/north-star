@@ -47,23 +47,31 @@ last stdout JSON line must contain `"nonce": os.environ.pop("NS_NONCE")` read BE
 - correctness: `{"cases":[{"name","rel_l2","max_abs","finite"}...]}`; quality: `{"items":[score...]}` (same order every run); bench: `{"time_ms": x}`.
 CLI: `PYTHONPATH=src python -m selfimprove.cli {run,rollback,attribution,verify-log,cost} --store DIR [--config cfg.py]`.
 
-## Running it live on Modal (not done in this task; no GPU was launched)
-Needs, in order:
-1. `modal run modal/download.py` already populated Volume `northstar-weights` (the proposer reuses it and `modal/common.py`; it fails
-   loudly if the weights are absent rather than downloading anything).
-2. `modal deploy src/selfimprove/modal_north.py` (app `northstar-selfimprove`, class `NorthProposerService`, A100-80GB, ~$2.5/h,
-   scaledown 60 s, 1 container). Default backend is HF transformers 5.22.1 (the stack in `modal/`); vLLM is opt-in
-   (`NS_BACKEND=vllm`, build with `NS_WITH_VLLM=1 NS_VLLM_SPEC=vllm==<pinned>`) and UNVERIFIED for `cohere2_moe`. Smoke:
-   `modal run src/selfimprove/modal_north.py --prompt ...` (confirm spend first).
-3. Developer (not North) must add `// NS-EDITABLE-BEGIN` / `// NS-EDITABLE-END` markers around ONLY the tunables in
-   `src/kvm/moe_fused.cu` (e.g. `SL`, `KC`; not `H`, `I`, `MAXTOK`, the bench/check `main`), and create `src/opt/policy_tables/*.json`
-   if a policy table is wanted. Until then no kernel edit can apply (fail closed).
-4. Real harness scripts that follow the protocol above, placed outside the editable scope (e.g. `harness/si_check.py`, `si_quality.py`,
-   `si_bench.py`): correctness vs the torch reference in `src/kvm/ref/moe_ref.py` on fresh `NS_SEED` inputs, held-out task scoring
-   on data kept out of the proposer's prompt, timing on dev vs held-out shape sets (held-out shapes must differ from the benchmark
-   shapes; list them in `EvalConfig.dev_shapes/heldout_shapes` for the audit). `build_cmd` must write only under `build/` (nvcc).
-5. A GPU evaluator process: the evaluator is plain Python and must run where nvcc + the GPU are (e.g. a Modal A100 function that
-   imports `selfimprove.loop` and calls the deployed proposer via `NorthProposer`). Not yet written; the CPU loop is tested with a toy harness.
+## Running it live on Modal (developer infrastructure now in place; NO live run has happened)
+Done (developer-authored, outside North's reach):
+- `src/kvm/moe_fused.cu`: `NS-EDITABLE-BEGIN/END` around `KC, XPAD, HPAD, MT_SPLIT, MINB_PER_SM` only (defaults identical to the old
+  literals: 256, 8, 8, 16, launch bounds default). `H, I, SL, MAXTOK`, kernel body, host code and a protected block of `static_assert`s
+  (tiling, <=48KB smem, ranges) stay outside, so a bad value fails the build. Added bench flags `--shapes tv,td,r;...` and `--routing k`
+  (defaults unchanged). NOT compiled here (no nvcc on the dev box): the first nvcc build happens on Modal; fix compile errors there.
+- `src/opt/policy_tables/spec_space.json` (gammas, modes, n_groups = the Phase-3 search space; baseline = current defaults).
+- `harness/selfimprove/` (protected): `kernel_build.py` (nvcc sm_80 -> `build/moe_fused`), `kernel_check.py` (binary vs `moe_ref.py`, 8 cases x
+  fused/two-pass, inputs from fresh `NS_SEED`), `kernel_quality.py` (held-out routing traces, split `calib` of `results/routing_traces.json`,
+  35 items, item = 1 - rel_l2), `kernel_bench.py` (dev shapes vs disjoint held-out shapes, binary's own CUDA-event medians, rejects timing if
+  fused != two-pass), `policy_eval.py check|quality|bench` (policy track: dev metric = Phase-3 PREDICTED tok/s; held-out = 24 unseen buckets),
+  `config.py` (`make_config(repo, track)`, prompt text that mentions dev material only, labeled `mock_diff` for dry runs).
+- `modal/selfimprove_eval.py`: `evaluate_candidate` (A100-80GB, `block_network=True`, nvcc image, runs the Loop's own `Evaluator`),
+  `RemoteEvaluator` (drop-in; crash/timeouts become verdict `evaluator_error`, never promoted) and the `modal run` launcher.
+
+Launch (confirm cost first; est. in `estimate_cost`: kernel track ~USD 1.1 for round 1 incl. proposer cold start, ~USD 0.9 per later round; dry run ~USD 0.7):
+```
+modal deploy src/selfimprove/modal_north.py          # proposer (once; weights already in Volume northstar-weights)
+modal run modal/selfimprove_eval.py --track kernel --proposer mock  --rounds 1                      # DRY RUN, mock, store results/selfimprove_dryrun_kernel
+modal run modal/selfimprove_eval.py --track kernel --proposer north --rounds 1 --confirm-cost --max-usd 3   # LIVE round 1
+```
+Live runs write `results/selfimprove_kernel/`; mock runs refuse any store whose name lacks `dryrun` and a store with a mixed lineage.
+Policy track (`--track policy`) refuses a live run until `results/accept_calibration.jsonl` (MEASURED acceptance, Phase 2) exists: today only
+SYNTHETIC acceptance exists, so its "predicted tok/s" is a plumbing check, not a result. Policy `check` gate = solver self-consistency only.
+Tests: `NS_SLOW=1` also runs the full CPU dry-run loop on the policy track and the fake-binary quality harness.
 
 ## Honest limits
 - Process isolation is a subprocess + rlimits + hash checks + nonce, not a container/seccomp. Candidate code that shares a process with
@@ -71,6 +79,7 @@ Needs, in order:
   outputs in a separate harness process. Network is not blocked on macOS/dev; on Modal, run the evaluator in a network-blocked function.
 - Static audit is a heuristic first line; the real defenses are fresh seeds, held-out shapes/data and protected-tree hashes.
 - Attribution rests on the endpoint attesting its model id/revision; the Modal service is developer infrastructure and is trusted.
-- All 95 unit tests use a toy harness and mock/stub proposers. No North-authored result exists yet.
+- 95 original unit tests use a toy harness; the new ones exercise the real harness with a python stand-in for the CUDA binary (no GPU). No North-authored result exists yet, and no nvcc build/GPU timing of the harness has been run.
+- Held-out data lives inside the sandbox copy (hash-protected, readable): the kernel candidate is compiled code whose file I/O the audit rejects, and the policy candidate is a JSON data file parsed with a strict whitelist; neither is executed as Python.
 
 Tests: `cd src && python -m pytest -q selfimprove/tests` (about 30 s, CPU).
