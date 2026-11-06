@@ -1,0 +1,5989 @@
+{
+ "meta": {
+  "python": "3.12.16",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.22.1",
+  "model": "CohereLabs/North-Mini-Code-1.0",
+  "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37",
+  "time": "2026-11-06T14:08:39Z",
+  "gpu": "NVIDIA A100 80GB PCIe",
+  "cuda": "12.8",
+  "gpu_mem_gb": 79.3,
+  "pip_freeze_sha": "b75d56d0a2a7"
+ },
+ "load_s": 36.23987364768982,
+ "gpu_seconds": 148.15277409553528,
+ "rows": [
+  {
+   "group": "full",
+   "name": "full",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "full"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 1.0,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {},
+   "seconds": 0.2633061408996582,
+   "accepted": {
+    "2": {
+     "hist": [
+      0,
+      1,
+      95
+     ],
+     "mean_accepted": 1.9895833333333333,
+     "mean_committed": 2.989583333333333
+    },
+    "4": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      93
+     ],
+     "mean_accepted": 3.9375,
+     "mean_committed": 4.9375
+    },
+    "8": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      89
+     ],
+     "mean_accepted": 7.708333333333333,
+     "mean_committed": 8.708333333333332
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:oracle_topk:k256",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=256]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.9791666666666666,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 352.98227611940297,
+    "index_scored_per_q": 1072.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.3291210033747347,
+    "layers_skipped": 0
+   },
+   "seconds": 0.44792866706848145,
+   "accepted": {
+    "2": {
+     "hist": [
+      2,
+      2,
+      92
+     ],
+     "mean_accepted": 1.9375,
+     "mean_committed": 2.9375
+    },
+    "4": {
+     "hist": [
+      2,
+      2,
+      2,
+      2,
+      88
+     ],
+     "mean_accepted": 3.7916666666666665,
+     "mean_committed": 4.791666666666666
+    },
+    "8": {
+     "hist": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      80
+     ],
+     "mean_accepted": 7.25,
+     "mean_committed": 8.25
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:oracle_topk:k1024",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=1024]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.9791666666666666,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 844.6240671641791,
+    "index_scored_per_q": 1072.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.7875282677521483,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3736906051635742,
+   "accepted": {
+    "2": {
+     "hist": [
+      2,
+      2,
+      92
+     ],
+     "mean_accepted": 1.9375,
+     "mean_committed": 2.9375
+    },
+    "4": {
+     "hist": [
+      2,
+      2,
+      2,
+      2,
+      88
+     ],
+     "mean_accepted": 3.7916666666666665,
+     "mean_committed": 4.791666666666666
+    },
+    "8": {
+     "hist": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      80
+     ],
+     "mean_accepted": 7.25,
+     "mean_committed": 8.25
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:lsa_tree:k256",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=256]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.9895833333333334,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 324.3028666762342,
+    "index_scored_per_q": 157.76119402985074,
+    "index_build_total": 560594944.0,
+    "index_bytes": 4772352.0,
+    "attended_frac": 0.30238029526921606,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3842759132385254,
+   "accepted": {
+    "2": {
+     "hist": [
+      1,
+      1,
+      94
+     ],
+     "mean_accepted": 1.96875,
+     "mean_committed": 2.96875
+    },
+    "4": {
+     "hist": [
+      1,
+      1,
+      1,
+      1,
+      92
+     ],
+     "mean_accepted": 3.8958333333333335,
+     "mean_committed": 4.895833333333334
+    },
+    "8": {
+     "hist": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      88
+     ],
+     "mean_accepted": 7.625,
+     "mean_committed": 8.625
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:lsa_tree:k1024",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=1024]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.9791666666666666,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 818.9798274253732,
+    "index_scored_per_q": 157.76119402985074,
+    "index_build_total": 560594944.0,
+    "index_bytes": 4772352.0,
+    "attended_frac": 0.7636175547089726,
+    "layers_skipped": 0
+   },
+   "seconds": 0.37859034538269043,
+   "accepted": {
+    "2": {
+     "hist": [
+      2,
+      2,
+      92
+     ],
+     "mean_accepted": 1.9375,
+     "mean_committed": 2.9375
+    },
+    "4": {
+     "hist": [
+      2,
+      2,
+      2,
+      2,
+      88
+     ],
+     "mean_accepted": 3.7916666666666665,
+     "mean_committed": 4.791666666666666
+    },
+    "8": {
+     "hist": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      80
+     ],
+     "mean_accepted": 7.25,
+     "mean_committed": 8.25
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r2:raw_sigmoid",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 2,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r2[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.6875,
+   "verifier_top1_in_draft_top5": 0.8958333730697632,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 2.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.19929146766662598,
+   "accepted": {
+    "2": {
+     "hist": [
+      30,
+      19,
+      47
+     ],
+     "mean_accepted": 1.1770833333333333,
+     "mean_committed": 2.177083333333333
+    },
+    "4": {
+     "hist": [
+      30,
+      19,
+      13,
+      10,
+      24
+     ],
+     "mean_accepted": 1.78125,
+     "mean_committed": 2.78125
+    },
+    "8": {
+     "hist": [
+      30,
+      19,
+      13,
+      10,
+      6,
+      4,
+      3,
+      2,
+      9
+     ],
+     "mean_accepted": 2.3229166666666665,
+     "mean_committed": 3.3229166666666665
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r2:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 2,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r2[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.5208333333333334,
+   "verifier_top1_in_draft_top5": 0.8541666865348816,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 2.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.19525766372680664,
+   "accepted": {
+    "2": {
+     "hist": [
+      46,
+      22,
+      28
+     ],
+     "mean_accepted": 0.8125,
+     "mean_committed": 1.8125
+    },
+    "4": {
+     "hist": [
+      46,
+      22,
+      12,
+      5,
+      11
+     ],
+     "mean_accepted": 1.09375,
+     "mean_committed": 2.09375
+    },
+    "8": {
+     "hist": [
+      46,
+      22,
+      12,
+      5,
+      4,
+      3,
+      1,
+      1,
+      2
+     ],
+     "mean_accepted": 1.2604166666666667,
+     "mean_committed": 2.260416666666667
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r4[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.8854166666666666,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.22427129745483398,
+   "accepted": {
+    "2": {
+     "hist": [
+      11,
+      7,
+      78
+     ],
+     "mean_accepted": 1.6979166666666667,
+     "mean_committed": 2.697916666666667
+    },
+    "4": {
+     "hist": [
+      11,
+      7,
+      7,
+      6,
+      65
+     ],
+     "mean_accepted": 3.1145833333333335,
+     "mean_committed": 4.114583333333334
+    },
+    "8": {
+     "hist": [
+      11,
+      7,
+      7,
+      6,
+      5,
+      5,
+      3,
+      3,
+      49
+     ],
+     "mean_accepted": 5.364583333333333,
+     "mean_committed": 6.364583333333333
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r4:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r4[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.7604166666666666,
+   "verifier_top1_in_draft_top5": 0.90625,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.2157738208770752,
+   "accepted": {
+    "2": {
+     "hist": [
+      23,
+      13,
+      60
+     ],
+     "mean_accepted": 1.3854166666666667,
+     "mean_committed": 2.385416666666667
+    },
+    "4": {
+     "hist": [
+      23,
+      13,
+      10,
+      6,
+      44
+     ],
+     "mean_accepted": 2.3645833333333335,
+     "mean_committed": 3.3645833333333335
+    },
+    "8": {
+     "hist": [
+      23,
+      13,
+      10,
+      6,
+      5,
+      5,
+      5,
+      3,
+      26
+     ],
+     "mean_accepted": 3.6979166666666665,
+     "mean_committed": 4.697916666666666
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r6:raw_sigmoid",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 6,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r6[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.9583333333333334,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 6.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.24734067916870117,
+   "accepted": {
+    "2": {
+     "hist": [
+      4,
+      4,
+      88
+     ],
+     "mean_accepted": 1.875,
+     "mean_committed": 2.875
+    },
+    "4": {
+     "hist": [
+      4,
+      4,
+      3,
+      3,
+      82
+     ],
+     "mean_accepted": 3.6145833333333335,
+     "mean_committed": 4.614583333333334
+    },
+    "8": {
+     "hist": [
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      70
+     ],
+     "mean_accepted": 6.71875,
+     "mean_committed": 7.71875
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r6:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 6,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r6[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.65625,
+   "verifier_top1_in_draft_top5": 0.8958333730697632,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 6.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.23746299743652344,
+   "accepted": {
+    "2": {
+     "hist": [
+      33,
+      15,
+      48
+     ],
+     "mean_accepted": 1.15625,
+     "mean_committed": 2.15625
+    },
+    "4": {
+     "hist": [
+      33,
+      15,
+      10,
+      9,
+      29
+     ],
+     "mean_accepted": 1.8541666666666667,
+     "mean_committed": 2.854166666666667
+    },
+    "8": {
+     "hist": [
+      33,
+      15,
+      10,
+      9,
+      8,
+      6,
+      4,
+      3,
+      8
+     ],
+     "mean_accepted": 2.4270833333333335,
+     "mean_committed": 3.4270833333333335
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "eat:tau1.0:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "renorm",
+    "expert_policy": "eat",
+    "skip_layers": [],
+    "label": "eat[renorm,s=1.0,native_topk]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.5,
+   "verifier_top1_in_draft_top5": 0.8020833730697632,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 7.999912546641791,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.33071064949035645,
+   "accepted": {
+    "2": {
+     "hist": [
+      48,
+      18,
+      30
+     ],
+     "mean_accepted": 0.8125,
+     "mean_committed": 1.8125
+    },
+    "4": {
+     "hist": [
+      48,
+      18,
+      10,
+      6,
+      14
+     ],
+     "mean_accepted": 1.1666666666666667,
+     "mean_committed": 2.166666666666667
+    },
+    "8": {
+     "hist": [
+      48,
+      18,
+      10,
+      6,
+      4,
+      3,
+      2,
+      2,
+      3
+     ],
+     "mean_accepted": 1.4270833333333333,
+     "mean_committed": 2.427083333333333
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k256+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=256]+r4[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.8333333333333334,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 352.98227611940297,
+    "index_scored_per_q": 1072.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.3291210033747347,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.33286333084106445,
+   "accepted": {
+    "2": {
+     "hist": [
+      16,
+      9,
+      71
+     ],
+     "mean_accepted": 1.5729166666666667,
+     "mean_committed": 2.572916666666667
+    },
+    "4": {
+     "hist": [
+      16,
+      9,
+      8,
+      5,
+      58
+     ],
+     "mean_accepted": 2.8333333333333335,
+     "mean_committed": 3.8333333333333335
+    },
+    "8": {
+     "hist": [
+      16,
+      9,
+      8,
+      5,
+      5,
+      5,
+      5,
+      4,
+      39
+     ],
+     "mean_accepted": 4.739583333333333,
+     "mean_committed": 5.739583333333333
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k256+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=256]+r4[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.71875,
+   "verifier_top1_in_draft_top5": 0.8854166865348816,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 352.98227611940297,
+    "index_scored_per_q": 1072.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.3291210033747347,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3229694366455078,
+   "accepted": {
+    "2": {
+     "hist": [
+      27,
+      14,
+      55
+     ],
+     "mean_accepted": 1.2916666666666667,
+     "mean_committed": 2.291666666666667
+    },
+    "4": {
+     "hist": [
+      27,
+      14,
+      11,
+      7,
+      37
+     ],
+     "mean_accepted": 2.1354166666666665,
+     "mean_committed": 3.1354166666666665
+    },
+    "8": {
+     "hist": [
+      27,
+      14,
+      11,
+      7,
+      6,
+      5,
+      4,
+      3,
+      19
+     ],
+     "mean_accepted": 3.15625,
+     "mean_committed": 4.15625
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k1024+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=1024]+r4[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.8645833333333334,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 844.6240671641791,
+    "index_scored_per_q": 1072.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.7875282677521483,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3350651264190674,
+   "accepted": {
+    "2": {
+     "hist": [
+      13,
+      7,
+      76
+     ],
+     "mean_accepted": 1.65625,
+     "mean_committed": 2.65625
+    },
+    "4": {
+     "hist": [
+      13,
+      7,
+      7,
+      5,
+      64
+     ],
+     "mean_accepted": 3.0416666666666665,
+     "mean_committed": 4.041666666666666
+    },
+    "8": {
+     "hist": [
+      13,
+      7,
+      7,
+      5,
+      4,
+      4,
+      4,
+      3,
+      49
+     ],
+     "mean_accepted": 5.302083333333333,
+     "mean_committed": 6.302083333333333
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k1024+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=1024]+r4[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.7395833333333334,
+   "verifier_top1_in_draft_top5": 0.90625,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 844.6240671641791,
+    "index_scored_per_q": 1072.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.7875282677521483,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3262794017791748,
+   "accepted": {
+    "2": {
+     "hist": [
+      25,
+      15,
+      56
+     ],
+     "mean_accepted": 1.3229166666666667,
+     "mean_committed": 2.322916666666667
+    },
+    "4": {
+     "hist": [
+      25,
+      15,
+      10,
+      6,
+      40
+     ],
+     "mean_accepted": 2.21875,
+     "mean_committed": 3.21875
+    },
+    "8": {
+     "hist": [
+      25,
+      15,
+      10,
+      6,
+      5,
+      4,
+      4,
+      3,
+      24
+     ],
+     "mean_accepted": 3.4375,
+     "mean_committed": 4.4375
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k256+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=256]+r4[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.8958333333333334,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 323.9411416475316,
+    "index_scored_per_q": 157.76119402985074,
+    "index_build_total": 560594944.0,
+    "index_bytes": 4772352.0,
+    "attended_frac": 0.30204302251518095,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.33736228942871094,
+   "accepted": {
+    "2": {
+     "hist": [
+      10,
+      9,
+      77
+     ],
+     "mean_accepted": 1.6979166666666667,
+     "mean_committed": 2.697916666666667
+    },
+    "4": {
+     "hist": [
+      10,
+      9,
+      9,
+      8,
+      60
+     ],
+     "mean_accepted": 3.03125,
+     "mean_committed": 4.03125
+    },
+    "8": {
+     "hist": [
+      10,
+      9,
+      9,
+      8,
+      5,
+      4,
+      4,
+      3,
+      44
+     ],
+     "mean_accepted": 5.083333333333333,
+     "mean_committed": 6.083333333333333
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k256+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=256]+r4[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.7395833333333334,
+   "verifier_top1_in_draft_top5": 0.8958333730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 322.1031949626866,
+    "index_scored_per_q": 157.76119402985074,
+    "index_build_total": 560594944.0,
+    "index_bytes": 4772352.0,
+    "attended_frac": 0.30032931931252826,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3290562629699707,
+   "accepted": {
+    "2": {
+     "hist": [
+      25,
+      13,
+      58
+     ],
+     "mean_accepted": 1.34375,
+     "mean_committed": 2.34375
+    },
+    "4": {
+     "hist": [
+      25,
+      13,
+      10,
+      6,
+      42
+     ],
+     "mean_accepted": 2.28125,
+     "mean_committed": 3.28125
+    },
+    "8": {
+     "hist": [
+      25,
+      13,
+      10,
+      6,
+      5,
+      4,
+      4,
+      3,
+      26
+     ],
+     "mean_accepted": 3.5833333333333335,
+     "mean_committed": 4.583333333333334
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k1024+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=1024]+r4[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.8854166666666666,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 819.0435652267508,
+    "index_scored_per_q": 157.76119402985074,
+    "index_build_total": 560594944.0,
+    "index_bytes": 4772352.0,
+    "attended_frac": 0.7636769838944064,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3397808074951172,
+   "accepted": {
+    "2": {
+     "hist": [
+      11,
+      7,
+      78
+     ],
+     "mean_accepted": 1.6979166666666667,
+     "mean_committed": 2.697916666666667
+    },
+    "4": {
+     "hist": [
+      11,
+      7,
+      6,
+      5,
+      67
+     ],
+     "mean_accepted": 3.1458333333333335,
+     "mean_committed": 4.145833333333334
+    },
+    "8": {
+     "hist": [
+      11,
+      7,
+      6,
+      5,
+      3,
+      3,
+      2,
+      2,
+      57
+     ],
+     "mean_accepted": 5.65625,
+     "mean_committed": 6.65625
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k1024+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=1024]+r4[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.75,
+   "verifier_top1_in_draft_top5": 0.90625,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 818.1005489380022,
+    "index_scored_per_q": 157.76119402985074,
+    "index_build_total": 560594944.0,
+    "index_bytes": 4772352.0,
+    "attended_frac": 0.762797714627508,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3320431709289551,
+   "accepted": {
+    "2": {
+     "hist": [
+      24,
+      13,
+      59
+     ],
+     "mean_accepted": 1.3645833333333333,
+     "mean_committed": 2.364583333333333
+    },
+    "4": {
+     "hist": [
+      24,
+      13,
+      10,
+      6,
+      43
+     ],
+     "mean_accepted": 2.3229166666666665,
+     "mean_committed": 3.3229166666666665
+    },
+    "8": {
+     "hist": [
+      24,
+      13,
+      10,
+      6,
+      5,
+      5,
+      5,
+      2,
+      26
+     ],
+     "mean_accepted": 3.625,
+     "mean_committed": 4.625
+    }
+   }
+  },
+  {
+   "group": "full",
+   "name": "full",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "full"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 1.0,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {},
+   "seconds": 0.2634396553039551,
+   "accepted": {
+    "2": {
+     "hist": [
+      0,
+      1,
+      95
+     ],
+     "mean_accepted": 1.9895833333333333,
+     "mean_committed": 2.989583333333333
+    },
+    "4": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      93
+     ],
+     "mean_accepted": 3.9375,
+     "mean_committed": 4.9375
+    },
+    "8": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      89
+     ],
+     "mean_accepted": 7.708333333333333,
+     "mean_committed": 8.708333333333332
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:oracle_topk:k256",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=256]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.96875,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 352.98227611940297,
+    "index_scored_per_q": 1072.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.3291210033747347,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3708491325378418,
+   "accepted": {
+    "2": {
+     "hist": [
+      3,
+      4,
+      89
+     ],
+     "mean_accepted": 1.8958333333333333,
+     "mean_committed": 2.895833333333333
+    },
+    "4": {
+     "hist": [
+      3,
+      4,
+      3,
+      3,
+      83
+     ],
+     "mean_accepted": 3.65625,
+     "mean_committed": 4.65625
+    },
+    "8": {
+     "hist": [
+      3,
+      4,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      71
+     ],
+     "mean_accepted": 6.802083333333333,
+     "mean_committed": 7.802083333333333
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:oracle_topk:k1024",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=1024]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.9895833333333334,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 844.6240671641791,
+    "index_scored_per_q": 1072.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.7875282677521483,
+    "layers_skipped": 0
+   },
+   "seconds": 0.37403440475463867,
+   "accepted": {
+    "2": {
+     "hist": [
+      1,
+      2,
+      93
+     ],
+     "mean_accepted": 1.9583333333333333,
+     "mean_committed": 2.958333333333333
+    },
+    "4": {
+     "hist": [
+      1,
+      2,
+      2,
+      2,
+      89
+     ],
+     "mean_accepted": 3.8333333333333335,
+     "mean_committed": 4.833333333333334
+    },
+    "8": {
+     "hist": [
+      1,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      81
+     ],
+     "mean_accepted": 7.333333333333333,
+     "mean_committed": 8.333333333333332
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:lsa_tree:k256",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=256]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.96875,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 325.64998026693456,
+    "index_scored_per_q": 157.76119402985074,
+    "index_build_total": 560594944.0,
+    "index_bytes": 4772352.0,
+    "attended_frac": 0.30363634523723504,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3746464252471924,
+   "accepted": {
+    "2": {
+     "hist": [
+      3,
+      4,
+      89
+     ],
+     "mean_accepted": 1.8958333333333333,
+     "mean_committed": 2.895833333333333
+    },
+    "4": {
+     "hist": [
+      3,
+      4,
+      3,
+      3,
+      83
+     ],
+     "mean_accepted": 3.65625,
+     "mean_committed": 4.65625
+    },
+    "8": {
+     "hist": [
+      3,
+      4,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      71
+     ],
+     "mean_accepted": 6.802083333333333,
+     "mean_committed": 7.802083333333333
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:lsa_tree:k1024",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=1024]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 1.0,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 819.8023105625717,
+    "index_scored_per_q": 157.76119402985074,
+    "index_build_total": 560594944.0,
+    "index_bytes": 4772352.0,
+    "attended_frac": 0.7643844387529807,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3765575885772705,
+   "accepted": {
+    "2": {
+     "hist": [
+      0,
+      1,
+      95
+     ],
+     "mean_accepted": 1.9895833333333333,
+     "mean_committed": 2.989583333333333
+    },
+    "4": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      93
+     ],
+     "mean_accepted": 3.9375,
+     "mean_committed": 4.9375
+    },
+    "8": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      89
+     ],
+     "mean_accepted": 7.708333333333333,
+     "mean_committed": 8.708333333333332
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r2:raw_sigmoid",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 2,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r2[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.7604166666666666,
+   "verifier_top1_in_draft_top5": 0.96875,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 2.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.2007594108581543,
+   "accepted": {
+    "2": {
+     "hist": [
+      23,
+      13,
+      60
+     ],
+     "mean_accepted": 1.3854166666666667,
+     "mean_committed": 2.385416666666667
+    },
+    "4": {
+     "hist": [
+      23,
+      13,
+      10,
+      8,
+      42
+     ],
+     "mean_accepted": 2.34375,
+     "mean_committed": 3.34375
+    },
+    "8": {
+     "hist": [
+      23,
+      13,
+      10,
+      8,
+      7,
+      6,
+      6,
+      6,
+      17
+     ],
+     "mean_accepted": 3.4270833333333335,
+     "mean_committed": 4.427083333333334
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r2:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 2,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r2[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.78125,
+   "verifier_top1_in_draft_top5": 0.9375,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 2.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.19664359092712402,
+   "accepted": {
+    "2": {
+     "hist": [
+      21,
+      14,
+      61
+     ],
+     "mean_accepted": 1.4166666666666667,
+     "mean_committed": 2.416666666666667
+    },
+    "4": {
+     "hist": [
+      21,
+      14,
+      11,
+      8,
+      42
+     ],
+     "mean_accepted": 2.375,
+     "mean_committed": 3.375
+    },
+    "8": {
+     "hist": [
+      21,
+      14,
+      11,
+      8,
+      7,
+      7,
+      5,
+      4,
+      19
+     ],
+     "mean_accepted": 3.46875,
+     "mean_committed": 4.46875
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r4[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.8541666666666666,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.2281653881072998,
+   "accepted": {
+    "2": {
+     "hist": [
+      14,
+      10,
+      72
+     ],
+     "mean_accepted": 1.6041666666666667,
+     "mean_committed": 2.604166666666667
+    },
+    "4": {
+     "hist": [
+      14,
+      10,
+      6,
+      4,
+      62
+     ],
+     "mean_accepted": 2.9375,
+     "mean_committed": 3.9375
+    },
+    "8": {
+     "hist": [
+      14,
+      10,
+      6,
+      4,
+      3,
+      3,
+      3,
+      3,
+      50
+     ],
+     "mean_accepted": 5.208333333333333,
+     "mean_committed": 6.208333333333333
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r4:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r4[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.7916666666666666,
+   "verifier_top1_in_draft_top5": 0.96875,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.21886181831359863,
+   "accepted": {
+    "2": {
+     "hist": [
+      20,
+      12,
+      64
+     ],
+     "mean_accepted": 1.4583333333333333,
+     "mean_committed": 2.458333333333333
+    },
+    "4": {
+     "hist": [
+      20,
+      12,
+      10,
+      8,
+      46
+     ],
+     "mean_accepted": 2.5,
+     "mean_committed": 3.5
+    },
+    "8": {
+     "hist": [
+      20,
+      12,
+      10,
+      8,
+      8,
+      7,
+      6,
+      4,
+      21
+     ],
+     "mean_accepted": 3.6979166666666665,
+     "mean_committed": 4.697916666666666
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r6:raw_sigmoid",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 6,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r6[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.96875,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 6.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.24879860877990723,
+   "accepted": {
+    "2": {
+     "hist": [
+      3,
+      4,
+      89
+     ],
+     "mean_accepted": 1.8958333333333333,
+     "mean_committed": 2.895833333333333
+    },
+    "4": {
+     "hist": [
+      3,
+      4,
+      4,
+      4,
+      81
+     ],
+     "mean_accepted": 3.625,
+     "mean_committed": 4.625
+    },
+    "8": {
+     "hist": [
+      3,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      65
+     ],
+     "mean_accepted": 6.583333333333333,
+     "mean_committed": 7.583333333333333
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r6:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 6,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r6[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.71875,
+   "verifier_top1_in_draft_top5": 0.9583333730697632,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 6.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.23842239379882812,
+   "accepted": {
+    "2": {
+     "hist": [
+      27,
+      15,
+      54
+     ],
+     "mean_accepted": 1.28125,
+     "mean_committed": 2.28125
+    },
+    "4": {
+     "hist": [
+      27,
+      15,
+      10,
+      8,
+      36
+     ],
+     "mean_accepted": 2.1145833333333335,
+     "mean_committed": 3.1145833333333335
+    },
+    "8": {
+     "hist": [
+      27,
+      15,
+      10,
+      8,
+      8,
+      7,
+      5,
+      4,
+      12
+     ],
+     "mean_accepted": 2.9166666666666665,
+     "mean_committed": 3.9166666666666665
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "eat:tau1.0:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "renorm",
+    "expert_policy": "eat",
+    "skip_layers": [],
+    "label": "eat[renorm,s=1.0,native_topk]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.6458333333333334,
+   "verifier_top1_in_draft_top5": 0.8854166865348816,
+   "stats": {
+    "expert_tokens": 102912,
+    "experts_per_token": 7.999922263681592,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.2919657230377197,
+   "accepted": {
+    "2": {
+     "hist": [
+      34,
+      14,
+      48
+     ],
+     "mean_accepted": 1.1458333333333333,
+     "mean_committed": 2.145833333333333
+    },
+    "4": {
+     "hist": [
+      34,
+      14,
+      11,
+      8,
+      29
+     ],
+     "mean_accepted": 1.8333333333333333,
+     "mean_committed": 2.833333333333333
+    },
+    "8": {
+     "hist": [
+      34,
+      14,
+      11,
+      8,
+      7,
+      5,
+      4,
+      4,
+      9
+     ],
+     "mean_accepted": 2.46875,
+     "mean_committed": 3.46875
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k256+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=256]+r4[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.8958333333333334,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 352.98227611940297,
+    "index_scored_per_q": 1072.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.3291210033747347,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3361501693725586,
+   "accepted": {
+    "2": {
+     "hist": [
+      10,
+      10,
+      76
+     ],
+     "mean_accepted": 1.6875,
+     "mean_committed": 2.6875
+    },
+    "4": {
+     "hist": [
+      10,
+      10,
+      6,
+      6,
+      64
+     ],
+     "mean_accepted": 3.0833333333333335,
+     "mean_committed": 4.083333333333334
+    },
+    "8": {
+     "hist": [
+      10,
+      10,
+      6,
+      6,
+      6,
+      5,
+      5,
+      4,
+      44
+     ],
+     "mean_accepted": 5.197916666666667,
+     "mean_committed": 6.197916666666667
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k256+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=256]+r4[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.78125,
+   "verifier_top1_in_draft_top5": 0.9583333730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 352.98227611940297,
+    "index_scored_per_q": 1072.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.3291210033747347,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3260180950164795,
+   "accepted": {
+    "2": {
+     "hist": [
+      21,
+      11,
+      64
+     ],
+     "mean_accepted": 1.4479166666666667,
+     "mean_committed": 2.447916666666667
+    },
+    "4": {
+     "hist": [
+      21,
+      11,
+      10,
+      8,
+      46
+     ],
+     "mean_accepted": 2.4895833333333335,
+     "mean_committed": 3.4895833333333335
+    },
+    "8": {
+     "hist": [
+      21,
+      11,
+      10,
+      8,
+      8,
+      8,
+      5,
+      4,
+      21
+     ],
+     "mean_accepted": 3.6770833333333335,
+     "mean_committed": 4.677083333333334
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k1024+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=1024]+r4[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.8958333333333334,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 844.6240671641791,
+    "index_scored_per_q": 1072.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.7875282677521483,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.33864617347717285,
+   "accepted": {
+    "2": {
+     "hist": [
+      10,
+      8,
+      78
+     ],
+     "mean_accepted": 1.7083333333333333,
+     "mean_committed": 2.708333333333333
+    },
+    "4": {
+     "hist": [
+      10,
+      8,
+      6,
+      5,
+      67
+     ],
+     "mean_accepted": 3.15625,
+     "mean_committed": 4.15625
+    },
+    "8": {
+     "hist": [
+      10,
+      8,
+      6,
+      5,
+      5,
+      5,
+      5,
+      4,
+      48
+     ],
+     "mean_accepted": 5.4375,
+     "mean_committed": 6.4375
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k1024+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=1024]+r4[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.8020833333333334,
+   "verifier_top1_in_draft_top5": 0.9583333730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 844.6240671641791,
+    "index_scored_per_q": 1072.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.7875282677521483,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3297863006591797,
+   "accepted": {
+    "2": {
+     "hist": [
+      19,
+      12,
+      65
+     ],
+     "mean_accepted": 1.4791666666666667,
+     "mean_committed": 2.479166666666667
+    },
+    "4": {
+     "hist": [
+      19,
+      12,
+      10,
+      8,
+      47
+     ],
+     "mean_accepted": 2.5416666666666665,
+     "mean_committed": 3.5416666666666665
+    },
+    "8": {
+     "hist": [
+      19,
+      12,
+      10,
+      8,
+      7,
+      6,
+      5,
+      4,
+      25
+     ],
+     "mean_accepted": 3.875,
+     "mean_committed": 4.875
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k256+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=256]+r4[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.8958333333333334,
+   "verifier_top1_in_draft_top5": 0.9895833730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 325.11107024971295,
+    "index_scored_per_q": 157.76119402985074,
+    "index_build_total": 560594944.0,
+    "index_bytes": 4772352.0,
+    "attended_frac": 0.3031338650346974,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3419015407562256,
+   "accepted": {
+    "2": {
+     "hist": [
+      10,
+      8,
+      78
+     ],
+     "mean_accepted": 1.7083333333333333,
+     "mean_committed": 2.708333333333333
+    },
+    "4": {
+     "hist": [
+      10,
+      8,
+      5,
+      5,
+      68
+     ],
+     "mean_accepted": 3.1770833333333335,
+     "mean_committed": 4.177083333333334
+    },
+    "8": {
+     "hist": [
+      10,
+      8,
+      5,
+      5,
+      5,
+      5,
+      5,
+      4,
+      49
+     ],
+     "mean_accepted": 5.5,
+     "mean_committed": 6.5
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k256+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=256]+r4[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.78125,
+   "verifier_top1_in_draft_top5": 0.9375,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 322.94508826061997,
+    "index_scored_per_q": 157.76119402985074,
+    "index_build_total": 560594944.0,
+    "index_bytes": 4772352.0,
+    "attended_frac": 0.3011143014085035,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3325011730194092,
+   "accepted": {
+    "2": {
+     "hist": [
+      21,
+      12,
+      63
+     ],
+     "mean_accepted": 1.4375,
+     "mean_committed": 2.4375
+    },
+    "4": {
+     "hist": [
+      21,
+      12,
+      9,
+      7,
+      47
+     ],
+     "mean_accepted": 2.4895833333333335,
+     "mean_committed": 3.4895833333333335
+    },
+    "8": {
+     "hist": [
+      21,
+      12,
+      9,
+      7,
+      7,
+      7,
+      5,
+      4,
+      24
+     ],
+     "mean_accepted": 3.7916666666666665,
+     "mean_committed": 4.791666666666666
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k1024+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=1024]+r4[raw_sigmoid]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.8854166666666666,
+   "verifier_top1_in_draft_top5": 0.9895833730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 819.2976732921928,
+    "index_scored_per_q": 157.76119402985074,
+    "index_build_total": 560594944.0,
+    "index_bytes": 4772352.0,
+    "attended_frac": 0.7639139144915551,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.3450644016265869,
+   "accepted": {
+    "2": {
+     "hist": [
+      11,
+      10,
+      75
+     ],
+     "mean_accepted": 1.6666666666666667,
+     "mean_committed": 2.666666666666667
+    },
+    "4": {
+     "hist": [
+      11,
+      10,
+      7,
+      5,
+      63
+     ],
+     "mean_accepted": 3.03125,
+     "mean_committed": 4.03125
+    },
+    "8": {
+     "hist": [
+      11,
+      10,
+      7,
+      5,
+      5,
+      5,
+      5,
+      3,
+      45
+     ],
+     "mean_accepted": 5.15625,
+     "mean_committed": 6.15625
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k1024+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=1024]+r4[renorm]"
+   },
+   "ctx": 2048,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 2048,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9791666865348816,
+   "top1_agree": 0.7916666666666666,
+   "verifier_top1_in_draft_top5": 0.9583333730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 111488,
+    "keys_causal_per_q": 1072.5,
+    "keys_attended_per_q": 817.8085354477612,
+    "index_scored_per_q": 157.76119402985074,
+    "index_build_total": 560594944.0,
+    "index_bytes": 4772352.0,
+    "attended_frac": 0.7625254409769335,
+    "expert_tokens": 102912,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.33591485023498535,
+   "accepted": {
+    "2": {
+     "hist": [
+      20,
+      12,
+      64
+     ],
+     "mean_accepted": 1.4583333333333333,
+     "mean_committed": 2.458333333333333
+    },
+    "4": {
+     "hist": [
+      20,
+      12,
+      10,
+      8,
+      46
+     ],
+     "mean_accepted": 2.5,
+     "mean_committed": 3.5
+    },
+    "8": {
+     "hist": [
+      20,
+      12,
+      10,
+      8,
+      8,
+      7,
+      5,
+      4,
+      22
+     ],
+     "mean_accepted": 3.71875,
+     "mean_committed": 4.71875
+    }
+   }
+  },
+  {
+   "group": "full",
+   "name": "full",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "full"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 1.0,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {},
+   "seconds": 1.1313235759735107,
+   "accepted": {
+    "2": {
+     "hist": [
+      0,
+      1,
+      95
+     ],
+     "mean_accepted": 1.9895833333333333,
+     "mean_committed": 2.989583333333333
+    },
+    "4": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      93
+     ],
+     "mean_accepted": 3.9375,
+     "mean_committed": 4.9375
+    },
+    "8": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      89
+     ],
+     "mean_accepted": 7.708333333333333,
+     "mean_committed": 8.708333333333332
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:oracle_topk:k256",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=256]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.9479166666666666,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 378.941361003861,
+    "index_scored_per_q": 4144.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.09143234672550633,
+    "layers_skipped": 0
+   },
+   "seconds": 2.380310535430908,
+   "accepted": {
+    "2": {
+     "hist": [
+      5,
+      6,
+      85
+     ],
+     "mean_accepted": 1.8333333333333333,
+     "mean_committed": 2.833333333333333
+    },
+    "4": {
+     "hist": [
+      5,
+      6,
+      6,
+      6,
+      73
+     ],
+     "mean_accepted": 3.4166666666666665,
+     "mean_committed": 4.416666666666666
+    },
+    "8": {
+     "hist": [
+      5,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      49
+     ],
+     "mean_accepted": 5.833333333333333,
+     "mean_committed": 6.833333333333333
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:oracle_topk:k1024",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=1024]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.9375,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 1075.4510135135135,
+    "index_scored_per_q": 4144.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.25948872325093825,
+    "layers_skipped": 0
+   },
+   "seconds": 2.398939847946167,
+   "accepted": {
+    "2": {
+     "hist": [
+      6,
+      5,
+      85
+     ],
+     "mean_accepted": 1.8229166666666667,
+     "mean_committed": 2.822916666666667
+    },
+    "4": {
+     "hist": [
+      6,
+      5,
+      4,
+      4,
+      77
+     ],
+     "mean_accepted": 3.46875,
+     "mean_committed": 4.46875
+    },
+    "8": {
+     "hist": [
+      6,
+      5,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      61
+     ],
+     "mean_accepted": 6.260416666666667,
+     "mean_committed": 7.260416666666667
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:lsa_tree:k256",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=256]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.8854166666666666,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 356.8902003823879,
+    "index_scored_per_q": 381.8455598455598,
+    "index_build_total": 2244083712.0,
+    "index_bytes": 19894784.0,
+    "attended_frac": 0.08611176266917309,
+    "layers_skipped": 0
+   },
+   "seconds": 1.9424726963043213,
+   "accepted": {
+    "2": {
+     "hist": [
+      11,
+      9,
+      76
+     ],
+     "mean_accepted": 1.6770833333333333,
+     "mean_committed": 2.677083333333333
+    },
+    "4": {
+     "hist": [
+      11,
+      9,
+      7,
+      7,
+      62
+     ],
+     "mean_accepted": 3.0416666666666665,
+     "mean_committed": 4.041666666666666
+    },
+    "8": {
+     "hist": [
+      11,
+      9,
+      7,
+      7,
+      6,
+      6,
+      6,
+      5,
+      39
+     ],
+     "mean_accepted": 5.010416666666667,
+     "mean_committed": 6.010416666666667
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:lsa_tree:k1024",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=1024]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.9166666666666666,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 1040.7322472713097,
+    "index_scored_per_q": 381.8455598455598,
+    "index_build_total": 2244083712.0,
+    "index_bytes": 19894784.0,
+    "attended_frac": 0.25111165334088786,
+    "layers_skipped": 0
+   },
+   "seconds": 1.9578547477722168,
+   "accepted": {
+    "2": {
+     "hist": [
+      8,
+      7,
+      81
+     ],
+     "mean_accepted": 1.7604166666666667,
+     "mean_committed": 2.760416666666667
+    },
+    "4": {
+     "hist": [
+      8,
+      7,
+      7,
+      7,
+      67
+     ],
+     "mean_accepted": 3.2291666666666665,
+     "mean_committed": 4.229166666666666
+    },
+    "8": {
+     "hist": [
+      8,
+      7,
+      7,
+      7,
+      7,
+      7,
+      7,
+      6,
+      40
+     ],
+     "mean_accepted": 5.302083333333333,
+     "mean_committed": 6.302083333333333
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r2:raw_sigmoid",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 2,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r2[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.6875,
+   "verifier_top1_in_draft_top5": 0.8854166865348816,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 2.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.9366834163665771,
+   "accepted": {
+    "2": {
+     "hist": [
+      30,
+      22,
+      44
+     ],
+     "mean_accepted": 1.1458333333333333,
+     "mean_committed": 2.145833333333333
+    },
+    "4": {
+     "hist": [
+      30,
+      22,
+      15,
+      9,
+      20
+     ],
+     "mean_accepted": 1.65625,
+     "mean_committed": 2.65625
+    },
+    "8": {
+     "hist": [
+      30,
+      22,
+      15,
+      9,
+      7,
+      4,
+      3,
+      3,
+      3
+     ],
+     "mean_accepted": 1.9791666666666667,
+     "mean_committed": 2.979166666666667
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r2:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 2,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r2[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.6145833333333334,
+   "verifier_top1_in_draft_top5": 0.8020833730697632,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 2.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.9375078678131104,
+   "accepted": {
+    "2": {
+     "hist": [
+      37,
+      17,
+      42
+     ],
+     "mean_accepted": 1.0520833333333333,
+     "mean_committed": 2.052083333333333
+    },
+    "4": {
+     "hist": [
+      37,
+      17,
+      12,
+      9,
+      21
+     ],
+     "mean_accepted": 1.5833333333333333,
+     "mean_committed": 2.583333333333333
+    },
+    "8": {
+     "hist": [
+      37,
+      17,
+      12,
+      9,
+      7,
+      5,
+      4,
+      3,
+      2
+     ],
+     "mean_accepted": 1.8958333333333333,
+     "mean_committed": 2.895833333333333
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r4[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.75,
+   "verifier_top1_in_draft_top5": 0.9895833730697632,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.013390302658081,
+   "accepted": {
+    "2": {
+     "hist": [
+      24,
+      16,
+      56
+     ],
+     "mean_accepted": 1.3333333333333333,
+     "mean_committed": 2.333333333333333
+    },
+    "4": {
+     "hist": [
+      24,
+      16,
+      11,
+      8,
+      37
+     ],
+     "mean_accepted": 2.1875,
+     "mean_committed": 3.1875
+    },
+    "8": {
+     "hist": [
+      24,
+      16,
+      11,
+      8,
+      5,
+      5,
+      4,
+      4,
+      19
+     ],
+     "mean_accepted": 3.2395833333333335,
+     "mean_committed": 4.239583333333334
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r4:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r4[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.4479166666666667,
+   "verifier_top1_in_draft_top5": 0.6979166865348816,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.007300615310669,
+   "accepted": {
+    "2": {
+     "hist": [
+      53,
+      25,
+      18
+     ],
+     "mean_accepted": 0.6354166666666666,
+     "mean_committed": 1.6354166666666665
+    },
+    "4": {
+     "hist": [
+      53,
+      25,
+      8,
+      5,
+      5
+     ],
+     "mean_accepted": 0.7916666666666666,
+     "mean_committed": 1.7916666666666665
+    },
+    "8": {
+     "hist": [
+      53,
+      25,
+      8,
+      5,
+      3,
+      2,
+      0,
+      0,
+      0
+     ],
+     "mean_accepted": 0.8125,
+     "mean_committed": 1.8125
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r6:raw_sigmoid",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 6,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r6[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.8854166666666666,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 6.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.0841460227966309,
+   "accepted": {
+    "2": {
+     "hist": [
+      11,
+      9,
+      76
+     ],
+     "mean_accepted": 1.6770833333333333,
+     "mean_committed": 2.677083333333333
+    },
+    "4": {
+     "hist": [
+      11,
+      9,
+      7,
+      7,
+      62
+     ],
+     "mean_accepted": 3.0416666666666665,
+     "mean_committed": 4.041666666666666
+    },
+    "8": {
+     "hist": [
+      11,
+      9,
+      7,
+      7,
+      6,
+      4,
+      4,
+      4,
+      44
+     ],
+     "mean_accepted": 5.125,
+     "mean_committed": 6.125
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r6:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 6,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r6[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.2604166666666667,
+   "verifier_top1_in_draft_top5": 0.4791666865348816,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 6.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.0706446170806885,
+   "accepted": {
+    "2": {
+     "hist": [
+      71,
+      19,
+      6
+     ],
+     "mean_accepted": 0.3229166666666667,
+     "mean_committed": 1.3229166666666667
+    },
+    "4": {
+     "hist": [
+      71,
+      19,
+      5,
+      1,
+      0
+     ],
+     "mean_accepted": 0.3333333333333333,
+     "mean_committed": 1.3333333333333333
+    },
+    "8": {
+     "hist": [
+      71,
+      19,
+      5,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "mean_accepted": 0.3333333333333333,
+     "mean_committed": 1.3333333333333333
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "eat:tau1.0:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "renorm",
+    "expert_policy": "eat",
+    "skip_layers": [],
+    "label": "eat[renorm,s=1.0,native_topk]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.1875,
+   "verifier_top1_in_draft_top5": 0.3854166865348816,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 7.99992458976834,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.174600601196289,
+   "accepted": {
+    "2": {
+     "hist": [
+      78,
+      14,
+      4
+     ],
+     "mean_accepted": 0.22916666666666666,
+     "mean_committed": 1.2291666666666667
+    },
+    "4": {
+     "hist": [
+      78,
+      14,
+      3,
+      1,
+      0
+     ],
+     "mean_accepted": 0.23958333333333334,
+     "mean_committed": 1.2395833333333333
+    },
+    "8": {
+     "hist": [
+      78,
+      14,
+      3,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "mean_accepted": 0.23958333333333334,
+     "mean_committed": 1.2395833333333333
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k256+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=256]+r4[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.78125,
+   "verifier_top1_in_draft_top5": 0.9895833730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 378.941361003861,
+    "index_scored_per_q": 4144.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.09143234672550633,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 2.2708969116210938,
+   "accepted": {
+    "2": {
+     "hist": [
+      21,
+      16,
+      59
+     ],
+     "mean_accepted": 1.3958333333333333,
+     "mean_committed": 2.395833333333333
+    },
+    "4": {
+     "hist": [
+      21,
+      16,
+      12,
+      8,
+      39
+     ],
+     "mean_accepted": 2.2916666666666665,
+     "mean_committed": 3.2916666666666665
+    },
+    "8": {
+     "hist": [
+      21,
+      16,
+      12,
+      8,
+      6,
+      6,
+      4,
+      3,
+      20
+     ],
+     "mean_accepted": 3.3645833333333335,
+     "mean_committed": 4.364583333333334
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k256+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=256]+r4[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.6354166666666666,
+   "verifier_top1_in_draft_top5": 0.8020833730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 378.941361003861,
+    "index_scored_per_q": 4144.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.09143234672550633,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 2.260603666305542,
+   "accepted": {
+    "2": {
+     "hist": [
+      35,
+      19,
+      42
+     ],
+     "mean_accepted": 1.0729166666666667,
+     "mean_committed": 2.072916666666667
+    },
+    "4": {
+     "hist": [
+      35,
+      19,
+      12,
+      6,
+      24
+     ],
+     "mean_accepted": 1.6354166666666667,
+     "mean_committed": 2.635416666666667
+    },
+    "8": {
+     "hist": [
+      35,
+      19,
+      12,
+      6,
+      6,
+      3,
+      3,
+      2,
+      10
+     ],
+     "mean_accepted": 2.2083333333333335,
+     "mean_committed": 3.2083333333333335
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k1024+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=1024]+r4[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.7916666666666666,
+   "verifier_top1_in_draft_top5": 0.9895833730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 1075.4510135135135,
+    "index_scored_per_q": 4144.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.25948872325093825,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 2.2870538234710693,
+   "accepted": {
+    "2": {
+     "hist": [
+      20,
+      15,
+      61
+     ],
+     "mean_accepted": 1.4270833333333333,
+     "mean_committed": 2.427083333333333
+    },
+    "4": {
+     "hist": [
+      20,
+      15,
+      14,
+      8,
+      39
+     ],
+     "mean_accepted": 2.3229166666666665,
+     "mean_committed": 3.3229166666666665
+    },
+    "8": {
+     "hist": [
+      20,
+      15,
+      14,
+      8,
+      7,
+      6,
+      5,
+      4,
+      17
+     ],
+     "mean_accepted": 3.3229166666666665,
+     "mean_committed": 4.322916666666666
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k1024+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=1024]+r4[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.4375,
+   "verifier_top1_in_draft_top5": 0.6666666865348816,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 1075.4510135135135,
+    "index_scored_per_q": 4144.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.25948872325093825,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 2.2764995098114014,
+   "accepted": {
+    "2": {
+     "hist": [
+      54,
+      24,
+      18
+     ],
+     "mean_accepted": 0.625,
+     "mean_committed": 1.625
+    },
+    "4": {
+     "hist": [
+      54,
+      24,
+      10,
+      5,
+      3
+     ],
+     "mean_accepted": 0.7395833333333334,
+     "mean_committed": 1.7395833333333335
+    },
+    "8": {
+     "hist": [
+      54,
+      24,
+      10,
+      5,
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     "mean_accepted": 0.75,
+     "mean_committed": 1.75
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k256+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=256]+r4[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.7916666666666666,
+   "verifier_top1_in_draft_top5": 0.9791666865348816,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 355.9392959236709,
+    "index_scored_per_q": 381.8455598455598,
+    "index_build_total": 2244083712.0,
+    "index_bytes": 19894784.0,
+    "attended_frac": 0.08588232499063118,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.8322029113769531,
+   "accepted": {
+    "2": {
+     "hist": [
+      20,
+      18,
+      58
+     ],
+     "mean_accepted": 1.3958333333333333,
+     "mean_committed": 2.395833333333333
+    },
+    "4": {
+     "hist": [
+      20,
+      18,
+      13,
+      9,
+      36
+     ],
+     "mean_accepted": 2.2395833333333335,
+     "mean_committed": 3.2395833333333335
+    },
+    "8": {
+     "hist": [
+      20,
+      18,
+      13,
+      9,
+      5,
+      4,
+      4,
+      3,
+      20
+     ],
+     "mean_accepted": 3.2916666666666665,
+     "mean_committed": 4.291666666666666
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k256+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=256]+r4[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.6354166666666666,
+   "verifier_top1_in_draft_top5": 0.8125,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 354.9517722564598,
+    "index_scored_per_q": 381.8455598455598,
+    "index_build_total": 2244083712.0,
+    "index_bytes": 19894784.0,
+    "attended_frac": 0.08564405169657613,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.8212952613830566,
+   "accepted": {
+    "2": {
+     "hist": [
+      35,
+      18,
+      43
+     ],
+     "mean_accepted": 1.0833333333333333,
+     "mean_committed": 2.083333333333333
+    },
+    "4": {
+     "hist": [
+      35,
+      18,
+      11,
+      7,
+      25
+     ],
+     "mean_accepted": 1.6770833333333333,
+     "mean_committed": 2.677083333333333
+    },
+    "8": {
+     "hist": [
+      35,
+      18,
+      11,
+      7,
+      6,
+      4,
+      3,
+      3,
+      9
+     ],
+     "mean_accepted": 2.25,
+     "mean_committed": 3.25
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k1024+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=1024]+r4[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.7708333333333334,
+   "verifier_top1_in_draft_top5": 0.9791666865348816,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 1039.853358423671,
+    "index_scored_per_q": 381.8455598455598,
+    "index_build_total": 2244083712.0,
+    "index_bytes": 19894784.0,
+    "attended_frac": 0.25089959185032473,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.8481948375701904,
+   "accepted": {
+    "2": {
+     "hist": [
+      22,
+      15,
+      59
+     ],
+     "mean_accepted": 1.3854166666666667,
+     "mean_committed": 2.385416666666667
+    },
+    "4": {
+     "hist": [
+      22,
+      15,
+      12,
+      9,
+      38
+     ],
+     "mean_accepted": 2.2708333333333335,
+     "mean_committed": 3.2708333333333335
+    },
+    "8": {
+     "hist": [
+      22,
+      15,
+      12,
+      9,
+      7,
+      6,
+      4,
+      4,
+      17
+     ],
+     "mean_accepted": 3.25,
+     "mean_committed": 4.25
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k1024+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=1024]+r4[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_lru",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 0.9583333134651184,
+   "top1_agree": 0.4375,
+   "verifier_top1_in_draft_top5": 0.6666666865348816,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 1039.6277959793586,
+    "index_scored_per_q": 381.8455598455598,
+    "index_build_total": 2244083712.0,
+    "index_bytes": 19894784.0,
+    "attended_frac": 0.25084516732521617,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.8316664695739746,
+   "accepted": {
+    "2": {
+     "hist": [
+      54,
+      21,
+      21
+     ],
+     "mean_accepted": 0.65625,
+     "mean_committed": 1.65625
+    },
+    "4": {
+     "hist": [
+      54,
+      21,
+      11,
+      4,
+      6
+     ],
+     "mean_accepted": 0.8229166666666666,
+     "mean_committed": 1.8229166666666665
+    },
+    "8": {
+     "hist": [
+      54,
+      21,
+      11,
+      4,
+      2,
+      1,
+      1,
+      1,
+      1
+     ],
+     "mean_accepted": 0.9270833333333334,
+     "mean_committed": 1.9270833333333335
+    }
+   }
+  },
+  {
+   "group": "full",
+   "name": "full",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "full"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 1.0,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {},
+   "seconds": 1.1511075496673584,
+   "accepted": {
+    "2": {
+     "hist": [
+      0,
+      1,
+      95
+     ],
+     "mean_accepted": 1.9895833333333333,
+     "mean_committed": 2.989583333333333
+    },
+    "4": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      93
+     ],
+     "mean_accepted": 3.9375,
+     "mean_committed": 4.9375
+    },
+    "8": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      89
+     ],
+     "mean_accepted": 7.708333333333333,
+     "mean_committed": 8.708333333333332
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:oracle_topk:k256",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=256]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 1.0,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 378.941361003861,
+    "index_scored_per_q": 4144.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.09143234672550633,
+    "layers_skipped": 0
+   },
+   "seconds": 2.4086861610412598,
+   "accepted": {
+    "2": {
+     "hist": [
+      0,
+      1,
+      95
+     ],
+     "mean_accepted": 1.9895833333333333,
+     "mean_committed": 2.989583333333333
+    },
+    "4": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      93
+     ],
+     "mean_accepted": 3.9375,
+     "mean_committed": 4.9375
+    },
+    "8": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      89
+     ],
+     "mean_accepted": 7.708333333333333,
+     "mean_committed": 8.708333333333332
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:oracle_topk:k1024",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=1024]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 1.0,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 1075.4510135135135,
+    "index_scored_per_q": 4144.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.25948872325093825,
+    "layers_skipped": 0
+   },
+   "seconds": 2.4271903038024902,
+   "accepted": {
+    "2": {
+     "hist": [
+      0,
+      1,
+      95
+     ],
+     "mean_accepted": 1.9895833333333333,
+     "mean_committed": 2.989583333333333
+    },
+    "4": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      93
+     ],
+     "mean_accepted": 3.9375,
+     "mean_committed": 4.9375
+    },
+    "8": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      89
+     ],
+     "mean_accepted": 7.708333333333333,
+     "mean_committed": 8.708333333333332
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:lsa_tree:k256",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=256]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 1.0,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 355.98769305019306,
+    "index_scored_per_q": 381.8455598455598,
+    "index_build_total": 2244083712.0,
+    "index_bytes": 19894784.0,
+    "attended_frac": 0.08589400242494705,
+    "layers_skipped": 0
+   },
+   "seconds": 1.9640109539031982,
+   "accepted": {
+    "2": {
+     "hist": [
+      0,
+      1,
+      95
+     ],
+     "mean_accepted": 1.9895833333333333,
+     "mean_committed": 2.989583333333333
+    },
+    "4": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      93
+     ],
+     "mean_accepted": 3.9375,
+     "mean_committed": 4.9375
+    },
+    "8": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      89
+     ],
+     "mean_accepted": 7.708333333333333,
+     "mean_committed": 8.708333333333332
+    }
+   }
+  },
+  {
+   "group": "attn_only",
+   "name": "attn:lsa_tree:k1024",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=1024]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 1.0,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 1041.0344961204337,
+    "index_scored_per_q": 381.8455598455598,
+    "index_build_total": 2244083712.0,
+    "index_bytes": 19894784.0,
+    "attended_frac": 0.25118458104003705,
+    "layers_skipped": 0
+   },
+   "seconds": 1.9799096584320068,
+   "accepted": {
+    "2": {
+     "hist": [
+      0,
+      1,
+      95
+     ],
+     "mean_accepted": 1.9895833333333333,
+     "mean_committed": 2.989583333333333
+    },
+    "4": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      93
+     ],
+     "mean_accepted": 3.9375,
+     "mean_committed": 4.9375
+    },
+    "8": {
+     "hist": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      89
+     ],
+     "mean_accepted": 7.708333333333333,
+     "mean_committed": 8.708333333333332
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r2:raw_sigmoid",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 2,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r2[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.7604166666666666,
+   "verifier_top1_in_draft_top5": 0.8958333730697632,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 2.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.9552929401397705,
+   "accepted": {
+    "2": {
+     "hist": [
+      23,
+      18,
+      55
+     ],
+     "mean_accepted": 1.3333333333333333,
+     "mean_committed": 2.333333333333333
+    },
+    "4": {
+     "hist": [
+      23,
+      18,
+      11,
+      7,
+      37
+     ],
+     "mean_accepted": 2.1770833333333335,
+     "mean_committed": 3.1770833333333335
+    },
+    "8": {
+     "hist": [
+      23,
+      18,
+      11,
+      7,
+      4,
+      3,
+      3,
+      3,
+      24
+     ],
+     "mean_accepted": 3.3645833333333335,
+     "mean_committed": 4.364583333333334
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r2:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 2,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r2[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.59375,
+   "verifier_top1_in_draft_top5": 0.8854166865348816,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 2.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 0.9551277160644531,
+   "accepted": {
+    "2": {
+     "hist": [
+      39,
+      18,
+      39
+     ],
+     "mean_accepted": 1.0,
+     "mean_committed": 2.0
+    },
+    "4": {
+     "hist": [
+      39,
+      18,
+      10,
+      5,
+      24
+     ],
+     "mean_accepted": 1.5520833333333333,
+     "mean_committed": 2.552083333333333
+    },
+    "8": {
+     "hist": [
+      39,
+      18,
+      10,
+      5,
+      5,
+      3,
+      3,
+      2,
+      11
+     ],
+     "mean_accepted": 2.1666666666666665,
+     "mean_committed": 3.1666666666666665
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r4[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.8541666666666666,
+   "verifier_top1_in_draft_top5": 0.9895833730697632,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.030747890472412,
+   "accepted": {
+    "2": {
+     "hist": [
+      14,
+      12,
+      70
+     ],
+     "mean_accepted": 1.5833333333333333,
+     "mean_committed": 2.583333333333333
+    },
+    "4": {
+     "hist": [
+      14,
+      12,
+      8,
+      8,
+      54
+     ],
+     "mean_accepted": 2.7916666666666665,
+     "mean_committed": 3.7916666666666665
+    },
+    "8": {
+     "hist": [
+      14,
+      12,
+      8,
+      8,
+      7,
+      6,
+      4,
+      4,
+      33
+     ],
+     "mean_accepted": 4.4375,
+     "mean_committed": 5.4375
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r4:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r4[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.5,
+   "verifier_top1_in_draft_top5": 0.6666666865348816,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.0217437744140625,
+   "accepted": {
+    "2": {
+     "hist": [
+      48,
+      22,
+      26
+     ],
+     "mean_accepted": 0.7708333333333334,
+     "mean_committed": 1.7708333333333335
+    },
+    "4": {
+     "hist": [
+      48,
+      22,
+      11,
+      4,
+      11
+     ],
+     "mean_accepted": 1.0416666666666667,
+     "mean_committed": 2.041666666666667
+    },
+    "8": {
+     "hist": [
+      48,
+      22,
+      11,
+      4,
+      3,
+      2,
+      2,
+      2,
+      2
+     ],
+     "mean_accepted": 1.25,
+     "mean_committed": 2.25
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r6:raw_sigmoid",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 6,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r6[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.9479166666666666,
+   "verifier_top1_in_draft_top5": 1.0,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 6.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.0982985496520996,
+   "accepted": {
+    "2": {
+     "hist": [
+      5,
+      6,
+      85
+     ],
+     "mean_accepted": 1.8333333333333333,
+     "mean_committed": 2.833333333333333
+    },
+    "4": {
+     "hist": [
+      5,
+      6,
+      6,
+      6,
+      73
+     ],
+     "mean_accepted": 3.4166666666666665,
+     "mean_committed": 4.416666666666666
+    },
+    "8": {
+     "hist": [
+      5,
+      6,
+      6,
+      6,
+      6,
+      5,
+      5,
+      5,
+      52
+     ],
+     "mean_accepted": 5.895833333333333,
+     "mean_committed": 6.895833333333333
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "topr:r6:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 6,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "r6[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.5520833333333334,
+   "verifier_top1_in_draft_top5": 0.7604166865348816,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 6.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.0898120403289795,
+   "accepted": {
+    "2": {
+     "hist": [
+      43,
+      19,
+      34
+     ],
+     "mean_accepted": 0.90625,
+     "mean_committed": 1.90625
+    },
+    "4": {
+     "hist": [
+      43,
+      19,
+      12,
+      6,
+      16
+     ],
+     "mean_accepted": 1.3020833333333333,
+     "mean_committed": 2.302083333333333
+    },
+    "8": {
+     "hist": [
+      43,
+      19,
+      12,
+      6,
+      5,
+      3,
+      3,
+      3,
+      2
+     ],
+     "mean_accepted": 1.5729166666666667,
+     "mean_committed": 2.572916666666667
+    }
+   }
+  },
+  {
+   "group": "expert_only",
+   "name": "eat:tau1.0:renorm",
+   "cfg": {
+    "attn_budget": null,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": null,
+    "weight_convention": "renorm",
+    "expert_policy": "eat",
+    "skip_layers": [],
+    "label": "eat[renorm,s=1.0,native_topk]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.21875,
+   "verifier_top1_in_draft_top5": 0.3645833432674408,
+   "stats": {
+    "expert_tokens": 397824,
+    "experts_per_token": 7.999758687258687,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.1957995891571045,
+   "accepted": {
+    "2": {
+     "hist": [
+      75,
+      15,
+      6
+     ],
+     "mean_accepted": 0.28125,
+     "mean_committed": 1.28125
+    },
+    "4": {
+     "hist": [
+      75,
+      15,
+      3,
+      1,
+      2
+     ],
+     "mean_accepted": 0.3333333333333333,
+     "mean_committed": 1.3333333333333333
+    },
+    "8": {
+     "hist": [
+      75,
+      15,
+      3,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0
+     ],
+     "mean_accepted": 0.34375,
+     "mean_committed": 1.34375
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k256+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=256]+r4[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.8958333333333334,
+   "verifier_top1_in_draft_top5": 0.9895833730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 378.941361003861,
+    "index_scored_per_q": 4144.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.09143234672550633,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 2.293586492538452,
+   "accepted": {
+    "2": {
+     "hist": [
+      10,
+      9,
+      77
+     ],
+     "mean_accepted": 1.6979166666666667,
+     "mean_committed": 2.697916666666667
+    },
+    "4": {
+     "hist": [
+      10,
+      9,
+      7,
+      7,
+      63
+     ],
+     "mean_accepted": 3.0833333333333335,
+     "mean_committed": 4.083333333333334
+    },
+    "8": {
+     "hist": [
+      10,
+      9,
+      7,
+      7,
+      7,
+      6,
+      4,
+      4,
+      42
+     ],
+     "mean_accepted": 5.104166666666667,
+     "mean_committed": 6.104166666666667
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k256+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=256]+r4[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.5625,
+   "verifier_top1_in_draft_top5": 0.7083333730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 378.941361003861,
+    "index_scored_per_q": 4144.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.09143234672550633,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 2.2797224521636963,
+   "accepted": {
+    "2": {
+     "hist": [
+      42,
+      20,
+      34
+     ],
+     "mean_accepted": 0.9166666666666666,
+     "mean_committed": 1.9166666666666665
+    },
+    "4": {
+     "hist": [
+      42,
+      20,
+      12,
+      6,
+      16
+     ],
+     "mean_accepted": 1.3125,
+     "mean_committed": 2.3125
+    },
+    "8": {
+     "hist": [
+      42,
+      20,
+      12,
+      6,
+      5,
+      4,
+      3,
+      3,
+      1
+     ],
+     "mean_accepted": 1.5520833333333333,
+     "mean_committed": 2.552083333333333
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k1024+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=1024]+r4[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.8958333333333334,
+   "verifier_top1_in_draft_top5": 0.9895833730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 1075.4510135135135,
+    "index_scored_per_q": 4144.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.25948872325093825,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 2.311995029449463,
+   "accepted": {
+    "2": {
+     "hist": [
+      10,
+      10,
+      76
+     ],
+     "mean_accepted": 1.6875,
+     "mean_committed": 2.6875
+    },
+    "4": {
+     "hist": [
+      10,
+      10,
+      8,
+      7,
+      61
+     ],
+     "mean_accepted": 3.03125,
+     "mean_committed": 4.03125
+    },
+    "8": {
+     "hist": [
+      10,
+      10,
+      8,
+      7,
+      7,
+      6,
+      3,
+      3,
+      42
+     ],
+     "mean_accepted": 5.0,
+     "mean_committed": 6.0
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:oracle_topk:k1024+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "oracle_topk",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[oracle_topk,k=1024]+r4[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.5416666666666666,
+   "verifier_top1_in_draft_top5": 0.7083333730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 1075.4510135135135,
+    "index_scored_per_q": 4144.5,
+    "index_build_total": 0.0,
+    "index_bytes": 0.0,
+    "attended_frac": 0.25948872325093825,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 2.3044025897979736,
+   "accepted": {
+    "2": {
+     "hist": [
+      44,
+      21,
+      31
+     ],
+     "mean_accepted": 0.8645833333333334,
+     "mean_committed": 1.8645833333333335
+    },
+    "4": {
+     "hist": [
+      44,
+      21,
+      11,
+      5,
+      15
+     ],
+     "mean_accepted": 1.2291666666666667,
+     "mean_committed": 2.229166666666667
+    },
+    "8": {
+     "hist": [
+      44,
+      21,
+      11,
+      5,
+      4,
+      4,
+      3,
+      3,
+      1
+     ],
+     "mean_accepted": 1.46875,
+     "mean_committed": 2.46875
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k256+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=256]+r4[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.9166666666666666,
+   "verifier_top1_in_draft_top5": 0.9895833730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 355.2626573173448,
+    "index_scored_per_q": 381.8455598455598,
+    "index_build_total": 2244083712.0,
+    "index_bytes": 19894784.0,
+    "attended_frac": 0.08571906317223907,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.8551709651947021,
+   "accepted": {
+    "2": {
+     "hist": [
+      8,
+      7,
+      81
+     ],
+     "mean_accepted": 1.7604166666666667,
+     "mean_committed": 2.760416666666667
+    },
+    "4": {
+     "hist": [
+      8,
+      7,
+      6,
+      5,
+      70
+     ],
+     "mean_accepted": 3.2708333333333335,
+     "mean_committed": 4.270833333333334
+    },
+    "8": {
+     "hist": [
+      8,
+      7,
+      6,
+      5,
+      5,
+      4,
+      2,
+      1,
+      58
+     ],
+     "mean_accepted": 5.802083333333333,
+     "mean_committed": 6.802083333333333
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k256+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 256,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=256]+r4[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.6041666666666666,
+   "verifier_top1_in_draft_top5": 0.84375,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 354.4987841550342,
+    "index_scored_per_q": 381.8455598455598,
+    "index_build_total": 2244083712.0,
+    "index_bytes": 19894784.0,
+    "attended_frac": 0.08553475308361302,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.8442566394805908,
+   "accepted": {
+    "2": {
+     "hist": [
+      38,
+      17,
+      41
+     ],
+     "mean_accepted": 1.03125,
+     "mean_committed": 2.03125
+    },
+    "4": {
+     "hist": [
+      38,
+      17,
+      10,
+      7,
+      24
+     ],
+     "mean_accepted": 1.6041666666666667,
+     "mean_committed": 2.604166666666667
+    },
+    "8": {
+     "hist": [
+      38,
+      17,
+      10,
+      7,
+      7,
+      4,
+      4,
+      4,
+      5
+     ],
+     "mean_accepted": 2.0625,
+     "mean_committed": 3.0625
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k1024+topr:r4:raw_sigmoid",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "raw_sigmoid",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=1024]+r4[raw_sigmoid]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.8854166666666666,
+   "verifier_top1_in_draft_top5": 0.9895833730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 1040.4523082491833,
+    "index_scored_per_q": 381.8455598455598,
+    "index_build_total": 2244083712.0,
+    "index_bytes": 19894784.0,
+    "attended_frac": 0.25104410863775684,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.8709378242492676,
+   "accepted": {
+    "2": {
+     "hist": [
+      11,
+      10,
+      75
+     ],
+     "mean_accepted": 1.6666666666666667,
+     "mean_committed": 2.666666666666667
+    },
+    "4": {
+     "hist": [
+      11,
+      10,
+      8,
+      8,
+      59
+     ],
+     "mean_accepted": 2.9791666666666665,
+     "mean_committed": 3.9791666666666665
+    },
+    "8": {
+     "hist": [
+      11,
+      10,
+      8,
+      8,
+      6,
+      5,
+      3,
+      3,
+      42
+     ],
+     "mean_accepted": 4.9375,
+     "mean_committed": 5.9375
+    }
+   }
+  },
+  {
+   "group": "combined",
+   "name": "attn:lsa_tree:k1024+topr:r4:renorm",
+   "cfg": {
+    "attn_budget": 1024,
+    "attn_selector": "lsa_tree",
+    "attn_layers": "global",
+    "sink": 4,
+    "window": 128,
+    "expert_r": 4,
+    "weight_convention": "renorm",
+    "expert_policy": "topr",
+    "skip_layers": [],
+    "label": "attn[lsa_tree,k=1024]+r4[renorm]"
+   },
+   "ctx": 8192,
+   "prompt": "py_interval",
+   "kind": "code",
+   "P": 8192,
+   "n_new": 96,
+   "verifier_teacher_match": 1.0,
+   "top1_agree": 0.6458333333333334,
+   "verifier_top1_in_draft_top5": 0.8333333730697632,
+   "stats": {
+    "calls": 13,
+    "queries": 430976,
+    "keys_causal_per_q": 4144.5,
+    "keys_attended_per_q": 1040.0152978356102,
+    "index_scored_per_q": 381.8455598455598,
+    "index_build_total": 2244083712.0,
+    "index_bytes": 19894784.0,
+    "attended_frac": 0.25093866517930036,
+    "expert_tokens": 397824,
+    "experts_per_token": 4.0,
+    "experts_native_per_token": 8.0,
+    "layers_skipped": 0
+   },
+   "seconds": 1.861631155014038,
+   "accepted": {
+    "2": {
+     "hist": [
+      34,
+      15,
+      47
+     ],
+     "mean_accepted": 1.1354166666666667,
+     "mean_committed": 2.135416666666667
+    },
+    "4": {
+     "hist": [
+      34,
+      15,
+      12,
+      6,
+      29
+     ],
+     "mean_accepted": 1.8020833333333333,
+     "mean_committed": 2.802083333333333
+    },
+    "8": {
+     "hist": [
+      34,
+      15,
+      12,
+      6,
+      6,
+      4,
+      4,
+      4,
+      11
+     ],
+     "mean_accepted": 2.5104166666666665,
+     "mean_committed": 3.5104166666666665
+    }
+   }
+  }
+ ],
+ "summary": {
+  "table": [
+   {
+    "group": "attn_only",
+    "name": "attn:oracle_topk:k1024",
+    "n": 4,
+    "agree": 0.9765625,
+    "committed": 4.7578125,
+    "experts_per_token": NaN,
+    "attended_frac": 0.5235084955015433
+   },
+   {
+    "group": "attn_only",
+    "name": "attn:lsa_tree:k1024",
+    "n": 4,
+    "agree": 0.9739583333333333,
+    "committed": 4.723958333333333,
+    "experts_per_token": NaN,
+    "attended_frac": 0.5075745569607195
+   },
+   {
+    "group": "attn_only",
+    "name": "attn:oracle_topk:k256",
+    "n": 4,
+    "agree": 0.9739583333333333,
+    "committed": 4.700520833333333,
+    "experts_per_token": NaN,
+    "attended_frac": 0.21027667505012054
+   },
+   {
+    "group": "attn_only",
+    "name": "attn:lsa_tree:k256",
+    "n": 4,
+    "agree": 0.9609375,
+    "committed": 4.6328125,
+    "experts_per_token": NaN,
+    "attended_frac": 0.1945056014001428
+   },
+   {
+    "group": "combined",
+    "name": "attn:lsa_tree:k256+topr:r4:raw_sigmoid",
+    "n": 4,
+    "agree": 0.875,
+    "committed": 3.9296875000000004,
+    "experts_per_token": 4.0,
+    "attended_frac": 0.19419456892818718
+   },
+   {
+    "group": "combined",
+    "name": "attn:oracle_topk:k1024+topr:r4:raw_sigmoid",
+    "n": 4,
+    "agree": 0.8619791666666667,
+    "committed": 3.888020833333333,
+    "experts_per_token": 4.0,
+    "attended_frac": 0.5235084955015433
+   },
+   {
+    "group": "combined",
+    "name": "attn:lsa_tree:k1024+topr:r4:raw_sigmoid",
+    "n": 4,
+    "agree": 0.8567708333333333,
+    "committed": 3.8567708333333335,
+    "experts_per_token": 4.0,
+    "attended_frac": 0.5073836497185108
+   },
+   {
+    "group": "combined",
+    "name": "attn:oracle_topk:k256+topr:r4:raw_sigmoid",
+    "n": 4,
+    "agree": 0.8515625000000001,
+    "committed": 3.822916666666667,
+    "experts_per_token": 4.0,
+    "attended_frac": 0.21027667505012054
+   },
+   {
+    "group": "combined",
+    "name": "attn:lsa_tree:k256+topr:r4:renorm",
+    "n": 4,
+    "agree": 0.6901041666666666,
+    "committed": 3.013020833333334,
+    "experts_per_token": 4.0,
+    "attended_frac": 0.1931556063753052
+   },
+   {
+    "group": "combined",
+    "name": "attn:oracle_topk:k256+topr:r4:renorm",
+    "n": 4,
+    "agree": 0.6744791666666666,
+    "committed": 2.893229166666667,
+    "experts_per_token": 4.0,
+    "attended_frac": 0.21027667505012054
+   },
+   {
+    "group": "combined",
+    "name": "attn:lsa_tree:k1024+topr:r4:renorm",
+    "n": 4,
+    "agree": 0.65625,
+    "committed": 2.861979166666666,
+    "experts_per_token": 4.0,
+    "attended_frac": 0.5067767470272395
+   },
+   {
+    "group": "combined",
+    "name": "attn:oracle_topk:k1024+topr:r4:renorm",
+    "n": 4,
+    "agree": 0.6302083333333334,
+    "committed": 2.682291666666667,
+    "experts_per_token": 4.0,
+    "attended_frac": 0.5235084955015433
+   },
+   {
+    "group": "expert_only",
+    "name": "topr:r6:raw_sigmoid",
+    "n": 4,
+    "agree": 0.9401041666666666,
+    "committed": 4.424479166666666,
+    "experts_per_token": 6.0,
+    "attended_frac": NaN
+   },
+   {
+    "group": "expert_only",
+    "name": "topr:r4:raw_sigmoid",
+    "n": 4,
+    "agree": 0.8359374999999999,
+    "committed": 3.7578125,
+    "experts_per_token": 4.0,
+    "attended_frac": NaN
+   },
+   {
+    "group": "expert_only",
+    "name": "topr:r2:raw_sigmoid",
+    "n": 4,
+    "agree": 0.7239583333333333,
+    "committed": 2.9895833333333335,
+    "experts_per_token": 2.0,
+    "attended_frac": NaN
+   },
+   {
+    "group": "expert_only",
+    "name": "topr:r4:renorm",
+    "n": 4,
+    "agree": 0.625,
+    "committed": 2.674479166666667,
+    "experts_per_token": 4.0,
+    "attended_frac": NaN
+   },
+   {
+    "group": "expert_only",
+    "name": "topr:r2:renorm",
+    "n": 4,
+    "agree": 0.6276041666666667,
+    "committed": 2.651041666666666,
+    "experts_per_token": 2.0,
+    "attended_frac": NaN
+   },
+   {
+    "group": "expert_only",
+    "name": "topr:r6:renorm",
+    "n": 4,
+    "agree": 0.546875,
+    "committed": 2.4010416666666665,
+    "experts_per_token": 6.0,
+    "attended_frac": NaN
+   },
+   {
+    "group": "expert_only",
+    "name": "eat:tau1.0:renorm",
+    "n": 4,
+    "agree": 0.38802083333333337,
+    "committed": 1.8932291666666665,
+    "experts_per_token": 7.999879521837602,
+    "attended_frac": NaN
+   },
+   {
+    "group": "full",
+    "name": "full",
+    "n": 4,
+    "agree": 1.0,
+    "committed": 4.9375,
+    "experts_per_token": NaN,
+    "attended_frac": NaN
+   }
+  ],
+  "best": {
+   "attn_only": {
+    "group": "attn_only",
+    "name": "attn:oracle_topk:k1024",
+    "n": 4,
+    "agree": 0.9765625,
+    "committed": 4.7578125,
+    "experts_per_token": NaN,
+    "attended_frac": 0.5235084955015433
+   },
+   "expert_only": {
+    "group": "expert_only",
+    "name": "topr:r6:raw_sigmoid",
+    "n": 4,
+    "agree": 0.9401041666666666,
+    "committed": 4.424479166666666,
+    "experts_per_token": 6.0,
+    "attended_frac": NaN
+   },
+   "combined": {
+    "group": "combined",
+    "name": "attn:lsa_tree:k256+topr:r4:raw_sigmoid",
+    "n": 4,
+    "agree": 0.875,
+    "committed": 3.9296875000000004,
+    "experts_per_token": 4.0,
+    "attended_frac": 0.19419456892818718
+   },
+   "layerskip": null
+  },
+  "gamma": "4"
+ }
+}
