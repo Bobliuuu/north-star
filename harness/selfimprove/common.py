@@ -11,6 +11,26 @@ _NONCE = os.environ.pop("NS_NONCE", None)          # must stay the first side ef
 if _NONCE is None:
     sys.stderr.write("NS_NONCE missing: harness must be run by the evaluator\n"); sys.exit(97)
 
+_HELDOUT_FDS = json.loads(os.environ.pop("NS_HELDOUT_FDS", "{}") or "{}")   # name -> fd; delivered ONLY to the quality process, after build/audit
+
+
+def heldout_bytes(name: str) -> bytes:
+    """Held-out inputs arrive as an already-open, already-unlinked file descriptor handed to this process by the evaluator. They are
+    never in the candidate-writable workspace, and the candidate-built binary (spawned with close_fds) does not inherit the fd."""
+    fd = _HELDOUT_FDS.get(name)
+    if fd is None:
+        sys.stderr.write(f"held-out input {name!r} not delivered by the evaluator\n"); sys.exit(98)
+    chunks, off = [], 0
+    while True:
+        b = os.pread(fd, 1 << 20, off)
+        if not b: return b"".join(chunks)
+        chunks.append(b); off += len(b)
+
+
+def heldout_json(name: str):
+    return json.loads(heldout_bytes(name))
+
+
 WS = os.path.abspath(os.environ.get("NS_WORKSPACE", os.getcwd()))
 SEED = int(os.environ.get("NS_SEED", "0"))
 SPLIT = os.environ.get("NS_SPLIT", "dev")

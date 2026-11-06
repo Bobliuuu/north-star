@@ -170,14 +170,14 @@ def _limits(cpu_s: int, fsize_mb: int, nproc: int | None):
 
 
 def run(cmd: list[str], cwd: Path, timeout_s: float, env_extra: dict[str, str] | None = None, max_out: int = 1 << 20,
-        fsize_mb: int = 256, nproc: int | None = None) -> RunResult:
+        fsize_mb: int = 256, nproc: int | None = None, pass_fds: tuple = ()) -> RunResult:
     env = {k: v for k, v in os.environ.items() if k in SCRUB_ENV_KEEP}
     env["NS_WORKSPACE"] = str(cwd)
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     env.update(env_extra or {})
     t0 = time.time()
     p = subprocess.Popen(cmd, cwd=cwd, env=env, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                         preexec_fn=_limits(int(timeout_s) + 5, fsize_mb, nproc))
+                         preexec_fn=_limits(int(timeout_s) + 5, fsize_mb, nproc), pass_fds=tuple(pass_fds))
     timed_out = False
     try:
         out, err = p.communicate(timeout=timeout_s)
