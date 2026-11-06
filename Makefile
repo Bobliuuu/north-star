@@ -5,7 +5,7 @@
 #   make bench   PRINTS the exact modal --detach commands (GPU, costs money); does NOT run them
 #   make plots   regenerate every plot from raw results/*.jsonl into results/plots/
 PY ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
-TEST_DIRS := tests src/approx src/kvm src/opt src/selfimprove src/tage
+TEST_DIRS := tests src/approx src/weightedit src/kvm src/opt src/selfimprove src/tage
 CHECK_DIRS := tests src/approx src/kvm
 
 .PHONY: setup test check bench plots all
