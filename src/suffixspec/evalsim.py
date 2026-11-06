@@ -24,6 +24,17 @@ def cost_ms(K, pts=None):
     return float(np.interp(K, xs, ys))
 
 
+# Named step-cost models: relative cost of a verify step with K tokens (K=1 plain decode = 1.0).
+#  megakernel : MEASURED on our H100 megakernel (RESULTS.md H5) -> cost_ms(K)/PLAIN_MS
+#  flat2/flat5: INFERRED stand-ins for the vLLM/RTX regime of inference-experiment (decode step bound by expert-weight
+#               reads, so extra verified tokens are nearly free): 1 + c*(K-1), c = 2% / 5%
+COST_MODELS = {
+    "megakernel": lambda K: cost_ms(K) / PLAIN_MS,
+    "flat2": lambda K: 1 + 0.02 * (K - 1),
+    "flat5": lambda K: 1 + 0.05 * (K - 1),
+}
+
+
 def run_one(proposer, prompt, out, kmax=8, min_draft=1, keep_state=False):
     proposer.start_doc(keep_state=keep_state)
     for t in prompt:
@@ -31,6 +42,7 @@ def run_one(proposer, prompt, out, kmax=8, min_draft=1, keep_state=False):
     pos, n = 0, len(out)
     steps = tokens = drafted = accepted = verified_steps = 0
     ms = 0.0
+    kcount = {}
     while pos < n:
         draft = proposer.propose(kmax, 0.0)[0][: n - pos]
         if len(draft) < min_draft:
@@ -40,6 +52,7 @@ def run_one(proposer, prompt, out, kmax=8, min_draft=1, keep_state=False):
             a += 1
         K = len(draft) + 1
         ms += cost_ms(K)
+        kcount[K] = kcount.get(K, 0) + 1
         steps += 1
         verified_steps += bool(draft)
         drafted += len(draft)
@@ -49,7 +62,14 @@ def run_one(proposer, prompt, out, kmax=8, min_draft=1, keep_state=False):
             proposer.commit(out[pos + j])
         tokens += take
         pos += take
-    return dict(tokens=tokens, steps=steps, drafted=drafted, accepted=accepted, verified_steps=verified_steps, ms=ms)
+    return dict(tokens=tokens, steps=steps, drafted=drafted, accepted=accepted, verified_steps=verified_steps, ms=ms,
+                kcount=kcount)
+
+
+def speedup_from(kcounts, tokens, model="megakernel"):
+    """tokens / sum_steps cost(K) under a named cost model (plain decode = 1.0 per token)."""
+    f = COST_MODELS[model]
+    return tokens / sum(n * f(K) for K, n in kcounts.items())
 
 
 def evaluate(make, records, **kw):
