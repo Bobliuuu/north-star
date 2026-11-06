@@ -1,5 +1,11 @@
 # NEXT_STEPS
 
+## STATUS UPDATE 2026-11-06 (read first; the older text below predates it)
+POSITIVE RESULT (MEASURED, H100, RESULTS.md H9/H10/H13): fast Triton decode executor 10.7 -> 3.9 ms/token (plain decode, ~2.7x), plus zero-cost PLD/suffix speculation on top: 3.2-4.4x tok/s vs the original graphed baseline and 1.15-1.54x vs fast plain decode (natural 21 tasks / ctx 2K / ctx 8K). CAVEAT: outputs are NOT token-identical to plain greedy over 192 tokens; every one of 116 checked divergences is a verified near-tie (top-2 margin median 0.125, max 0.5). Quality-equivalent, not bit-exact. Branch `exact-spec` is attacking exactness.
+NEGATIVE (MEASURED/INFERRED): model-draft self-speculation (H5-H8, H11 megakernel, H12 long-ctx 32K/128K and batch>1) never beats plain decode; best case ~1.0x. Gate G0 (self-spec fused saving >=15%) stays failed except under an unbuilt fused-draft upper bound at gamma<=3.
+NEXT: exact (lossless) spec; PLD on the megakernel (3.25 ms; needs multi-token causal verify + KV rollback); fused-draft design; real-traffic task mix for PLD.
+
+
 Every statement is taken from RESULTS.md, docs/*.md, results/*, RUNS.md or the code. Nothing here is a new measurement. Evidence classes: MEASURED, INFERRED (arithmetic on measured numbers), SIMULATED (invented inputs).
 
 ## Where the project stands (one paragraph)

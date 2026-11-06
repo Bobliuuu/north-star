@@ -1,0 +1,209 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-nFhCdfbMfvUgE2GyBCx3pd
+✓ Created objects.
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a4e541eafc9035086/modal/long
+│   ctx.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a4e541eafc9035086/src/norths
+│   tar
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a4e541eafc9035086/tests
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a4e541eafc9035086/harness
+└── ✓ Created Function run_remote.
+LCROW {"kind": "meta", "meta": {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-06T15:43:04Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "b75d56d0a2a7"}, "part": "K", "t_s": 0.6}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "bmm_padded", "ms": 0.3057279884815216, "floor_ms": 0.08012998686567163, "t_s": 3.0}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 4, "stages": 2, "ms": 0.893887996673584, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 8.9}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 4, "stages": 3, "ms": 0.8906239867210388, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 11.2}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 4, "stages": 4, "ms": 0.8903999924659729, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 13.6}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 8, "stages": 2, "ms": 0.8994240164756775, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 15.4}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 8, "stages": 3, "ms": 0.9003199934959412, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 17.5}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 8, "stages": 4, "ms": 0.9010879993438721, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 20.0}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 4, "warps": 4, "stages": 2, "ms": 0.5179839730262756, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 22.8}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 4, "warps": 4, "stages": 3, "ms": 0.5169280171394348, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 25.3}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 4, "warps": 4, "stages": 4, "ms": 0.5166720151901245, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 28.1}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 4, "warps": 8, "stages": 2, "ms": 0.5587520003318787, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 30.9}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 4, "warps": 8, "stages": 3, "ms": 0.5582079887390137, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 33.9}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 4, "warps": 8, "stages": 4, "ms": 0.5579519867897034, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 36.3}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 8, "warps": 4, "stages": 2, "ms": 0.31225600838661194, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 40.3}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 8, "warps": 4, "stages": 3, "ms": 0.3117760121822357, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 44.0}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 8, "warps": 4, "stages": 4, "ms": 0.31222400069236755, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 48.0}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 8, "warps": 8, "stages": 2, "ms": 0.3514559864997864, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 51.3}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 8, "warps": 8, "stages": 3, "ms": 0.3503679931163788, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 54.6}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 64, "iters": 8, "warps": 8, "stages": 4, "ms": 0.351936012506485, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 57.6}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 1, "warps": 4, "stages": 2, "ms": 0.892192006111145, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 60.0}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 1, "warps": 4, "stages": 3, "ms": 0.8895679712295532, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 62.0}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 1, "warps": 4, "stages": 4, "ms": 0.8891839981079102, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 64.5}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 1, "warps": 8, "stages": 2, "ms": 0.890175998210907, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 66.4}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 1, "warps": 8, "stages": 3, "ms": 0.8908159732818604, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 68.9}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 1, "warps": 8, "stages": 4, "ms": 0.8924800157546997, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 71.0}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 2, "warps": 4, "stages": 2, "ms": 0.5086719989776611, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 73.1}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 2, "warps": 4, "stages": 3, "ms": 0.5084159970283508, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 75.5}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 2, "warps": 4, "stages": 4, "ms": 0.5083199739456177, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 78.2}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 2, "warps": 8, "stages": 2, "ms": 0.5249599814414978, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 80.2}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 2, "warps": 8, "stages": 3, "ms": 0.5250880122184753, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 82.3}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 2, "warps": 8, "stages": 4, "ms": 0.5248960256576538, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 84.4}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 4, "warps": 4, "stages": 2, "ms": 0.3290559947490692, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 87.5}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 4, "warps": 4, "stages": 3, "ms": 0.3282560110092163, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 90.8}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 4, "warps": 4, "stages": 4, "ms": 0.3283520042896271, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 94.2}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 4, "warps": 8, "stages": 2, "ms": 0.3179520070552826, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 96.9}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 4, "warps": 8, "stages": 3, "ms": 0.3181439936161041, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 99.8}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 4, "warps": 8, "stages": 4, "ms": 0.316864013671875, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 102.8}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 8, "warps": 4, "stages": 2, "ms": 0.22483199834823608, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 107.2}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 8, "warps": 4, "stages": 3, "ms": 0.22569599747657776, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 111.8}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 8, "warps": 4, "stages": 4, "ms": 0.22473600506782532, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 116.3}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 8, "warps": 8, "stages": 2, "ms": 0.21462400257587433, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 120.4}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 8, "warps": 8, "stages": 3, "ms": 0.21465599536895752, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 124.1}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 128, "iters": 8, "warps": 8, "stages": 4, "ms": 0.2144320011138916, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 127.7}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 1, "warps": 4, "stages": 2, "ms": 0.5146239995956421, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 130.3}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 1, "warps": 4, "stages": 3, "ms": 0.5143679976463318, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 132.8}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 1, "warps": 4, "stages": 4, "ms": 0.5141760110855103, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 135.3}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 1, "warps": 8, "stages": 2, "ms": 0.5150079727172852, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 137.1}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 1, "warps": 8, "stages": 3, "ms": 0.5150079727172852, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 139.4}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 1, "warps": 8, "stages": 4, "ms": 0.5144000053405762, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 141.6}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 2, "warps": 4, "stages": 2, "ms": 0.3545919954776764, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 144.5}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 2, "warps": 4, "stages": 3, "ms": 0.3542400002479553, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 147.7}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 2, "warps": 4, "stages": 4, "ms": 0.35392001271247864, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 150.5}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 2, "warps": 8, "stages": 2, "ms": 0.32627201080322266, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 153.3}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 2, "warps": 8, "stages": 3, "ms": 0.32841598987579346, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 156.0}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 2, "warps": 8, "stages": 4, "ms": 0.3272640109062195, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 158.7}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 4, "warps": 4, "stages": 2, "ms": 0.26025599241256714, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 162.6}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 4, "warps": 4, "stages": 3, "ms": 0.2608639895915985, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 167.0}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 4, "warps": 4, "stages": 4, "ms": 0.2610880136489868, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 171.2}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 4, "warps": 8, "stages": 2, "ms": 0.2479040026664734, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 174.8}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 4, "warps": 8, "stages": 3, "ms": 0.24796800315380096, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 178.1}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 4, "warps": 8, "stages": 4, "ms": 0.2481279969215393, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 181.8}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 8, "warps": 4, "stages": 2, "ms": 0.19551999866962433, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 189.4}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 8, "warps": 4, "stages": 3, "ms": 0.19590400159358978, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 197.4}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 8, "warps": 4, "stages": 4, "ms": 0.195360004901886, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 205.2}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 8, "warps": 8, "stages": 2, "ms": 0.19305600225925446, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 209.9}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 8, "warps": 8, "stages": 3, "ms": 0.19305600225925446, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 214.7}
+LCROW {"kind": "kern", "L": 131072, "T": 1, "impl": "tri", "bn": 256, "iters": 8, "warps": 8, "stages": 4, "ms": 0.19379200041294098, "maxerr": 6.103515625e-05, "floor_ms": 0.08012998686567163, "t_s": 218.9}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "bmm_padded", "ms": 0.609503984451294, "floor_ms": 0.08012998686567163, "t_s": 220.6}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 2, "warps": 4, "stages": 2, "ms": 1.7103359699249268, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 223.8}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 2, "warps": 4, "stages": 3, "ms": 1.7108800411224365, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 227.6}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 2, "warps": 4, "stages": 4, "ms": 1.7079360485076904, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 230.2}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 2, "warps": 8, "stages": 2, "ms": 1.837183952331543, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 232.8}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 2, "warps": 8, "stages": 3, "ms": 1.832543969154358, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 235.2}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 2, "warps": 8, "stages": 4, "ms": 1.8310400247573853, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 237.6}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 4, "warps": 4, "stages": 2, "ms": 0.9144960045814514, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 241.3}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 4, "warps": 4, "stages": 3, "ms": 0.9154239892959595, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 244.4}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 4, "warps": 4, "stages": 4, "ms": 0.9147520065307617, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 247.8}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 4, "warps": 8, "stages": 2, "ms": 1.0284479856491089, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 250.2}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 4, "warps": 8, "stages": 3, "ms": 1.0291199684143066, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 253.7}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 4, "warps": 8, "stages": 4, "ms": 1.028480052947998, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 257.0}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 8, "warps": 4, "stages": 2, "ms": 0.6855360269546509, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 261.8}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 8, "warps": 4, "stages": 3, "ms": 0.6830719709396362, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 266.2}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 8, "warps": 4, "stages": 4, "ms": 0.68476802110672, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 270.8}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 8, "warps": 8, "stages": 2, "ms": 0.753279983997345, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 274.9}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 8, "warps": 8, "stages": 3, "ms": 0.7480639815330505, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 279.1}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 64, "iters": 8, "warps": 8, "stages": 4, "ms": 0.748960018157959, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 283.7}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 1, "warps": 4, "stages": 2, "ms": 1.706272006034851, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 286.2}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 1, "warps": 4, "stages": 3, "ms": 1.7058240175247192, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 288.6}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 1, "warps": 4, "stages": 4, "ms": 1.7065919637680054, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 291.2}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 1, "warps": 8, "stages": 2, "ms": 1.8048959970474243, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 293.4}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 1, "warps": 8, "stages": 3, "ms": 1.804352045059204, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 295.8}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 1, "warps": 8, "stages": 4, "ms": 1.8041919469833374, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 298.4}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 2, "warps": 4, "stages": 2, "ms": 0.9545919895172119, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 301.3}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 2, "warps": 4, "stages": 3, "ms": 0.9565759897232056, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 304.5}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 2, "warps": 4, "stages": 4, "ms": 0.9594560265541077, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 307.2}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 2, "warps": 8, "stages": 2, "ms": 1.0179200172424316, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 309.8}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 2, "warps": 8, "stages": 3, "ms": 1.0180799961090088, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 312.5}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 2, "warps": 8, "stages": 4, "ms": 1.018239974975586, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 314.9}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 4, "warps": 4, "stages": 2, "ms": 0.7463039755821228, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 318.8}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 4, "warps": 4, "stages": 3, "ms": 0.7459840178489685, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 323.1}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 4, "warps": 4, "stages": 4, "ms": 0.7432640194892883, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 327.1}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 4, "warps": 8, "stages": 2, "ms": 1.0048320293426514, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 331.0}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 4, "warps": 8, "stages": 3, "ms": 1.0049599409103394, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 334.6}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 4, "warps": 8, "stages": 4, "ms": 1.001471996307373, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 338.8}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 8, "warps": 4, "stages": 2, "ms": 0.5514879822731018, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 346.1}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 8, "warps": 4, "stages": 3, "ms": 0.5519999861717224, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 353.6}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 8, "warps": 4, "stages": 4, "ms": 0.5511040091514587, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 360.7}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 8, "warps": 8, "stages": 2, "ms": 0.8021759986877441, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 367.5}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 8, "warps": 8, "stages": 3, "ms": 0.802623987197876, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 373.7}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 128, "iters": 8, "warps": 8, "stages": 4, "ms": 0.8050879836082458, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 379.8}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 1, "warps": 4, "stages": 2, "ms": 1.014016032218933, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 382.5}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 1, "warps": 4, "stages": 3, "ms": 1.0146880149841309, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 385.3}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 1, "warps": 4, "stages": 4, "ms": 1.0140479803085327, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 388.1}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 1, "warps": 8, "stages": 2, "ms": 1.0441919565200806, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 390.7}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 1, "warps": 8, "stages": 3, "ms": 1.043776035308838, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 393.4}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 1, "warps": 8, "stages": 4, "ms": 1.0438079833984375, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 395.8}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 2, "warps": 4, "stages": 2, "ms": 0.922432005405426, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 400.3}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 2, "warps": 4, "stages": 3, "ms": 0.9223999977111816, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 404.9}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 2, "warps": 4, "stages": 4, "ms": 0.9227200150489807, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 410.0}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 2, "warps": 8, "stages": 2, "ms": 1.0181759595870972, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 413.4}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 2, "warps": 8, "stages": 3, "ms": 1.0211520195007324, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 417.1}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 2, "warps": 8, "stages": 4, "ms": 1.017791986465454, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 421.1}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 4, "warps": 4, "stages": 2, "ms": 0.7320960164070129, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 428.4}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 4, "warps": 4, "stages": 3, "ms": 0.7344639897346497, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 435.8}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 4, "warps": 4, "stages": 4, "ms": 0.734495997428894, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 443.2}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 4, "warps": 8, "stages": 2, "ms": 1.0400639772415161, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 450.1}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 4, "warps": 8, "stages": 3, "ms": 1.0403200387954712, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 456.7}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 4, "warps": 8, "stages": 4, "ms": 1.039903998374939, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 463.1}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8, "warps": 4, "stages": 2, "ms": 0.5867519974708557, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 478.2}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8, "warps": 4, "stages": 3, "ms": 0.5853440165519714, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 493.4}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8, "warps": 4, "stages": 4, "ms": 0.5848960280418396, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 508.1}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8, "warps": 8, "stages": 2, "ms": 0.8971520066261292, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 520.7}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8, "warps": 8, "stages": 3, "ms": 0.8970239758491516, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 533.4}
+LCROW {"kind": "kern", "L": 131072, "T": 5, "impl": "tri", "bn": 256, "iters": 8, "warps": 8, "stages": 4, "ms": 0.8984959721565247, "maxerr": 0.0001220703125, "floor_ms": 0.08012998686567163, "t_s": 545.4}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "bmm_padded", "ms": 0.10463999956846237, "floor_ms": 0.020032496716417908, "t_s": 548.0}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 4, "stages": 2, "ms": 0.4113599956035614, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 550.0}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 4, "stages": 3, "ms": 0.41075199842453003, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 552.2}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 4, "stages": 4, "ms": 0.4105919897556305, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 554.3}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 8, "stages": 2, "ms": 0.42239999771118164, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 556.1}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 8, "stages": 3, "ms": 0.4242880046367645, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 558.0}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 1, "warps": 8, "stages": 4, "ms": 0.4243519902229309, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 559.9}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 4, "stages": 2, "ms": 0.23084799945354462, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 562.0}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 4, "stages": 3, "ms": 0.2303999960422516, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 563.8}
+Stopping app - user stopped from CLI.
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 4, "stages": 4, "ms": 0.23030400276184082, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 565.9}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 8, "stages": 2, "ms": 0.23529599606990814, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 567.7}
+LCROW {"kind": "kern", "L": 32768, "T": 1, "impl": "tri", "bn": 64, "iters": 2, "warps": 8, "stages": 3, "ms": 0.23443199694156647, "maxerr": 0.0001220703125, "floor_ms": 0.020032496716417908, "t_s": 570.0}
+Runner terminated.
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ <home>/north-star/.claude/worktrees/agent-a4e541eafc9035086/modal/long │
+│ ctx.py:44 in main                                                            │
+│                                                                              │
+│   43                                                                         │
+│ ❱ 44 @app.local_entrypoint()                                                 │
+│   45 def main(tag: str = "lc1", part: str = "A", ctxs: str = "8192,32768,131 │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_obj │
+│ ect.py:49 in wrapped                                                         │
+│                                                                              │
+│    48 │   │   await self.hydrate()                                           │
+│ ❱  49 │   │   return await method(self, *args, **kwargs)                     │
+│    50                                                                        │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:2081 in remote                                                     │
+│                                                                              │
+│   2080 │   │                                                                 │
+│ ❱ 2081 │   │   return await self._call_function(args, kwargs)                │
+│   2082                                                                       │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:2018 in _call_function                                             │
+│                                                                              │
+│   2017 │   │                                                                 │
+│ ❱ 2018 │   │   return await invocation.run_function()                        │
+│   2019                                                                       │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:498 in run_function                                                │
+│                                                                              │
+│    497 │   │   │   if await_response.output.result.status in TERMINAL_STATUS │
+│ ❱  498 │   │   │   │   return await _process_result(                         │
+│    499 │   │   │   │   │   await_response.output.result, await_response.outp │
+│                                                                              │
+│ <home>/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_uti │
+│ ls/function_utils.py:574 in _process_result                                  │
+│                                                                              │
+│   573 │   │                                                                  │
+│ ❱ 574 │   │   raise RemoteError(result.exception)                            │
+│   575                                                                        │
+╰──────────────────────────────────────────────────────────────────────────────╯
+RemoteError
