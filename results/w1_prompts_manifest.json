@@ -1,0 +1,1794 @@
+[
+{
+"id": "openhands-111f5c5e0a6d40eb9a03c33d-turn0",
+"session": "openhands-111f5c5e0a6d40eb9a03c33d",
+"turn": 0,
+"prompt_tokens": 37875,
+"sha": "38b1888695bf054e"
+},
+{
+"id": "openhands-111f5c5e0a6d40eb9a03c33d-turn1",
+"session": "openhands-111f5c5e0a6d40eb9a03c33d",
+"turn": 1,
+"prompt_tokens": 38352,
+"sha": "af448081146239b7"
+},
+{
+"id": "openhands-111f5c5e0a6d40eb9a03c33d-turn2",
+"session": "openhands-111f5c5e0a6d40eb9a03c33d",
+"turn": 2,
+"prompt_tokens": 38793,
+"sha": "3906fbea80e7c4dd"
+},
+{
+"id": "openhands-111f5c5e0a6d40eb9a03c33d-turn3",
+"session": "openhands-111f5c5e0a6d40eb9a03c33d",
+"turn": 3,
+"prompt_tokens": 39378,
+"sha": "f4070056bbf24c73"
+},
+{
+"id": "openhands-16f43b6eb49c6a59a8252553-turn0",
+"session": "openhands-16f43b6eb49c6a59a8252553",
+"turn": 0,
+"prompt_tokens": 17642,
+"sha": "31e87827abe8f3e7"
+},
+{
+"id": "openhands-16f43b6eb49c6a59a8252553-turn1",
+"session": "openhands-16f43b6eb49c6a59a8252553",
+"turn": 1,
+"prompt_tokens": 18329,
+"sha": "2aaec8f6e77650b6"
+},
+{
+"id": "openhands-16f43b6eb49c6a59a8252553-turn2",
+"session": "openhands-16f43b6eb49c6a59a8252553",
+"turn": 2,
+"prompt_tokens": 18661,
+"sha": "6a7e22188bfc989c"
+},
+{
+"id": "openhands-16f43b6eb49c6a59a8252553-turn3",
+"session": "openhands-16f43b6eb49c6a59a8252553",
+"turn": 3,
+"prompt_tokens": 18951,
+"sha": "ec35eac89141c061"
+},
+{
+"id": "openhands-1d3132d5217ac4865b45afc5-turn0",
+"session": "openhands-1d3132d5217ac4865b45afc5",
+"turn": 0,
+"prompt_tokens": 43689,
+"sha": "4bdbc39c1568ca11"
+},
+{
+"id": "openhands-1d3132d5217ac4865b45afc5-turn1",
+"session": "openhands-1d3132d5217ac4865b45afc5",
+"turn": 1,
+"prompt_tokens": 44342,
+"sha": "ac645e4519182d6c"
+},
+{
+"id": "openhands-1d3132d5217ac4865b45afc5-turn2",
+"session": "openhands-1d3132d5217ac4865b45afc5",
+"turn": 2,
+"prompt_tokens": 44964,
+"sha": "7a80da2a1ed2428f"
+},
+{
+"id": "openhands-1d3132d5217ac4865b45afc5-turn3",
+"session": "openhands-1d3132d5217ac4865b45afc5",
+"turn": 3,
+"prompt_tokens": 45648,
+"sha": "3c3622938ac67d84"
+},
+{
+"id": "openhands-20403f503f5ed653b80e1224-turn0",
+"session": "openhands-20403f503f5ed653b80e1224",
+"turn": 0,
+"prompt_tokens": 40834,
+"sha": "d1f5e13072165027"
+},
+{
+"id": "openhands-20403f503f5ed653b80e1224-turn1",
+"session": "openhands-20403f503f5ed653b80e1224",
+"turn": 1,
+"prompt_tokens": 41339,
+"sha": "40e9b8d659917b21"
+},
+{
+"id": "openhands-20403f503f5ed653b80e1224-turn2",
+"session": "openhands-20403f503f5ed653b80e1224",
+"turn": 2,
+"prompt_tokens": 41624,
+"sha": "6c6edbea9c3c83df"
+},
+{
+"id": "openhands-20403f503f5ed653b80e1224-turn3",
+"session": "openhands-20403f503f5ed653b80e1224",
+"turn": 3,
+"prompt_tokens": 42516,
+"sha": "4b016f2a88052691"
+},
+{
+"id": "openhands-2385d3200690c0846b40bf30-turn0",
+"session": "openhands-2385d3200690c0846b40bf30",
+"turn": 0,
+"prompt_tokens": 51777,
+"sha": "219eaffb2b78daaf"
+},
+{
+"id": "openhands-2385d3200690c0846b40bf30-turn1",
+"session": "openhands-2385d3200690c0846b40bf30",
+"turn": 1,
+"prompt_tokens": 52319,
+"sha": "a079637d97103bb8"
+},
+{
+"id": "openhands-2385d3200690c0846b40bf30-turn2",
+"session": "openhands-2385d3200690c0846b40bf30",
+"turn": 2,
+"prompt_tokens": 60586,
+"sha": "c816b0d1f4ccf2b4"
+},
+{
+"id": "openhands-2385d3200690c0846b40bf30-turn3",
+"session": "openhands-2385d3200690c0846b40bf30",
+"turn": 3,
+"prompt_tokens": 60926,
+"sha": "4d941c9035b15a48"
+},
+{
+"id": "openhands-27b0add87a39d3abc0d127b7-turn0",
+"session": "openhands-27b0add87a39d3abc0d127b7",
+"turn": 0,
+"prompt_tokens": 46463,
+"sha": "f6fb77f58befd95b"
+},
+{
+"id": "openhands-27b0add87a39d3abc0d127b7-turn1",
+"session": "openhands-27b0add87a39d3abc0d127b7",
+"turn": 1,
+"prompt_tokens": 46884,
+"sha": "7e869e676dff2c77"
+},
+{
+"id": "openhands-27b0add87a39d3abc0d127b7-turn2",
+"session": "openhands-27b0add87a39d3abc0d127b7",
+"turn": 2,
+"prompt_tokens": 47097,
+"sha": "e59b5bb024322be1"
+},
+{
+"id": "openhands-27b0add87a39d3abc0d127b7-turn3",
+"session": "openhands-27b0add87a39d3abc0d127b7",
+"turn": 3,
+"prompt_tokens": 47764,
+"sha": "57cd16cc13328477"
+},
+{
+"id": "openhands-4697fcc876c4efd62039048a-turn0",
+"session": "openhands-4697fcc876c4efd62039048a",
+"turn": 0,
+"prompt_tokens": 47630,
+"sha": "692ae0c8cb08a674"
+},
+{
+"id": "openhands-4697fcc876c4efd62039048a-turn1",
+"session": "openhands-4697fcc876c4efd62039048a",
+"turn": 1,
+"prompt_tokens": 48531,
+"sha": "4fc849a1baf7ba8b"
+},
+{
+"id": "openhands-4697fcc876c4efd62039048a-turn2",
+"session": "openhands-4697fcc876c4efd62039048a",
+"turn": 2,
+"prompt_tokens": 49533,
+"sha": "f6a9108c35328a36"
+},
+{
+"id": "openhands-4697fcc876c4efd62039048a-turn3",
+"session": "openhands-4697fcc876c4efd62039048a",
+"turn": 3,
+"prompt_tokens": 50164,
+"sha": "98723b795fc6faa6"
+},
+{
+"id": "openhands-493fb85007127e001cd84e00-turn0",
+"session": "openhands-493fb85007127e001cd84e00",
+"turn": 0,
+"prompt_tokens": 45035,
+"sha": "1dd72a31408b2149"
+},
+{
+"id": "openhands-493fb85007127e001cd84e00-turn1",
+"session": "openhands-493fb85007127e001cd84e00",
+"turn": 1,
+"prompt_tokens": 46094,
+"sha": "bcda2b7f1675f42b"
+},
+{
+"id": "openhands-493fb85007127e001cd84e00-turn2",
+"session": "openhands-493fb85007127e001cd84e00",
+"turn": 2,
+"prompt_tokens": 46818,
+"sha": "e83597376a4e9d6b"
+},
+{
+"id": "openhands-493fb85007127e001cd84e00-turn3",
+"session": "openhands-493fb85007127e001cd84e00",
+"turn": 3,
+"prompt_tokens": 46980,
+"sha": "0e74b2aa3645a785"
+},
+{
+"id": "openhands-5020c6e28b44297fabad2a55-turn0",
+"session": "openhands-5020c6e28b44297fabad2a55",
+"turn": 0,
+"prompt_tokens": 29786,
+"sha": "c4e7e5378d793def"
+},
+{
+"id": "openhands-5020c6e28b44297fabad2a55-turn1",
+"session": "openhands-5020c6e28b44297fabad2a55",
+"turn": 1,
+"prompt_tokens": 30339,
+"sha": "200da31ffd00d9e6"
+},
+{
+"id": "openhands-5020c6e28b44297fabad2a55-turn2",
+"session": "openhands-5020c6e28b44297fabad2a55",
+"turn": 2,
+"prompt_tokens": 30664,
+"sha": "0128b4e6ade3cf1c"
+},
+{
+"id": "openhands-5020c6e28b44297fabad2a55-turn3",
+"session": "openhands-5020c6e28b44297fabad2a55",
+"turn": 3,
+"prompt_tokens": 31006,
+"sha": "c204a9bea748e936"
+},
+{
+"id": "openhands-506e258d79ab5d1e1468cdac-turn0",
+"session": "openhands-506e258d79ab5d1e1468cdac",
+"turn": 0,
+"prompt_tokens": 16589,
+"sha": "eabad0e08b61c5b0"
+},
+{
+"id": "openhands-506e258d79ab5d1e1468cdac-turn1",
+"session": "openhands-506e258d79ab5d1e1468cdac",
+"turn": 1,
+"prompt_tokens": 16936,
+"sha": "675214601dedd690"
+},
+{
+"id": "openhands-506e258d79ab5d1e1468cdac-turn2",
+"session": "openhands-506e258d79ab5d1e1468cdac",
+"turn": 2,
+"prompt_tokens": 17772,
+"sha": "25c69ac974546ac8"
+},
+{
+"id": "openhands-506e258d79ab5d1e1468cdac-turn3",
+"session": "openhands-506e258d79ab5d1e1468cdac",
+"turn": 3,
+"prompt_tokens": 18094,
+"sha": "99142afd8120997a"
+},
+{
+"id": "openhands-52f4f4e19c18bbd71e89e286-turn0",
+"session": "openhands-52f4f4e19c18bbd71e89e286",
+"turn": 0,
+"prompt_tokens": 25975,
+"sha": "1fb6b4d1122fdeed"
+},
+{
+"id": "openhands-52f4f4e19c18bbd71e89e286-turn1",
+"session": "openhands-52f4f4e19c18bbd71e89e286",
+"turn": 1,
+"prompt_tokens": 26938,
+"sha": "94fc438b7c1a59a0"
+},
+{
+"id": "openhands-52f4f4e19c18bbd71e89e286-turn2",
+"session": "openhands-52f4f4e19c18bbd71e89e286",
+"turn": 2,
+"prompt_tokens": 27249,
+"sha": "9e686079c260beb1"
+},
+{
+"id": "openhands-52f4f4e19c18bbd71e89e286-turn3",
+"session": "openhands-52f4f4e19c18bbd71e89e286",
+"turn": 3,
+"prompt_tokens": 28384,
+"sha": "bd8ba997b1a1b560"
+},
+{
+"id": "openhands-593d8c4da2b26b15bf37c218-turn0",
+"session": "openhands-593d8c4da2b26b15bf37c218",
+"turn": 0,
+"prompt_tokens": 30377,
+"sha": "89312ce113868df2"
+},
+{
+"id": "openhands-593d8c4da2b26b15bf37c218-turn1",
+"session": "openhands-593d8c4da2b26b15bf37c218",
+"turn": 1,
+"prompt_tokens": 30751,
+"sha": "ae068701d2260f86"
+},
+{
+"id": "openhands-593d8c4da2b26b15bf37c218-turn2",
+"session": "openhands-593d8c4da2b26b15bf37c218",
+"turn": 2,
+"prompt_tokens": 31007,
+"sha": "1ea33cbd8301651d"
+},
+{
+"id": "openhands-593d8c4da2b26b15bf37c218-turn3",
+"session": "openhands-593d8c4da2b26b15bf37c218",
+"turn": 3,
+"prompt_tokens": 31303,
+"sha": "77f215f5afb9ff5d"
+},
+{
+"id": "openhands-5b159b89349a5797cb712957-turn0",
+"session": "openhands-5b159b89349a5797cb712957",
+"turn": 0,
+"prompt_tokens": 32063,
+"sha": "73cd6614a3c9074d"
+},
+{
+"id": "openhands-5b159b89349a5797cb712957-turn1",
+"session": "openhands-5b159b89349a5797cb712957",
+"turn": 1,
+"prompt_tokens": 32437,
+"sha": "21a1b9431b605960"
+},
+{
+"id": "openhands-5b159b89349a5797cb712957-turn2",
+"session": "openhands-5b159b89349a5797cb712957",
+"turn": 2,
+"prompt_tokens": 32798,
+"sha": "17572ab585fde037"
+},
+{
+"id": "openhands-5b159b89349a5797cb712957-turn3",
+"session": "openhands-5b159b89349a5797cb712957",
+"turn": 3,
+"prompt_tokens": 33146,
+"sha": "fe85f520cafdb3aa"
+},
+{
+"id": "openhands-5bc892b99c773e3e40410ad7-turn0",
+"session": "openhands-5bc892b99c773e3e40410ad7",
+"turn": 0,
+"prompt_tokens": 27532,
+"sha": "225baa4367897de9"
+},
+{
+"id": "openhands-5bc892b99c773e3e40410ad7-turn1",
+"session": "openhands-5bc892b99c773e3e40410ad7",
+"turn": 1,
+"prompt_tokens": 28214,
+"sha": "fa995b2edb350b59"
+},
+{
+"id": "openhands-5bc892b99c773e3e40410ad7-turn2",
+"session": "openhands-5bc892b99c773e3e40410ad7",
+"turn": 2,
+"prompt_tokens": 28616,
+"sha": "a9ad9c6693059cf7"
+},
+{
+"id": "openhands-5bc892b99c773e3e40410ad7-turn3",
+"session": "openhands-5bc892b99c773e3e40410ad7",
+"turn": 3,
+"prompt_tokens": 28915,
+"sha": "1238cc2adb5c1906"
+},
+{
+"id": "openhands-5f914361c2e5bcac2ef3022e-turn0",
+"session": "openhands-5f914361c2e5bcac2ef3022e",
+"turn": 0,
+"prompt_tokens": 22473,
+"sha": "250683e3144e1b1d"
+},
+{
+"id": "openhands-5f914361c2e5bcac2ef3022e-turn1",
+"session": "openhands-5f914361c2e5bcac2ef3022e",
+"turn": 1,
+"prompt_tokens": 23530,
+"sha": "ddac7ad92171aab4"
+},
+{
+"id": "openhands-5f914361c2e5bcac2ef3022e-turn2",
+"session": "openhands-5f914361c2e5bcac2ef3022e",
+"turn": 2,
+"prompt_tokens": 24031,
+"sha": "2870e2990d5a2a7d"
+},
+{
+"id": "openhands-5f914361c2e5bcac2ef3022e-turn3",
+"session": "openhands-5f914361c2e5bcac2ef3022e",
+"turn": 3,
+"prompt_tokens": 24499,
+"sha": "6df0bb58c987c4ec"
+},
+{
+"id": "openhands-638c60fe5d06137ab6fc7661-turn0",
+"session": "openhands-638c60fe5d06137ab6fc7661",
+"turn": 0,
+"prompt_tokens": 50711,
+"sha": "950a8f16a47d1a60"
+},
+{
+"id": "openhands-638c60fe5d06137ab6fc7661-turn1",
+"session": "openhands-638c60fe5d06137ab6fc7661",
+"turn": 1,
+"prompt_tokens": 50871,
+"sha": "86b9dd56624c1101"
+},
+{
+"id": "openhands-638c60fe5d06137ab6fc7661-turn2",
+"session": "openhands-638c60fe5d06137ab6fc7661",
+"turn": 2,
+"prompt_tokens": 52158,
+"sha": "fb8b7753812f5cbc"
+},
+{
+"id": "openhands-638c60fe5d06137ab6fc7661-turn3",
+"session": "openhands-638c60fe5d06137ab6fc7661",
+"turn": 3,
+"prompt_tokens": 52723,
+"sha": "3d59a4be514f5df1"
+},
+{
+"id": "openhands-6535eb4114f2730845c57b1e-turn0",
+"session": "openhands-6535eb4114f2730845c57b1e",
+"turn": 0,
+"prompt_tokens": 38272,
+"sha": "3202119425d458c1"
+},
+{
+"id": "openhands-6535eb4114f2730845c57b1e-turn1",
+"session": "openhands-6535eb4114f2730845c57b1e",
+"turn": 1,
+"prompt_tokens": 38636,
+"sha": "f4c61e306157ff78"
+},
+{
+"id": "openhands-6535eb4114f2730845c57b1e-turn2",
+"session": "openhands-6535eb4114f2730845c57b1e",
+"turn": 2,
+"prompt_tokens": 40019,
+"sha": "54da223991a3c97c"
+},
+{
+"id": "openhands-6535eb4114f2730845c57b1e-turn3",
+"session": "openhands-6535eb4114f2730845c57b1e",
+"turn": 3,
+"prompt_tokens": 40384,
+"sha": "3db5e1414a381c6e"
+},
+{
+"id": "openhands-66b6c260467659feea9e97db-turn0",
+"session": "openhands-66b6c260467659feea9e97db",
+"turn": 0,
+"prompt_tokens": 17533,
+"sha": "e634f968af367545"
+},
+{
+"id": "openhands-66b6c260467659feea9e97db-turn1",
+"session": "openhands-66b6c260467659feea9e97db",
+"turn": 1,
+"prompt_tokens": 21438,
+"sha": "ce18728c2f28d778"
+},
+{
+"id": "openhands-66b6c260467659feea9e97db-turn2",
+"session": "openhands-66b6c260467659feea9e97db",
+"turn": 2,
+"prompt_tokens": 21680,
+"sha": "08731ffcf9c9fb2e"
+},
+{
+"id": "openhands-66b6c260467659feea9e97db-turn3",
+"session": "openhands-66b6c260467659feea9e97db",
+"turn": 3,
+"prompt_tokens": 22387,
+"sha": "a50f23d909d56251"
+},
+{
+"id": "openhands-68145d614ca509b56de2dcc7-turn0",
+"session": "openhands-68145d614ca509b56de2dcc7",
+"turn": 0,
+"prompt_tokens": 23633,
+"sha": "25f920979161196a"
+},
+{
+"id": "openhands-68145d614ca509b56de2dcc7-turn1",
+"session": "openhands-68145d614ca509b56de2dcc7",
+"turn": 1,
+"prompt_tokens": 23820,
+"sha": "c1f6b4a5f4a4f7b5"
+},
+{
+"id": "openhands-68145d614ca509b56de2dcc7-turn2",
+"session": "openhands-68145d614ca509b56de2dcc7",
+"turn": 2,
+"prompt_tokens": 24590,
+"sha": "37f865dcd470eb54"
+},
+{
+"id": "openhands-68145d614ca509b56de2dcc7-turn3",
+"session": "openhands-68145d614ca509b56de2dcc7",
+"turn": 3,
+"prompt_tokens": 24976,
+"sha": "cf21fde7cc552c8f"
+},
+{
+"id": "openhands-6b69e783d0d323bd73dae6d4-turn0",
+"session": "openhands-6b69e783d0d323bd73dae6d4",
+"turn": 0,
+"prompt_tokens": 12054,
+"sha": "eed28ac57bb5a5f0"
+},
+{
+"id": "openhands-6b69e783d0d323bd73dae6d4-turn1",
+"session": "openhands-6b69e783d0d323bd73dae6d4",
+"turn": 1,
+"prompt_tokens": 12279,
+"sha": "7b6a19f1ab83fc4c"
+},
+{
+"id": "openhands-6b69e783d0d323bd73dae6d4-turn2",
+"session": "openhands-6b69e783d0d323bd73dae6d4",
+"turn": 2,
+"prompt_tokens": 17110,
+"sha": "f94b5c7e5d61746f"
+},
+{
+"id": "openhands-6b69e783d0d323bd73dae6d4-turn3",
+"session": "openhands-6b69e783d0d323bd73dae6d4",
+"turn": 3,
+"prompt_tokens": 18717,
+"sha": "77670c6b6cdc6854"
+},
+{
+"id": "openhands-758df4a38b0808021eab6582-turn0",
+"session": "openhands-758df4a38b0808021eab6582",
+"turn": 0,
+"prompt_tokens": 13887,
+"sha": "c3467dc5fc590936"
+},
+{
+"id": "openhands-758df4a38b0808021eab6582-turn1",
+"session": "openhands-758df4a38b0808021eab6582",
+"turn": 1,
+"prompt_tokens": 14584,
+"sha": "c76313d25659ca0e"
+},
+{
+"id": "openhands-758df4a38b0808021eab6582-turn2",
+"session": "openhands-758df4a38b0808021eab6582",
+"turn": 2,
+"prompt_tokens": 15250,
+"sha": "673af17cad667979"
+},
+{
+"id": "openhands-758df4a38b0808021eab6582-turn3",
+"session": "openhands-758df4a38b0808021eab6582",
+"turn": 3,
+"prompt_tokens": 15734,
+"sha": "779c84acfd75f00b"
+},
+{
+"id": "openhands-78c3d1c2bdb9886769d5b5d0-turn0",
+"session": "openhands-78c3d1c2bdb9886769d5b5d0",
+"turn": 0,
+"prompt_tokens": 84132,
+"sha": "95525038d177282b"
+},
+{
+"id": "openhands-78c3d1c2bdb9886769d5b5d0-turn1",
+"session": "openhands-78c3d1c2bdb9886769d5b5d0",
+"turn": 1,
+"prompt_tokens": 84304,
+"sha": "879ffc3ed3d6fa1d"
+},
+{
+"id": "openhands-78c3d1c2bdb9886769d5b5d0-turn2",
+"session": "openhands-78c3d1c2bdb9886769d5b5d0",
+"turn": 2,
+"prompt_tokens": 84645,
+"sha": "5834b027ec56e08c"
+},
+{
+"id": "openhands-78c3d1c2bdb9886769d5b5d0-turn3",
+"session": "openhands-78c3d1c2bdb9886769d5b5d0",
+"turn": 3,
+"prompt_tokens": 84826,
+"sha": "ed847fe335d52543"
+},
+{
+"id": "openhands-792e84aa81ead284747a6026-turn0",
+"session": "openhands-792e84aa81ead284747a6026",
+"turn": 0,
+"prompt_tokens": 41437,
+"sha": "f5d4c4b06209bf94"
+},
+{
+"id": "openhands-792e84aa81ead284747a6026-turn1",
+"session": "openhands-792e84aa81ead284747a6026",
+"turn": 1,
+"prompt_tokens": 41915,
+"sha": "4f7f61a1e0d058cb"
+},
+{
+"id": "openhands-792e84aa81ead284747a6026-turn2",
+"session": "openhands-792e84aa81ead284747a6026",
+"turn": 2,
+"prompt_tokens": 42885,
+"sha": "d7d79c29dce56d0d"
+},
+{
+"id": "openhands-792e84aa81ead284747a6026-turn3",
+"session": "openhands-792e84aa81ead284747a6026",
+"turn": 3,
+"prompt_tokens": 43438,
+"sha": "f43a2d2df8081ff8"
+},
+{
+"id": "openhands-7cf2925923f92f9afbe4db3e-turn0",
+"session": "openhands-7cf2925923f92f9afbe4db3e",
+"turn": 0,
+"prompt_tokens": 20331,
+"sha": "569e0756eff161bb"
+},
+{
+"id": "openhands-7cf2925923f92f9afbe4db3e-turn1",
+"session": "openhands-7cf2925923f92f9afbe4db3e",
+"turn": 1,
+"prompt_tokens": 20545,
+"sha": "85ba91e31e1a3b6e"
+},
+{
+"id": "openhands-7cf2925923f92f9afbe4db3e-turn2",
+"session": "openhands-7cf2925923f92f9afbe4db3e",
+"turn": 2,
+"prompt_tokens": 21101,
+"sha": "03db4b8d5e598b2e"
+},
+{
+"id": "openhands-7cf2925923f92f9afbe4db3e-turn3",
+"session": "openhands-7cf2925923f92f9afbe4db3e",
+"turn": 3,
+"prompt_tokens": 22581,
+"sha": "3d5ce020dae093d0"
+},
+{
+"id": "openhands-840870e20c17d6b1be969ca2-turn0",
+"session": "openhands-840870e20c17d6b1be969ca2",
+"turn": 0,
+"prompt_tokens": 46242,
+"sha": "84ca99fde017c6e3"
+},
+{
+"id": "openhands-840870e20c17d6b1be969ca2-turn1",
+"session": "openhands-840870e20c17d6b1be969ca2",
+"turn": 1,
+"prompt_tokens": 47069,
+"sha": "a7327953254aba56"
+},
+{
+"id": "openhands-840870e20c17d6b1be969ca2-turn2",
+"session": "openhands-840870e20c17d6b1be969ca2",
+"turn": 2,
+"prompt_tokens": 47237,
+"sha": "8124b58535533805"
+},
+{
+"id": "openhands-840870e20c17d6b1be969ca2-turn3",
+"session": "openhands-840870e20c17d6b1be969ca2",
+"turn": 3,
+"prompt_tokens": 47775,
+"sha": "7d803dda57fec97c"
+},
+{
+"id": "openhands-85dfff66d12b1e7eca0aba5e-turn0",
+"session": "openhands-85dfff66d12b1e7eca0aba5e",
+"turn": 0,
+"prompt_tokens": 25350,
+"sha": "58b6e0ceb467c65d"
+},
+{
+"id": "openhands-85dfff66d12b1e7eca0aba5e-turn1",
+"session": "openhands-85dfff66d12b1e7eca0aba5e",
+"turn": 1,
+"prompt_tokens": 25742,
+"sha": "26f65fcf4b6033a3"
+},
+{
+"id": "openhands-85dfff66d12b1e7eca0aba5e-turn2",
+"session": "openhands-85dfff66d12b1e7eca0aba5e",
+"turn": 2,
+"prompt_tokens": 26038,
+"sha": "b232ba96905e97dd"
+},
+{
+"id": "openhands-85dfff66d12b1e7eca0aba5e-turn3",
+"session": "openhands-85dfff66d12b1e7eca0aba5e",
+"turn": 3,
+"prompt_tokens": 26315,
+"sha": "8d34116cbb5334a1"
+},
+{
+"id": "openhands-87e7d3c80e5c37158a21f184-turn0",
+"session": "openhands-87e7d3c80e5c37158a21f184",
+"turn": 0,
+"prompt_tokens": 82766,
+"sha": "19fe412b5b3099f6"
+},
+{
+"id": "openhands-87e7d3c80e5c37158a21f184-turn1",
+"session": "openhands-87e7d3c80e5c37158a21f184",
+"turn": 1,
+"prompt_tokens": 83467,
+"sha": "ae3d4f9391e4c785"
+},
+{
+"id": "openhands-87e7d3c80e5c37158a21f184-turn2",
+"session": "openhands-87e7d3c80e5c37158a21f184",
+"turn": 2,
+"prompt_tokens": 83794,
+"sha": "679e125916462484"
+},
+{
+"id": "openhands-87e7d3c80e5c37158a21f184-turn3",
+"session": "openhands-87e7d3c80e5c37158a21f184",
+"turn": 3,
+"prompt_tokens": 86116,
+"sha": "7b544d1a8487caf5"
+},
+{
+"id": "openhands-8b72abd27f0f05b92c7dcde9-turn0",
+"session": "openhands-8b72abd27f0f05b92c7dcde9",
+"turn": 0,
+"prompt_tokens": 25218,
+"sha": "f9a90058ca0a5972"
+},
+{
+"id": "openhands-8b72abd27f0f05b92c7dcde9-turn1",
+"session": "openhands-8b72abd27f0f05b92c7dcde9",
+"turn": 1,
+"prompt_tokens": 27356,
+"sha": "88523c44d5035b10"
+},
+{
+"id": "openhands-8b72abd27f0f05b92c7dcde9-turn2",
+"session": "openhands-8b72abd27f0f05b92c7dcde9",
+"turn": 2,
+"prompt_tokens": 27860,
+"sha": "8b8dadfcbb71b580"
+},
+{
+"id": "openhands-8b72abd27f0f05b92c7dcde9-turn3",
+"session": "openhands-8b72abd27f0f05b92c7dcde9",
+"turn": 3,
+"prompt_tokens": 28283,
+"sha": "54765e4e46a78d83"
+},
+{
+"id": "openhands-8b7d3adbcc4ac5433a31ccb6-turn0",
+"session": "openhands-8b7d3adbcc4ac5433a31ccb6",
+"turn": 0,
+"prompt_tokens": 71286,
+"sha": "cf61ac07167766de"
+},
+{
+"id": "openhands-8b7d3adbcc4ac5433a31ccb6-turn1",
+"session": "openhands-8b7d3adbcc4ac5433a31ccb6",
+"turn": 1,
+"prompt_tokens": 72429,
+"sha": "20aec2f196314941"
+},
+{
+"id": "openhands-8b7d3adbcc4ac5433a31ccb6-turn2",
+"session": "openhands-8b7d3adbcc4ac5433a31ccb6",
+"turn": 2,
+"prompt_tokens": 73082,
+"sha": "64b0df009310fd5f"
+},
+{
+"id": "openhands-8b7d3adbcc4ac5433a31ccb6-turn3",
+"session": "openhands-8b7d3adbcc4ac5433a31ccb6",
+"turn": 3,
+"prompt_tokens": 73824,
+"sha": "52d98d69a4eeabae"
+},
+{
+"id": "openhands-98ff668a9364a8c17dd21012-turn0",
+"session": "openhands-98ff668a9364a8c17dd21012",
+"turn": 0,
+"prompt_tokens": 58497,
+"sha": "c87a9dba472a03cf"
+},
+{
+"id": "openhands-98ff668a9364a8c17dd21012-turn1",
+"session": "openhands-98ff668a9364a8c17dd21012",
+"turn": 1,
+"prompt_tokens": 58839,
+"sha": "bf183dab6839c394"
+},
+{
+"id": "openhands-98ff668a9364a8c17dd21012-turn2",
+"session": "openhands-98ff668a9364a8c17dd21012",
+"turn": 2,
+"prompt_tokens": 58997,
+"sha": "4a2d1eda73434be6"
+},
+{
+"id": "openhands-98ff668a9364a8c17dd21012-turn3",
+"session": "openhands-98ff668a9364a8c17dd21012",
+"turn": 3,
+"prompt_tokens": 59459,
+"sha": "c9492dfee7c4a0e1"
+},
+{
+"id": "openhands-9b01802f97410dd97ee8821c-turn0",
+"session": "openhands-9b01802f97410dd97ee8821c",
+"turn": 0,
+"prompt_tokens": 45297,
+"sha": "e4b2bc6b09321eaa"
+},
+{
+"id": "openhands-9b01802f97410dd97ee8821c-turn1",
+"session": "openhands-9b01802f97410dd97ee8821c",
+"turn": 1,
+"prompt_tokens": 45460,
+"sha": "b2971daaa19c4a76"
+},
+{
+"id": "openhands-9b01802f97410dd97ee8821c-turn2",
+"session": "openhands-9b01802f97410dd97ee8821c",
+"turn": 2,
+"prompt_tokens": 45817,
+"sha": "ad5afc1409ed43b3"
+},
+{
+"id": "openhands-9b01802f97410dd97ee8821c-turn3",
+"session": "openhands-9b01802f97410dd97ee8821c",
+"turn": 3,
+"prompt_tokens": 46112,
+"sha": "d1964b0059617098"
+},
+{
+"id": "openhands-9d8918a8597193349d25f516-turn0",
+"session": "openhands-9d8918a8597193349d25f516",
+"turn": 0,
+"prompt_tokens": 17210,
+"sha": "ada83be6b0dcfa02"
+},
+{
+"id": "openhands-9d8918a8597193349d25f516-turn1",
+"session": "openhands-9d8918a8597193349d25f516",
+"turn": 1,
+"prompt_tokens": 17475,
+"sha": "64b7a8911bf50bb0"
+},
+{
+"id": "openhands-9d8918a8597193349d25f516-turn2",
+"session": "openhands-9d8918a8597193349d25f516",
+"turn": 2,
+"prompt_tokens": 19438,
+"sha": "535099597bb8768e"
+},
+{
+"id": "openhands-9d8918a8597193349d25f516-turn3",
+"session": "openhands-9d8918a8597193349d25f516",
+"turn": 3,
+"prompt_tokens": 19774,
+"sha": "4b777afd62b84a8d"
+},
+{
+"id": "openhands-a27d52d840fd875f943ca3fe-turn0",
+"session": "openhands-a27d52d840fd875f943ca3fe",
+"turn": 0,
+"prompt_tokens": 65395,
+"sha": "9a3645555f4f22ce"
+},
+{
+"id": "openhands-a27d52d840fd875f943ca3fe-turn1",
+"session": "openhands-a27d52d840fd875f943ca3fe",
+"turn": 1,
+"prompt_tokens": 67625,
+"sha": "e2c365b42db17a2a"
+},
+{
+"id": "openhands-a27d52d840fd875f943ca3fe-turn2",
+"session": "openhands-a27d52d840fd875f943ca3fe",
+"turn": 2,
+"prompt_tokens": 67851,
+"sha": "2419c65ad7a6540d"
+},
+{
+"id": "openhands-a27d52d840fd875f943ca3fe-turn3",
+"session": "openhands-a27d52d840fd875f943ca3fe",
+"turn": 3,
+"prompt_tokens": 70171,
+"sha": "62c15d14654699a6"
+},
+{
+"id": "openhands-a4b5fc656313500d568b344e-turn0",
+"session": "openhands-a4b5fc656313500d568b344e",
+"turn": 0,
+"prompt_tokens": 17762,
+"sha": "f86c076de407503f"
+},
+{
+"id": "openhands-a4b5fc656313500d568b344e-turn1",
+"session": "openhands-a4b5fc656313500d568b344e",
+"turn": 1,
+"prompt_tokens": 17923,
+"sha": "0bbb0b1206be11a7"
+},
+{
+"id": "openhands-a4b5fc656313500d568b344e-turn2",
+"session": "openhands-a4b5fc656313500d568b344e",
+"turn": 2,
+"prompt_tokens": 18079,
+"sha": "561510909a084cc1"
+},
+{
+"id": "openhands-a4b5fc656313500d568b344e-turn3",
+"session": "openhands-a4b5fc656313500d568b344e",
+"turn": 3,
+"prompt_tokens": 18236,
+"sha": "2e522df1bdb8d406"
+},
+{
+"id": "openhands-a4da98b5d6199d25da6aff6b-turn0",
+"session": "openhands-a4da98b5d6199d25da6aff6b",
+"turn": 0,
+"prompt_tokens": 36290,
+"sha": "f658ee1bcfbfacce"
+},
+{
+"id": "openhands-a4da98b5d6199d25da6aff6b-turn1",
+"session": "openhands-a4da98b5d6199d25da6aff6b",
+"turn": 1,
+"prompt_tokens": 36658,
+"sha": "abcfa6d1469332d5"
+},
+{
+"id": "openhands-a4da98b5d6199d25da6aff6b-turn2",
+"session": "openhands-a4da98b5d6199d25da6aff6b",
+"turn": 2,
+"prompt_tokens": 37166,
+"sha": "6ca881af0aa2fe42"
+},
+{
+"id": "openhands-a4da98b5d6199d25da6aff6b-turn3",
+"session": "openhands-a4da98b5d6199d25da6aff6b",
+"turn": 3,
+"prompt_tokens": 37366,
+"sha": "479d0e415be2cd81"
+},
+{
+"id": "openhands-a9ac44962f15615fdbb7555d-turn0",
+"session": "openhands-a9ac44962f15615fdbb7555d",
+"turn": 0,
+"prompt_tokens": 51248,
+"sha": "69107e56e9700ba4"
+},
+{
+"id": "openhands-a9ac44962f15615fdbb7555d-turn1",
+"session": "openhands-a9ac44962f15615fdbb7555d",
+"turn": 1,
+"prompt_tokens": 52208,
+"sha": "eeeafc5939ec097f"
+},
+{
+"id": "openhands-a9ac44962f15615fdbb7555d-turn2",
+"session": "openhands-a9ac44962f15615fdbb7555d",
+"turn": 2,
+"prompt_tokens": 53362,
+"sha": "494ad7b9452e26fb"
+},
+{
+"id": "openhands-a9ac44962f15615fdbb7555d-turn3",
+"session": "openhands-a9ac44962f15615fdbb7555d",
+"turn": 3,
+"prompt_tokens": 54159,
+"sha": "fe8d9edd8dae21a6"
+},
+{
+"id": "openhands-ac2ef03e372e434356fb2f53-turn0",
+"session": "openhands-ac2ef03e372e434356fb2f53",
+"turn": 0,
+"prompt_tokens": 37137,
+"sha": "6df87fca9ca66307"
+},
+{
+"id": "openhands-ac2ef03e372e434356fb2f53-turn1",
+"session": "openhands-ac2ef03e372e434356fb2f53",
+"turn": 1,
+"prompt_tokens": 37764,
+"sha": "8800b3e56fc2dc98"
+},
+{
+"id": "openhands-ac2ef03e372e434356fb2f53-turn2",
+"session": "openhands-ac2ef03e372e434356fb2f53",
+"turn": 2,
+"prompt_tokens": 38383,
+"sha": "be818314042d63e4"
+},
+{
+"id": "openhands-ac2ef03e372e434356fb2f53-turn3",
+"session": "openhands-ac2ef03e372e434356fb2f53",
+"turn": 3,
+"prompt_tokens": 39013,
+"sha": "a9c02408e3944778"
+},
+{
+"id": "openhands-b0eff85bd03bfaf2344ae8af-turn0",
+"session": "openhands-b0eff85bd03bfaf2344ae8af",
+"turn": 0,
+"prompt_tokens": 14036,
+"sha": "4b1ba3c6b1b4b81a"
+},
+{
+"id": "openhands-b0eff85bd03bfaf2344ae8af-turn1",
+"session": "openhands-b0eff85bd03bfaf2344ae8af",
+"turn": 1,
+"prompt_tokens": 14279,
+"sha": "bdfdd612f2ae3256"
+},
+{
+"id": "openhands-b0eff85bd03bfaf2344ae8af-turn2",
+"session": "openhands-b0eff85bd03bfaf2344ae8af",
+"turn": 2,
+"prompt_tokens": 14942,
+"sha": "f922162d24486016"
+},
+{
+"id": "openhands-b0eff85bd03bfaf2344ae8af-turn3",
+"session": "openhands-b0eff85bd03bfaf2344ae8af",
+"turn": 3,
+"prompt_tokens": 15396,
+"sha": "724e002e7aff705b"
+},
+{
+"id": "openhands-b44fb5bdba3a41a113225d2c-turn0",
+"session": "openhands-b44fb5bdba3a41a113225d2c",
+"turn": 0,
+"prompt_tokens": 26818,
+"sha": "1d60568926c7dacc"
+},
+{
+"id": "openhands-b44fb5bdba3a41a113225d2c-turn1",
+"session": "openhands-b44fb5bdba3a41a113225d2c",
+"turn": 1,
+"prompt_tokens": 27011,
+"sha": "6c0869747a10639a"
+},
+{
+"id": "openhands-b44fb5bdba3a41a113225d2c-turn2",
+"session": "openhands-b44fb5bdba3a41a113225d2c",
+"turn": 2,
+"prompt_tokens": 27900,
+"sha": "33a8cb18794a3fa1"
+},
+{
+"id": "openhands-b44fb5bdba3a41a113225d2c-turn3",
+"session": "openhands-b44fb5bdba3a41a113225d2c",
+"turn": 3,
+"prompt_tokens": 28209,
+"sha": "17bd4a84de0d36c2"
+},
+{
+"id": "openhands-b638cf20660d2844527accdd-turn0",
+"session": "openhands-b638cf20660d2844527accdd",
+"turn": 0,
+"prompt_tokens": 36109,
+"sha": "0357fc1e2a1ab3ad"
+},
+{
+"id": "openhands-b638cf20660d2844527accdd-turn1",
+"session": "openhands-b638cf20660d2844527accdd",
+"turn": 1,
+"prompt_tokens": 36350,
+"sha": "3a8265665b279d79"
+},
+{
+"id": "openhands-b638cf20660d2844527accdd-turn2",
+"session": "openhands-b638cf20660d2844527accdd",
+"turn": 2,
+"prompt_tokens": 36650,
+"sha": "724c018c6e360579"
+},
+{
+"id": "openhands-b638cf20660d2844527accdd-turn3",
+"session": "openhands-b638cf20660d2844527accdd",
+"turn": 3,
+"prompt_tokens": 40003,
+"sha": "8e09591b0606cdcd"
+},
+{
+"id": "openhands-b7cc4e68777cfa5ae5d3e1e0-turn0",
+"session": "openhands-b7cc4e68777cfa5ae5d3e1e0",
+"turn": 0,
+"prompt_tokens": 48690,
+"sha": "d41ff05ba806c195"
+},
+{
+"id": "openhands-b7cc4e68777cfa5ae5d3e1e0-turn1",
+"session": "openhands-b7cc4e68777cfa5ae5d3e1e0",
+"turn": 1,
+"prompt_tokens": 48971,
+"sha": "f929305f1cf4113c"
+},
+{
+"id": "openhands-b7cc4e68777cfa5ae5d3e1e0-turn2",
+"session": "openhands-b7cc4e68777cfa5ae5d3e1e0",
+"turn": 2,
+"prompt_tokens": 49481,
+"sha": "51fd29aee68e1d2c"
+},
+{
+"id": "openhands-b7cc4e68777cfa5ae5d3e1e0-turn3",
+"session": "openhands-b7cc4e68777cfa5ae5d3e1e0",
+"turn": 3,
+"prompt_tokens": 49945,
+"sha": "124258abefa9beca"
+},
+{
+"id": "openhands-bc3ea716ecd8e44365cfa5ac-turn0",
+"session": "openhands-bc3ea716ecd8e44365cfa5ac",
+"turn": 0,
+"prompt_tokens": 6824,
+"sha": "5064a8f5ee158fc1"
+},
+{
+"id": "openhands-bc3ea716ecd8e44365cfa5ac-turn1",
+"session": "openhands-bc3ea716ecd8e44365cfa5ac",
+"turn": 1,
+"prompt_tokens": 7234,
+"sha": "1871c1d9deeb2a6d"
+},
+{
+"id": "openhands-bc3ea716ecd8e44365cfa5ac-turn2",
+"session": "openhands-bc3ea716ecd8e44365cfa5ac",
+"turn": 2,
+"prompt_tokens": 8989,
+"sha": "6d9ff1ab6656e1c2"
+},
+{
+"id": "openhands-bc3ea716ecd8e44365cfa5ac-turn3",
+"session": "openhands-bc3ea716ecd8e44365cfa5ac",
+"turn": 3,
+"prompt_tokens": 9325,
+"sha": "96d149c627eea244"
+},
+{
+"id": "openhands-bdb467d50baf8b2c774b6de4-turn0",
+"session": "openhands-bdb467d50baf8b2c774b6de4",
+"turn": 0,
+"prompt_tokens": 74893,
+"sha": "6d0328bb4e1d9c3e"
+},
+{
+"id": "openhands-bdb467d50baf8b2c774b6de4-turn1",
+"session": "openhands-bdb467d50baf8b2c774b6de4",
+"turn": 1,
+"prompt_tokens": 75222,
+"sha": "0f010fb891207ffb"
+},
+{
+"id": "openhands-bdb467d50baf8b2c774b6de4-turn2",
+"session": "openhands-bdb467d50baf8b2c774b6de4",
+"turn": 2,
+"prompt_tokens": 75611,
+"sha": "1950c26e2ed1cc17"
+},
+{
+"id": "openhands-bdb467d50baf8b2c774b6de4-turn3",
+"session": "openhands-bdb467d50baf8b2c774b6de4",
+"turn": 3,
+"prompt_tokens": 76238,
+"sha": "01636cb39ba13fb8"
+},
+{
+"id": "openhands-c5ea57f35dc4eb063f5424df-turn0",
+"session": "openhands-c5ea57f35dc4eb063f5424df",
+"turn": 0,
+"prompt_tokens": 30624,
+"sha": "c3d73643834959a1"
+},
+{
+"id": "openhands-c5ea57f35dc4eb063f5424df-turn1",
+"session": "openhands-c5ea57f35dc4eb063f5424df",
+"turn": 1,
+"prompt_tokens": 30935,
+"sha": "e0f83a3e70997c16"
+},
+{
+"id": "openhands-c5ea57f35dc4eb063f5424df-turn2",
+"session": "openhands-c5ea57f35dc4eb063f5424df",
+"turn": 2,
+"prompt_tokens": 31109,
+"sha": "eacb4cf7f4cf1b89"
+},
+{
+"id": "openhands-c5ea57f35dc4eb063f5424df-turn3",
+"session": "openhands-c5ea57f35dc4eb063f5424df",
+"turn": 3,
+"prompt_tokens": 33892,
+"sha": "be20cb439de5f137"
+},
+{
+"id": "openhands-c5f43fd121eb4ff0813ab834-turn0",
+"session": "openhands-c5f43fd121eb4ff0813ab834",
+"turn": 0,
+"prompt_tokens": 52203,
+"sha": "51234f8785174dd7"
+},
+{
+"id": "openhands-c5f43fd121eb4ff0813ab834-turn1",
+"session": "openhands-c5f43fd121eb4ff0813ab834",
+"turn": 1,
+"prompt_tokens": 52744,
+"sha": "96c3850136bf01fe"
+},
+{
+"id": "openhands-c5f43fd121eb4ff0813ab834-turn2",
+"session": "openhands-c5f43fd121eb4ff0813ab834",
+"turn": 2,
+"prompt_tokens": 53881,
+"sha": "016e6109111bce62"
+},
+{
+"id": "openhands-c5f43fd121eb4ff0813ab834-turn3",
+"session": "openhands-c5f43fd121eb4ff0813ab834",
+"turn": 3,
+"prompt_tokens": 56409,
+"sha": "9223b2ddc2dbd044"
+},
+{
+"id": "openhands-c68fd2d00f5e962f7a95e56f-turn0",
+"session": "openhands-c68fd2d00f5e962f7a95e56f",
+"turn": 0,
+"prompt_tokens": 30533,
+"sha": "75320e8d5fbe2ae8"
+},
+{
+"id": "openhands-c68fd2d00f5e962f7a95e56f-turn1",
+"session": "openhands-c68fd2d00f5e962f7a95e56f",
+"turn": 1,
+"prompt_tokens": 31033,
+"sha": "7669c9e425f4b016"
+},
+{
+"id": "openhands-c68fd2d00f5e962f7a95e56f-turn2",
+"session": "openhands-c68fd2d00f5e962f7a95e56f",
+"turn": 2,
+"prompt_tokens": 33701,
+"sha": "83c7f38b88c50ca3"
+},
+{
+"id": "openhands-c68fd2d00f5e962f7a95e56f-turn3",
+"session": "openhands-c68fd2d00f5e962f7a95e56f",
+"turn": 3,
+"prompt_tokens": 33919,
+"sha": "71d6f03a97bfef9b"
+},
+{
+"id": "openhands-c7c135202fde742df605fd84-turn0",
+"session": "openhands-c7c135202fde742df605fd84",
+"turn": 0,
+"prompt_tokens": 43434,
+"sha": "df10037a8fc5ee7f"
+},
+{
+"id": "openhands-c7c135202fde742df605fd84-turn1",
+"session": "openhands-c7c135202fde742df605fd84",
+"turn": 1,
+"prompt_tokens": 43775,
+"sha": "a8613ba20ff6b819"
+},
+{
+"id": "openhands-c7c135202fde742df605fd84-turn2",
+"session": "openhands-c7c135202fde742df605fd84",
+"turn": 2,
+"prompt_tokens": 44557,
+"sha": "fddf3023531de4be"
+},
+{
+"id": "openhands-c7c135202fde742df605fd84-turn3",
+"session": "openhands-c7c135202fde742df605fd84",
+"turn": 3,
+"prompt_tokens": 45015,
+"sha": "92819be07da960a2"
+},
+{
+"id": "openhands-c9d423bddea2f2bafbef948a-turn0",
+"session": "openhands-c9d423bddea2f2bafbef948a",
+"turn": 0,
+"prompt_tokens": 44538,
+"sha": "4fc6b396494ffe0e"
+},
+{
+"id": "openhands-c9d423bddea2f2bafbef948a-turn1",
+"session": "openhands-c9d423bddea2f2bafbef948a",
+"turn": 1,
+"prompt_tokens": 45491,
+"sha": "8658306167b95b56"
+},
+{
+"id": "openhands-c9d423bddea2f2bafbef948a-turn2",
+"session": "openhands-c9d423bddea2f2bafbef948a",
+"turn": 2,
+"prompt_tokens": 45817,
+"sha": "5d01a63ceaae9c93"
+},
+{
+"id": "openhands-c9d423bddea2f2bafbef948a-turn3",
+"session": "openhands-c9d423bddea2f2bafbef948a",
+"turn": 3,
+"prompt_tokens": 47088,
+"sha": "42778986fae93b70"
+},
+{
+"id": "openhands-cc6b553def618fb57bb6fd01-turn0",
+"session": "openhands-cc6b553def618fb57bb6fd01",
+"turn": 0,
+"prompt_tokens": 25125,
+"sha": "e18ba0622d505f65"
+},
+{
+"id": "openhands-cc6b553def618fb57bb6fd01-turn1",
+"session": "openhands-cc6b553def618fb57bb6fd01",
+"turn": 1,
+"prompt_tokens": 26456,
+"sha": "2788811ffcf9ea63"
+},
+{
+"id": "openhands-cc6b553def618fb57bb6fd01-turn2",
+"session": "openhands-cc6b553def618fb57bb6fd01",
+"turn": 2,
+"prompt_tokens": 28664,
+"sha": "d74bfa02ad3967cb"
+},
+{
+"id": "openhands-cc6b553def618fb57bb6fd01-turn3",
+"session": "openhands-cc6b553def618fb57bb6fd01",
+"turn": 3,
+"prompt_tokens": 29110,
+"sha": "82716bf8ca87dfea"
+},
+{
+"id": "openhands-d0b602bbaff9583521741c6d-turn0",
+"session": "openhands-d0b602bbaff9583521741c6d",
+"turn": 0,
+"prompt_tokens": 21492,
+"sha": "703c1807ebfb3c4e"
+},
+{
+"id": "openhands-d0b602bbaff9583521741c6d-turn1",
+"session": "openhands-d0b602bbaff9583521741c6d",
+"turn": 1,
+"prompt_tokens": 21718,
+"sha": "47ac298af2e0e1b4"
+},
+{
+"id": "openhands-d0b602bbaff9583521741c6d-turn2",
+"session": "openhands-d0b602bbaff9583521741c6d",
+"turn": 2,
+"prompt_tokens": 22069,
+"sha": "2f9a4d7b2ca07533"
+},
+{
+"id": "openhands-d0b602bbaff9583521741c6d-turn3",
+"session": "openhands-d0b602bbaff9583521741c6d",
+"turn": 3,
+"prompt_tokens": 22299,
+"sha": "92b622512ec8b5b6"
+},
+{
+"id": "openhands-d1966ce497800b3c21ac0a4c-turn0",
+"session": "openhands-d1966ce497800b3c21ac0a4c",
+"turn": 0,
+"prompt_tokens": 41498,
+"sha": "421c30169d6e4a9b"
+},
+{
+"id": "openhands-d1966ce497800b3c21ac0a4c-turn1",
+"session": "openhands-d1966ce497800b3c21ac0a4c",
+"turn": 1,
+"prompt_tokens": 41813,
+"sha": "4670e6239b90ac19"
+},
+{
+"id": "openhands-d1966ce497800b3c21ac0a4c-turn2",
+"session": "openhands-d1966ce497800b3c21ac0a4c",
+"turn": 2,
+"prompt_tokens": 41961,
+"sha": "4f32b2972f4befea"
+},
+{
+"id": "openhands-d1966ce497800b3c21ac0a4c-turn3",
+"session": "openhands-d1966ce497800b3c21ac0a4c",
+"turn": 3,
+"prompt_tokens": 42094,
+"sha": "68b85e56ab0b1030"
+},
+{
+"id": "openhands-d1ca3d229091a69300a3b9ca-turn0",
+"session": "openhands-d1ca3d229091a69300a3b9ca",
+"turn": 0,
+"prompt_tokens": 24627,
+"sha": "fc0898978b8adebf"
+},
+{
+"id": "openhands-d1ca3d229091a69300a3b9ca-turn1",
+"session": "openhands-d1ca3d229091a69300a3b9ca",
+"turn": 1,
+"prompt_tokens": 25733,
+"sha": "320cecbc078dbcaa"
+},
+{
+"id": "openhands-d1ca3d229091a69300a3b9ca-turn2",
+"session": "openhands-d1ca3d229091a69300a3b9ca",
+"turn": 2,
+"prompt_tokens": 26069,
+"sha": "6ffaade03c9f0085"
+},
+{
+"id": "openhands-d1ca3d229091a69300a3b9ca-turn3",
+"session": "openhands-d1ca3d229091a69300a3b9ca",
+"turn": 3,
+"prompt_tokens": 27164,
+"sha": "19a62ae494dcfce9"
+},
+{
+"id": "openhands-dcb166191760c24fefd79922-turn0",
+"session": "openhands-dcb166191760c24fefd79922",
+"turn": 0,
+"prompt_tokens": 35486,
+"sha": "52fd0363162c2f43"
+},
+{
+"id": "openhands-dcb166191760c24fefd79922-turn1",
+"session": "openhands-dcb166191760c24fefd79922",
+"turn": 1,
+"prompt_tokens": 36035,
+"sha": "20173f88277cc779"
+},
+{
+"id": "openhands-dcb166191760c24fefd79922-turn2",
+"session": "openhands-dcb166191760c24fefd79922",
+"turn": 2,
+"prompt_tokens": 36208,
+"sha": "eeaa6ef19f22df16"
+},
+{
+"id": "openhands-dcb166191760c24fefd79922-turn3",
+"session": "openhands-dcb166191760c24fefd79922",
+"turn": 3,
+"prompt_tokens": 37002,
+"sha": "f69f1f90975b9934"
+},
+{
+"id": "openhands-de7bff20de400b33aa268580-turn0",
+"session": "openhands-de7bff20de400b33aa268580",
+"turn": 0,
+"prompt_tokens": 8594,
+"sha": "58c025b0132a06f0"
+},
+{
+"id": "openhands-de7bff20de400b33aa268580-turn1",
+"session": "openhands-de7bff20de400b33aa268580",
+"turn": 1,
+"prompt_tokens": 9403,
+"sha": "1d4b9ff30c92e8a2"
+},
+{
+"id": "openhands-de7bff20de400b33aa268580-turn2",
+"session": "openhands-de7bff20de400b33aa268580",
+"turn": 2,
+"prompt_tokens": 9561,
+"sha": "2bec65e7e5138320"
+},
+{
+"id": "openhands-de7bff20de400b33aa268580-turn3",
+"session": "openhands-de7bff20de400b33aa268580",
+"turn": 3,
+"prompt_tokens": 11093,
+"sha": "8848b5fe14bd14e2"
+},
+{
+"id": "openhands-e141c1233511a8253cc8000a-turn0",
+"session": "openhands-e141c1233511a8253cc8000a",
+"turn": 0,
+"prompt_tokens": 10844,
+"sha": "82c2b8bbe29d1b60"
+},
+{
+"id": "openhands-e141c1233511a8253cc8000a-turn1",
+"session": "openhands-e141c1233511a8253cc8000a",
+"turn": 1,
+"prompt_tokens": 11244,
+"sha": "396fdc6a2caf4555"
+},
+{
+"id": "openhands-e141c1233511a8253cc8000a-turn2",
+"session": "openhands-e141c1233511a8253cc8000a",
+"turn": 2,
+"prompt_tokens": 11468,
+"sha": "1de677a7f223c295"
+},
+{
+"id": "openhands-e141c1233511a8253cc8000a-turn3",
+"session": "openhands-e141c1233511a8253cc8000a",
+"turn": 3,
+"prompt_tokens": 12352,
+"sha": "74ce9ba3b757cb43"
+},
+{
+"id": "openhands-e5b673f0a387867337571473-turn0",
+"session": "openhands-e5b673f0a387867337571473",
+"turn": 0,
+"prompt_tokens": 36580,
+"sha": "b534e67008ea496a"
+},
+{
+"id": "openhands-e5b673f0a387867337571473-turn1",
+"session": "openhands-e5b673f0a387867337571473",
+"turn": 1,
+"prompt_tokens": 36990,
+"sha": "f4b9dfa3c81d02a4"
+},
+{
+"id": "openhands-e5b673f0a387867337571473-turn2",
+"session": "openhands-e5b673f0a387867337571473",
+"turn": 2,
+"prompt_tokens": 37233,
+"sha": "b85d94f4e051d78c"
+},
+{
+"id": "openhands-e5b673f0a387867337571473-turn3",
+"session": "openhands-e5b673f0a387867337571473",
+"turn": 3,
+"prompt_tokens": 37661,
+"sha": "5f904de5095af071"
+},
+{
+"id": "openhands-eba0c8462cb497c2f4401429-turn0",
+"session": "openhands-eba0c8462cb497c2f4401429",
+"turn": 0,
+"prompt_tokens": 18994,
+"sha": "be4bd1a57514f2dc"
+},
+{
+"id": "openhands-eba0c8462cb497c2f4401429-turn1",
+"session": "openhands-eba0c8462cb497c2f4401429",
+"turn": 1,
+"prompt_tokens": 19227,
+"sha": "edc4c414384d9374"
+},
+{
+"id": "openhands-eba0c8462cb497c2f4401429-turn2",
+"session": "openhands-eba0c8462cb497c2f4401429",
+"turn": 2,
+"prompt_tokens": 19404,
+"sha": "943667c9f9feab2b"
+},
+{
+"id": "openhands-eba0c8462cb497c2f4401429-turn3",
+"session": "openhands-eba0c8462cb497c2f4401429",
+"turn": 3,
+"prompt_tokens": 19771,
+"sha": "968dd4e4b2bf84bd"
+},
+{
+"id": "openhands-ee9ffa6ede386a3850277194-turn0",
+"session": "openhands-ee9ffa6ede386a3850277194",
+"turn": 0,
+"prompt_tokens": 35877,
+"sha": "58e149b035a271db"
+},
+{
+"id": "openhands-ee9ffa6ede386a3850277194-turn1",
+"session": "openhands-ee9ffa6ede386a3850277194",
+"turn": 1,
+"prompt_tokens": 36651,
+"sha": "6fe8eff7409f6e6b"
+},
+{
+"id": "openhands-ee9ffa6ede386a3850277194-turn2",
+"session": "openhands-ee9ffa6ede386a3850277194",
+"turn": 2,
+"prompt_tokens": 37097,
+"sha": "514feccc164a7766"
+},
+{
+"id": "openhands-ee9ffa6ede386a3850277194-turn3",
+"session": "openhands-ee9ffa6ede386a3850277194",
+"turn": 3,
+"prompt_tokens": 37350,
+"sha": "6dad92af5b0b2e44"
+},
+{
+"id": "openhands-f09e6bca81a3b8ea36cfbb3d-turn0",
+"session": "openhands-f09e6bca81a3b8ea36cfbb3d",
+"turn": 0,
+"prompt_tokens": 27111,
+"sha": "4402b59c159646d3"
+},
+{
+"id": "openhands-f09e6bca81a3b8ea36cfbb3d-turn1",
+"session": "openhands-f09e6bca81a3b8ea36cfbb3d",
+"turn": 1,
+"prompt_tokens": 28009,
+"sha": "5f046bc837c63f17"
+},
+{
+"id": "openhands-f09e6bca81a3b8ea36cfbb3d-turn2",
+"session": "openhands-f09e6bca81a3b8ea36cfbb3d",
+"turn": 2,
+"prompt_tokens": 28500,
+"sha": "6610b306ee0f250b"
+},
+{
+"id": "openhands-f09e6bca81a3b8ea36cfbb3d-turn3",
+"session": "openhands-f09e6bca81a3b8ea36cfbb3d",
+"turn": 3,
+"prompt_tokens": 31447,
+"sha": "930c69f24afd401a"
+},
+{
+"id": "openhands-f2a3e66195487a8a78d3c187-turn0",
+"session": "openhands-f2a3e66195487a8a78d3c187",
+"turn": 0,
+"prompt_tokens": 16937,
+"sha": "9e964c620bec4efd"
+},
+{
+"id": "openhands-f2a3e66195487a8a78d3c187-turn1",
+"session": "openhands-f2a3e66195487a8a78d3c187",
+"turn": 1,
+"prompt_tokens": 18221,
+"sha": "48105c33e8a8cae5"
+},
+{
+"id": "openhands-f2a3e66195487a8a78d3c187-turn2",
+"session": "openhands-f2a3e66195487a8a78d3c187",
+"turn": 2,
+"prompt_tokens": 19676,
+"sha": "75f0741309289134"
+},
+{
+"id": "openhands-f2a3e66195487a8a78d3c187-turn3",
+"session": "openhands-f2a3e66195487a8a78d3c187",
+"turn": 3,
+"prompt_tokens": 19980,
+"sha": "373d48aabaa895cc"
+},
+{
+"id": "openhands-f2dd366530e8ab3581b7f98f-turn0",
+"session": "openhands-f2dd366530e8ab3581b7f98f",
+"turn": 0,
+"prompt_tokens": 39062,
+"sha": "df9adb64e0fa12d9"
+},
+{
+"id": "openhands-f2dd366530e8ab3581b7f98f-turn1",
+"session": "openhands-f2dd366530e8ab3581b7f98f",
+"turn": 1,
+"prompt_tokens": 40973,
+"sha": "0788216feb930628"
+},
+{
+"id": "openhands-f2dd366530e8ab3581b7f98f-turn2",
+"session": "openhands-f2dd366530e8ab3581b7f98f",
+"turn": 2,
+"prompt_tokens": 41580,
+"sha": "9607722a73acc86c"
+},
+{
+"id": "openhands-f2dd366530e8ab3581b7f98f-turn3",
+"session": "openhands-f2dd366530e8ab3581b7f98f",
+"turn": 3,
+"prompt_tokens": 41882,
+"sha": "b484975a8f8ef18c"
+},
+{
+"id": "openhands-f5723d714999d0df0369e3d7-turn0",
+"session": "openhands-f5723d714999d0df0369e3d7",
+"turn": 0,
+"prompt_tokens": 17173,
+"sha": "1c15a5793d628d5b"
+},
+{
+"id": "openhands-f5723d714999d0df0369e3d7-turn1",
+"session": "openhands-f5723d714999d0df0369e3d7",
+"turn": 1,
+"prompt_tokens": 18032,
+"sha": "67760c24e13a16d4"
+},
+{
+"id": "openhands-f5723d714999d0df0369e3d7-turn2",
+"session": "openhands-f5723d714999d0df0369e3d7",
+"turn": 2,
+"prompt_tokens": 18728,
+"sha": "7ee41f3ae860d3cf"
+},
+{
+"id": "openhands-f5723d714999d0df0369e3d7-turn3",
+"session": "openhands-f5723d714999d0df0369e3d7",
+"turn": 3,
+"prompt_tokens": 19458,
+"sha": "8088475e9a6d274a"
+},
+{
+"id": "openhands-f723fdb19fd89cd760e113b1-turn0",
+"session": "openhands-f723fdb19fd89cd760e113b1",
+"turn": 0,
+"prompt_tokens": 47664,
+"sha": "7c261f24334e5c32"
+},
+{
+"id": "openhands-f723fdb19fd89cd760e113b1-turn1",
+"session": "openhands-f723fdb19fd89cd760e113b1",
+"turn": 1,
+"prompt_tokens": 49418,
+"sha": "4e3fe68951f7e1a1"
+},
+{
+"id": "openhands-f723fdb19fd89cd760e113b1-turn2",
+"session": "openhands-f723fdb19fd89cd760e113b1",
+"turn": 2,
+"prompt_tokens": 50117,
+"sha": "8198dc7ed1b6950a"
+},
+{
+"id": "openhands-f723fdb19fd89cd760e113b1-turn3",
+"session": "openhands-f723fdb19fd89cd760e113b1",
+"turn": 3,
+"prompt_tokens": 50954,
+"sha": "f272dc156411c7c1"
+},
+{
+"id": "openhands-f8ff7c9a844bf679bc6de31f-turn0",
+"session": "openhands-f8ff7c9a844bf679bc6de31f",
+"turn": 0,
+"prompt_tokens": 40638,
+"sha": "bc9762761c3f4d94"
+},
+{
+"id": "openhands-f8ff7c9a844bf679bc6de31f-turn1",
+"session": "openhands-f8ff7c9a844bf679bc6de31f",
+"turn": 1,
+"prompt_tokens": 40837,
+"sha": "f824c75dbff81d6c"
+},
+{
+"id": "openhands-f8ff7c9a844bf679bc6de31f-turn2",
+"session": "openhands-f8ff7c9a844bf679bc6de31f",
+"turn": 2,
+"prompt_tokens": 41164,
+"sha": "d26c592a6c4b192b"
+},
+{
+"id": "openhands-f8ff7c9a844bf679bc6de31f-turn3",
+"session": "openhands-f8ff7c9a844bf679bc6de31f",
+"turn": 3,
+"prompt_tokens": 41864,
+"sha": "6e08dafb103d2794"
+}
+]
