@@ -102,6 +102,12 @@ class TimerSpec:
     ratio_tol: float = 4.0
     wall_slack_ms: float = 250.0     # scheduling jitter between the harness's clock and the evaluator's clock
     wall_slack_rel: float = 0.05
+    # calibrate=True (kernel track): the ABSOLUTE ratio t/ref is a property of the bench harness (ref_ms includes un-modelled work: fused AND
+    # two-pass launches, L2 flush, process start), not of the kernel. MEASURED live: ~9.4x for the unmodified BASELINE, so the absolute 4x cap
+    # rejected the baseline itself (run 4, rounds 0 and 2: gate_fail:timer on tag b). With calibrate, every run's rho = t/ref must match the
+    # BASELINE's median rho within ratio_tol (relative, and tighter than before): a candidate that lies about its kernel time shifts rho and is
+    # rejected; a genuinely faster/slower kernel moves rho only by its share of ref.
+    calibrate: bool = False
 
 
 def timer_crosscheck(j: dict | None, eval_wall_s: float, spec: TimerSpec) -> GateResult:
@@ -115,9 +121,33 @@ def timer_crosscheck(j: dict | None, eval_wall_s: float, spec: TimerSpec) -> Gat
     if wall > eval_wall_s * 1000.0 * (1 + spec.wall_slack_rel) + spec.wall_slack_ms:
         return GateResult("timer", False, f"harness wall {wall:.0f}ms exceeds evaluator-measured {eval_wall_s*1000:.0f}ms")
     r = max(t / ref, ref / t)
+    if spec.calibrate: return GateResult("timer", True, "ok (relative check pending)", {"ratio": r, "rho": t / ref})
     if r > spec.ratio_tol:
         return GateResult("timer", False, f"self-reported {t:.4g}ms vs harness-measured {ref:.4g}ms disagree x{r:.2f} > {spec.ratio_tol}", {"ratio": r})
     return GateResult("timer", True, "ok", {"ratio": r})
+
+
+def timer_calibrated(runs: list, spec: TimerSpec) -> GateResult:
+    """runs: [(tag 'b'|'k', bench json)] of ONE split. Every run's rho = time_ms/ref_ms must lie within [rho_b/ratio_tol, rho_b*ratio_tol],
+    rho_b = median rho of the baseline runs (the baseline is ground truth for the harness's own overhead)."""
+    rb = [float(j["time_ms"]) / float(j["ref_ms"]) for t, j in runs if t == "b"]
+    if not rb: return GateResult("timer", False, "no baseline runs to calibrate the timer cross-check")
+    rho_b = statistics.median(rb)
+    worst = 1.0
+    # ref_ms is a difference of two process wall clocks and is noisy per run (A/A on A100: single-run rho spans 0.7x..1.6x of its median),
+    # so: (a) the MEDIAN rho of each tag must be within ratio_tol of the baseline median (a candidate that mis-reports its time shifts every
+    # run, hence the median); (b) every single run must be within 4*ratio_tol (catches a lone wild value without false-failing jitter).
+    for tag in sorted({t for t, _ in runs}):
+        med = statistics.median(float(j["time_ms"]) / float(j["ref_ms"]) for t, j in runs if t == tag)
+        r = max(med / rho_b, rho_b / med); worst = max(worst, r)
+        if r > spec.ratio_tol:
+            return GateResult("timer", False, f"{tag}: median self-reported/harness-measured ratio {med:.3g} differs x{r:.2f} from the baseline's {rho_b:.3g} (> {spec.ratio_tol})",
+                              {"rho_baseline": rho_b, "rho_median": med, "ratio": r})
+    for t, j in runs:
+        rho = float(j["time_ms"]) / float(j["ref_ms"]); r = max(rho / rho_b, rho_b / rho)
+        if r > 4 * spec.ratio_tol:
+            return GateResult("timer", False, f"{t}: single-run ratio {rho:.3g} differs x{r:.2f} from the baseline's {rho_b:.3g} (> {4 * spec.ratio_tol})", {"rho_baseline": rho_b, "rho": rho})
+    return GateResult("timer", True, "ok", {"rho_baseline": rho_b, "worst_median_ratio": worst})
 
 
 def _median(x): return statistics.median(x)

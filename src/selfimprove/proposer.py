@@ -78,7 +78,7 @@ def build_prompt(req: ProposalRequest) -> str:
         parts = [f"## Scope\n{req.scope_description}", f"## Base version\n{req.base_version}"]
         if req.profile_summary: parts.append(f"## Profile summary\n{req.profile_summary}")
         if req.dev_results: parts.append(f"## Dev results (dev split only)\n{req.dev_results}")
-        if req.history: parts.append("## Earlier proposals this session\n" + "\n".join(f"- {h}" for h in req.history[-10:]))
+        if req.history: parts.append("## Earlier proposals this session\n" + "\n".join(f"- {h}" for h in req.history[-24:]))
         for p, t in sorted(req.files.items()):
             parts.append(f"## File: {p}\n```\n{t}\n```")
         parts.append((SP if req.track == "policy" else ST).prompt_section(req.files))
@@ -86,7 +86,7 @@ def build_prompt(req: ProposalRequest) -> str:
     parts = [f"## Scope\n{req.scope_description}", f"## Base version\n{req.base_version}"]
     if req.profile_summary: parts.append(f"## Profile summary\n{req.profile_summary}")
     if req.dev_results: parts.append(f"## Dev results (dev split only)\n{req.dev_results}")
-    if req.history: parts.append("## Earlier proposals this session\n" + "\n".join(f"- {h}" for h in req.history[-10:]))
+    if req.history: parts.append("## Earlier proposals this session\n" + "\n".join(f"- {h}" for h in req.history[-24:]))
     for p, t in sorted(req.files.items()):
         parts.append(f"## File: {p}\n```\n{t}\n```")
     parts.append("## Task\nPropose one bounded improvement as a unified diff against the files above.\n"

@@ -119,6 +119,9 @@ class Evaluator:
                 out["verdict"] = "timeout"; out["gates"]["correctness"] = G.GateResult("correctness", False, "timeout").to_dict(); return out
             if rb_.timed_out or not rb_.parsed:       # without a measured baseline the regress-vs-baseline check would silently vanish
                 out["verdict"] = "baseline_broken"; out["sandbox"]["error"] = "baseline correctness run failed/unparsable"; return out
+            gb = G.correctness_gate(rb_.parsed, None, c.correctness)   # the UNMODIFIED baseline must itself pass on this seed, else it is a harness/reference bug
+            if not gb.passed:
+                out["verdict"] = "baseline_broken"; out["sandbox"]["error"] = f"baseline fails its own correctness gate on seed {seed}: {gb.reason}"; out["gates"]["baseline_correctness"] = gb.to_dict(); return out
             g = G.correctness_gate(rc_.parsed, rb_.parsed, c.correctness); out["gates"]["correctness"] = g.to_dict()
             if not g.passed: out["verdict"] = "gate_fail:correctness"; return out
             # (2) held-out quality (fixed seed, paired)
@@ -129,7 +132,7 @@ class Evaluator:
             # (3) speed: interleaved A/B per split, order alternated to cancel drift
             splits = {}
             for split in ("dev", "heldout"):
-                b, k = [], []
+                b, k, tr = [], [], []
                 for base_first in abba_order(c.speed.n_runs):
                     order = (("b", wb), ("k", wc)) if base_first else (("k", wc), ("b", wb))
                     for tag, ws in order:
@@ -144,7 +147,13 @@ class Evaluator:
                                 out["gates"]["timer"] = tg.to_dict()
                                 out["gates"]["speed"] = G.GateResult("speed", False, f"{split}/{tag}: timer cross-check failed: {tg.reason}").to_dict()
                                 out["verdict"] = "gate_fail:timer"; return out
-                        (b if tag == "b" else k).append(float(j["time_ms"]))
+                        (b if tag == "b" else k).append(float(j["time_ms"])); tr.append((tag, j))
+                if c.timer is not None and c.timer.calibrate:       # relative check against the baseline's own harness overhead (see TimerSpec)
+                    tg = G.timer_calibrated(tr, c.timer); out["gates"][f"timer_{split}"] = tg.to_dict()
+                    if not tg.passed:
+                        out["gates"]["timer"] = tg.to_dict()
+                        out["gates"]["speed"] = G.GateResult("speed", False, f"{split}: timer cross-check failed: {tg.reason}").to_dict()
+                        out["verdict"] = "gate_fail:timer"; return out
                 splits[split] = (b, k)
             g = G.speed_gate(splits, c.speed); out["gates"]["speed"] = g.to_dict()
             out["verdict"] = "pass" if g.passed else "gate_fail:speed"
@@ -177,6 +186,7 @@ class Loop:
         if mode not in ("diff", "structured"): raise ValueError(mode)
         if track not in ("kernel", "policy"): raise ValueError(track)
         self.mode, self.track = mode, track
+        self.max_dup_retries = 3
         self.SM = SP if track == "policy" else ST          # structured-edit module of this track (parse_edits/render_diff/history_line)
         self.prior_history = list(prior_history or [])      # dev-only one-liners from earlier stores (see ST.history_from_store)
         self.cfg, self.store, self.proposer, self.ev = cfg, store, proposer, Evaluator(cfg)
@@ -187,13 +197,18 @@ class Loop:
             store.recover()                           # finish a promotion/rollback that was logged but not applied (crash)
             store.assert_healthy()
 
-    def step(self, profile_summary: str = "", dev_results: str = "", rnd: int = 0) -> dict:
+    def step(self, profile_summary: str = "", dev_results: str = "", rnd: int = 0, temperature: float | None = None) -> dict:
         cfg, st = self.cfg, self.store
         st.assert_healthy()                           # chained log, version contents and CURRENT must agree before we trust the baseline
         base_v = st.current(); base_files = st.files(base_v)
         history = list(self.prior_history) + [self.SM.history_line(r) for r in st.read_log() if r.get("event") == "proposal"]
+        if self.mode == "structured" and hasattr(self.SM, "TUNABLES"):     # neutral coverage hint: names only, North still chooses every value
+            tried = {e["name"] for r in st.read_log() if r.get("event") == "proposal" and r.get("verdict") not in ("invalid_edit", "duplicate_edit", "proposer_error")
+                     for e in (r.get("structured") or {}).get("edits", [])}
+            if history: history.append("Tunables NOT yet changed in any measured proposal: " + (", ".join(n for n in self.SM.TUNABLES if n not in tried) or "(none)"))
         req = ProposalRequest(base_version=base_v, files=base_files, scope_description=scope_description(cfg.scope),
-                              profile_summary=profile_summary, dev_results=dev_results, history=history, mode=self.mode, track=self.track)
+                              profile_summary=profile_summary, dev_results=dev_results, history=history, mode=self.mode, track=self.track,
+                              **({"temperature": temperature} if temperature is not None else {}))
         pid = uuid.uuid4().hex
         rec = dict(event="proposal", proposal_id=pid, round=rnd, base_version=base_v, verdict=None, findings=[], gates={}, cost={})
         t0 = time.time()
@@ -236,6 +251,12 @@ class Loop:
             rec["reason"] = structured_err; return finish("invalid_edit")
         if not diff:
             return finish("no_change" if diff == "" else "no_diff_in_response")
+        if self.mode == "structured":     # best-of-N: never spend GPU re-measuring an edit set already measured against this very base
+            dup = [r for r in st.read_log() if r.get("event") == "proposal" and r.get("base_version") == base_v
+                   and r.get("diff_sha256") == rec["diff_sha256"] and r.get("verdict") not in ("proposer_error", "evaluator_error", "duplicate_edit")]
+            if dup:
+                rec["reason"] = f"identical edit set already measured against {base_v} (proposal {dup[-1]['proposal_id'][:8]}); propose a DIFFERENT edit set"
+                return finish("duplicate_edit")
         try:
             fds = D.parse(diff, cfg.scope)
             new_files = D.apply_all(fds, base_files.get, cfg.scope)
@@ -269,11 +290,20 @@ class Loop:
         rec["cumulative_vs_v0000"] = st.cumulative(extra_tested=1)   # +1: this proposal is not logged yet
         return finish("promoted", v)
 
-    def run(self, rounds: int, max_total_usd: float = 5.0, **kw) -> list[dict]:
+    def run(self, rounds: int, max_total_usd: float = 5.0, proposals_per_round: int = 1, **kw) -> list[dict]:
+        """proposals_per_round=N: best-of-N greedy. N proposals per round, sampled at rising temperature (0.3, 0.55, 0.8, 1.0), each
+        seeing every earlier measured result (incl. the ones from this round); the first to pass ALL gates is promoted and later
+        proposals build on it. Identical edit sets are skipped without evaluation (duplicate_edit). Every proposal is logged and
+        counted in the selection-adjusted CI (n_tested)."""
         out = []
         for i in range(rounds):
-            spent = self.store.cost_summary()
-            if spent["proposer_usd"] + spent["eval_usd"] >= max_total_usd:
-                self.store.log(dict(event="budget_stop", spent=spent)); break
-            out.append(self.step(rnd=i, **kw))
+            for j in range(max(1, proposals_per_round)):
+                spent = self.store.cost_summary()
+                if spent["proposer_usd"] + spent["eval_usd"] >= max_total_usd:
+                    self.store.log(dict(event="budget_stop", spent=spent)); return out
+                t = min(1.0, 0.3 + 0.25 * j) if proposals_per_round > 1 else None
+                out.append(self.step(rnd=i, temperature=t, **kw))
+                for k in range(self.max_dup_retries):         # duplicates cost no GPU evaluation: resample (hotter) instead of wasting the slot
+                    if out[-1].get("verdict") != "duplicate_edit": break
+                    out.append(self.step(rnd=i, temperature=min(1.0, (t or 0.3) + 0.2 * (k + 1)), **kw))
         return out

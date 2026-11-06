@@ -140,7 +140,7 @@ def remote(track: str = "kernel", rounds: int = 1, proposer: str = "mock", max_u
     store = store or (f"selfimprove_dryrun_{track}" if dry else f"selfimprove_{track}")
     if dry and "dryrun" not in store: raise SystemExit("mock proposer must write to a store whose name contains 'dryrun'")
     if not dry and not confirm_cost: raise SystemExit("live North run needs --confirm-cost (spends GPU money on the proposer AND the evaluator)")
-    est = estimate_cost(track, rounds, with_proposer=not dry)
+    est = estimate_cost(track, rounds * max(1, locals().get("per_round", 1)), with_proposer=not dry)
     print(f"[remote] mode={mode} store=Volume {STORE_VOL}:/{store} ~USD {est['usd']:.2f} (hard cap --max-usd {max_usd})")
     out = run_loop_remote.remote(dict(track=track, rounds=rounds, proposer=proposer, max_usd=max_usd, store=store, mode=mode))
     print(json.dumps(out, indent=1, default=str))
@@ -160,7 +160,7 @@ def pull(store: str, dest: str = ""):
 
 @app.local_entrypoint()
 def main(track: str = "kernel", rounds: int = 1, proposer: str = "mock", max_usd: float = 3.0, store: str = "",
-         confirm_cost: bool = False, mode: str = "", temperature: float = 0.3, max_new_tokens: int = 2048):
+         confirm_cost: bool = False, mode: str = "", temperature: float = 0.3, max_new_tokens: int = 2048, per_round: int = 1):
     sys.path.insert(0, str(ROOT / "src"))
     from selfimprove.loop import Loop
     from selfimprove.proposer import NorthProposer, MockProposer
@@ -174,7 +174,7 @@ def main(track: str = "kernel", rounds: int = 1, proposer: str = "mock", max_usd
     store_dir = pathlib.Path(store or ROOT / "results" / (f"selfimprove_dryrun_{track}" if dry else f"selfimprove_{track}"))
     if dry and "dryrun" not in store_dir.name:
         raise SystemExit("mock proposer must write to a store whose directory name contains 'dryrun'")
-    est = estimate_cost(track, rounds, with_proposer=not dry)
+    est = estimate_cost(track, rounds * max(1, locals().get("per_round", 1)), with_proposer=not dry)
     print(f"[mode] {mode}")
     print(f"[estimate] ~{est['minutes']:.0f} A100-80GB minutes, ~USD {est['usd']:.2f} for {rounds} round(s) (hard cap --max-usd {max_usd})")
     if dry:
@@ -192,7 +192,7 @@ def main(track: str = "kernel", rounds: int = 1, proposer: str = "mock", max_usd
         prop = NorthProposer()
     lp = Loop(cfg, st, prop, mode=mode, track=track)
     lp.ev = RemoteEvaluator(track)
-    res = lp.run(rounds, max_total_usd=max_usd, profile_summary=H["profile_summary"](track), dev_results=H["dev_results"](track))
+    res = lp.run(rounds, max_total_usd=max_usd, proposals_per_round=per_round, profile_summary=H["profile_summary"](track), dev_results=H["dev_results"](track))
     for r in res:
         print(r["proposal_id"][:8], r["verdict"], "|", r["proposer"]["label"] if "proposer" in r else "no proposer record",
               "| cost", {k: round(v, 3) for k, v in r.get("cost", {}).items() if isinstance(v, float)})

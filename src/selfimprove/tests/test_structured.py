@@ -83,8 +83,9 @@ def test_rejections(raw, frag):
     assert frag in err(raw)
 
 def test_too_many_edits():
-    ed = [("KC", 128), ("XPAD", 0), ("HPAD", 0), ("MT_SPLIT", 4), ("MINB_PER_SM", 2), ("UNROLL_KS", 4)]
+    ed = [("KC", 128), ("XPAD", 0), ("HPAD", 0)]
     ST.parse_edits(j(ed))
+    assert "too_many_edits" in err(j(ed + [("MT_SPLIT", 4)]))
     assert "too_many_edits" in err(json.dumps(dict(edits=[dict(name=n, value=v) for n, v in ed] + [dict(name="KC", value=64)], rationale="")))
 
 def test_smem_overflow_rejected_before_build(real):
@@ -178,9 +179,9 @@ def _rec(verdict="gate_fail:speed", edits=((("KC", 128),)), sp=0.964):
 
 def test_history_line_has_edits_and_dev_speedup_but_never_heldout():
     h = ST.history_line(_rec())
-    assert h.startswith("abcdef01: gate_fail:speed") and "KC=128" in h and "0.964x" in h and "SLOWER" in h
+    assert h.startswith("abcdef01 (vs ?): gate_fail:speed") and "KC=128" in h and "0.964x" in h and "SLOWER" in h
     assert "0.500" not in h and "heldout" not in h.lower()
-    assert ST.history_line(dict(proposal_id="x" * 8, verdict="invalid_edit")) == "xxxxxxxx: invalid_edit"
+    assert ST.history_line(dict(proposal_id="x" * 8, verdict="invalid_edit")) == "xxxxxxxx (vs ?): invalid_edit"
 
 def test_history_reaches_prompt_and_guidance_present(real):
     req = P.ProposalRequest(base_version="v0", files=real, scope_description="s", mode="structured", history=[ST.history_line(_rec())])
