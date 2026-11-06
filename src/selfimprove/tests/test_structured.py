@@ -164,3 +164,41 @@ def test_audit_shape_rule_ignores_comment_numbers():
     d2 = d.replace("+constexpr int MT_SPLIT = 8;           // experts", "+if (n == 16) return;  // experts")
     f2 = audit_diff(parse(d2, DEFAULT_SCOPE), dev_only_shapes={16}, bench_shapes={8, 16})
     assert [x for x in f2 if x.code == "shape_specialization" and x.severity == "reject"]
+
+
+# ---- history + guidance (prompt improvements) ------------------------------------------------------------------------
+def _rec(verdict="gate_fail:speed", edits=((("KC", 128),)), sp=0.964):
+    return dict(event="proposal", proposal_id="abcdef0123456789", verdict=verdict,
+                structured=dict(edits=[dict(name=n, value=v) for n, v in edits], rationale="r"),
+                gates=dict(correctness=dict(passed=True), quality=dict(passed=True),
+                           speed=dict(passed=False, data=dict(dev=dict(valid=True, speedup=sp, ci_lo=0.96, threshold=1.03),
+                                                              heldout=dict(valid=True, speedup=0.5, ci_lo=0.5, threshold=1.03)))))
+
+def test_history_line_has_edits_and_dev_speedup_but_never_heldout():
+    h = ST.history_line(_rec())
+    assert h.startswith("abcdef01: gate_fail:speed") and "KC=128" in h and "0.964x" in h and "SLOWER" in h
+    assert "0.500" not in h and "heldout" not in h.lower()
+    assert ST.history_line(dict(proposal_id="x" * 8, verdict="invalid_edit")) == "xxxxxxxx: invalid_edit"
+
+def test_history_reaches_prompt_and_guidance_present(real):
+    req = P.ProposalRequest(base_version="v0", files=real, scope_description="s", mode="structured", history=[ST.history_line(_rec())])
+    p = P.build_prompt(req)
+    assert "## Earlier proposals this session" in p and "KC=128" in p and "0.964x" in p
+    assert "BASELINE" in p and "ODD multiple of 16" in p and "Dev launches route only" in p
+    assert "heldout" not in p.lower() and "held-out" not in p.lower()
+
+def test_loop_feeds_prior_rounds_into_next_prompt(toy, tmp_path):
+    seen = []
+    def tr(payload):
+        seen.append(payload["prompt"])
+        return dict(text=j([("KC", 128)]), model_id=NORTH_MODEL_ID, revision=NORTH_REVISION, backend="stub", response_id="x")
+    st = Store(tmp_path / "s")
+    lp = loop.Loop(toy, st, P.NorthProposer(transport=tr), mode="structured", prior_history=["old00000: gate_fail:speed | edits MT_SPLIT=8 | measured dev speedup 0.9x"])
+    lp.step(); lp.step(rnd=1)
+    assert "old00000" in seen[0] and "edits KC=128" not in seen[0]
+    assert "edits KC=128" in seen[1]
+
+def test_history_from_store_roundtrip(tmp_path):
+    f = tmp_path / "proposals.jsonl"
+    f.write_text(json.dumps(dict(event="init")) + "\n" + json.dumps(_rec()) + "\n")
+    assert len(ST.history_from_store(f)) == 1 and "KC=128" in ST.history_from_store(f)[0]

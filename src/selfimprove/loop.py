@@ -131,9 +131,11 @@ class Evaluator:
 
 
 class Loop:
-    def __init__(self, cfg: EvalConfig, store: Store, proposer: Proposer, allow_mock_promotion: bool = False, mode: str = "diff"):
+    def __init__(self, cfg: EvalConfig, store: Store, proposer: Proposer, allow_mock_promotion: bool = False, mode: str = "diff",
+                 prior_history: list[str] | None = None):
         if mode not in ("diff", "structured"): raise ValueError(mode)
         self.mode = mode
+        self.prior_history = list(prior_history or [])      # dev-only one-liners from earlier stores (see ST.history_from_store)
         self.cfg, self.store, self.proposer, self.ev = cfg, store, proposer, Evaluator(cfg)
         self.allow_mock_promotion = allow_mock_promotion
         if store.current() is None:
@@ -142,7 +144,7 @@ class Loop:
     def step(self, profile_summary: str = "", dev_results: str = "", rnd: int = 0) -> dict:
         cfg, st = self.cfg, self.store
         base_v = st.current(); base_files = st.files(base_v)
-        history = [f"{r['proposal_id'][:8]}: {r['verdict']}" for r in st.read_log() if r.get("event") == "proposal"]
+        history = list(self.prior_history) + [ST.history_line(r) for r in st.read_log() if r.get("event") == "proposal"]
         req = ProposalRequest(base_version=base_v, files=base_files, scope_description=scope_description(cfg.scope),
                               profile_summary=profile_summary, dev_results=dev_results, history=history, mode=self.mode)
         pid = uuid.uuid4().hex
