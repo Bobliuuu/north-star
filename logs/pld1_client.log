@@ -1,0 +1,35 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-WZWRwaECxCbsRiLj9KCLQe
+✓ Created objects.
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-aed8249c7bea51369/modal/pld.
+│   py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-aed8249c7bea51369/tests
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-aed8249c7bea51369/src/norths
+│   tar
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-aed8249c7bea51369/harness
+└── ✓ Created Function pld_remote.
+
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-06T15:33:19Z", "gpu": "NVIDIA H200", "cuda": "12.8", "gpu_mem_gb": 139.8, "pip_freeze_sha": "b75d56d0a2a7", "load_s": 53.63109064102173}
+natural graphs captured; cost T=1/4/9/13: [10.41, 11.48, 12.59, 13.04]
+PLD FAILED Traceback (most recent call last):
+  File "/root/pld.py", line 23, in pld_remote
+    bench_pld.run(m, tok, n_new=n_new, ctxs=tuple(ctxs), emit=lambda *a: print(*a, flush=True), j=j)
+  File "/usr/local/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/harness/bench_pld.py", line 98, in run
+    for name in pld.PROPOSERS:
+                ^^^^^^^^^^^^^
+AttributeError: module 'pld' has no attribute 'PROPOSERS'
+
+{'secs': 68.21228623390198, 'rows': 2}
+PLD_DONE secs 68.21228623390198 est usd 0.07484403628442024
+[modal-client] 2026-11-06T10:33:46-0500 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-WZWRwaECxCbsRiLj9KCLQe
