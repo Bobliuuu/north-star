@@ -16,7 +16,7 @@ def remote(tag: str, sections: str, reps: int, hf: bool, live_set: str, n_new: i
     m, tok = load_model(MODEL_DIR, "grouped_mm")
     meta = env_meta(); meta["load_s"] = time.time() - t0
     print("META", json.dumps(meta), flush=True)
-    j = bench_exact.run(m, tok, sections, tag, reps, hf, live_set, n_new)
+    j = bench_exact.run(m, tok, sections, tag, reps, hf, n_new)
     text = j.text(); secs = time.time() - t0
     pathlib.Path(f"/results/exactspec_{tag}.jsonl").write_text(text)
     pathlib.Path(f"/results/exactspec_{tag}.meta.json").write_text(json.dumps(dict(meta, secs=secs)))
