@@ -1,0 +1,11 @@
+{
+ "parent": null,
+ "authored_by": "developer",
+ "north_attested": false,
+ "note": "developer baseline",
+ "version": "v0000",
+ "created": 1793981034.138168,
+ "files_sha256": {
+  "src/kvm/moe_fused.cu": "18a805aa3b6dc781a50e3229bb92d9538b02bbd596e9c79e8fa045219f79b5a6"
+ }
+}

@@ -37,7 +37,7 @@ def make_config(repo, track="kernel", python="python3", require_measured_calibra
     if track == "kernel":
         return EvalConfig(
             repo=repo, subdirs=["src/kvm", h],
-            heldout_files={"routing_traces.json": repo / "results" / "routing_traces.json"}, timer=gates.TimerSpec(),
+            heldout_files={"routing_traces.json": repo / "results" / "routing_traces.json"}, timer=gates.TimerSpec(calibrate=True, ratio_tol=1.5),
             build_cmd=[python, f"{h}/kernel_build.py"], correctness_cmd=[python, f"{h}/kernel_check.py"],
             quality_cmd=[python, f"{h}/kernel_quality.py"], bench_cmd=[python, f"{h}/kernel_bench.py"],
             scope=Scope([ScopeRule("src/kvm/moe_fused.cu", regions_only=True)], Limits(max_files=1, max_hunks=4, max_changed_lines=30)),
