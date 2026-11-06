@@ -1,0 +1,149 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-YtNk8CNINpjoG2ut5ltS4s
+✓ Created objects.
+├── ✓ Uploaded /Users/jhome/north-star/modal/se_run.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded /Users/jhome/north-star/src/northstar
+├── ✓ Uploaded /Users/jhome/north-star/tests
+├── ✓ Uploaded /Users/jhome/north-star/src/selfedit
+├── ✓ Uploaded /Users/jhome/north-star/src/weightedit
+├── ✓ Uploaded /Users/jhome/north-star/src/approx
+├── ✓ Uploaded /Users/jhome/north-star/harness
+└── ✓ Created Function run_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:11, 33.56it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:01<00:25, 14.87it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:02<00:32, 11.15it/s]
+[1ALoading weights:   7%|▋         | 29/394 [00:02<00:31, 11.64it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:03<00:38,  9.40it/s]
+[1ALoading weights:   9%|▉         | 37/394 [00:03<00:36,  9.66it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:04<00:39,  8.85it/s]
+[1ALoading weights:  12%|█▏        | 48/394 [00:04<00:29, 11.81it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:04<00:41,  8.29it/s]
+[1ALoading weights:  13%|█▎        | 53/394 [00:05<00:38,  8.94it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:05<00:40,  8.30it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:06<00:36,  9.02it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:06<00:33,  9.60it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:07<00:35,  8.92it/s]
+[1ALoading weights:  20%|█▉        | 77/394 [00:07<00:32,  9.63it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:08<00:36,  8.56it/s]
+[1ALoading weights:  22%|██▏       | 85/394 [00:08<00:34,  9.00it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:09<00:36,  8.42it/s]
+[1ALoading weights:  24%|██▎       | 93/394 [00:09<00:33,  9.10it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:10<00:39,  7.55it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:10<00:35,  8.34it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:11<00:38,  7.54it/s]
+[1ALoading weights:  28%|██▊       | 109/394 [00:11<00:34,  8.30it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:12<00:37,  7.42it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:13<00:33,  8.11it/s]
+[1ALoading weights:  32%|███▏      | 126/394 [00:13<00:28,  9.43it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:14<00:31,  8.45it/s]
+[1ALoading weights:  34%|███▍      | 133/394 [00:14<00:30,  8.48it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:15<00:28,  8.96it/s]
+[1ALoading weights:  36%|███▌      | 141/394 [00:15<00:26,  9.68it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:15<00:26,  9.34it/s]
+[1ALoading weights:  38%|███▊      | 149/394 [00:16<00:23, 10.21it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:16<00:26,  8.99it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:17<00:24,  9.41it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:18<00:23,  9.60it/s]
+[1ALoading weights:  44%|████▍     | 173/394 [00:18<00:22,  9.97it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:19<00:21,  9.96it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:19<00:21,  9.78it/s]
+[1ALoading weights:  48%|████▊     | 189/394 [00:20<00:20, 10.03it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:20<00:21,  9.44it/s]
+[1ALoading weights:  50%|█████     | 197/394 [00:20<00:19, 10.02it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:21<00:20,  9.50it/s]
+[1ALoading weights:  52%|█████▏    | 205/394 [00:21<00:18, 10.06it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:22<00:18,  9.95it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:23<00:18,  9.70it/s]
+[1ALoading weights:  56%|█████▌    | 221/394 [00:23<00:17, 10.05it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:24<00:16,  9.84it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:24<00:16,  9.83it/s]
+[1ALoading weights:  60%|██████    | 237/394 [00:25<00:16,  9.70it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:25<00:15,  9.63it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:26<00:15,  9.52it/s]
+[1ALoading weights:  64%|██████▍   | 252/394 [00:26<00:15,  9.14it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:27<00:14,  9.25it/s]
+[1ALoading weights:  66%|██████▌   | 260/394 [00:27<00:15,  8.79it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:28<00:13,  9.48it/s]
+[1ALoading weights:  68%|██████▊   | 268/394 [00:28<00:13,  9.10it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:29<00:12,  9.59it/s]
+[1ALoading weights:  70%|███████   | 276/394 [00:29<00:12,  9.32it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:30<00:11,  9.60it/s]
+[1ALoading weights:  72%|███████▏  | 284/394 [00:30<00:12,  9.12it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:30<00:10,  9.48it/s]
+[1ALoading weights:  74%|███████▍  | 292/394 [00:31<00:11,  8.80it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:31<00:09, 10.10it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:32<00:08,  9.87it/s]
+[1ALoading weights:  78%|███████▊  | 308/394 [00:32<00:09,  9.26it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:33<00:07, 10.30it/s]
+[1ALoading weights:  80%|████████  | 316/394 [00:33<00:07, 10.13it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:34<00:06, 10.29it/s]
+[1ALoading weights:  82%|████████▏ | 324/394 [00:34<00:06, 10.20it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:34<00:06,  9.99it/s]
+[1ALoading weights:  84%|████████▍ | 332/394 [00:34<00:06,  9.92it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:35<00:05, 10.04it/s]
+[1ALoading weights:  86%|████████▋ | 340/394 [00:35<00:05, 10.01it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:36<00:04, 10.17it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:37<00:03, 10.22it/s]
+[1ALoading weights:  90%|█████████ | 356/394 [00:37<00:03, 10.17it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:37<00:02, 10.35it/s]
+[1ALoading weights:  93%|█████████▎| 365/394 [00:38<00:02, 10.97it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:38<00:02, 10.29it/s]
+[1ALoading weights:  95%|█████████▍| 373/394 [00:38<00:01, 11.10it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:39<00:01,  9.86it/s]
+[1ALoading weights:  97%|█████████▋| 381/394 [00:39<00:01, 10.55it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:40<00:00, 10.24it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:40<00:00,  9.78it/s]
+loaded 60s; moe layers 48 H=2048 I=768 V=262144
+backup done 87s
+teacher caches done 274s
+  sens layer 1: kl=0.02184
+  sens layer 2: kl=0.01568
+  sens layer 3: kl=0.01878
+  sens layer 4: kl=0.01603
+  sens layer 5: kl=0.01868
+  sens layer 6: kl=0.01686
+  sens layer 7: kl=0.01833
+  sens layer 8: kl=0.01854
+  sens layer 9: kl=0.01413
+  sens layer 10: kl=0.01720
+  sens layer 11: kl=0.01842
+  sens layer 12: kl=0.01622
+  sens layer 13: kl=0.01196
+  sens layer 14: kl=0.01470
+  sens layer 15: kl=0.01152
+  sens layer 16: kl=0.01080
+  sens layer 17: kl=0.00813
+  sens layer 18: kl=0.00879
+  sens layer 19: kl=0.01020
+  sens layer 20: kl=0.00732
+  sens layer 21: kl=0.00783
+  sens layer 22: kl=0.00581
+  sens layer 23: kl=0.00543
+  sens layer 24: kl=0.01137
+  sens layer 25: kl=0.00537
+  sens layer 26: kl=0.00481
+  sens layer 27: kl=0.00470
+  sens layer 28: kl=0.00538
+  sens layer 29: kl=0.00516
+  sens layer 30: kl=0.00330
+  sens layer 31: kl=0.00429
+  sens layer 32: kl=0.00403
+  sens layer 33: kl=0.00418
+  sens layer 34: kl=0.00403
+  sens layer 35: kl=0.00472
+  sens layer 36: kl=0.00388
+  sens layer 37: kl=0.00366
+  sens layer 38: kl=0.00326
+  sens layer 39: kl=0.00330
+  sens layer 40: kl=0.00239
+  sens layer 41: kl=0.00243
+  sens layer 42: kl=0.00322
+  sens layer 43: kl=0.00152
+  sens layer 44: kl=0.00185
+  sens layer 45: kl=0.00193
+  sens layer 46: kl=0.00173
+  sens layer 47: kl=0.00109

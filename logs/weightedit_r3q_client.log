@@ -1,0 +1,12 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-to6cIjoZdF7r3NqgnlwfY5
+✓ Created objects.
+├── ✓ Uploaded /Users/jhome/north-star/modal/we_run.py
+├── ✓ Uploaded /Users/jhome/north-star/src/approx
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded /Users/jhome/north-star/src/weightedit
+├── ✓ Uploaded /Users/jhome/north-star/src/northstar
+├── ✓ Uploaded /Users/jhome/north-star/tests
+├── ✓ Uploaded /Users/jhome/north-star/harness
+└── ✓ Created Function run_remote.
