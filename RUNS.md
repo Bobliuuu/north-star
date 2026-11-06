@@ -44,6 +44,8 @@ printed line below (git history of this file is the anchor). Verify before trust
 
 | 2026-11-06 | ap-XWryUYU2rvuYtMXljmhmgO | `modal run --detach modal/fast_unit.py` | fast-exec Triton kernel unit tests, A10G (~$0.03). All pass: results/fast_unit_A10G.jsonl, logs/fast_unit_client.log |
 
+| 2026-11-06 | ap-ksLWABFkYxyr2VSrBE1YXT | `modal run --detach modal/exactspec_run.py::main --tag ex2 --sections b --reps 2` | exact-spec bench H100 (natural + ctx2K/8K, sam2 g12, exact vs old executor, HF natural/2K): 471 s ~$0.52. results/exactspec_ex2.jsonl, logs/exactspec_ex2_applogs.log. spec==plain 70/70 (exact) vs 12/70 (old) |
+| 2026-11-06 | (A10G) | `modal run --detach modal/exact_unit.py --gpu A10G` x2 | batch-invariance kernel unit tests, all bitwise pass (~$0.05 each) |
 | 2026-11-06 | ap-GvaDaKNFg6dF9bM9fPwZXn | `modal run --detach modal/fast_exec.py::main --tag fx1` | fast-exec H100: profile + option ablation timing (2K/8K) + token identity. Timing valid; token-identity section invalid (harness bug: capture warmup clobbers KV at stale `start`). results/fast_exec_fx1.jsonl |
 | 2026-11-06 | ap-YbrJxAQgqpQG5XeYQ27wfN | `modal run --detach modal/fast_exec.py::main --tag fx2dbg --sections d` | eager last-position logits per option vs HF full forward (all argmax == HF). results/fast_exec_fx2dbg.jsonl |
 | 2026-11-06 | ap-mHt2JUiNUAcLajZ9Rtu3N3 | `modal run --detach modal/fast_exec.py::main --tag fx3c --sections c` | token identity vs HF generate + RefNorth after re-prefill fix. logs/fast_exec_fx3c_client.log |
