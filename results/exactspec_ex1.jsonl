@@ -1,0 +1,34 @@
+{"P": 164, "argmax_agree_hf": 12, "block_T13_bitwise": true, "block_T2_bitwise": true, "block_T5_bitwise": true, "graph13_eq_eager_t1": true, "graph1_eq_eager": true, "maxabs_vs_hf": 3.15625, "phase": "invariance", "rows": 13, "task": "py_lru"}
+{"P": 162, "argmax_agree_hf": 13, "block_T13_bitwise": true, "block_T2_bitwise": true, "block_T5_bitwise": true, "graph13_eq_eager_t1": true, "graph1_eq_eager": true, "maxabs_vs_hf": 1.625, "phase": "invariance", "rows": 13, "task": "py_interval"}
+{"P": 168, "argmax_agree_hf": 13, "block_T13_bitwise": true, "block_T2_bitwise": true, "block_T5_bitwise": true, "graph13_eq_eager_t1": true, "graph1_eq_eager": true, "maxabs_vs_hf": 3.0, "phase": "invariance", "rows": 13, "task": "rs_stack"}
+{"P": 160, "argmax_agree_hf": 13, "block_T13_bitwise": true, "block_T2_bitwise": true, "block_T5_bitwise": true, "graph13_eq_eager_t1": true, "graph1_eq_eager": true, "maxabs_vs_hf": 1.375, "phase": "invariance", "rows": 13, "task": "sh_logs"}
+{"P": 232, "argmax_agree_hf": 13, "block_T13_bitwise": true, "block_T2_bitwise": true, "block_T5_bitwise": true, "graph13_eq_eager_t1": true, "graph1_eq_eager": true, "maxabs_vs_hf": 1.125, "phase": "invariance", "rows": 13, "task": "term_pytest_fail"}
+{"P": 175, "argmax_agree_hf": 13, "block_T13_bitwise": true, "block_T2_bitwise": true, "block_T5_bitwise": true, "graph13_eq_eager_t1": true, "graph1_eq_eager": true, "maxabs_vs_hf": 3.0, "phase": "invariance", "rows": 13, "task": "term_git_conflict"}
+{"P": 147, "argmax_agree_hf": 13, "block_T13_bitwise": true, "block_T2_bitwise": true, "block_T5_bitwise": true, "graph13_eq_eager_t1": true, "graph1_eq_eager": true, "maxabs_vs_hf": 2.0859375, "phase": "invariance", "rows": 13, "task": "pr_hbm"}
+{"P": 133, "argmax_agree_hf": 13, "block_T13_bitwise": true, "block_T2_bitwise": true, "block_T5_bitwise": true, "graph13_eq_eager_t1": true, "graph1_eq_eager": true, "maxabs_vs_hf": 1.25, "phase": "invariance", "rows": 13, "task": "pr_tradeoff"}
+{"P": 2048, "argmax_agree_hf": 13, "block_T13_bitwise": true, "block_T2_bitwise": true, "block_T5_bitwise": true, "graph13_eq_eager_t1": true, "graph1_eq_eager": true, "maxabs_vs_hf": 3.96875, "phase": "invariance", "rows": 13, "task": "code_ctx2048"}
+{"P": 8192, "argmax_agree_hf": 13, "block_T13_bitwise": true, "block_T2_bitwise": true, "block_T5_bitwise": true, "graph13_eq_eager_t1": true, "graph1_eq_eager": true, "maxabs_vs_hf": 3.0625, "phase": "invariance", "rows": 13, "task": "code_ctx8192"}
+{"T": 1, "ctx": 2048, "exec": "exact", "ms": 4.561216115951538, "ms_max": 4.608128070831299, "ms_min": 4.512447834014893, "phase": "cost"}
+{"T": 2, "ctx": 2048, "exec": "exact", "ms": 5.350015878677368, "ms_max": 5.4319682121276855, "ms_min": 5.322624206542969, "phase": "cost"}
+{"T": 4, "ctx": 2048, "exec": "exact", "ms": 6.381920099258423, "ms_max": 6.407423973083496, "ms_min": 6.322495937347412, "phase": "cost"}
+{"T": 6, "ctx": 2048, "exec": "exact", "ms": 7.26259183883667, "ms_max": 7.288000106811523, "ms_min": 7.200352191925049, "phase": "cost"}
+{"T": 9, "ctx": 2048, "exec": "exact", "ms": 8.777376174926758, "ms_max": 8.794112205505371, "ms_min": 8.70582389831543, "phase": "cost"}
+{"T": 13, "ctx": 2048, "exec": "exact", "ms": 9.509935855865479, "ms_max": 9.527872085571289, "ms_min": 9.452128410339355, "phase": "cost"}
+{"T": 1, "ctx": 2048, "exec": "old_fast", "ms": 3.942911982536316, "ms_max": 3.963871955871582, "ms_min": 3.9302079677581787, "phase": "cost"}
+{"T": 2, "ctx": 2048, "exec": "old_fast", "ms": 4.914927959442139, "ms_max": 4.947296142578125, "ms_min": 4.8785600662231445, "phase": "cost"}
+{"T": 4, "ctx": 2048, "exec": "old_fast", "ms": 5.979423999786377, "ms_max": 6.004159927368164, "ms_min": 5.938208103179932, "phase": "cost"}
+{"T": 6, "ctx": 2048, "exec": "old_fast", "ms": 6.966879844665527, "ms_max": 6.993631839752197, "ms_min": 6.9389119148254395, "phase": "cost"}
+{"T": 9, "ctx": 2048, "exec": "old_fast", "ms": 8.615567684173584, "ms_max": 8.651391983032227, "ms_min": 8.594079971313477, "phase": "cost"}
+{"T": 13, "ctx": 2048, "exec": "old_fast", "ms": 9.31876802444458, "ms_max": 9.339520454406738, "ms_min": 9.278592109680176, "phase": "cost"}
+{"T": 1, "ctx": 8192, "exec": "exact", "ms": 4.6526079177856445, "ms_max": 4.692992210388184, "ms_min": 4.618207931518555, "phase": "cost"}
+{"T": 2, "ctx": 8192, "exec": "exact", "ms": 5.376879930496216, "ms_max": 5.3909759521484375, "ms_min": 5.365632057189941, "phase": "cost"}
+{"T": 4, "ctx": 8192, "exec": "exact", "ms": 6.491679906845093, "ms_max": 6.511744022369385, "ms_min": 6.4451518058776855, "phase": "cost"}
+{"T": 6, "ctx": 8192, "exec": "exact", "ms": 7.394511938095093, "ms_max": 7.414048194885254, "ms_min": 7.33132791519165, "phase": "cost"}
+{"T": 9, "ctx": 8192, "exec": "exact", "ms": 8.934607982635498, "ms_max": 8.960224151611328, "ms_min": 8.841888427734375, "phase": "cost"}
+{"T": 13, "ctx": 8192, "exec": "exact", "ms": 9.633840084075928, "ms_max": 9.655743598937988, "ms_min": 9.617952346801758, "phase": "cost"}
+{"T": 1, "ctx": 8192, "exec": "old_fast", "ms": 4.061984062194824, "ms_max": 4.085343837738037, "ms_min": 4.0535359382629395, "phase": "cost"}
+{"T": 2, "ctx": 8192, "exec": "old_fast", "ms": 4.977519989013672, "ms_max": 5.002336025238037, "ms_min": 4.957727909088135, "phase": "cost"}
+{"T": 4, "ctx": 8192, "exec": "old_fast", "ms": 6.151264190673828, "ms_max": 6.169055938720703, "ms_min": 6.074495792388916, "phase": "cost"}
+{"T": 6, "ctx": 8192, "exec": "old_fast", "ms": 7.20632004737854, "ms_max": 7.221792221069336, "ms_min": 7.1847357749938965, "phase": "cost"}
+{"T": 9, "ctx": 8192, "exec": "old_fast", "ms": 8.839791774749756, "ms_max": 8.855039596557617, "ms_min": 8.822175979614258, "phase": "cost"}
+{"T": 13, "ctx": 8192, "exec": "old_fast", "ms": 9.491663932800293, "ms_max": 9.515583992004395, "ms_min": 9.462559700012207, "phase": "cost"}
