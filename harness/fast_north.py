@@ -15,14 +15,17 @@ import torch.nn.functional as F
 from graph_north import GraphNorth, ALL
 import fast_kernels as fk
 import fast_kernels_blk as fb
+import fast_kernels_exact as fx
 
 OPTS = ("attn", "moe", "router", "resid")
 TBLK = 16  # largest verify block handled by the fast block path
 
 
 class FastNorth(GraphNorth):
-    def __init__(self, ref, Lmax, opts=OPTS, nsplit=32, kcfg=None):
+    def __init__(self, ref, Lmax, opts=OPTS, nsplit=32, kcfg=None, exact=False):
         super().__init__(ref, Lmax, "bmm")
+        self.exact = exact  # batch-invariant path: T=1 and every row of a T<=16 block use the SAME kernels (see fast_kernels_exact.py)
+        self._x = {}
         self.opts = frozenset(opts)
         self.kcfg = kcfg
         c = self.cfg
@@ -88,7 +91,68 @@ class FastNorth(GraphNorth):
             x, h = b["x2"], b["h2"]
         return self.lm_head(h.view(1, T, -1)) * cfg.logit_scale
 
+    def _x_state(self, T):
+        if T not in self._x:
+            c = self.cfg
+            k = c.num_experts_per_tok
+            z = lambda *s: torch.zeros(*s, dtype=torch.bfloat16, device=self.dev)
+            self._x[T] = dict(ws=fx.AttnWSX(self.Hkv, self.G, self.D, self.Lmax, T, self.dev), idx=torch.zeros(T, k, dtype=torch.int32, device=self.dev),
+                              sc=z(T, k), hb=z(T * k, c.intermediate_size), ob=z(T * k, self.Dm), x2=z(T, self.Dm), h2=z(T, self.Dm), zero=z(T, self.Dm))
+        return self._x[T]
+
+    def _forward_exact(self, ids, kv):
+        """Row-invariant forward for 1 <= T <= TBLK: returns bf16 logits [1,T,V]. Same code for plain (T=1) and verify blocks."""
+        cfg, T = self.cfg, ids.shape[1]
+        W = cfg.sliding_window
+        qpos = self.start + torch.arange(T, device=self.dev)
+        x = self.model.embed_tokens(ids).reshape(T, self.Dm).contiguous()
+        cos, sin = self.model.rotary_emb(x.view(1, T, -1), qpos[None])
+        cos, sin = cos.reshape(T, -1).contiguous(), sin.reshape(T, -1).contiguous()
+        layers = self.model.layers
+        b = self._x_state(T)
+        k = cfg.num_experts_per_tok
+        h = b["h2"]
+        fk.resid_norm(x, b["zero"], b["zero"], layers[0].input_layernorm.weight, b["x2"], h, layers[0].input_layernorm.variance_epsilon)
+        x, h = b["x2"], b["h2"]
+        h = h.clone(); x = x.clone()  # inputs of layer 0 (the buffers are rewritten by the per-layer fused norm)
+        for i, layer in enumerate(layers):
+            sliding = cfg.layer_types[i] == "sliding_attention"
+            at = layer.self_attn
+            kc, vc = kv[i]
+            qkv = fx.lin(h, self.wqkv[i])
+            ao = fx.exact_attention(b["ws"], qkv, cos, sin, self.start, kc, vc, self.Lmax, bool(sliding or at.force_rope), bool(sliding), W, fb._rope_write_blk)
+            a = fx.lin(ao, at.o_proj.weight)
+            mlp = layer.mlp
+            if not hasattr(mlp, "gate"):
+                g_ = fx.lin(h, mlp.gate_proj.weight)
+                u_ = fx.lin(h, mlp.up_proj.weight)
+                m = fx.lin(mlp.act_fn(g_) * u_, mlp.down_proj.weight)
+            else:
+                lg = fx.lin(h, mlp.gate.weight)
+                fk.router_topk(lg, b["idx"], b["sc"], k)
+                m = fb.moe_gemv_blk(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg_blk)
+            wn = layers[i + 1].input_layernorm.weight if i + 1 < self.nl else self.model.norm.weight
+            fk.resid_norm(x, a, m, wn, b["x2"], b["h2"], layer.input_layernorm.variance_epsilon)
+            x, h = b["x2"], b["h2"]
+        lg = fx.lin(h, self.lm_head.weight).view(1, T, -1)
+        return lg if cfg.logit_scale == 1.0 else lg * cfg.logit_scale
+
+    def make_step(self, T, kv, skip=frozenset(), r=None, parts=ALL, logits="last", argmax=True, sparse=None):
+        if not (self.exact and 1 <= T <= TBLK and not skip and r is None and parts == ALL and sparse is None and logits in ("all", "last")):
+            return super().make_step(T, kv, skip, r, parts, logits, argmax, sparse)
+        from graph_north import Step
+        ids = torch.zeros(1, T, dtype=torch.long, device=self.dev)
+
+        def fn():
+            lg = self._forward_exact(ids, kv)
+            return fx.argmax_rows(lg[0]).view(1, T) if argmax else lg
+
+        g, out = self.capture(fn)
+        return Step(self, g, ids, out, fn)
+
     def forward(self, ids, kv, skip=frozenset(), r=None, parts=ALL, logits="last", sparse=None):
+        if self.exact and 1 <= ids.shape[1] <= TBLK and logits in ("all", "last") and not skip and r is None and parts == ALL and sparse is None:
+            return self._forward_exact(ids, kv)
         if 1 < ids.shape[1] <= TBLK and logits == "all" and not skip and r is None and parts == ALL and sparse is None and self.opts >= frozenset(OPTS):
             return self._forward_block(ids, kv)
         if ids.shape[1] != 1 or skip or r is not None or parts != ALL or logits != "last" or sparse is not None:

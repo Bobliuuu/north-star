@@ -56,6 +56,8 @@ printed line below (git history of this file is the anchor). Verify before trust
 
 | 2026-11-06 | ap-XWryUYU2rvuYtMXljmhmgO | `modal run --detach modal/fast_unit.py` | fast-exec Triton kernel unit tests, A10G (~$0.03). All pass: results/fast_unit_A10G.jsonl, logs/fast_unit_client.log |
 
+| 2026-11-06 | ap-ksLWABFkYxyr2VSrBE1YXT | `modal run --detach modal/exactspec_run.py::main --tag ex2 --sections b --reps 2` | exact-spec bench H100 (natural + ctx2K/8K, sam2 g12, exact vs old executor, HF natural/2K): 471 s ~$0.52. results/exactspec_ex2.jsonl, logs/exactspec_ex2_applogs.log. spec==plain 70/70 (exact) vs 12/70 (old) |
+| 2026-11-06 | (A10G) | `modal run --detach modal/exact_unit.py --gpu A10G` x2 | batch-invariance kernel unit tests, all bitwise pass (~$0.05 each) |
 | 2026-11-06 | ap-GvaDaKNFg6dF9bM9fPwZXn | `modal run --detach modal/fast_exec.py::main --tag fx1` | fast-exec H100: profile + option ablation timing (2K/8K) + token identity. Timing valid; token-identity section invalid (harness bug: capture warmup clobbers KV at stale `start`). results/fast_exec_fx1.jsonl |
 | 2026-11-06 | ap-YbrJxAQgqpQG5XeYQ27wfN | `modal run --detach modal/fast_exec.py::main --tag fx2dbg --sections d` | eager last-position logits per option vs HF full forward (all argmax == HF). results/fast_exec_fx2dbg.jsonl |
 | 2026-11-06 | ap-mHt2JUiNUAcLajZ9Rtu3N3 | `modal run --detach modal/fast_exec.py::main --tag fx3c --sections c` | token identity vs HF generate + RefNorth after re-prefill fix. logs/fast_exec_fx3c_client.log |
@@ -86,3 +88,5 @@ printed line below (git history of this file is the anchor). Verify before trust
 | `selfimprove-head selfimprove_kernel_structured_v5 n=13 head=70d64f20450f802690ee9ce0f822d3a4f1734f1b71d2d136e145622ea061df3e` (after run 5) |
 | 2026-11-06 | ap-pR9zZWc1qq2H2HHSOEodt7 | `modal run --detach modal/selfimprove_eval.py::main --track kernel --proposer north --mode structured --rounds 2 --per-round 4 --max-usd 3 --confirm-cost --store results/selfimprove_kernel_structured_v5` | run6 (continues the v5 chain; dup-retry + untried-tunables hint). Finished: 21 more proposals (6 measured all gate_fail:speed, rest duplicate/invalid). Log logs/selfimprove_structured_run6.log. Est total v5 spend (diag ~0.35 + eval 1.10 + proposer GPU 0.14 + proposer container load/idle, unmeasured ~1) ~ $3, cap $6 |
 | `selfimprove-head selfimprove_kernel_structured_v5 n=34 head=bc86debd1209b78a71adad08b73c5c0ee17d574c0ef6332c43166856d49d3e64` (after run 6) |
+
+| 2026-11-06 | ap-GK3KV7orR8QYjXyQCqicEm | `modal run --detach modal/exactspec_run.py::main --tag ex1 --sections ec` | exact-spec: real-model bitwise row-invariance (T=1 vs T=2/5/13 block, graph vs eager) + cost table, H100, ~$0.6. results/exactspec_ex1.jsonl, logs/exactspec_ex1_applogs.log. Kernel unit tests (A10G, no weights): results/exact_unit_A10G.jsonl |
