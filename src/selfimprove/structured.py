@@ -114,6 +114,46 @@ def current_values(files: dict[str, str], path: str = KERNEL_PATH) -> dict[str, 
     return {n: _const(src, n) for n in TUNABLES}
 
 
+def history_line(rec: dict) -> str:
+    """One-line summary of an earlier proposal record for the prompt: id, verdict and, when present, the chosen edits and the
+    measured DEV-split speedup. Held-out numbers are never included (prompt must carry dev data only)."""
+    line = f"{rec['proposal_id'][:8]}: {rec['verdict']}"
+    ed = (rec.get("structured") or {}).get("edits")
+    if ed is not None:
+        line += " | edits " + (", ".join(f"{e['name']}={e['value']}" for e in ed) if ed else "(none)")
+    g = rec.get("gates") or {}
+    sp = (g.get("speed") or {}).get("data", {}).get("dev") if isinstance(g.get("speed"), dict) else None
+    if sp and sp.get("valid") and isinstance(sp.get("speedup"), (int, float)):
+        line += f" | measured dev speedup {sp['speedup']:.3f}x (95% CI lower {sp.get('ci_lo', float('nan')):.3f}; need > {sp.get('threshold', 1.03):.2f}; <1 means SLOWER than base)"
+    return line
+
+
+def history_from_store(log_path) -> list[str]:
+    """Dev-only history lines from an earlier store's proposals.jsonl (to seed a new session with prior measured outcomes)."""
+    import pathlib
+    out = []
+    for l in pathlib.Path(log_path).read_text().splitlines():
+        if l.strip():
+            r = json.loads(l)
+            if r.get("event") == "proposal": out.append(history_line(r))
+    return out
+
+
+# Developer-written, measurement-free facts about the kernel (no held-out information).
+GUIDANCE = (
+    "Facts and strategy:\n"
+    "- The BASELINE values above are the hand-tuned defaults and are a strong starting point; the kernel is HBM-bandwidth bound.\n"
+    "- Dev launches route only 2..32 tokens in total (Tv+Td), top-8 of 128 experts, so most experts see only a few tokens "
+    "(uniform expectation = 8*T/128 pairs per expert). The 2-row-tile path (pair_cnt > MT_SPLIT) doubles accumulator registers and "
+    "MMA work on padded rows for the SAME weight traffic; lowering MT_SPLIT moves more experts onto it. Raising MT_SPLIT back to 16 is the maximum.\n"
+    "- smem rows are read by 16x16 WMMA loads in 16-byte chunks. A row stride (in bytes) that is an ODD multiple of 16 spreads 8 rows over "
+    "all 8 bank groups (conflict free); stride = 128B*k + 16B*odd works, e.g. pad 8 or 24 or 40. Pad 0 gives 8-way conflicts and pad 16 gives 2-way conflicts.\n"
+    "- KC trades smem footprint and sync count: smaller KC means more __syncthreads rounds and shorter weight-load bursts; larger KC means more smem.\n"
+    "- Earlier proposals this session list their measured dev speedup. Do NOT repeat a combination that measured < 1.0; "
+    "change at most 1-2 tunables per proposal so the effect is attributable, and move AWAY from directions that already measured slower. "
+    "The speed gate needs a dev speedup above the stated threshold, so an empty edit list is better than a guess you expect to be slower.\n")
+
+
 def prompt_section(files: dict[str, str], dev_results: str = "") -> str:
     cur = current_values(files)
     rows = "\n".join(f"- {n} = {cur[n]}  allowed: integers in [{lo},{hi}]" + (f", multiple of {m}" if m > 1 else "") + f"  ({d})"
@@ -124,5 +164,6 @@ def prompt_section(files: dict[str, str], dev_results: str = "") -> str:
             "Anything not listed (MAXTOK, SL, H, I, TOPK, ...) is protected and cannot be edited.\n"
             "Output format (strict): ONE JSON object and nothing else (no prose, no markdown fences):\n"
             '{"edits":[{"name":"KC","value":128}],"rationale":"one or two sentences"}\n'
+            f"{GUIDANCE}"
             f"Rules: at most {MAX_EDITS} edits; each name at most once; values are integers (no strings, no expressions); no other keys. "
             "Do NOT write a diff; the harness renders it. If you see no safe improvement output {\"edits\":[],\"rationale\":\"...\"}.")
