@@ -2,7 +2,7 @@
 import sys
 sys.path.insert(0, "modal")
 import modal
-from common import app, weights_vol, WEIGHTS, MODEL_DIR, MODEL_ID, MODEL_REV
+from nsapp import app, weights_vol, WEIGHTS, MODEL_DIR, MODEL_ID, MODEL_REV
 
 
 @app.function(volumes={WEIGHTS: weights_vol}, timeout=3600, cpu=4)

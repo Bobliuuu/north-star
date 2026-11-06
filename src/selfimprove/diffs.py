@@ -69,6 +69,8 @@ def parse(diff: str, scope: Scope) -> list[FileDiff]:
         if i >= len(lines) or not lines[i].startswith("+++ "):
             raise DiffError("missing +++ header")
         new = _clean(lines[i][4:]); i += 1
+        if new == "/dev/null":
+            raise DiffError("file deletion not allowed")
         if old == "/dev/null":
             created, path = True, new
         else:

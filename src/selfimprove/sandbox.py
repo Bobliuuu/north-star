@@ -114,13 +114,18 @@ class Workspace:
 class RunResult:
     cmd: list[str]; rc: int | None; stdout: str; stderr: str; wall_s: float; timed_out: bool
 
-    def json(self):
-        """Last JSON object line on stdout (harness protocol)."""
+    parsed: dict | None = None
+
+    def json(self, nonce: str | None = None):
+        """Last JSON object line on stdout carrying the per-run nonce (harness protocol). Lines without the matching
+        nonce are ignored, so candidate code that merely prints a forged result line cannot be mistaken for the harness."""
         for ln in reversed(self.stdout.strip().splitlines()):
             ln = ln.strip()
             if ln.startswith("{") and ln.endswith("}"):
-                try: return json.loads(ln)
-                except json.JSONDecodeError: pass
+                try: o = json.loads(ln)
+                except json.JSONDecodeError: continue
+                if nonce is None or (isinstance(o, dict) and o.get("nonce") == nonce):
+                    return o
         return None
 
 

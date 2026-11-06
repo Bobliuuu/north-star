@@ -20,5 +20,6 @@ image = (
     .add_local_dir("src/northstar", "/root/northstar", copy=False)
     .add_local_dir("harness", "/root/harness", copy=False)
     .add_local_dir("tests", "/root/tests", copy=False)
+    .add_local_file("modal/nsapp.py", "/root/nsapp.py", copy=False)
 )
 app = modal.App(APP_NAME, image=image)
