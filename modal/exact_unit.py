@@ -97,7 +97,9 @@ def body(tag):
     for T in (2, 5, 13):
         x = torch.randn(T, Dm, device=dev).to(bf)
         idx = torch.stack([torch.randperm(E, device=dev)[:k] for _ in range(T)]).to(torch.int32)
-        if T > 2: idx[1, :4] = idx[0, :4]
+        if T > 2:
+            pool = torch.tensor([e for e in range(E) if e not in idx[0, :4].tolist()], device=dev)
+            idx[1] = torch.cat([idx[0, :4].long(), pool[torch.randperm(len(pool), device=dev)[:4]]]).to(torch.int32)  # shared experts, no duplicate slot
         sc = torch.rand(T, k, device=dev).to(bf)
         hb = torch.zeros(T * k, I, device=dev, dtype=bf); ob = torch.zeros(T * k, Dm, device=dev, dtype=bf)
         fb.moe_gemv_blk(x, idx, sc, gu, dn, hb, ob)
