@@ -1,0 +1,17 @@
+ctx2048 graphs captured; cost T=1/4/9/13: [10.68, 13.27, 16.12, 17.39]
+ctx2048 py_lru plain 93.7 tok/s; sam2_g8=1.72x sam2_g12=1.75x sam_g12=1.77x pld3b_g8=1.75x pld3b_g12=1.79x ngc_g8=1.70x
+ctx2048 py_dataclass plain 93.6 tok/s; sam2_g8=1.39x sam2_g12=1.41x sam_g12=1.39x pld3b_g8=1.37x pld3b_g12=1.37x ngc_g8=1.36x
+ctx2048 pr_story plain 93.7 tok/s; sam2_g8=1.07x sam2_g12=1.07x sam_g12=1.09x pld3b_g8=1.06x pld3b_g12=1.06x ngc_g8=1.06x
+ctx2048 term_make plain 93.7 tok/s; sam2_g8=1.14x sam2_g12=1.14x sam_g12=1.06x pld3b_g8=1.16x pld3b_g12=1.14x ngc_g8=1.13x
+ctx2048 edit_shutil plain 93.7 tok/s; sam2_g8=4.13x sam2_g12=4.89x sam_g12=4.75x pld3b_g8=3.87x pld3b_g12=4.32x ngc_g8=3.44x
+ctx2048 extract_textwrap plain 93.6 tok/s; sam2_g8=1.22x sam2_g12=1.22x sam_g12=1.19x pld3b_g8=1.20x pld3b_g12=1.18x ngc_g8=1.19x
+ctx2048 summ_argparse plain 93.6 tok/s; sam2_g8=1.19x sam2_g12=1.18x sam_g12=1.09x pld3b_g8=1.15x pld3b_g12=1.13x ngc_g8=1.15x
+ctx8192 graphs captured; cost T=1/4/9/13: [11.4, 14.32, 17.91, 19.64]
+ctx8192 py_lru plain 87.8 tok/s; sam2_g8=1.24x sam2_g12=1.24x sam_g12=1.27x pld3b_g8=1.17x pld3b_g12=1.17x ngc_g8=1.16x
+ctx8192 py_dataclass plain 87.7 tok/s; sam2_g8=1.43x sam2_g12=1.45x sam_g12=1.46x pld3b_g8=1.42x pld3b_g12=1.42x ngc_g8=1.40x
+ctx8192 pr_story plain 87.8 tok/s; sam2_g8=1.07x sam2_g12=1.07x sam_g12=1.07x pld3b_g8=1.05x pld3b_g12=1.05x ngc_g8=1.05x
+ctx8192 term_make plain 87.7 tok/s; sam2_g8=1.02x sam2_g12=1.03x sam_g12=1.02x pld3b_g8=1.01x pld3b_g12=0.99x ngc_g8=0.99x
+ctx8192 edit_shutil plain 88.0 tok/s; sam2_g8=3.91x sam2_g12=4.58x sam_g12=4.45x pld3b_g8=3.71x pld3b_g12=4.11x ngc_g8=2.64x
+ctx8192 extract_textwrap plain 87.7 tok/s; sam2_g8=1.16x sam2_g12=1.16x sam_g12=1.20x pld3b_g8=1.18x pld3b_g12=1.16x ngc_g8=1.17x
+ctx8192 summ_argparse plain 87.8 tok/s; sam2_g8=1.17x sam2_g12=1.18x sam_g12=1.12x pld3b_g8=1.16x pld3b_g12=1.11x ngc_g8=1.13x
+PLD_DONE secs 591.7017939090729 est usd 0.6492283572057883

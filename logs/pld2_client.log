@@ -1,0 +1,114 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-iwyOUCuhy3rn1IUABa1xY5
+✓ Created objects.
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-aed8249c7bea51369/modal/pld_
+│   run.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-aed8249c7bea51369/src/norths
+│   tar
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-aed8249c7bea51369/tests
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-aed8249c7bea51369/harness
+└── ✓ Created Function pld_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:07, 49.27it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:14, 26.50it/s]
+[1ALoading weights:   6%|▋         | 25/394 [00:00<00:11, 32.99it/s]
+[1ALoading weights:   8%|▊         | 30/394 [00:01<00:16, 21.94it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:19, 18.08it/s]
+[1ALoading weights:  10%|▉         | 38/394 [00:01<00:18, 18.95it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:19, 17.87it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:19, 17.45it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:02<00:19, 17.43it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:03<00:18, 17.58it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:03<00:17, 17.78it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:04<00:17, 18.04it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:04<00:16, 18.09it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:05<00:16, 17.60it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:05<00:16, 17.58it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:05<00:16, 17.70it/s]
+[1ALoading weights:  28%|██▊       | 109/394 [00:05<00:16, 17.56it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:06<00:15, 17.92it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:06<00:14, 18.23it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:06<00:14, 17.82it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:07<00:13, 18.24it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:07<00:13, 18.06it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:08<00:13, 18.11it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:08<00:12, 18.52it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:09<00:12, 18.42it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:09<00:11, 18.32it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:09<00:11, 18.35it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:10<00:10, 18.27it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:10<00:10, 18.30it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:11<00:10, 18.22it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:11<00:09, 18.32it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:12<00:09, 18.45it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:12<00:08, 18.49it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:13<00:08, 18.65it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:13<00:07, 18.65it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:13<00:07, 18.55it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:14<00:06, 18.38it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:14<00:06, 18.43it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:15<00:05, 18.59it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:15<00:05, 18.40it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:16<00:05, 18.51it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:16<00:04, 18.42it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:16<00:04, 18.73it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:17<00:03, 18.56it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:17<00:03, 18.37it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:18<00:02, 18.49it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:18<00:02, 18.59it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:19<00:02, 18.26it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:19<00:01, 18.55it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:19<00:01, 18.45it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:20<00:00, 18.41it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:20<00:00, 18.50it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:20<00:00, 18.92it/s]
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-06T15:36:38Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "b75d56d0a2a7", "load_s": 67.50294280052185}
+natural graphs captured; cost T=1/4/9/13: [10.7, 13.43, 16.26, 17.59]
+natural py_lru plain 93.5 tok/s; pld3_g4=1.19x pld3_g8=1.22x sam_g4=1.19x sam_g8=1.22x samw_g8=1.22x ngc_g4=1.24x pld2_g4=1.22x
+natural py_interval plain 93.8 tok/s; pld3_g4=0.99x pld3_g8=0.99x sam_g4=1.00x sam_g8=0.99x samw_g8=1.00x ngc_g4=1.00x pld2_g4=0.99x
+natural py_dataclass plain 93.7 tok/s; pld3_g4=1.32x pld3_g8=1.38x sam_g4=1.32x sam_g8=1.37x samw_g8=1.36x ngc_g4=1.37x pld2_g4=1.34x
+natural rs_stack plain 93.5 tok/s; pld3_g4=1.27x pld3_g8=1.32x sam_g4=1.28x sam_g8=1.33x samw_g8=1.29x ngc_g4=1.30x pld2_g4=1.30x
+natural go_worker plain 93.5 tok/s; pld3_g4=1.15x pld3_g8=1.14x sam_g4=1.15x sam_g8=1.15x samw_g8=1.16x ngc_g4=1.18x pld2_g4=1.19x
+natural sql_topn plain 93.8 tok/s; pld3_g4=1.11x pld3_g8=1.10x sam_g4=1.11x sam_g8=1.10x samw_g8=1.10x ngc_g4=1.15x pld2_g4=1.15x
+natural sh_logs plain 93.4 tok/s; pld3_g4=1.10x pld3_g8=1.11x sam_g4=1.10x sam_g8=1.11x samw_g8=1.09x ngc_g4=1.15x pld2_g4=1.15x
+natural term_pytest_fail plain 93.5 tok/s; pld3_g4=1.04x pld3_g8=1.04x sam_g4=1.04x sam_g8=1.04x samw_g8=1.04x ngc_g4=1.05x pld2_g4=1.05x
+natural term_git_conflict plain 93.7 tok/s; pld3_g4=1.11x pld3_g8=1.12x sam_g4=1.12x sam_g8=1.13x samw_g8=1.13x ngc_g4=1.20x pld2_g4=1.22x
+natural term_make plain 93.7 tok/s; pld3_g4=1.03x pld3_g8=1.04x sam_g4=1.04x sam_g8=1.04x samw_g8=1.04x ngc_g4=1.08x pld2_g4=1.07x
+natural term_docker plain 93.8 tok/s; pld3_g4=1.07x pld3_g8=1.07x sam_g4=1.08x sam_g8=1.08x samw_g8=1.06x ngc_g4=1.09x pld2_g4=1.09x
+natural pr_hbm plain 93.7 tok/s; pld3_g4=1.20x pld3_g8=1.20x sam_g4=1.20x sam_g8=1.20x samw_g8=1.22x ngc_g4=1.30x pld2_g4=1.29x
+natural pr_story plain 93.7 tok/s; pld3_g4=1.19x pld3_g8=1.20x sam_g4=1.20x sam_g8=1.20x samw_g8=1.20x ngc_g4=1.23x pld2_g4=1.23x
+natural pr_tradeoff plain 93.7 tok/s; pld3_g4=1.02x pld3_g8=1.01x sam_g4=1.01x sam_g8=1.01x samw_g8=1.01x ngc_g4=1.02x pld2_g4=1.02x
+natural pr_reason plain 93.8 tok/s; pld3_g4=1.06x pld3_g8=1.05x sam_g4=1.07x sam_g8=1.06x samw_g8=1.06x ngc_g4=1.11x pld2_g4=1.12x
+natural edit_shutil plain 93.8 tok/s; pld3_g4=1.12x pld3_g8=1.12x sam_g4=1.12x sam_g8=1.13x samw_g8=1.15x ngc_g4=1.16x pld2_g4=1.17x
+natural edit_difflib plain 93.5 tok/s; pld3_g4=1.16x pld3_g8=1.16x sam_g4=1.16x sam_g8=1.16x samw_g8=1.18x ngc_g4=1.21x pld2_g4=1.21x
+natural extract_textwrap plain 93.5 tok/s; pld3_g4=1.82x pld3_g8=2.02x sam_g4=1.81x sam_g8=2.05x samw_g8=2.00x ngc_g4=1.79x pld2_g4=1.74x
+natural extract_heapq plain 93.6 tok/s; pld3_g4=1.17x pld3_g8=1.20x sam_g4=1.17x sam_g8=1.19x samw_g8=1.19x ngc_g4=1.16x pld2_g4=1.17x
+natural summ_argparse plain 93.5 tok/s; pld3_g4=1.10x pld3_g8=1.09x sam_g4=1.10x sam_g8=1.09x samw_g8=1.10x ngc_g4=1.17x pld2_g4=1.17x
+natural summ_shutil plain 93.8 tok/s; pld3_g4=1.28x pld3_g8=1.32x sam_g4=1.30x sam_g8=1.32x samw_g8=1.33x ngc_g4=1.35x pld2_g4=1.28x
+ctx2048 graphs captured; cost T=1/4/9/13: [10.71, 13.27, 16.13, 17.37]
+ctx2048 py_lru plain 93.6 tok/s; pld3_g4=1.60x pld3_g8=1.73x sam_g4=1.59x sam_g8=1.73x samw_g8=1.65x ngc_g4=1.60x pld2_g4=1.61x
+ctx2048 py_dataclass plain 93.7 tok/s; pld3_g4=1.31x pld3_g8=1.37x sam_g4=1.31x sam_g8=1.37x samw_g8=1.35x ngc_g4=1.33x pld2_g4=1.30x
+ctx2048 pr_story plain 93.9 tok/s; pld3_g4=1.07x pld3_g8=1.08x sam_g4=1.07x sam_g8=1.08x samw_g8=1.08x ngc_g4=1.06x pld2_g4=1.06x
+ctx2048 term_make plain 93.6 tok/s; pld3_g4=1.06x pld3_g8=1.07x sam_g4=1.06x sam_g8=1.07x samw_g8=1.07x ngc_g4=1.13x pld2_g4=1.15x
+ctx2048 edit_shutil plain 93.6 tok/s; pld3_g4=2.84x pld3_g8=3.73x sam_g4=3.00x sam_g8=4.06x samw_g8=3.96x ngc_g4=2.80x pld2_g4=2.56x
+ctx2048 extract_textwrap plain 93.6 tok/s; pld3_g4=1.18x pld3_g8=1.19x sam_g4=1.18x sam_g8=1.19x samw_g8=1.19x ngc_g4=1.22x pld2_g4=1.23x
+ctx2048 summ_argparse plain 93.6 tok/s; pld3_g4=1.11x pld3_g8=1.11x sam_g4=1.10x sam_g8=1.10x samw_g8=1.12x ngc_g4=1.19x pld2_g4=1.19x
+ctx8192 graphs captured; cost T=1/4/9/13: [11.37, 14.34, 17.9, 19.62]
+ctx8192 py_lru plain 87.8 tok/s; pld3_g4=1.22x pld3_g8=1.27x sam_g4=1.22x sam_g8=1.26x samw_g8=1.24x ngc_g4=1.18x pld2_g4=1.19x
+ctx8192 py_dataclass plain 87.8 tok/s; pld3_g4=1.37x pld3_g8=1.46x sam_g4=1.36x sam_g8=1.44x samw_g8=1.41x ngc_g4=1.25x pld2_g4=1.34x
+ctx8192 pr_story plain 87.8 tok/s; pld3_g4=1.07x pld3_g8=1.08x sam_g4=1.07x sam_g8=1.07x samw_g8=1.07x ngc_g4=1.06x pld2_g4=1.07x
+ctx8192 term_make plain 88.0 tok/s; pld3_g4=1.03x pld3_g8=1.02x sam_g4=1.02x sam_g8=1.02x samw_g8=1.02x ngc_g4=1.00x pld2_g4=1.02x
+ctx8192 edit_shutil plain 88.0 tok/s; pld3_g4=2.78x pld3_g8=3.59x sam_g4=2.90x sam_g8=3.87x samw_g8=3.78x ngc_g4=2.67x pld2_g4=2.51x
+ctx8192 extract_textwrap plain 87.7 tok/s; pld3_g4=1.65x pld3_g8=1.20x sam_g4=1.69x sam_g8=1.19x samw_g8=1.13x ngc_g4=1.69x pld2_g4=1.68x
+ctx8192 summ_argparse plain 87.8 tok/s; pld3_g4=1.13x pld3_g8=1.13x sam_g4=1.13x sam_g8=1.13x samw_g8=1.14x ngc_g4=1.16x pld2_g4=1.19x
+{'secs': 682.8800177574158, 'rows': 2173}
+PLD_DONE secs 682.8800177574158 est usd 0.7492711305949423
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-iwyOUCuhy3rn1IUABa1xY5
