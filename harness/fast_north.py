@@ -18,12 +18,14 @@ import fast_kernels_blk as fb
 import fast_kernels_exact as fx
 
 OPTS = ("attn", "moe", "router", "resid")
+XOPTS = frozenset()  # filled as exact-fast optimisations land
 TBLK = 16  # largest verify block handled by the fast block path
 
 
 class FastNorth(GraphNorth):
-    def __init__(self, ref, Lmax, opts=OPTS, nsplit=32, kcfg=None, exact=False):
+    def __init__(self, ref, Lmax, opts=OPTS, nsplit=32, kcfg=None, exact=False, xopts=None):
         super().__init__(ref, Lmax, "bmm")
+        self.xopts = XOPTS if xopts is None else frozenset(xopts)  # exact-fast optimisations (empty = original exact path)
         self.exact = exact  # batch-invariant path: T=1 and every row of a T<=16 block use the SAME kernels (see fast_kernels_exact.py)
         self._x = {}
         self.opts = frozenset(opts)
