@@ -1,0 +1,117 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-kYajfWtgyO3OPmzJ1fSN0O
+✓ Created objects.
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-a83a277f7fd766314/modal/kern
+│   el_sweep.py
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-a83a277f7fd766314/src/kvm
+└── ✓ Created Function sweep.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+GPU NVIDIA A100-SXM4-80GB, 610.57.04
+built base rc=0 regs=['12', '10', '252'] spill=['0', '0', '0']
+built KC64 rc=0 regs=['12', '10', '112'] spill=['0', '0', '0']
+built KC128 rc=0 regs=['12', '10', '176'] spill=['0', '0', '0']
+built KC512 rc=0 regs=['12', '10', '250'] spill=['0', '0', '0']
+built XPAD0 rc=0 regs=['12', '10', '252'] spill=['0', '0', '0']
+built XPAD16 rc=0 regs=['12', '10', '252'] spill=['0', '0', '0']
+built XPAD24 rc=0 regs=['12', '10', '252'] spill=['0', '0', '0']
+built HPAD0 rc=0 regs=['12', '10', '252'] spill=['0', '0', '0']
+built HPAD16 rc=0 regs=['12', '10', '252'] spill=['0', '0', '0']
+built HPAD24 rc=0 regs=['12', '10', '252'] spill=['0', '0', '0']
+built MT_SPLIT4 rc=0 regs=['12', '10', '252'] spill=['0', '0', '0']
+built MT_SPLIT8 rc=0 regs=['12', '10', '252'] spill=['0', '0', '0']
+built MT_SPLIT12 rc=0 regs=['12', '10', '252'] spill=['0', '0', '0']
+built MINB_PER_SM2 rc=0 regs=['12', '10', '252'] spill=['0', '0', '0']
+built MINB_PER_SM3 rc=0 regs=['12', '10', '167'] spill=['0', '0', '0']
+built MINB_PER_SM4 rc=0 regs=['12', '10', '128'] spill=['0', '0', '24']
+built MINB_PER_SM6 rc=0 regs=['12', '10', '80'] spill=['0', '0', '16']
+built MINB_PER_SM8 rc=0 regs=['12', '10', '64'] spill=['0', '0', '24']
+built UNROLL_KS1 rc=0 regs=['12', '10', '74'] spill=['0', '0', '0']
+built UNROLL_KS2 rc=0 regs=['12', '10', '86'] spill=['0', '0', '0']
+built UNROLL_KS4 rc=0 regs=['12', '10', '118'] spill=['0', '0', '0']
+built UNROLL_KS8 rc=0 regs=['12', '10', '178'] spill=['0', '0', '0']
+built KC512_UNROLL_KS8 rc=0 regs=['12', '10', '178'] spill=['0', '0', '0']
+built KC128_UNROLL_KS8 rc=0 regs=['12', '10', '176'] spill=['0', '0', '0']
+check base: True worst_rel_l2=0.00020981543639209121
+check MINB_PER_SM2: True worst_rel_l2=0.00020981514535378665
+check MINB_PER_SM3: True worst_rel_l2=0.00020981427223887295
+check MINB_PER_SM4: True worst_rel_l2=0.00020981334091629833
+check MINB_PER_SM6: True worst_rel_l2=0.00020981530542485416
+check MINB_PER_SM8: True worst_rel_l2=0.00020981492707505822
+check UNROLL_KS1: True worst_rel_l2=0.0002098146651405841
+check UNROLL_KS2: True worst_rel_l2=0.00020981451962143183
+check UNROLL_KS4: True worst_rel_l2=0.00020981422858312726
+check UNROLL_KS8: True worst_rel_l2=0.00020981382112950087
+check KC512_UNROLL_KS8: True worst_rel_l2=0.00020981402485631406
+check KC128_UNROLL_KS8: True worst_rel_l2=0.0002098132245009765
+pass 1/3 done t=214s
+pass 2/3 done t=250s
+pass 3/3 done t=285s
+name                           dev_us  dev_x held_x chk
+KC64                            385.3  1.054  1.042 None
+UNROLL_KS4                      390.7  1.040  1.037 True
+MINB_PER_SM3                    397.3  1.023  1.072 True
+KC512_UNROLL_KS8                400.9  1.013  1.016 True
+UNROLL_KS8                      405.2  1.003  1.010 True
+MT_SPLIT12                      405.8  1.001  1.000 None
+MINB_PER_SM2                    405.8  1.001  1.001 True
+base                            406.3  1.000  1.000 True
+HPAD24                          406.3  1.000  1.000 None
+MT_SPLIT8                       406.3  1.000  1.000 None
+XPAD24                          406.3  1.000  1.001 None
+HPAD16                          407.3  0.997  0.997 None
+XPAD16                          407.8  0.996  0.995 None
+KC512                           408.8  0.994  0.993 None
+MT_SPLIT4                       409.6  0.992  0.996 None
+KC128_UNROLL_KS8                409.9  0.991  1.002 True
+KC128                           410.4  0.990  1.001 None
+MINB_PER_SM4                    414.0  0.981  0.979 True
+XPAD0                           422.7  0.961  0.962 None
+HPAD0                           431.4  0.942  0.935 None
+UNROLL_KS2                      466.2  0.871  0.898 True
+MINB_PER_SM6                    508.7  0.799  0.800 True
+MINB_PER_SM8                    554.2  0.733  0.736 True
+UNROLL_KS1                      560.9  0.724  0.749 True
+est $0.198 -> /Users/jhome/north-star/.claude/worktrees/agent-a83a277f7fd766314/results/kernel_sweep_sweep1_20261106T065947Z.jsonl
+NS_SWEEP_JSON {"name": "base", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "252"], "spill_stores": ["0", "0", "0"], "check": {"rc": 0, "pass_": true, "worst_rel_l2": 0.00020981543639209121, "tail": " \"fused\": {\"rel_l2\": 0.00015713655739091337, \"max_rel\": 0.00011929366155527532, \"pass_\": true}, \"two\": {\"rel_l2\": 0.00015713601897004992, \"max_rel\": 0.00011925386934308335, \"pass_\": true}}\nCHECK PASS\n"}, "dev_us": [110.59, 274.43, 512.0, 728.06], "held_us": [257.02, 395.26, 547.84, 640.0, 373.76, 519.17], "dev_mean_us": 406.27, "held_mean_us": 455.5083333333334, "dev_pass_means": [406.525, 406.52750000000003, 405.76], "n_passes": 3, "dev_speedup": 1.0, "held_speedup": 1.0}
+NS_SWEEP_JSON {"name": "KC64", "cfg": {"KC": 64, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "112"], "spill_stores": ["0", "0", "0"], "check": null, "dev_us": [126.98, 258.05, 475.14, 680.96], "held_us": [216.06, 419.84, 500.74, 642.05, 363.52, 480.26], "dev_mean_us": 385.2825, "held_mean_us": 437.0783333333334, "dev_pass_means": [385.2825, 385.2825, 385.7925], "n_passes": 3, "dev_speedup": 1.0544730165527891, "held_speedup": 1.0421663546198812}
+NS_SWEEP_JSON {"name": "KC128", "cfg": {"KC": 128, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "176"], "spill_stores": ["0", "0", "0"], "check": null, "dev_us": [111.62, 272.38, 512.0, 745.47], "held_us": [258.05, 394.24, 538.62, 642.05, 378.88, 518.14], "dev_mean_us": 410.3675, "held_mean_us": 454.9966666666666, "dev_pass_means": [410.625, 409.59749999999997, 410.88], "n_passes": 3, "dev_speedup": 0.9900150474879224, "held_speedup": 1.0011245503630066}
+NS_SWEEP_JSON {"name": "KC512", "cfg": {"KC": 512, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "250"], "spill_stores": ["0", "0", "0"], "check": null, "dev_us": [108.54, 279.55, 516.1, 731.14], "held_us": [260.1, 401.41, 551.94, 642.05, 374.78, 521.22], "dev_mean_us": 408.8325, "held_mean_us": 458.5833333333333, "dev_pass_means": [408.32000000000005, 408.83500000000004, 409.6], "n_passes": 3, "dev_speedup": 0.9937321519204075, "held_speedup": 0.9932945666000365}
+NS_SWEEP_JSON {"name": "XPAD0", "cfg": {"KC": 256, "XPAD": 0, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "252"], "spill_stores": ["0", "0", "0"], "check": null, "dev_us": [113.66, 285.7, 532.48, 758.78], "held_us": [275.46, 415.74, 565.25, 669.7, 371.71, 542.72], "dev_mean_us": 422.655, "held_mean_us": 473.43, "dev_pass_means": [422.9125, 418.3025, 422.655], "n_passes": 3, "dev_speedup": 0.9612331570666383, "held_speedup": 0.9621450548831577}
+NS_SWEEP_JSON {"name": "XPAD16", "cfg": {"KC": 256, "XPAD": 16, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "252"], "spill_stores": ["0", "0", "0"], "check": null, "dev_us": [110.59, 275.46, 514.05, 731.14], "held_us": [259.07, 398.34, 549.89, 643.07, 376.83, 520.19], "dev_mean_us": 407.80999999999995, "held_mean_us": 457.8983333333333, "dev_pass_means": [407.8075, 408.065, 407.5525], "n_passes": 3, "dev_speedup": 0.9962237316397343, "held_speedup": 0.9947805007661819}
+NS_SWEEP_JSON {"name": "XPAD24", "cfg": {"KC": 256, "XPAD": 24, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "252"], "spill_stores": ["0", "0", "0"], "check": null, "dev_us": [110.59, 275.46, 512.0, 727.04], "held_us": [257.02, 395.26, 547.84, 640.0, 373.76, 517.12], "dev_mean_us": 406.2725, "held_mean_us": 455.1666666666667, "dev_pass_means": [406.2725, 405.76, 406.78249999999997], "n_passes": 3, "dev_speedup": 0.9999938464946557, "held_speedup": 1.0007506407909192}
+NS_SWEEP_JSON {"name": "HPAD0", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 0, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "252"], "spill_stores": ["0", "0", "0"], "check": null, "dev_us": [114.69, 293.89, 548.86, 768.0], "held_us": [279.55, 424.96, 580.61, 680.96, 405.5, 551.94], "dev_mean_us": 431.36, "held_mean_us": 487.25333333333333, "dev_pass_means": [430.59250000000003, 431.36, 431.36], "n_passes": 3, "dev_speedup": 0.9418351261127595, "held_speedup": 0.9348490860332751}
+NS_SWEEP_JSON {"name": "HPAD16", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 16, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "252"], "spill_stores": ["0", "0", "0"], "check": null, "dev_us": [110.59, 275.46, 513.02, 730.11], "held_us": [258.05, 397.31, 548.86, 642.05, 375.81, 519.17], "dev_mean_us": 407.29499999999996, "held_mean_us": 456.875, "dev_pass_means": [407.8075, 407.29499999999996, 407.5525], "n_passes": 3, "dev_speedup": 0.9974833965553224, "held_speedup": 0.9970086639306887}
+NS_SWEEP_JSON {"name": "HPAD24", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 24, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "252"], "spill_stores": ["0", "0", "0"], "check": null, "dev_us": [110.59, 274.43, 512.0, 728.06], "held_us": [257.02, 396.29, 547.84, 640.0, 373.76, 518.14], "dev_mean_us": 406.27, "held_mean_us": 455.50833333333327, "dev_pass_means": [406.52750000000003, 406.015, 407.0375], "n_passes": 3, "dev_speedup": 1.0, "held_speedup": 1.0000000000000002}
+NS_SWEEP_JSON {"name": "MT_SPLIT4", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 4, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "252"], "spill_stores": ["0", "0", "0"], "check": null, "dev_us": [110.59, 284.67, 512.0, 731.14], "held_us": [257.02, 396.29, 562.18, 638.98, 372.74, 518.14], "dev_mean_us": 409.6, "held_mean_us": 457.55833333333334, "dev_pass_means": [409.345, 409.09000000000003, 410.6225], "n_passes": 3, "dev_speedup": 0.9918701171875, "held_speedup": 0.9955196969421022}
+NS_SWEEP_JSON {"name": "MT_SPLIT8", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 8, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "252"], "spill_stores": ["0", "0", "0"], "check": null, "dev_us": [110.59, 274.43, 512.0, 728.06], "held_us": [257.02, 396.29, 547.84, 640.0, 373.76, 518.14], "dev_mean_us": 406.27, "held_mean_us": 455.50833333333327, "dev_pass_means": [406.52750000000003, 406.015, 406.015], "n_passes": 3, "dev_speedup": 1.0, "held_speedup": 1.0000000000000002}
+NS_SWEEP_JSON {"name": "MT_SPLIT12", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 12, "MINB_PER_SM": 1, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "252"], "spill_stores": ["0", "0", "0"], "check": null, "dev_us": [110.59, 274.43, 510.98, 727.04], "held_us": [257.02, 395.26, 546.82, 641.02, 373.76, 518.14], "dev_mean_us": 405.76, "held_mean_us": 455.33666666666664, "dev_pass_means": [406.0175, 405.76, 406.27250000000004], "n_passes": 3, "dev_speedup": 1.0012569006309149, "held_speedup": 1.0003770104172005}
+NS_SWEEP_JSON {"name": "MINB_PER_SM2", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 2, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "252"], "spill_stores": ["0", "0", "0"], "check": {"rc": 0, "pass_": true, "worst_rel_l2": 0.00020981514535378665, "tail": " \"fused\": {\"rel_l2\": 0.00015713446191512048, \"max_rel\": 0.00011919417011085898, \"pass_\": true}, \"two\": {\"rel_l2\": 0.00015713891480118036, \"max_rel\": 0.00011919417011085898, \"pass_\": true}}\nCHECK PASS\n"}, "dev_us": [110.59, 273.41, 510.98, 728.06], "held_us": [257.02, 395.26, 547.84, 640.0, 373.76, 517.12], "dev_mean_us": 405.76, "held_mean_us": 455.1666666666667, "dev_pass_means": [406.015, 406.27250000000004, 405.76], "n_passes": 3, "dev_speedup": 1.0012569006309149, "held_speedup": 1.0007506407909192}
+NS_SWEEP_JSON {"name": "MINB_PER_SM3", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 3, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "167"], "spill_stores": ["0", "0", "0"], "check": {"rc": 0, "pass_": true, "worst_rel_l2": 0.00020981427223887295, "tail": " \"fused\": {\"rel_l2\": 0.00015713866741862148, \"max_rel\": 0.00011931356129935011, \"pass_\": true}, \"two\": {\"rel_l2\": 0.00015713860921096057, \"max_rel\": 0.00011923396959900856, \"pass_\": true}}\nCHECK PASS\n"}, "dev_us": [108.54, 300.03, 486.4, 694.27], "held_us": [218.11, 367.62, 531.46, 595.97, 328.7, 506.88], "dev_mean_us": 397.31, "held_mean_us": 424.79, "dev_pass_means": [397.565, 397.8225, 397.31], "n_passes": 3, "dev_speedup": 1.0225516599129143, "held_speedup": 1.0723141630766575}
+NS_SWEEP_JSON {"name": "MINB_PER_SM4", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 4, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "128"], "spill_stores": ["0", "0", "24"], "check": {"rc": 0, "pass_": true, "worst_rel_l2": 0.00020981334091629833, "tail": ", \"fused\": {\"rel_l2\": 0.00015713940956629813, \"max_rel\": 0.0001191543706227094, \"pass_\": true}, \"two\": {\"rel_l2\": 0.00015713738685008138, \"max_rel\": 0.00011927376181120053, \"pass_\": true}}\nCHECK PASS\n"}, "dev_us": [112.64, 286.72, 521.22, 735.23], "held_us": [236.54, 413.7, 560.13, 661.5, 388.1, 531.46], "dev_mean_us": 413.9525, "held_mean_us": 465.2383333333333, "dev_pass_means": [414.2075, 413.695, 413.69500000000005], "n_passes": 3, "dev_speedup": 0.9814411073734305, "held_speedup": 0.9790859881852673}
+NS_SWEEP_JSON {"name": "MINB_PER_SM6", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 6, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "80"], "spill_stores": ["0", "0", "16"], "check": {"rc": 0, "pass_": true, "worst_rel_l2": 0.00020981530542485416, "tail": ", \"fused\": {\"rel_l2\": 0.0001571387256262824, \"max_rel\": 0.00011919417011085898, \"pass_\": true}, \"two\": {\"rel_l2\": 0.00015714050095994025, \"max_rel\": 0.00011925386934308335, \"pass_\": true}}\nCHECK PASS\n"}, "dev_us": [121.86, 352.26, 622.59, 937.98], "held_us": [273.41, 523.26, 703.49, 803.84, 441.34, 670.72], "dev_mean_us": 508.6725, "held_mean_us": 569.3433333333334, "dev_pass_means": [508.6725, 508.1625, 509.9525], "n_passes": 3, "dev_speedup": 0.798686777838393, "held_speedup": 0.8000591324508353}
+NS_SWEEP_JSON {"name": "MINB_PER_SM8", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 8, "UNROLL_KS": 16}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "64"], "spill_stores": ["0", "0", "24"], "check": {"rc": 0, "pass_": true, "worst_rel_l2": 0.00020981492707505822, "tail": " \"fused\": {\"rel_l2\": 0.00015713645552750677, \"max_rel\": 0.00011919417011085898, \"pass_\": true}, \"two\": {\"rel_l2\": 0.00015713470929767936, \"max_rel\": 0.00011931356129935011, \"pass_\": true}}\nCHECK PASS\n"}, "dev_us": [134.14, 382.98, 677.89, 1021.95], "held_us": [300.03, 569.34, 762.88, 866.3, 478.21, 736.26], "dev_mean_us": 554.24, "held_mean_us": 618.8366666666667, "dev_pass_means": [555.01, 553.7275, 554.24], "n_passes": 3, "dev_speedup": 0.7330217956120092, "held_speedup": 0.736071984530113}
+NS_SWEEP_JSON {"name": "UNROLL_KS1", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 1}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "74"], "spill_stores": ["0", "0", "0"], "check": {"rc": 0, "pass_": true, "worst_rel_l2": 0.0002098146651405841, "tail": " \"fused\": {\"rel_l2\": 0.00015713772154413164, \"max_rel\": 0.00011927376181120053, \"pass_\": true}, \"two\": {\"rel_l2\": 0.00015713757602497935, \"max_rel\": 0.00011925386934308335, \"pass_\": true}}\nCHECK PASS\n"}, "dev_us": [145.41, 376.83, 712.7, 1008.64], "held_us": [287.74, 564.22, 748.54, 851.97, 476.16, 718.85], "dev_mean_us": 560.895, "held_mean_us": 607.9133333333333, "dev_pass_means": [560.895, 561.1525, 561.4075], "n_passes": 3, "dev_speedup": 0.7243245170664742, "held_speedup": 0.7492981455689957}
+NS_SWEEP_JSON {"name": "UNROLL_KS2", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 2}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "86"], "spill_stores": ["0", "0", "0"], "check": {"rc": 0, "pass_": true, "worst_rel_l2": 0.00020981451962143183, "tail": "1, \"fused\": {\"rel_l2\": 0.0001571385801071301, \"max_rel\": 0.00011923396959900856, \"pass_\": true}, \"two\": {\"rel_l2\": 0.0001571408793097362, \"max_rel\": 0.00011927376181120053, \"pass_\": true}}\nCHECK PASS\n"}, "dev_us": [140.29, 309.25, 580.61, 834.56], "held_us": [262.14, 477.18, 623.62, 708.61, 388.1, 584.7], "dev_mean_us": 466.1775, "held_mean_us": 507.3916666666667, "dev_pass_means": [466.4325, 465.92, 466.1775], "n_passes": 3, "dev_speedup": 0.8714920818786835, "held_speedup": 0.8977450030384154}
+NS_SWEEP_JSON {"name": "UNROLL_KS4", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 4}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "118"], "spill_stores": ["0", "0", "0"], "check": {"rc": 0, "pass_": true, "worst_rel_l2": 0.00020981422858312726, "tail": ", \"fused\": {\"rel_l2\": 0.0001571408356539905, \"max_rel\": 0.00011927376181120053, \"pass_\": true}, \"two\": {\"rel_l2\": 0.00015713527682237327, \"max_rel\": 0.00011919417011085898, \"pass_\": true}}\nCHECK PASS\n"}, "dev_us": [117.76, 271.36, 477.18, 696.32], "held_us": [207.87, 427.01, 534.53, 624.64, 358.4, 484.35], "dev_mean_us": 390.655, "held_mean_us": 439.46666666666664, "dev_pass_means": [420.86249999999995, 390.4, 390.4], "n_passes": 3, "dev_speedup": 1.0399713302018405, "held_speedup": 1.0365025788834954}
+NS_SWEEP_JSON {"name": "UNROLL_KS8", "cfg": {"KC": 256, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 8}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "178"], "spill_stores": ["0", "0", "0"], "check": {"rc": 0, "pass_": true, "worst_rel_l2": 0.00020981382112950087, "tail": ", \"fused\": {\"rel_l2\": 0.00015713933680672199, \"max_rel\": 0.00011923396959900856, \"pass_\": true}, \"two\": {\"rel_l2\": 0.0001571385218994692, \"max_rel\": 0.00011921406985493377, \"pass_\": true}}\nCHECK PASS\n"}, "dev_us": [109.57, 271.36, 504.83, 735.23], "held_us": [256.0, 392.19, 540.67, 633.86, 370.69, 513.02], "dev_mean_us": 405.2475, "held_mean_us": 451.0716666666667, "dev_pass_means": [405.2475, 405.2475, 405.2475], "n_passes": 3, "dev_speedup": 1.0025231494333708, "held_speedup": 1.0098358353994006}
+NS_SWEEP_JSON {"name": "KC512_UNROLL_KS8", "cfg": {"KC": 512, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 8}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "178"], "spill_stores": ["0", "0", "0"], "check": {"rc": 0, "pass_": true, "worst_rel_l2": 0.00020981402485631406, "tail": " \"fused\": {\"rel_l2\": 0.00015713737229816616, \"max_rel\": 0.00011927376181120053, \"pass_\": true}, \"two\": {\"rel_l2\": 0.00015714012261014432, \"max_rel\": 0.00011919417011085898, \"pass_\": true}}\nCHECK PASS\n"}, "dev_us": [107.52, 269.31, 500.74, 726.02], "held_us": [253.95, 391.17, 537.6, 628.74, 366.59, 510.98], "dev_mean_us": 400.8975, "held_mean_us": 448.1716666666667, "dev_pass_means": [400.6425, 401.66499999999996, 400.385], "n_passes": 3, "dev_speedup": 1.013401181099907, "held_speedup": 1.0163702152820906}
+NS_SWEEP_JSON {"name": "KC128_UNROLL_KS8", "cfg": {"KC": 128, "XPAD": 8, "HPAD": 8, "MT_SPLIT": 16, "MINB_PER_SM": 1, "UNROLL_KS": 8}, "build_rc": 0, "build_err": "", "regs": ["12", "10", "176"], "spill_stores": ["0", "0", "0"], "check": {"rc": 0, "pass_": true, "worst_rel_l2": 0.0002098132245009765, "tail": " \"fused\": {\"rel_l2\": 0.00015714207256678492, \"max_rel\": 0.00011923396959900856, \"pass_\": true}, \"two\": {\"rel_l2\": 0.00015714074834249914, \"max_rel\": 0.00011917427036678419, \"pass_\": true}}\nCHECK PASS\n"}, "dev_us": [110.59, 272.38, 510.98, 745.47], "held_us": [258.05, 393.22, 538.62, 642.05, 377.86, 518.14], "dev_mean_us": 409.855, "held_mean_us": 454.6566666666666, "dev_pass_means": [409.8575, 410.365, 410.1125], "n_passes": 3, "dev_speedup": 0.99125300411121, "held_speedup": 1.0018732083550228}
+✓ App completed. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-kYajfWtgyO3OPmzJ1fSN0O
