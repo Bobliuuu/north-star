@@ -18,6 +18,16 @@ def _ints(shapes):
     return {int(x) for s in shapes for x in s}
 
 
+def _calibration_is_measured(path):
+    """True only if the file exists, is non-empty and EVERY row is provenance == 'measured' (build with scripts/build_accept_calibration.py)."""
+    import json
+    try:
+        rows = [json.loads(l) for l in Path(path).read_text().splitlines() if l.strip()]
+    except (OSError, ValueError):
+        return False
+    return bool(rows) and all(isinstance(r, dict) and r.get("provenance") == "measured" for r in rows)
+
+
 def make_config(repo, track="kernel", python="python3", require_measured_calibration=False):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
     from selfimprove import gates
@@ -36,7 +46,7 @@ def make_config(repo, track="kernel", python="python3", require_measured_calibra
             build_timeout_s=420, check_timeout_s=900, bench_timeout_s=180,
             dev_shapes=_ints(DEV_KERNEL_SHAPES), heldout_shapes=_ints(HELDOUT_KERNEL_SHAPES), usd_per_hour=2.5)
     if track == "policy":
-        if require_measured_calibration and not (repo / "results" / "accept_calibration.jsonl").exists():
+        if require_measured_calibration and not _calibration_is_measured(repo / "results" / "accept_calibration.jsonl"):
             raise RuntimeError("policy track live run needs MEASURED acceptance calibration results/accept_calibration.jsonl "
                                "(only SYNTHETIC available): refusing, a predicted tok/s from invented acceptance means nothing")
         return EvalConfig(
@@ -73,6 +83,12 @@ def dev_results(track, baseline_dev_metric=None):
     if baseline_dev_metric is not None:
         s += f" Baseline dev metric: {baseline_dev_metric:.4g} ms."
     return s
+
+
+def mock_structured(track):
+    """Scripted MOCK structured-edit response for dry runs (labeled by the Loop as mock; never North-authored)."""
+    if track == "kernel": return '{"edits":[{"name":"KC","value":128}],"rationale":"MOCK"}'
+    return '{"edits":[{"name":"gammas","value":[1,2,3,4,5,6,8]}],"rationale":"MOCK"}'
 
 
 def mock_diff(track, base_files):

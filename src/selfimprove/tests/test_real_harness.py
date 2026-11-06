@@ -75,11 +75,24 @@ def test_dev_and_heldout_shape_ints_are_disjoint_for_audit():
     assert str(HCFG["DEV_KERNEL_SHAPES"]) in k and str(HCFG["HELDOUT_KERNEL_SHAPES"]) in k
 
 
-def test_policy_live_run_refuses_synthetic_calibration(tmp_path):
-    if (REPO / "results/accept_calibration.jsonl").exists(): pytest.skip("measured calibration present")
+def test_policy_live_run_refuses_missing_or_synthetic_calibration(tmp_path):
+    (tmp_path / "results").mkdir()
     with pytest.raises(RuntimeError, match="MEASURED"):
-        HCFG["make_config"](REPO, "policy", require_measured_calibration=True)
-    HCFG["make_config"](REPO, "policy")          # dry run allowed
+        HCFG["make_config"](tmp_path, "policy", require_measured_calibration=True)           # file absent
+    cal = tmp_path / "results/accept_calibration.jsonl"
+    cal.write_text(json.dumps(dict(provenance="SYNTHETIC")) + "\n")
+    with pytest.raises(RuntimeError, match="MEASURED"):
+        HCFG["make_config"](tmp_path, "policy", require_measured_calibration=True)           # synthetic rows
+    cal.write_text(json.dumps(dict(provenance="measured")) + "\n" + json.dumps(dict(provenance="SYNTHETIC")) + "\n")
+    with pytest.raises(RuntimeError, match="MEASURED"):
+        HCFG["make_config"](tmp_path, "policy", require_measured_calibration=True)           # mixed
+    cal.write_text(json.dumps(dict(provenance="measured")) + "\n")
+    HCFG["make_config"](tmp_path, "policy", require_measured_calibration=True)               # all measured: allowed
+    HCFG["make_config"](tmp_path, "policy")                                                   # dry run always allowed
+
+
+def test_committed_calibration_passes_the_live_run_guard():
+    HCFG["make_config"](REPO, "policy", require_measured_calibration=True)
 
 
 # ---- fake-binary workspace for the kernel scripts -----------------------------------------------------------------
@@ -180,7 +193,23 @@ def pws(tmp_path):
     (ws / "_scratch").mkdir(); return ws
 
 
-def test_policy_bench_and_check_real_optimizer(pws):
+@pytest.fixture
+def pws_synth(pws):
+    """Workspace with the SYNTHETIC calibration fallback (the measured file removed): the monotone-search-space assertions below hold for the
+    invented acceptance table only; with the measured table a small space can already be optimal (see test_policy_bench_with_measured_calibration)."""
+    (pws / "results/accept_calibration.jsonl").unlink(missing_ok=True); return pws
+
+
+def test_policy_bench_with_measured_calibration(pws):
+    assert (pws / "results/accept_calibration.jsonl").exists()
+    _, d = run_h(pws, "policy_eval.py", args=["bench"])
+    assert d["time_ms"] > 0 and d["mean_pred_tok_s"] > 0 and d["calibration"] == "15rows/measured"      # predicted tok/s from MEASURED acceptance
+    _, c = run_h(pws, "policy_eval.py", args=["check"], seed="9")
+    assert c["calibration"].endswith("measured") and all(x["finite"] and x["rel_l2"] < 1e-3 for x in c["cases"])
+
+
+def test_policy_bench_and_check_real_optimizer(pws_synth):
+    pws = pws_synth
     _, c = run_h(pws, "policy_eval.py", args=["check"], seed="9")
     assert len(c["cases"]) == 8 and all(x["finite"] and x["rel_l2"] < 1e-3 for x in c["cases"]) and "SYNTHETIC" in c["calibration"] + "SYNTHETIC"
     _, d = run_h(pws, "policy_eval.py", args=["bench"])

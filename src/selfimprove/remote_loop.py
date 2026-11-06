@@ -51,7 +51,7 @@ def run_remote_loop(p: dict, store_dir: Path, cfg, proposer, evaluator, profile_
     from .loop import Loop
     store_guard(store_dir, p["proposer"])
     st = EmittingStore(store_dir, emit, on_log)
-    lp = Loop(cfg, st, proposer, mode=p["mode"])
+    lp = Loop(cfg, st, proposer, mode=p["mode"], track=p.get("track", "kernel"))
     lp.ev = evaluator
     if on_log: on_log()
     res = lp.run(p["rounds"], max_total_usd=p["max_usd"], profile_summary=profile_summary, dev_results=dev_results)

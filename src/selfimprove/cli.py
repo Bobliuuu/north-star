@@ -13,6 +13,7 @@ def main(argv=None):
     ap.add_argument("--config", help="python file defining make_config(repo: Path)->EvalConfig")
     ap.add_argument("--mock", action="store_true", help="TEST ONLY: mock proposer; output labeled and never North-authored")
     ap.add_argument("--mode", choices=["structured", "diff"], default="structured", help="proposal mode (structured = JSON tunable edits rendered to a diff by the harness)")
+    ap.add_argument("--track", choices=["kernel", "policy"], default="kernel", help="structured-edit module / default config (policy: spec_space.json)")
     ap.add_argument("--to")
     a = ap.parse_args(argv)
     st = Store(Path(a.store))
@@ -23,9 +24,10 @@ def main(argv=None):
     import runpy
     from .loop import Loop
     from .proposer import NorthProposer, MockProposer
-    cfg = runpy.run_path(a.config)["make_config"](Path.cwd())
+    if a.config: cfg = runpy.run_path(a.config)["make_config"](Path.cwd())
+    else: cfg = runpy.run_path("harness/selfimprove/config.py")["make_config"](Path.cwd(), a.track)
     prop = MockProposer(["```diff\n```" if a.mode == "diff" else '{"edits":[],"rationale":"mock"}']) if a.mock else NorthProposer()
-    res = Loop(cfg, st, prop, mode=a.mode).run(a.rounds, a.max_usd)
+    res = Loop(cfg, st, prop, mode=a.mode, track=a.track).run(a.rounds, a.max_usd)
     for r in res: print(r["proposal_id"][:8], r["verdict"])
     return 0
 
