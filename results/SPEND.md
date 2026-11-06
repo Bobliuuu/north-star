@@ -27,3 +27,4 @@
 | 20261106T044108Z | kvm-fused REAL-routing replay real | H100 | 436 | 0.478 | True |
 | 20261106T044337Z | h100_spec | H100 | 88 | 0.10 | True |
 | 20261106T065947Z | kernel tunable sweep sweep1 (build 22s check 156s) | A100-80GB | 285 | 0.198 | True |
+| 20261106T074908Z | kernel tunable sweep combo1 (build 13s check 144s) | A100-80GB | 215 | 0.149 | True |
