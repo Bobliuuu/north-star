@@ -41,3 +41,5 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-06 02:27 EST | ap-ACwkUWV6NOmw6pSni19K3V | `modal run --detach modal/ctx_batch.py::main2 --parts pmixed` | run3: mixed 2K+8K+32K left-padded plain decode with prefill chunk 512 (run2 OOM at 2048). Log logs/ctx_batch_run3.log |
 | 2026-11-06 03:03 EST | ap-X66dz8pjfyQZaZtcsnE9pU | `modal run --detach modal/ctx_batch.py::main2 --parts pmixed` | run3 relaunch (first attempt ap-ACwkUWV6NOmw6pSni19K3V never scheduled; stopped, 0 GPU s). mixed 2K+8K+32K left-padded, prefill chunk 512 |
 | 2026-11-06 03:21 EST | ap-ACwkUWV6NOmw6pSni19K3V, ap-X66dz8pjfyQZaZtcsnE9pU | (result) | run3 mixed: both launches never got a container (0 tasks, no logs for 40 min / 20 min), stopped by me; 0 GPU s. Mixed-length cell remains NOT RUN beyond the run2 OOM. |
+
+| 2026-11-06 | ap-XWryUYU2rvuYtMXljmhmgO | `modal run --detach modal/fast_unit.py` | fast-exec Triton kernel unit tests, A10G (~$0.03). All pass: results/fast_unit_A10G.jsonl, logs/fast_unit_client.log |
