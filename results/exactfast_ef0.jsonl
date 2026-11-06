@@ -1,0 +1,89 @@
+{"kernels": 509.0, "phase": "profile_summary", "sum_kernel_ms": 4.4251019999999865, "tag": "exact_T1_ctx2048"}
+{"count": 150.0, "kernel": "_lin_kernel", "ms": 1.8064489999999975, "pct": 40.82276521535555, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 48.0, "kernel": "_gateup_blk", "ms": 0.9992213333333344, "pct": 22.580752564197105, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 48.0, "kernel": "_down_blk", "ms": 0.5602186666666608, "pct": 12.660017027102707, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 49.0, "kernel": "_attn_split_x", "ms": 0.5493573333333382, "pct": 12.414568824251733, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 49.0, "kernel": "_rope_write_blk", "ms": 0.1568329999999969, "pct": 3.5441668915201814, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 50.0, "kernel": "_resid_norm_kernel", "ms": 0.11896699999999494, "pct": 2.6884578027804853, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 49.0, "kernel": "_attn_combine_x", "ms": 0.1113276666666646, "pct": 2.515821480875807, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 48.0, "kernel": "_topk_kernel", "ms": 0.09664733333333243, "pct": 2.1840701826383375, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 2.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<float, float, float, at:", "ms": 0.0025173333333332265, "pct": 0.05688757758201357, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 2.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::bfloat16_copy_kernel_cuda(at::TensorIt", "ms": 0.00237866666666711, "pct": 0.05375393983386411, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::(anonymous namespace)::indexSelectSmallIndex<c10::BFloat16, long, unsigned int, 2, ", "ms": 0.0021760000000003855, "pct": 0.04917400774039541, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 2.0, "kernel": "memcpy32_post", "ms": 0.002048000000000078, "pct": 0.04628141904977748, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 1.0, "kernel": "_amax1", "ms": 0.0019409999999998036, "pct": 0.043863395691213655, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::cos_kernel_cuda(at::TensorIteratorBase", "ms": 0.0017813333333331987, "pct": 0.040255192610999795, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::sin_kernel_cuda(at::TensorIteratorBase", "ms": 0.0017280000000005201, "pct": 0.03904994732326002, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFun", "ms": 0.0016746666666664777, "pct": 0.03784470203548942, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::(anonymous namespace)::silu_kernel(at:", "ms": 0.0016536666666665952, "pct": 0.03737013670343871, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<2, at::native::CUDAFunctor_add<long>, std::array<char", "ms": 0.0016430000000000292, "pct": 0.03712908764589006, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorB", "ms": 0.0014506666666667723, "pct": 0.03278267182692685, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 1.0, "kernel": "_amax2", "ms": 0.0014399999999995998, "pct": 0.03254162276936451, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scal", "ms": 0.0012586666666666133, "pct": 0.028443788791006785, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::direct_co", "ms": 0.001195000000000012, "pct": 0.027005027228751238, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::BinaryFunctor<c10::BFloat16, c10::BFlo", "ms": 0.0011946666666663077, "pct": 0.02699749444569439, "phase": "profile_kernel", "tag": "exact_T1_ctx2048"}
+{"kernels": 509.0, "phase": "profile_summary", "sum_kernel_ms": 9.341422000000007, "tag": "exact_T13_ctx2048"}
+{"count": 48.0, "kernel": "_gateup_blk", "ms": 4.184763999999996, "pct": 44.797933333918465, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 48.0, "kernel": "_down_blk", "ms": 2.1610786666666613, "pct": 23.13436505348607, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 150.0, "kernel": "_lin_kernel", "ms": 1.816035333333344, "pct": 19.44067330791118, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 49.0, "kernel": "_attn_split_x", "ms": 0.6000316666666675, "pct": 6.423343969115913, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 49.0, "kernel": "_rope_write_blk", "ms": 0.16802166666667184, "pct": 1.7986733354586883, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 49.0, "kernel": "_attn_combine_x", "ms": 0.14714699999999492, "pct": 1.5752098556300616, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 50.0, "kernel": "_resid_norm_kernel", "ms": 0.1297933333333302, "pct": 1.3894387100093553, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 48.0, "kernel": "_topk_kernel", "ms": 0.09638700000000745, "pct": 1.0318236345602136, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::(anonymous namespace)::indexSelectSmallIndex<c10::BFloat16, long, unsigned int, 2, ", "ms": 0.010634333333333416, "pct": 0.11384062654843566, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 1.0, "kernel": "_amax1", "ms": 0.004223333333332145, "pct": 0.04521081836718373, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 2.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::bfloat16_copy_kernel_cuda(at::TensorIt", "ms": 0.0026123333333345424, "pct": 0.027965050003463502, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 2.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<float, float, float, at:", "ms": 0.0025600000000004, "pct": 0.02740482123600024, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 2.0, "kernel": "Memcpy DtoD (Device -> Device)", "ms": 0.0024320000000006984, "pct": 0.026034580174203632, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::sin_kernel_cuda(at::TensorIteratorBase", "ms": 0.0022079999999997805, "pct": 0.02363665831604416, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::cos_kernel_cuda(at::TensorIteratorBase", "ms": 0.0020266666666666423, "pct": 0.02169548347849654, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::(anonymous namespace)::silu_kernel(at:", "ms": 0.001675000000000182, "pct": 0.01793088889464774, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::direct_co", "ms": 0.0016643333333342222, "pct": 0.017816702139505324, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFun", "ms": 0.0015143333333330702, "pct": 0.016210950895196353, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorB", "ms": 0.0014613333333321253, "pct": 0.01564358545553476, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 1.0, "kernel": "_amax2", "ms": 0.0014186666666658615, "pct": 0.01518683843493914, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::CUDAFunct", "ms": 0.0014183333333335213, "pct": 0.015183270098851334, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::BinaryFunctor<c10::BFloat16, c10::BFlo", "ms": 0.0012373333333337844, "pct": 0.013245663597402873, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"count": 1.0, "kernel": "void (anonymous namespace)::elementwise_kernel_with_index<int, at::native::arange_cuda_out(c10::Scal", "ms": 0.0010773333333328689, "pct": 0.011532862270143326, "phase": "profile_kernel", "tag": "exact_T13_ctx2048"}
+{"kernels": 566.0, "phase": "profile_summary", "sum_kernel_ms": 3.767791333333321, "tag": "nonexact_T1_ctx2048"}
+{"count": 48.0, "kernel": "_gateup_kernel", "ms": 0.9540163333333298, "pct": 25.320307016294418, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 48.0, "kernel": "_down_kernel", "ms": 0.4853500000000013, "pct": 12.881552003853084, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 51.0, "kernel": "nvjet_tst_64x8_64x16_4x1_v_bz_TNT", "ms": 0.4849240000000012, "pct": 12.87024564523839, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 50.0, "kernel": "nvjet_tst_64x8_64x16_4x1_v_bz_splitK_TNT", "ms": 0.4178706666666644, "pct": 11.090600027920843, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "nvjet_tst_512x8_64x3_2x1_v_bz_TNT", "ms": 0.37059699999999973, "pct": 9.835921557580974, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 48.0, "kernel": "nvjet_tst_64x8_64x16_2x1_v_bz_TNT", "ms": 0.23845933333332822, "pct": 6.328889055603991, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 49.0, "kernel": "_attn_split_kernel", "ms": 0.21916999999999567, "pct": 5.816935722024143, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 49.0, "kernel": "_rope_write_kernel", "ms": 0.14920800000000067, "pct": 3.960091915918234, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 49.0, "kernel": "_resid_norm_kernel", "ms": 0.11907100000000083, "pct": 3.1602333957984907, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 49.0, "kernel": "_attn_combine_kernel", "ms": 0.10321533333332976, "pct": 2.7394121436660446, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 48.0, "kernel": "_topk_kernel", "ms": 0.09632033333333659, "pct": 2.556413686745309, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 50.0, "kernel": "void cublasLt::splitKreduce_kernel<32, 16, int, float, __nv_bfloat16, float, __nv_bfloat16, false, f", "ms": 0.08402199999999842, "pct": 2.2300067218867228, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::reduce_kernel<512, 1, at::native::ReduceOp<c10::BFloat16, at::native::ArgMaxOps<flo", "ms": 0.008842666666666447, "pct": 0.23469098695663285, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 2.0, "kernel": "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorB", "ms": 0.004063666666666753, "pct": 0.10785275263828568, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 3.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::bfloat16_copy_kernel_cuda(at::TensorIt", "ms": 0.003349999999999454, "pct": 0.08891150553806673, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 2.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFun", "ms": 0.0032853333333337106, "pct": 0.08719520383914718, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::reduce_kernel<512, 1, at::native::ReduceOp<float, at::native::MeanOps<float, float,", "ms": 0.0027413333333326287, "pct": 0.07275703696965095, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 2.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFunctor<float, float, float, at:", "ms": 0.0024743333333338644, "pct": 0.06567065727455906, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 2.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::BinaryFunctor<c10::BFloat16, c10::BFlo", "ms": 0.0023680000000000897, "pct": 0.062848491078861, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::(anonymous namespace)::indexSelectSmallIndex<c10::BFloat16, long, unsigned int, 2, ", "ms": 0.0021866666666668, "pct": 0.05803576878903965, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::AUnaryFunctor<c10::BFloat16, c10::BFlo", "ms": 0.0019519999999999225, "pct": 0.051807539943381394, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::cos_kernel_cuda(at::TensorIteratorBase", "ms": 0.0018666666666667879, "pct": 0.04954272945405842, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::sin_kernel_cuda(at::TensorIteratorBase", "ms": 0.0016746666666670837, "pct": 0.04444690585307774, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<8, at::native::(anonymous namespace)::silu_kernel(at:", "ms": 0.0016636666666668134, "pct": 0.0441549576259306, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 2.0, "kernel": "Memset (Unknown)", "ms": 0.0015573333333334933, "pct": 0.04133279143024459, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<2, at::native::CUDAFunctor_add<long>, std::array<char", "ms": 0.0015466666666669273, "pct": 0.04104969011908124, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::CUDAFunctorOnSelf_add<float>, std::arr", "ms": 0.0012373333333333297, "pct": 0.032839752095259356, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::rsqrt_kernel_cuda(at::TensorIteratorBa", "ms": 0.0012373333333330265, "pct": 0.03283975209525131, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::vectorized_elementwise_kernel<4, at::native::(anonymous namespace)::pow_tensor_scal", "ms": 0.0011840000000000448, "pct": 0.0314242455394305, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"count": 1.0, "kernel": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::direct_co", "ms": 0.0011836666666666436, "pct": 0.03141539862345476, "phase": "profile_kernel", "tag": "nonexact_T1_ctx2048"}
+{"T": 1, "cfg": "default", "ctx": 2048, "ms": 4.532304048538208, "ms_max": 4.617343902587891, "ms_min": 4.4956159591674805, "phase": "cost"}
+{"T": 4, "cfg": "default", "ctx": 2048, "ms": 6.3888161182403564, "ms_max": 6.40883207321167, "ms_min": 6.3454718589782715, "phase": "cost"}
+{"T": 9, "cfg": "default", "ctx": 2048, "ms": 8.791632175445557, "ms_max": 8.91312026977539, "ms_min": 8.754528045654297, "phase": "cost"}
+{"T": 13, "cfg": "default", "ctx": 2048, "ms": 9.481616020202637, "ms_max": 9.54867172241211, "ms_min": 9.455648422241211, "phase": "cost"}
+{"T": 1, "cfg": "nonexact", "ctx": 2048, "ms": 3.935312032699585, "ms_min": 3.9241600036621094, "phase": "cost"}
+{"T": 1, "cfg": "default", "ctx": 8192, "ms": 4.614447832107544, "ms_max": 4.713376045227051, "ms_min": 4.598048210144043, "phase": "cost"}
+{"T": 4, "cfg": "default", "ctx": 8192, "ms": 6.479072093963623, "ms_max": 6.50764799118042, "ms_min": 6.448800086975098, "phase": "cost"}
+{"T": 9, "cfg": "default", "ctx": 8192, "ms": 8.909343719482422, "ms_max": 8.9367036819458, "ms_min": 8.869312286376953, "phase": "cost"}
+{"T": 13, "cfg": "default", "ctx": 8192, "ms": 9.614816188812256, "ms_max": 9.646080017089844, "ms_min": 9.542976379394531, "phase": "cost"}
+{"T": 1, "cfg": "nonexact", "ctx": 8192, "ms": 4.061135768890381, "ms_min": 4.050559997558594, "phase": "cost"}

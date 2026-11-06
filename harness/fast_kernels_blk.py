@@ -75,15 +75,15 @@ def _down_blk(h_ptr, idx_ptr, sc_ptr, w_ptr, out_ptr, K: tl.constexpr, N: tl.con
 
 def moe_gemv_blk(x, idx, sc, gate_up, down, hbuf, obuf, cfg=None):
     """x [T,Dm] bf16, idx [T,k] int32, sc [T,k] bf16 -> obuf [T*k, Dm] (row t*k+j = weighted output of token t's j-th expert)."""
-    c = dict(BN1=16, BK1=128, BN2=16, BK2=128, nw1=4, nw2=4)
+    c = dict(BN1=16, BK1=128, BN2=16, BK2=128, nw1=4, nw2=4, ns1=None, ns2=None)
     if cfg:
         c.update(cfg)
     T, k = idx.shape
     Dm, I = x.shape[-1], down.shape[-1]
     TP = max(16, triton.next_power_of_2(T))
     TKP = triton.next_power_of_2(T * k)
-    _gateup_blk[(T * k, I // c["BN1"])](x, idx, gate_up, hbuf, K=Dm, I=I, T=T, KK=k, TP=TP, TKP=TKP, BN=c["BN1"], BK=c["BK1"], num_warps=c["nw1"])
-    _down_blk[(T * k, Dm // c["BN2"])](hbuf, idx, sc, down, obuf, K=I, N=Dm, T=T, KK=k, TP=TP, TKP=TKP, BN=c["BN2"], BK=c["BK2"], num_warps=c["nw2"])
+    _gateup_blk[(T * k, I // c["BN1"])](x, idx, gate_up, hbuf, K=Dm, I=I, T=T, KK=k, TP=TP, TKP=TKP, BN=c["BN1"], BK=c["BK1"], num_warps=c["nw1"], **({"num_stages": c["ns1"]} if c["ns1"] else {}))
+    _down_blk[(T * k, Dm // c["BN2"])](hbuf, idx, sc, down, obuf, K=I, N=Dm, T=T, KK=k, TP=TP, TKP=TKP, BN=c["BN2"], BK=c["BK2"], num_warps=c["nw2"], **({"num_stages": c["ns2"]} if c["ns2"] else {}))
     return obuf
 
 
