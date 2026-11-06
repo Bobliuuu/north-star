@@ -90,3 +90,7 @@ printed line below (git history of this file is the anchor). Verify before trust
 | `selfimprove-head selfimprove_kernel_structured_v5 n=34 head=bc86debd1209b78a71adad08b73c5c0ee17d574c0ef6332c43166856d49d3e64` (after run 6) |
 
 | 2026-11-06 | ap-GK3KV7orR8QYjXyQCqicEm | `modal run --detach modal/exactspec_run.py::main --tag ex1 --sections ec` | exact-spec: real-model bitwise row-invariance (T=1 vs T=2/5/13 block, graph vs eager) + cost table, H100, ~$0.6. results/exactspec_ex1.jsonl, logs/exactspec_ex1_applogs.log. Kernel unit tests (A10G, no weights): results/exact_unit_A10G.jsonl |
+
+| 2026-11-06 | ap-TQgSvt2dCiedJMknTSaCwU | `modal run --detach modal/selfimprove_triton.py::smoke_a10g` | selfimprove-triton track smoke (A10G, no gates, ~$0.05): suite check/quality/bench all run, bitwise row-invariance cases 0. results/selfimprove_triton_smoke_a10g.json, logs/selfimprove_triton_smoke_a10g_client.log. Branch selfimprove-triton |
+| 2026-11-06 | ap-gFN80GHem0FAdZ5I6to3N9 | `modal run --detach modal/selfimprove_triton.py::calib --tag c1` | triton track A/A calibration: unmodified baseline vs itself through the full Evaluator on H100 (noise floor, baseline errors); est <= $0.5. results/selfimprove_triton_calib_c1.json |
+| 2026-11-06 | ap-OEZnKfb6AAOa9aFeonmUCQ | `modal run --detach modal/triton_sweep.py::main --tag sw1` | triton track HUMAN-FREE baseline (script OFAT + greedy + 8 random <=4-knob neighbours, H100, NOT shown to North); est <= $1.2. results/selfimprove_triton_sweep_sw1.jsonl |
