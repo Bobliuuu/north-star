@@ -1,0 +1,208 @@
+{
+ "meta": {
+  "python": "3.12.16",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.22.1",
+  "model": "CohereLabs/North-Mini-Code-1.0",
+  "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37",
+  "time": "2026-11-06T16:36:25Z",
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "cuda": "12.8",
+  "gpu_mem_gb": 79.3,
+  "pip_freeze_sha": "b75d56d0a2a7"
+ },
+ "tag": "se_smoke2",
+ "smoke": true,
+ "A": {
+  "summary": {
+   "K": 2,
+   "group": 32,
+   "registered_gates": {
+    "kl_max": 0.03,
+    "agree_min": 0.96,
+    "bytes_min": 0.15
+   },
+   "random_kls": [
+    0.00786144845187664,
+    0.01687134988605976
+   ],
+   "greedy_main_kl": 0.014092562720179558,
+   "claims": {
+    "north_blind": [
+     {
+      "gates_ok": false,
+      "beats_random": 0,
+      "n_random": 2,
+      "north_kl": 0.020478805527091026,
+      "random_median_kl": 0.0123663991689682,
+      "claim": false,
+      "kl_ratio_vs_greedy": 1.4531640506922718,
+      "name": "north_blind_r1"
+     }
+    ],
+    "north_table": [
+     {
+      "gates_ok": false,
+      "beats_random": 1,
+      "n_random": 2,
+      "north_kl": 0.014092562720179558,
+      "random_median_kl": 0.0123663991689682,
+      "claim": false,
+      "kl_ratio_vs_greedy": 1.0,
+      "name": "north_table_r1"
+     }
+    ]
+   },
+   "any_self_improvement_claim": false
+  },
+  "table": {
+   "1": 0.028179612010717392,
+   "2": 0.018620658665895462,
+   "3": 0.01461300440132618
+  },
+  "arms": [
+   {
+    "name": "greedy_table_K2",
+    "source": "harness",
+    "layers": [
+     2,
+     3
+    ],
+    "group": 32,
+    "K": 2,
+    "kl": 0.014092562720179558,
+    "agree": 0.9649122807017544,
+    "n_pos": 798,
+    "bytes_saved_inferred": 0.018229166666666664,
+    "gates": {
+     "quality": true,
+     "bytes": false,
+     "nonexpert": true,
+     "selfauthored": false
+    },
+    "passed": false
+   },
+   {
+    "name": "random_s0_K2",
+    "source": "harness",
+    "layers": [
+     25,
+     27
+    ],
+    "group": 32,
+    "K": 2,
+    "kl": 0.00786144845187664,
+    "agree": 0.974937343358396,
+    "n_pos": 798,
+    "bytes_saved_inferred": 0.018229166666666664,
+    "gates": {
+     "quality": true,
+     "bytes": false,
+     "nonexpert": true,
+     "selfauthored": false
+    },
+    "passed": false
+   },
+   {
+    "name": "random_s1_K2",
+    "source": "harness",
+    "layers": [
+     9,
+     37
+    ],
+    "group": 32,
+    "K": 2,
+    "kl": 0.01687134988605976,
+    "agree": 0.9573934837092731,
+    "n_pos": 798,
+    "bytes_saved_inferred": 0.018229166666666664,
+    "gates": {
+     "quality": false,
+     "bytes": false,
+     "nonexpert": true,
+     "selfauthored": false
+    },
+    "passed": false
+   },
+   {
+    "name": "north_blind_r1",
+    "source": "llm",
+    "layers": [
+     1,
+     47
+    ],
+    "group": 32,
+    "K": 2,
+    "kl": 0.020478805527091026,
+    "agree": 0.943609022556391,
+    "n_pos": 798,
+    "bytes_saved_inferred": 0.018229166666666664,
+    "gates": {
+     "quality": false,
+     "bytes": false,
+     "nonexpert": true,
+     "selfauthored": true
+    },
+    "passed": false,
+    "raw_reply": "<|START_TEXT|>{\"int4_layers\":[1,47],\"group\":32}<|END_TEXT|>",
+    "proposer_error": null
+   },
+   {
+    "name": "north_table_r1",
+    "source": "llm",
+    "layers": [
+     2,
+     3
+    ],
+    "group": 32,
+    "K": 2,
+    "kl": 0.014092562720179558,
+    "agree": 0.9649122807017544,
+    "n_pos": 798,
+    "bytes_saved_inferred": 0.018229166666666664,
+    "gates": {
+     "quality": true,
+     "bytes": false,
+     "nonexpert": true,
+     "selfauthored": true
+    },
+    "passed": false,
+    "raw_reply": "<|START_TEXT|>{\"int4_layers\": [2, 3], \"group\": 32}<|END_TEXT|>",
+    "proposer_error": null
+   }
+  ]
+ },
+ "B": {
+  "recipe": {
+   "int4_layers": [
+    25,
+    27
+   ],
+   "group": 32
+  },
+  "kl_before": 0.00786144845187664,
+  "kl_after": 0.01661660335958004,
+  "rel_reduction": -1.1136821619193367,
+  "boot_lower_rel": -1.2155619859695435,
+  "kl_train_before": 0.007711016573011875,
+  "kl_train_after": 0.025015542283654213,
+  "agree_before": 0.974937343358396,
+  "agree_after": 0.956140350877193,
+  "kl_adapter_off": 0.00786144845187664,
+  "adapter_params": 417840,
+  "adapter_flops_frac": 0.00023057725694444444,
+  "train": {
+   "first": 0.007699719863012433,
+   "last": 0.018985595554113388,
+   "seconds": 24.160931825637817,
+   "steps": 3
+  },
+  "gates": {
+   "recover": false,
+   "cost": true
+  },
+  "passed": false,
+  "base_recipe_name": "random_s0_K2"
+ },
+ "gpu_seconds": 214.96872401237488
+}
