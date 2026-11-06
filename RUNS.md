@@ -54,3 +54,7 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-06 ~10:50 UTC | ap-7n6TmzaacAQVVwNLTf4k3K | `modal run --detach modal/pld_run.py::main --tag pld3 --live-set sam2:8,sam2:12,sam:12,pld3b:8,pld3b:12,ngc:8` | PLD live run 2: configs the sim ranked best (gamma 12, sam2, pld3b). est $0.75. Result Volume northstar-results:/pld_pld3.jsonl |
 | 2026-11-06 ~11:00 UTC | ap-7n6TmzaacAQVVwNLTf4k3K | (result) | pld3 finished OK 592 s est $0.65; total PLD spend ~$1.47 / $3. results/pld_pld3.jsonl, logs/pld3_applogs.log |
 | 2026-11-06 | ap-cAzs1pGR4mKRI75ZrILm3a | `modal run --detach modal/fastpld_run.py::main --tag fp1 --sections vc` | north-fast-pld: validate verify blocks vs HF + block cost table, H100. log logs/fastpld_fp1_applogs.log |
+| 2026-11-06 | ap-cAzs1pGR4mKRI75ZrILm3a | (result) | fp1 done 119 s ~$0.13: results/fastpld_fp1.jsonl, logs/fastpld_fp1_applogs.log |
+| 2026-11-06 | ap-fv5l1Dywz0M0SMB8WkRy6Q | `modal run --detach modal/fastpld_run.py::main --tag fp2 --sections b --reps 2` | fast-executor PLD bench run A (with HF generate identity check), H100, est $1-1.5 |
+| 2026-11-06 | ap-fv5l1Dywz0M0SMB8WkRy6Q | (result) | fp2 done 635 s ~$0.70: results/fastpld_fp2.jsonl, results/fastpld_fp2_summary.md, logs/fastpld_fp2_applogs.log |
+| 2026-11-06 | ap-3m6ozTJ3EICXa2I78vlm8f | `modal run --detach modal/fastpld_run.py::main --tag fp3 --sections b --reps 2 --no-hf` | independent repeat launch (no HF) for cross-launch variance; est $0.6 |
