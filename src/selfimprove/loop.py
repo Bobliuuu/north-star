@@ -196,13 +196,14 @@ class Loop:
             store.recover()                           # finish a promotion/rollback that was logged but not applied (crash)
             store.assert_healthy()
 
-    def step(self, profile_summary: str = "", dev_results: str = "", rnd: int = 0) -> dict:
+    def step(self, profile_summary: str = "", dev_results: str = "", rnd: int = 0, temperature: float | None = None) -> dict:
         cfg, st = self.cfg, self.store
         st.assert_healthy()                           # chained log, version contents and CURRENT must agree before we trust the baseline
         base_v = st.current(); base_files = st.files(base_v)
         history = list(self.prior_history) + [self.SM.history_line(r) for r in st.read_log() if r.get("event") == "proposal"]
         req = ProposalRequest(base_version=base_v, files=base_files, scope_description=scope_description(cfg.scope),
-                              profile_summary=profile_summary, dev_results=dev_results, history=history, mode=self.mode, track=self.track)
+                              profile_summary=profile_summary, dev_results=dev_results, history=history, mode=self.mode, track=self.track,
+                              **({"temperature": temperature} if temperature is not None else {}))
         pid = uuid.uuid4().hex
         rec = dict(event="proposal", proposal_id=pid, round=rnd, base_version=base_v, verdict=None, findings=[], gates={}, cost={})
         t0 = time.time()
@@ -245,6 +246,12 @@ class Loop:
             rec["reason"] = structured_err; return finish("invalid_edit")
         if not diff:
             return finish("no_change" if diff == "" else "no_diff_in_response")
+        if self.mode == "structured":     # best-of-N: never spend GPU re-measuring an edit set already measured against this very base
+            dup = [r for r in st.read_log() if r.get("event") == "proposal" and r.get("base_version") == base_v
+                   and r.get("diff_sha256") == rec["diff_sha256"] and r.get("verdict") not in ("proposer_error", "evaluator_error", "duplicate_edit")]
+            if dup:
+                rec["reason"] = f"identical edit set already measured against {base_v} (proposal {dup[-1]['proposal_id'][:8]}); propose a DIFFERENT edit set"
+                return finish("duplicate_edit")
         try:
             fds = D.parse(diff, cfg.scope)
             new_files = D.apply_all(fds, base_files.get, cfg.scope)
@@ -278,11 +285,17 @@ class Loop:
         rec["cumulative_vs_v0000"] = st.cumulative(extra_tested=1)   # +1: this proposal is not logged yet
         return finish("promoted", v)
 
-    def run(self, rounds: int, max_total_usd: float = 5.0, **kw) -> list[dict]:
+    def run(self, rounds: int, max_total_usd: float = 5.0, proposals_per_round: int = 1, **kw) -> list[dict]:
+        """proposals_per_round=N: best-of-N greedy. N proposals per round, sampled at rising temperature (0.3, 0.55, 0.8, 1.0), each
+        seeing every earlier measured result (incl. the ones from this round); the first to pass ALL gates is promoted and later
+        proposals build on it. Identical edit sets are skipped without evaluation (duplicate_edit). Every proposal is logged and
+        counted in the selection-adjusted CI (n_tested)."""
         out = []
         for i in range(rounds):
-            spent = self.store.cost_summary()
-            if spent["proposer_usd"] + spent["eval_usd"] >= max_total_usd:
-                self.store.log(dict(event="budget_stop", spent=spent)); break
-            out.append(self.step(rnd=i, **kw))
+            for j in range(max(1, proposals_per_round)):
+                spent = self.store.cost_summary()
+                if spent["proposer_usd"] + spent["eval_usd"] >= max_total_usd:
+                    self.store.log(dict(event="budget_stop", spent=spent)); return out
+                t = min(1.0, 0.3 + 0.25 * j) if proposals_per_round > 1 else None
+                out.append(self.step(rnd=i, temperature=t, **kw))
         return out

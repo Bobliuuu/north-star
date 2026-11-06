@@ -52,7 +52,11 @@ constexpr int HPAD = 8;                // smem row padding (bf16 elems) for the 
 constexpr int MT_SPLIT = 16;           // experts with pair_cnt > MT_SPLIT use the 2-row-tile path (<= 16)
 constexpr int MINB_PER_SM = 1;         // min resident blocks per SM hint for __launch_bounds__ (1..8)
 constexpr int UNROLL_KS = 16;          // `#pragma unroll` factor of the stage-1 k-step loop (1..128; >= KC/16 means full unroll; 1 = no unroll)
+constexpr int UNROLL_S2 = 4;           // `#pragma unroll` factor of the stage-2 k-step loop (SL/16 = 4 steps; 4 = full unroll, 1 = none)
+constexpr int UNROLL_NT = 1;           // `#pragma unroll` factor of the stage-2 output-tile loop `nt` (1..8; 1 = no unroll)
 // NS-EDITABLE-END
+static_assert(UNROLL_S2 >= 1 && UNROLL_S2 <= 4, "UNROLL_S2 must be in [1,4]");
+static_assert(UNROLL_NT >= 1 && UNROLL_NT <= 8, "UNROLL_NT must be in [1,8]");
 constexpr int LDX = KC + XPAD, LDH = SL + HPAD;
 static_assert(SL == 64, "SL is tied to the 4-warp x 16-column tiling");
 static_assert(KC % 16 == 0 && KC >= 16 && KC <= H && H % KC == 0, "KC must be a multiple of 16 dividing H");
@@ -127,11 +131,12 @@ __device__ __forceinline__ void run_item(const bf16* __restrict__ x, const bf16*
     __syncthreads();
     // ---- stage 2: partial down projection of this slice, accumulate into out with routing weight ----
     const bf16* dp = wd + wbase;
+#pragma unroll UNROLL_NT
     for (int nt = warp; nt < H / 16; nt += 4) {
         wmma::fragment<wmma::accumulator, 16, 16, 16, float> ac[MT];
 #pragma unroll
         for (int m = 0; m < MT; ++m) wmma::fill_fragment(ac[m], 0.f);
-#pragma unroll
+#pragma unroll UNROLL_S2
         for (int ks = 0; ks < SL / 16; ++ks) {
             wmma::fragment<wmma::matrix_b, 16, 16, 16, bf16, wmma::row_major> b;
             wmma::load_matrix_sync(b, dp + (size_t)ks * 16 * H + nt * 16, H);
