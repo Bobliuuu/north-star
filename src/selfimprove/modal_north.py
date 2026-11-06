@@ -34,7 +34,7 @@ if os.environ.get("NS_WITH_VLLM") == "1":
 app = modal.App("northstar-selfimprove", image=image)
 
 
-@app.cls(gpu="A100-80GB", volumes={WEIGHTS: weights_vol}, memory=65536, timeout=900, scaledown_window=60,
+@app.cls(gpu="A100-80GB", volumes={WEIGHTS: weights_vol}, memory=65536, timeout=1800, scaledown_window=60,
          max_containers=1)
 class NorthProposerService:
     @modal.enter()
@@ -61,7 +61,8 @@ class NorthProposerService:
         """payload: {system, prompt, max_new_tokens, temperature}. Returns text + attestation (model id/revision)."""
         t0 = time.time()
         msgs = [{"role": "system", "content": payload["system"]}, {"role": "user", "content": payload["prompt"]}]
-        ids = self.tok.apply_chat_template(msgs, add_generation_prompt=True, tokenize=False)
+        ids = self.tok.apply_chat_template(msgs, add_generation_prompt=True, tokenize=False,
+                                             reasoning_effort=payload.get("reasoning_effort", "none"))  # North template: "none" skips the thinking block (still North-generated)
         n_new = int(min(payload.get("max_new_tokens", 2048), 8192)); temp = float(payload.get("temperature", 0.3))
         if self.backend == "vllm":
             from vllm import SamplingParams
