@@ -1,0 +1,200 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-kiiBVXnLWGsnpa47tykm7c
+✓ Created objects.
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a4e541eafc9035086/modal/long
+│   ctx.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a4e541eafc9035086/src/norths
+│   tar
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a4e541eafc9035086/tests
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a4e541eafc9035086/harness
+└── ✓ Created Function run_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:09, 42.16it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:16, 22.31it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:19, 18.44it/s]
+[1ALoading weights:   8%|▊         | 30/394 [00:01<00:18, 19.79it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:22, 15.85it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:22, 15.47it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:22, 15.23it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:22, 15.06it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:22, 14.81it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:04<00:21, 14.95it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:21, 15.08it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:20, 15.18it/s]
+[1ALoading weights:  22%|██▏       | 85/394 [00:05<00:21, 14.57it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:19, 15.26it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:19, 15.18it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:06<00:20, 14.57it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:06<00:18, 15.57it/s]
+[1ALoading weights:  28%|██▊       | 109/394 [00:06<00:17, 15.90it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:18, 15.40it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:17, 15.34it/s]
+[1ALoading weights:  32%|███▏      | 125/394 [00:07<00:17, 15.62it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:08<00:18, 14.59it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:08<00:17, 14.92it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:09<00:16, 14.73it/s]
+[1ALoading weights:  38%|███▊      | 149/394 [00:09<00:16, 15.20it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:09<00:16, 14.73it/s]
+[1ALoading weights:  40%|███▉      | 157/394 [00:09<00:15, 15.14it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:10<00:15, 14.59it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:10<00:14, 15.18it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:11<00:14, 15.18it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:11<00:13, 15.21it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:12<00:12, 15.73it/s]
+[1ALoading weights:  50%|█████     | 197/394 [00:12<00:12, 15.74it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:12<00:11, 16.17it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:13<00:11, 15.95it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:13<00:10, 16.04it/s]
+[1ALoading weights:  56%|█████▌    | 221/394 [00:14<00:10, 16.37it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:14<00:10, 15.71it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:14<00:09, 16.05it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:15<00:09, 15.77it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:15<00:09, 15.76it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:16<00:08, 15.83it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:16<00:07, 15.93it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:17<00:07, 15.89it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:17<00:06, 15.93it/s]
+[1ALoading weights:  72%|███████▏  | 285/394 [00:18<00:06, 16.19it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:18<00:06, 16.18it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:18<00:05, 16.57it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:19<00:05, 16.96it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:19<00:04, 17.24it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:20<00:04, 16.40it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:20<00:03, 16.33it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:21<00:03, 16.03it/s]
+[1ALoading weights:  87%|████████▋ | 341/394 [00:21<00:03, 15.99it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:21<00:02, 15.88it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:22<00:02, 15.44it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:22<00:02, 15.32it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:23<00:01, 15.21it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:24<00:00, 15.24it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:24<00:00, 14.84it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:24<00:00, 16.03it/s]
+LCROW {"kind": "meta", "meta": {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-06T15:35:11Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "b75d56d0a2a7"}, "load_s": 60.69899940490723, "part": "A", "t_s": 60.7}
+LCROW {"kind": "check", "cell": "win_bmm_vs_old_graphnorth", "same_token": false, "ctx": 2048, "t_s": 70.5}
+LCROW {"kind": "check", "cell": "win_bmm_vs_win_bmm", "same_token": true, "max_abs_logit_diff": 0.0, "ref_logit_absmax": 20.75, "ctx": 2048, "t_s": 72.5}
+LCROW {"kind": "check", "cell": "padded_bmm_vs_win_bmm", "same_token": true, "max_abs_logit_diff": 0.0, "ref_logit_absmax": 20.75, "ctx": 2048, "t_s": 74.1}
+LCROW {"kind": "check", "cell": "tri_vs_win_bmm", "same_token": true, "max_abs_logit_diff": 0.828125, "ref_logit_absmax": 20.75, "ctx": 2048, "t_s": 75.7}
+LCROW {"kind": "check", "cell": "gather_fixed256_vs_win_bmm", "same_token": true, "max_abs_logit_diff": 5.7802734375, "ref_logit_absmax": 20.75, "ctx": 2048, "t_s": 77.5}
+LCROW {"kind": "check", "cell": "tri_idx_fixed256_vs_win_bmm", "same_token": true, "max_abs_logit_diff": 5.8427734375, "ref_logit_absmax": 20.75, "ctx": 2048, "t_s": 79.1}
+LCROW {"kind": "check", "cell": "gather_oracle256_vs_win_bmm", "same_token": true, "max_abs_logit_diff": 3.3583984375, "ref_logit_absmax": 20.75, "ctx": 2048, "t_s": 81.1}
+LCROW {"kind": "check", "cell": "tri_idx_oracle256_vs_win_bmm", "same_token": true, "max_abs_logit_diff": 3.2021484375, "ref_logit_absmax": 20.75, "ctx": 2048, "t_s": 83.0}
+LCROW {"kind": "check", "cell": "gather_vs_triidx_fixed", "max_abs_logit_diff": 0.7890625, "t_s": 85.2}
+LCROW {"kind": "check", "cell": "gather_vs_triidx_oracle", "max_abs_logit_diff": 0.5, "t_s": 87.0}
+LCROW {"kind": "prefill", "ctx": 8192, "seconds": 1.439441204071045, "mem_gb": 62.41200128, "t_s": 90.1}
+LCROW {"kind": "cell", "cell": "T1_rNone_pad", "B": 1, "T": 1, "ctx": 8192, "ms": 11.40124797821045, "ms_min": 11.372159957885742, "ms_max": 11.544992446899414, "cap_s": 0.5518627166748047, "t_s": 93.0}
+LCROW {"kind": "cell", "cell": "T1_rNone_win", "B": 1, "T": 1, "ctx": 8192, "ms": 11.00974416732788, "ms_min": 10.957023620605469, "ms_max": 11.088288307189941, "cap_s": 0.5384833812713623, "t_s": 95.2}
+LCROW {"kind": "cell", "cell": "T1_rNone_tri", "B": 1, "T": 1, "ctx": 8192, "ms": 10.939231872558594, "ms_min": 10.887136459350586, "ms_max": 11.012031555175781, "cap_s": 2.1418464183807373, "t_s": 98.9}
+LCROW {"kind": "cell", "cell": "T1_rNone_tri_swbmm", "B": 1, "T": 1, "ctx": 8192, "ms": 11.011568069458008, "ms_min": 10.972960472106934, "ms_max": 11.10422420501709, "cap_s": 0.5625362396240234, "t_s": 101.5}
+LCROW {"kind": "cell", "cell": "T1_rNone_gather_fixed256", "B": 1, "T": 1, "ctx": 8192, "ms": 11.1005277633667, "ms_min": 11.052736282348633, "ms_max": 11.180831909179688, "cap_s": 0.5568342208862305, "t_s": 103.9}
+LCROW {"kind": "cell", "cell": "T1_rNone_gather_oracle256", "B": 1, "T": 1, "ctx": 8192, "ms": 12.285376071929932, "ms_min": 12.249504089355469, "ms_max": 12.330304145812988, "cap_s": 0.6567695140838623, "t_s": 106.2}
+LCROW {"kind": "cell", "cell": "T1_rNone_triidx_fixed256", "B": 1, "T": 1, "ctx": 8192, "ms": 10.956831932067871, "ms_min": 10.918880462646484, "ms_max": 11.10319995880127, "cap_s": 0.5712804794311523, "t_s": 108.8}
+LCROW {"kind": "cell", "cell": "T1_rNone_triidx_oracle256", "B": 1, "T": 1, "ctx": 8192, "ms": 12.102384090423584, "ms_min": 12.082079887390137, "ms_max": 12.20576000213623, "cap_s": 0.618720531463623, "t_s": 111.4}
+LCROW {"kind": "cell", "cell": "T1_rNone_triidx_fixed1024", "B": 1, "T": 1, "ctx": 8192, "ms": 11.012224197387695, "ms_min": 10.977439880371094, "ms_max": 11.103615760803223, "cap_s": 1.045715093612671, "t_s": 114.4}
+LCROW {"kind": "cell", "cell": "T1_rNone_triidx_fixed256_swtri", "B": 1, "T": 1, "ctx": 8192, "ms": 10.87172794342041, "ms_min": 10.84115219116211, "ms_max": 11.013888359069824, "cap_s": 0.5502099990844727, "t_s": 116.7}
+LCROW {"kind": "cell", "cell": "T1_r4_pad", "B": 1, "T": 1, "ctx": 8192, "ms": 10.520415782928467, "ms_min": 10.495776176452637, "ms_max": 10.56281566619873, "cap_s": 0.5280213356018066, "t_s": 118.9}
+LCROW {"kind": "cell", "cell": "T1_r4_win", "B": 1, "T": 1, "ctx": 8192, "ms": 10.125823974609375, "ms_min": 10.106143951416016, "ms_max": 10.254240036010742, "cap_s": 0.5078079700469971, "t_s": 121.1}
+LCROW {"kind": "cell", "cell": "T1_r4_tri", "B": 1, "T": 1, "ctx": 8192, "ms": 10.038496017456055, "ms_min": 9.99839973449707, "ms_max": 10.148127555847168, "cap_s": 0.5136830806732178, "t_s": 123.2}
+LCROW {"kind": "cell", "cell": "T1_r4_tri_swbmm", "B": 1, "T": 1, "ctx": 8192, "ms": 10.121551990509033, "ms_min": 10.110112190246582, "ms_max": 10.253791809082031, "cap_s": 0.5371026992797852, "t_s": 125.8}
+LCROW {"kind": "cell", "cell": "T1_r4_gather_fixed256", "B": 1, "T": 1, "ctx": 8192, "ms": 10.26852798461914, "ms_min": 10.214143753051758, "ms_max": 10.349120140075684, "cap_s": 0.5135109424591064, "t_s": 128.4}
+LCROW {"kind": "cell", "cell": "T1_r4_gather_oracle256", "B": 1, "T": 1, "ctx": 8192, "ms": 11.485375881195068, "ms_min": 11.450976371765137, "ms_max": 11.494175910949707, "cap_s": 0.5668628215789795, "t_s": 130.9}
+LCROW {"kind": "cell", "cell": "T1_r4_triidx_fixed256", "B": 1, "T": 1, "ctx": 8192, "ms": 10.133919715881348, "ms_min": 10.083807945251465, "ms_max": 10.186367988586426, "cap_s": 0.5235738754272461, "t_s": 133.7}
+LCROW {"kind": "cell", "cell": "T1_r4_triidx_oracle256", "B": 1, "T": 1, "ctx": 8192, "ms": 11.256912231445312, "ms_min": 11.244576454162598, "ms_max": 11.336288452148438, "cap_s": 0.5928270816802979, "t_s": 135.8}
+LCROW {"kind": "cell", "cell": "T1_r4_triidx_fixed1024", "B": 1, "T": 1, "ctx": 8192, "ms": 10.196703910827637, "ms_min": 10.145343780517578, "ms_max": 10.283967971801758, "cap_s": 0.510413646697998, "t_s": 138.3}
+LCROW {"kind": "cell", "cell": "T1_r4_triidx_fixed256_swtri", "B": 1, "T": 1, "ctx": 8192, "ms": 10.084976196289062, "ms_min": 10.031455993652344, "ms_max": 10.169471740722656, "cap_s": 0.5257551670074463, "t_s": 141.5}
+LCROW {"kind": "cell", "cell": "T1_rNone_noattn", "B": 1, "T": 1, "ctx": 8192, "ms": 6.724751949310303, "ms_min": 6.710303783416748, "ms_max": 6.770624160766602, "cap_s": 0.3209514617919922, "t_s": 143.6}
+LCROW {"kind": "cell", "cell": "T1_r4_noattn", "B": 1, "T": 1, "ctx": 8192, "ms": 5.746592044830322, "ms_min": 5.731488227844238, "ms_max": 5.782623767852783, "cap_s": 0.2730834484100342, "t_s": 146.2}
+LCROW {"kind": "cell", "cell": "verify_K3_pad", "B": 1, "T": 3, "ctx": 8192, "ms": 13.51639986038208, "ms_min": 13.465920448303223, "ms_max": 13.54537582397461, "cap_s": 0.63199782371521, "t_s": 148.7}
+LCROW {"kind": "cell", "cell": "verify_K3_win", "B": 1, "T": 3, "ctx": 8192, "ms": 13.063679695129395, "ms_min": 13.012351989746094, "ms_max": 13.077792167663574, "cap_s": 0.6679654121398926, "t_s": 151.5}
+LCROW {"kind": "cell", "cell": "verify_K3_tri", "B": 1, "T": 3, "ctx": 8192, "ms": 13.369231700897217, "ms_min": 13.347999572753906, "ms_max": 13.393440246582031, "cap_s": 3.697786331176758, "t_s": 158.0}
+LCROW {"kind": "cell", "cell": "verify_K3_noattn", "B": 1, "T": 3, "ctx": 8192, "ms": 8.65723180770874, "ms_min": 8.575136184692383, "ms_max": 8.67187213897705, "cap_s": 0.4180898666381836, "t_s": 160.6}
+LCROW {"kind": "cell", "cell": "verify_K5_pad", "B": 1, "T": 5, "ctx": 8192, "ms": 15.189584255218506, "ms_min": 15.129311561584473, "ms_max": 15.21679973602295, "cap_s": 0.7367978096008301, "t_s": 162.9}
+LCROW {"kind": "cell", "cell": "verify_K5_win", "B": 1, "T": 5, "ctx": 8192, "ms": 14.489360332489014, "ms_min": 14.355008125305176, "ms_max": 14.508159637451172, "cap_s": 0.6699957847595215, "t_s": 165.3}
+LCROW {"kind": "cell", "cell": "verify_K5_tri", "B": 1, "T": 5, "ctx": 8192, "ms": 15.138160228729248, "ms_min": 15.113887786865234, "ms_max": 15.150015830993652, "cap_s": 4.748370170593262, "t_s": 172.5}
+LCROW {"kind": "cell", "cell": "verify_K5_noattn", "B": 1, "T": 5, "ctx": 8192, "ms": 9.74449634552002, "ms_min": 9.689056396484375, "ms_max": 9.760031700134277, "cap_s": 0.42132019996643066, "t_s": 175.0}
+LCROW {"kind": "cell", "cell": "verify_K9_pad", "B": 1, "T": 9, "ctx": 8192, "ms": 17.397135734558105, "ms_min": 17.242143630981445, "ms_max": 17.405216217041016, "cap_s": 0.7916834354400635, "t_s": 178.0}
+LCROW {"kind": "cell", "cell": "verify_K9_win", "B": 1, "T": 9, "ctx": 8192, "ms": 16.42292881011963, "ms_min": 16.385887145996094, "ms_max": 16.44278335571289, "cap_s": 0.7801566123962402, "t_s": 180.3}
+LCROW {"kind": "cell", "cell": "verify_K9_tri", "B": 1, "T": 9, "ctx": 8192, "ms": 18.763279914855957, "ms_min": 18.709087371826172, "ms_max": 18.787424087524414, "cap_s": 10.01722264289856, "t_s": 192.2}
+LCROW {"kind": "cell", "cell": "verify_K9_noattn", "B": 1, "T": 9, "ctx": 8192, "ms": 11.854976177215576, "ms_min": 11.774496078491211, "ms_max": 11.885631561279297, "cap_s": 0.48554468154907227, "t_s": 194.6}
+LCROW {"kind": "prefill", "ctx": 32768, "seconds": 4.88849401473999, "mem_gb": 66.251706368, "t_s": 201.3}
+LCROW {"kind": "cell", "cell": "T1_rNone_pad", "B": 1, "T": 1, "ctx": 32768, "ms": 14.048272132873535, "ms_min": 14.028032302856445, "ms_max": 14.182975769042969, "cap_s": 0.656562328338623, "t_s": 204.4}
+LCROW {"kind": "cell", "cell": "T1_rNone_win", "B": 1, "T": 1, "ctx": 32768, "ms": 11.67296028137207, "ms_min": 11.624735832214355, "ms_max": 11.821087837219238, "cap_s": 0.559798002243042, "t_s": 206.5}
+LCROW {"kind": "cell", "cell": "T1_rNone_tri", "B": 1, "T": 1, "ctx": 32768, "ms": 11.301040172576904, "ms_min": 11.290399551391602, "ms_max": 11.453056335449219, "cap_s": 2.0687201023101807, "t_s": 210.3}
+LCROW {"kind": "cell", "cell": "T1_rNone_tri_swbmm", "B": 1, "T": 1, "ctx": 32768, "ms": 11.41703987121582, "ms_min": 11.39516830444336, "ms_max": 11.539104461669922, "cap_s": 0.5604133605957031, "t_s": 212.4}
+LCROW {"kind": "cell", "cell": "T1_rNone_gather_fixed256", "B": 1, "T": 1, "ctx": 32768, "ms": 11.09603214263916, "ms_min": 11.058303833007812, "ms_max": 11.15014362335205, "cap_s": 0.5596225261688232, "t_s": 214.7}
+LCROW {"kind": "cell", "cell": "T1_rNone_gather_oracle256", "B": 1, "T": 1, "ctx": 32768, "ms": 13.240015983581543, "ms_min": 13.223135948181152, "ms_max": 13.295424461364746, "cap_s": 0.6528346538543701, "t_s": 216.9}
+LCROW {"kind": "cell", "cell": "T1_rNone_triidx_fixed256", "B": 1, "T": 1, "ctx": 32768, "ms": 10.906575679779053, "ms_min": 10.867551803588867, "ms_max": 10.991456031799316, "cap_s": 0.5381042957305908, "t_s": 219.2}
+LCROW {"kind": "cell", "cell": "T1_rNone_triidx_oracle256", "B": 1, "T": 1, "ctx": 32768, "ms": 13.058127880096436, "ms_min": 13.03718376159668, "ms_max": 13.117888450622559, "cap_s": 0.664839506149292, "t_s": 221.5}
+LCROW {"kind": "cell", "cell": "T1_rNone_triidx_fixed1024", "B": 1, "T": 1, "ctx": 32768, "ms": 10.98899221420288, "ms_min": 10.957247734069824, "ms_max": 11.114751815795898, "cap_s": 0.558978796005249, "t_s": 223.9}
+LCROW {"kind": "cell", "cell": "T1_rNone_triidx_fixed256_swtri", "B": 1, "T": 1, "ctx": 32768, "ms": 10.80628776550293, "ms_min": 10.76863956451416, "ms_max": 10.942239761352539, "cap_s": 0.575416088104248, "t_s": 226.7}
+LCROW {"kind": "cell", "cell": "T1_r4_pad", "B": 1, "T": 1, "ctx": 32768, "ms": 13.260623931884766, "ms_min": 13.220576286315918, "ms_max": 13.368032455444336, "cap_s": 0.6581037044525146, "t_s": 229.5}
+LCROW {"kind": "cell", "cell": "T1_r4_win", "B": 1, "T": 1, "ctx": 32768, "ms": 10.863807678222656, "ms_min": 10.811615943908691, "ms_max": 10.927616119384766, "cap_s": 0.5474758148193359, "t_s": 231.8}
+LCROW {"kind": "cell", "cell": "T1_r4_tri", "B": 1, "T": 1, "ctx": 32768, "ms": 10.495935916900635, "ms_min": 10.482048034667969, "ms_max": 10.614432334899902, "cap_s": 0.5607504844665527, "t_s": 234.1}
+LCROW {"kind": "cell", "cell": "T1_r4_tri_swbmm", "B": 1, "T": 1, "ctx": 32768, "ms": 10.578927993774414, "ms_min": 10.565183639526367, "ms_max": 10.707488059997559, "cap_s": 0.5252549648284912, "t_s": 236.3}
+LCROW {"kind": "cell", "cell": "T1_r4_gather_fixed256", "B": 1, "T": 1, "ctx": 32768, "ms": 10.22819185256958, "ms_min": 10.204192161560059, "ms_max": 10.314656257629395, "cap_s": 0.5218400955200195, "t_s": 238.9}
+LCROW {"kind": "cell", "cell": "T1_r4_gather_oracle256", "B": 1, "T": 1, "ctx": 32768, "ms": 12.395823955535889, "ms_min": 12.377375602722168, "ms_max": 12.506848335266113, "cap_s": 0.6449949741363525, "t_s": 241.6}
+LCROW {"kind": "cell", "cell": "T1_r4_triidx_fixed256", "B": 1, "T": 1, "ctx": 32768, "ms": 10.081568241119385, "ms_min": 10.046079635620117, "ms_max": 10.143872261047363, "cap_s": 0.5101184844970703, "t_s": 243.6}
+LCROW {"kind": "cell", "cell": "T1_r4_triidx_oracle256", "B": 1, "T": 1, "ctx": 32768, "ms": 12.262575626373291, "ms_min": 12.236895561218262, "ms_max": 12.352383613586426, "cap_s": 0.6078305244445801, "t_s": 246.3}
+LCROW {"kind": "cell", "cell": "T1_r4_triidx_fixed1024", "B": 1, "T": 1, "ctx": 32768, "ms": 10.130112171173096, "ms_min": 10.110367774963379, "ms_max": 10.244704246520996, "cap_s": 0.5246677398681641, "t_s": 248.9}
+LCROW {"kind": "cell", "cell": "T1_r4_triidx_fixed256_swtri", "B": 1, "T": 1, "ctx": 32768, "ms": 10.007888317108154, "ms_min": 9.958239555358887, "ms_max": 10.093152046203613, "cap_s": 0.5220861434936523, "t_s": 251.5}
+LCROW {"kind": "cell", "cell": "T1_rNone_noattn", "B": 1, "T": 1, "ctx": 32768, "ms": 6.584400177001953, "ms_min": 6.567327976226807, "ms_max": 6.627903938293457, "cap_s": 0.35314083099365234, "t_s": 253.2}
+LCROW {"kind": "cell", "cell": "T1_r4_noattn", "B": 1, "T": 1, "ctx": 32768, "ms": 5.7535200119018555, "ms_min": 5.740960121154785, "ms_max": 5.794623851776123, "cap_s": 0.2779049873352051, "t_s": 255.0}
+LCROW {"kind": "cell", "cell": "verify_K3_pad", "B": 1, "T": 3, "ctx": 32768, "ms": 17.259007453918457, "ms_min": 17.23139190673828, "ms_max": 17.284671783447266, "cap_s": 0.7780911922454834, "t_s": 257.6}
+LCROW {"kind": "cell", "cell": "verify_K3_win", "B": 1, "T": 3, "ctx": 32768, "ms": 14.36683177947998, "ms_min": 14.313664436340332, "ms_max": 14.476927757263184, "cap_s": 0.7333014011383057, "t_s": 260.5}
+LCROW {"kind": "cell", "cell": "verify_K3_tri", "B": 1, "T": 3, "ctx": 32768, "ms": 14.466527938842773, "ms_min": 14.430944442749023, "ms_max": 14.578207969665527, "cap_s": 3.0943188667297363, "t_s": 265.3}
+LCROW {"kind": "cell", "cell": "verify_K3_noattn", "B": 1, "T": 3, "ctx": 32768, "ms": 8.70369577407837, "ms_min": 8.6463041305542, "ms_max": 8.792927742004395, "cap_s": 0.38601088523864746, "t_s": 267.5}
+LCROW {"kind": "cell", "cell": "verify_K5_pad", "B": 1, "T": 5, "ctx": 32768, "ms": 19.459775924682617, "ms_min": 19.325952529907227, "ms_max": 19.516576766967773, "cap_s": 0.8628730773925781, "t_s": 270.2}
+LCROW {"kind": "cell", "cell": "verify_K5_win", "B": 1, "T": 5, "ctx": 32768, "ms": 15.532959938049316, "ms_min": 15.46998405456543, "ms_max": 15.565376281738281, "cap_s": 0.7374036312103271, "t_s": 272.6}
+LCROW {"kind": "cell", "cell": "verify_K5_tri", "B": 1, "T": 5, "ctx": 32768, "ms": 15.828432083129883, "ms_min": 15.685440063476562, "ms_max": 15.862943649291992, "cap_s": 3.5370593070983887, "t_s": 277.6}
+LCROW {"kind": "cell", "cell": "verify_K5_noattn", "B": 1, "T": 5, "ctx": 32768, "ms": 9.72923231124878, "ms_min": 9.670495986938477, "ms_max": 9.753312110900879, "cap_s": 0.41887688636779785, "t_s": 280.1}
+LCROW {"kind": "cell", "cell": "verify_K9_pad", "B": 1, "T": 9, "ctx": 32768, "ms": 24.803903579711914, "ms_min": 24.774240493774414, "ms_max": 24.82601547241211, "cap_s": 1.0748493671417236, "t_s": 282.8}
+LCROW {"kind": "cell", "cell": "verify_K9_win", "B": 1, "T": 9, "ctx": 32768, "ms": 18.24222469329834, "ms_min": 18.170528411865234, "ms_max": 18.265920639038086, "cap_s": 0.7967963218688965, "t_s": 285.4}
+LCROW {"kind": "cell", "cell": "verify_K9_tri", "B": 1, "T": 9, "ctx": 32768, "ms": 19.87276840209961, "ms_min": 19.671520233154297, "ms_max": 19.888992309570312, "cap_s": 8.063748836517334, "t_s": 295.0}
+LCROW {"kind": "cell", "cell": "verify_K9_noattn", "B": 1, "T": 9, "ctx": 32768, "ms": 11.839392185211182, "ms_min": 11.711615562438965, "ms_max": 11.862367630004883, "cap_s": 0.4946141242980957, "t_s": 297.3}
+LCROW {"kind": "prefill", "ctx": 131072, "seconds": 34.96806502342224, "mem_gb": 76.891805696, "t_s": 334.1}
+LCROW {"kind": "cell", "cell": "T1_rNone_pad", "B": 1, "T": 1, "ctx": 131072, "ms": 24.851632118225098, "ms_min": 24.8175048828125, "ms_max": 24.897567749023438, "cap_s": 1.047149658203125, "t_s": 337.4}
+LCROW {"kind": "cell", "cell": "T1_rNone_win", "B": 1, "T": 1, "ctx": 131072, "ms": 14.248048305511475, "ms_min": 14.230143547058105, "ms_max": 14.451647758483887, "cap_s": 0.6762714385986328, "t_s": 340.2}
+LCROW {"kind": "cell", "cell": "T1_rNone_tri", "B": 1, "T": 1, "ctx": 131072, "ms": 15.068479537963867, "ms_min": 14.97225570678711, "ms_max": 15.088479995727539, "cap_s": 2.629939556121826, "t_s": 344.6}
+LCROW {"kind": "cell", "cell": "T1_rNone_tri_swbmm", "B": 1, "T": 1, "ctx": 131072, "ms": 15.154352188110352, "ms_min": 15.031392097473145, "ms_max": 15.179295539855957, "cap_s": 0.6990313529968262, "t_s": 347.2}
+LCROW {"kind": "cell", "cell": "T1_rNone_gather_fixed256", "B": 1, "T": 1, "ctx": 131072, "ms": 11.096992015838623, "ms_min": 11.05408000946045, "ms_max": 11.179648399353027, "cap_s": 0.5536303520202637, "t_s": 350.0}
+LCROW {"kind": "cell", "cell": "T1_rNone_gather_oracle256", "B": 1, "T": 1, "ctx": 131072, "ms": 16.336223602294922, "ms_min": 16.305856704711914, "ms_max": 16.440927505493164, "cap_s": 0.7670814990997314, "t_s": 352.3}
+LCROW {"kind": "cell", "cell": "T1_rNone_triidx_fixed256", "B": 1, "T": 1, "ctx": 131072, "ms": 10.913968086242676, "ms_min": 10.889920234680176, "ms_max": 11.043071746826172, "cap_s": 0.559546709060669, "t_s": 354.6}
+LCROW {"kind": "cell", "cell": "T1_rNone_triidx_oracle256", "B": 1, "T": 1, "ctx": 131072, "ms": 16.161359786987305, "ms_min": 16.128320693969727, "ms_max": 16.23859214782715, "cap_s": 0.7564401626586914, "t_s": 359.0}
+LCROW {"kind": "cell", "cell": "T1_rNone_triidx_fixed1024", "B": 1, "T": 1, "ctx": 131072, "ms": 11.006959915161133, "ms_min": 10.974720001220703, "ms_max": 11.157024383544922, "cap_s": 0.5473687648773193, "t_s": 361.7}
+LCROW {"kind": "cell", "cell": "T1_rNone_triidx_fixed256_swtri", "B": 1, "T": 1, "ctx": 131072, "ms": 10.818207740783691, "ms_min": 10.781888008117676, "ms_max": 10.897503852844238, "cap_s": 0.5571963787078857, "t_s": 363.9}
+LCROW {"kind": "cell", "cell": "T1_r4_pad", "B": 1, "T": 1, "ctx": 131072, "ms": 24.02358341217041, "ms_min": 23.97551918029785, "ms_max": 24.68467140197754, "cap_s": 1.0117080211639404, "t_s": 366.8}
+LCROW {"kind": "cell", "cell": "T1_r4_win", "B": 1, "T": 1, "ctx": 131072, "ms": 13.594240188598633, "ms_min": 13.464192390441895, "ms_max": 13.86575984954834, "cap_s": 0.740983247756958, "t_s": 369.6}
+LCROW {"kind": "cell", "cell": "T1_r4_tri", "B": 1, "T": 1, "ctx": 131072, "ms": 14.196928024291992, "ms_min": 14.147295951843262, "ms_max": 14.23203182220459, "cap_s": 0.6720144748687744, "t_s": 372.1}
+LCROW {"kind": "cell", "cell": "T1_r4_tri_swbmm", "B": 1, "T": 1, "ctx": 131072, "ms": 14.283504009246826, "ms_min": 14.242431640625, "ms_max": 14.299327850341797, "cap_s": 0.6700479984283447, "t_s": 374.7}
+LCROW {"kind": "cell", "cell": "T1_r4_gather_fixed256", "B": 1, "T": 1, "ctx": 131072, "ms": 10.243216037750244, "ms_min": 10.208000183105469, "ms_max": 10.3089599609375, "cap_s": 0.5217599868774414, "t_s": 376.9}
+LCROW {"kind": "cell", "cell": "T1_r4_gather_oracle256", "B": 1, "T": 1, "ctx": 131072, "ms": 15.442575931549072, "ms_min": 15.425375938415527, "ms_max": 15.532064437866211, "cap_s": 0.7146928310394287, "t_s": 379.5}
+LCROW {"kind": "cell", "cell": "T1_r4_triidx_fixed256", "B": 1, "T": 1, "ctx": 131072, "ms": 10.075823783874512, "ms_min": 10.045184135437012, "ms_max": 10.175359725952148, "cap_s": 0.5254082679748535, "t_s": 381.8}
+LCROW {"kind": "cell", "cell": "T1_r4_triidx_oracle256", "B": 1, "T": 1, "ctx": 131072, "ms": 15.34984016418457, "ms_min": 15.277600288391113, "ms_max": 15.374143600463867, "cap_s": 0.7198162078857422, "t_s": 384.2}
+LCROW {"kind": "cell", "cell": "T1_r4_triidx_fixed1024", "B": 1, "T": 1, "ctx": 131072, "ms": 10.132431983947754, "ms_min": 10.111968040466309, "ms_max": 10.218175888061523, "cap_s": 0.5237531661987305, "t_s": 386.5}
+LCROW {"kind": "cell", "cell": "T1_r4_triidx_fixed256_swtri", "B": 1, "T": 1, "ctx": 131072, "ms": 9.967616081237793, "ms_min": 9.95257568359375, "ms_max": 10.075679779052734, "cap_s": 0.5753064155578613, "t_s": 388.7}
+LCROW {"kind": "cell", "cell": "T1_rNone_noattn", "B": 1, "T": 1, "ctx": 131072, "ms": 6.626112222671509, "ms_min": 6.579008102416992, "ms_max": 6.659743785858154, "cap_s": 0.43835020065307617, "t_s": 391.0}
+LCROW {"kind": "cell", "cell": "T1_r4_noattn", "B": 1, "T": 1, "ctx": 131072, "ms": 5.790751934051514, "ms_min": 5.756447792053223, "ms_max": 5.824672222137451, "cap_s": 0.2836568355560303, "t_s": 393.0}
+LCROW {"kind": "cell", "cell": "verify_K3_pad", "B": 1, "T": 3, "ctx": 131072, "ms": 34.399391174316406, "ms_min": 34.37247848510742, "ms_max": 34.43267059326172, "cap_s": 1.4472572803497314, "t_s": 396.5}
+LCROW {"kind": "cell", "cell": "verify_K3_win", "B": 1, "T": 3, "ctx": 131072, "ms": 18.535231590270996, "ms_min": 18.51593589782715, "ms_max": 18.55084800720215, "cap_s": 0.8185768127441406, "t_s": 399.1}
+LCROW {"kind": "cell", "cell": "verify_K3_tri", "B": 1, "T": 3, "ctx": 131072, "ms": 19.52614402770996, "ms_min": 19.474271774291992, "ms_max": 19.556447982788086, "cap_s": 2.953585624694824, "t_s": 403.8}
+LCROW {"kind": "cell", "cell": "verify_K3_noattn", "B": 1, "T": 3, "ctx": 131072, "ms": 8.726912021636963, "ms_min": 8.683839797973633, "ms_max": 8.741503715515137, "cap_s": 0.3795475959777832, "t_s": 406.2}
+LCROW {"kind": "cell", "cell": "verify_K5_pad", "B": 1, "T": 5, "ctx": 131072, "ms": 42.284095764160156, "ms_min": 42.238494873046875, "ms_max": 42.313697814941406, "cap_s": 1.6534156799316406, "t_s": 409.5}
+LCROW {"kind": "cell", "cell": "verify_K5_win", "B": 1, "T": 5, "ctx": 131072, "ms": 21.373839378356934, "ms_min": 21.351551055908203, "ms_max": 21.392608642578125, "cap_s": 0.9162049293518066, "t_s": 412.0}
+LCROW {"kind": "cell", "cell": "verify_K5_tri", "B": 1, "T": 5, "ctx": 131072, "ms": 23.160176277160645, "ms_min": 23.097055435180664, "ms_max": 23.187583923339844, "cap_s": 3.6915030479431152, "t_s": 417.7}
+LCROW {"kind": "cell", "cell": "verify_K5_noattn", "B": 1, "T": 5, "ctx": 131072, "ms": 9.781424045562744, "ms_min": 9.700799942016602, "ms_max": 9.797056198120117, "cap_s": 0.41962766647338867, "t_s": 419.9}
+LCROW {"kind": "cell", "cell": "verify_K9_pad", "B": 1, "T": 9, "ctx": 131072, "ms": 60.29657745361328, "ms_min": 60.26310348510742, "ms_max": 60.362369537353516, "cap_s": 2.36598801612854, "t_s": 424.3}
+LCROW {"kind": "cell", "cell": "verify_K9_win", "B": 1, "T": 9, "ctx": 131072, "ms": 27.640143394470215, "ms_min": 27.59779167175293, "ms_max": 27.655231475830078, "cap_s": 1.144862174987793, "t_s": 427.4}
+LCROW {"kind": "cell", "cell": "verify_K9_tri", "B": 1, "T": 9, "ctx": 131072, "ms": 29.92912006378174, "ms_min": 29.896928787231445, "ms_max": 29.958751678466797, "cap_s": 7.790197849273682, "t_s": 437.2}
+LCROW {"kind": "cell", "cell": "verify_K9_noattn", "B": 1, "T": 9, "ctx": 131072, "ms": 11.957760334014893, "ms_min": 11.829728126525879, "ms_max": 11.982144355773926, "cap_s": 0.4928135871887207, "t_s": 439.7}
+LCROW {"kind": "done", "gpu_seconds": 441.54892587661743, "t_s": 441.5}
+GPU_SECONDS 443.9323000907898
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-kiiBVXnLWGsnpa47tykm7c

@@ -35,3 +35,4 @@
 | 2026-11-06 09:00 | approx_sweep_smoke1 | A100-80GB | 97 | 0.07 |  |
 | 2026-11-06 09:08 | approx_sweep_quick1 | A100-80GB | 148 | 0.10 |  |
 | 2026-11-06 10:08 | draft_sparse_ds4 | H100 | 82 | nan |  |
+| 2026-11-06 | longctx lcA1 (ap-kiiBVXnLWGsnpa47tykm7c) | H100 | 442 | ~0.49 (est $0.0011/s) | 128K fits H100, peak 76.9 GB |
