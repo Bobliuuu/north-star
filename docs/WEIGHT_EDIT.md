@@ -3,7 +3,7 @@
 Status: PROTOTYPE (CPU-tested on a tiny Cohere2Moe config). No GPU run, no North result yet. Nothing here is a measurement on North.
 
 ## Prototype status (2026-11-06)
-* `src/weightedit/` + `modal/weightedit.py`; 20 CPU tests pass (`make test`). Modal script compiled, NOT launched.
+* `src/weightedit/` + `modal/we_run.py`; 20 CPU tests pass (`make test`). Modal script compiled, NOT launched.
 * Tiny random-model demo (`scripts/weightedit_tiny_demo.py`, `results/weightedit_tiny_demo.json`): KL falls (5.52->4.92, 2.54->2.39) but gate-split agreement does not improve (0.288->0.279, 0.459->0.456), so G-gain correctly REJECTS both. Random model + random tokens: proves plumbing and that the gate does not rubber-stamp, says nothing about North.
 
 ## Idea
@@ -61,5 +61,5 @@ Actual North numbers, 8K+ context behaviour, wall-clock, verifier-weight edits, 
 
 ## Run plan (needs authorization; GPU budget separate from the $30 A100 phase)
 1. `make test` (CPU, tiny config) - done in prototype.
-2. Smoke: `modal run --detach modal/weightedit.py::main --smoke true` (A100-80GB, 1 recipe, few steps, ctx 2K). Training memory for 49 layers needs activation checkpointing; `train.grad_ckpt` is implemented, untested on North.
+2. Smoke: `modal run --detach modal/we_run.py::main --smoke` (A100-80GB, 1 recipe, few steps, ctx 2K). Training memory for 49 layers needs activation checkpointing; `train.grad_ckpt` is implemented, untested on North.
 3. Round loop with LLMProposer, `--rounds 6`, cap $8. Results to Volume `northstar-results` + app logs + `results/weightedit_*.json`; log launch in RUNS.md.
