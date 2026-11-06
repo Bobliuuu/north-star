@@ -29,7 +29,10 @@ class GraphNorth:
         return {i: (torch.zeros(1, c.num_key_value_heads, self.Lmax, c.head_dim, device=self.dev, dtype=self.dtype),
                     torch.zeros(1, c.num_key_value_heads, self.Lmax, c.head_dim, device=self.dev, dtype=self.dtype)) for i in layers}
 
-    def forward(self, ids, kv, skip=frozenset(), r=None, parts=ALL, logits="last"):
+    def forward(self, ids, kv, skip=frozenset(), r=None, parts=ALL, logits="last", sparse=None):
+        """sparse=None | (mode, K): T==1 draft-step only. mode in slwin (sliding layers gather last W slots),
+        fixed (+global layers gather K causal-valid slots, index chosen WITHOUT scoring: pure gather+attend cost),
+        oracle (+global layers score q.K over all slots, topk K, gather: cost of the oracle selector)."""
         cfg, T = self.cfg, ids.shape[1]
         D, H, Hkv = cfg.head_dim, cfg.num_attention_heads, cfg.num_key_value_heads
         G, W = H // Hkv, cfg.sliding_window
@@ -57,7 +60,27 @@ class GraphNorth:
                 vc.index_copy_(2, qpos, v)
                 qg = q.reshape(1, Hkv, G, T, D).reshape(1, Hkv, G * T, D)
                 mk = msl if sliding else mfull
-                if self.attn_impl == "sdpa_mask":
+                if sparse is not None and T == 1 and (sliding or sparse[0] != "slwin"):
+                    smode, KK = sparse
+                    Wn = min(cfg.sliding_window, self.Lmax)
+                    if sliding:
+                        idx = (self.start - Wn + 1 + self.ar[:Wn]).clamp(min=0)[None, None, :].expand(1, Hkv, Wn)
+                    else:
+                        wi = (self.start - 127 + self.ar[:128]).clamp(min=0)
+                        if smode == "fixed":
+                            core = (self.ar[:KK].float() * (self.start.float() / KK)).long()
+                            idx = torch.cat([self.ar[:4], core, wi])[None, None, :].expand(1, Hkv, -1)
+                        else:
+                            qm = qg.reshape(1, Hkv, G, D).float().mean(2)
+                            scs = torch.bmm(qm, kc[0].transpose(1, 2).float()).masked_fill(~(self.ar[None, :] <= self.start), float("-inf"))
+                            top = scs.topk(KK, dim=-1).indices[None]
+                            idx = torch.cat([self.ar[:4][None, None].expand(1, Hkv, 4), top, wi[None, None].expand(1, Hkv, 128)], -1)
+                    ix = idx[..., None].expand(1, Hkv, idx.shape[-1], D)
+                    kg, vg = torch.gather(kc, 2, ix), torch.gather(vc, 2, ix)
+                    sc = torch.bmm(qg[0], kg[0].transpose(1, 2), out_dtype=torch.float32) * (D ** -0.5)
+                    p_ = torch.softmax(sc, dim=-1).to(vg.dtype)
+                    o = torch.bmm(p_, vg[0])[None]
+                elif self.attn_impl == "sdpa_mask":
                     o = F.scaled_dot_product_attention(qg, kc, vc, attn_mask=mk)
                 else:  # bmm: scores in fp32 (out_dtype), fp32 softmax, bf16 P@V  -- memory-bound, no mask-SDPA inefficiency
                     sc = torch.bmm(qg[0], kc[0].transpose(1, 2), out_dtype=torch.float32) * (D ** -0.5)
@@ -102,12 +125,12 @@ class GraphNorth:
             out = fn()
         return g, out
 
-    def make_step(self, T, kv, skip=frozenset(), r=None, parts=ALL, logits="last", argmax=True):
+    def make_step(self, T, kv, skip=frozenset(), r=None, parts=ALL, logits="last", argmax=True, sparse=None):
         """Returns a Step with .ids (static input), .run() = replay, .out (tensor), .tok (argmax ids)."""
         ids = torch.zeros(1, T, dtype=torch.long, device=self.dev)
 
         def fn():
-            lg = self.forward(ids, kv, skip, r, parts, logits)
+            lg = self.forward(ids, kv, skip, r, parts, logits, sparse)
             return lg.argmax(-1) if argmax and lg.shape[-1] == self.cfg.vocab_size else lg
 
         g, out = self.capture(fn)
