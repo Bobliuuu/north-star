@@ -90,3 +90,4 @@ printed line below (git history of this file is the anchor). Verify before trust
 | `selfimprove-head selfimprove_kernel_structured_v5 n=34 head=bc86debd1209b78a71adad08b73c5c0ee17d574c0ef6332c43166856d49d3e64` (after run 6) |
 
 | 2026-11-06 | ap-GK3KV7orR8QYjXyQCqicEm | `modal run --detach modal/exactspec_run.py::main --tag ex1 --sections ec` | exact-spec: real-model bitwise row-invariance (T=1 vs T=2/5/13 block, graph vs eager) + cost table, H100, ~$0.6. results/exactspec_ex1.jsonl, logs/exactspec_ex1_applogs.log. Kernel unit tests (A10G, no weights): results/exact_unit_A10G.jsonl |
+| 2026-11-06 14:20 local | ap-GqpWRXpGenJvyYXUUBlowE | `modal run --detach modal/we_run.py::main --proposer grid --rounds 3 --tag r4s --quants nvfp4 --rs 2 --skips 4,8,12 --steps 100 --window 256 --batch 1` | weightedit r4s: nvfp4 top-2 draft + uniform layer-skip 4/8/12 of 48 layers + router adapter; Volume northstar-results:/weightedit_r4s; est <=$2 |
