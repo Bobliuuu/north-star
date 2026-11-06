@@ -34,7 +34,7 @@ def _top2_margin(logits_row):
 
 
 @torch.no_grad()
-def plain_greedy(ref: RefNorth, prompt, n_new, eos_id=None, chunk=1024, timed=True):
+def plain_greedy(ref: RefNorth, prompt, n_new, eos_id=None, chunk=1024, timed=True, on_step=None):
     """prompt: list[int]. One token per forward. Returns dict(tokens, margins, prefill_s, step_s)."""
     dev = ref.device
     P = len(prompt)
@@ -57,6 +57,8 @@ def plain_greedy(ref: RefNorth, prompt, n_new, eos_id=None, chunk=1024, timed=Tr
         margins.append(_top2_margin(row))
         toks.append(nxt)
         cur = nxt
+        if on_step is not None:  # optional live hook (demo); does not alter the computation
+            on_step(nxt, step_s[-1])
         if eos_id is not None and nxt == eos_id:
             break
     return dict(tokens=toks, margins=margins, prefill_s=prefill_s, step_s=step_s)
@@ -78,7 +80,7 @@ class SelfSpec:
         self.ref, self.draft, self.gamma, self.chunk, self.override = ref, draft, gamma, chunk, override
 
     @torch.no_grad()
-    def generate(self, prompt, n_new, eos_id=None):
+    def generate(self, prompt, n_new, eos_id=None, on_round=None):
         ref, dev, g = self.ref, self.ref.device, self.gamma
         P = len(prompt)
         max_len = P + n_new + g + 2
@@ -146,6 +148,8 @@ class SelfSpec:
             t.extend(new)
             out.extend(new)
             stats.append(RoundStat(a, len(new), t_catch, t_dr, t_ver, t_rb))
+            if on_round is not None:  # optional live hook (demo); does not alter the computation
+                on_round(list(new), stats[-1])
         out = out[:n_new]
         return dict(tokens=out, rounds=stats, verifier_prefill_s=t_vpre, draft_prefill_s=t_dpre,
                     gen_s=sum(s.t_catchup + s.t_draft + s.t_verify + s.t_rollback for s in stats))
