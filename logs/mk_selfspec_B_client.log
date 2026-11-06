@@ -1,0 +1,43 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-Cw6p7TlwKpJBc6tVvTTdT5
+✓ Created objects.
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a0647d2fd5859ad72/modal/mk_s
+│   elfspec.py
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a0647d2fd5859ad72/src/mk_sel
+│   fspec/mk_selfspec.patch
+└── ✓ Created Function run.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 13.0.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+{"name": "K1_U0_bs1", "R": 8, "U": 0, "layers": 49, "bs": 1, "active_rows": 1, "real": false, "tpot_ms": 3.424640686274509, "mean_step_ms": 3.4246, "jit_ms": 958.6859100000016, "rc": 0, "wall_s": 15.9, "tail": ""}
+{"name": "K2_U12", "R": 8, "U": 12, "layers": 49, "bs": 2, "active_rows": 2, "real": false, "tpot_ms": 4.043475533333328, "mean_step_ms": 4.0435, "jit_ms": 16020.431673999998, "rc": 0, "wall_s": 23.8, "tail": ""}
+{"name": "K2_U0", "R": 8, "U": 0, "layers": 49, "bs": 2, "active_rows": 2, "real": false, "tpot_ms": 4.5358808352941145, "mean_step_ms": 4.5359, "jit_ms": 13808.292200000004, "rc": 0, "wall_s": 21.0, "tail": ""}
+{"name": "K3_U15", "R": 8, "U": 15, "layers": 49, "bs": 4, "active_rows": 3, "real": false, "tpot_ms": 4.545788831372551, "mean_step_ms": 4.5458, "jit_ms": 14643.65380000001, "rc": 0, "wall_s": 21.8, "tail": ""}
+{"name": "K3_U0", "R": 8, "U": 0, "layers": 49, "bs": 4, "active_rows": 3, "real": false, "tpot_ms": 5.661162196078435, "mean_step_ms": 5.6612, "jit_ms": 14826.769474999992, "rc": 0, "wall_s": 22.4, "tail": ""}
+{"name": "K4_U17", "R": 8, "U": 17, "layers": 49, "bs": 4, "active_rows": 4, "real": false, "tpot_ms": 4.9549033725489995, "mean_step_ms": 4.9549, "jit_ms": 14589.50525100002, "rc": 0, "wall_s": 21.8, "tail": ""}
+{"name": "K4_U0", "R": 8, "U": 0, "layers": 49, "bs": 4, "active_rows": 4, "real": false, "tpot_ms": 6.82136125098041, "mean_step_ms": 6.8214, "jit_ms": 33.85563999998453, "rc": 0, "wall_s": 8.2, "tail": ""}
+{"name": "K5_U19", "R": 8, "U": 19, "layers": 49, "bs": 8, "active_rows": 5, "real": false, "tpot_ms": 5.473611360784336, "mean_step_ms": 5.4736, "jit_ms": 14430.418438000004, "rc": 0, "wall_s": 22.0, "tail": ""}
+{"name": "K5_U0", "R": 8, "U": 0, "layers": 49, "bs": 8, "active_rows": 5, "real": false, "tpot_ms": 7.99244882745098, "mean_step_ms": 7.9924, "jit_ms": 15056.142998000012, "rc": 0, "wall_s": 23.5, "tail": ""}
+{"name": "K6_U21", "R": 8, "U": 21, "layers": 49, "bs": 8, "active_rows": 6, "real": false, "tpot_ms": 6.054338788235261, "mean_step_ms": 6.0543, "jit_ms": 14572.210883999986, "rc": 0, "wall_s": 22.5, "tail": ""}
+{"name": "K7_U23", "R": 8, "U": 23, "layers": 49, "bs": 8, "active_rows": 7, "real": false, "tpot_ms": 6.445179454902036, "mean_step_ms": 6.4452, "jit_ms": 14718.357526999995, "rc": 0, "wall_s": 22.4, "tail": ""}
+{"name": "K8_U24", "R": 8, "U": 24, "layers": 49, "bs": 8, "active_rows": 8, "real": false, "tpot_ms": 6.68436237254903, "mean_step_ms": 6.6844, "jit_ms": 14814.560263999965, "rc": 0, "wall_s": 23.0, "tail": ""}
+{"name": "K8_U0", "R": 8, "U": 0, "layers": 49, "bs": 8, "active_rows": 8, "real": false, "tpot_ms": 10.817454564706026, "mean_step_ms": 10.8175, "jit_ms": 34.785042999999405, "rc": 0, "wall_s": 9.1, "tail": ""}
+{"name": "K8_U8_lowerbound", "R": 8, "U": 8, "layers": 49, "bs": 8, "active_rows": 8, "real": false, "tpot_ms": 4.2319481803922505, "mean_step_ms": 4.2319, "jit_ms": 14642.881678000038, "rc": 0, "wall_s": 21.8, "tail": ""}
+secs 312.06334376335144 est $0.34
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-Cw6p7TlwKpJBc6tVvTTdT5

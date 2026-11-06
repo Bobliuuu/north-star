@@ -1,0 +1,43 @@
+diff --git a/src/decode/megakernel.cuh b/src/decode/megakernel.cuh
+index a8f7089..68e9fda 100644
+--- a/src/decode/megakernel.cuh
++++ b/src/decode/megakernel.cuh
+@@ -300,6 +300,9 @@ namespace rmsnorm_field {
+ 
+ constexpr int NMC_NUM_EXPERTS = 128;
+ constexpr int NMC_TOPK = 8;
++// ---- mk-selfspec variant knobs (north-star branch mk-selfspec); sed-rewritten per run ----
++#define MK_DRAFT_R 8      // experts actually loaded per token (<8: slots >=R duplicate slot 0 with score 0 -> same expert tile, no extra weight bytes)
++#define MK_UNION_U 0      // >0: emulate verify-block expert union of size U per layer (rows share a pool of U experts)
+ constexpr int NMC_EXPERT_DFF = 768;
+ constexpr int NMC_MOE_SCHED_RING = 2;
+ 
+@@ -2529,6 +2532,15 @@ __device__ void router_topk_op(const NmcInstruction& inst, const NmcGlobals<Cfg>
+                     }
+                 }
+ 
++#if MK_UNION_U > 0
++                if (worker_tid < NMC_TOPK) my_expert = (((row * 4 + worker_tid) % MK_UNION_U) * 53 + layer * 17) & 127;
++#endif
++#if MK_DRAFT_R < 8
++                {
++                    const int e0 = __shfl_sync(full_warp, my_expert, 0);
++                    if (worker_tid >= MK_DRAFT_R) { my_expert = e0; my_score = -INFINITY; }
++                }
++#endif
+                 // Commit one distinct expert per lane; independent atomic targets
+                 // make ordering irrelevant and require no additional sync.
+                 if (worker_tid < NMC_TOPK) {
+diff --git a/src/prefill/torch_prefill.py b/src/prefill/torch_prefill.py
+index 8a14023..191469a 100644
+--- a/src/prefill/torch_prefill.py
++++ b/src/prefill/torch_prefill.py
+@@ -78,7 +78,7 @@ class NmcConfig:
+         ``decode/megakernel.cuh``. Layer topology is host-side only: 49 layers,
+         full attention every 4th layer, one dense prefix FFN, SWA window 4096.
+         """
+-        num_hidden_layers = 49
++        num_hidden_layers = int(os.environ.get('MK_LAYERS', '49'))  # mk-selfspec: layer-skip timing
+         full_attn_period = 4
+         layer_types = tuple(
+             "full_attention" if (i % full_attn_period) == 0 else "sliding_attention"

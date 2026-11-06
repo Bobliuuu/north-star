@@ -43,3 +43,5 @@
 | 2026-11-06 10:41 | fast_exec_fx2dbg | H100 | 38 | nan |  |
 | 2026-11-06 10:45 | fast_exec_fx3c | H100 | 103 | nan |  |
 | 2026-11-06 10:48 | fast_exec_fx4 | H100 | 113 | nan |  |
+| 20261106T153920Z | mk_selfspec phase A | H100 | 234 | 0.26 | |
+| 20261106T154507Z | mk_selfspec phase B | H100 | 312 | 0.34 | |
