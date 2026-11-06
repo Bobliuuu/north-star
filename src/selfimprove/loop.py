@@ -6,7 +6,7 @@ from pathlib import Path
 
 from . import audit as A, diffs as D, gates as G, sandbox as S
 from .policy import Scope, DEFAULT_SCOPE
-from . import structured as ST, structured_policy as SP
+from . import structured as ST, structured_policy as SP, structured_triton as STR
 from .proposer import Proposer, ProposalRequest, extract_diff
 from .store import Store, sha256_text
 
@@ -184,10 +184,10 @@ class Loop:
     def __init__(self, cfg: EvalConfig, store: Store, proposer: Proposer, allow_mock_promotion: bool = False, mode: str = "diff",
                  prior_history: list[str] | None = None, track: str = "kernel"):
         if mode not in ("diff", "structured"): raise ValueError(mode)
-        if track not in ("kernel", "policy"): raise ValueError(track)
+        if track not in ("kernel", "policy", "triton"): raise ValueError(track)
         self.mode, self.track = mode, track
         self.max_dup_retries = 3
-        self.SM = SP if track == "policy" else ST          # structured-edit module of this track (parse_edits/render_diff/history_line)
+        self.SM = {"policy": SP, "triton": STR}.get(track, ST)         # structured-edit module of this track (parse_edits/render_diff/history_line)
         self.prior_history = list(prior_history or [])      # dev-only one-liners from earlier stores (see ST.history_from_store)
         self.cfg, self.store, self.proposer, self.ev = cfg, store, proposer, Evaluator(cfg)
         self.allow_mock_promotion = allow_mock_promotion

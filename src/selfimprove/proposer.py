@@ -67,21 +67,30 @@ SYSTEM_STRUCTURED_POLICY = (
     'improvement reply with {"edits":[],"rationale":"..."}.')
 
 
+SYSTEM_STRUCTURED_TRITON = (
+    "You are North, optimizing the launch parameters (tile sizes, num_warps, num_stages, split-K counts) of your own fast Triton decode kernels. "
+    'Reply with ONLY one JSON object of the form {"edits":[{"name":"<PARAM>","value":<integer>}],"rationale":"<short>"} and nothing else. '
+    "Choose values from the allowed lists in the task. You never write code or diffs; the harness applies your values. Your change is judged on "
+    "numerical correctness against a torch reference (including a bitwise row-invariance check), drift of the full step, and repeatable CUDA-graph "
+    "speed on context lengths and block sizes you have not seen. If you see no safe improvement reply with "
+    '{"edits":[],"rationale":"..."}.')
+
+
 def system_for(mode: str, track: str = "kernel") -> str:
     if mode != "structured": return SYSTEM
-    return SYSTEM_STRUCTURED_POLICY if track == "policy" else SYSTEM_STRUCTURED
+    return {"policy": SYSTEM_STRUCTURED_POLICY, "triton": SYSTEM_STRUCTURED_TRITON}.get(track, SYSTEM_STRUCTURED)
 
 
 def build_prompt(req: ProposalRequest) -> str:
     if req.mode == "structured":
-        from . import structured as ST, structured_policy as SP
+        from . import structured as ST, structured_policy as SP, structured_triton as STR
         parts = [f"## Scope\n{req.scope_description}", f"## Base version\n{req.base_version}"]
         if req.profile_summary: parts.append(f"## Profile summary\n{req.profile_summary}")
         if req.dev_results: parts.append(f"## Dev results (dev split only)\n{req.dev_results}")
         if req.history: parts.append("## Earlier proposals this session\n" + "\n".join(f"- {h}" for h in req.history[-24:]))
         for p, t in sorted(req.files.items()):
             parts.append(f"## File: {p}\n```\n{t}\n```")
-        parts.append((SP if req.track == "policy" else ST).prompt_section(req.files))
+        parts.append({"policy": SP, "triton": STR}.get(req.track, ST).prompt_section(req.files))
         return "\n\n".join(parts)
     parts = [f"## Scope\n{req.scope_description}", f"## Base version\n{req.base_version}"]
     if req.profile_summary: parts.append(f"## Profile summary\n{req.profile_summary}")
