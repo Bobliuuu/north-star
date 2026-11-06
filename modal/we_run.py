@@ -28,7 +28,8 @@ def _seqs(m, tok, tasks, n, ctx, n_new, rotate0):
     return seqs, lo
 
 
-@app.function(image=we_image, gpu=GPU, volumes={WEIGHTS: weights_vol, "/results": results_vol},
+@app.function(image=we_image, gpu=[GPU, "H100"],  # fallback if A100-80GB is saturated
+               volumes={WEIGHTS: weights_vol, "/results": results_vol},
               timeout=4 * 3600, memory=65536)
 def run_remote(proposer: str, rounds: int, tag: str, smoke: bool, seq_len: int, n_new: int, n_train: int, n_gate: int,
                experts_impl: str, steps: int, window: int):

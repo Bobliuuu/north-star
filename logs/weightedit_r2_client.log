@@ -10,3 +10,47 @@ https://modal.com/apps/jerry-zhu/main/ap-SbXNTkv3M2DuJdR4t0anNm
 ├── ✓ Uploaded /Users/jhome/north-star/harness
 ├── ✓ Uploaded /Users/jhome/north-star/src/approx
 └── ✓ Created Function run_remote.
+Stopping app - user stopped from CLI.
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /Users/jhome/north-star/modal/we_run.py:79 in main                           │
+│                                                                              │
+│   78 │   │   seq_len, n_train, n_gate, steps, window, n_new = 1024, 2, 3, 5, │
+│ ❱ 79 │   res = run_remote.remote(proposer, rounds, tag, smoke, seq_len, n_ne │
+│   80 │   out = pathlib.Path("results"); out.mkdir(exist_ok=True)             │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_obj │
+│ ect.py:49 in wrapped                                                         │
+│                                                                              │
+│    48 │   │   await self.hydrate()                                           │
+│ ❱  49 │   │   return await method(self, *args, **kwargs)                     │
+│    50                                                                        │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:2081 in remote                                                     │
+│                                                                              │
+│   2080 │   │                                                                 │
+│ ❱ 2081 │   │   return await self._call_function(args, kwargs)                │
+│   2082                                                                       │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:2018 in _call_function                                             │
+│                                                                              │
+│   2017 │   │                                                                 │
+│ ❱ 2018 │   │   return await invocation.run_function()                        │
+│   2019                                                                       │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:498 in run_function                                                │
+│                                                                              │
+│    497 │   │   │   if await_response.output.result.status in TERMINAL_STATUS │
+│ ❱  498 │   │   │   │   return await _process_result(                         │
+│    499 │   │   │   │   │   await_response.output.result, await_response.outp │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_uti │
+│ ls/function_utils.py:574 in _process_result                                  │
+│                                                                              │
+│   573 │   │                                                                  │
+│ ❱ 574 │   │   raise RemoteError(result.exception)                            │
+│   575                                                                        │
+╰──────────────────────────────────────────────────────────────────────────────╯
+RemoteError
