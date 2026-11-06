@@ -64,8 +64,10 @@ class EditedDraft:
     """Context manager: patches MoE blocks (instance-level forward, same pattern as approx.DraftPatch).
     Layers without an adapter still run plain top-r (gain 1, no delta) in draft mode, so the draft is consistent."""
 
-    def __init__(self, model, adapters: RouterAdapters, expert_r: int, expert_quant: str = "none"):
+    def __init__(self, model, adapters: RouterAdapters, expert_r: int, expert_quant: str = "none", skip_layers=frozenset()):
         self.model, self.adapters, self.r = model, adapters, expert_r
+        self.skip = frozenset(skip_layers)
+        assert 0 not in self.skip
         self.quant = expert_quant
         self.mc = model.config
         assert getattr(self.mc, "num_shared_experts", 0) == 0
@@ -77,7 +79,14 @@ class EditedDraft:
 
     def install(self):
         assert not self._patched
+        for i in self.skip:
+            layer = self.model.model.layers[i]
+            assert "forward" not in layer.__dict__
+            layer.forward = self._skip_fwd(layer.forward)
+            self._patched.append(layer)
         for i in moe_layers(self.mc):
+            if i in self.skip:
+                continue
             mlp = self.model.model.layers[i].mlp
             assert "forward" not in mlp.__dict__
             mlp.forward = self._moe_fwd(i, mlp, mlp.forward)
@@ -110,6 +119,11 @@ class EditedDraft:
             yield self
         finally:
             self.active = prev
+
+    def _skip_fwd(self, orig):
+        def fwd(hidden_states, *a, **k):
+            return orig(hidden_states, *a, **k) if not self.active else hidden_states
+        return fwd
 
     def _moe_fwd(self, i, mlp, orig):
         def fwd(hidden_states):

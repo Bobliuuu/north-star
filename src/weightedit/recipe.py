@@ -26,6 +26,7 @@ class Recipe:
     gain: bool = True
     seed: int = 0
     expert_quant: str = "none"   # draft-only fake-quantized expert weights (verifier unchanged)
+    skip_n: int = 0              # draft skips n uniformly spaced decoder layers (never layer 0); verifier unchanged
 
     def validate(self, mc) -> "Recipe":
         """mc = HF model config. Raises RecipeError on any out-of-range value."""
@@ -46,14 +47,23 @@ class Recipe:
         need(isinstance(self.gain, bool), "gain is bool")
         need(isinstance(self.seed, int), "seed is int")
         need(self.expert_quant in QUANTS, f"expert_quant must be one of {QUANTS}")
+        need(isinstance(self.skip_n, int) and not isinstance(self.skip_n, bool) and 0 <= self.skip_n <= 12, "skip_n in 0..12")
         if self.layers != "all":
             need(isinstance(self.layers, (list, tuple)) and len(self.layers) > 0, "layers: 'all' or non-empty list")
             need(all(isinstance(i, int) and i in moe for i in self.layers), f"layers must be MoE layer ids {moe[:4]}..")
         return self
 
+    def skip_set(self, mc):
+        if not self.skip_n:
+            return frozenset()
+        from approx.layerskip import uniform_skip_set
+        return uniform_skip_set(mc.num_hidden_layers, self.skip_n)
+
     def layer_ids(self, mc):
         moe = moe_layers(mc)
-        return moe if self.layers == "all" else sorted(set(self.layers))
+        ids = moe if self.layers == "all" else sorted(set(self.layers))
+        sk = self.skip_set(mc)
+        return [i for i in ids if i not in sk]
 
     def to_dict(self):
         d = asdict(self)
@@ -88,5 +98,5 @@ SCHEMA_TEXT = (
     "Recipe JSON fields (all optional, defaults shown): "
     '{"expert_r":2 (int 1..K-1), "kind":"router_lowrank"|"router_bias", "rank":4 (1..16), '
     '"layers":"all" or [MoE layer ids], "steps":100 (1..2000), "lr":1e-3 (1e-5..1e-2), "window":64 (16..2048), '
-    '"batch":2 (1..16), "temperature":1.0 (0.5..2), "gain":true, "seed":0, "expert_quant":"none"|"nvfp4"|"int4"}'
+    '"batch":2 (1..16), "temperature":1.0 (0.5..2), "gain":true, "seed":0, "expert_quant":"none"|"nvfp4"|"int4", "skip_n":0 (0..12 draft layers skipped)}'
 )

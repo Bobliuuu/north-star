@@ -71,13 +71,13 @@ def baseline_ctx(m, r, quant="none", recipe=None):
     if quant != "none":  # unedited draft with the SAME fake-quantized experts (isolates the adapter's gain)
         ident = RouterAdapters(m.config, recipe)
         def f():
-            p = EditedDraft(m, ident, r, quant).install()
+            p = EditedDraft(m, ident, r, quant, recipe.skip_set(m.config)).install()
             class C:
                 def __enter__(s): p.active = True; return p
                 def __exit__(s, *a): p.remove()
             return C()
         return f
-    cfg = DraftConfig(expert_r=r, weight_convention="raw_sigmoid")
+    cfg = DraftConfig(expert_r=r, weight_convention="raw_sigmoid", skip_layers=recipe.skip_set(m.config) if recipe else frozenset())
     def f():
         p = DraftPatch(m, cfg).install()
         class C:
@@ -100,7 +100,7 @@ def run_gates(m, patch: EditedDraft, adapters: RouterAdapters, recipe: Recipe, t
     plain = [_vpred_and_logits(m, s) for s in gate_seqs[:2]]
     patch.remove()
     ref = [_vpred_and_logits(m, s) for s in gate_seqs[:2]]
-    key = ("base", recipe.expert_r, recipe.expert_quant, len(gate_seqs))  # baseline needs the module forwards free (DraftPatch asserts)
+    key = ("base", recipe.expert_r, recipe.expert_quant, recipe.skip_n, len(gate_seqs))  # baseline needs the module forwards free (DraftPatch asserts)
     if cache is not None and key in cache:
         base_g = cache[key]
     else:
@@ -136,6 +136,7 @@ def run_gates(m, patch: EditedDraft, adapters: RouterAdapters, recipe: Recipe, t
     rep["numbers"].update(adapter_params=adapters.n_params(), adapter_flops_frac=ad_flops / exp_flops,
                           active_experts_exact=bool(exact_r))
     from .quant import bytes_frac
+    rep["numbers"]["draft_layers_frac"] = 1 - len(recipe.skip_set(mc)) / mc.num_hidden_layers
     rep["numbers"]["draft_expert_bytes_frac"] = bytes_frac(recipe.expert_quant) * recipe.expert_r / mc.num_experts_per_tok
     rep["gates"]["cost"] = bool(exact_r and ad_flops / exp_flops <= c["max_adapter_flops_frac"])
     rep["passed"] = all(rep["gates"].values())

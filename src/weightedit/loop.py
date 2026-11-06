@@ -16,9 +16,9 @@ from .store import EditStore
 
 class GridProposer:
     """Deterministic baseline proposer (no model). Cycles a small grid; source='grid'."""
-    def __init__(self, rs=(2, 3), ranks=(4, 8), lrs=(1e-3, 3e-3), steps=100, quants=("none",), **base):
-        self.grid = [dict(expert_r=r, rank=k, lr=l, steps=steps, expert_quant=q, **base)
-                     for q, r, k, l in itertools.product(quants, rs, ranks, lrs)]
+    def __init__(self, rs=(2, 3), ranks=(4, 8), lrs=(1e-3, 3e-3), steps=100, quants=("none",), skips=(0,), **base):
+        self.grid = [dict(expert_r=r, rank=k, lr=l, steps=steps, expert_quant=q, skip_n=sk, **base)
+                     for q, r, k, l, sk in itertools.product(quants, rs, ranks, lrs, skips)]
         self.i = 0
 
     def propose(self, history):
@@ -115,7 +115,7 @@ def run_round(m, proposer, store: EditStore, train_seqs, train_from, gate_seqs, 
         return entry
     fp0 = fingerprint(m, fp_mode)
     adapters = RouterAdapters(m.config, recipe)
-    with EditedDraft(m, adapters, recipe.expert_r, recipe.expert_quant) as patch:
+    with EditedDraft(m, adapters, recipe.expert_r, recipe.expert_quant, recipe.skip_set(m.config)) as patch:
         tr = train(m, adapters, patch, train_seqs, recipe, log=log, ckpt=ckpt)
         patch.tokens = patch.slots_active = 0
         with torch.no_grad():
