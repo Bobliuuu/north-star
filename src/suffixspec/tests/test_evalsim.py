@@ -31,3 +31,22 @@ def test_min_draft_gates_cost():
     lo = run_one(SuffixLast(1), [1, 2], out, kmax=8, min_draft=1)
     hi = run_one(SuffixLast(1), [1, 2], out, kmax=8, min_draft=4)
     assert hi["verified_steps"] <= lo["verified_steps"]
+
+
+def test_cost_models_and_kcount():
+    from suffixspec.evalsim import COST_MODELS, speedup_from
+    loop = [5, 6, 7, 8, 9, 10, 11, 12]
+    out = loop * 40
+    s = run_one(PromptLookup(3, 2), loop, out, kmax=8)
+    assert sum(s["kcount"].values()) == s["steps"]
+    assert abs(speedup_from(s["kcount"], s["tokens"], "megakernel") - s["tokens"] * PLAIN_MS / s["ms"]) < 1e-9
+    assert speedup_from(s["kcount"], s["tokens"], "flat2") > speedup_from(s["kcount"], s["tokens"], "flat5") > 1.0
+
+
+def test_warm_state_helps_second_request():
+    a = [3, 4, 5, 6, 7, 8] * 5
+    cold = run_one(SuffixLast(1), [1], a, kmax=8, keep_state=False)
+    p = SuffixLast(1)
+    run_one(p, [1], a, kmax=8, keep_state=True)
+    warm = run_one(p, [1], a, kmax=8, keep_state=True)
+    assert warm["steps"] <= cold["steps"]
