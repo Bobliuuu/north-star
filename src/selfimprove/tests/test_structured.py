@@ -31,7 +31,7 @@ def test_valid_roundtrip_through_strict_parser(real):
     assert len(changed) == 6                                          # only the three constant lines
 
 def test_hunk_counts_always_consistent(real):
-    for edits in ([("KC", 64)], [("KC", 64), ("MINB_PER_SM", 3)], [(n, v) for n, v in (("KC", 32), ("XPAD", 0), ("HPAD", 0), ("MT_SPLIT", 4), ("MINB_PER_SM", 4))]):
+    for edits in ([("KC", 64)], [("KC", 64), ("MINB_PER_SM", 3)], [(n, v) for n, v in (("KC", 32), ("XPAD", 0), ("HPAD", 0), ("MT_SPLIT", 4), ("MINB_PER_SM", 8), ("UNROLL_KS", 2))]):
         D.parse(ST.render_diff(edits, real), SCOPE)                  # would raise 'hunk line counts do not match header'
 
 def test_noop_edit_renders_empty(real):
@@ -73,7 +73,9 @@ def test_extraction_variants():
     ('{"edits":[{"name":"XPAD","value":4}]}', "not_multiple_of_8"),
     ('{"edits":[{"name":"HPAD","value":72}]}', "out_of_range"),
     ('{"edits":[{"name":"MT_SPLIT","value":17}]}', "out_of_range"),
-    ('{"edits":[{"name":"MINB_PER_SM","value":5}]}', "out_of_range"),
+    ('{"edits":[{"name":"MINB_PER_SM","value":9}]}', "out_of_range"),
+    ('{"edits":[{"name":"UNROLL_KS","value":0}]}', "out_of_range"),
+    ('{"edits":[{"name":"UNROLL_KS","value":129}]}', "out_of_range"),
     ('{"edits":[{"name":"MINB_PER_SM","value":0}]}', "out_of_range"),
     ('{"edits":[],"rationale":5}', "rationale_not_a_string"),
 ])
@@ -81,7 +83,7 @@ def test_rejections(raw, frag):
     assert frag in err(raw)
 
 def test_too_many_edits():
-    ed = [("KC", 128), ("XPAD", 0), ("HPAD", 0), ("MT_SPLIT", 4), ("MINB_PER_SM", 2)]
+    ed = [("KC", 128), ("XPAD", 0), ("HPAD", 0), ("MT_SPLIT", 4), ("MINB_PER_SM", 2), ("UNROLL_KS", 4)]
     ST.parse_edits(j(ed))
     assert "too_many_edits" in err(json.dumps(dict(edits=[dict(name=n, value=v) for n, v in ed] + [dict(name="KC", value=64)], rationale="")))
 
@@ -202,3 +204,10 @@ def test_history_from_store_roundtrip(tmp_path):
     f = tmp_path / "proposals.jsonl"
     f.write_text(json.dumps(dict(event="init")) + "\n" + json.dumps(_rec()) + "\n")
     assert len(ST.history_from_store(f)) == 1 and "KC=128" in ST.history_from_store(f)[0]
+
+
+def test_new_tunables_render(real):
+    d = ST.render_diff([("UNROLL_KS", 4), ("MINB_PER_SM", 8)], real)
+    D.parse(d, SCOPE)
+    assert "+constexpr int UNROLL_KS = 4;" in d and "+constexpr int MINB_PER_SM = 8;" in d
+    assert ST.render_diff([("UNROLL_KS", 16)], real) == ""            # baseline value is a no-op
