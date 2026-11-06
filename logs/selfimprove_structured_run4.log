@@ -10,3 +10,101 @@ https://modal.com/apps/jerry-zhu/main/ap-c2wCUwGvoEKY9z4vuL9fPA
 ├── ✓ Uploaded /Users/jhome/north-star/results
 ├── ✓ Created Function evaluate_candidate.
 └── ✓ Created Function run_loop_remote.
+[mode] structured
+[estimate] ~66 A100-80GB minutes, ~USD 2.75 for 3 round(s) (hard cap --max-usd 5.0)
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+0cfc0d3e gate_fail:timer | North-authored (structured edit) | cost {'proposer_usd': 0.007, 'proposer_gpu_s': 10.236, 'proposer_latency_s': 782.131, 'eval_wall_s': 95.97, 'eval_usd': 0.067, 'total_wall_s': 3623.078}
+eb692a6c gate_fail:correctness | North-authored (structured edit) | cost {'proposer_usd': 0.005, 'proposer_gpu_s': 6.974, 'proposer_latency_s': 962.587, 'eval_wall_s': 28.276, 'eval_usd': 0.02, 'total_wall_s': 1204.517}
+9003b47c gate_fail:timer | North-authored (structured edit) | cost {'proposer_usd': 0.009, 'proposer_gpu_s': 12.712, 'proposer_latency_s': 1316.176, 'eval_wall_s': 96.628, 'eval_usd': 0.067, 'total_wall_s': 2275.755}
+{
+ "current": "v0000",
+ "north_versions": [],
+ "mock_versions": [],
+ "developer_versions": [
+  "v0000"
+ ],
+ "north_lines_added": 0,
+ "north_lines_removed": 0,
+ "note": "'north' only counts versions whose proposer was attested as the pinned North endpoint",
+ "cumulative_vs_v0000": {
+  "baseline": "v0000",
+  "n_tested": 8,
+  "note": "steps compound; CI assumes independent steps; sel_adj_* widens alpha by n_tested proposals that reached the speed gate",
+  "dev": {
+   "n_steps": 0,
+   "speedup": 1.0,
+   "ci_lo": 1.0,
+   "ci_hi": 1.0,
+   "sel_adj_ci_lo": 1.0,
+   "sel_adj_ci_hi": 1.0,
+   "n_tested": 8,
+   "alpha": 0.05
+  },
+  "heldout": {
+   "n_steps": 0,
+   "speedup": 1.0,
+   "ci_lo": 1.0,
+   "ci_hi": 1.0,
+   "sel_adj_ci_lo": 1.0,
+   "sel_adj_ci_hi": 1.0,
+   "n_tested": 8,
+   "alpha": 0.05
+  }
+ },
+ "any_mock_in_lineage": false,
+ "reportable_as_north_authored": false
+}
+{
+ "proposals": 12,
+ "proposer_usd": 0.08286783148845037,
+ "proposer_gpu_s": 119.32967734336853,
+ "eval_wall_s": 1307.53103017807,
+ "eval_usd": 0.908007659845882,
+ "mock_proposals": 0
+}
+✓ App completed. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-c2wCUwGvoEKY9z4vuL9fPA
