@@ -1,0 +1,135 @@
+peak read GB/s 1620.4 NVIDIA A100-SXM4-80GB
+## by routing
+corr75                       n=2048 ovl=0.84 time_save= 27.4% graph_save= 27.1% bytes_save= 25.0% GB/s fused=1110 two=1090 draft_marginal=  7.1%
+identical                    n=2048 ovl=1.00 time_save= 32.7% graph_save= 32.4% bytes_save= 30.3% GB/s fused=1097 two=1087 draft_marginal=  0.4%
+uniform                      n=2048 ovl=0.39 time_save= 16.2% graph_save= 15.8% bytes_save= 11.9% GB/s fused=1147 two=1100 draft_marginal= 26.9%
+## routing=corr75 by r
+('r', 1)                     n= 256 ovl=0.84 time_save= 16.5% graph_save= 16.2% bytes_save= 10.0% GB/s fused=1102 two=1018 draft_marginal=  1.3%
+('r', 2)                     n= 256 ovl=0.85 time_save= 20.3% graph_save= 20.2% bytes_save= 17.1% GB/s fused=1103 two=1062 draft_marginal=  3.1%
+('r', 3)                     n= 256 ovl=0.84 time_save= 24.3% graph_save= 24.2% bytes_save= 22.7% GB/s fused=1107 two=1086 draft_marginal=  5.1%
+('r', 4)                     n= 256 ovl=0.84 time_save= 27.0% graph_save= 26.8% bytes_save= 27.2% GB/s fused=1107 two=1095 draft_marginal=  7.4%
+('r', 5)                     n= 256 ovl=0.84 time_save= 30.4% graph_save= 29.9% bytes_save= 29.9% GB/s fused=1111 two=1100 draft_marginal=  8.9%
+('r', 6)                     n= 256 ovl=0.84 time_save= 33.0% graph_save= 32.9% bytes_save= 33.3% GB/s fused=1116 two=1100 draft_marginal= 11.2%
+('r', 7)                     n= 256 ovl=0.84 time_save= 35.2% graph_save= 35.1% bytes_save= 35.6% GB/s fused=1122 two=1108 draft_marginal= 13.3%
+('r', 8)                     n= 256 ovl=0.84 time_save= 36.7% graph_save= 36.5% bytes_save= 37.6% GB/s fused=1126 two=1118 draft_marginal= 15.0%
+## routing=corr75 by Tv
+('Tv', 1)                    n= 128 ovl=0.75 time_save= 32.2% graph_save= 31.6% bytes_save= 18.4% GB/s fused=889 two=757 draft_marginal= 34.9%
+('Tv', 10)                   n= 128 ovl=0.86 time_save= 24.4% graph_save= 24.2% bytes_save= 24.0% GB/s fused=1139 two=1117 draft_marginal=  5.6%
+('Tv', 11)                   n= 128 ovl=0.88 time_save= 25.3% graph_save= 25.4% bytes_save= 25.3% GB/s fused=1152 two=1135 draft_marginal=  4.5%
+('Tv', 12)                   n= 128 ovl=0.88 time_save= 24.7% graph_save= 24.4% bytes_save= 24.1% GB/s fused=1148 two=1136 draft_marginal=  5.4%
+('Tv', 13)                   n= 128 ovl=0.88 time_save= 23.8% graph_save= 23.3% bytes_save= 23.2% GB/s fused=1157 two=1144 draft_marginal=  4.5%
+('Tv', 14)                   n= 128 ovl=0.91 time_save= 23.7% graph_save= 23.6% bytes_save= 23.6% GB/s fused=1152 two=1144 draft_marginal=  4.1%
+('Tv', 15)                   n= 128 ovl=0.93 time_save= 21.5% graph_save= 21.1% bytes_save= 22.4% GB/s fused=1157 two=1151 draft_marginal=  3.0%
+('Tv', 16)                   n= 128 ovl=0.90 time_save= 21.0% graph_save= 21.2% bytes_save= 21.4% GB/s fused=1156 two=1145 draft_marginal=  3.0%
+('Tv', 2)                    n= 128 ovl=0.78 time_save= 30.7% graph_save= 30.5% bytes_save= 26.7% GB/s fused=979 two=973 draft_marginal= 34.8%
+('Tv', 3)                    n= 128 ovl=0.77 time_save= 30.0% graph_save= 29.5% bytes_save= 27.2% GB/s fused=1043 two=1027 draft_marginal= 30.2%
+('Tv', 4)                    n= 128 ovl=0.80 time_save= 28.4% graph_save= 27.7% bytes_save= 28.6% GB/s fused=1057 two=1030 draft_marginal= 11.7%
+('Tv', 5)                    n= 128 ovl=0.81 time_save= 27.6% graph_save= 27.4% bytes_save= 29.3% GB/s fused=1053 two=1061 draft_marginal= 18.1%
+('Tv', 6)                    n= 128 ovl=0.81 time_save= 25.5% graph_save= 25.1% bytes_save= 27.8% GB/s fused=1047 two=1065 draft_marginal= 21.6%
+('Tv', 7)                    n= 128 ovl=0.84 time_save= 26.5% graph_save= 26.2% bytes_save= 26.5% GB/s fused=1066 two=1054 draft_marginal=  5.1%
+('Tv', 8)                    n= 128 ovl=0.83 time_save= 27.8% graph_save= 27.6% bytes_save= 27.1% GB/s fused=1102 two=1066 draft_marginal=  5.1%
+('Tv', 9)                    n= 128 ovl=0.87 time_save= 26.7% graph_save= 26.6% bytes_save= 27.1% GB/s fused=1113 two=1093 draft_marginal=  5.7%
+## routing=corr75 by Td
+('Td', 1)                    n= 128 ovl=0.90 time_save= 15.2% graph_save= 14.6% bytes_save=  6.9% GB/s fused=1105 two=1006 draft_marginal=  0.2%
+('Td', 10)                   n= 128 ovl=0.86 time_save= 31.4% graph_save= 30.9% bytes_save= 30.1% GB/s fused=1107 two=1098 draft_marginal=  8.3%
+('Td', 11)                   n= 128 ovl=0.83 time_save= 29.9% graph_save= 29.5% bytes_save= 29.7% GB/s fused=1125 two=1110 draft_marginal= 13.9%
+('Td', 12)                   n= 128 ovl=0.84 time_save= 31.6% graph_save= 31.4% bytes_save= 30.6% GB/s fused=1109 two=1096 draft_marginal= 13.1%
+('Td', 13)                   n= 128 ovl=0.84 time_save= 30.8% graph_save= 30.8% bytes_save= 30.4% GB/s fused=1121 two=1114 draft_marginal= 14.0%
+('Td', 14)                   n= 128 ovl=0.85 time_save= 31.0% graph_save= 30.8% bytes_save= 31.6% GB/s fused=1130 two=1102 draft_marginal= 13.0%
+('Td', 15)                   n= 128 ovl=0.82 time_save= 29.8% graph_save= 29.3% bytes_save= 30.2% GB/s fused=1131 two=1116 draft_marginal= 17.1%
+('Td', 16)                   n= 128 ovl=0.84 time_save= 30.9% graph_save= 30.6% bytes_save= 30.9% GB/s fused=1118 two=1111 draft_marginal= 14.7%
+('Td', 2)                    n= 128 ovl=0.82 time_save= 18.6% graph_save= 18.1% bytes_save= 12.2% GB/s fused=1105 two=1040 draft_marginal=  1.5%
+('Td', 3)                    n= 128 ovl=0.87 time_save= 19.1% graph_save= 19.1% bytes_save= 17.1% GB/s fused=1104 two=1055 draft_marginal=  1.9%
+('Td', 4)                    n= 128 ovl=0.82 time_save= 22.6% graph_save= 22.4% bytes_save= 20.5% GB/s fused=1089 two=1069 draft_marginal=  3.6%
+('Td', 5)                    n= 128 ovl=0.86 time_save= 26.3% graph_save= 25.9% bytes_save= 24.3% GB/s fused=1092 two=1083 draft_marginal=  3.4%
+('Td', 6)                    n= 128 ovl=0.85 time_save= 26.8% graph_save= 26.2% bytes_save= 24.8% GB/s fused=1115 two=1091 draft_marginal=  5.0%
+('Td', 7)                    n= 128 ovl=0.82 time_save= 28.3% graph_save= 27.7% bytes_save= 26.0% GB/s fused=1112 two=1096 draft_marginal=  6.3%
+('Td', 8)                    n= 128 ovl=0.84 time_save= 29.1% graph_save= 28.8% bytes_save= 27.4% GB/s fused=1116 two=1104 draft_marginal=  8.1%
+('Td', 9)                    n= 128 ovl=0.83 time_save= 29.5% graph_save= 29.5% bytes_save= 28.6% GB/s fused=1110 two=1103 draft_marginal=  8.5%
+## routing=identical by r
+('r', 1)                     n= 256 ovl=1.00 time_save= 17.6% graph_save= 17.1% bytes_save= 11.2% GB/s fused=1100 two=1000 draft_marginal=  0.0%
+('r', 2)                     n= 256 ovl=1.00 time_save= 23.1% graph_save= 23.0% bytes_save= 20.0% GB/s fused=1097 two=1048 draft_marginal=  0.3%
+('r', 3)                     n= 256 ovl=1.00 time_save= 28.5% graph_save= 28.3% bytes_save= 27.3% GB/s fused=1097 two=1084 draft_marginal=  0.3%
+('r', 4)                     n= 256 ovl=1.00 time_save= 33.4% graph_save= 33.2% bytes_save= 33.3% GB/s fused=1096 two=1095 draft_marginal=  0.4%
+('r', 5)                     n= 256 ovl=1.00 time_save= 37.9% graph_save= 37.7% bytes_save= 38.5% GB/s fused=1097 two=1095 draft_marginal=  0.5%
+('r', 6)                     n= 256 ovl=1.00 time_save= 40.9% graph_save= 40.7% bytes_save= 42.9% GB/s fused=1097 two=1105 draft_marginal=  0.5%
+('r', 7)                     n= 256 ovl=1.00 time_save= 43.2% graph_save= 43.2% bytes_save= 46.4% GB/s fused=1097 two=1106 draft_marginal=  0.6%
+('r', 8)                     n= 256 ovl=1.00 time_save= 45.5% graph_save= 45.4% bytes_save= 50.0% GB/s fused=1096 two=1117 draft_marginal=  0.7%
+## routing=identical by Tv
+('Tv', 1)                    n= 128 ovl=1.00 time_save= 42.6% graph_save= 42.5% bytes_save= 35.9% GB/s fused=590 two=531 draft_marginal=  4.3%
+('Tv', 10)                   n= 128 ovl=1.00 time_save= 28.5% graph_save= 28.1% bytes_save= 30.0% GB/s fused=1120 two=1114 draft_marginal=  0.4%
+('Tv', 11)                   n= 128 ovl=1.00 time_save= 29.7% graph_save= 29.7% bytes_save= 29.8% GB/s fused=1136 two=1119 draft_marginal=  0.2%
+('Tv', 12)                   n= 128 ovl=1.00 time_save= 26.9% graph_save= 26.8% bytes_save= 27.4% GB/s fused=1150 two=1141 draft_marginal=  0.3%
+('Tv', 13)                   n= 128 ovl=1.00 time_save= 25.5% graph_save= 25.3% bytes_save= 26.1% GB/s fused=1148 two=1141 draft_marginal=  0.3%
+('Tv', 14)                   n= 128 ovl=1.00 time_save= 24.9% graph_save= 25.1% bytes_save= 25.5% GB/s fused=1148 two=1142 draft_marginal=  0.6%
+('Tv', 15)                   n= 128 ovl=1.00 time_save= 24.6% graph_save= 24.7% bytes_save= 25.6% GB/s fused=1155 two=1145 draft_marginal=  0.3%
+('Tv', 16)                   n= 128 ovl=1.00 time_save= 24.7% graph_save= 24.7% bytes_save= 24.4% GB/s fused=1155 two=1148 draft_marginal=  0.4%
+('Tv', 2)                    n= 128 ovl=1.00 time_save= 38.9% graph_save= 38.6% bytes_save= 33.3% GB/s fused=905 two=854 draft_marginal=  3.2%
+('Tv', 3)                    n= 128 ovl=1.00 time_save= 36.6% graph_save= 36.2% bytes_save= 34.3% GB/s fused=999 two=960 draft_marginal=  0.5%
+('Tv', 4)                    n= 128 ovl=1.00 time_save= 33.4% graph_save= 33.0% bytes_save= 34.1% GB/s fused=1015 two=1019 draft_marginal=  0.4%
+('Tv', 5)                    n= 128 ovl=1.00 time_save= 33.1% graph_save= 32.8% bytes_save= 33.3% GB/s fused=1084 two=1060 draft_marginal=  0.3%
+('Tv', 6)                    n= 128 ovl=1.00 time_save= 32.7% graph_save= 32.4% bytes_save= 32.8% GB/s fused=1070 two=1067 draft_marginal=  0.3%
+('Tv', 7)                    n= 128 ovl=1.00 time_save= 29.7% graph_save= 29.4% bytes_save= 30.8% GB/s fused=1086 two=1072 draft_marginal=  0.2%
+('Tv', 8)                    n= 128 ovl=1.00 time_save= 28.9% graph_save= 28.6% bytes_save= 30.2% GB/s fused=1048 two=1056 draft_marginal=  0.3%
+('Tv', 9)                    n= 128 ovl=1.00 time_save= 28.8% graph_save= 28.4% bytes_save= 30.5% GB/s fused=1098 two=1099 draft_marginal=  0.4%
+## routing=identical by Td
+('Td', 1)                    n= 128 ovl=1.00 time_save= 16.5% graph_save= 15.9% bytes_save=  8.3% GB/s fused=1106 two=988 draft_marginal=  0.0%
+('Td', 10)                   n= 128 ovl=1.00 time_save= 37.9% graph_save= 37.8% bytes_save= 36.0% GB/s fused=1107 two=1115 draft_marginal=  0.5%
+('Td', 11)                   n= 128 ovl=1.00 time_save= 38.5% graph_save= 38.1% bytes_save= 37.7% GB/s fused=1094 two=1104 draft_marginal=  0.6%
+('Td', 12)                   n= 128 ovl=1.00 time_save= 38.2% graph_save= 38.1% bytes_save= 37.8% GB/s fused=1084 two=1094 draft_marginal=  0.7%
+('Td', 13)                   n= 128 ovl=1.00 time_save= 38.9% graph_save= 38.5% bytes_save= 38.0% GB/s fused=1088 two=1101 draft_marginal=  0.7%
+('Td', 14)                   n= 128 ovl=1.00 time_save= 38.9% graph_save= 38.7% bytes_save= 38.5% GB/s fused=1091 two=1106 draft_marginal=  0.9%
+('Td', 15)                   n= 128 ovl=1.00 time_save= 38.3% graph_save= 38.2% bytes_save= 38.3% GB/s fused=1086 two=1107 draft_marginal=  1.1%
+('Td', 16)                   n= 128 ovl=1.00 time_save= 37.0% graph_save= 36.8% bytes_save= 38.4% GB/s fused=1103 two=1110 draft_marginal=  0.8%
+('Td', 2)                    n= 128 ovl=1.00 time_save= 19.0% graph_save= 18.8% bytes_save= 14.6% GB/s fused=1081 two=1028 draft_marginal=  0.0%
+('Td', 3)                    n= 128 ovl=1.00 time_save= 22.4% graph_save= 21.7% bytes_save= 19.7% GB/s fused=1114 two=1066 draft_marginal=  0.0%
+('Td', 4)                    n= 128 ovl=1.00 time_save= 26.8% graph_save= 26.8% bytes_save= 23.9% GB/s fused=1101 two=1091 draft_marginal=  0.0%
+('Td', 5)                    n= 128 ovl=1.00 time_save= 28.8% graph_save= 29.2% bytes_save= 27.5% GB/s fused=1087 two=1082 draft_marginal=  0.2%
+('Td', 6)                    n= 128 ovl=1.00 time_save= 32.0% graph_save= 32.3% bytes_save= 30.1% GB/s fused=1102 two=1100 draft_marginal=  0.4%
+('Td', 7)                    n= 128 ovl=1.00 time_save= 33.7% graph_save= 33.5% bytes_save= 32.3% GB/s fused=1075 two=1086 draft_marginal=  0.5%
+('Td', 8)                    n= 128 ovl=1.00 time_save= 34.5% graph_save= 34.4% bytes_save= 33.3% GB/s fused=1084 two=1098 draft_marginal=  0.4%
+('Td', 9)                    n= 128 ovl=1.00 time_save= 36.3% graph_save= 36.3% bytes_save= 35.2% GB/s fused=1105 two=1113 draft_marginal=  0.4%
+## routing=uniform by r
+('r', 1)                     n= 256 ovl=0.40 time_save= 12.4% graph_save= 12.2% bytes_save=  4.8% GB/s fused=1111 two=1029 draft_marginal=  6.6%
+('r', 2)                     n= 256 ovl=0.38 time_save= 13.1% graph_save= 12.7% bytes_save=  8.3% GB/s fused=1129 two=1071 draft_marginal= 13.9%
+('r', 3)                     n= 256 ovl=0.39 time_save= 14.9% graph_save= 14.4% bytes_save= 10.4% GB/s fused=1143 two=1088 draft_marginal= 21.0%
+('r', 4)                     n= 256 ovl=0.39 time_save= 16.0% graph_save= 15.8% bytes_save= 12.5% GB/s fused=1146 two=1099 draft_marginal= 27.4%
+('r', 5)                     n= 256 ovl=0.39 time_save= 17.4% graph_save= 17.3% bytes_save= 14.8% GB/s fused=1148 two=1103 draft_marginal= 33.3%
+('r', 6)                     n= 256 ovl=0.39 time_save= 19.0% graph_save= 18.6% bytes_save= 16.1% GB/s fused=1150 two=1114 draft_marginal= 38.2%
+('r', 7)                     n= 256 ovl=0.39 time_save= 19.5% graph_save= 19.5% bytes_save= 16.8% GB/s fused=1152 two=1126 draft_marginal= 41.9%
+('r', 8)                     n= 256 ovl=0.39 time_save= 20.6% graph_save= 20.4% bytes_save= 18.7% GB/s fused=1154 two=1133 draft_marginal= 45.9%
+## routing=uniform by Tv
+('Tv', 1)                    n= 128 ovl=0.07 time_save= 14.7% graph_save= 14.2% bytes_save=  4.2% GB/s fused=1050 two=957 draft_marginal=144.5%
+('Tv', 10)                   n= 128 ovl=0.43 time_save= 17.9% graph_save= 17.6% bytes_save= 15.1% GB/s fused=1155 two=1113 draft_marginal= 18.2%
+('Tv', 11)                   n= 128 ovl=0.48 time_save= 16.5% graph_save= 16.3% bytes_save= 14.8% GB/s fused=1154 two=1126 draft_marginal= 19.3%
+('Tv', 12)                   n= 128 ovl=0.58 time_save= 16.7% graph_save= 16.2% bytes_save= 16.3% GB/s fused=1156 two=1142 draft_marginal= 16.4%
+('Tv', 13)                   n= 128 ovl=0.56 time_save= 16.2% graph_save= 15.7% bytes_save= 15.5% GB/s fused=1158 two=1147 draft_marginal= 16.3%
+('Tv', 14)                   n= 128 ovl=0.60 time_save= 16.8% graph_save= 16.7% bytes_save= 16.9% GB/s fused=1162 two=1142 draft_marginal= 13.7%
+('Tv', 15)                   n= 128 ovl=0.60 time_save= 15.7% graph_save= 15.3% bytes_save= 15.4% GB/s fused=1161 two=1144 draft_marginal= 15.0%
+('Tv', 16)                   n= 128 ovl=0.62 time_save= 16.2% graph_save= 15.5% bytes_save= 15.8% GB/s fused=1162 two=1145 draft_marginal= 13.2%
+('Tv', 2)                    n= 128 ovl=0.14 time_save= 13.7% graph_save= 13.4% bytes_save=  8.5% GB/s fused=1065 two=1033 draft_marginal=126.5%
+('Tv', 3)                    n= 128 ovl=0.15 time_save= 12.6% graph_save= 12.3% bytes_save=  7.3% GB/s fused=1075 two=1055 draft_marginal= 99.2%
+('Tv', 4)                    n= 128 ovl=0.23 time_save= 15.4% graph_save= 15.0% bytes_save= 10.2% GB/s fused=1089 two=1054 draft_marginal= 64.7%
+('Tv', 5)                    n= 128 ovl=0.30 time_save= 14.0% graph_save= 14.1% bytes_save= 10.8% GB/s fused=1101 two=1079 draft_marginal= 54.8%
+('Tv', 6)                    n= 128 ovl=0.31 time_save= 16.4% graph_save= 15.8% bytes_save= 11.4% GB/s fused=1110 two=1077 draft_marginal= 39.2%
+('Tv', 7)                    n= 128 ovl=0.41 time_save= 20.7% graph_save= 19.9% bytes_save= 14.9% GB/s fused=1124 two=1042 draft_marginal= 21.2%
+('Tv', 8)                    n= 128 ovl=0.37 time_save= 18.3% graph_save= 17.9% bytes_save= 13.7% GB/s fused=1145 two=1060 draft_marginal= 20.3%
+('Tv', 9)                    n= 128 ovl=0.42 time_save= 17.6% graph_save= 17.3% bytes_save= 14.5% GB/s fused=1150 two=1102 draft_marginal= 20.6%
+## routing=uniform by Td
+('Td', 1)                    n= 128 ovl=0.41 time_save= 13.9% graph_save= 13.3% bytes_save=  2.9% GB/s fused=1111 two=973 draft_marginal=  2.7%
+('Td', 10)                   n= 128 ovl=0.37 time_save= 17.4% graph_save= 17.1% bytes_save= 14.3% GB/s fused=1146 two=1110 draft_marginal= 34.0%
+('Td', 11)                   n= 128 ovl=0.41 time_save= 18.7% graph_save= 18.6% bytes_save= 16.0% GB/s fused=1150 two=1113 draft_marginal= 35.8%
+('Td', 12)                   n= 128 ovl=0.39 time_save= 19.7% graph_save= 19.5% bytes_save= 16.1% GB/s fused=1152 two=1111 draft_marginal= 39.2%
+('Td', 13)                   n= 128 ovl=0.40 time_save= 18.0% graph_save= 17.8% bytes_save= 16.2% GB/s fused=1152 two=1128 draft_marginal= 41.7%
+('Td', 14)                   n= 128 ovl=0.38 time_save= 17.9% graph_save= 17.4% bytes_save= 16.3% GB/s fused=1154 two=1130 draft_marginal= 44.8%
+('Td', 15)                   n= 128 ovl=0.39 time_save= 20.5% graph_save= 20.7% bytes_save= 17.4% GB/s fused=1153 two=1133 draft_marginal= 47.8%
+('Td', 16)                   n= 128 ovl=0.39 time_save= 20.0% graph_save= 19.6% bytes_save= 17.6% GB/s fused=1156 two=1133 draft_marginal= 48.8%
+('Td', 2)                    n= 128 ovl=0.35 time_save= 11.7% graph_save= 11.6% bytes_save=  4.9% GB/s fused=1118 two=1036 draft_marginal=  7.5%
+('Td', 3)                    n= 128 ovl=0.40 time_save= 13.1% graph_save= 12.8% bytes_save=  7.9% GB/s fused=1126 two=1051 draft_marginal= 11.1%
+('Td', 4)                    n= 128 ovl=0.44 time_save= 14.1% graph_save= 13.6% bytes_save=  8.9% GB/s fused=1130 two=1072 draft_marginal= 12.2%
+('Td', 5)                    n= 128 ovl=0.40 time_save= 14.8% graph_save= 14.7% bytes_save= 10.0% GB/s fused=1142 two=1083 draft_marginal= 15.5%
+('Td', 6)                    n= 128 ovl=0.40 time_save= 15.4% graph_save= 15.3% bytes_save= 10.4% GB/s fused=1138 two=1090 draft_marginal= 22.3%
+('Td', 7)                    n= 128 ovl=0.40 time_save= 14.9% graph_save= 14.5% bytes_save= 12.8% GB/s fused=1143 two=1103 draft_marginal= 24.6%
+('Td', 8)                    n= 128 ovl=0.39 time_save= 16.6% graph_save= 16.4% bytes_save= 14.4% GB/s fused=1148 two=1093 draft_marginal= 28.4%
+('Td', 9)                    n= 128 ovl=0.37 time_save= 16.4% graph_save= 16.0% bytes_save= 12.9% GB/s fused=1149 two=1115 draft_marginal= 32.4%
+fused-vs-two mismatches: 0 of 6144

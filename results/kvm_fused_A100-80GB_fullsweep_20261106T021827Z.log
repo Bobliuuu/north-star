@@ -1,0 +1,96 @@
+name, driver_version, memory.total [MiB]
+NVIDIA A100-SXM4-80GB, 610.57.04, 81920 MiB
+
+$ cd /work/kvm && nvcc --version | tail -1 && nvcc -O3 -std=c++17 -arch=sm_80 -o /work/moe_fused moe_fused.cu
+Build cuda_12.4.r12.4/compiler.34097967_0
+
+$ python /work/kvm/tests/check_cuda.py /work/moe_fused /work/chk
+check: E=16 Tv=4 Td=4 r=3 fused_experts=16 two_pass_experts=16+10
+{"Tv": 4, "Td": 4, "r": 3, "fused": {"rel_l2": 0.00013002146442886442, "max_rel": 0.00011406036355765536, "pass_": true}, "two": {"rel_l2": 0.00013001916522625834, "max_rel": 0.00011404077667975798, "pass_": true}}
+check: E=16 Tv=1 Td=1 r=1 fused_experts=9 two_pass_experts=8+1
+{"Tv": 1, "Td": 1, "r": 1, "fused": {"rel_l2": 9.854074596660212e-05, "max_rel": 7.572452159365639e-05, "pass_": true}, "two": {"rel_l2": 9.854088420979679e-05, "max_rel": 7.571867172373459e-05, "pass_": true}}
+check: E=16 Tv=4 Td=4 r=2 fused_experts=15 two_pass_experts=14+8
+{"Tv": 4, "Td": 4, "r": 2, "fused": {"rel_l2": 0.00016434102144557983, "max_rel": 0.00011707090743584558, "pass_": true}, "two": {"rel_l2": 0.00016434035205747932, "max_rel": 0.00011707897647283971, "pass_": true}}
+check: E=16 Tv=16 Td=16 r=8 fused_experts=16 two_pass_experts=16+16
+{"Tv": 16, "Td": 16, "r": 8, "fused": {"rel_l2": 0.00015863266889937222, "max_rel": 0.00021602962806355208, "pass_": true}, "two": {"rel_l2": 0.000158631126396358, "max_rel": 0.00021598918829113245, "pass_": true}}
+check: E=16 Tv=3 Td=13 r=5 fused_experts=16 two_pass_experts=14+15
+{"Tv": 3, "Td": 13, "r": 5, "fused": {"rel_l2": 8.64839821588248e-05, "max_rel": 9.527664224151522e-05, "pass_": true}, "two": {"rel_l2": 8.648407674627379e-05, "max_rel": 9.527664224151522e-05, "pass_": true}}
+check: E=16 Tv=16 Td=1 r=4 fused_experts=16 two_pass_experts=16+4
+{"Tv": 16, "Td": 1, "r": 4, "fused": {"rel_l2": 0.00012465467443689704, "max_rel": 0.0001119164953706786, "pass_": true}, "two": {"rel_l2": 0.00012465575127862394, "max_rel": 0.00011191231169505045, "pass_": true}}
+check: E=16 Tv=8 Td=8 r=8 fused_experts=16 two_pass_experts=16+16
+{"Tv": 8, "Td": 8, "r": 8, "fused": {"rel_l2": 0.00020952746854163706, "max_rel": 0.00029247996280901134, "pass_": true}, "two": {"rel_l2": 0.00020952551858499646, "max_rel": 0.00029247996280901134, "pass_": true}}
+check: E=16 Tv=1 Td=16 r=3 fused_experts=16 two_pass_experts=8+16
+{"Tv": 1, "Td": 16, "r": 3, "fused": {"rel_l2": 4.764279583469033e-05, "max_rel": 4.801375325769186e-05, "pass_": true}, "two": {"rel_l2": 4.764248296851292e-05, "max_rel": 4.801375325769186e-05, "pass_": true}}
+check: E=16 Tv=2 Td=2 r=1 fused_experts=11 two_pass_experts=11+2
+{"Tv": 2, "Td": 2, "r": 1, "fused": {"rel_l2": 0.00015821050328668207, "max_rel": 0.00012333238555584103, "pass_": true}, "two": {"rel_l2": 0.00015821369015611708, "max_rel": 0.00012333238555584103, "pass_": true}}
+CHECK PASS
+
+$ cd /work/kvm && python -m pytest -q tests/test_moe_ref.py
+.....                                                                    [100%]
+5 passed in 3.57s
+
+$ /work/moe_fused bench /work/bench.jsonl --full --seeds 1 --reps 9
+GPU NVIDIA A100-SXM4-80GB sm_80 L2=40MB
+streaming read peak ~ 1620 GB/s
+100 configs
+200 configs
+300 configs
+400 configs
+500 configs
+600 configs
+700 configs
+800 configs
+900 configs
+1000 configs
+1100 configs
+1200 configs
+1300 configs
+1400 configs
+1500 configs
+1600 configs
+1700 configs
+1800 configs
+1900 configs
+2000 configs
+2100 configs
+2200 configs
+2300 configs
+2400 configs
+2500 configs
+2600 configs
+2700 configs
+2800 configs
+2900 configs
+3000 configs
+3100 configs
+3200 configs
+3300 configs
+3400 configs
+3500 configs
+3600 configs
+3700 configs
+3800 configs
+3900 configs
+4000 configs
+4100 configs
+4200 configs
+4300 configs
+4400 configs
+4500 configs
+4600 configs
+4700 configs
+4800 configs
+4900 configs
+5000 configs
+5100 configs
+5200 configs
+5300 configs
+5400 configs
+5500 configs
+5600 configs
+5700 configs
+5800 configs
+5900 configs
+6000 configs
+6100 configs
+done 6144 configs
