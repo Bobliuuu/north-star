@@ -34,15 +34,20 @@ def grad_checkpointed(m):
     """Layer-level activation checkpointing via instance forwards (removed on exit)."""
     from torch.utils.checkpoint import checkpoint
     layers = list(m.model.layers)
+    # Layers may already carry an instance forward (EditedDraft layer-skip patch). Chain on top of it
+    # and restore exactly what was there, instead of asserting/popping (that crashed r4s, 2026-11-06).
+    prev = [L.__dict__.get("forward") for L in layers]
     for L in layers:
-        assert "forward" not in L.__dict__
         orig = L.forward
         L.forward = (lambda *a, _o=orig, **k: checkpoint(_o, *a, use_reentrant=False, **k))
     try:
         yield
     finally:
-        for L in layers:
-            L.__dict__.pop("forward", None)
+        for L, p in zip(layers, prev):
+            if p is None:
+                L.__dict__.pop("forward", None)
+            else:
+                L.forward = p
 
 
 def sample_windows(seqs, window, batch, gen):
