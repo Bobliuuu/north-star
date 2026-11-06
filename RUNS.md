@@ -9,6 +9,8 @@
 | 2026-11-06 ~06:50 | ap-QTZcDdQdbs3jmaGllyYwHa | (result) | finished OK, 161 s GPU, ~$0.11. Log logs/ctx_batch_run1.log, results/ctx_batch_run1.jsonl |
 
 
+| 2026-11-06 | ap-duOM69y4JrsPm52eVxoci9 | `modal run --detach src/approx/modal_sweep.py::main --smoke --tag smoke1` | first ever run of draft-approximation sweep on North (1 prompt, ctx 2048, 8 configs). Log logs/approx_sweep_smoke1_client.log |
+
 ## Self-improve chain heads (external anchor for the unkeyed hash chain)
 
 After EVERY self-improvement round run `PYTHONPATH=src python -m selfimprove.cli head --store results/<store> --label <store>` and commit the
