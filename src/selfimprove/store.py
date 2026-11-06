@@ -128,3 +128,7 @@ class Store:
             tot["eval_wall_s"] += c.get("eval_wall_s", 0) or 0; tot["eval_usd"] += c.get("eval_usd", 0) or 0
             tot["mock_proposals"] += r.get("proposer", {}).get("kind") == "mock"
         return tot
+
+
+class StoreCorrupt(RuntimeError):
+    pass
