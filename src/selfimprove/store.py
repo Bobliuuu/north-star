@@ -8,6 +8,10 @@ def sha256_text(s: str) -> str:
     return hashlib.sha256(s.encode()).hexdigest()
 
 
+class StoreCorrupt(RuntimeError):
+    """Chained log, version contents/meta and CURRENT disagree (tampering or a torn write)."""
+
+
 class Store:
     def __init__(self, root: Path):
         self.root = Path(root); self.root.mkdir(parents=True, exist_ok=True)
@@ -35,14 +39,24 @@ class Store:
         if not self.log_path.exists(): return []
         return [json.loads(l) for l in open(self.log_path) if l.strip()]
 
-    def verify_log(self) -> bool:
+    def head(self) -> str:
+        """Hash of the newest log record. Anchor it OUTSIDE the store (app logs print every record's hash): the chain alone cannot
+        detect truncation or a full rewrite by someone who can write the file."""
+        recs = self.read_log()
+        return recs[-1]["hash"] if recs else "0" * 64
+
+    def verify_log(self, expected_head: str | None = None) -> bool:
         prev = "0" * 64
-        for r in self.read_log():
-            h = r.pop("hash")
-            if r["prev_hash"] != prev or sha256_text(json.dumps(r, sort_keys=True, default=str)) != h:
-                return False
-            prev = h
-        return True
+        try:
+            recs = self.read_log()
+            for r in recs:
+                h = r.pop("hash")
+                if r["prev_hash"] != prev or sha256_text(json.dumps(r, sort_keys=True, default=str)) != h:
+                    return False
+                prev = h
+        except (ValueError, KeyError, TypeError, AttributeError):
+            return False
+        return expected_head is None or prev == expected_head
 
     # ---- versions -----------------------------------------------------------------------------------------------------
     def versions(self) -> list[str]:
@@ -73,10 +87,60 @@ class Store:
         os.rename(tmp, self.root / "versions" / v)
         return v
 
+    # ---- integrity: the chained log is the write-ahead log. Order of every state change is
+    #      (1) write the version dir (unreferenced, harmless if we crash)  (2) append the log record, which pins the version's
+    #      meta.json hash (and through it every file hash)  (3) switch CURRENT.  CURRENT is therefore never ahead of the log;
+    #      a crash between (2) and (3) leaves the log ahead, which recover() completes.
+    def _meta_hash(self, v: str) -> str:
+        return sha256_text((self.root / "versions" / v / "meta.json").read_text())
+
+    def check_version(self, v: str, log_meta_sha256: str | None = None):
+        d = self.root / "versions" / v
+        if not (d / "meta.json").is_file(): raise StoreCorrupt(f"{v}: meta.json missing")
+        if log_meta_sha256 is not None and self._meta_hash(v) != log_meta_sha256:
+            raise StoreCorrupt(f"{v}: meta.json does not match the hash pinned in the chained log")
+        want = self.meta(v).get("files_sha256") or {}
+        base = d / "files"
+        have = {p.relative_to(base).as_posix(): sha256_text(p.read_text()) for p in sorted(base.rglob("*")) if p.is_file()} if base.exists() else {}
+        if have != want: raise StoreCorrupt(f"{v}: files differ from meta.files_sha256")
+
+    def _expected_state(self):
+        """Walk the log: (expected CURRENT, previous expected CURRENT, {version: pinned meta sha or None})."""
+        cur = prev = None; pins = {}
+        for r in self.read_log():
+            ev = r.get("event")
+            if ev in ("init", "promote"):
+                pins[r["version"]] = r.get("meta_sha256"); prev, cur = cur, r["version"]
+            elif ev == "rollback":
+                prev, cur = cur, r["to_version"]
+        return cur, prev, pins
+
+    def assert_healthy(self, allow_pending: bool = False):
+        """Raise StoreCorrupt unless: the hash chain verifies, every version referenced by the log matches the meta hash the log
+        pinned and its own file hashes, and CURRENT equals what the log says (or, with allow_pending, the state just before the
+        newest logged switch). Legacy stores whose log records carry no meta_sha256 skip only the meta pin."""
+        if not self.verify_log(): raise StoreCorrupt("hash chain broken")
+        cur, prev, pins = self._expected_state()
+        if cur is None and not self.versions() and not (self.root / "CURRENT").exists(): return
+        for v, pin in pins.items(): self.check_version(v, pin)
+        have = self.current()
+        if have != cur and not (allow_pending and have == prev):
+            raise StoreCorrupt(f"CURRENT={have} but the chained log says {cur}")
+
+    def recover(self) -> bool:
+        """Complete a switch that was logged but not applied. Returns True if CURRENT changed."""
+        if not self.verify_log(): raise StoreCorrupt("hash chain broken")
+        cur, prev, pins = self._expected_state()
+        if cur is None or self.current() == cur: return False
+        if self.current() != prev: raise StoreCorrupt(f"CURRENT={self.current()} is neither the logged target {cur} nor its predecessor {prev}")
+        self.check_version(cur, pins.get(cur))
+        self._set_current(cur)
+        return True
+
     def init_baseline(self, files: dict[str, str], note="developer baseline") -> str:
         if self.versions(): raise RuntimeError("store already initialised")
         v = self._commit_version(files, dict(parent=None, authored_by="developer", north_attested=False, note=note))
-        self._set_current(v); self.log(dict(event="init", version=v)); return v
+        self.log(dict(event="init", version=v, meta_sha256=self._meta_hash(v))); self._set_current(v); return v
 
     def promote(self, new_files: dict[str, str], proposal_id: str, authored_by: str, north_attested: bool, diff: str,
                 gates: dict, mock: bool, extra: dict | None = None) -> str:
@@ -87,7 +151,8 @@ class Store:
         files = dict(self.files(parent)); files.update(new_files)
         v = self._commit_version(files, dict(parent=parent, authored_by=authored_by, north_attested=north_attested, mock=mock,
                                              proposal_id=proposal_id, diff=diff, diff_sha256=sha256_text(diff), gates=gates, **(extra or {})))
-        self._set_current(v); self.log(dict(event="promote", version=v, parent=parent, proposal_id=proposal_id, authored_by=authored_by))
+        self.log(dict(event="promote", version=v, parent=parent, proposal_id=proposal_id, authored_by=authored_by, meta_sha256=self._meta_hash(v)))
+        self._set_current(v)
         return v
 
     def rollback(self, to: str | None = None, reason: str = "") -> str:
@@ -95,7 +160,10 @@ class Store:
         target = to or self.meta(cur)["parent"]
         if target is None or target not in self.versions():
             raise RuntimeError("nothing to roll back to")
-        self._set_current(target); self.log(dict(event="rollback", from_version=cur, to_version=target, reason=reason))
+        _, _, pins = self._expected_state()
+        self.check_version(target, pins.get(target))      # never roll back onto a tampered version
+        self.log(dict(event="rollback", from_version=cur, to_version=target, reason=reason))
+        self._set_current(target)
         return target
 
     # ---- attribution --------------------------------------------------------------------------------------------------
@@ -128,7 +196,3 @@ class Store:
             tot["eval_wall_s"] += c.get("eval_wall_s", 0) or 0; tot["eval_usd"] += c.get("eval_usd", 0) or 0
             tot["mock_proposals"] += r.get("proposer", {}).get("kind") == "mock"
         return tot
-
-
-class StoreCorrupt(RuntimeError):
-    pass
