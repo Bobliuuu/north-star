@@ -54,7 +54,7 @@ def run_remote_loop(p: dict, store_dir: Path, cfg, proposer, evaluator, profile_
     lp = Loop(cfg, st, proposer, mode=p["mode"], track=p.get("track", "kernel"))
     lp.ev = evaluator
     if on_log: on_log()
-    res = lp.run(p["rounds"], max_total_usd=p["max_usd"], profile_summary=profile_summary, dev_results=dev_results)
+    res = lp.run(p["rounds"], max_total_usd=p["max_usd"], proposals_per_round=int(p.get("per_round", 1)), profile_summary=profile_summary, dev_results=dev_results)
     out = dict(verdicts=[(r["proposal_id"], r["verdict"]) for r in res], attribution=st.attribution(), cost=st.cost_summary(),
                log_ok=st.verify_log())
     (emit or print)("NS_LOOP_DONE " + json.dumps(out, default=str))

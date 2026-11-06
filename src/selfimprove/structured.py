@@ -19,8 +19,10 @@ TUNABLES = {
     "MT_SPLIT": (1, 16, 1, "experts with pair_cnt > MT_SPLIT use the 2-row-tile path"),
     "MINB_PER_SM": (1, 8, 1, "min resident blocks per SM hint for __launch_bounds__"),
     "UNROLL_KS": (1, 128, 1, "#pragma unroll factor of the stage-1 k-step loop (>= KC/16 = full unroll, 1 = none)"),
+    "UNROLL_S2": (1, 4, 1, "#pragma unroll factor of the stage-2 (down projection) k-step loop; 4 = full unroll"),
+    "UNROLL_NT": (1, 8, 1, "#pragma unroll factor of the stage-2 output-tile loop (each warp walks H/16/4 = 32 tiles); 1 = none"),
 }
-MAX_EDITS = 6
+MAX_EDITS = 3
 STATIC_SMEM_LIMIT = 48 * 1024
 
 
@@ -118,7 +120,11 @@ def current_values(files: dict[str, str], path: str = KERNEL_PATH) -> dict[str, 
 def history_line(rec: dict) -> str:
     """One-line summary of an earlier proposal record for the prompt: id, verdict and, when present, the chosen edits and the
     measured DEV-split speedup. Held-out numbers are never included (prompt must carry dev data only)."""
-    line = f"{rec['proposal_id'][:8]}: {rec['verdict']}"
+    line = f"{rec['proposal_id'][:8]} (vs {rec.get('base_version', '?')}): {rec['verdict']}"
+    if rec["verdict"] in ("invalid_edit", "duplicate_edit", "build_fail") and rec.get("reason"): line += f" [{str(rec['reason'])[:160]}]"
+    if rec["verdict"] == "gate_fail:correctness":
+        cg = (rec.get("gates") or {}).get("correctness") or {}
+        line += f" [{str(cg.get('reason', ''))[:100]}]"
     ed = (rec.get("structured") or {}).get("edits")
     if ed is not None:
         line += " | edits " + (", ".join(f"{e['name']}={e['value']}" for e in ed) if ed else "(none)")
@@ -150,8 +156,13 @@ GUIDANCE = (
     "- smem rows are read by 16x16 WMMA loads in 16-byte chunks. A row stride (in bytes) that is an ODD multiple of 16 spreads 8 rows over "
     "all 8 bank groups (conflict free); stride = 128B*k + 16B*odd works, e.g. pad 8 or 24 or 40. Pad 0 gives 8-way conflicts and pad 16 gives 2-way conflicts.\n"
     "- KC trades smem footprint and sync count: smaller KC means more __syncthreads rounds and shorter weight-load bursts; larger KC means more smem.\n"
-    "- Earlier proposals this session list their measured dev speedup. Do NOT repeat a combination that measured < 1.0; "
-    "change at most 1-2 tunables per proposal so the effect is attributable, and move AWAY from directions that already measured slower. "
+    "- Compile profile of the BASELINE (ptxas resource usage, developer-recorded, no timing): 252 registers/thread, 0 spills, 128 threads/block, "
+    "~35 KB static smem. Resident blocks per SM are therefore limited by REGISTERS (64K per SM), not smem. Tunables that shrink the fully "
+    "unrolled register-hungry loops (smaller KC, smaller UNROLL_KS / UNROLL_S2, UNROLL_NT stays 1) or cap registers (MINB_PER_SM) can raise "
+    "occupancy; a register cap that is too tight forces local-memory spills and is slower. UNROLL_S2 (max 4) and UNROLL_NT (max 8) tune the stage-2 down-projection loops.\n"
+    "- Earlier proposals this session list their measured dev speedup, including ones from this same round. Do NOT repeat a combination that "
+    "was already measured; a repeated edit set is skipped as duplicate_edit and wastes your turn. Output AT MOST 3 edits (more is rejected as invalid_edit). "
+    "Prefer ONE-factor-at-a-time moves on a tunable you have not tried yet, so each result is attributable, then combine moves that each measured >= 1.0, and move AWAY from directions that already measured slower. "
     "The speed gate needs a dev speedup above the stated threshold, so an empty edit list is better than a guess you expect to be slower.\n")
 
 

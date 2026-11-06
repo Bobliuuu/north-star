@@ -1,0 +1,8 @@
+Error: Specify a Modal Function or local entrypoint to run. E.g.
+> modal run modal/harness_diag.py::my_function [..args]
+
+'modal/harness_diag.py' has the following functions and local entrypoints:
+main2 / app.main2
+main / app.main
+diag / app.diag
+diag2 / app.diag2

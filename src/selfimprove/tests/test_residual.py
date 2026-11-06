@@ -288,3 +288,12 @@ def test_kernel_bench_timer_crosscheck_catches_underreport(tmp_path, claimed_us,
     assert j["n_iters"] == 21 and j["ref_ms"] and j["harness_wall_ms"] > 0
     g = G.timer_crosscheck(j, r.wall_s, G.TimerSpec())
     assert g.passed is ok, (j, g.reason)
+
+
+def test_timer_calibrated_relative_to_baseline():
+    spec = G.TimerSpec(calibrate=True, ratio_tol=1.5)
+    mk = lambda t, ref: dict(time_ms=t, ref_ms=ref)
+    base = [("b", mk(0.39, 3.7)), ("b", mk(0.40, 3.75)), ("b", mk(0.39, 3.7))]      # absolute ratio ~9.4: would fail the old absolute 4x cap
+    assert G.timer_calibrated(base + [("k", mk(0.37, 3.7))], spec).passed             # genuinely faster kernel, same harness overhead
+    assert not G.timer_calibrated(base + [("k", mk(0.10, 3.7))], spec).passed         # under-report 4x vs harness clock
+    assert not G.timer_calibrated([("k", mk(0.39, 3.7))], spec).passed                # no baseline run to calibrate against
