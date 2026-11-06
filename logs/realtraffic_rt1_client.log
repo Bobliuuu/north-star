@@ -1,0 +1,183 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-ZMMou3GHP9Fg60wMONjkuH
+✓ Created objects.
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-a692aee4b43fd562a/modal/real
+│   traffic_run.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-a692aee4b43fd562a/tests
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-a692aee4b43fd562a/src/norths
+│   tar
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-a692aee4b43fd562a/harness
+└── ✓ Created Function remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:08, 44.82it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:15, 23.67it/s]
+[1ALoading weights:   6%|▌         | 22/394 [00:00<00:15, 24.19it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:18, 19.79it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:19, 18.04it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:20, 17.38it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:20, 16.95it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:20, 16.74it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:03<00:19, 16.41it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:19, 16.41it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:04<00:18, 16.59it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:18, 16.62it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:05<00:17, 16.78it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:06<00:17, 16.82it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:06<00:17, 16.37it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:16, 16.66it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:07<00:16, 16.26it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:08<00:15, 16.41it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:08<00:14, 16.56it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:08<00:14, 16.49it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:09<00:13, 16.77it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:09<00:13, 16.72it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:10<00:12, 16.87it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:10<00:12, 17.01it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:11<00:11, 17.40it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:11<00:10, 17.59it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:12<00:10, 17.90it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:12<00:09, 18.19it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:13<00:09, 18.08it/s]
+[1ALoading weights:  58%|█████▊    | 229/394 [00:13<00:09, 18.23it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:13<00:08, 18.18it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:13<00:08, 18.12it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:14<00:08, 17.87it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:14<00:07, 17.94it/s]
+[1ALoading weights:  66%|██████▌   | 261/394 [00:14<00:07, 17.57it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:15<00:06, 18.18it/s]
+[1ALoading weights:  68%|██████▊   | 269/394 [00:15<00:07, 17.72it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:15<00:06, 17.74it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:16<00:06, 17.18it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:16<00:06, 17.14it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:17<00:05, 16.98it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:17<00:05, 17.06it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:18<00:04, 17.10it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:18<00:04, 17.00it/s]
+[1ALoading weights:  82%|████████▏ | 325/394 [00:18<00:04, 16.72it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:19<00:03, 17.22it/s]
+[1ALoading weights:  85%|████████▍ | 333/394 [00:19<00:03, 17.35it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:19<00:03, 17.11it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:19<00:02, 17.17it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:20<00:02, 16.90it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:20<00:01, 17.23it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:21<00:01, 17.16it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:21<00:00, 17.59it/s]
+[1ALoading weights:  97%|█████████▋| 381/394 [00:21<00:00, 17.67it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:22<00:00, 17.19it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:22<00:00, 17.69it/s]
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-06T19:24:39Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "b75d56d0a2a7", "load_s": 46.025859117507935}
+tokenized 99 prompt len min/max 160 7161
+bucket 1280 captured; tasks 69
+humaneval_00_12 P 232 n 192 plain 223; sam212fixed=1.05x pld38fixed=1.02x sam212bo=1.05x sam212off=1.05x sam212bo+off=1.06x
+humaneval_01_22 P 221 n 192 plain 223; sam212fixed=1.06x pld38fixed=1.04x sam212bo=1.05x sam212off=1.06x sam212bo+off=1.06x
+humaneval_02_34 P 203 n 192 plain 223; sam212fixed=1.14x pld38fixed=1.05x sam212bo=1.14x sam212off=1.08x sam212bo+off=1.09x
+humaneval_03_60 P 219 n 192 plain 223; sam212fixed=1.48x pld38fixed=1.36x sam212bo=1.48x sam212off=1.40x sam212bo+off=1.41x
+humaneval_04_1 P 246 n 192 plain 223; sam212fixed=1.36x pld38fixed=1.31x sam212bo=1.35x sam212off=1.34x sam212bo+off=1.37x
+humaneval_05_158 P 249 n 192 plain 223; sam212fixed=1.39x pld38fixed=1.35x sam212bo=1.33x sam212off=1.39x sam212bo+off=1.33x
+humaneval_06_83 P 174 n 192 plain 224; sam212fixed=1.11x pld38fixed=1.02x sam212bo=1.11x sam212off=1.10x sam212bo+off=1.11x
+humaneval_07_103 P 270 n 192 plain 223; sam212fixed=1.05x pld38fixed=1.05x sam212bo=1.05x sam212off=1.05x sam212bo+off=1.06x
+humaneval_08_71 P 251 n 192 plain 223; sam212fixed=1.05x pld38fixed=1.01x sam212bo=1.06x sam212off=1.04x sam212bo+off=1.06x
+mbpp_00_332 P 177 n 192 plain 223; sam212fixed=1.07x pld38fixed=1.01x sam212bo=1.09x sam212off=1.07x sam212bo+off=1.08x
+mbpp_01_24 P 166 n 192 plain 223; sam212fixed=1.09x pld38fixed=1.07x sam212bo=1.09x sam212off=1.11x sam212bo+off=1.12x
+mbpp_02_45 P 164 n 192 plain 224; sam212fixed=1.08x pld38fixed=1.13x sam212bo=1.08x sam212off=1.06x sam212bo+off=1.07x
+mbpp_03_68 P 167 n 192 plain 223; sam212fixed=1.17x pld38fixed=1.06x sam212bo=1.17x sam212off=1.18x sam212bo+off=1.18x
+mbpp_04_120 P 171 n 192 plain 223; sam212fixed=1.15x pld38fixed=1.13x sam212bo=1.13x sam212off=1.16x sam212bo+off=1.13x
+mbpp_05_3 P 183 n 192 plain 223; sam212fixed=1.17x pld38fixed=1.20x sam212bo=1.14x sam212off=1.15x sam212bo+off=1.12x
+mbpp_06_316 P 179 n 192 plain 223; sam212fixed=1.07x pld38fixed=1.05x sam212bo=1.09x sam212off=1.07x sam212bo+off=1.09x
+mbpp_07_435 P 241 n 192 plain 223; sam212fixed=1.76x pld38fixed=1.56x sam212bo=1.77x sam212off=1.76x sam212bo+off=1.77x
+mbpp_08_166 P 181 n 192 plain 223; sam212fixed=1.17x pld38fixed=1.06x sam212bo=1.16x sam212off=1.13x sam212bo+off=1.13x
+canitedit_00_83 P 346 n 192 plain 223; sam212fixed=1.97x pld38fixed=1.86x sam212bo=1.95x sam212off=1.97x sam212bo+off=1.95x
+canitedit_01_6 P 397 n 192 plain 223; sam212fixed=1.51x pld38fixed=1.45x sam212bo=1.50x sam212off=1.49x sam212bo+off=1.47x
+canitedit_02_11 P 466 n 192 plain 223; sam212fixed=1.31x pld38fixed=1.25x sam212bo=1.30x sam212off=1.32x sam212bo+off=1.31x
+canitedit_03_17 P 289 n 192 plain 223; sam212fixed=1.85x pld38fixed=1.73x sam212bo=1.83x sam212off=1.85x sam212bo+off=1.83x
+canitedit_04_30 P 581 n 192 plain 220; sam212fixed=1.11x pld38fixed=1.08x sam212bo=1.12x sam212off=1.11x sam212bo+off=1.12x
+canitedit_05_0 P 234 n 192 plain 223; sam212fixed=1.17x pld38fixed=1.14x sam212bo=1.18x sam212off=1.17x sam212bo+off=1.18x
+canitedit_06_79 P 492 n 192 plain 223; sam212fixed=1.41x pld38fixed=1.34x sam212bo=1.39x sam212off=1.29x sam212bo+off=1.29x
+canitedit_07_41 P 434 n 192 plain 223; sam212fixed=1.14x pld38fixed=1.09x sam212bo=1.13x sam212off=1.12x sam212bo+off=1.13x
+canitedit_08_51 P 318 n 192 plain 223; sam212fixed=1.08x pld38fixed=1.06x sam212bo=1.08x sam212off=1.07x sam212bo+off=1.07x
+cnn_summ_00_10628 P 1153 n 192 plain 222; sam212fixed=1.04x pld38fixed=0.99x sam212bo=1.04x sam212off=1.02x sam212bo+off=1.02x
+cnn_summ_01_791 P 1098 n 173 plain 222; sam212fixed=0.98x pld38fixed=1.01x sam212bo=0.99x sam212off=0.99x sam212bo+off=1.00x
+cnn_summ_02_1447 P 1188 n 192 plain 222; sam212fixed=1.01x pld38fixed=1.00x sam212bo=1.01x sam212off=1.01x sam212bo+off=1.02x
+cnn_summ_04_3851 P 823 n 192 plain 223; sam212fixed=1.05x pld38fixed=1.00x sam212bo=1.06x sam212off=1.02x sam212bo+off=1.02x
+cnn_summ_05_125 P 430 n 192 plain 223; sam212fixed=1.04x pld38fixed=1.05x sam212bo=1.05x sam212off=1.05x sam212bo+off=1.05x
+cnn_summ_06_10117 P 1176 n 192 plain 222; sam212fixed=1.02x pld38fixed=0.97x sam212bo=1.03x sam212off=1.01x sam212bo+off=1.02x
+cnn_summ_07_5325 P 1034 n 192 plain 222; sam212fixed=1.06x pld38fixed=1.08x sam212bo=1.06x sam212off=1.04x sam212bo+off=1.04x
+cnn_summ_08_6649 P 798 n 192 plain 222; sam212fixed=1.03x pld38fixed=1.01x sam212bo=1.03x sam212off=1.03x sam212bo+off=1.03x
+xsum_summ_00_10628 P 282 n 192 plain 223; sam212fixed=1.11x pld38fixed=1.04x sam212bo=1.14x sam212off=1.08x sam212bo+off=1.11x
+xsum_summ_01_791 P 190 n 192 plain 223; sam212fixed=1.27x pld38fixed=1.22x sam212bo=1.26x sam212off=1.26x sam212bo+off=1.26x
+xsum_summ_02_1447 P 429 n 192 plain 223; sam212fixed=1.06x pld38fixed=1.06x sam212bo=1.07x sam212off=1.06x sam212bo+off=1.07x
+xsum_summ_03_2188 P 1086 n 192 plain 222; sam212fixed=1.02x pld38fixed=1.02x sam212bo=1.03x sam212off=1.01x sam212bo+off=1.01x
+xsum_summ_04_3851 P 430 n 192 plain 223; sam212fixed=1.12x pld38fixed=1.06x sam212bo=1.13x sam212off=1.09x sam212bo+off=1.11x
+xsum_summ_05_125 P 487 n 108 plain 223; sam212fixed=1.06x pld38fixed=1.04x sam212bo=1.06x sam212off=1.06x sam212bo+off=1.07x
+xsum_summ_06_10117 P 429 n 192 plain 223; sam212fixed=1.14x pld38fixed=1.06x sam212bo=1.16x sam212off=1.13x sam212bo+off=1.15x
+xsum_summ_07_5325 P 245 n 192 plain 223; sam212fixed=1.15x pld38fixed=1.00x sam212bo=1.15x sam212off=1.14x sam212bo+off=1.14x
+xsum_summ_08_6649 P 269 n 192 plain 223; sam212fixed=1.12x pld38fixed=1.08x sam212bo=1.12x sam212off=1.12x sam212bo+off=1.12x
+squad_qa_00_10628 P 479 n 61 plain 223; sam212fixed=1.46x pld38fixed=1.42x sam212bo=1.40x sam212off=1.44x sam212bo+off=1.40x
+squad_qa_01_791 P 218 n 83 plain 223; sam212fixed=1.37x pld38fixed=1.36x sam212bo=1.34x sam212off=1.21x sam212bo+off=1.17x
+squad_qa_02_1447 P 342 n 146 plain 223; sam212fixed=1.61x pld38fixed=1.60x sam212bo=1.55x sam212off=1.55x sam212bo+off=1.48x
+squad_qa_03_2188 P 275 n 92 plain 223; sam212fixed=1.22x pld38fixed=1.21x sam212bo=1.21x sam212off=1.13x sam212bo+off=1.10x
+squad_qa_04_3851 P 304 n 62 plain 221; sam212fixed=1.24x pld38fixed=1.18x sam212bo=1.20x sam212off=1.25x sam212bo+off=1.21x
+squad_qa_05_125 P 212 n 83 plain 223; sam212fixed=1.46x pld38fixed=1.36x sam212bo=1.44x sam212off=1.44x sam212bo+off=1.43x
+squad_qa_06_10117 P 272 n 64 plain 223; sam212fixed=1.06x pld38fixed=1.10x sam212bo=1.04x sam212off=1.06x sam212bo+off=1.05x
+squad_qa_07_5325 P 277 n 104 plain 223; sam212fixed=1.14x pld38fixed=1.08x sam212bo=1.13x sam212off=1.12x sam212bo+off=1.12x
+squad_qa_08_6649 P 270 n 68 plain 223; sam212fixed=1.46x pld38fixed=1.27x sam212bo=1.49x sam212off=1.44x sam212bo+off=1.49x
+ultrachat_00_21256 P 742 n 192 plain 222; sam212fixed=1.20x pld38fixed=1.13x sam212bo=1.20x sam212off=1.12x sam212bo+off=1.12x
+ultrachat_03_4377 P 688 n 192 plain 223; sam212fixed=0.98x pld38fixed=0.99x sam212bo=0.98x sam212off=0.99x sam212bo+off=0.99x
+ultrachat_04_7703 P 1031 n 192 plain 222; sam212fixed=1.03x pld38fixed=1.01x sam212bo=1.03x sam212off=1.03x sam212bo+off=1.03x
+ultrachat_05_250 P 274 n 192 plain 223; sam212fixed=1.00x pld38fixed=0.99x sam212bo=1.00x sam212off=0.99x sam212bo+off=1.00x
+ultrachat_06_20235 P 959 n 192 plain 222; sam212fixed=1.03x pld38fixed=1.00x sam212bo=1.03x sam212off=1.01x sam212bo+off=1.02x
+ultrachat_07_10651 P 1073 n 192 plain 222; sam212fixed=1.05x pld38fixed=1.06x sam212bo=1.06x sam212off=1.05x sam212bo+off=1.05x
+ultrachat_08_13298 P 1117 n 192 plain 221; sam212fixed=1.10x pld38fixed=1.11x sam212bo=1.09x sam212off=1.07x sam212bo+off=1.07x
+glaive_tool_00_85027 P 319 n 84 plain 223; sam212fixed=1.04x pld38fixed=1.09x sam212bo=1.05x sam212off=1.04x sam212bo+off=1.05x
+glaive_tool_01_6334 P 160 n 102 plain 224; sam212fixed=1.12x pld38fixed=1.04x sam212bo=1.12x sam212off=1.12x sam212bo+off=1.12x
+glaive_tool_02_11579 P 293 n 94 plain 223; sam212fixed=1.06x pld38fixed=1.07x sam212bo=1.06x sam212off=1.06x sam212bo+off=1.06x
+glaive_tool_03_17509 P 433 n 81 plain 223; sam212fixed=1.02x pld38fixed=1.03x sam212bo=1.02x sam212off=1.02x sam212bo+off=1.01x
+glaive_tool_04_30812 P 183 n 192 plain 223; sam212fixed=1.32x pld38fixed=1.28x sam212bo=1.29x sam212off=1.32x sam212bo+off=1.30x
+glaive_tool_05_1000 P 540 n 192 plain 222; sam212fixed=1.15x pld38fixed=1.09x sam212bo=1.12x sam212off=1.16x sam212bo+off=1.13x
+glaive_tool_06_80941 P 222 n 192 plain 223; sam212fixed=1.04x pld38fixed=1.06x sam212bo=1.05x sam212off=1.03x sam212bo+off=1.04x
+glaive_tool_07_111370 P 403 n 124 plain 223; sam212fixed=1.00x pld38fixed=0.99x sam212bo=1.01x sam212off=1.01x sam212bo+off=1.01x
+glaive_tool_08_42607 P 223 n 192 plain 223; sam212fixed=1.05x pld38fixed=1.04x sam212bo=1.05x sam212off=1.06x sam212bo+off=1.06x
+bucket 2560 captured; tasks 6
+cnn_summ_03_2188 P 1730 n 192 plain 221; sam212fixed=1.09x pld38fixed=1.02x sam212bo=1.11x sam212off=1.08x sam212bo+off=1.11x
+ultrachat_01_1583 P 1404 n 192 plain 221; sam212fixed=0.96x pld38fixed=1.00x sam212bo=0.97x sam212off=0.98x sam212bo+off=0.98x
+ultrachat_02_2894 P 1416 n 192 plain 221; sam212fixed=1.02x pld38fixed=1.02x sam212bo=1.03x sam212off=1.03x sam212bo+off=1.03x
+gov4k_01_49 P 2421 n 192 plain 221; sam212fixed=1.01x pld38fixed=1.02x sam212bo=1.01x sam212off=1.02x sam212bo+off=1.02x
+gov8k_06_153 P 1685 n 192 plain 221; sam212fixed=1.05x pld38fixed=1.01x sam212bo=1.06x sam212off=1.05x sam212bo+off=1.06x
+quality_qa_05_1331 P 2537 n 192 plain 221; sam212fixed=1.94x pld38fixed=1.76x sam212bo=1.85x sam212off=1.93x sam212bo+off=1.85x
+bucket 5120 captured; tasks 12
+gov4k_00_664 P 2942 n 192 plain 219; sam212fixed=0.99x pld38fixed=1.02x sam212bo=1.01x sam212off=1.00x sam212bo+off=1.00x
+gov4k_02_90 P 2748 n 192 plain 217; sam212fixed=1.04x pld38fixed=1.02x sam212bo=1.07x sam212off=1.05x sam212bo+off=1.05x
+gov4k_03_136 P 2686 n 192 plain 219; sam212fixed=1.00x pld38fixed=1.00x sam212bo=1.00x sam212off=0.99x sam212bo+off=0.99x
+gov4k_04_240 P 2652 n 192 plain 219; sam212fixed=1.02x pld38fixed=1.01x sam212bo=1.02x sam212off=1.03x sam212bo+off=1.03x
+gov4k_05_7 P 2587 n 192 plain 219; sam212fixed=1.02x pld38fixed=1.03x sam212bo=1.04x sam212off=1.02x sam212bo+off=1.03x
+gov4k_06_632 P 2709 n 192 plain 220; sam212fixed=1.02x pld38fixed=1.03x sam212bo=1.03x sam212off=1.00x sam212bo+off=1.01x
+gov4k_07_870 P 2925 n 192 plain 219; sam212fixed=1.01x pld38fixed=0.97x sam212bo=1.01x sam212off=0.99x sam212bo+off=1.00x
+gov4k_08_332 P 2883 n 192 plain 219; sam212fixed=0.97x pld38fixed=0.98x sam212bo=0.97x sam212off=0.97x sam212bo+off=0.98x
+gov8k_00_578 P 5020 n 192 plain 218; sam212fixed=1.04x pld38fixed=1.01x sam212bo=1.04x sam212off=1.04x sam212bo+off=1.05x
+gov8k_02_389 P 2925 n 192 plain 219; sam212fixed=1.03x pld38fixed=0.99x sam212bo=1.02x sam212off=1.01x sam212bo+off=1.01x
+gov8k_03_452 P 4697 n 192 plain 218; sam212fixed=1.00x pld38fixed=0.96x sam212bo=1.02x sam212off=1.00x sam212bo+off=1.01x
+quality_qa_03_962 P 2595 n 192 plain 220; sam212fixed=1.16x pld38fixed=1.23x sam212bo=1.18x sam212off=1.17x sam212bo+off=1.18x
+bucket 10240 captured; tasks 12
+gov8k_01_676 P 5534 n 192 plain 217; sam212fixed=1.07x pld38fixed=1.09x sam212bo=1.08x sam212off=1.08x sam212bo+off=1.09x
+gov8k_04_827 P 5192 n 192 plain 217; sam212fixed=0.99x pld38fixed=0.99x sam212bo=1.01x sam212off=0.98x sam212bo+off=0.99x
+gov8k_05_35 P 5143 n 192 plain 217; sam212fixed=1.10x pld38fixed=1.04x sam212bo=1.08x sam212off=1.03x sam212bo+off=1.03x
+gov8k_07_749 P 5657 n 192 plain 217; sam212fixed=1.05x pld38fixed=1.01x sam212bo=1.06x sam212off=1.04x sam212bo+off=1.05x
+gov8k_08_622 P 5519 n 192 plain 217; sam212fixed=1.02x pld38fixed=1.06x sam212bo=1.02x sam212off=0.98x sam212bo+off=0.98x
+quality_qa_00_197 P 6453 n 192 plain 216; sam212fixed=1.64x pld38fixed=1.63x sam212bo=1.58x sam212off=1.37x sam212bo+off=1.36x
+quality_qa_01_361 P 6569 n 192 plain 216; sam212fixed=1.39x pld38fixed=1.36x sam212bo=1.35x sam212off=1.35x sam212bo+off=1.30x
+quality_qa_02_547 P 6459 n 192 plain 215; sam212fixed=1.37x pld38fixed=1.34x sam212bo=1.38x sam212off=1.39x sam212bo+off=1.40x
+quality_qa_04_31 P 6543 n 192 plain 215; sam212fixed=1.10x pld38fixed=1.12x sam212bo=1.13x sam212off=1.05x sam212bo+off=1.06x
+quality_qa_06_1662 P 7161 n 192 plain 216; sam212fixed=1.25x pld38fixed=1.28x sam212bo=1.23x sam212off=1.24x sam212bo+off=1.22x
+quality_qa_07_1140 P 6868 n 192 plain 216; sam212fixed=1.34x pld38fixed=1.30x sam212bo=1.33x sam212off=1.36x sam212bo+off=1.30x
+quality_qa_08_47 P 6526 n 192 plain 216; sam212fixed=1.41x pld38fixed=1.37x sam212bo=1.38x sam212off=1.37x sam212bo+off=1.34x
+REALTRAFFIC_DONE secs 748.3585917949677 est usd 0.8211156771083674
+{'secs': 748.3585917949677, 'rows': 726}
+✓ App completed. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-ZMMou3GHP9Fg60wMONjkuH
