@@ -29,3 +29,4 @@
 | 20261106T064800Z | ctx_batch run1 (ap-QTZcDdQdbs3jmaGllyYwHa) | A100-80GB | 161 | 0.11 | True |
 | 2026-11-06 01:56 | demo py_lru both | A100-80GB | 578 | 0.40 | wall incl. queue; trace in demo/traces |
 | 20261106T065947Z | kernel tunable sweep sweep1 (build 22s check 156s) | A100-80GB | 285 | 0.198 | True |
+| 20261106T074908Z | kernel tunable sweep combo1 (build 13s check 144s) | A100-80GB | 215 | 0.149 | True |

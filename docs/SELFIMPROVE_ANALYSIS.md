@@ -65,3 +65,6 @@ Correctness (check_cuda.py vs torch CPU ref, worst rel_l2 2.1e-4) PASS for basel
 | UNROLL_KS=2 / MINB6 / MINB8 / UNROLL_KS=1 | 0.871 / 0.799 / 0.733 / 0.724 | | MINB6,8 spill |
 
 So the baseline is NOT at a local optimum for speed: the 252-register full unroll costs ~4-5%; capping registers (KC=64, UNROLL_KS=4, MINB=3) recovers it. MINB>=6 and UNROLL_KS<=2 are strongly harmful, so the relaxed MINB cap of 8 is a trap, not a gain.
+
+### Combo sweep (MEASURED, A100-80GB, results/kernel_sweep_combo1_20261106T074908Z.jsonl, app ap-N1q7OiAH5UWFH8vxV9xgO8, all 13 configs correctness PASS)
+KC=64 alone gives dev 1.056 / held-out 1.043; adding UNROLL_KS or MINB (2/3, 4/8) changes it by <=0.4%, i.e. the effects do not stack (all just cap registers). Best: KC64+MINB3 1.057 (held 1.041). KC=32 (0.814) and KC64+UNROLL_KS2 (0.839) are strongly worse. Takeaway: KC=64 alone is a ~5.5% win; the tunable space is otherwise exhausted.
