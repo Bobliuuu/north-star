@@ -51,7 +51,8 @@ def pick_ctx_subset(tasks):
 
 
 @torch.no_grad()
-def run(m, tok, n_new=192, ctxs=(2048, 8192), emit=print, j=None):
+def run(m, tok, n_new=192, ctxs=(2048, 8192), emit=print, j=None, live=None):
+    live = live or LIVE
     ref = RefNorth(m)
     j = j or Jsonl()
     eos = m.config.eos_token_id
@@ -100,7 +101,7 @@ def run(m, tok, n_new=192, ctxs=(2048, 8192), emit=print, j=None):
                     r = pld.simulate(name, g, ids, toks, cost, eos)
                     j.add(phase="sim", cell=cname, task=t["id"], kind=t["kind"], split=t["split"], prompt_len=P, proposer=name, gamma=g, **r)
             # ---- live wall clock ----
-            for name, g in LIVE:
+            for name, g in live:
                 def verify(tcur, drafts):
                     T = 1 + len(drafts)
                     stp = steps[T]; stp.set([tcur[-1]] + drafts, len(tcur) - 1)
@@ -114,7 +115,7 @@ def run(m, tok, n_new=192, ctxs=(2048, 8192), emit=print, j=None):
                       identical=out == toks, first_div=fd, spec_tok_s=len(out) / dt, plain_tok_s=plain_tok_s, speedup_wall=(len(out) / dt) / plain_tok_s,
                       sim_speedup=sim["speedup"], sim_tok_per_round=sim["tok_per_round"], **pld.summarize_rounds(rounds, len(out)))
             emit(cname, t["id"], "plain", round(plain_tok_s, 1), "tok/s;", " ".join("%s_g%d=%.2fx" % (r["proposer"], r["gamma"], r["speedup_wall"])
-                 for r in map(__import__("json").loads, j.lines[-len(LIVE):])))
+                 for r in map(__import__("json").loads, j.lines[-len(live):])))
         del gn, kv, steps
         torch.cuda.empty_cache()
     return j
