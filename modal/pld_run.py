@@ -1,5 +1,5 @@
 """Zero-cost drafting (PLD / suffix / n-gram cache) live on H100 (graph capture needs H100: grouped_mm).
-  modal run --detach modal/pld.py::main --tag pld1
+  modal run --detach modal/pld_run.py::main --tag pld1
 Result JSONL -> Volume northstar-results:/pld_<tag>.jsonl. Fetch: modal volume get northstar-results pld_<tag>.jsonl results/"""
 import sys, time, json, pathlib
 sys.path.insert(0, "modal")

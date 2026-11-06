@@ -70,7 +70,7 @@ def run(m, tok, n_new=192, ctxs=(2048, 8192), emit=print, j=None):
         gn.eager_prefill(ids0[:-1], kv)
         cost = {}
         for T, s in steps.items():
-            s.set([ids0[-1]] * T, len(ids0) - 1); cost[T] = time_graph(s)[0]
+            s.set(ids0[-T:], len(ids0) - T); cost[T] = time_graph(s)[0]  # REAL tokens: repeated tokens would route to few experts and under-cost
         j.add(phase="cost_table", cell=cname, Lmax=Lmax, cost_ms={str(k): v for k, v in cost.items()})
         emit(cname, "graphs captured; cost T=1/4/9/13:", [round(cost[t], 2) for t in (1, 4, 9, 13)])
         for t in ts:
