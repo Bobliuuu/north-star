@@ -119,6 +119,9 @@ class Evaluator:
                 out["verdict"] = "timeout"; out["gates"]["correctness"] = G.GateResult("correctness", False, "timeout").to_dict(); return out
             if rb_.timed_out or not rb_.parsed:       # without a measured baseline the regress-vs-baseline check would silently vanish
                 out["verdict"] = "baseline_broken"; out["sandbox"]["error"] = "baseline correctness run failed/unparsable"; return out
+            gb = G.correctness_gate(rb_.parsed, None, c.correctness)   # the UNMODIFIED baseline must itself pass on this seed, else it is a harness/reference bug
+            if not gb.passed:
+                out["verdict"] = "baseline_broken"; out["sandbox"]["error"] = f"baseline fails its own correctness gate on seed {seed}: {gb.reason}"; out["gates"]["baseline_correctness"] = gb.to_dict(); return out
             g = G.correctness_gate(rc_.parsed, rb_.parsed, c.correctness); out["gates"]["correctness"] = g.to_dict()
             if not g.passed: out["verdict"] = "gate_fail:correctness"; return out
             # (2) held-out quality (fixed seed, paired)
@@ -129,7 +132,7 @@ class Evaluator:
             # (3) speed: interleaved A/B per split, order alternated to cancel drift
             splits = {}
             for split in ("dev", "heldout"):
-                b, k = [], []
+                b, k, tr = [], [], []
                 for base_first in abba_order(c.speed.n_runs):
                     order = (("b", wb), ("k", wc)) if base_first else (("k", wc), ("b", wb))
                     for tag, ws in order:
@@ -144,7 +147,13 @@ class Evaluator:
                                 out["gates"]["timer"] = tg.to_dict()
                                 out["gates"]["speed"] = G.GateResult("speed", False, f"{split}/{tag}: timer cross-check failed: {tg.reason}").to_dict()
                                 out["verdict"] = "gate_fail:timer"; return out
-                        (b if tag == "b" else k).append(float(j["time_ms"]))
+                        (b if tag == "b" else k).append(float(j["time_ms"])); tr.append((tag, j))
+                if c.timer is not None and c.timer.calibrate:       # relative check against the baseline's own harness overhead (see TimerSpec)
+                    tg = G.timer_calibrated(tr, c.timer); out["gates"][f"timer_{split}"] = tg.to_dict()
+                    if not tg.passed:
+                        out["gates"]["timer"] = tg.to_dict()
+                        out["gates"]["speed"] = G.GateResult("speed", False, f"{split}: timer cross-check failed: {tg.reason}").to_dict()
+                        out["verdict"] = "gate_fail:timer"; return out
                 splits[split] = (b, k)
             g = G.speed_gate(splits, c.speed); out["gates"]["speed"] = g.to_dict()
             out["verdict"] = "pass" if g.passed else "gate_fail:speed"
