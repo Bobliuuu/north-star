@@ -186,6 +186,7 @@ class Loop:
         if mode not in ("diff", "structured"): raise ValueError(mode)
         if track not in ("kernel", "policy"): raise ValueError(track)
         self.mode, self.track = mode, track
+        self.max_dup_retries = 3
         self.SM = SP if track == "policy" else ST          # structured-edit module of this track (parse_edits/render_diff/history_line)
         self.prior_history = list(prior_history or [])      # dev-only one-liners from earlier stores (see ST.history_from_store)
         self.cfg, self.store, self.proposer, self.ev = cfg, store, proposer, Evaluator(cfg)
@@ -201,6 +202,10 @@ class Loop:
         st.assert_healthy()                           # chained log, version contents and CURRENT must agree before we trust the baseline
         base_v = st.current(); base_files = st.files(base_v)
         history = list(self.prior_history) + [self.SM.history_line(r) for r in st.read_log() if r.get("event") == "proposal"]
+        if self.mode == "structured" and hasattr(self.SM, "TUNABLES"):     # neutral coverage hint: names only, North still chooses every value
+            tried = {e["name"] for r in st.read_log() if r.get("event") == "proposal" and r.get("verdict") not in ("invalid_edit", "duplicate_edit", "proposer_error")
+                     for e in (r.get("structured") or {}).get("edits", [])}
+            if history: history.append("Tunables NOT yet changed in any measured proposal: " + (", ".join(n for n in self.SM.TUNABLES if n not in tried) or "(none)"))
         req = ProposalRequest(base_version=base_v, files=base_files, scope_description=scope_description(cfg.scope),
                               profile_summary=profile_summary, dev_results=dev_results, history=history, mode=self.mode, track=self.track,
                               **({"temperature": temperature} if temperature is not None else {}))
@@ -298,4 +303,7 @@ class Loop:
                     self.store.log(dict(event="budget_stop", spent=spent)); return out
                 t = min(1.0, 0.3 + 0.25 * j) if proposals_per_round > 1 else None
                 out.append(self.step(rnd=i, temperature=t, **kw))
+                for k in range(self.max_dup_retries):         # duplicates cost no GPU evaluation: resample (hotter) instead of wasting the slot
+                    if out[-1].get("verdict") != "duplicate_edit": break
+                    out.append(self.step(rnd=i, temperature=min(1.0, (t or 0.3) + 0.2 * (k + 1)), **kw))
         return out
