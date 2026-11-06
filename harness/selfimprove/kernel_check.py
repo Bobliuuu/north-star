@@ -13,7 +13,11 @@ E = 16
 rng = random.Random(common.SEED * 7919 + 13)
 cases = [(16, 16, 8, 0), (1, 1, 1, 0)]                    # always cover the 2-row-tile path and the minimal path
 while len(cases) < 8:
-    cases.append((rng.randint(1, 16), rng.randint(1, 16), rng.randint(1, 8), rng.randint(0, 1)))
+    Tv_, Td_, r_, rn_ = rng.randint(1, 16), rng.randint(1, 16), rng.randint(1, 8), rng.randint(0, 1)
+    # HARNESS FIX (found by A100 seed sweep, results/harness_diag_diag1_*): moe_ref.reference() defines renorm only for k_use < TOPK, but the
+    # binary's check mode renormalizes draft weights even when r == TOPK. (r=8, renorm=1) made the UNMODIFIED BASELINE fail rel_l2 0.3-0.8 on
+    # ~1/3 of seeds (candidate "failures" gate_fail:correctness in run 4 were this, not North). Exclude the semantically undefined combo.
+    cases.append((Tv_, Td_, r_, 0 if r_ >= 8 else rn_))
 
 
 def run_case(ci, Tv, Td, r, rn, d):

@@ -27,6 +27,7 @@ def make_ws(name, over):
     open(p, "w").write(s)
     r = subprocess.run(["python", f"{ws}/harness/selfimprove/kernel_build.py"], env={**os.environ, "NS_NONCE": "x", "NS_WORKSPACE": ws}, capture_output=True, text=True)
     assert r.returncode == 0, r.stderr[-800:]
+    os.makedirs(f"{ws}/_scratch", exist_ok=True)
     return ws
 
 
@@ -62,7 +63,7 @@ def diag(n_seeds: int = 24, n_aa: int = 18):
         nm, s = a; seed = s * 7919 + 3; j, _ = run_h(ws[nm], "kernel_check.py", seed=seed)
         cs = j.get("cases", []); bad = [c["name"] for c in cs if not (c["rel_l2"] <= 1e-3)]
         return dict(variant=nm, seed=seed, worst=max([c["rel_l2"] for c in cs] or [None]), n=len(cs), bad=bad, err=j.get("error"))
-    with ThreadPoolExecutor(6) as ex: out["corr"] = list(ex.map(one, jobs))
+    with ThreadPoolExecutor(2) as ex: out["corr"] = list(ex.map(one, jobs))
     out["secs"] = time.time() - t0
     print("NS_DIAG_DONE", flush=True)
     return out
