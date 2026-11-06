@@ -8,7 +8,7 @@
 
   Commands (confirm cost first; nothing here runs unless you invoke it):
     modal run modal/selfimprove_eval.py::main --track kernel --proposer mock --rounds 1          # DRY RUN, mock, never North's
-    modal run modal/selfimprove_eval.py::main --track kernel --proposer north --rounds 1 --confirm-cost   # LIVE (needs deployed proposer); kernel default = structured edits, --mode diff for raw diffs
+    modal run modal/selfimprove_eval.py::main --track kernel --proposer north --rounds 1 --confirm-cost   # LIVE (needs deployed proposer); default mode = structured edits for kernel AND policy tracks, --mode diff for raw diffs
   Est. cost: see estimate_cost() (printed before every run; ~USD 0.8-1.2 per round after the first, A100-80GB @ $2.50/h list).
 """
 import json, os, pathlib, subprocess, sys, time
@@ -120,7 +120,7 @@ def run_loop_remote(p: dict) -> dict:
     cfg = H["make_config"](repo, track, require_measured_calibration=not mock)
     if mock:
         base = editable_files_in_repo(pathlib.Path(repo), cfg.scope)
-        prop = MockProposer(['{"edits":[{"name":"KC","value":128}],"rationale":"MOCK"}'] if p["mode"] == "structured" else [H["mock_diff"](track, base)])
+        prop = MockProposer([H["mock_structured"](track)] if p["mode"] == "structured" else [H["mock_diff"](track, base)])
     else:
         prop = NorthProposer()
     return run_remote_loop(p, pathlib.Path("/vol") / p["store"], cfg, prop, RemoteEvaluator(track),
@@ -134,9 +134,9 @@ def remote(track: str = "kernel", rounds: int = 1, proposer: str = "mock", max_u
     """Launch: `modal run --detach modal/selfimprove_eval.py::remote --track kernel --proposer mock --rounds 1`.
     The loop keeps running if this client dies. Pull results: `modal run modal/selfimprove_eval.py::pull --store NAME`."""
     dry = proposer == "mock"
-    mode = mode or ("structured" if track == "kernel" else "diff")
-    if mode not in ("structured", "diff") or (mode == "structured" and track != "kernel"):
-        raise SystemExit("--mode must be 'diff', or 'structured' (kernel track only)")
+    mode = mode or "structured"                                      # structured is the default for BOTH tracks
+    if mode not in ("structured", "diff"):
+        raise SystemExit("--mode must be 'structured' (default) or 'diff'")
     store = store or (f"selfimprove_dryrun_{track}" if dry else f"selfimprove_{track}")
     if dry and "dryrun" not in store: raise SystemExit("mock proposer must write to a store whose name contains 'dryrun'")
     if not dry and not confirm_cost: raise SystemExit("live North run needs --confirm-cost (spends GPU money on the proposer AND the evaluator)")
@@ -168,9 +168,9 @@ def main(track: str = "kernel", rounds: int = 1, proposer: str = "mock", max_usd
     import runpy
     H = runpy.run_path(str(ROOT / "harness/selfimprove/config.py"))
     dry = proposer == "mock"
-    mode = mode or ("structured" if track == "kernel" else "diff")      # structured edits are defined for the kernel tunables track only
-    if mode not in ("structured", "diff") or (mode == "structured" and track != "kernel"):
-        raise SystemExit("--mode must be 'diff', or 'structured' (kernel track only)")
+    mode = mode or "structured"                                      # structured is the default for BOTH tracks
+    if mode not in ("structured", "diff"):
+        raise SystemExit("--mode must be 'structured' (default) or 'diff'")
     store_dir = pathlib.Path(store or ROOT / "results" / (f"selfimprove_dryrun_{track}" if dry else f"selfimprove_{track}"))
     if dry and "dryrun" not in store_dir.name:
         raise SystemExit("mock proposer must write to a store whose directory name contains 'dryrun'")
@@ -187,10 +187,10 @@ def main(track: str = "kernel", rounds: int = 1, proposer: str = "mock", max_usd
     if dry:
         from selfimprove.loop import editable_files_in_repo
         base = editable_files_in_repo(ROOT, cfg.scope)
-        prop = MockProposer(['{"edits":[{"name":"KC","value":128}],"rationale":"MOCK"}'] if mode == "structured" else [H["mock_diff"](track, base)])
+        prop = MockProposer([H["mock_structured"](track)] if mode == "structured" else [H["mock_diff"](track, base)])
     else:
         prop = NorthProposer()
-    lp = Loop(cfg, st, prop, mode=mode)
+    lp = Loop(cfg, st, prop, mode=mode, track=track)
     lp.ev = RemoteEvaluator(track)
     res = lp.run(rounds, max_total_usd=max_usd, profile_summary=H["profile_summary"](track), dev_results=H["dev_results"](track))
     for r in res:
