@@ -15,8 +15,29 @@ Raw: `results/kvm_fused_A100-80GB_fullsweep_*.jsonl`.
 Caveats: one layer only; routing synthetic (real overlap unmeasured); part of the saving is removed launch cost, not shared loads; own kernel, not cohere-megakernel or KVM executor; A100 not H100.
 Correctness: fused == two-pass on all 6144 configs; rel L2 vs torch ref 1.4e-5..1.8e-4.
 
-## Real North numbers
-PENDING (baseline agent): routing traces and real overlap, G0 ceiling, greedy tok/s, accepted lengths.
+## Real North numbers (MEASURED, Modal A100-80GB, North rev d11e61a8, 15 tasks dev+calib, HF/RefNorth trace)
+Raw: `results/routing.jsonl`, `results/routing_traces.json`. Spend ~$0.19 so far.
+
+Real expert routing (48 MoE layers, top-8 of 128):
+| quantity | value |
+|---|---|
+| consecutive-token expert reuse (token t vs t-1, same layer) | **0.533** (Cohere blog: 0.38; independent: 0.0625) |
+| distinct experts in a block of K consecutive tokens, K=1/2/4/8/16 | 8.0 / 11.7 / 17.1 / 24.7 / 35.1 (independent would be ~8 / 15 / 28 / 50 / 80) |
+
+Verify blocks already share expert loads strongly. This is the real-routing counterpart to the synthetic "overlap" axis in the microbench (uniform 0.39 / corr75 0.84).
+
+Draft-vs-verifier expert coverage, SAME tokens (teacher-forced). Metric = fraction of the verifier's experts that the draft also loads. This is NOT the same as the fraction of draft loads that fall inside the verify set for FUTURE draft tokens, which is what fusion needs; that cross-token number is not yet measured.
+| draft | experts/token | verifier top-8 covered | verifier 8-token expert union covered |
+|---|---|---|---|
+| top-r=4 | 4 | 0.488 | 0.576 |
+| top-r=2 | 2 | 0.236 | 0.344 |
+| skip 8 layers | 8 | 0.826 | 0.845 |
+| skip 16 layers | 8 | 0.724 | 0.766 |
+| skip 8 + r=4 | 4 | 0.464 | 0.551 |
+
+INFERENCE (not measured): real consecutive-token overlap ~0.5 sits between the synthetic uniform (0.39, ~16% MoE-layer saving) and corr75 (0.84, ~27%) rows, so an MoE-layer saving of very roughly 15-25% is plausible. Cycle-level G0 still needs attention/LM-head costs and the cross-token draft overlap.
+
+PENDING (baseline agent): G0 ceiling, greedy tok/s, accepted-length distributions.
 
 ## Simulated / modeled
 - Joint optimizer (`docs/OPT.md`): on measured A100 MoE costs plus INVENTED acceptance, plain decode (~146 tok/s modeled) beats most speculative configs; only gamma=1 + fused wins (~+10%, entirely from invented carry-hit 0.6 / accept 0.9). Joint > independent by up to 11.5% in 36/48 synthetic scenarios. Not a speedup claim.
