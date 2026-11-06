@@ -1,0 +1,129 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-twoX9LH4XIEsXdoMboHoV8
+✓ Created objects.
+├── ✓ Uploaded <home>/north-star/modal/draft_sparse.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded <home>/north-star/src/northstar
+├── ✓ Uploaded <home>/north-star/tests
+├── ✓ Uploaded <home>/north-star/harness
+└── ✓ Created Function run_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:09, 40.56it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:17, 21.77it/s]
+[1ALoading weights:   6%|▌         | 22/394 [00:00<00:17, 21.60it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:23, 15.67it/s]
+[1ALoading weights:   8%|▊         | 33/394 [00:01<00:16, 21.28it/s]
+[1ALoading weights:   9%|▉         | 37/394 [00:02<00:23, 14.99it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:25, 14.03it/s]
+[1ALoading weights:  12%|█▏        | 46/394 [00:02<00:23, 14.94it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:03<00:24, 13.84it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:24, 13.50it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:24, 13.61it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:04<00:24, 13.04it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:23, 13.40it/s]
+[1ALoading weights:  20%|█▉        | 77/394 [00:05<00:23, 13.75it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:23, 13.39it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:06<00:22, 13.42it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:21, 13.86it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:07<00:20, 13.69it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:20, 13.59it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:08<00:20, 13.45it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:09<00:19, 13.20it/s]
+[1ALoading weights:  34%|███▍      | 133/394 [00:09<00:20, 12.86it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:09<00:19, 13.15it/s]
+[1ALoading weights:  36%|███▌      | 142/394 [00:09<00:17, 14.31it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:10<00:20, 12.25it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:10<00:19, 12.43it/s]
+[1ALoading weights:  40%|███▉      | 157/394 [00:11<00:18, 12.72it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:11<00:18, 12.35it/s]
+[1ALoading weights:  42%|████▏     | 165/394 [00:11<00:19, 11.52it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:12<00:16, 13.25it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:12<00:15, 14.29it/s]
+[1ALoading weights:  46%|████▌     | 181/394 [00:12<00:15, 14.01it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:13<00:14, 13.89it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:13<00:14, 13.54it/s]
+[1ALoading weights:  50%|█████     | 197/394 [00:14<00:14, 13.38it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:14<00:14, 13.54it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:15<00:12, 14.26it/s]
+[1ALoading weights:  54%|█████▍    | 213/394 [00:15<00:12, 13.94it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:15<00:11, 15.48it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:16<00:10, 15.23it/s]
+[1ALoading weights:  58%|█████▊    | 229/394 [00:16<00:10, 15.40it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:16<00:10, 15.51it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:17<00:09, 15.43it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:17<00:09, 15.38it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:18<00:08, 15.98it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:18<00:07, 16.09it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:19<00:07, 16.22it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:19<00:06, 16.36it/s]
+[1ALoading weights:  72%|███████▏  | 285/394 [00:19<00:06, 16.43it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:19<00:06, 16.48it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:20<00:05, 16.83it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:20<00:05, 17.07it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:21<00:04, 17.28it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:21<00:04, 16.04it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:22<00:03, 16.26it/s]
+[1ALoading weights:  85%|████████▍ | 333/394 [00:22<00:03, 16.40it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:22<00:03, 15.34it/s]
+[1ALoading weights:  87%|████████▋ | 341/394 [00:23<00:03, 14.97it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:23<00:03, 13.89it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:24<00:02, 14.74it/s]
+[1ALoading weights:  91%|█████████▏| 360/394 [00:24<00:01, 18.09it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:24<00:02, 13.78it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:25<00:01, 14.78it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:25<00:00, 15.11it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:26<00:00, 15.24it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:26<00:00, 15.06it/s]
+draft_sparse 2048 base_rNone 10.696
+draft_sparse 2048 slwin_rNone 11.132
+draft_sparse 2048 fixed256_rNone 11.437
+draft_sparse 2048 oracle256_rNone 12.125
+draft_sparse 2048 fixed1024_rNone 11.558
+draft_sparse 2048 oracle1024_rNone 12.271
+draft_sparse 2048 base_r4 9.795
+draft_sparse 2048 slwin_r4 10.301
+draft_sparse 2048 fixed256_r4 10.583
+draft_sparse 2048 oracle256_r4 11.298
+draft_sparse 2048 fixed1024_r4 10.724
+draft_sparse 2048 oracle1024_r4 11.437
+draft_sparse 8192 base_rNone 11.385
+draft_sparse 8192 slwin_rNone 11.743
+draft_sparse 8192 fixed256_rNone 11.832
+draft_sparse 8192 oracle256_rNone 13.033
+draft_sparse 8192 fixed1024_rNone 11.982
+draft_sparse 8192 oracle1024_rNone 13.21
+draft_sparse 8192 base_r4 10.475
+draft_sparse 8192 slwin_r4 10.884
+draft_sparse 8192 fixed256_r4 11.0
+draft_sparse 8192 oracle256_r4 12.194
+draft_sparse 8192 fixed1024_r4 11.136
+draft_sparse 8192 oracle1024_r4 12.389
+{"ctx": 2048, "graph_ms": 10.696256160736084, "mode": "base_rNone", "ms_max": 10.817567825317383, "ms_min": 10.659456253051758, "phase": "draft_sparse"}
+{"ctx": 2048, "graph_ms": 11.132208347320557, "mode": "slwin_rNone", "ms_max": 11.21513557434082, "ms_min": 11.113375663757324, "phase": "draft_sparse"}
+{"ctx": 2048, "graph_ms": 11.43668794631958, "mode": "fixed256_rNone", "ms_max": 11.518560409545898, "ms_min": 11.3919677734375, "phase": "draft_sparse"}
+{"ctx": 2048, "graph_ms": 12.12500810623169, "mode": "oracle256_rNone", "ms_max": 12.220704078674316, "ms_min": 12.104928016662598, "phase": "draft_sparse"}
+{"ctx": 2048, "graph_ms": 11.55787181854248, "mode": "fixed1024_rNone", "ms_max": 11.600480079650879, "ms_min": 11.519455909729004, "phase": "draft_sparse"}
+{"ctx": 2048, "graph_ms": 12.27132797241211, "mode": "oracle1024_rNone", "ms_max": 12.347519874572754, "ms_min": 12.260576248168945, "phase": "draft_sparse"}
+{"ctx": 2048, "graph_ms": 9.795216083526611, "mode": "base_r4", "ms_max": 9.904255867004395, "ms_min": 9.782976150512695, "phase": "draft_sparse"}
+{"ctx": 2048, "graph_ms": 10.301008224487305, "mode": "slwin_r4", "ms_max": 10.448800086975098, "ms_min": 10.264032363891602, "phase": "draft_sparse"}
+{"ctx": 2048, "graph_ms": 10.582672119140625, "mode": "fixed256_r4", "ms_max": 10.664352416992188, "ms_min": 10.557951927185059, "phase": "draft_sparse"}
+{"ctx": 2048, "graph_ms": 11.297791957855225, "mode": "oracle256_r4", "ms_max": 11.376864433288574, "ms_min": 11.282015800476074, "phase": "draft_sparse"}
+{"ctx": 2048, "graph_ms": 10.724352359771729, "mode": "fixed1024_r4", "ms_max": 10.857760429382324, "ms_min": 10.706432342529297, "phase": "draft_sparse"}
+{"ctx": 2048, "graph_ms": 11.437456130981445, "mode": "oracle1024_r4", "ms_max": 11.509056091308594, "ms_min": 11.4235200881958, "phase": "draft_sparse"}
+{"ctx": 8192, "graph_ms": 11.384655952453613, "mode": "base_rNone", "ms_max": 11.477727890014648, "ms_min": 11.35747241973877, "phase": "draft_sparse"}
+{"ctx": 8192, "graph_ms": 11.74300765991211, "mode": "slwin_rNone", "ms_max": 11.83187198638916, "ms_min": 11.726943969726562, "phase": "draft_sparse"}
+{"ctx": 8192, "graph_ms": 11.832143783569336, "mode": "fixed256_rNone", "ms_max": 11.952256202697754, "ms_min": 11.819840431213379, "phase": "draft_sparse"}
+{"ctx": 8192, "graph_ms": 13.032768249511719, "mode": "oracle256_rNone", "ms_max": 13.11302375793457, "ms_min": 13.01801586151123, "phase": "draft_sparse"}
+{"ctx": 8192, "graph_ms": 11.981535911560059, "mode": "fixed1024_rNone", "ms_max": 12.08233642578125, "ms_min": 11.963264465332031, "phase": "draft_sparse"}
+{"ctx": 8192, "graph_ms": 13.210127830505371, "mode": "oracle1024_rNone", "ms_max": 13.275296211242676, "ms_min": 13.190688133239746, "phase": "draft_sparse"}
+{"ctx": 8192, "graph_ms": 10.474607944488525, "mode": "base_r4", "ms_max": 10.534144401550293, "ms_min": 10.461824417114258, "phase": "draft_sparse"}
+{"ctx": 8192, "graph_ms": 10.884191989898682, "mode": "slwin_r4", "ms_max": 10.956352233886719, "ms_min": 10.867327690124512, "phase": "draft_sparse"}
+{"ctx": 8192, "graph_ms": 10.999663829803467, "mode": "fixed256_r4", "ms_max": 11.083135604858398, "ms_min": 10.969120025634766, "phase": "draft_sparse"}
+{"ctx": 8192, "graph_ms": 12.194447994232178, "mode": "oracle256_r4", "ms_max": 12.274527549743652, "ms_min": 12.180352210998535, "phase": "draft_sparse"}
+{"ctx": 8192, "graph_ms": 11.136208057403564, "mode": "fixed1024_r4", "ms_max": 11.22652816772461, "ms_min": 11.117919921875, "phase": "draft_sparse"}
+{"ctx": 8192, "graph_ms": 12.389328002929688, "mode": "oracle1024_r4", "ms_max": 12.475839614868164, "ms_min": 12.375264167785645, "phase": "draft_sparse"}
+
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-twoX9LH4XIEsXdoMboHoV8

@@ -32,3 +32,6 @@
 | 20261106T074908Z | kernel tunable sweep combo1 (build 13s check 144s) | A100-80GB | 215 | 0.149 | True |
 | 20261106T072300Z | ctx_batch run2 (ap-ib0aezTWzOUPOaSI9I3RkL) | A100-80GB | 482 | 0.33 | True (mixed cell OOM, rerun as run3) |
 | 20261106T082100Z | ctx_batch run3 mixed (ap-ACwkUWV6NOmw6pSni19K3V, ap-X66dz8pjfyQZaZtcsnE9pU) | A100-80GB | 0 | 0.00 | never scheduled, stopped |
+| 2026-11-06 09:00 | approx_sweep_smoke1 | A100-80GB | 97 | 0.07 |  |
+| 2026-11-06 09:08 | approx_sweep_quick1 | A100-80GB | 148 | 0.10 |  |
+| 2026-11-06 10:08 | draft_sparse_ds4 | H100 | 82 | nan |  |
