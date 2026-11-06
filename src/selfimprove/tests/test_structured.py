@@ -149,3 +149,18 @@ def test_diff_mode_still_works(toy, tmp_path):
     st = Store(tmp_path / "s")
     rec = loop.Loop(toy, st, P.MockProposer(["```diff\n```"]), mode="diff").step()
     assert rec["verdict"] == "no_change"
+
+
+def test_audit_shape_rule_ignores_comment_numbers():
+    """Regression: '(<= 16)' inside a trailing // comment must not trigger shape_specialization (live North run, 2026-11-06)."""
+    from selfimprove.audit import audit_diff
+    from selfimprove.diffs import parse
+    from selfimprove.policy import DEFAULT_SCOPE
+    d = ("--- a/src/kvm/moe_fused.cu\n+++ b/src/kvm/moe_fused.cu\n@@ -1,1 +1,1 @@\n"
+         "-constexpr int MT_SPLIT = 16;           // experts with pair_cnt > MT_SPLIT use the 2-row-tile path (<= 16)\n"
+         "+constexpr int MT_SPLIT = 8;           // experts with pair_cnt > MT_SPLIT use the 2-row-tile path (<= 16)\n")
+    f = audit_diff(parse(d, DEFAULT_SCOPE), dev_only_shapes={16}, bench_shapes={8, 16})
+    assert not [x for x in f if x.code == "shape_specialization" and x.severity == "reject"]
+    d2 = d.replace("+constexpr int MT_SPLIT = 8;           // experts", "+if (n == 16) return;  // experts")
+    f2 = audit_diff(parse(d2, DEFAULT_SCOPE), dev_only_shapes={16}, bench_shapes={8, 16})
+    assert [x for x in f2 if x.code == "shape_specialization" and x.severity == "reject"]
