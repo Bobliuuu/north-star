@@ -1,0 +1,9 @@
+{"name": "base_R8_real", "R": 8, "U": 0, "layers": 49, "bs": 1, "active_rows": 1, "real": true, "tpot_ms": 3.340065517647092, "mean_step_ms": 3.3401, "jit_ms": 14853.096373, "rc": 0, "wall_s": 85.2, "tail": ""}
+{"name": "R4_real", "R": 4, "U": 0, "layers": 49, "bs": 1, "active_rows": 1, "real": true, "tpot_ms": 2.712125066666687, "mean_step_ms": 2.7121, "jit_ms": 14415.047035000001, "rc": 0, "wall_s": 34.1, "tail": ""}
+{"name": "R2_real", "R": 2, "U": 0, "layers": 49, "bs": 1, "active_rows": 1, "real": true, "tpot_ms": 2.629408364705854, "mean_step_ms": 2.6294, "jit_ms": 14311.666708000019, "rc": 0, "wall_s": 34.9, "tail": ""}
+{"name": "R1_real", "R": 1, "U": 0, "layers": 49, "bs": 1, "active_rows": 1, "real": true, "tpot_ms": 2.586919631372599, "mean_step_ms": 2.5869, "jit_ms": 14360.182075999972, "rc": 0, "wall_s": 33.6, "tail": ""}
+{"name": "base_R8_syn", "R": 8, "U": 0, "layers": 49, "bs": 1, "active_rows": 1, "real": false, "tpot_ms": 3.42387185882346, "mean_step_ms": 3.4239, "jit_ms": 45.60142699997982, "rc": 0, "wall_s": 7.2, "tail": ""}
+{"name": "L41_R8_syn", "R": 8, "U": 0, "layers": 41, "bs": 1, "active_rows": 1, "real": false, "tpot_ms": 2.9412903843137883, "mean_step_ms": 2.9413, "jit_ms": 45.84800799997879, "rc": 0, "wall_s": 6.8, "tail": ""}
+{"name": "L41_R4_syn", "R": 4, "U": 0, "layers": 41, "bs": 1, "active_rows": 1, "real": false, "tpot_ms": 2.404435741176574, "mean_step_ms": 2.4044, "jit_ms": 42.64373899999896, "rc": 0, "wall_s": 6.7, "tail": ""}
+{"name": "L33_R4_syn", "R": 4, "U": 0, "layers": 33, "bs": 1, "active_rows": 1, "real": false, "tpot_ms": 1.9748079921568849, "mean_step_ms": 1.9748, "jit_ms": 49.17549500001428, "rc": 0, "wall_s": 6.8, "tail": ""}
+{"name": "L41_R2_syn", "R": 2, "U": 0, "layers": 41, "bs": 1, "active_rows": 1, "real": false, "tpot_ms": 2.242654976470583, "mean_step_ms": 2.2427, "jit_ms": 45.47888900000885, "rc": 0, "wall_s": 7.0, "tail": ""}
