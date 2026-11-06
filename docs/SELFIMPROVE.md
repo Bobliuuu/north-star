@@ -65,8 +65,8 @@ Done (developer-authored, outside North's reach):
 Launch (confirm cost first; est. in `estimate_cost`: kernel track ~USD 1.1 for round 1 incl. proposer cold start, ~USD 0.9 per later round; dry run ~USD 0.7):
 ```
 modal deploy src/selfimprove/modal_north.py          # proposer (once; weights already in Volume northstar-weights)
-modal run modal/selfimprove_eval.py --track kernel --proposer mock  --rounds 1                      # DRY RUN, mock, store results/selfimprove_dryrun_kernel
-modal run modal/selfimprove_eval.py --track kernel --proposer north --rounds 1 --confirm-cost --max-usd 3   # LIVE round 1
+modal run modal/selfimprove_eval.py::main --track kernel --proposer mock  --rounds 1                      # DRY RUN, mock, store results/selfimprove_dryrun_kernel
+modal run modal/selfimprove_eval.py::main --track kernel --proposer north --rounds 1 --confirm-cost --max-usd 3   # LIVE round 1
 ```
 Live runs write `results/selfimprove_kernel/`; mock runs refuse any store whose name lacks `dryrun` and a store with a mixed lineage.
 Policy track (`--track policy`) refuses a live run until `results/accept_calibration.jsonl` (MEASURED acceptance, Phase 2) exists: today only
@@ -100,7 +100,16 @@ Diff mode remains available (`--mode diff`). The prompt shows the dev profile an
 
 Launch (live, GPU spend; confirm cost first; proposer must be deployed, `modal deploy src/selfimprove/modal_north.py`):
 
-    modal run modal/selfimprove_eval.py --track kernel --proposer north --mode structured --rounds 3 --max-usd 5 --confirm-cost --store results/selfimprove_kernel_structured
+    modal run modal/selfimprove_eval.py::main --track kernel --proposer north --mode structured --rounds 3 --max-usd 5 --confirm-cost --store results/selfimprove_kernel_structured
 
 ## Harness changes made after live North runs (disclosure)
 - 2026-11-06: `audit.py` shape-specialization rule now ignores `//` comment text. Live structured run 1 (`results/selfimprove_kernel_structured/`, 3 rounds, all `audit_reject`) was rejected because the `MT_SPLIT` line's comment contains `(<= 16)` and 16 is a dev-only shape; any edit to that line would have been rejected. This was changed AFTER seeing the rejection; the rejected run is kept as-is. Real conditionals on dev-only shapes are still rejected (regression test in `test_structured.py`). The held-out-shape speed gate is unchanged.
+
+## Remote (laptop-proof) loop
+The local `::main` entrypoint dies with the client. `::remote` runs the loop in a CPU Modal function (`run_loop_remote`, 24 h timeout) that calls `evaluate_candidate` (GPU, network blocked) and the deployed `NorthProposerService`. The store (`proposals.jsonl`, `versions/`, `CURRENT`) lives on Volume `northstar-selfimprove-store:/<store>`, committed after every log/version write; each proposal record is also printed to app logs as `NS_PROPOSAL_JSON {...}` (final summary `NS_LOOP_DONE`). Loop/Store/audit/gates/attribution/hash chain are unchanged (`src/selfimprove/remote_loop.py` only adds emit/commit hooks). Same guards as `::main` (`--confirm-cost`; mock needs a `dryrun` store name; mixed-lineage refusal). Re-running with the same `--store` continues the chain.
+```
+modal run --detach modal/selfimprove_eval.py::remote --track kernel --proposer mock --rounds 1     # dry run (mock proposer; still uses the GPU evaluator, ~USD 0.7)
+modal run --detach modal/selfimprove_eval.py::remote --track kernel --proposer north --mode structured --rounds 3 --max-usd 5 --confirm-cost --store selfimprove_kernel_structured2   # LIVE, GPU spend
+modal run modal/selfimprove_eval.py::pull --store selfimprove_kernel_structured2   # Volume -> results/<store>, verifies chain, refuses diverged local log
+modal app logs <app-id> | grep NS_PROPOSAL_JSON
+```
