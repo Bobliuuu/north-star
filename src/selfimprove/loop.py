@@ -55,7 +55,7 @@ class Evaluator:
         nonce = secrets.token_hex(16)
         r = S.run(cmd, ws.root, timeout, {**(env or {}), "NS_NONCE": nonce})
         ws.verify()                       # raises SandboxViolation
-        r.parsed = r.json(nonce)
+        r.parsed = r.json(nonce) if (r.rc == 0 and not r.timed_out) else None   # crashed/hung harness: any line it printed is untrusted
         return r
 
     def evaluate(self, base_files: dict[str, str], new_files: dict[str, str]) -> dict:
@@ -80,12 +80,15 @@ class Evaluator:
                     if r.rc != 0:
                         out["verdict"] = ("build_timeout" if r.timed_out else "build_fail") if tag == "cand" else "baseline_broken"
                         return out
+            wb.freeze_build(); wc.freeze_build()      # build/ is read-only evidence from here on (binary swap / planted files = violation)
             # (1) correctness: fresh unpredictable seed, same for base and cand within this evaluation
             seed = secrets.randbits(48); out["seeds"]["correctness"] = seed
             rc_ = self._run(wc, c.correctness_cmd, c.check_timeout_s, {"NS_SEED": str(seed)})
             rb_ = self._run(wb, c.correctness_cmd, c.check_timeout_s, {"NS_SEED": str(seed)})
             if rc_.timed_out:
                 out["verdict"] = "timeout"; out["gates"]["correctness"] = G.GateResult("correctness", False, "timeout").to_dict(); return out
+            if rb_.timed_out or not rb_.parsed:       # without a measured baseline the regress-vs-baseline check would silently vanish
+                out["verdict"] = "baseline_broken"; out["sandbox"]["error"] = "baseline correctness run failed/unparsable"; return out
             g = G.correctness_gate(rc_.parsed, rb_.parsed, c.correctness); out["gates"]["correctness"] = g.to_dict()
             if not g.passed: out["verdict"] = "gate_fail:correctness"; return out
             # (2) held-out quality (fixed seed, paired)
@@ -112,6 +115,8 @@ class Evaluator:
             return out
         except S.SandboxViolation as e:
             out["verdict"] = "sandbox_violation"; out["sandbox"]["error"] = str(e); return out
+        except Exception as e:                    # a gate/harness bug must be a logged non-promotion, never a crash that loses the record
+            out["verdict"] = "evaluator_error"; out["sandbox"]["error"] = repr(e)[:500]; return out
         finally:
             for w in (wb, wc):
                 if w is not None and not c.keep_workspaces: w.cleanup()
@@ -140,9 +145,13 @@ class Loop:
         self.allow_mock_promotion = allow_mock_promotion
         if store.current() is None:
             store.init_baseline(editable_files_in_repo(cfg.repo, cfg.scope))
+        else:
+            store.recover()                           # finish a promotion/rollback that was logged but not applied (crash)
+            store.assert_healthy()
 
     def step(self, profile_summary: str = "", dev_results: str = "", rnd: int = 0) -> dict:
         cfg, st = self.cfg, self.store
+        st.assert_healthy()                           # chained log, version contents and CURRENT must agree before we trust the baseline
         base_v = st.current(); base_files = st.files(base_v)
         history = list(self.prior_history) + [ST.history_line(r) for r in st.read_log() if r.get("event") == "proposal"]
         req = ProposalRequest(base_version=base_v, files=base_files, scope_description=scope_description(cfg.scope),
@@ -200,11 +209,17 @@ class Loop:
         if av == "reject":
             return finish("audit_reject")
         ev = self.ev.evaluate(base_files, new_files)
-        rec.update(gates=ev["gates"], sandbox=ev["sandbox"], seeds=ev["seeds"])
+        rec.update(gates=ev.get("gates") or {}, sandbox=ev.get("sandbox") or {}, seeds=ev.get("seeds") or {})
         cost["eval_wall_s"] = ev.get("eval_wall_s", 0.0); cost["eval_usd"] = cost["eval_wall_s"] / 3600 * cfg.usd_per_hour
-        verdict = ev["verdict"]
+        verdict = ev.get("verdict")
+        if verdict == "pass":
+            # defense in depth (the evaluator may be remote): a bare "pass" is not enough, every gate must be recorded AND passed
+            gs = ev.get("gates") or {}
+            if not all(isinstance(gs.get(k), dict) and gs[k].get("passed") is True for k in ("correctness", "quality", "speed")):
+                rec["reason"] = "evaluator said pass but not all of correctness/quality/speed are recorded as passed"
+                return finish("gate_missing")
         if verdict != "pass":
-            return finish(verdict)
+            return finish(verdict or "evaluator_error")
         if av == "flag":
             return finish("needs_review")          # passed all gates but static audit flagged: human decides, never auto-promoted
         if mock and not self.allow_mock_promotion:

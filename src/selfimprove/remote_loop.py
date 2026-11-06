@@ -64,7 +64,11 @@ def run_remote_loop(p: dict, store_dir: Path, cfg, proposer, evaluator, profile_
 
 def pull_tree(listdir, read_file, remote_dir: str, dest: Path) -> list[str]:
     """Generic recursive pull. listdir(path)->[(path, is_dir)]; read_file(path)->bytes. Returns written relative paths.
-    Refuses to overwrite a dest whose proposals.jsonl is not a prefix of the incoming one (never clobber local history)."""
+    Safety: (1) refuses to overwrite a dest whose proposals.jsonl is not a prefix of the incoming one (never clobber local
+    history); (2) every incoming path must stay under dest (no `..`/absolute); (3) the incoming store is STAGED in a temp dir and
+    must pass the chain + version/CURRENT consistency check BEFORE anything in dest is touched; (4) files are installed versions
+    first, log next, CURRENT last, so an interrupted install never leaves CURRENT pointing at a missing version."""
+    import shutil, tempfile
     dest = Path(dest); remote_dir = remote_dir.strip("/")
     files, stack = [], [remote_dir]
     while stack:
@@ -73,12 +77,30 @@ def pull_tree(listdir, read_file, remote_dir: str, dest: Path) -> list[str]:
             path = path.strip("/")
             (stack if is_dir else files).append(path)
     if not files: raise SystemExit(f"nothing found under {remote_dir} in the Volume")
-    blobs = {f[len(remote_dir):].lstrip("/"): read_file(f) for f in files}
+    blobs = {}
+    for f in files:
+        rel = f[len(remote_dir):].lstrip("/")
+        parts = rel.split("/")
+        if not rel or rel.startswith("/") or ".." in parts or "" in parts or "\\" in rel:
+            raise SystemExit(f"refusing: unsafe path in Volume listing: {f!r}")
+        blobs[rel] = read_file(f)
     old = dest / "proposals.jsonl"
     if old.exists() and "proposals.jsonl" in blobs and not blobs["proposals.jsonl"].startswith(old.read_bytes()):
         raise SystemExit(f"refusing: local {old} is not a prefix of the remote log (diverged); pull into a fresh --dest")
-    for rel, b in blobs.items():
-        t = dest / rel; t.parent.mkdir(parents=True, exist_ok=True); t.write_bytes(b)
+    stage = Path(tempfile.mkdtemp(prefix="ns_pull_"))
+    try:
+        for rel, b in blobs.items():
+            t = stage / rel; t.parent.mkdir(parents=True, exist_ok=True); t.write_bytes(b)
+        try:
+            Store(stage).assert_healthy(allow_pending=True)
+        except Exception as e:
+            print(f"BAD INCOMING STORE: {e}", file=sys.stderr)
+            raise SystemExit(1)
+        rank = lambda r: (2 if r == "CURRENT" else 1 if r == "proposals.jsonl" else 0, r)
+        for rel in sorted(blobs, key=rank):
+            t = dest / rel; t.parent.mkdir(parents=True, exist_ok=True); t.write_bytes(blobs[rel])
+    finally:
+        shutil.rmtree(stage, ignore_errors=True)
     ok = Store(dest).verify_log()
     print("log chain OK" if ok else "LOG CHAIN BROKEN", file=sys.stderr)
     if not ok: raise SystemExit(1)
