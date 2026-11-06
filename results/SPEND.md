@@ -36,3 +36,4 @@
 | 2026-11-06 09:08 | approx_sweep_quick1 | A100-80GB | 148 | 0.10 |  |
 | 2026-11-06 10:08 | draft_sparse_ds4 | H100 | 82 | nan |  |
 | 2026-11-06 10:39 | fast_exec_fx1 | H100 | 94 | nan |  |
+| 2026-11-06 10:41 | fast_exec_fx2dbg | H100 | 38 | nan |  |

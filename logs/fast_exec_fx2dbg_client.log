@@ -1,0 +1,118 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-YbrJxAQgqpQG5XeYQ27wfN
+✓ Created objects.
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a0ca33d96a765adf1/modal/fast
+│   _exec.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a0ca33d96a765adf1/tests
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a0ca33d96a765adf1/src/norths
+│   tar
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a0ca33d96a765adf1/harness
+└── ✓ Created Function run_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:08, 46.22it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:16, 23.42it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:19, 19.26it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:20, 17.52it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:21, 16.45it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:21, 16.14it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:20, 15.95it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:03<00:20, 16.29it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:03<00:21, 15.52it/s]
+[1ALoading weights:  18%|█▊        | 71/394 [00:03<00:17, 18.01it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:21, 14.86it/s]
+[1ALoading weights:  20%|█▉        | 77/394 [00:04<00:20, 15.11it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:04<00:20, 15.35it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:19, 15.53it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:05<00:19, 15.51it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:06<00:19, 15.33it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:06<00:18, 15.84it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:06<00:17, 15.83it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:17, 15.86it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:07<00:16, 15.80it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:08<00:16, 15.76it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:08<00:15, 15.69it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:09<00:15, 15.66it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:10<00:14, 15.50it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:10<00:14, 15.65it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:11<00:13, 15.66it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:11<00:13, 15.75it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:12<00:12, 15.78it/s]
+[1ALoading weights:  50%|█████     | 197/394 [00:12<00:12, 16.04it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:12<00:12, 15.81it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:13<00:11, 15.91it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:13<00:10, 15.94it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:14<00:10, 15.92it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:14<00:09, 15.97it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:15<00:09, 16.00it/s]
+[1ALoading weights:  62%|██████▏   | 245/394 [00:15<00:09, 16.19it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:15<00:08, 15.90it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:16<00:08, 15.70it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:16<00:07, 15.92it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:17<00:07, 15.94it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:17<00:06, 15.99it/s]
+[1ALoading weights:  74%|███████▎  | 290/394 [00:17<00:05, 20.38it/s]
+[1ALoading weights:  75%|███████▍  | 294/394 [00:18<00:06, 15.55it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:18<00:06, 14.96it/s]
+[1ALoading weights:  77%|███████▋  | 302/394 [00:18<00:05, 16.12it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:19<00:05, 15.09it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:19<00:05, 15.44it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:20<00:04, 15.52it/s]
+[1ALoading weights:  82%|████████▏ | 325/394 [00:20<00:04, 15.73it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:20<00:03, 15.83it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:21<00:03, 15.94it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:21<00:02, 15.95it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:22<00:02, 15.91it/s]
+[1ALoading weights:  91%|█████████ | 357/394 [00:22<00:02, 15.87it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:22<00:01, 16.23it/s]
+[1ALoading weights:  93%|█████████▎| 365/394 [00:22<00:01, 16.19it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:23<00:01, 16.17it/s]
+[1ALoading weights:  95%|█████████▍| 373/394 [00:23<00:01, 15.96it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:23<00:00, 16.18it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:23<00:00, 16.17it/s]Loading weights: 100%|██████████| 394/394 [00:23<00:00, 16.42it/s]
+debug py_interval base 2110 2110 vs truth 0.773 vs base 0.000
+debug py_interval attn 2110 2110 vs truth 0.727 vs base 0.531
+debug py_interval moe 2110 2110 vs truth 0.750 vs base 0.188
+debug py_interval router+moe 2110 2110 vs truth 0.750 vs base 0.188
+debug py_interval router+moe+resid 2110 2110 vs truth 0.750 vs base 0.188
+debug py_interval attn+resid 2110 2110 vs truth 0.727 vs base 0.531
+debug py_interval all 2110 2110 vs truth 0.805 vs base 0.438
+debug py_interval router 2110 2110 vs truth 0.773 vs base 0.000
+debug py_interval resid 2110 2110 vs truth 0.773 vs base 0.000
+debug code_ctx2048 base 669 669 vs truth 0.688 vs base 0.000
+debug code_ctx2048 attn 669 669 vs truth 0.945 vs base 0.781
+debug code_ctx2048 moe 669 669 vs truth 0.750 vs base 0.438
+debug code_ctx2048 router+moe 669 669 vs truth 0.750 vs base 0.438
+debug code_ctx2048 router+moe+resid 669 669 vs truth 0.750 vs base 0.438
+debug code_ctx2048 attn+resid 669 669 vs truth 0.945 vs base 0.781
+debug code_ctx2048 all 669 669 vs truth 0.926 vs base 0.844
+debug code_ctx2048 router 669 669 vs truth 0.688 vs base 0.000
+debug code_ctx2048 resid 669 669 vs truth 0.688 vs base 0.000
+{"argmax": 2110, "config": "base", "logit_of_truth_tok": 24.0, "maxabs_vs_base": 0.0, "maxabs_vs_truth": 0.7734375, "phase": "debug_logits", "task": "py_interval", "top2_of_this": [2110, 669], "truth_argmax": 2110, "truth_top2": [24.0, 22.625]}
+{"argmax": 2110, "config": "attn", "logit_of_truth_tok": 23.875, "maxabs_vs_base": 0.53125, "maxabs_vs_truth": 0.7265625, "phase": "debug_logits", "task": "py_interval", "top2_of_this": [2110, 669], "truth_argmax": 2110, "truth_top2": [24.0, 22.625]}
+{"argmax": 2110, "config": "moe", "logit_of_truth_tok": 24.0, "maxabs_vs_base": 0.1875, "maxabs_vs_truth": 0.75, "phase": "debug_logits", "task": "py_interval", "top2_of_this": [2110, 669], "truth_argmax": 2110, "truth_top2": [24.0, 22.625]}
+{"argmax": 2110, "config": "router+moe", "logit_of_truth_tok": 24.0, "maxabs_vs_base": 0.1875, "maxabs_vs_truth": 0.75, "phase": "debug_logits", "task": "py_interval", "top2_of_this": [2110, 669], "truth_argmax": 2110, "truth_top2": [24.0, 22.625]}
+{"argmax": 2110, "config": "router+moe+resid", "logit_of_truth_tok": 24.0, "maxabs_vs_base": 0.1875, "maxabs_vs_truth": 0.75, "phase": "debug_logits", "task": "py_interval", "top2_of_this": [2110, 669], "truth_argmax": 2110, "truth_top2": [24.0, 22.625]}
+{"argmax": 2110, "config": "attn+resid", "logit_of_truth_tok": 23.875, "maxabs_vs_base": 0.53125, "maxabs_vs_truth": 0.7265625, "phase": "debug_logits", "task": "py_interval", "top2_of_this": [2110, 669], "truth_argmax": 2110, "truth_top2": [24.0, 22.625]}
+{"argmax": 2110, "config": "all", "logit_of_truth_tok": 23.875, "maxabs_vs_base": 0.4375, "maxabs_vs_truth": 0.8046875, "phase": "debug_logits", "task": "py_interval", "top2_of_this": [2110, 669], "truth_argmax": 2110, "truth_top2": [24.0, 22.625]}
+{"argmax": 2110, "config": "router", "logit_of_truth_tok": 24.0, "maxabs_vs_base": 0.0, "maxabs_vs_truth": 0.7734375, "phase": "debug_logits", "task": "py_interval", "top2_of_this": [2110, 669], "truth_argmax": 2110, "truth_top2": [24.0, 22.625]}
+{"argmax": 2110, "config": "resid", "logit_of_truth_tok": 24.0, "maxabs_vs_base": 0.0, "maxabs_vs_truth": 0.7734375, "phase": "debug_logits", "task": "py_interval", "top2_of_this": [2110, 669], "truth_argmax": 2110, "truth_top2": [24.0, 22.625]}
+{"argmax": 669, "config": "base", "logit_of_truth_tok": 21.625, "maxabs_vs_base": 0.0, "maxabs_vs_truth": 0.6875, "phase": "debug_logits", "task": "code_ctx2048", "top2_of_this": [669, 2110], "truth_argmax": 669, "truth_top2": [21.75, 20.25]}
+{"argmax": 669, "config": "attn", "logit_of_truth_tok": 21.625, "maxabs_vs_base": 0.78125, "maxabs_vs_truth": 0.9453125, "phase": "debug_logits", "task": "code_ctx2048", "top2_of_this": [669, 2110], "truth_argmax": 669, "truth_top2": [21.75, 20.25]}
+{"argmax": 669, "config": "moe", "logit_of_truth_tok": 21.75, "maxabs_vs_base": 0.4375, "maxabs_vs_truth": 0.75, "phase": "debug_logits", "task": "code_ctx2048", "top2_of_this": [669, 2110], "truth_argmax": 669, "truth_top2": [21.75, 20.25]}
+{"argmax": 669, "config": "router+moe", "logit_of_truth_tok": 21.75, "maxabs_vs_base": 0.4375, "maxabs_vs_truth": 0.75, "phase": "debug_logits", "task": "code_ctx2048", "top2_of_this": [669, 2110], "truth_argmax": 669, "truth_top2": [21.75, 20.25]}
+{"argmax": 669, "config": "router+moe+resid", "logit_of_truth_tok": 21.75, "maxabs_vs_base": 0.4375, "maxabs_vs_truth": 0.75, "phase": "debug_logits", "task": "code_ctx2048", "top2_of_this": [669, 2110], "truth_argmax": 669, "truth_top2": [21.75, 20.25]}
+{"argmax": 669, "config": "attn+resid", "logit_of_truth_tok": 21.625, "maxabs_vs_base": 0.78125, "maxabs_vs_truth": 0.9453125, "phase": "debug_logits", "task": "code_ctx2048", "top2_of_this": [669, 2110], "truth_argmax": 669, "truth_top2": [21.75, 20.25]}
+{"argmax": 669, "config": "all", "logit_of_truth_tok": 21.625, "maxabs_vs_base": 0.84375, "maxabs_vs_truth": 0.92578125, "phase": "debug_logits", "task": "code_ctx2048", "top2_of_this": [669, 2110], "truth_argmax": 669, "truth_top2": [21.75, 20.25]}
+{"argmax": 669, "config": "router", "logit_of_truth_tok": 21.625, "maxabs_vs_base": 0.0, "maxabs_vs_truth": 0.6875, "phase": "debug_logits", "task": "code_ctx2048", "top2_of_this": [669, 2110], "truth_argmax": 669, "truth_top2": [21.75, 20.25]}
+{"argmax": 669, "config": "resid", "logit_of_truth_tok": 21.625, "maxabs_vs_base": 0.0, "maxabs_vs_truth": 0.6875, "phase": "debug_logits", "task": "code_ctx2048", "top2_of_this": [669, 2110], "truth_argmax": 669, "truth_top2": [21.75, 20.25]}
+
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-YbrJxAQgqpQG5XeYQ27wfN
