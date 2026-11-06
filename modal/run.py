@@ -120,6 +120,20 @@ def spec_remote(quick: bool = False):
     return _timed(go)
 
 
+@app.function(**GPUKW, timeout=1800)
+def routing_remote(quick: bool = False):
+    _setup()
+    def go():
+        import json
+        from common import env_meta
+        from loader import load_model
+        import bench_routing
+        m, tok = load_model(MODEL_DIR, "grouped_mm")
+        j, traces = bench_routing.run(m, tok, n_new=16 if quick else 48)
+        return {"jsonl": j.text(), "meta": env_meta(), "traces": json.dumps(traces)}
+    return _timed(go)
+
+
 @app.function(timeout=1200, cpu=4)
 def tests_remote():
     import subprocess
@@ -153,6 +167,14 @@ def ceiling(quick: bool = False):
 @app.local_entrypoint()
 def spec(quick: bool = False):
     _finish("spec", spec_remote.remote(quick), quick)
+
+
+@app.local_entrypoint()
+def routing(quick: bool = False):
+    r = routing_remote.remote(quick)
+    RES.mkdir(exist_ok=True)
+    (RES / "routing_traces.json").write_text(r.pop("traces"))
+    _finish("routing", r, quick)
 
 
 @app.local_entrypoint()

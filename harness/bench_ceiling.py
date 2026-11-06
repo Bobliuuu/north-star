@@ -56,7 +56,7 @@ def run(m, tok, quick=False):
     eb = expert_bytes(m)
     j.add(phase="0.3_model_bytes", **eb, hbm_gbps_a100_80_peak=2039)
     code = [r for r in by_split(load_workloads(), "dev") if r["kind"] == "code"]
-    cells = [(1, 2048), (4, 2048)] if quick else [(1, 2048), (1, 8192), (1, 32768), (4, 2048), (8, 2048)]
+    cells = [(1, 2048), (4, 2048)] if quick else [(1, 2048), (1, 8192), (4, 2048)]
     KS = list(range(1, 17))
     NGEN = 40
     for B, ctx in cells:
