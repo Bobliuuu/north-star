@@ -69,8 +69,9 @@ modal run modal/selfimprove_eval.py::main --track kernel --proposer mock  --roun
 modal run modal/selfimprove_eval.py::main --track kernel --proposer north --rounds 1 --confirm-cost --max-usd 3   # LIVE round 1
 ```
 Live runs write `results/selfimprove_kernel/`; mock runs refuse any store whose name lacks `dryrun` and a store with a mixed lineage.
-Policy track (`--track policy`) refuses a live run until `results/accept_calibration.jsonl` (MEASURED acceptance, Phase 2) exists: today only
-SYNTHETIC acceptance exists, so its "predicted tok/s" is a plumbing check, not a result. Policy `check` gate = solver self-consistency only.
+Policy track (`--track policy`) refuses a live run unless `results/accept_calibration.jsonl` exists and every row is `provenance: measured`; it is built from `results/spec.jsonl` by
+`scripts/build_accept_calibration.py` (A100, 15 rows). Policy defaults to `--mode structured` (`structured_policy.py`). Its metric is a PREDICTED tok/s: a gate pass is NOT a measured speedup.
+See `docs/SELFIMPROVE_POLICY_RUNBOOK.md`. Policy `check` gate = solver self-consistency only.
 Tests: `NS_SLOW=1` also runs the full CPU dry-run loop on the policy track and the fake-binary quality harness.
 
 ## Honest limits
