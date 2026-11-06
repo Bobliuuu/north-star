@@ -1,0 +1,98 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-hXflqWTPSYI2OT1pKpbaPr
+✓ Created objects.
+├── ✓ Uploaded <home>/north-star/modal/we_run.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded <home>/north-star/src/weightedit
+├── ✓ Uploaded <home>/north-star/src/northstar
+├── ✓ Uploaded <home>/north-star/tests
+├── ✓ Uploaded <home>/north-star/harness
+├── ✓ Uploaded <home>/north-star/src/approx
+└── ✓ Created Function run_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:09, 39.43it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:20, 18.37it/s]
+[1ALoading weights:   7%|▋         | 26/394 [00:01<00:14, 25.60it/s]
+[1ALoading weights:   8%|▊         | 31/394 [00:01<00:23, 15.74it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:02<00:29, 12.06it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:28, 12.17it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:03<00:27, 12.27it/s]
+[1ALoading weights:  14%|█▍        | 57/394 [00:03<00:21, 15.82it/s]
+[1ALoading weights:  15%|█▌        | 60/394 [00:04<00:30, 11.07it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:27, 11.78it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:05<00:25, 12.30it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:06<00:24, 12.44it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:06<00:24, 12.32it/s]
+[1ALoading weights:  24%|██▎       | 93/394 [00:06<00:23, 12.75it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:07<00:25, 11.69it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:07<00:23, 12.30it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:08<00:24, 11.77it/s]
+[1ALoading weights:  28%|██▊       | 109/394 [00:08<00:23, 12.32it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:08<00:23, 11.69it/s]
+[1ALoading weights:  30%|██▉       | 117/394 [00:08<00:22, 12.20it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:09<00:23, 11.41it/s]
+[1ALoading weights:  32%|███▏      | 125/394 [00:09<00:22, 11.83it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:10<00:23, 11.42it/s]
+[1ALoading weights:  34%|███▍      | 135/394 [00:10<00:18, 14.08it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:10<00:23, 10.93it/s]
+[1ALoading weights:  36%|███▌      | 141/394 [00:10<00:21, 11.71it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:11<00:22, 10.87it/s]
+[1ALoading weights:  38%|███▊      | 149/394 [00:11<00:21, 11.18it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:12<00:22, 10.85it/s]
+[1ALoading weights:  40%|███▉      | 157/394 [00:12<00:20, 11.31it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:13<00:21, 10.91it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:13<00:19, 11.23it/s]
+[1ALoading weights:  44%|████▍     | 173/394 [00:13<00:20, 10.80it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:14<00:18, 11.64it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:15<00:17, 11.63it/s]
+[1ALoading weights:  48%|████▊     | 189/394 [00:15<00:17, 11.50it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:15<00:17, 11.63it/s]
+[1ALoading weights:  50%|█████     | 197/394 [00:15<00:17, 11.10it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:16<00:16, 11.88it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:17<00:15, 11.74it/s]
+[1ALoading weights:  54%|█████▍    | 214/394 [00:17<00:13, 13.10it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:17<00:15, 11.24it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:18<00:14, 11.38it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:19<00:14, 10.98it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:19<00:13, 11.13it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:20<00:12, 11.25it/s]
+[1ALoading weights:  64%|██████▍   | 253/394 [00:20<00:12, 11.60it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:21<00:12, 11.20it/s]
+[1ALoading weights:  66%|██████▌   | 261/394 [00:21<00:11, 11.65it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:22<00:11, 11.33it/s]
+[1ALoading weights:  68%|██████▊   | 269/394 [00:22<00:11, 11.21it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:22<00:10, 11.28it/s]
+[1ALoading weights:  70%|███████   | 277/394 [00:22<00:09, 11.83it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:23<00:09, 11.20it/s]
+[1ALoading weights:  72%|███████▏  | 285/394 [00:23<00:09, 11.62it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:24<00:09, 11.32it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:24<00:08, 11.26it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:25<00:07, 11.34it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:26<00:06, 11.43it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:26<00:06, 11.46it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:27<00:05, 11.50it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:28<00:04, 11.40it/s]
+[1ALoading weights:  87%|████████▋ | 341/394 [00:28<00:04, 11.54it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:29<00:04, 11.22it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:29<00:03, 11.46it/s]
+[1ALoading weights:  91%|█████████ | 357/394 [00:29<00:03, 11.75it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:30<00:02, 11.27it/s]
+[1ALoading weights:  93%|█████████▎| 365/394 [00:30<00:02, 11.52it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:31<00:02, 11.21it/s]
+[1ALoading weights:  95%|█████████▍| 373/394 [00:31<00:01, 11.85it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:31<00:01, 11.34it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:32<00:00, 11.46it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:32<00:00, 12.10it/s]
+  step 0 kl=1.9734
+  step 1 kl=1.2239
+  step 2 kl=1.2984
+  step 3 kl=1.8785
+  step 4 kl=1.8774
+round: grid passed=True gates={'lossless': True, 'gain': True, 'overfit': True, 'cost': True} agree 0.573->0.635
+ROUND_JSON {"recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 5, "lr": 0.001, "window": 128, "batch": 1, "temperature": 1.0, "gain": true, "seed": 0}, "passed": true, "gates": {"lossless": true, "gain": true, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.5729166666666666, "agree_edit": 0.6354166666666666, "agree_train": 0.6875, "gain": 0.0625, "committed_base": 2.46875, "committed_edit": 2.65625, "gain_ci_lower_agree": 0.03125, "gain_ci_lower_committed": 0.08333333333333333, "gamma": 4, "n_gate_seqs": 3, "adapter_params": 417840, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true}, "train": {"first": 1.9734021425247192, "last": 1.87739098072052, "seconds": 20.366094827651978}, "source": "grid", "version": "v001"}
+RESULT_JSON {"meta": {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-06T15:42:31Z", "gpu": "NVIDIA A100-SXM4-80GB", "cuda": "12.8", "gpu_mem_gb": 79.3, "pip_freeze_sha": "b75d56d0a2a7"}, "gpu_seconds": 153.12595558166504, "proposer": "grid", "history": [{"recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 5, "lr": 0.001, "window": 128, "batch": 1, "temperature": 1.0, "gain": true, "seed": 0}, "passed": true, "gates": {"lossless": true, "gain": true, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.5729166666666666, "agree_edit": 0.6354166666666666, "agree_train": 0.6875, "gain": 0.0625, "committed_base": 2.46875, "committed_edit": 2.65625, "gain_ci_lower_agree": 0.03125, "gain_ci_lower_committed": 0.08333333333333333, "gamma": 4, "n_gate_seqs": 3, "adapter_params": 417840, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true}, "train": {"first": 1.9734021425247192, "last": 1.87739098072052, "seconds": 20.366094827651978}, "source": "grid", "version": "v001"}], "ledger": [{"time": "2026-11-06T15:42:27Z", "event": "commit", "version": "v001", "source": "grid", "hash": "511a7341391611d832f192e459a8882ee93ca3f67ab96b841a6116398baedc23", "passed": true, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.5729166666666666, "agree_edit": 0.6354166666666666, "agree_train": 0.6875, "gain": 0.0625, "committed_base": 2.46875, "committed_edit": 2.65625, "gain_ci_lower_agree": 0.03125, "gain_ci_lower_committed": 0.08333333333333333, "gamma": 4, "n_gate_seqs": 3, "adapter_params": 417840, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true}}], "current": "v001"}
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-hXflqWTPSYI2OT1pKpbaPr

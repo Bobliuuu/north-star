@@ -1,0 +1,94 @@
+{
+ "meta": {
+  "python": "3.12.16",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.22.1",
+  "model": "CohereLabs/North-Mini-Code-1.0",
+  "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37",
+  "time": "2026-11-06T15:42:31Z",
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "cuda": "12.8",
+  "gpu_mem_gb": 79.3,
+  "pip_freeze_sha": "b75d56d0a2a7"
+ },
+ "gpu_seconds": 153.12595558166504,
+ "proposer": "grid",
+ "history": [
+  {
+   "recipe": {
+    "expert_r": 2,
+    "kind": "router_lowrank",
+    "rank": 4,
+    "layers": "all",
+    "steps": 5,
+    "lr": 0.001,
+    "window": 128,
+    "batch": 1,
+    "temperature": 1.0,
+    "gain": true,
+    "seed": 0
+   },
+   "passed": true,
+   "gates": {
+    "lossless": true,
+    "gain": true,
+    "overfit": true,
+    "cost": true
+   },
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "sampled",
+    "agree_base": 0.5729166666666666,
+    "agree_edit": 0.6354166666666666,
+    "agree_train": 0.6875,
+    "gain": 0.0625,
+    "committed_base": 2.46875,
+    "committed_edit": 2.65625,
+    "gain_ci_lower_agree": 0.03125,
+    "gain_ci_lower_committed": 0.08333333333333333,
+    "gamma": 4,
+    "n_gate_seqs": 3,
+    "adapter_params": 417840,
+    "adapter_flops_frac": 0.0009223090277777778,
+    "active_experts_exact": true
+   },
+   "train": {
+    "first": 1.9734021425247192,
+    "last": 1.87739098072052,
+    "seconds": 20.366094827651978
+   },
+   "source": "grid",
+   "version": "v001"
+  }
+ ],
+ "ledger": [
+  {
+   "time": "2026-11-06T15:42:27Z",
+   "event": "commit",
+   "version": "v001",
+   "source": "grid",
+   "hash": "511a7341391611d832f192e459a8882ee93ca3f67ab96b841a6116398baedc23",
+   "passed": true,
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "sampled",
+    "agree_base": 0.5729166666666666,
+    "agree_edit": 0.6354166666666666,
+    "agree_train": 0.6875,
+    "gain": 0.0625,
+    "committed_base": 2.46875,
+    "committed_edit": 2.65625,
+    "gain_ci_lower_agree": 0.03125,
+    "gain_ci_lower_committed": 0.08333333333333333,
+    "gamma": 4,
+    "n_gate_seqs": 3,
+    "adapter_params": 417840,
+    "adapter_flops_frac": 0.0009223090277777778,
+    "active_experts_exact": true
+   }
+  }
+ ],
+ "current": "v001"
+}

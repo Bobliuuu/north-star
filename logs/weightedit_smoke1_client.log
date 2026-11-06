@@ -1,0 +1,177 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-F6XpNdTcpbmjAwSoXanlIN
+✓ Created objects.
+├── ✓ Uploaded <home>/north-star/modal/weightedit.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded <home>/north-star/src/northstar
+├── ✓ Uploaded <home>/north-star/src/weightedit
+├── ✓ Uploaded <home>/north-star/tests
+├── ✓ Uploaded <home>/north-star/harness
+├── ✓ Uploaded <home>/north-star/src/approx
+└── ✓ Created Function run_remote.
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/task_lifecycle_manager.py", line 84, in handle_task_lifecycle_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 362, in hydrate_function
+    service = get_function_service(function_def, _client)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_container_entrypoint.py", line 340, in get_function_service
+    service = import_single_function_service(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/user_code_imports.py", line 522, in import_single_function_service
+    f = getattr(module, qual_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'weightedit' has no attribute 'run_remote'
+Function fu-vYNwz0HL6yan9QGNcLxUKm failed during startup.
+Runner failed with exception: AttributeError("module 'weightedit' has no attribute 'run_remote'")
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/task_lifecycle_manager.py", line 84, in handle_task_lifecycle_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 362, in hydrate_function
+    service = get_function_service(function_def, _client)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_container_entrypoint.py", line 340, in get_function_service
+    service = import_single_function_service(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/user_code_imports.py", line 522, in import_single_function_service
+    f = getattr(module, qual_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'weightedit' has no attribute 'run_remote'
+Function fu-vYNwz0HL6yan9QGNcLxUKm failed during startup.
+Runner failed with exception: AttributeError("module 'weightedit' has no attribute 'run_remote'")
+Traceback (most recent call last):
+Function fu-vYNwz0HL6yan9QGNcLxUKm failed during startup.
+Runner failed with exception: AttributeError("module 'weightedit' has no attribute 'run_remote'")
+  File "/pkg/modal/_runtime/task_lifecycle_manager.py", line 84, in handle_task_lifecycle_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 362, in hydrate_function
+    service = get_function_service(function_def, _client)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_container_entrypoint.py", line 340, in get_function_service
+    service = import_single_function_service(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/user_code_imports.py", line 522, in import_single_function_service
+    f = getattr(module, qual_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'weightedit' has no attribute 'run_remote'
+Traceback (most recent call last):
+Function fu-vYNwz0HL6yan9QGNcLxUKm failed during startup.
+Runner failed with exception: AttributeError("module 'weightedit' has no attribute 'run_remote'")
+  File "/pkg/modal/_runtime/task_lifecycle_manager.py", line 84, in handle_task_lifecycle_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 362, in hydrate_function
+    service = get_function_service(function_def, _client)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_container_entrypoint.py", line 340, in get_function_service
+    service = import_single_function_service(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/user_code_imports.py", line 522, in import_single_function_service
+    f = getattr(module, qual_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'weightedit' has no attribute 'run_remote'
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/task_lifecycle_manager.py", line 84, in handle_task_lifecycle_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 362, in hydrate_function
+    service = get_function_service(function_def, _client)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_container_entrypoint.py", line 340, in get_function_service
+    service = import_single_function_service(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/user_code_imports.py", line 522, in import_single_function_service
+    f = getattr(module, qual_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'weightedit' has no attribute 'run_remote'
+Function fu-vYNwz0HL6yan9QGNcLxUKm failed during startup.
+Runner failed with exception: AttributeError("module 'weightedit' has no attribute 'run_remote'")
+Traceback (most recent call last):
+Function fu-vYNwz0HL6yan9QGNcLxUKm failed during startup.
+Runner failed with exception: AttributeError("module 'weightedit' has no attribute 'run_remote'")
+  File "/pkg/modal/_runtime/task_lifecycle_manager.py", line 84, in handle_task_lifecycle_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 362, in hydrate_function
+    service = get_function_service(function_def, _client)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_container_entrypoint.py", line 340, in get_function_service
+    service = import_single_function_service(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/user_code_imports.py", line 522, in import_single_function_service
+    f = getattr(module, qual_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'weightedit' has no attribute 'run_remote'
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/task_lifecycle_manager.py", line 84, in handle_task_lifecycle_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 362, in hydrate_function
+    service = get_function_service(function_def, _client)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_container_entrypoint.py", line 340, in get_function_service
+    service = import_single_function_service(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/user_code_imports.py", line 522, in import_single_function_service
+    f = getattr(module, qual_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'weightedit' has no attribute 'run_remote'
+Function fu-vYNwz0HL6yan9QGNcLxUKm failed during startup.
+Runner failed with exception: AttributeError("module 'weightedit' has no attribute 'run_remote'")
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/task_lifecycle_manager.py", line 84, in handle_task_lifecycle_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 362, in hydrate_function
+    service = get_function_service(function_def, _client)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_container_entrypoint.py", line 340, in get_function_service
+    service = import_single_function_service(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/user_code_imports.py", line 522, in import_single_function_service
+    f = getattr(module, qual_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'weightedit' has no attribute 'run_remote'
+Function fu-vYNwz0HL6yan9QGNcLxUKm failed during startup.
+Runner failed with exception: AttributeError("module 'weightedit' has no attribute 'run_remote'")
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/task_lifecycle_manager.py", line 84, in handle_task_lifecycle_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 362, in hydrate_function
+    service = get_function_service(function_def, _client)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_container_entrypoint.py", line 340, in get_function_service
+    service = import_single_function_service(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/user_code_imports.py", line 522, in import_single_function_service
+    f = getattr(module, qual_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'weightedit' has no attribute 'run_remote'
+Function fu-vYNwz0HL6yan9QGNcLxUKm failed during startup.
+Runner failed with exception: AttributeError("module 'weightedit' has no attribute 'run_remote'")
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/task_lifecycle_manager.py", line 84, in handle_task_lifecycle_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 362, in hydrate_function
+    service = get_function_service(function_def, _client)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_container_entrypoint.py", line 340, in get_function_service
+    service = import_single_function_service(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/user_code_imports.py", line 522, in import_single_function_service
+    f = getattr(module, qual_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'weightedit' has no attribute 'run_remote'
+Function fu-vYNwz0HL6yan9QGNcLxUKm failed during startup.
+Runner failed with exception: AttributeError("module 'weightedit' has no attribute 'run_remote'")
+Traceback (most recent call last):
+Function fu-vYNwz0HL6yan9QGNcLxUKm failed during startup.
+Runner failed with exception: AttributeError("module 'weightedit' has no attribute 'run_remote'")
+  File "/pkg/modal/_runtime/task_lifecycle_manager.py", line 84, in handle_task_lifecycle_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 362, in hydrate_function
+    service = get_function_service(function_def, _client)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_container_entrypoint.py", line 340, in get_function_service
+    service = import_single_function_service(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/user_code_imports.py", line 522, in import_single_function_service
+    f = getattr(module, qual_name)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'weightedit' has no attribute 'run_remote'
