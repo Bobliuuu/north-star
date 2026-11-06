@@ -8,7 +8,7 @@
 import sys, time, pathlib
 sys.path.insert(0, "modal")
 import modal
-from common import app, weights_vol, results_vol, WEIGHTS, MODEL_DIR, GPU
+from nsapp import app, weights_vol, results_vol, WEIGHTS, MODEL_DIR, GPU
 
 RES = pathlib.Path("results")
 GPUKW = dict(gpu=GPU, volumes={WEIGHTS: weights_vol}, memory=65536)
