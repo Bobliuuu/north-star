@@ -6,3 +6,4 @@
 | 20261106T021827Z | kvm-fused fullsweep full=True seeds=1 | A100-80GB | 263 | 0.183 | True |
 | 2026-11-05 21:38 | probe | A100-80GB | 66 | 0.05 |  |
 | 2026-11-05 21:41 | routing | A100-80GB | 196 | 0.14 |  |
+| 2026-11-05 21:46 | baseline | A100-80GB | 245 | 0.17 |  |

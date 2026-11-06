@@ -1,0 +1,12 @@
+{
+ "python": "3.12.16",
+ "torch": "2.10.0+cu128",
+ "transformers": "5.22.1",
+ "model": "CohereLabs/North-Mini-Code-1.0",
+ "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37",
+ "time": "2026-11-06T02:46:13Z",
+ "gpu": "NVIDIA A100-SXM4-80GB",
+ "cuda": "12.8",
+ "gpu_mem_gb": 79.3,
+ "pip_freeze_sha": "b75d56d0a2a7"
+}
