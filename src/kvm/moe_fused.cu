@@ -318,11 +318,11 @@ static int replay_mode(const std::string& inp, const std::string& outp, int reps
     std::mt19937 g(12345);
     while (fscanf(fi, "%63s %d %d %d %d %d", tag, &r, &tv, &td, &layer, &task) == 6) {
         std::vector<TokRoute> V, Dr; std::normal_distribution<float> nd(1.0f, 1.0f);
-        auto rd = [&](int row) { TokRoute t; t.row = row; std::vector<float> lg(TOPK); for (auto& v : lg) v = nd(g);
+        auto rd = [&](int row, int ncol) { TokRoute t; t.row = row; std::vector<float> lg(TOPK); for (auto& v : lg) v = nd(g);
             std::sort(lg.begin(), lg.end(), std::greater<float>());
-            for (int k = 0; k < TOPK; ++k) { if (fscanf(fi, "%d", &t.e[k]) != 1) exit(4); t.w[k] = 1.f / (1.f + expf(-lg[k])); } return t; };
-        for (int i = 0; i < tv; ++i) V.push_back(rd(i));
-        for (int i = 0; i < td; ++i) Dr.push_back(rd(tv + i));
+            for (int k = 0; k < TOPK; ++k) { if (k >= ncol) { t.e[k] = 0; t.w[k] = 0.f; continue; } if (fscanf(fi, "%d", &t.e[k]) != 1) exit(4); t.w[k] = 1.f / (1.f + expf(-lg[k])); } return t; };
+        for (int i = 0; i < tv; ++i) V.push_back(rd(i, TOPK));
+        for (int i = 0; i < td; ++i) Dr.push_back(rd(tv + i, r));   // draft rows carry exactly r ids (its own top-r)
         WorkList wv = build(V, TOPK, E), wdr = build(Dr, r, E), wf;
         { std::vector<std::vector<std::pair<int, float>>> per(E);
           for (auto& t : V) for (int k = 0; k < TOPK; ++k) per[t.e[k]].push_back({t.row, t.w[k]});

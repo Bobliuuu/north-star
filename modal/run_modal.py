@@ -22,7 +22,7 @@ app = modal.App("northstar-kvm-fused", image=image)
 def _sh(cmd, log):
     log.append("$ " + cmd)
     p = subprocess.run(cmd, shell=True, capture_output=True, text=True)
-    log.append(p.stdout + p.stderr)
+    log.append(p.stdout + p.stderr + f"[rc={p.returncode}]")
     return p.returncode
 
 

@@ -18,3 +18,11 @@
 | 20261106T034226Z | tiny graph test (debug, tiny model) | H100 | 9 | 0.01 | True |
 | 20261106T034431Z | megakernel all | H100 | 101 | 0.11 | |
 | 20261106T041953Z | megakernel all | H100 | 95 | 0.10 | |
+| 20261106T042441Z | h100_blocks_overlap | H100 | 227 | 0.25 | True |
+| 20261106T042620Z | tiny graph test (debug, tiny model) | H100 | 7 | 0.01 | True |
+| 20261106T042838Z | h100_blocks_overlap | H100 | 119 | 0.13 | True |
+| 20261106T043142Z | megakernel bs | H100 | 143 | 0.16 | |
+| 20261106T043227Z | kvm-fused REAL-routing replay real | H100 | 4 | 0.004 | False |
+| 20261106T043309Z | kvm-fused REAL-routing replay dbg | H100 | 4 | 0.004 | False |
+| 20261106T044108Z | kvm-fused REAL-routing replay real | H100 | 436 | 0.478 | True |
+| 20261106T044337Z | h100_spec | H100 | 88 | 0.10 | True |

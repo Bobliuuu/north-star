@@ -59,8 +59,25 @@ def main():
         row = dict(tag=tag, mode=mode, K=K, Td_fused=Td, gamma=tdtot, n_windows=len(ws), moe_saved_ms=s_ms, moe_two_pass_ms=two_ms,
                    moe_layer_saving_frac=s_ms / two_ms, cycleA_ms=cycA, savingA=s_ms / cycA, cycleB_ms=cycB, savingB=s_ms / cycB,
                    verify_graph_ms=Tver, draft_step_ms=Tdr)
+        # ---- basis C (INFERRED, HBM-byte model; time ~ bytes) from the REAL per-layer expert counts in the replay records ----
+        EXP = 3 * 2048 * 768 * 2  # bytes per expert
+        NONEXP = 2.97e9           # attention + dense + embed/lm_head weights streamed per full step (derived, docs/NORTH_ARCH.md)
+        nonexp_d = NONEXP if mode == "r4" else NONEXP - (8 / 49) * 1.86e9
+        r_d = ws[0][0]["r"]
+        Ld = 48 if mode == "r4" else 40
+        ev = st.mean(sum(x["experts_verify"] for x in w) for w in ws)
+        ed = st.mean(sum(x["experts_draft"] for x in w) for w in ws)
+        eu = st.mean(sum(x["experts_union"] for x in w) for w in ws)
+        single_draft_exp = r_d * Ld                      # one draft token alone: r distinct experts per kept layer
+        if Td == 1:   # sequential draft: gamma separate steps; ONE shares the verify pass
+            base = NONEXP + ev * EXP + tdtot * (nonexp_d + single_draft_exp * EXP)
+            save_moe = (ev + single_draft_exp - eu) * EXP
+        else:         # ideal batch: all Td draft tokens in one pass (needs a non-sequential draft)
+            base = NONEXP + ev * EXP + (nonexp_d + ed * EXP)
+            save_moe = (ev + ed - eu) * EXP
+        row.update(bytes_cycle_GB=base / 1e9, savingC_moe_only=save_moe / base, savingC_plus_nonexpert_share=(save_moe + nonexp_d) / base)
         out.append(row)
-        print(f"{tag:14s} K={K} Tdf={Td} g={tdtot} win={len(ws):3d} | MoE-layer-sum saving {100*s_ms/two_ms:5.1f}% ({s_ms:.3f} ms) | cycle A {cycA:.2f} ms -> {100*s_ms/cycA:5.2f}% | cycle B {cycB:.2f} ms -> {100*s_ms/cycB:5.2f}%")
+        print(f"{tag:14s} K={K} Tdf={Td} g={tdtot} win={len(ws):3d} | MoE-layer-sum saving {100*s_ms/two_ms:5.1f}% ({s_ms:.3f} ms) | cycle A {cycA:.2f} ms -> {100*s_ms/cycA:5.2f}% | cycle B {cycB:.2f} ms -> {100*s_ms/cycB:5.2f}% | bytes C {row['bytes_cycle_GB']:.1f} GB -> MoE-only {100*row['savingC_moe_only']:.1f}%  +nonexp {100*row['savingC_plus_nonexpert_share']:.1f}%")
     json.dump(out, open(ROOT / "results/g0_cycle.json", "w"), indent=1)
 
 
