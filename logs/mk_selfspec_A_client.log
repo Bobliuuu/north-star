@@ -1,0 +1,450 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-7lPO8CwY1TzDrZycsltasn
+Building image im-BOyt1B3d9kiegntEp4Gw77
+
+=> Step 0: FROM base
+
+=> Step 1: RUN pip install torch --index-url https://download.pytorch.org/whl/cu130
+Looking in indexes: https://download.pytorch.org/whl/cu130
+Collecting torch
+  Downloading torch-2.14.1%2Bcu130-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (37 kB)
+Collecting filelock (from torch)
+  Downloading filelock-4.2.4-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.10.0 (from torch)
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting setuptools>=77.0.3 (from torch)
+  Downloading setuptools-78.1.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting sympy>=1.13.3 (from torch)
+  Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx>=2.5.1 (from torch)
+  Downloading networkx-3.7-py3-none-any.whl.metadata (6.7 kB)
+Collecting jinja2 (from torch)
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec>=0.8.5 (from torch)
+  Downloading fsspec-2026.9.0-py3-none-any.whl.metadata (10 kB)
+Collecting cuda-toolkit==13.0.3 (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch)
+  Downloading cuda_toolkit-13.0.3.0-py2.py3-none-any.whl (2.5 kB)
+Collecting cuda-bindings<14,>=13.0.3 (from torch)
+  Downloading cuda_bindings-13.4.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting nvidia-cudnn-cu13==9.24.0.43 (from torch)
+  Downloading nvidia_cudnn_cu13-9.24.0.43-py3-none-manylinux_2_27_x86_64.whl (553.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 553.1/553.1 MB 42.5 MB/s  0:00:15
+Collecting nvidia-cusparselt-cu13==0.8.1 (from torch)
+  Downloading nvidia_cusparselt_cu13-0.8.1-py3-none-manylinux2014_x86_64.whl (170.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 170.1/170.1 MB 52.7 MB/s  0:00:03
+Collecting nvidia-nccl-cu13==2.30.7 (from torch)
+  Downloading nvidia_nccl_cu13-2.30.7-py3-none-manylinux_2_18_x86_64.whl.metadata (2.1 kB)
+Collecting nvidia-nvshmem-cu13==3.4.5 (from torch)
+  Downloading nvidia_nvshmem_cu13-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (60.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.4/60.4 MB 71.9 MB/s  0:00:00
+Collecting triton~=3.8.0 (from torch)
+  Downloading triton-3.8.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (978 bytes)
+Collecting nvidia-cublas==13.1.1.3.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch)
+  Downloading nvidia_cublas-13.1.1.3-py3-none-manylinux_2_27_x86_64.whl (423.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 423.1/423.1 MB 40.7 MB/s  0:00:14
+Collecting nvidia-cuda-nvrtc==13.0.88.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch)
+  Downloading nvidia_cuda_nvrtc-13.0.88-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (90.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 90.2/90.2 MB 61.3 MB/s  0:00:01
+Collecting nvidia-cuda-runtime==13.0.96.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch)
+  Downloading nvidia_cuda_runtime-13.0.96-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 5.3 MB/s  0:00:00
+Collecting nvidia-cufft==12.0.0.61.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch)
+  Downloading nvidia_cufft-12.0.0.61-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (214.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 214.1/214.1 MB 58.0 MB/s  0:00:03
+Collecting nvidia-nvjitlink<14,>=13.0.88 (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch)
+  Downloading nvidia_nvjitlink-13.4.92-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (42.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.5/42.5 MB 45.2 MB/s  0:00:00
+Collecting nvidia-cufile==1.15.1.6.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch)
+  Downloading nvidia_cufile-1.15.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 339.3 MB/s  0:00:00
+Collecting nvidia-cuda-cupti==13.0.85.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch)
+  Downloading nvidia_cuda_cupti-13.0.85-py3-none-manylinux_2_25_x86_64.whl (10.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.7/10.7 MB 37.8 MB/s  0:00:00
+Collecting nvidia-curand==10.4.0.35.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch)
+  Downloading nvidia_curand-10.4.0.35-py3-none-manylinux_2_27_x86_64.whl (59.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 59.5/59.5 MB 74.1 MB/s  0:00:00
+Collecting nvidia-cusolver==12.0.4.66.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch)
+  Downloading nvidia_cusolver-12.0.4.66-py3-none-manylinux_2_27_x86_64.whl (200.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 200.9/200.9 MB 71.6 MB/s  0:00:02
+Collecting nvidia-cusparse==12.6.3.3.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch)
+  Downloading nvidia_cusparse-12.6.3.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (145.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 145.9/145.9 MB 59.7 MB/s  0:00:02
+Collecting nvidia-nvtx==13.0.85.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch)
+  Downloading nvidia_nvtx-13.0.85-py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl (148 kB)
+Collecting cuda-pathfinder>=1.4.2 (from cuda-bindings<14,>=13.0.3->torch)
+  Downloading cuda_pathfinder-1.8.4-py3-none-any.whl.metadata (1.9 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch)
+  Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch)
+  Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Downloading torch-2.14.1%2Bcu130-cp312-cp312-manylinux_2_28_x86_64.whl (554.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 554.6/554.6 MB 145.9 MB/s  0:00:04
+Downloading nvidia_nccl_cu13-2.30.7-py3-none-manylinux_2_18_x86_64.whl (216.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 216.0/216.0 MB 183.5 MB/s  0:00:01
+Downloading cuda_bindings-13.4.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (7.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.2/7.2 MB 196.8 MB/s  0:00:00
+Downloading triton-3.8.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (246.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 246.8/246.8 MB 144.4 MB/s  0:00:01
+Downloading cuda_pathfinder-1.8.4-py3-none-any.whl (62 kB)
+Downloading fsspec-2026.9.0-py3-none-any.whl (221 kB)
+Downloading networkx-3.7-py3-none-any.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 207.5 MB/s  0:00:00
+Downloading setuptools-78.1.0-py3-none-any.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 310.8 MB/s  0:00:00
+Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 241.3 MB/s  0:00:00
+Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 392.4 MB/s  0:00:00
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading filelock-4.2.4-py3-none-any.whl (162 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Installing collected packages: nvidia-cusparselt-cu13, mpmath, cuda-toolkit, typing-extensions, triton, sympy, setuptools, nvidia-nvtx, nvidia-nvshmem-cu13, nvidia-nvjitlink, nvidia-nccl-cu13, nvidia-curand, nvidia-cufile, nvidia-cuda-runtime, nvidia-cuda-nvrtc, nvidia-cuda-cupti, networkx, MarkupSafe, fsspec, filelock, cuda-pathfinder, nvidia-cusparse, nvidia-cufft, nvidia-cublas, jinja2, cuda-bindings, nvidia-cusolver, nvidia-cudnn-cu13, torch
+
+Successfully installed MarkupSafe-3.0.3 cuda-bindings-13.4.4 cuda-pathfinder-1.8.4 cuda-toolkit-13.0.3.0 filelock-4.2.4 fsspec-2026.9.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.7 nvidia-cublas-13.1.1.3 nvidia-cuda-cupti-13.0.85 nvidia-cuda-nvrtc-13.0.88 nvidia-cuda-runtime-13.0.96 nvidia-cudnn-cu13-9.24.0.43 nvidia-cufft-12.0.0.61 nvidia-cufile-1.15.1.6 nvidia-curand-10.4.0.35 nvidia-cusolver-12.0.4.66 nvidia-cusparse-12.6.3.3 nvidia-cusparselt-cu13-0.8.1 nvidia-nccl-cu13-2.30.7 nvidia-nvjitlink-13.4.92 nvidia-nvshmem-cu13-3.4.5 nvidia-nvtx-13.0.85 setuptools-78.1.0 sympy-1.14.0 torch-2.14.1+cu130 triton-3.8.0 typing-extensions-4.16.0
+
+=> Step 2: RUN pip install transformers safetensors fastapi uvicorn cohere-melody==0.9.0 ninja einops numpy
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting transformers
+  Downloading transformers-5.22.1-py3-none-any.whl.metadata (31 kB)
+Collecting safetensors
+  Downloading safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.2 kB)
+Collecting fastapi
+  Downloading fastapi-0.162.0-py3-none-any.whl.metadata (26 kB)
+Collecting uvicorn
+  Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting cohere-melody==0.9.0
+  Downloading cohere_melody-0.9.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.6 kB)
+Collecting ninja
+  Downloading ninja-1.13.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.4 kB)
+Collecting einops
+  Downloading einops-0.8.2-py3-none-any.whl.metadata (13 kB)
+Collecting numpy
+  Downloading numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Collecting huggingface-hub<3.0,>=1.31.0 (from transformers)
+  Downloading huggingface_hub-2.4.0-py3-none-any.whl.metadata (16 kB)
+Collecting packaging>=20.0 (from transformers)
+  Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting pyyaml>=5.1 (from transformers)
+  Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting regex>=2025.10.22 (from transformers)
+  Downloading regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting tokenizers<0.24.0,>=0.23.1 (from transformers)
+  Downloading tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.8 kB)
+Collecting typer (from transformers)
+  Downloading typer-0.28.0-py3-none-any.whl.metadata (16 kB)
+Collecting tqdm>=4.60 (from transformers)
+  Downloading tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
+Collecting click<9.0.0,>=8.4.2 (from huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Requirement already satisfied: filelock>=3.10.0 in ./usr/local/lib/python3.12/site-packages (from huggingface-hub<3.0,>=1.31.0->transformers) (4.2.4)
+Requirement already satisfied: fsspec>=2023.5.0 in ./usr/local/lib/python3.12/site-packages (from huggingface-hub<3.0,>=1.31.0->transformers) (2026.9.0)
+Collecting hf-xet<2.0.0,>=1.6.0 (from huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+Collecting httpx2<3,>=2.0.0 (from huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading httpx2-2.16.0-py3-none-any.whl.metadata (10 kB)
+Requirement already satisfied: typing-extensions>=4.1.0 in ./usr/local/lib/python3.12/site-packages (from huggingface-hub<3.0,>=1.31.0->transformers) (4.16.0)
+Collecting anyio>=4.10 (from httpx2<3,>=2.0.0->huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading anyio-4.16.0-py3-none-any.whl.metadata (4.7 kB)
+Collecting httpcore2==2.16.0 (from httpx2<3,>=2.0.0->huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading httpcore2-2.16.0-py3-none-any.whl.metadata (27 kB)
+Collecting idna>=3.18 (from httpx2<3,>=2.0.0->huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting truststore>=0.10 (from httpx2<3,>=2.0.0->huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading truststore-0.10.5-py3-none-any.whl.metadata (4.5 kB)
+Collecting h11>=0.16 (from httpcore2==2.16.0->httpx2<3,>=2.0.0->huggingface-hub<3.0,>=1.31.0->transformers)
+  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting starlette>=0.46.0 (from fastapi)
+  Downloading starlette-1.10.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting pydantic>=2.9.0 (from fastapi)
+  Downloading pydantic-2.14.3-py3-none-any.whl.metadata (141 kB)
+Collecting typing-inspection>=0.4.2 (from fastapi)
+  Downloading typing_inspection-0.4.5-py3-none-any.whl.metadata (2.6 kB)
+Collecting annotated-doc>=0.0.2 (from fastapi)
+  Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+Collecting opentelemetry-api>=1.44.0 (from fastapi)
+  Downloading opentelemetry_api-1.45.2-py3-none-any.whl.metadata (1.4 kB)
+Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi)
+  Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.50.4 (from pydantic>=2.9.0->fastapi)
+  Downloading pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.6 kB)
+Collecting shellingham>=1.3.0 (from typer->transformers)
+  Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+Collecting rich>=13.8.0 (from typer->transformers)
+  Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+Collecting markdown-it-py>=2.2.0 (from rich>=13.8.0->typer->transformers)
+  Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich>=13.8.0->typer->transformers)
+  Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=13.8.0->typer->transformers)
+  Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Downloading cohere_melody-0.9.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.5/2.5 MB 64.0 MB/s  0:00:00
+Downloading transformers-5.22.1-py3-none-any.whl (13.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.1/13.1 MB 803.4 MB/s  0:00:00
+Downloading huggingface_hub-2.4.0-py3-none-any.whl (857 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 857.0/857.0 kB 2.1 GB/s  0:00:00
+Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Downloading hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 895.6 MB/s  0:00:00
+Downloading httpx2-2.16.0-py3-none-any.whl (97 kB)
+Downloading httpcore2-2.16.0-py3-none-any.whl (85 kB)
+Downloading tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 856.1 MB/s  0:00:00
+Downloading safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (516 kB)
+Downloading fastapi-0.162.0-py3-none-any.whl (148 kB)
+Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+Downloading ninja-1.13.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (183 kB)
+Downloading einops-0.8.2-py3-none-any.whl (65 kB)
+Downloading numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 822.1 MB/s  0:00:00
+Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading opentelemetry_api-1.45.2-py3-none-any.whl (60 kB)
+Downloading packaging-26.3-py3-none-any.whl (129 kB)
+Downloading pydantic-2.14.3-py3-none-any.whl (494 kB)
+Downloading pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 940.5 MB/s  0:00:00
+Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 1.1 GB/s  0:00:00
+Downloading regex-2026.9.29-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.8/807.8 kB 1.0 GB/s  0:00:00
+Downloading starlette-1.10.0-py3-none-any.whl (80 kB)
+Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+Downloading typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+Downloading typer-0.28.0-py3-none-any.whl (123 kB)
+Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 380.8 MB/s  0:00:00
+Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Installing collected packages: typing-inspection, truststore, tqdm, shellingham, safetensors, regex, pyyaml, pygments, pydantic-core, packaging, opentelemetry-api, numpy, ninja, mdurl, idna, hf-xet, h11, einops, cohere-melody, click, annotated-types, annotated-doc, uvicorn, pydantic, markdown-it-py, httpcore2, anyio, starlette, rich, httpx2, typer, huggingface-hub, fastapi, tokenizers, transformers
+
+Successfully installed annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.16.0 click-8.5.0 cohere-melody-0.9.0 einops-0.8.2 fastapi-0.162.0 h11-0.16.0 hf-xet-1.8.0 httpcore2-2.16.0 httpx2-2.16.0 huggingface-hub-2.4.0 idna-3.20 markdown-it-py-4.2.0 mdurl-0.1.2 ninja-1.13.2 numpy-2.5.4 opentelemetry-api-1.45.2 packaging-26.3 pydantic-2.14.3 pydantic-core-2.50.4 pygments-2.21.0 pyyaml-6.0.3 regex-2026.9.29 rich-15.0.0 safetensors-0.8.0 shellingham-1.5.4 starlette-1.10.0 tokenizers-0.23.3 tqdm-4.70.1 transformers-5.22.1 truststore-0.10.5 typer-0.28.0 typing-inspection-0.4.5 uvicorn-0.54.0
+
+[notice] A new release of pip is available: 26.2.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+
+=> Step 3: RUN pip install flash-attn-3 --index-url https://download.pytorch.org/whl/cu130
+Looking in indexes: https://download.pytorch.org/whl/cu130
+Collecting flash-attn-3
+  Downloading flash_attn_3-3.0.1-cp310-abi3-manylinux_2_28_x86_64.whl.metadata (25 kB)
+Requirement already satisfied: torch>=2.9.0 in ./usr/local/lib/python3.12/site-packages (from flash-attn-3) (2.14.1+cu130)
+Requirement already satisfied: einops in ./usr/local/lib/python3.12/site-packages (from flash-attn-3) (0.8.2)
+Requirement already satisfied: packaging in ./usr/local/lib/python3.12/site-packages (from flash-attn-3) (26.3)
+Requirement already satisfied: ninja in ./usr/local/lib/python3.12/site-packages (from flash-attn-3) (1.13.2)
+Requirement already satisfied: filelock in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (4.2.4)
+Requirement already satisfied: typing-extensions>=4.10.0 in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (4.16.0)
+Requirement already satisfied: setuptools>=77.0.3 in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (78.1.0)
+Requirement already satisfied: sympy>=1.13.3 in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (1.14.0)
+Requirement already satisfied: networkx>=2.5.1 in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (3.7)
+Requirement already satisfied: jinja2 in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (3.1.6)
+Requirement already satisfied: fsspec>=0.8.5 in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (2026.9.0)
+Requirement already satisfied: cuda-toolkit==13.0.3 in ./usr/local/lib/python3.12/site-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch>=2.9.0->flash-attn-3) (13.0.3.0)
+Requirement already satisfied: cuda-bindings<14,>=13.0.3 in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (13.4.4)
+Requirement already satisfied: nvidia-cudnn-cu13==9.24.0.43 in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (9.24.0.43)
+Requirement already satisfied: nvidia-cusparselt-cu13==0.8.1 in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (0.8.1)
+Requirement already satisfied: nvidia-nccl-cu13==2.30.7 in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (2.30.7)
+Requirement already satisfied: nvidia-nvshmem-cu13==3.4.5 in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (3.4.5)
+Requirement already satisfied: triton~=3.8.0 in ./usr/local/lib/python3.12/site-packages (from torch>=2.9.0->flash-attn-3) (3.8.0)
+Requirement already satisfied: nvidia-cublas==13.1.1.3.* in ./usr/local/lib/python3.12/site-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch>=2.9.0->flash-attn-3) (13.1.1.3)
+Requirement already satisfied: nvidia-cuda-nvrtc==13.0.88.* in ./usr/local/lib/python3.12/site-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch>=2.9.0->flash-attn-3) (13.0.88)
+Requirement already satisfied: nvidia-cuda-runtime==13.0.96.* in ./usr/local/lib/python3.12/site-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch>=2.9.0->flash-attn-3) (13.0.96)
+Requirement already satisfied: nvidia-cufft==12.0.0.61.* in ./usr/local/lib/python3.12/site-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch>=2.9.0->flash-attn-3) (12.0.0.61)
+Requirement already satisfied: nvidia-nvjitlink<14,>=13.0.88 in ./usr/local/lib/python3.12/site-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch>=2.9.0->flash-attn-3) (13.4.92)
+Requirement already satisfied: nvidia-cufile==1.15.1.6.* in ./usr/local/lib/python3.12/site-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch>=2.9.0->flash-attn-3) (1.15.1.6)
+Requirement already satisfied: nvidia-cuda-cupti==13.0.85.* in ./usr/local/lib/python3.12/site-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch>=2.9.0->flash-attn-3) (13.0.85)
+Requirement already satisfied: nvidia-curand==10.4.0.35.* in ./usr/local/lib/python3.12/site-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch>=2.9.0->flash-attn-3) (10.4.0.35)
+Requirement already satisfied: nvidia-cusolver==12.0.4.66.* in ./usr/local/lib/python3.12/site-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch>=2.9.0->flash-attn-3) (12.0.4.66)
+Requirement already satisfied: nvidia-cusparse==12.6.3.3.* in ./usr/local/lib/python3.12/site-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch>=2.9.0->flash-attn-3) (12.6.3.3)
+Requirement already satisfied: nvidia-nvtx==13.0.85.* in ./usr/local/lib/python3.12/site-packages (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == "Linux"->torch>=2.9.0->flash-attn-3) (13.0.85)
+Requirement already satisfied: cuda-pathfinder>=1.4.2 in ./usr/local/lib/python3.12/site-packages (from cuda-bindings<14,>=13.0.3->torch>=2.9.0->flash-attn-3) (1.8.4)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in ./usr/local/lib/python3.12/site-packages (from sympy>=1.13.3->torch>=2.9.0->flash-attn-3) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./usr/local/lib/python3.12/site-packages (from jinja2->torch>=2.9.0->flash-attn-3) (3.0.3)
+Downloading flash_attn_3-3.0.1-cp310-abi3-manylinux_2_28_x86_64.whl (402.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 402.9/402.9 MB 177.8 MB/s  0:00:02
+Installing collected packages: flash-attn-3
+Successfully installed flash-attn-3-3.0.1
+
+=> Step 4: RUN git clone --recurse-submodules https://github.com/cohere-ai/cohere-megakernel /mk && cd /mk && git checkout 67d0b9ca22ea3652796b715d1d1863459e0e2c3c && git submodule update --init --recursive
+Cloning into '/mk'...
+Submodule 'ThunderKittens' (https://github.com/HazyResearch/ThunderKittens.git) registered for path 'ext/ThunderKittens'
+Submodule 'ext/nanobind' (https://github.com/wjakob/nanobind.git) registered for path 'ext/nanobind'
+Cloning into '/mk/ext/ThunderKittens'...
+Cloning into '/mk/ext/nanobind'...
+Submodule path 'ext/ThunderKittens': checked out '0a3ce9a949fb520ba10cda09cb5ffad7f6a1cc0a'
+From https://github.com/wjakob/nanobind
+ * branch            e889bcecf39ef6c4cb1b21fb59a97939b3555623 -> FETCH_HEAD
+Submodule path 'ext/nanobind': checked out 'e889bcecf39ef6c4cb1b21fb59a97939b3555623'
+Submodule 'ext/robin_map' (https://github.com/Tessil/robin-map) registered for path 'ext/nanobind/ext/robin_map'
+Cloning into '/mk/ext/nanobind/ext/robin_map'...
+Submodule path 'ext/nanobind/ext/robin_map': checked out '4ec1bf19c6a96125ea22062f38c2cf5b958e448e'
+Note: switching to '67d0b9ca22ea3652796b715d1d1863459e0e2c3c'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 67d0b9c update blog link
+
+=> Step 5: RUN cd /mk && cmake -S . -B build -G Ninja -DPython_EXECUTABLE=$(which python) -DCMAKE_BUILD_TYPE=Release && cmake --build build 2>&1 | tail -40
+-- The CXX compiler identification is GNU 13.3.0
+-- The CUDA compiler identification is NVIDIA 13.0.88
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting CUDA compiler ABI info
+-- Detecting CUDA compiler ABI info - done
+-- Check for working CUDA compiler: /usr/local/cuda/bin/nvcc - skipped
+-- Detecting CUDA compile features
+-- Detecting CUDA compile features - done
+-- Found CUDAToolkit: /usr/local/cuda/targets/x86_64-linux/include (found version "13.0.88")
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")
+-- Found Python: /usr/local/bin/python (found suitable version "3.12.15", minimum required is "3.12") found components: Interpreter Development.Module Development.SABIModule
+-- Performing Test NB_HAS_MTLS_GNU2
+-- Performing Test NB_HAS_MTLS_GNU2 - Success
+-- Configuring done (2.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /mk/build
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 20 registers, used 1 barriers
+ptxas info    : Compile time = 4.254 ms
+ptxas info    : Compiling entry function '_ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b32nmc_sample_partial_ragged_kernelEPK13__nv_bfloat16PKiS5_PKfPKyPfPiii' for 'sm_90a'
+ptxas info    : Function properties for _ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b32nmc_sample_partial_ragged_kernelEPK13__nv_bfloat16PKiS5_PKfPKyPfPiii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 42 registers, used 1 barriers
+ptxas info    : Compile time = 13.676 ms
+ptxas info    : Compiling entry function '_ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b28nmc_seed_input_ragged_kernelEPKxPKiS4_iPK13__nv_bfloat16S7_PS5_S8_iif' for 'sm_90a'
+ptxas info    : Function properties for _ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b28nmc_seed_input_ragged_kernelEPKxPKiS4_iPK13__nv_bfloat16S7_PS5_S8_iif
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 18 registers, used 1 barriers, 128 bytes smem
+ptxas info    : Compile time = 5.720 ms
+ptxas info    : Compiling entry function '_ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b23nmc_greedy_final_kernelEPKfPKiS4_Pxiii' for 'sm_90a'
+ptxas info    : Function properties for _ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b23nmc_greedy_final_kernelEPKfPKiS4_Pxiii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 22 registers, used 1 barriers
+ptxas info    : Compile time = 4.004 ms
+ptxas info    : Compiling entry function '_ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b25nmc_gumbel_partial_kernelEPK13__nv_bfloat16PKiPfPiiifmi' for 'sm_90a'
+ptxas info    : Function properties for _ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b25nmc_gumbel_partial_kernelEPK13__nv_bfloat16PKiPfPiiifmi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 40 registers, used 1 barriers
+ptxas info    : Compile time = 11.846 ms
+ptxas info    : Compiling entry function '_ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b25nmc_greedy_partial_kernelEPK13__nv_bfloat16PKiPfPiii' for 'sm_90a'
+ptxas info    : Function properties for _ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b25nmc_greedy_partial_kernelEPK13__nv_bfloat16PKiPfPiii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, used 1 barriers
+ptxas info    : Compile time = 8.796 ms
+ptxas info    : Compiling entry function '_ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b21nmc_seed_input_kernelEPKxPKiiiPK13__nv_bfloat16S7_PS5_S8_iif' for 'sm_90a'
+ptxas info    : Function properties for _ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b21nmc_seed_input_kernelEPKxPKiiiPK13__nv_bfloat16S7_PS5_S8_iif
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 29 registers, used 1 barriers, 128 bytes smem
+ptxas info    : Compile time = 8.632 ms
+ptxas info    : Compiling entry function '_ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b23nmc_zero_regions_kernelEPKNS_13NmcZeroRegionEi' for 'sm_90a'
+ptxas info    : Function properties for _ZN2mk43_GLOBAL__N__63f79112_10_runtime_cu_d8608c4b23nmc_zero_regions_kernelEPKNS_13NmcZeroRegionEi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 26 registers, used 0 barriers
+ptxas info    : Compile time = 8.250 ms
+[22/23] Linking CXX shared library libmk_release.so
+[23/23] Linking CXX shared module mk_ext.abi3.so
+Saving image...
+Image saved, took 6.07s
+
+Built image im-BOyt1B3d9kiegntEp4Gw77 in 134.49s
+
+
+Building image im-Z9vfjVFs14ao9FJlICObtm
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.40s
+
+Built image im-Z9vfjVFs14ao9FJlICObtm in 2.95s
+
+
+Building image im-KLvQXblwoomGuvCZwqtny0
+
+=> Step 0: FROM base
+
+=> Step 1: RUN cd /mk && git apply /mk_selfspec.patch && git diff --stat
+ src/decode/megakernel.cuh    | 12 ++++++++++++
+ src/prefill/torch_prefill.py |  2 +-
+ 2 files changed, 13 insertions(+), 1 deletion(-)
+Saving image...
+Image saved, took 1.40s
+
+Built image im-KLvQXblwoomGuvCZwqtny0 in 5.23s
+
+
+Building image im-BxImALc6jFivvk4ehtZ4sV
+
+=> Step 0: FROM base
+
+=> Step 1: ENV LITTLE_JIT_CACHE_DIR=/jit
+
+=> Step 2: ENV PYTHONUNBUFFERED=1
+Saving image...
+Image saved, took 946.40ms
+
+Built image im-BxImALc6jFivvk4ehtZ4sV in 2.21s
+
+
+✓ Created objects.
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a0647d2fd5859ad72/modal/mk_s
+│   elfspec.py
+├── ✓ Uploaded 
+│   <home>/north-star/.claude/worktrees/agent-a0647d2fd5859ad72/src/mk_sel
+│   fspec/mk_selfspec.patch
+└── ✓ Created Function run.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 13.0.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+{"name": "base_R8_real", "R": 8, "U": 0, "layers": 49, "bs": 1, "active_rows": 1, "real": true, "tpot_ms": 3.340065517647092, "mean_step_ms": 3.3401, "jit_ms": 14853.096373, "rc": 0, "wall_s": 85.2, "tail": ""}
+{"name": "R4_real", "R": 4, "U": 0, "layers": 49, "bs": 1, "active_rows": 1, "real": true, "tpot_ms": 2.712125066666687, "mean_step_ms": 2.7121, "jit_ms": 14415.047035000001, "rc": 0, "wall_s": 34.1, "tail": ""}
+{"name": "R2_real", "R": 2, "U": 0, "layers": 49, "bs": 1, "active_rows": 1, "real": true, "tpot_ms": 2.629408364705854, "mean_step_ms": 2.6294, "jit_ms": 14311.666708000019, "rc": 0, "wall_s": 34.9, "tail": ""}
+{"name": "R1_real", "R": 1, "U": 0, "layers": 49, "bs": 1, "active_rows": 1, "real": true, "tpot_ms": 2.586919631372599, "mean_step_ms": 2.5869, "jit_ms": 14360.182075999972, "rc": 0, "wall_s": 33.6, "tail": ""}
+{"name": "base_R8_syn", "R": 8, "U": 0, "layers": 49, "bs": 1, "active_rows": 1, "real": false, "tpot_ms": 3.42387185882346, "mean_step_ms": 3.4239, "jit_ms": 45.60142699997982, "rc": 0, "wall_s": 7.2, "tail": ""}
+{"name": "L41_R8_syn", "R": 8, "U": 0, "layers": 41, "bs": 1, "active_rows": 1, "real": false, "tpot_ms": 2.9412903843137883, "mean_step_ms": 2.9413, "jit_ms": 45.84800799997879, "rc": 0, "wall_s": 6.8, "tail": ""}
+{"name": "L41_R4_syn", "R": 4, "U": 0, "layers": 41, "bs": 1, "active_rows": 1, "real": false, "tpot_ms": 2.404435741176574, "mean_step_ms": 2.4044, "jit_ms": 42.64373899999896, "rc": 0, "wall_s": 6.7, "tail": ""}
+{"name": "L33_R4_syn", "R": 4, "U": 0, "layers": 33, "bs": 1, "active_rows": 1, "real": false, "tpot_ms": 1.9748079921568849, "mean_step_ms": 1.9748, "jit_ms": 49.17549500001428, "rc": 0, "wall_s": 6.8, "tail": ""}
+{"name": "L41_R2_syn", "R": 2, "U": 0, "layers": 41, "bs": 1, "active_rows": 1, "real": false, "tpot_ms": 2.242654976470583, "mean_step_ms": 2.2427, "jit_ms": 45.47888900000885, "rc": 0, "wall_s": 7.0, "tail": ""}
+secs 234.1585340499878 est $0.26
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-7lPO8CwY1TzDrZycsltasn
