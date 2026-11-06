@@ -1,0 +1,10 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-MJ7S1aOQHmOrVmhYXUVE2R
+✓ Created objects.
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-a9d4b1cad6e93d9c4/modal/exac
+│   tfast_sweep.py
+├── ✓ Uploaded 
+│   /Users/jhome/north-star/.claude/worktrees/agent-a9d4b1cad6e93d9c4/harness
+└── ✓ Created Function body.

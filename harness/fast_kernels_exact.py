@@ -12,6 +12,7 @@ cuBLAS / torch reductions (qkv, o_proj, router, dense MLP, lm_head, first RMSNor
 import torch
 import triton
 import triton.language as tl
+import pdl_flag as pdl
 
 TP = 16        # token axis padding of the dot (T <= 16)
 CHUNK = 256    # absolute key chunk of one attention split program
@@ -19,7 +20,10 @@ CHUNK = 256    # absolute key chunk of one attention split program
 
 # ---------------------------------------------------------------- batch-invariant linear: out[t,n] = sum_k x[t,k] w[n,k]  (bf16 out, fp32 acc)
 @triton.jit
-def _lin_kernel(x_ptr, w_ptr, o_ptr, T: tl.constexpr, N: tl.constexpr, K: tl.constexpr, TPAD: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr):
+def _lin_kernel(x_ptr, w_ptr, o_ptr, T: tl.constexpr, N: tl.constexpr, K: tl.constexpr, TPAD: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr, PDL: tl.constexpr = False):
+    if PDL:
+        tl.extra.cuda.gdc_wait()
+        tl.extra.cuda.gdc_launch_dependents()
     pn = tl.program_id(0)
     rn = pn * BN + tl.arange(0, BN)
     rt = tl.arange(0, TPAD)
@@ -48,13 +52,16 @@ def lin(x, w, out=None):
     if out is None:
         out = torch.empty(T, N, device=x.device, dtype=torch.bfloat16)
     c = lin_cfg(N, K)
-    _lin_kernel[(triton.cdiv(N, c["BN"]),)](x, w, out, T=T, N=N, K=K, TPAD=TP, BN=c["BN"], BK=c["BK"], num_warps=c["nw"], num_stages=c["ns"])
+    _lin_kernel[(triton.cdiv(N, c["BN"]),)](x, w, out, T=T, N=N, K=K, TPAD=TP, BN=c["BN"], BK=c["BK"], num_warps=c["nw"], num_stages=c["ns"], **pdl.kw())
     return out
 
 
 # ---------------------------------------------------------------- row argmax, lowest index on ties
 @triton.jit
-def _amax1(l_ptr, pm_ptr, pi_ptr, V: tl.constexpr, CH: tl.constexpr, NCH: tl.constexpr):
+def _amax1(l_ptr, pm_ptr, pi_ptr, V: tl.constexpr, CH: tl.constexpr, NCH: tl.constexpr, PDL: tl.constexpr = False):
+    if PDL:
+        tl.extra.cuda.gdc_wait()
+        tl.extra.cuda.gdc_launch_dependents()
     row = tl.program_id(0)
     c = tl.program_id(1)
     r = c * CH + tl.arange(0, CH)
@@ -66,7 +73,10 @@ def _amax1(l_ptr, pm_ptr, pi_ptr, V: tl.constexpr, CH: tl.constexpr, NCH: tl.con
 
 
 @triton.jit
-def _amax2(pm_ptr, pi_ptr, o_ptr, NCH: tl.constexpr, NP: tl.constexpr):
+def _amax2(pm_ptr, pi_ptr, o_ptr, NCH: tl.constexpr, NP: tl.constexpr, PDL: tl.constexpr = False):
+    if PDL:
+        tl.extra.cuda.gdc_wait()
+        tl.extra.cuda.gdc_launch_dependents()
     row = tl.program_id(0)
     r = tl.arange(0, NP)
     m = tl.load(pm_ptr + row * NCH + r, mask=r < NCH, other=float("-inf"))
@@ -83,8 +93,8 @@ def argmax_rows(logits):
     pm = torch.empty(T, NCH, device=logits.device, dtype=torch.float32)
     pi = torch.empty(T, NCH, device=logits.device, dtype=torch.int32)
     o = torch.empty(T, device=logits.device, dtype=torch.int64)
-    _amax1[(T, NCH)](logits, pm, pi, V=V, CH=CH, NCH=NCH, num_warps=4)
-    _amax2[(T,)](pm, pi, o, NCH=NCH, NP=triton.next_power_of_2(NCH), num_warps=1)
+    _amax1[(T, NCH)](logits, pm, pi, V=V, CH=CH, NCH=NCH, num_warps=4, **pdl.kw())
+    _amax2[(T,)](pm, pi, o, NCH=NCH, NP=triton.next_power_of_2(NCH), num_warps=1, **pdl.kw())
     return o
 
 
@@ -137,9 +147,66 @@ def _attn_split_x(q_ptr, kc_ptr, vc_ptr, start_ptr, wacc_ptr, wm_ptr, wl_ptr, Lm
         tl.store(wacc_ptr + (o + rm)[:, None] * D + rd[None, :], acc, mask=rowok[:, None])
 
 
+# ---- row-group variant: each program handles a FIXED 16 query rows (grid dim 2 = row group), so T=1 launches 1 group instead of a padded 128-row tile.
+# Every row is computed by the same 16-row program shape for any T, so row results do not depend on T (bitwise test: modal/exact_unit.py).
+@triton.jit
+def _attn_split_x2(q_ptr, kc_ptr, vc_ptr, start_ptr, wacc_ptr, wm_ptr, wl_ptr, Lmax, scale,
+                   T: tl.constexpr, G: tl.constexpr, D: tl.constexpr, MPT: tl.constexpr, NS: tl.constexpr, BN: tl.constexpr, C: tl.constexpr,
+                   SLIDING: tl.constexpr, W: tl.constexpr, PDL: tl.constexpr = False):
+    if PDL:
+        tl.extra.cuda.gdc_wait()
+        tl.extra.cuda.gdc_launch_dependents()
+    kvh = tl.program_id(0)
+    sp = tl.program_id(1)
+    rg = tl.program_id(2)
+    start = tl.load(start_ptr)
+    rm = rg * 16 + tl.arange(0, 16)
+    rd = tl.arange(0, D)
+    o = (kvh * NS + sp) * MPT
+    lo = sp * C
+    hi = tl.minimum(lo + C, start + T)
+    dead = lo >= start + T
+    if SLIDING:
+        dead = dead | (lo + C <= start - W + 1)
+    rowok = rm < T * G
+    if dead:
+        tl.store(wm_ptr + o + rm, tl.zeros([16], dtype=tl.float32) - 1e30, mask=rowok)
+        tl.store(wl_ptr + o + rm, tl.zeros([16], dtype=tl.float32), mask=rowok)
+    else:
+        q = tl.load(q_ptr + (kvh * MPT + rm)[:, None] * D + rd[None, :])
+        qpos = start + rm // G
+        m_i = tl.zeros([16], dtype=tl.float32) - 1e30
+        l_i = tl.zeros([16], dtype=tl.float32)
+        acc = tl.zeros([16, D], dtype=tl.float32)
+        kbase = kc_ptr + kvh * Lmax * D
+        vbase = vc_ptr + kvh * Lmax * D
+        for s in range(lo, hi, BN):
+            rk = s + tl.arange(0, BN)
+            mk = rk < hi
+            k = tl.load(kbase + rk[:, None] * D + rd[None, :], mask=mk[:, None], other=0.0)
+            sc = tl.dot(q, tl.trans(k)) * scale
+            ok = mk[None, :] & (rk[None, :] <= qpos[:, None])
+            if SLIDING:
+                ok = ok & (rk[None, :] > qpos[:, None] - W)
+            sc = tl.where(ok, sc, -1e30)
+            m_new = tl.maximum(m_i, tl.max(sc, axis=1))
+            p = tl.exp(sc - m_new[:, None])
+            alpha = tl.exp(m_i - m_new)
+            l_i = l_i * alpha + tl.sum(p, axis=1)
+            v = tl.load(vbase + rk[:, None] * D + rd[None, :], mask=mk[:, None], other=0.0)
+            acc = acc * alpha[:, None] + tl.dot(p.to(tl.bfloat16), v)
+            m_i = m_new
+        tl.store(wm_ptr + o + rm, m_i, mask=rowok)
+        tl.store(wl_ptr + o + rm, l_i, mask=rowok)
+        tl.store(wacc_ptr + (o + rm)[:, None] * D + rd[None, :], acc, mask=rowok[:, None])
+
+
 @triton.jit
 def _attn_combine_x(wacc_ptr, wm_ptr, wl_ptr, out_ptr, T: tl.constexpr, G: tl.constexpr, Hkv: tl.constexpr, D: tl.constexpr,
-                    MP: tl.constexpr, NS: tl.constexpr):
+                    MP: tl.constexpr, NS: tl.constexpr, PDL: tl.constexpr = False):
+    if PDL:
+        tl.extra.cuda.gdc_wait()
+        tl.extra.cuda.gdc_launch_dependents()
     pid = tl.program_id(0)
     kvh = pid // (T * G)
     r = pid % (T * G)
@@ -172,10 +239,14 @@ class AttnWSX:
         self.o = torch.empty(T, Hkv * G * D, device=dev, dtype=torch.bfloat16)
 
 
-def exact_attention(ws: AttnWSX, qkv, cos, sin, start, kc, vc, Lmax, rope, sliding, window, rope_write, BN=64):
+def exact_attention(ws: AttnWSX, qkv, cos, sin, start, kc, vc, Lmax, rope, sliding, window, rope_write, BN=64, rowgroup=False, nw=8, cnw=4):
     Hkv, G, D, T, MP, NS = ws.Hkv, ws.G, ws.D, ws.T, ws.MP, ws.NS
-    rope_write[(Hkv, T)](qkv, cos, sin, start, kc, vc, ws.q, Lmax, G=G, D=D, QD=Hkv * G * D, KD=Hkv * D, MP=MP, ROPE=rope, num_warps=1)
-    _attn_split_x[(Hkv, NS)](ws.q, kc, vc, start, ws.acc, ws.m, ws.l, Lmax, D ** -0.5, T=T, G=G, D=D, MP=MP, NS=NS, BN=BN, C=CHUNK,
-                             SLIDING=sliding, W=window, num_warps=8)
-    _attn_combine_x[(Hkv * T * G,)](ws.acc, ws.m, ws.l, ws.o, T=T, G=G, Hkv=Hkv, D=D, MP=MP, NS=NS, num_warps=4)
+    rope_write[(Hkv, T)](qkv, cos, sin, start, kc, vc, ws.q, Lmax, G=G, D=D, QD=Hkv * G * D, KD=Hkv * D, MP=MP, ROPE=rope, num_warps=1, **pdl.kw())
+    if rowgroup:
+        _attn_split_x2[(Hkv, NS, triton.cdiv(T * G, 16))](ws.q, kc, vc, start, ws.acc, ws.m, ws.l, Lmax, D ** -0.5, T=T, G=G, D=D, MPT=MP, NS=NS, BN=BN, C=CHUNK,
+                                                          SLIDING=sliding, W=window, num_warps=nw, **pdl.kw())
+    else:
+        _attn_split_x[(Hkv, NS)](ws.q, kc, vc, start, ws.acc, ws.m, ws.l, Lmax, D ** -0.5, T=T, G=G, D=D, MP=MP, NS=NS, BN=BN, C=CHUNK,
+                                 SLIDING=sliding, W=window, num_warps=8)
+    _attn_combine_x[(Hkv * T * G,)](ws.acc, ws.m, ws.l, ws.o, T=T, G=G, Hkv=Hkv, D=D, MP=MP, NS=NS, num_warps=cnw, **pdl.kw())
     return ws.o

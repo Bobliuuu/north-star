@@ -4,6 +4,7 @@ reads only the LIVE keys).  Numerics mirror the HF/GraphNorth bf16 rounding poin
 import torch
 import triton
 import triton.language as tl
+import pdl_flag as pdl
 
 
 # ---------------------------------------------------------------- experts: decode-specialised GEMV for top-k at T=1
@@ -61,7 +62,10 @@ def moe_gemv(x, idx, sc, gate_up, down, hbuf, obuf, cfg=None):
 
 # ---------------------------------------------------------------- router top-k (+sigmoid) on bf16 logits
 @triton.jit
-def _topk_kernel(l_ptr, idx_ptr, sc_ptr, N: tl.constexpr, KK: tl.constexpr):
+def _topk_kernel(l_ptr, idx_ptr, sc_ptr, N: tl.constexpr, KK: tl.constexpr, PDL: tl.constexpr = False):
+    if PDL:
+        tl.extra.cuda.gdc_wait()
+        tl.extra.cuda.gdc_launch_dependents()
     row = tl.program_id(0)
     r = tl.arange(0, N)
     v = tl.load(l_ptr + row * N + r).to(tl.float32)
@@ -74,12 +78,15 @@ def _topk_kernel(l_ptr, idx_ptr, sc_ptr, N: tl.constexpr, KK: tl.constexpr):
 
 
 def router_topk(logits, idx, sc, k):
-    _topk_kernel[(logits.shape[0],)](logits, idx, sc, N=logits.shape[-1], KK=k, num_warps=1)
+    _topk_kernel[(logits.shape[0],)](logits, idx, sc, N=logits.shape[-1], KK=k, num_warps=1, **pdl.kw())
 
 
 # ---------------------------------------------------------------- fused residual (x + a + sum(m rows)) + next RMSNorm
 @triton.jit
-def _resid_norm_kernel(x_ptr, a_ptr, m_ptr, w_ptr, xo_ptr, ho_ptr, eps, D: tl.constexpr, NB: tl.constexpr):
+def _resid_norm_kernel(x_ptr, a_ptr, m_ptr, w_ptr, xo_ptr, ho_ptr, eps, D: tl.constexpr, NB: tl.constexpr, PDL: tl.constexpr = False):
+    if PDL:
+        tl.extra.cuda.gdc_wait()
+        tl.extra.cuda.gdc_launch_dependents()
     row = tl.program_id(0)
     r = tl.arange(0, D)
     x = tl.load(x_ptr + row * D + r).to(tl.float32)
@@ -100,7 +107,7 @@ def _resid_norm_kernel(x_ptr, a_ptr, m_ptr, w_ptr, xo_ptr, ho_ptr, eps, D: tl.co
 
 def resid_norm(x, a, m, w, xo, ho, eps):
     D = x.shape[-1]
-    _resid_norm_kernel[(x.numel() // D,)](x, a, m, w, xo, ho, eps, D=D, NB=m.numel() // x.numel(), num_warps=8)  # one program per row
+    _resid_norm_kernel[(x.numel() // D,)](x, a, m, w, xo, ho, eps, D=D, NB=m.numel() // x.numel(), num_warps=8, **pdl.kw())  # one program per row
 
 
 # ---------------------------------------------------------------- attention: rope + KV write

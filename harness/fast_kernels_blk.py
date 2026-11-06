@@ -6,11 +6,15 @@ Same bf16 rounding points as the T=1 kernels in fast_kernels.py (which are untou
 import torch
 import triton
 import triton.language as tl
+import pdl_flag as pdl
 
 
 @triton.jit
 def _gateup_blk(x_ptr, idx_ptr, w_ptr, out_ptr, K: tl.constexpr, I: tl.constexpr, T: tl.constexpr, KK: tl.constexpr,
-                TP: tl.constexpr, TKP: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr):
+                TP: tl.constexpr, TKP: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr, PDL: tl.constexpr = False):
+    if PDL:
+        tl.extra.cuda.gdc_wait()
+        tl.extra.cuda.gdc_launch_dependents()
     p = tl.program_id(0)
     pn = tl.program_id(1)
     e32 = tl.load(idx_ptr + p)
@@ -44,7 +48,10 @@ def _gateup_blk(x_ptr, idx_ptr, w_ptr, out_ptr, K: tl.constexpr, I: tl.constexpr
 
 @triton.jit
 def _down_blk(h_ptr, idx_ptr, sc_ptr, w_ptr, out_ptr, K: tl.constexpr, N: tl.constexpr, T: tl.constexpr, KK: tl.constexpr,
-              TP: tl.constexpr, TKP: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr):
+              TP: tl.constexpr, TKP: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr, PDL: tl.constexpr = False):
+    if PDL:
+        tl.extra.cuda.gdc_wait()
+        tl.extra.cuda.gdc_launch_dependents()
     p = tl.program_id(0)
     pn = tl.program_id(1)
     e32 = tl.load(idx_ptr + p)
@@ -82,14 +89,17 @@ def moe_gemv_blk(x, idx, sc, gate_up, down, hbuf, obuf, cfg=None):
     Dm, I = x.shape[-1], down.shape[-1]
     TP = max(16, triton.next_power_of_2(T))
     TKP = triton.next_power_of_2(T * k)
-    _gateup_blk[(T * k, I // c["BN1"])](x, idx, gate_up, hbuf, K=Dm, I=I, T=T, KK=k, TP=TP, TKP=TKP, BN=c["BN1"], BK=c["BK1"], num_warps=c["nw1"], **({"num_stages": c["ns1"]} if c["ns1"] else {}))
-    _down_blk[(T * k, Dm // c["BN2"])](hbuf, idx, sc, down, obuf, K=I, N=Dm, T=T, KK=k, TP=TP, TKP=TKP, BN=c["BN2"], BK=c["BK2"], num_warps=c["nw2"], **({"num_stages": c["ns2"]} if c["ns2"] else {}))
+    _gateup_blk[(T * k, I // c["BN1"])](x, idx, gate_up, hbuf, K=Dm, I=I, T=T, KK=k, TP=TP, TKP=TKP, BN=c["BN1"], BK=c["BK1"], num_warps=c["nw1"], **({"num_stages": c["ns1"]} if c["ns1"] else {}), **pdl.kw())
+    _down_blk[(T * k, Dm // c["BN2"])](hbuf, idx, sc, down, obuf, K=I, N=Dm, T=T, KK=k, TP=TP, TKP=TKP, BN=c["BN2"], BK=c["BK2"], num_warps=c["nw2"], **({"num_stages": c["ns2"]} if c["ns2"] else {}), **pdl.kw())
     return obuf
 
 
 @triton.jit
 def _rope_write_blk(qkv_ptr, cos_ptr, sin_ptr, start_ptr, kc_ptr, vc_ptr, qo_ptr, Lmax,
-                    G: tl.constexpr, D: tl.constexpr, QD: tl.constexpr, KD: tl.constexpr, MP: tl.constexpr, ROPE: tl.constexpr):
+                    G: tl.constexpr, D: tl.constexpr, QD: tl.constexpr, KD: tl.constexpr, MP: tl.constexpr, ROPE: tl.constexpr, PDL: tl.constexpr = False):
+    if PDL:
+        tl.extra.cuda.gdc_wait()
+        tl.extra.cuda.gdc_launch_dependents()
     h = tl.program_id(0)
     t = tl.program_id(1)
     start = tl.load(start_ptr)
@@ -199,7 +209,7 @@ class AttnWSBlk:
 
 def verify_attention(ws: AttnWSBlk, qkv, cos, sin, start, kc, vc, Lmax, rope, sliding, window, BN=64):
     Hkv, G, D, ns, T, MP = ws.Hkv, ws.G, ws.D, ws.nsplit, ws.T, ws.MP
-    _rope_write_blk[(Hkv, T)](qkv, cos, sin, start, kc, vc, ws.q, Lmax, G=G, D=D, QD=Hkv * G * D, KD=Hkv * D, MP=MP, ROPE=rope, num_warps=1)
+    _rope_write_blk[(Hkv, T)](qkv, cos, sin, start, kc, vc, ws.q, Lmax, G=G, D=D, QD=Hkv * G * D, KD=Hkv * D, MP=MP, ROPE=rope, num_warps=1, **pdl.kw())
     _attn_split_blk[(Hkv, ns)](ws.q, kc, vc, start, ws.acc, ws.m, ws.l, Lmax, D ** -0.5, T=T, G=G, D=D, MP=MP, NSPLIT=ns, BN=BN,
                                SLIDING=sliding, W=window, num_warps=4 if MP <= 32 else 8)
     _attn_combine_blk[(Hkv * T * G,)](ws.acc, ws.m, ws.l, ws.o, T=T, G=G, Hkv=Hkv, D=D, MP=MP, NSPLIT=ns, num_warps=4)

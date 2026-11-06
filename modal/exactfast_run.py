@@ -6,8 +6,8 @@ import modal
 from nsapp import app, weights_vol, results_vol, WEIGHTS, MODEL_DIR
 
 
-@app.function(gpu="H100", timeout=3300, volumes={WEIGHTS: weights_vol, "/results": results_vol}, memory=65536, scaledown_window=2, max_containers=1)
-def remote(tag: str, sections: str):
+@app.function(gpu="H100!", timeout=3300, volumes={WEIGHTS: weights_vol, "/results": results_vol}, memory=65536, scaledown_window=2, max_containers=1)
+def remote(tag: str, sections: str, presets: str, ctxs: str):
     sys.path.insert(0, "/root"); sys.path.insert(0, "/root/harness")
     from loader import load_model
     from common import env_meta
@@ -16,7 +16,7 @@ def remote(tag: str, sections: str):
     m, tok = load_model(MODEL_DIR, "grouped_mm")
     meta = env_meta(); meta["load_s"] = time.time() - t0
     print("META", json.dumps(meta), flush=True)
-    j = bench_exactfast.run(m, tok, sections, tag)
+    j = bench_exactfast.run(m, tok, sections, tag, presets, tuple(int(c) for c in ctxs.split(',')))
     text = j.text(); secs = time.time() - t0
     pathlib.Path(f"/results/exactfast_{tag}.jsonl").write_text(text)
     pathlib.Path(f"/results/exactfast_{tag}.meta.json").write_text(json.dumps(dict(meta, secs=secs)))
@@ -26,5 +26,5 @@ def remote(tag: str, sections: str):
 
 
 @app.local_entrypoint()
-def main(tag: str = "ef0", sections: str = "p"):
-    print(remote.remote(tag, sections))
+def main(tag: str = "ef0", sections: str = "p", presets: str = "base", ctxs: str = "2048,8192"):
+    print(remote.remote(tag, sections, presets, ctxs))

@@ -16,6 +16,7 @@ from graph_north import GraphNorth, ALL
 import fast_kernels as fk
 import fast_kernels_blk as fb
 import fast_kernels_exact as fx
+import pdl_flag as pdl
 
 OPTS = ("attn", "moe", "router", "resid")
 XOPTS = frozenset()  # filled as exact-fast optimisations land
@@ -23,9 +24,10 @@ TBLK = 16  # largest verify block handled by the fast block path
 
 
 class FastNorth(GraphNorth):
-    def __init__(self, ref, Lmax, opts=OPTS, nsplit=32, kcfg=None, exact=False, xopts=None):
+    def __init__(self, ref, Lmax, opts=OPTS, nsplit=32, kcfg=None, exact=False, xopts=None, xcfg=None):
         super().__init__(ref, Lmax, "bmm")
         self.xopts = XOPTS if xopts is None else frozenset(xopts)  # exact-fast optimisations (empty = original exact path)
+        self.xcfg = dict(xcfg or {})  # per-option tile configs for the exact-fast options: attn / lin / moe
         self.exact = exact  # batch-invariant path: T=1 and every row of a T<=16 block use the SAME kernels (see fast_kernels_exact.py)
         self._x = {}
         self.opts = frozenset(opts)
@@ -106,6 +108,13 @@ class FastNorth(GraphNorth):
         """Row-invariant forward for 1 <= T <= TBLK: returns bf16 logits [1,T,V]. Same code for plain (T=1) and verify blocks."""
         cfg, T = self.cfg, ids.shape[1]
         W = cfg.sliding_window
+        xo = self.xopts
+        pdl.ON = "pdl" in xo
+        fx.LIN_CFG.clear()
+        if "lin" in xo:
+            fx.LIN_CFG.update(self.xcfg.get("lin", {}))
+        ak = dict(rowgroup=True, **self.xcfg.get("attn", {})) if "rg" in xo else {}
+        kmoe = self.xcfg.get("moe") if "moe" in xo else self.kcfg_blk
         qpos = self.start + torch.arange(T, device=self.dev)
         x = self.model.embed_tokens(ids).reshape(T, self.Dm).contiguous()
         cos, sin = self.model.rotary_emb(x.view(1, T, -1), qpos[None])
@@ -122,7 +131,7 @@ class FastNorth(GraphNorth):
             at = layer.self_attn
             kc, vc = kv[i]
             qkv = fx.lin(h, self.wqkv[i])
-            ao = fx.exact_attention(b["ws"], qkv, cos, sin, self.start, kc, vc, self.Lmax, bool(sliding or at.force_rope), bool(sliding), W, fb._rope_write_blk)
+            ao = fx.exact_attention(b["ws"], qkv, cos, sin, self.start, kc, vc, self.Lmax, bool(sliding or at.force_rope), bool(sliding), W, fb._rope_write_blk, **ak)
             a = fx.lin(ao, at.o_proj.weight)
             mlp = layer.mlp
             if not hasattr(mlp, "gate"):
@@ -132,7 +141,7 @@ class FastNorth(GraphNorth):
             else:
                 lg = fx.lin(h, mlp.gate.weight)
                 fk.router_topk(lg, b["idx"], b["sc"], k)
-                m = fb.moe_gemv_blk(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg_blk)
+                m = fb.moe_gemv_blk(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], kmoe)
             wn = layers[i + 1].input_layernorm.weight if i + 1 < self.nl else self.model.norm.weight
             fk.resid_norm(x, a, m, wn, b["x2"], b["h2"], layer.input_layernorm.variance_epsilon)
             x, h = b["x2"], b["h2"]

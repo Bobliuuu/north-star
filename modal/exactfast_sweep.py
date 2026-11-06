@@ -7,7 +7,7 @@ image = (modal.Image.debian_slim(python_version="3.12").pip_install("torch==2.10
 app = modal.App("northstar-exactfast-sweep", image=image)
 
 
-@app.function(gpu="H100", timeout=3000, image=image)
+@app.function(gpu="H100!", timeout=3000, image=image)
 def body(which: str):
     sys.path.insert(0, "/root/harness")
     import torch, triton, time

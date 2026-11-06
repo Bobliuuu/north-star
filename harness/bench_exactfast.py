@@ -9,6 +9,16 @@ from fast_north import FastNorth
 
 TMAX = 13
 
+# name -> FastNorth kwargs (xopts, xcfg). base = original exact path.
+PRESETS = {
+    "base": dict(xopts=frozenset()),
+    "pdl": dict(xopts=frozenset({"pdl"})),
+    "rg64": dict(xopts=frozenset({"rg"}), xcfg=dict(attn=dict(BN=64, nw=4))),
+    "rg128": dict(xopts=frozenset({"rg"}), xcfg=dict(attn=dict(BN=128, nw=4))),
+    "rg128w2": dict(xopts=frozenset({"rg"}), xcfg=dict(attn=dict(BN=128, nw=2))),
+    "rg128pdl": dict(xopts=frozenset({"rg", "pdl"}), xcfg=dict(attn=dict(BN=128, nw=4))),
+}
+
 
 def _setup(ref, tok, ctx, **kw):
     code = [r for r in by_split(load_workloads(), "dev") if r["kind"] == "code"]
@@ -46,9 +56,9 @@ def profile_step(step, j, tag, iters=3):
 
 
 @torch.no_grad()
-def profile(ref, tok, j, ctx=2048, xopts=None):
+def profile(ref, tok, j, ctx=2048, xopts=None, xcfg=None):
     ids, P, gb, kv = _setup(ref, tok, ctx)
-    kw = {} if xopts is None else dict(xopts=xopts)
+    kw = {} if xopts is None else dict(xopts=xopts, xcfg=xcfg)
     X = FastNorth(ref, P + 64, exact=True, **kw)
     for T in (1, 13):
         s = X.make_step(T, kv, logits="all") if T > 1 else X.make_step(1, kv)
@@ -61,9 +71,10 @@ def profile(ref, tok, j, ctx=2048, xopts=None):
 
 @torch.no_grad()
 def cost(ref, tok, j, ctxs=(2048, 8192), configs=None):
+    configs = configs or [(n, PRESETS[n]) for n in ("base",)]
     for ctx in ctxs:
         ids, P, gb, kv = _setup(ref, tok, ctx)
-        for name, kw in (configs or [("default", {})]):
+        for name, kw in configs:
             X = FastNorth(ref, P + 64, exact=True, **kw)
             for T in (1, 4, 9, 13):
                 try:
@@ -82,7 +93,7 @@ def cost(ref, tok, j, ctxs=(2048, 8192), configs=None):
 
 
 @torch.no_grad()
-def invariance(m, ref, tok, j, kwnew=None):
+def invariance(m, ref, tok, j, kwnew=None, name=""):
     """new exact executor: (a) T=1 bitwise == rows of T=2/5/13 blocks (eager+graph), (b) logits bitwise == BASELINE exact executor (xopts empty)."""
     rows = by_split(load_workloads(), "dev")
     code = [r for r in rows if r["kind"] == "code"]
@@ -110,16 +121,18 @@ def invariance(m, ref, tok, j, kwnew=None):
             st1 = X.make_step(1, kv, argmax=False); st1.set(toks[:1], P - 1)
             graph1_eq = torch.equal(st1.run()[0, 0], l1[0])
             eq_base = sum(int(torch.equal(l1[r], lb[r])) for r in range(TMAX))
-            j.add(phase="invariance", task=tid, P=P, block_T2=res[2], block_T5=res[5], block_T13=res[13], graph13_eq_eager_t1=graph_eq, graph1_eq_eager=graph1_eq, rows_bitwise_eq_baseline=eq_base, rows=TMAX)
-            print("INV", tid, res, graph_eq, graph1_eq, "eq_baseline %d/%d" % (eq_base, TMAX), flush=True)
+            j.add(phase="invariance", cfg=name, task=tid, P=P, block_T2=res[2], block_T5=res[5], block_T13=res[13], graph13_eq_eager_t1=graph_eq, graph1_eq_eager=graph1_eq, rows_bitwise_eq_baseline=eq_base, rows=TMAX)
+            print("INV", name, tid, res, graph_eq, graph1_eq, "eq_baseline %d/%d" % (eq_base, TMAX), flush=True)
             del gb, X, B, kv, st, st1; torch.cuda.empty_cache()
         except Exception:
             j.add(phase="inv_error", task=tid, err=traceback.format_exc()[-900:]); print("INV ERR", tid, traceback.format_exc()[-700:], flush=True)
 
 
-def run(m, tok, sections="pci", tag="", cfgs=None):
+def run(m, tok, sections="pci", tag="", presets="base", ctxs=(2048, 8192)):
     ref = RefNorth(m); j = Jsonl()
-    for sec, fn in (("p", lambda: profile(ref, tok, j)), ("c", lambda: cost(ref, tok, j, configs=cfgs)), ("i", lambda: invariance(m, ref, tok, j))):
+    cfgs = [(n, PRESETS[n]) for n in presets.split(",")]
+    for sec, fn in (("p", lambda: profile(ref, tok, j, xopts=cfgs[-1][1].get("xopts"), xcfg=cfgs[-1][1].get("xcfg"))), ("c", lambda: cost(ref, tok, j, ctxs=ctxs, configs=cfgs)),
+                    ("i", lambda: [invariance(m, ref, tok, j, kwnew=kw, name=n) for n, kw in cfgs])):
         if sec in sections:
             try:
                 fn()

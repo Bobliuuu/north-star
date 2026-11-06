@@ -39,35 +39,40 @@ def body(tag):
     ref = torch.stack([(lg[r] == lg[r].max()).nonzero()[0, 0] for r in range(13)])
     rec(test="argmax", equal_rows=bool(torch.equal(a, b1)), lowest_index_ties=bool(torch.equal(a, ref)))
 
-    # ---- attention: sequential T=1 steps vs one block of T tokens, bitwise (output rows AND kv cache)
     Hkv, G, D, Lmax, Wn = 4, 8, 128, 6000, 4096
     H = Hkv * G
     inv = 1.0 / (50000 ** (torch.arange(0, D, 2, device=dev).float() / D))
     ws = {T: fx.AttnWSX(Hkv, G, D, Lmax, T, dev) for T in (1, 2, 5, 13)}
-    allok = True
-    for sliding in (False, True):
-        for rope in (False, True):
-            for start in (0, 3, 255, 256, 257, 1000, 4090, 5000):
-                for T in (2, 5, 13):
-                    kc0 = torch.randn(1, Hkv, Lmax, D, device=dev).to(bf); vc0 = torch.randn(1, Hkv, Lmax, D, device=dev).to(bf)
-                    qkv = torch.randn(T, H * D + 2 * Hkv * D, device=dev).to(bf)
-                    pos = (start + torch.arange(T, device=dev)).float()[:, None] * inv
-                    fr = pos.repeat_interleave(2, dim=-1)
-                    cs, sn = fr.cos().to(bf).contiguous(), fr.sin().to(bf).contiguous()
-                    st = torch.tensor(start, device=dev, dtype=torch.int64)
-                    kcA, vcA = kc0.clone(), vc0.clone()
-                    ob = fx.exact_attention(ws[T], qkv, cs, sn, st, kcA, vcA, Lmax, rope, sliding, Wn, fb._rope_write_blk).clone()
-                    kcB, vcB = kc0.clone(), vc0.clone()
-                    rows = []
-                    for t in range(T):
-                        st.fill_(start + t)
-                        rows.append(fx.exact_attention(ws[1], qkv[t:t + 1].contiguous(), cs[t:t + 1].contiguous(), sn[t:t + 1].contiguous(), st, kcB, vcB, Lmax, rope, sliding, Wn, fb._rope_write_blk).clone())
-                    o1 = torch.cat(rows)
-                    eq = bool(torch.equal(ob, o1)) and bool(torch.equal(kcA, kcB)) and bool(torch.equal(vcA, vcB))
-                    allok &= eq
-                    if not eq or (start in (255, 5000) and T == 13):
-                        rec(test="attn_seq_vs_block", sliding=sliding, rope=rope, start=start, T=T, bitwise_equal=eq, maxabs=float((ob.float() - o1.float()).abs().max()))
-    rec(test="attn_all_bitwise", ok=allok)
+    VARIANTS = [{}, dict(rowgroup=True, BN=64, nw=4), dict(rowgroup=True, BN=128, nw=4), dict(rowgroup=True, BN=128, nw=8), dict(rowgroup=True, BN=64, nw=2), dict(rowgroup=True, BN=128, nw=2)]
+    def attn_tests(ak):
+        # ---- attention: sequential T=1 steps vs one block of T tokens, bitwise (output rows AND kv cache)
+        allok = True
+        for sliding in (False, True):
+            for rope in (False, True):
+                for start in (0, 3, 255, 256, 257, 1000, 4090, 5000):
+                    for T in (2, 5, 13):
+                        kc0 = torch.randn(1, Hkv, Lmax, D, device=dev).to(bf); vc0 = torch.randn(1, Hkv, Lmax, D, device=dev).to(bf)
+                        qkv = torch.randn(T, H * D + 2 * Hkv * D, device=dev).to(bf)
+                        pos = (start + torch.arange(T, device=dev)).float()[:, None] * inv
+                        fr = pos.repeat_interleave(2, dim=-1)
+                        cs, sn = fr.cos().to(bf).contiguous(), fr.sin().to(bf).contiguous()
+                        st = torch.tensor(start, device=dev, dtype=torch.int64)
+                        kcA, vcA = kc0.clone(), vc0.clone()
+                        ob = fx.exact_attention(ws[T], qkv, cs, sn, st, kcA, vcA, Lmax, rope, sliding, Wn, fb._rope_write_blk, **ak).clone()
+                        kcB, vcB = kc0.clone(), vc0.clone()
+                        rows = []
+                        for t in range(T):
+                            st.fill_(start + t)
+                            rows.append(fx.exact_attention(ws[1], qkv[t:t + 1].contiguous(), cs[t:t + 1].contiguous(), sn[t:t + 1].contiguous(), st, kcB, vcB, Lmax, rope, sliding, Wn, fb._rope_write_blk, **ak).clone())
+                        o1 = torch.cat(rows)
+                        eq = bool(torch.equal(ob, o1)) and bool(torch.equal(kcA, kcB)) and bool(torch.equal(vcA, vcB))
+                        allok &= eq
+                        if not eq or (start in (255, 5000) and T == 13):
+                            rec(test="attn_seq_vs_block", variant=str(ak), sliding=sliding, rope=rope, start=start, T=T, bitwise_equal=eq, maxabs=float((ob.float() - o1.float()).abs().max()))
+        rec(test="attn_all_bitwise", variant=str(ak), ok=allok)
+    for ak in VARIANTS:
+        attn_tests(ak)
+
     # numeric sanity vs torch (block T=5, start 1000)
     for sliding in (False, True):
         T, start = 5, 1000
@@ -145,7 +150,7 @@ def run_a10g():
     return body("A10G")
 
 
-@app.function(gpu="H100", timeout=1500)
+@app.function(gpu="H100!", timeout=1500)
 def run_h100():
     return body("H100")
 
