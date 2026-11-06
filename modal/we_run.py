@@ -48,9 +48,10 @@ def run_remote(proposer: str, rounds: int, tag: str, smoke: bool, seq_len: int, 
 
     def gen(prompt):  # North in VERIFIER mode (no patch installed during proposal)
         ids = tok.apply_chat_template([{"role": "user", "content": prompt}], add_generation_prompt=True,
-                                      return_tensors="pt", return_dict=True)["input_ids"].to(m.device)
+                                      return_tensors="pt", return_dict=True,
+                                      reasoning_effort="none")["input_ids"].to(m.device)  # extra kwarg ignored if template lacks it
         with torch.no_grad():
-            out = m.generate(ids, max_new_tokens=300, do_sample=False)
+            out = m.generate(ids, max_new_tokens=1024, do_sample=False)
         return tok.decode(out[0, ids.shape[1]:], skip_special_tokens=True)
 
     prop = LLMProposer(gen, m.config, grid) if proposer == "north" else grid
