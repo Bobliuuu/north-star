@@ -1,0 +1,9 @@
+{"type": "run", "schema": "northstar-demo/1", "task": "FIXTURE_task", "prompt_len": 10, "n_new": 6, "spend_prior_usd": 2.35, "spend_rows": 7, "provenance": {"source": "FIXTURE", "model_id": "FIXTURE-not-a-model", "model_rev": "0000000000", "gpu": "none", "created_utc": "2000-01-01T00:00:00Z"}}
+{"type": "mode_switch", "mode": "plain"}
+{"type": "step", "i": 1, "tokens": [1], "text": "def", "mode": "plain", "gamma": 0, "draft": null, "accepted": 0, "drafted": 0, "committed_total": 1, "gen_s": 0.1, "inst_tok_s": 10.0, "cum_tok_s": 10.0, "accept_cum": null, "gpu_mem_gb": 1.0, "gpu_peak_gb": 1.5, "run_cost_usd": 0.01, "cum_cost_usd": 2.36}
+{"type": "step", "i": 2, "tokens": [2], "text": "\n", "mode": "plain", "gamma": 0, "draft": null, "accepted": 0, "drafted": 0, "committed_total": 2, "gen_s": 0.2, "inst_tok_s": 10.0, "cum_tok_s": 10.0, "accept_cum": null, "gpu_mem_gb": 1.0, "gpu_peak_gb": 1.5, "run_cost_usd": 0.02, "cum_cost_usd": 2.37}
+{"type": "end", "mode": "plain", "committed_total": 2, "gen_s": 0.2, "cum_tok_s": 10.0, "gpu_peak_gb": 1.5, "run_cost_usd": 0.02, "cum_cost_usd": 2.37}
+{"type": "mode_switch", "mode": "selfspec"}
+{"type": "step", "i": 1, "tokens": [3, 4, 5], "text": "foo(x)", "mode": "selfspec", "gamma": 4, "draft": "skip8", "accepted": 2, "drafted": 4, "committed_total": 3, "gen_s": 0.1, "inst_tok_s": 30.0, "cum_tok_s": 30.0, "accept_cum": 0.5, "gpu_mem_gb": 1.0, "gpu_peak_gb": 1.5, "run_cost_usd": 0.03, "cum_cost_usd": 2.38}
+{"type": "step", "i": 2, "tokens": [6, 7], "text": ":\n  ", "mode": "selfspec", "gamma": 4, "draft": "skip8", "accepted": 1, "drafted": 4, "committed_total": 5, "gen_s": 0.2, "inst_tok_s": 20.0, "cum_tok_s": 25.0, "accept_cum": 0.375, "gpu_mem_gb": 1.0, "gpu_peak_gb": 1.5, "run_cost_usd": 0.04, "cum_cost_usd": 2.39}
+{"type": "end", "mode": "selfspec", "committed_total": 5, "gen_s": 0.2, "cum_tok_s": 25.0, "gpu_peak_gb": 1.5, "run_cost_usd": 0.04, "cum_cost_usd": 2.39}
