@@ -213,14 +213,24 @@ static TokRoute make_route(std::mt19937& g, int row, int nE) {
     return t;
 }
 // correlated draft: copy verify token's routed set, replace each slot w.p. 0.25 by a random expert not already in the set
-static TokRoute make_corr(std::mt19937& g, const TokRoute& src, int row, int nE) {
+static TokRoute make_corr(std::mt19937& g, const TokRoute& src, int row, int nE, float pr) {
     TokRoute t = src; t.row = row; std::uniform_real_distribution<float> u(0, 1);
-    for (int k = 0; k < TOPK; ++k) if (u(g) < 0.25f) {
+    for (int k = 0; k < TOPK; ++k) if (u(g) < pr) {
         for (;;) { int c = g() % nE; bool dup = false; for (int j = 0; j < TOPK; ++j) dup |= (t.e[j] == c); if (!dup) { t.e[k] = c; break; } }
     }
     return t;
 }
 
+static void renorm_draft(std::vector<TokRoute>& D, int r) {   // draft weight convention "sum1": w_k / sum_{k<r} w_k
+    for (auto& t : D) { float z = 0; for (int k = 0; k < r; ++k) z += t.w[k]; for (int k = 0; k < r; ++k) t.w[k] /= z; }
+}
+// weight bytes if the GEMM tile is only N columns wide (megakernel gemm-n8: tokens of an expert beyond N re-stream the weights)
+static double bytes_tiled(const std::vector<TokRoute>& a, int ra, const std::vector<TokRoute>& b, int rb, int nE, int N) {
+    std::vector<int> c(nE, 0);
+    for (auto& t : a) for (int k = 0; k < ra; ++k) c[t.e[k]]++;
+    for (auto& t : b) for (int k = 0; k < rb; ++k) c[t.e[k]]++;
+    double n = 0; for (int e = 0; e < nE; ++e) n += (c[e] + N - 1) / N; return n * EXPERT_BYTES;
+}
 static double median(std::vector<float> v) { std::sort(v.begin(), v.end()); return v[v.size() / 2]; }
 
 // ---------------- check mode ----------------
@@ -232,12 +242,13 @@ static std::vector<char> slurp(const std::string& p) {
 template <class T> static T* to_dev(const std::vector<char>& b) { T* p; CK(cudaMalloc(&p, b.size())); CK(cudaMemcpy(p, b.data(), b.size(), cudaMemcpyHostToDevice)); return p; }
 
 static int check_mode(const std::string& dir) {
-    int E, Tv, Td, r; { FILE* f = fopen((dir + "/meta.txt").c_str(), "r"); if (!f || fscanf(f, "%d %d %d %d", &E, &Tv, &Td, &r) != 4) return 3; fclose(f); }
+    int E, Tv, Td, r, rn = 0; { FILE* f = fopen((dir + "/meta.txt").c_str(), "r"); if (!f || fscanf(f, "%d %d %d %d %d", &E, &Tv, &Td, &r, &rn) < 4) return 3; fclose(f); }
     auto bx = slurp(dir + "/x.bin"), bg = slurp(dir + "/wg.bin"), bu = slurp(dir + "/wu.bin"), bd = slurp(dir + "/wd.bin");
     auto bi = slurp(dir + "/idx.bin"), bw = slurp(dir + "/w.bin");
     int T = Tv + Td; const int* idx = (const int*)bi.data(); const float* rw = (const float*)bw.data();
     std::vector<TokRoute> V, D;
     for (int t = 0; t < T; ++t) { TokRoute tr; tr.row = t; for (int k = 0; k < TOPK; ++k) { tr.e[k] = idx[t * TOPK + k]; tr.w[k] = rw[t * TOPK + k]; } (t < Tv ? V : D).push_back(tr); }
+    if (rn) renorm_draft(D, r);
     Dev D_; D_.x = to_dev<bf16>(bx); D_.wg = to_dev<bf16>(bg); D_.wu = to_dev<bf16>(bu); D_.wd = to_dev<bf16>(bd);
     CK(cudaMalloc(&D_.out, (size_t)T * H * 4));
     std::vector<TokRoute> all = V; all.insert(all.end(), D.begin(), D.end());
@@ -270,8 +281,8 @@ int main(int argc, char** argv) {
     if (argc < 3) { fprintf(stderr, "usage\n"); return 1; }
     std::string mode = argv[1];
     if (mode == "check") return check_mode(argv[2]);
-    std::string outp = argv[2]; bool full = false; int seeds = 1, reps = 15;
-    for (int i = 3; i < argc; ++i) { if (!strcmp(argv[i], "--full")) full = true; else if (!strcmp(argv[i], "--seeds")) seeds = atoi(argv[++i]); else if (!strcmp(argv[i], "--reps")) reps = atoi(argv[++i]); }
+    std::string outp = argv[2]; bool full = false; int seeds = 1, reps = 15, rn = 0;
+    for (int i = 3; i < argc; ++i) { if (!strcmp(argv[i], "--full")) full = true; else if (!strcmp(argv[i], "--seeds")) seeds = atoi(argv[++i]); else if (!strcmp(argv[i], "--renorm")) rn = 1; else if (!strcmp(argv[i], "--reps")) reps = atoi(argv[++i]); }
     const int E = 128;
     cudaDeviceProp prop; CK(cudaGetDeviceProperties(&prop, 0));
     int sm = prop.major * 10 + prop.minor;
@@ -301,13 +312,14 @@ int main(int argc, char** argv) {
     else { TV = {1, 4, 8, 16}; TD = {1, 4, 8, 16}; RS = {1, 2, 4, 8}; }
     const char* names[] = {"verify_only", "two_pass", "fused", "two_pass_graph", "fused_graph"};
     int ncfg = 0;
-    for (int routing = 0; routing < 2; ++routing)       // 0 = independent uniform routing, 1 = correlated draft routing
+    for (int routing = 0; routing < 3; ++routing)       // 0 = independent uniform, 1 = correlated (slot kept w.p. 0.75), 2 = draft routes identical to a verify token (overlap upper bound)
     for (int seed = 0; seed < seeds; ++seed)
     for (int tv : TV) for (int td : TD) for (int r : RS) {
         std::mt19937 g(1000003u * seed + 7919u * tv + 104729u * td + 13u * routing);
         std::vector<TokRoute> V, Dr;
         for (int i = 0; i < tv; ++i) V.push_back(make_route(g, i, E));
-        for (int i = 0; i < td; ++i) Dr.push_back(routing ? make_corr(g, V[i % tv], tv + i, E) : make_route(g, tv + i, E));
+        for (int i = 0; i < td; ++i) Dr.push_back(routing == 0 ? make_route(g, tv + i, E) : routing == 1 ? make_corr(g, V[i % tv], tv + i, E, 0.25f) : make_corr(g, V[i % tv], tv + i, E, 0.f));
+        if (rn) renorm_draft(Dr, r);
         // work lists: verify (8 experts), draft (top-r), fused (union)
         WorkList wv = build(V, TOPK, E), wdr = build(Dr, r, E);
         WorkList wf;
@@ -346,12 +358,18 @@ int main(int argc, char** argv) {
         double maxdiff = 0, maxref = 0;
         for (size_t i = 0; i < outs[1].size(); ++i) { maxdiff = std::max<double>(maxdiff, fabs(outs[1][i] - outs[2][i])); maxref = std::max<double>(maxref, fabs(outs[1][i])); }
         for (int v = 3; v <= 4; ++v) cudaGraphExecDestroy(ge[v]);
+        int inv = 0, tot = 0; { std::vector<char> inV(E, 0); for (auto& t : V) for (int k = 0; k < TOPK; ++k) inV[t.e[k]] = 1;
+          for (auto& t : Dr) for (int k = 0; k < r; ++k) { tot++; inv += inV[t.e[k]]; } }
+        int maxtok = 0; { std::vector<int> c(E, 0); for (auto& t : V) for (int k = 0; k < TOPK; ++k) maxtok = std::max(maxtok, ++c[t.e[k]]);
+          for (auto& t : Dr) for (int k = 0; k < r; ++k) maxtok = std::max(maxtok, ++c[t.e[k]]); }
+        double n8f = bytes_tiled(V, TOPK, Dr, r, E, 8), n8t = bytes_tiled(V, TOPK, {}, 0, E, 8) + bytes_tiled({}, 0, Dr, r, E, 8);
+        double n16f = bytes_tiled(V, TOPK, Dr, r, E, 16), n16t = bytes_tiled(V, TOPK, {}, 0, E, 16) + bytes_tiled({}, 0, Dr, r, E, 16);
         int nv = wv.nexp, nd = wdr.nexp, nu = wf.nexp;
         double bytes[5] = {(double)nv * EXPERT_BYTES, (double)(nv + nd) * EXPERT_BYTES, (double)nu * EXPERT_BYTES, (double)(nv + nd) * EXPERT_BYTES, (double)nu * EXPERT_BYTES};
         fprintf(fo, "{\"gpu\":\"%s\",\"sm\":%d,\"dtype\":\"bf16\",\"routing\":\"%s\",\"seed\":%d,\"r\":%d,\"Tv\":%d,\"Td\":%d,"
                     "\"experts_verify\":%d,\"experts_draft\":%d,\"experts_union\":%d,\"pairs_verify\":%d,\"pairs_draft\":%d,\"peak_read_GBs\":%.1f,"
-                    "\"fused_vs_two_maxabsdiff\":%.3e,\"out_maxabs\":%.3e,\"v\":{",
-                prop.name, sm, routing ? "corr" : "uniform", seed, r, tv, td, nv, nd, nu, wv.npairs, wdr.npairs, peak_gbs, maxdiff, maxref);
+                    "\"renorm\":%d,\"draft_expert_overlap\":%.4f,\"max_tok_per_expert\":%d,\"wb_fused_n8\":%.0f,\"wb_two_n8\":%.0f,\"wb_fused_n16\":%.0f,\"wb_two_n16\":%.0f,\"fused_vs_two_maxabsdiff\":%.3e,\"out_maxabs\":%.3e,\"v\":{",
+                prop.name, sm, routing == 0 ? "uniform" : routing == 1 ? "corr75" : "identical", seed, r, tv, td, nv, nd, nu, wv.npairs, wdr.npairs, peak_gbs, rn, tot ? (double)inv / tot : 0.0, maxtok, n8f, n8t, n16f, n16t, maxdiff, maxref);
         for (int v = 0; v < 5; ++v)
             fprintf(fo, "%s\"%s\":{\"us_med\":%.2f,\"us_min\":%.2f,\"weight_bytes\":%.0f,\"GBs\":%.1f}", v ? "," : "", names[v], med[v], mn[v], bytes[v], bytes[v] / (med[v] * 1e-6) / 1e9);
         fprintf(fo, "}}\n");

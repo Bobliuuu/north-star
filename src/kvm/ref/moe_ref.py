@@ -5,7 +5,7 @@ Semantics (match src/kvm/moe_fused.cu):
   * y = h @ Wd_t[e]  (Wd_t is the down projection stored transposed, [I][H]);  fp32 accumulate
   * out[t] = sum over routed experts k of w[t,k] * y_{t,e_k}; w are RAW sigmoid scores (norm_topk_prob=false)
   * verify tokens use all TOPK=8 routed experts; draft tokens use only the first r (highest score) of THEIR routed set
-    with the same raw weights (no renormalisation).
+    with the same raw weights by default; renorm=True divides by the sum of the kept top-r weights (documented approximation).
 """
 import torch
 
@@ -34,18 +34,22 @@ def expert_forward(xs, wg, wu, wd):
     return h @ wd.float()
 
 
-def reference(x, wg, wu, wd, idx, w, Tv, r):
+def _w(w, t, k_use, renorm):
+    return w[t, :k_use] / w[t, :k_use].sum() if (renorm and k_use < TOPK) else w[t, :k_use]
+
+
+def reference(x, wg, wu, wd, idx, w, Tv, r, renorm=False):
     T = x.shape[0]
     out = torch.zeros(T, H)
     for t in range(T):
         k_use = TOPK if t < Tv else r
         for k in range(k_use):
             e = int(idx[t, k])
-            out[t] += w[t, k] * expert_forward(x[t:t + 1], wg[e], wu[e], wd[e])[0]
+            out[t] += _w(w, t, k_use, renorm)[k] * expert_forward(x[t:t + 1], wg[e], wu[e], wd[e])[0]
     return out
 
 
-def reference_grouped(x, wg, wu, wd, idx, w, Tv, r):
+def reference_grouped(x, wg, wu, wd, idx, w, Tv, r, renorm=False):
     """Grouped-by-expert formulation (what the kernel does): one pass per expert over all its tokens."""
     T = x.shape[0]
     out = torch.zeros(T, H)
@@ -56,7 +60,7 @@ def reference_grouped(x, wg, wu, wd, idx, w, Tv, r):
             k_use = TOPK if t < Tv else r
             for k in range(k_use):
                 if int(idx[t, k]) == e:
-                    rows.append(t); ws.append(float(w[t, k]))
+                    rows.append(t); ws.append(float(_w(w, t, k_use, renorm)[k]))
         if rows:
             y = expert_forward(x[rows], wg[e], wu[e], wd[e])
             for j, t in enumerate(rows):
