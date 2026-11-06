@@ -61,3 +61,67 @@ https://modal.com/apps/<workspace>/main/ap-duOM69y4JrsPm52eVxoci9
 [1ALoading weights:  60%|██████    | 237/394 [00:24<00:17,  8.90it/s]
 [1ALoading weights:  62%|██████▏   | 243/394 [00:25<00:17,  8.49it/s]
 [1ALoading weights:  62%|██████▏   | 245/394 [00:25<00:16,  9.08it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:26<00:17,  8.37it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:27<00:15,  8.56it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:28<00:14,  8.79it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:28<00:13,  8.98it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:29<00:12,  9.01it/s]
+[1ALoading weights:  72%|███████▏  | 284/394 [00:29<00:12,  8.99it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:30<00:11,  9.03it/s]
+[1ALoading weights:  74%|███████▍  | 292/394 [00:30<00:12,  7.97it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:32<00:16,  5.93it/s]
+[1ALoading weights:  76%|███████▌  | 300/394 [00:32<00:16,  5.72it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:34<00:16,  5.39it/s]
+[1ALoading weights:  78%|███████▊  | 308/394 [00:34<00:15,  5.42it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:35<00:11,  6.83it/s]
+[1ALoading weights:  80%|████████  | 316/394 [00:35<00:11,  6.84it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:35<00:08,  8.01it/s]
+[1ALoading weights:  82%|████████▏ | 324/394 [00:36<00:09,  7.77it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:36<00:07,  8.76it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:37<00:06,  8.97it/s]
+[1ALoading weights:  86%|████████▋ | 340/394 [00:37<00:06,  8.89it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:38<00:05,  9.23it/s]
+[1ALoading weights:  88%|████████▊ | 348/394 [00:38<00:05,  8.84it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:39<00:04,  9.29it/s]
+[1ALoading weights:  90%|█████████ | 356/394 [00:39<00:04,  8.46it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:40<00:03,  9.75it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:41<00:02,  9.64it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:41<00:01,  9.56it/s]
+[1ALoading weights:  96%|█████████▋| 380/394 [00:41<00:01,  9.51it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:42<00:00,  9.50it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:42<00:00,  9.22it/s]
+EAT calibration done (2 calib prompts, ctx 2048) 14s
+ctx=2048 prompt=py_lru P=2048 verifier-vs-teacher match=0.969
+  [full] full: agree=1.000 g2:2.97 g4:4.81 g8:8.12
+  [attn_only] attn:oracle_topk:k256: agree=0.969 g2:2.88 g4:4.53 g8:7.47
+  [attn_only] attn:oracle_topk:k1024: agree=1.000 g2:2.97 g4:4.81 g8:8.12
+  [attn_only] attn:lsa_tree:k256: agree=1.000 g2:2.97 g4:4.81 g8:8.12
+  [attn_only] attn:lsa_tree:k1024: agree=0.969 g2:2.88 g4:4.50 g8:7.00
+  [expert_only] topr:r2:raw_sigmoid: agree=0.812 g2:2.44 g4:3.31 g8:3.97
+  [expert_only] topr:r2:renorm: agree=0.656 g2:2.09 g4:2.56 g8:2.69
+  [expert_only] topr:r4:raw_sigmoid: agree=1.000 g2:2.97 g4:4.81 g8:8.12
+{
+ "attn_only": {
+  "group": "attn_only",
+  "name": "attn:oracle_topk:k1024",
+  "n": 1,
+  "agree": 1.0,
+  "committed": 4.8125,
+  "experts_per_token": NaN,
+  "attended_frac": 0.8025403836912727
+ },
+ "expert_only": {
+  "group": "expert_only",
+  "name": "topr:r4:raw_sigmoid",
+  "n": 1,
+  "agree": 1.0,
+  "committed": 4.8125,
+  "experts_per_token": 4.0,
+  "attended_frac": NaN
+ },
+ "combined": null,
+ "layerskip": null
+}
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-duOM69y4JrsPm52eVxoci9
