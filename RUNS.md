@@ -59,3 +59,5 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-06 | ap-fv5l1Dywz0M0SMB8WkRy6Q | (result) | fp2 done 635 s ~$0.70: results/fastpld_fp2.jsonl, results/fastpld_fp2_summary.md, logs/fastpld_fp2_applogs.log |
 | 2026-11-06 | ap-3m6ozTJ3EICXa2I78vlm8f | `modal run --detach modal/fastpld_run.py::main --tag fp3 --sections b --reps 2 --no-hf` | independent repeat launch (no HF) for cross-launch variance; est $0.6 |
 | 2026-11-06 | ap-3m6ozTJ3EICXa2I78vlm8f | (result) | fp3 done 400 s ~$0.44: results/fastpld_fp3.jsonl, results/fastpld_fp3_summary.md. Total north-fast-pld spend ~$1.3 of $5 |
+
+| 2026-11-06 | ap-GK3KV7orR8QYjXyQCqicEm | `modal run --detach modal/exactspec_run.py::main --tag ex1 --sections ec` | exact-spec: real-model bitwise row-invariance (T=1 vs T=2/5/13 block, graph vs eager) + cost table, H100, ~$0.6. results/exactspec_ex1.jsonl, logs/exactspec_ex1_applogs.log. Kernel unit tests (A10G, no weights): results/exact_unit_A10G.jsonl |
