@@ -10,3 +10,104 @@ https://modal.com/apps/<workspace>/main/ap-eulIFAk8eGqsHCi1JOl1bf
 ├── ✓ Uploaded <home>/north-star/src/approx
 ├── ✓ Uploaded <home>/north-star/harness
 └── ✓ Created Function run_remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:08, 43.68it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:15, 23.91it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:18, 19.94it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:19, 18.10it/s]
+[1ALoading weights:   9%|▉         | 37/394 [00:01<00:19, 18.10it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:20, 17.33it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:20, 16.78it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:20, 16.60it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:03<00:19, 16.71it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:03<00:20, 16.30it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:03<00:19, 16.67it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:19, 16.44it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:04<00:19, 16.37it/s]
+[1ALoading weights:  23%|██▎       | 89/394 [00:04<00:14, 20.91it/s]
+[1ALoading weights:  23%|██▎       | 92/394 [00:05<00:19, 15.32it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:05<00:19, 15.36it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:06<00:18, 15.73it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:06<00:17, 15.94it/s]
+[1ALoading weights:  30%|██▉       | 117/394 [00:06<00:17, 16.24it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:16, 15.99it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:07<00:16, 15.99it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:08<00:15, 16.19it/s]
+[1ALoading weights:  37%|███▋      | 145/394 [00:08<00:12, 20.17it/s]
+[1ALoading weights:  38%|███▊      | 148/394 [00:08<00:16, 15.09it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:09<00:15, 15.45it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:09<00:14, 15.58it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:10<00:13, 15.98it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:10<00:13, 16.10it/s]
+[1ALoading weights:  46%|████▌     | 181/394 [00:10<00:13, 16.38it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:11<00:12, 16.09it/s]
+[1ALoading weights:  49%|████▊     | 192/394 [00:11<00:10, 19.57it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:11<00:13, 14.78it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:12<00:12, 15.55it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:12<00:11, 15.80it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:13<00:11, 15.88it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:13<00:10, 15.77it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:14<00:09, 16.00it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:14<00:09, 16.05it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:15<00:08, 16.12it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:15<00:08, 16.16it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:16<00:07, 16.20it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:16<00:07, 16.26it/s]
+[1ALoading weights:  70%|███████   | 277/394 [00:16<00:07, 16.48it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:17<00:06, 16.22it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:17<00:06, 16.20it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:18<00:05, 16.30it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:18<00:05, 16.33it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:18<00:04, 16.34it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:19<00:04, 16.35it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:19<00:03, 16.37it/s]
+[1ALoading weights:  85%|████████▍ | 333/394 [00:20<00:03, 16.02it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:20<00:03, 16.50it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:20<00:02, 16.43it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:21<00:02, 16.20it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:21<00:01, 16.26it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:22<00:01, 16.25it/s]
+[1ALoading weights:  95%|█████████▍| 373/394 [00:22<00:01, 16.51it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:22<00:00, 16.20it/s]
+[1ALoading weights:  97%|█████████▋| 381/394 [00:23<00:00, 16.51it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:23<00:00, 16.17it/s]Loading weights: 100%|██████████| 394/394 [00:23<00:00, 16.83it/s]
+  step 0 kl=2.5254
+  step 10 kl=1.3661
+  step 20 kl=2.6941
+  step 30 kl=2.4210
+  step 40 kl=2.3997
+  step 50 kl=1.8757
+  step 60 kl=2.0199
+  step 70 kl=1.8393
+  step 80 kl=1.8919
+  step 90 kl=1.6761
+round: grid passed=True gates={'lossless': True, 'gain': True, 'overfit': True, 'cost': True} agree 0.654->0.702
+ROUND_JSON {"recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 256, "batch": 1, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "nvfp4", "skip_n": 4}, "passed": true, "gates": {"lossless": true, "gain": true, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.654421768707483, "agree_edit": 0.7020408163265306, "agree_train": 0.6614583333333334, "gain": 0.04761904761904756, "committed_base": 2.7092013888888893, "committed_edit": 2.9314236111111107, "gain_ci_lower_agree": 0.027343750000000014, "gain_ci_lower_committed": 0.15579427083333294, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 383020, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_layers_frac": 0.9183673469387755, "draft_expert_bytes_frac": 0.0703125}, "train": {"first": 2.5254335403442383, "last": 1.3168704509735107, "seconds": 573.8738148212433}, "source": "grid", "version": "v001"}
+  step 0 kl=2.9227
+  step 10 kl=1.9542
+  step 20 kl=3.4817
+  step 30 kl=4.0211
+  step 40 kl=2.6241
+  step 50 kl=2.9214
+  step 60 kl=2.6870
+  step 70 kl=2.2148
+  step 80 kl=2.2713
+  step 90 kl=2.0450
+round: grid passed=True gates={'lossless': True, 'gain': True, 'overfit': True, 'cost': True} agree 0.454->0.571
+ROUND_JSON {"recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 256, "batch": 1, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "nvfp4", "skip_n": 8}, "passed": true, "gates": {"lossless": true, "gain": true, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.454421768707483, "agree_edit": 0.5714285714285714, "agree_train": 0.5234375, "gain": 0.11700680272108838, "committed_base": 1.8427579365079367, "committed_edit": 2.306671626984127, "gain_ci_lower_agree": 0.07167348710317462, "gain_ci_lower_committed": 0.27014508928571423, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 348200, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_layers_frac": 0.8367346938775511, "draft_expert_bytes_frac": 0.0703125}, "train": {"first": 2.9226555824279785, "last": 1.7586164474487305, "seconds": 535.7688245773315}, "source": "grid", "version": "v002"}
+  step 0 kl=3.8601
+  step 10 kl=2.6473
+  step 20 kl=3.5806
+  step 30 kl=3.7007
+  step 40 kl=3.7205
+  step 50 kl=3.0635
+  step 60 kl=3.1845
+  step 70 kl=3.2678
+  step 80 kl=3.0054
+  step 90 kl=2.5830
+round: grid passed=False gates={'lossless': True, 'gain': False, 'overfit': True, 'cost': True} agree 0.479->0.478
+ROUND_JSON {"recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 256, "batch": 1, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "nvfp4", "skip_n": 12}, "passed": false, "gates": {"lossless": true, "gain": false, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.47891156462585033, "agree_edit": 0.4775510204081633, "agree_train": 0.4635416666666667, "gain": -0.0013605442176870541, "committed_base": 1.951264880952381, "committed_edit": 2.062375992063492, "gain_ci_lower_agree": -0.024863591269841265, "gain_ci_lower_committed": 0.012152777777777842, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 313380, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_layers_frac": 0.7551020408163265, "draft_expert_bytes_frac": 0.0703125}, "train": {"first": 3.8600525856018066, "last": 2.5654852390289307, "seconds": 494.6076030731201}, "source": "grid"}
+RESULT_JSON {"meta": {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-06T21:50:17Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "b75d56d0a2a7"}, "gpu_seconds": 2102.6539208889008, "proposer": "grid", "history": [{"recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 256, "batch": 1, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "nvfp4", "skip_n": 4}, "passed": true, "gates": {"lossless": true, "gain": true, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.654421768707483, "agree_edit": 0.7020408163265306, "agree_train": 0.6614583333333334, "gain": 0.04761904761904756, "committed_base": 2.7092013888888893, "committed_edit": 2.9314236111111107, "gain_ci_lower_agree": 0.027343750000000014, "gain_ci_lower_committed": 0.15579427083333294, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 383020, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_layers_frac": 0.9183673469387755, "draft_expert_bytes_frac": 0.0703125}, "train": {"first": 2.5254335403442383, "last": 1.3168704509735107, "seconds": 573.8738148212433}, "source": "grid", "version": "v001"}, {"recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 256, "batch": 1, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "nvfp4", "skip_n": 8}, "passed": true, "gates": {"lossless": true, "gain": true, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.454421768707483, "agree_edit": 0.5714285714285714, "agree_train": 0.5234375, "gain": 0.11700680272108838, "committed_base": 1.8427579365079367, "committed_edit": 2.306671626984127, "gain_ci_lower_agree": 0.07167348710317462, "gain_ci_lower_committed": 0.27014508928571423, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 348200, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_layers_frac": 0.8367346938775511, "draft_expert_bytes_frac": 0.0703125}, "train": {"first": 2.9226555824279785, "last": 1.7586164474487305, "seconds": 535.7688245773315}, "source": "grid", "version": "v002"}, {"recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 256, "batch": 1, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "nvfp4", "skip_n": 12}, "passed": false, "gates": {"lossless": true, "gain": false, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.47891156462585033, "agree_edit": 0.4775510204081633, "agree_train": 0.4635416666666667, "gain": -0.0013605442176870541, "committed_base": 1.951264880952381, "committed_edit": 2.062375992063492, "gain_ci_lower_agree": -0.024863591269841265, "gain_ci_lower_committed": 0.012152777777777842, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 313380, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_layers_frac": 0.7551020408163265, "draft_expert_bytes_frac": 0.0703125}, "train": {"first": 3.8600525856018066, "last": 2.5654852390289307, "seconds": 494.6076030731201}, "source": "grid"}], "ledger": [{"time": "2026-11-06T21:30:18Z", "event": "commit", "version": "v001", "source": "grid", "hash": "8f82750bc21a55df949c685f15c0d815363b2066805778c9eac0bdf9a02cf548", "passed": true, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.654421768707483, "agree_edit": 0.7020408163265306, "agree_train": 0.6614583333333334, "gain": 0.04761904761904756, "committed_base": 2.7092013888888893, "committed_edit": 2.9314236111111107, "gain_ci_lower_agree": 0.027343750000000014, "gain_ci_lower_committed": 0.15579427083333294, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 383020, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_layers_frac": 0.9183673469387755, "draft_expert_bytes_frac": 0.0703125}}, {"time": "2026-11-06T21:40:39Z", "event": "commit", "version": "v002", "source": "grid", "hash": "404d77aa5b45d3ab141cd8a367ab1c5db6876ed73c390b461f818808cdb385cf", "passed": true, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.454421768707483, "agree_edit": 0.5714285714285714, "agree_train": 0.5234375, "gain": 0.11700680272108838, "committed_base": 1.8427579365079367, "committed_edit": 2.306671626984127, "gain_ci_lower_agree": 0.07167348710317462, "gain_ci_lower_committed": 0.27014508928571423, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 348200, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_layers_frac": 0.8367346938775511, "draft_expert_bytes_frac": 0.0703125}}, {"time": "2026-11-06T21:50:16Z", "event": "reject", "source": "grid", "recipe": {"expert_r": 2, "kind": "router_lowrank", "rank": 4, "layers": "all", "steps": 100, "lr": 0.001, "window": 256, "batch": 1, "temperature": 1.0, "gain": true, "seed": 0, "expert_quant": "nvfp4", "skip_n": 12}, "passed": false, "gates": {"lossless": true, "gain": false, "overfit": true, "cost": true}, "numbers": {"verifier_bit_identical": true, "base_params_unchanged": true, "fp_mode": "sampled", "agree_base": 0.47891156462585033, "agree_edit": 0.4775510204081633, "agree_train": 0.4635416666666667, "gain": -0.0013605442176870541, "committed_base": 1.951264880952381, "committed_edit": 2.062375992063492, "gain_ci_lower_agree": -0.024863591269841265, "gain_ci_lower_committed": 0.012152777777777842, "gamma": 4, "n_gate_seqs": 8, "adapter_params": 313380, "adapter_flops_frac": 0.0009223090277777778, "active_experts_exact": true, "draft_layers_frac": 0.7551020408163265, "draft_expert_bytes_frac": 0.0703125}, "reason": ""}], "current": "v002"}
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-eulIFAk8eGqsHCi1JOl1bf

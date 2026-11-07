@@ -1,0 +1,49 @@
+{
+ "recipe": {
+  "expert_r": 2,
+  "kind": "router_lowrank",
+  "rank": 4,
+  "layers": "all",
+  "steps": 100,
+  "lr": 0.001,
+  "window": 256,
+  "batch": 1,
+  "temperature": 1.0,
+  "gain": true,
+  "seed": 0,
+  "expert_quant": "nvfp4",
+  "skip_n": 8
+ },
+ "gates": {
+  "lossless": true,
+  "gain": true,
+  "overfit": true,
+  "cost": true
+ },
+ "numbers": {
+  "verifier_bit_identical": true,
+  "base_params_unchanged": true,
+  "fp_mode": "sampled",
+  "agree_base": 0.454421768707483,
+  "agree_edit": 0.5714285714285714,
+  "agree_train": 0.5234375,
+  "gain": 0.11700680272108838,
+  "committed_base": 1.8427579365079367,
+  "committed_edit": 2.306671626984127,
+  "gain_ci_lower_agree": 0.07167348710317462,
+  "gain_ci_lower_committed": 0.27014508928571423,
+  "gamma": 4,
+  "n_gate_seqs": 8,
+  "adapter_params": 348200,
+  "adapter_flops_frac": 0.0009223090277777778,
+  "active_experts_exact": true,
+  "draft_layers_frac": 0.8367346938775511,
+  "draft_expert_bytes_frac": 0.0703125
+ },
+ "passed": true,
+ "train": {
+  "first": 2.9226555824279785,
+  "last": 1.7586164474487305,
+  "seconds": 535.7688245773315
+ }
+}
