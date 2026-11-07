@@ -1,0 +1,15 @@
+{
+ "expert_r": 2,
+ "kind": "router_lowrank",
+ "rank": 4,
+ "layers": "all",
+ "steps": 100,
+ "lr": 0.001,
+ "window": 256,
+ "batch": 1,
+ "temperature": 1.0,
+ "gain": true,
+ "seed": 0,
+ "expert_quant": "nvfp4",
+ "skip_n": 8
+}

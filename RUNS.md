@@ -96,3 +96,4 @@ printed line below (git history of this file is the anchor). Verify before trust
 
 | 2026-11-06 | ap-GqpWRXpGenJvyYXUUBlowE | (result) | r4s CRASHED after weights load: AssertionError distill.py grad_checkpointed (skipped layers already have instance forward from EditedDraft). Fixed c56b091. |
 | 2026-11-06 | ap-eulIFAk8eGqsHCi1JOl1bf | `modal run --detach modal/we_run.py::main --proposer grid --rounds 3 --tag r4s2 --quants nvfp4 --rs 2 --skips 4,8,12 --steps 100 --window 256 --batch 1` | r4s relaunch after fix; est <=$2; Volume northstar-results:/weightedit_r4s2; log logs/weightedit_r4s2_client.log |
+| 2026-11-06 | ap-eulIFAk8eGqsHCi1JOl1bf | (result) | r4s2 done OK, 2103 GPU-s (~$2.3 H100). Fix verified. nvfp4 top-2 + layer-skip: skip4 PASS (agree .654->.702, committed 2.71->2.93, v001); skip8 PASS (.454->.571, 1.84->2.31, v002); skip12 FAIL gain gate (.479->.478). results/weightedit_r4s2.json, logs/weightedit_r4s2_applogs.txt |
