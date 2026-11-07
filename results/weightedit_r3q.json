@@ -1,0 +1,361 @@
+{
+ "meta": {
+  "python": "3.12.16",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.22.1",
+  "model": "CohereLabs/North-Mini-Code-1.0",
+  "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37",
+  "time": "2026-11-06T17:37:49Z",
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "cuda": "12.8",
+  "gpu_mem_gb": 79.2,
+  "pip_freeze_sha": "b75d56d0a2a7"
+ },
+ "gpu_seconds": 2455.039158821106,
+ "proposer": "grid",
+ "history": [
+  {
+   "recipe": {
+    "expert_r": 2,
+    "kind": "router_lowrank",
+    "rank": 4,
+    "layers": "all",
+    "steps": 100,
+    "lr": 0.001,
+    "window": 256,
+    "batch": 1,
+    "temperature": 1.0,
+    "gain": true,
+    "seed": 0,
+    "expert_quant": "nvfp4"
+   },
+   "passed": true,
+   "gates": {
+    "lossless": true,
+    "gain": true,
+    "overfit": true,
+    "cost": true
+   },
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "sampled",
+    "agree_base": 0.7181996086105675,
+    "agree_edit": 0.7945205479452054,
+    "agree_train": 0.767578125,
+    "gain": 0.0763209393346379,
+    "committed_base": 3.0345982142857144,
+    "committed_edit": 3.4682229662698414,
+    "gain_ci_lower_agree": 0.054811507936507936,
+    "gain_ci_lower_committed": 0.2500914558531746,
+    "gamma": 4,
+    "n_gate_seqs": 8,
+    "adapter_params": 417840,
+    "adapter_flops_frac": 0.0009223090277777778,
+    "active_experts_exact": true,
+    "draft_expert_bytes_frac": 0.0703125
+   },
+   "train": {
+    "first": 2.0745742321014404,
+    "last": 1.1199040412902832,
+    "seconds": 545.6873114109039
+   },
+   "source": "grid",
+   "version": "v001"
+  },
+  {
+   "recipe": {
+    "expert_r": 3,
+    "kind": "router_lowrank",
+    "rank": 4,
+    "layers": "all",
+    "steps": 100,
+    "lr": 0.001,
+    "window": 256,
+    "batch": 1,
+    "temperature": 1.0,
+    "gain": true,
+    "seed": 0,
+    "expert_quant": "nvfp4"
+   },
+   "passed": false,
+   "gates": {
+    "lossless": true,
+    "gain": false,
+    "overfit": true,
+    "cost": true
+   },
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "sampled",
+    "agree_base": 0.837573385518591,
+    "agree_edit": 0.8414872798434442,
+    "agree_train": 0.82421875,
+    "gain": 0.003913894324853229,
+    "committed_base": 3.717509920634921,
+    "committed_edit": 3.7450706845238093,
+    "gain_ci_lower_agree": -0.0078125,
+    "gain_ci_lower_committed": -0.05448133680555555,
+    "gamma": 4,
+    "n_gate_seqs": 8,
+    "adapter_params": 417840,
+    "adapter_flops_frac": 0.0006148726851851852,
+    "active_experts_exact": true,
+    "draft_expert_bytes_frac": 0.10546875
+   },
+   "train": {
+    "first": 0.8283365368843079,
+    "last": 0.5603479146957397,
+    "seconds": 556.7847089767456
+   },
+   "source": "grid"
+  },
+  {
+   "recipe": {
+    "expert_r": 2,
+    "kind": "router_lowrank",
+    "rank": 4,
+    "layers": "all",
+    "steps": 100,
+    "lr": 0.001,
+    "window": 256,
+    "batch": 1,
+    "temperature": 1.0,
+    "gain": true,
+    "seed": 0,
+    "expert_quant": "int4"
+   },
+   "passed": true,
+   "gates": {
+    "lossless": true,
+    "gain": true,
+    "overfit": true,
+    "cost": true
+   },
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "sampled",
+    "agree_base": 0.7338551859099804,
+    "agree_edit": 0.7984344422700587,
+    "agree_train": 0.75390625,
+    "gain": 0.06457925636007822,
+    "committed_base": 3.1435081845238093,
+    "committed_edit": 3.4991319444444446,
+    "gain_ci_lower_agree": 0.037295386904761904,
+    "gain_ci_lower_committed": 0.20342726934523803,
+    "gamma": 4,
+    "n_gate_seqs": 8,
+    "adapter_params": 417840,
+    "adapter_flops_frac": 0.0009223090277777778,
+    "active_experts_exact": true,
+    "draft_expert_bytes_frac": 0.078125
+   },
+   "train": {
+    "first": 2.0405492782592773,
+    "last": 0.9645549058914185,
+    "seconds": 430.2225458621979
+   },
+   "source": "grid",
+   "version": "v002"
+  },
+  {
+   "recipe": {
+    "expert_r": 3,
+    "kind": "router_lowrank",
+    "rank": 4,
+    "layers": "all",
+    "steps": 100,
+    "lr": 0.001,
+    "window": 256,
+    "batch": 1,
+    "temperature": 1.0,
+    "gain": true,
+    "seed": 0,
+    "expert_quant": "int4"
+   },
+   "passed": false,
+   "gates": {
+    "lossless": true,
+    "gain": false,
+    "overfit": true,
+    "cost": true
+   },
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "sampled",
+    "agree_base": 0.8317025440313112,
+    "agree_edit": 0.8512720156555773,
+    "agree_train": 0.8359375,
+    "gain": 0.019569471624266144,
+    "committed_base": 3.729228670634921,
+    "committed_edit": 3.7782738095238093,
+    "gain_ci_lower_agree": 0.003937251984126991,
+    "gain_ci_lower_committed": -0.03125,
+    "gamma": 4,
+    "n_gate_seqs": 8,
+    "adapter_params": 417840,
+    "adapter_flops_frac": 0.0006148726851851852,
+    "active_experts_exact": true,
+    "draft_expert_bytes_frac": 0.1171875
+   },
+   "train": {
+    "first": 0.8895323276519775,
+    "last": 0.610159158706665,
+    "seconds": 458.5405378341675
+   },
+   "source": "grid"
+  }
+ ],
+ "ledger": [
+  {
+   "time": "2026-11-06T17:09:48Z",
+   "event": "commit",
+   "version": "v001",
+   "source": "grid",
+   "hash": "ac624c1d8df237bc8726c2a98d3f85e172459a3efd5a5e3852814502a6b58b94",
+   "passed": true,
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "sampled",
+    "agree_base": 0.7181996086105675,
+    "agree_edit": 0.7945205479452054,
+    "agree_train": 0.767578125,
+    "gain": 0.0763209393346379,
+    "committed_base": 3.0345982142857144,
+    "committed_edit": 3.4682229662698414,
+    "gain_ci_lower_agree": 0.054811507936507936,
+    "gain_ci_lower_committed": 0.2500914558531746,
+    "gamma": 4,
+    "n_gate_seqs": 8,
+    "adapter_params": 417840,
+    "adapter_flops_frac": 0.0009223090277777778,
+    "active_experts_exact": true,
+    "draft_expert_bytes_frac": 0.0703125
+   }
+  },
+  {
+   "time": "2026-11-06T17:20:35Z",
+   "event": "reject",
+   "source": "grid",
+   "recipe": {
+    "expert_r": 3,
+    "kind": "router_lowrank",
+    "rank": 4,
+    "layers": "all",
+    "steps": 100,
+    "lr": 0.001,
+    "window": 256,
+    "batch": 1,
+    "temperature": 1.0,
+    "gain": true,
+    "seed": 0,
+    "expert_quant": "nvfp4"
+   },
+   "passed": false,
+   "gates": {
+    "lossless": true,
+    "gain": false,
+    "overfit": true,
+    "cost": true
+   },
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "sampled",
+    "agree_base": 0.837573385518591,
+    "agree_edit": 0.8414872798434442,
+    "agree_train": 0.82421875,
+    "gain": 0.003913894324853229,
+    "committed_base": 3.717509920634921,
+    "committed_edit": 3.7450706845238093,
+    "gain_ci_lower_agree": -0.0078125,
+    "gain_ci_lower_committed": -0.05448133680555555,
+    "gamma": 4,
+    "n_gate_seqs": 8,
+    "adapter_params": 417840,
+    "adapter_flops_frac": 0.0006148726851851852,
+    "active_experts_exact": true,
+    "draft_expert_bytes_frac": 0.10546875
+   },
+   "reason": ""
+  },
+  {
+   "time": "2026-11-06T17:28:56Z",
+   "event": "commit",
+   "version": "v002",
+   "source": "grid",
+   "hash": "6b8c584ad1621af20116653e7f8c28713e4b3e07a3bbc89d7169560ab1c95f92",
+   "passed": true,
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "sampled",
+    "agree_base": 0.7338551859099804,
+    "agree_edit": 0.7984344422700587,
+    "agree_train": 0.75390625,
+    "gain": 0.06457925636007822,
+    "committed_base": 3.1435081845238093,
+    "committed_edit": 3.4991319444444446,
+    "gain_ci_lower_agree": 0.037295386904761904,
+    "gain_ci_lower_committed": 0.20342726934523803,
+    "gamma": 4,
+    "n_gate_seqs": 8,
+    "adapter_params": 417840,
+    "adapter_flops_frac": 0.0009223090277777778,
+    "active_experts_exact": true,
+    "draft_expert_bytes_frac": 0.078125
+   }
+  },
+  {
+   "time": "2026-11-06T17:37:48Z",
+   "event": "reject",
+   "source": "grid",
+   "recipe": {
+    "expert_r": 3,
+    "kind": "router_lowrank",
+    "rank": 4,
+    "layers": "all",
+    "steps": 100,
+    "lr": 0.001,
+    "window": 256,
+    "batch": 1,
+    "temperature": 1.0,
+    "gain": true,
+    "seed": 0,
+    "expert_quant": "int4"
+   },
+   "passed": false,
+   "gates": {
+    "lossless": true,
+    "gain": false,
+    "overfit": true,
+    "cost": true
+   },
+   "numbers": {
+    "verifier_bit_identical": true,
+    "base_params_unchanged": true,
+    "fp_mode": "sampled",
+    "agree_base": 0.8317025440313112,
+    "agree_edit": 0.8512720156555773,
+    "agree_train": 0.8359375,
+    "gain": 0.019569471624266144,
+    "committed_base": 3.729228670634921,
+    "committed_edit": 3.7782738095238093,
+    "gain_ci_lower_agree": 0.003937251984126991,
+    "gain_ci_lower_committed": -0.03125,
+    "gamma": 4,
+    "n_gate_seqs": 8,
+    "adapter_params": 417840,
+    "adapter_flops_frac": 0.0006148726851851852,
+    "active_experts_exact": true,
+    "draft_expert_bytes_frac": 0.1171875
+   },
+   "reason": ""
+  }
+ ],
+ "current": "v002"
+}
