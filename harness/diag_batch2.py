@@ -25,6 +25,18 @@ def run(m, tok):
     kvs = []
     for (tid, kind, ids) in pool:
         kv = X.new_kv(); gb.eager_prefill(ids[:-1], kv); kvs.append(kv)
+    # timing check: is the T=1 graph really slower than T=2 at B>1? (order-swapped, longer warmup, median of 60)
+    from graph_north import time_graph
+    for B in (4, 8):
+        idxs = list(range(B)); kk = [kvs[i] for i in idxs]
+        sts = {T: BX.make_step(B, T, kk) for T in (1, 2, 3)}
+        for rnd in range(2):
+            order = (2, 3, 1) if rnd == 0 else (1, 3, 2)
+            r = {}
+            for T in order:
+                r[T] = time_graph(sts[T], n=60, warm=40)[0]
+            j.add(phase="timing", B=B, order=list(order), ms={str(k): v for k, v in r.items()}); print("timing B", B, order, r, flush=True)
+        del sts
     # reference: original exact executor, T=1 graph, one sequence at a time
     refs = []
     for i, (tid, kind, ids) in enumerate(pool):
