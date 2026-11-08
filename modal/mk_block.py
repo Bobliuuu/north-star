@@ -168,7 +168,7 @@ def write_lib():
 @app.function(gpu="H100", timeout=3300, scaledown_window=2, max_containers=1,
               volumes={"/weights": weights_vol, "/jit": jit_vol, "/results": res_vol}, memory=65536)
 def run(part: str, tag: str, ctxs: str = "2048,8192", n_ref: int = 24, rounds: int = 14):
-    import sys, random
+    import sys, random, statistics
     t0 = time.time()
     sys.path.insert(0, "/mk/src"); sys.path.insert(0, "/")
     write_lib()
