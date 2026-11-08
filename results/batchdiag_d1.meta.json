@@ -1,0 +1,1 @@
+{"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-08T15:45:46Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "b75d56d0a2a7", "load_s": 29.85991144180298, "secs": 49.79332613945007}
