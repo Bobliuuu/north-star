@@ -1,0 +1,4396 @@
+{
+ "label": "INFERRED projection; mk curve MEASURED (results/mk_block_s3_vast.json), acceptance MEASURED, combination is a model",
+ "mk_curve_ms": {
+  "2048": {
+   "1": 3.2729,
+   "2": 4.0949,
+   "3": 4.796,
+   "4": 5.4855,
+   "5": 6.2309,
+   "6": 6.7481,
+   "7": 7.1892,
+   "8": 7.7894
+  },
+  "8192": {
+   "1": 3.3785,
+   "2": 4.2065,
+   "3": 4.865,
+   "4": 5.6728,
+   "5": 6.1093,
+   "6": 6.6689,
+   "7": 7.1529,
+   "8": 7.5817
+  }
+ },
+ "scenarios": {
+  "fast_fp2": {
+   "fast_curve_ms_T1_T4_T8_ctx2K": {
+    "1": 3.96,
+    "4": 5.98,
+    "8": 8.19
+   },
+   "h13_cells": {
+    "natural": {
+     "n": 21,
+     "fast_pld_over_fast_plain": 1.153,
+     "mk_plain_over_fast_plain": 1.187,
+     "mk_pld_best_T_over_fast_pld": 1.175,
+     "mk_pld_best_T_over_fast_plain": 1.355,
+     "mk_pld_T4_over_fast_pld": 1.156,
+     "mk_pld_T4_over_fast_plain": 1.333,
+     "mk_pld_T8_over_fast_pld": 1.166,
+     "mk_pld_T4_over_mk_plain": 1.123,
+     "mk_pld_best_T_over_mk_plain": 1.142,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.027,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.01,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.12,
+      "3": 1.144,
+      "4": 1.156,
+      "5": 1.159,
+      "6": 1.164,
+      "7": 1.167,
+      "8": 1.166
+     },
+     "tasks_mk_T4_beats_fast_pld": 20,
+     "tasks_mk_best_beats_fast_pld": 21,
+     "best_T_histogram": {
+      "2": 3,
+      "3": 2,
+      "4": 2,
+      "6": 4,
+      "7": 5,
+      "8": 5
+     }
+    }
+   },
+   "h13_dbar_eq_abar": {
+    "ctx2048": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.558,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.139,
+     "mk_pld_best_T_over_fast_plain": 1.774,
+     "mk_pld_T4_over_fast_pld": 1.041,
+     "mk_pld_T4_over_fast_plain": 1.621,
+     "mk_pld_T8_over_fast_pld": 1.139,
+     "mk_pld_T4_over_mk_plain": 1.339,
+     "mk_pld_best_T_over_mk_plain": 1.465,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.164,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.063,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.906,
+      "3": 0.987,
+      "4": 1.041,
+      "5": 1.069,
+      "6": 1.099,
+      "7": 1.126,
+      "8": 1.139
+     },
+     "tasks_mk_T4_beats_fast_pld": 5,
+     "tasks_mk_best_beats_fast_pld": 6,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 1,
+      "4": 2,
+      "8": 2
+     }
+    },
+    "ctx8192": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.511,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 1.143,
+     "mk_pld_best_T_over_fast_plain": 1.728,
+     "mk_pld_T4_over_fast_pld": 1.054,
+     "mk_pld_T4_over_fast_plain": 1.593,
+     "mk_pld_T8_over_fast_pld": 1.143,
+     "mk_pld_T4_over_mk_plain": 1.32,
+     "mk_pld_best_T_over_mk_plain": 1.432,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.145,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.055,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.937,
+      "3": 1.01,
+      "4": 1.054,
+      "5": 1.092,
+      "6": 1.117,
+      "7": 1.131,
+      "8": 1.143
+     },
+     "tasks_mk_T4_beats_fast_pld": 5,
+     "tasks_mk_best_beats_fast_pld": 6,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 2,
+      "4": 1,
+      "6": 1,
+      "8": 1
+     }
+    }
+   },
+   "h13_dbar_eq_abar_by_kind": {
+    "ctx2048/code": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.381,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.19,
+     "mk_pld_best_T_over_fast_plain": 1.644,
+     "mk_pld_T4_over_fast_pld": 1.19,
+     "mk_pld_T4_over_fast_plain": 1.644,
+     "mk_pld_T8_over_fast_pld": 1.19,
+     "mk_pld_T4_over_mk_plain": 1.358,
+     "mk_pld_best_T_over_mk_plain": 1.358,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.017,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.017,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.003,
+      "3": 1.125,
+      "4": 1.19,
+      "5": 1.19,
+      "6": 1.19,
+      "7": 1.19,
+      "8": 1.19
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "4": 2
+     }
+    },
+    "ctx2048/prose": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.072,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.21,
+     "mk_pld_best_T_over_fast_plain": 1.298,
+     "mk_pld_T4_over_fast_pld": 1.21,
+     "mk_pld_T4_over_fast_plain": 1.298,
+     "mk_pld_T8_over_fast_pld": 1.21,
+     "mk_pld_T4_over_mk_plain": 1.072,
+     "mk_pld_best_T_over_mk_plain": 1.072,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.0,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.0,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.191,
+      "3": 1.21,
+      "4": 1.21,
+      "5": 1.21,
+      "6": 1.21,
+      "7": 1.21,
+      "8": 1.21
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx2048/terminal": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.09,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.209,
+     "mk_pld_best_T_over_fast_plain": 1.318,
+     "mk_pld_T4_over_fast_pld": 1.209,
+     "mk_pld_T4_over_fast_plain": 1.318,
+     "mk_pld_T8_over_fast_pld": 1.209,
+     "mk_pld_T4_over_mk_plain": 1.088,
+     "mk_pld_best_T_over_mk_plain": 1.088,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.002,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.002,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.209,
+      "3": 1.209,
+      "4": 1.209,
+      "5": 1.209,
+      "6": 1.209,
+      "7": 1.209,
+      "8": 1.209
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    },
+    "ctx2048/edit": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 3.89,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 0.859,
+     "mk_pld_best_T_over_fast_plain": 3.342,
+     "mk_pld_T4_over_fast_pld": 0.602,
+     "mk_pld_T4_over_fast_plain": 2.341,
+     "mk_pld_T8_over_fast_pld": 0.859,
+     "mk_pld_T4_over_mk_plain": 1.934,
+     "mk_pld_best_T_over_mk_plain": 2.76,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 2.011,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.409,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.424,
+      "3": 0.521,
+      "4": 0.602,
+      "5": 0.666,
+      "6": 0.738,
+      "7": 0.808,
+      "8": 0.859
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx2048/extract": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 2.134,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.154,
+     "mk_pld_best_T_over_fast_plain": 2.463,
+     "mk_pld_T4_over_fast_pld": 0.876,
+     "mk_pld_T4_over_fast_plain": 1.869,
+     "mk_pld_T8_over_fast_pld": 1.154,
+     "mk_pld_T4_over_mk_plain": 1.543,
+     "mk_pld_best_T_over_mk_plain": 2.034,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.383,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.049,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.678,
+      "3": 0.781,
+      "4": 0.876,
+      "5": 0.957,
+      "6": 1.046,
+      "7": 1.135,
+      "8": 1.154
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx2048/summarize": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.204,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.208,
+     "mk_pld_best_T_over_fast_plain": 1.455,
+     "mk_pld_T4_over_fast_pld": 1.208,
+     "mk_pld_T4_over_fast_plain": 1.455,
+     "mk_pld_T8_over_fast_pld": 1.208,
+     "mk_pld_T4_over_mk_plain": 1.202,
+     "mk_pld_best_T_over_mk_plain": 1.202,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.002,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.002,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.208,
+      "3": 1.208,
+      "4": 1.208,
+      "5": 1.208,
+      "6": 1.208,
+      "7": 1.208,
+      "8": 1.208
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    },
+    "ctx8192/code": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.256,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 1.192,
+     "mk_pld_best_T_over_fast_plain": 1.497,
+     "mk_pld_T4_over_fast_pld": 1.192,
+     "mk_pld_T4_over_fast_plain": 1.497,
+     "mk_pld_T8_over_fast_pld": 1.192,
+     "mk_pld_T4_over_mk_plain": 1.241,
+     "mk_pld_best_T_over_mk_plain": 1.241,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.012,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.012,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.084,
+      "3": 1.153,
+      "4": 1.192,
+      "5": 1.192,
+      "6": 1.192,
+      "7": 1.192,
+      "8": 1.192
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "2": 1,
+      "4": 1
+     }
+    },
+    "ctx8192/prose": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.078,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 1.205,
+     "mk_pld_best_T_over_fast_plain": 1.299,
+     "mk_pld_T4_over_fast_pld": 1.205,
+     "mk_pld_T4_over_fast_plain": 1.299,
+     "mk_pld_T8_over_fast_pld": 1.205,
+     "mk_pld_T4_over_mk_plain": 1.077,
+     "mk_pld_best_T_over_mk_plain": 1.077,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.001,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.001,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.195,
+      "3": 1.205,
+      "4": 1.205,
+      "5": 1.205,
+      "6": 1.205,
+      "7": 1.205,
+      "8": 1.205
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx8192/terminal": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.17,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 1.205,
+     "mk_pld_best_T_over_fast_plain": 1.41,
+     "mk_pld_T4_over_fast_pld": 1.205,
+     "mk_pld_T4_over_fast_plain": 1.41,
+     "mk_pld_T8_over_fast_pld": 1.205,
+     "mk_pld_T4_over_mk_plain": 1.168,
+     "mk_pld_best_T_over_mk_plain": 1.168,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.002,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.002,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.156,
+      "3": 1.205,
+      "4": 1.205,
+      "5": 1.205,
+      "6": 1.205,
+      "7": 1.205,
+      "8": 1.205
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx8192/edit": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 3.913,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 0.889,
+     "mk_pld_best_T_over_fast_plain": 3.478,
+     "mk_pld_T4_over_fast_pld": 0.595,
+     "mk_pld_T4_over_fast_plain": 2.33,
+     "mk_pld_T8_over_fast_pld": 0.889,
+     "mk_pld_T4_over_mk_plain": 1.931,
+     "mk_pld_best_T_over_mk_plain": 2.883,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 2.026,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.357,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.421,
+      "3": 0.522,
+      "4": 0.595,
+      "5": 0.684,
+      "6": 0.754,
+      "7": 0.822,
+      "8": 0.889
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx8192/extract": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.839,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 1.162,
+     "mk_pld_best_T_over_fast_plain": 2.136,
+     "mk_pld_T4_over_fast_pld": 0.981,
+     "mk_pld_T4_over_fast_plain": 1.805,
+     "mk_pld_T8_over_fast_pld": 1.162,
+     "mk_pld_T4_over_mk_plain": 1.496,
+     "mk_pld_best_T_over_mk_plain": 1.771,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.229,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.038,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.773,
+      "3": 0.886,
+      "4": 0.981,
+      "5": 1.091,
+      "6": 1.162,
+      "7": 1.162,
+      "8": 1.162
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "6": 1
+     }
+    },
+    "ctx8192/summarize": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.258,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 1.199,
+     "mk_pld_best_T_over_fast_plain": 1.509,
+     "mk_pld_T4_over_fast_pld": 1.199,
+     "mk_pld_T4_over_fast_plain": 1.509,
+     "mk_pld_T8_over_fast_pld": 1.199,
+     "mk_pld_T4_over_mk_plain": 1.251,
+     "mk_pld_best_T_over_mk_plain": 1.251,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.006,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.006,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.199,
+      "3": 1.199,
+      "4": 1.199,
+      "5": 1.199,
+      "6": 1.199,
+      "7": 1.199,
+      "8": 1.199
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    }
+   },
+   "h13_dbar_12": {
+    "ctx2048": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.352,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.17,
+     "mk_pld_best_T_over_fast_plain": 1.582,
+     "mk_pld_T4_over_fast_pld": 1.08,
+     "mk_pld_T4_over_fast_plain": 1.46,
+     "mk_pld_T8_over_fast_pld": 1.1,
+     "mk_pld_T4_over_mk_plain": 1.206,
+     "mk_pld_best_T_over_mk_plain": 1.307,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.121,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.034,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.995,
+      "3": 1.051,
+      "4": 1.08,
+      "5": 1.087,
+      "6": 1.098,
+      "7": 1.107,
+      "8": 1.1
+     },
+     "tasks_mk_T4_beats_fast_pld": 5,
+     "tasks_mk_best_beats_fast_pld": 6,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 1,
+      "4": 1,
+      "7": 1,
+      "8": 2
+     }
+    },
+    "ctx8192": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.257,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 1.235,
+     "mk_pld_best_T_over_fast_plain": 1.552,
+     "mk_pld_T4_over_fast_pld": 1.12,
+     "mk_pld_T4_over_fast_plain": 1.408,
+     "mk_pld_T8_over_fast_pld": 1.135,
+     "mk_pld_T4_over_mk_plain": 1.167,
+     "mk_pld_best_T_over_mk_plain": 1.287,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.077,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.977,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.061,
+      "3": 1.113,
+      "4": 1.12,
+      "5": 1.14,
+      "6": 1.139,
+      "7": 1.138,
+      "8": 1.135
+     },
+     "tasks_mk_T4_beats_fast_pld": 5,
+     "tasks_mk_best_beats_fast_pld": 6,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 2,
+      "6": 1,
+      "8": 2
+     }
+    }
+   },
+   "h13_dbar_12_by_kind": {
+    "ctx2048/code": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.192,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.192,
+     "mk_pld_best_T_over_fast_plain": 1.421,
+     "mk_pld_T4_over_fast_pld": 1.186,
+     "mk_pld_T4_over_fast_plain": 1.415,
+     "mk_pld_T8_over_fast_pld": 1.17,
+     "mk_pld_T4_over_mk_plain": 1.169,
+     "mk_pld_best_T_over_mk_plain": 1.174,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.02,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.015,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.107,
+      "3": 1.162,
+      "4": 1.186,
+      "5": 1.188,
+      "6": 1.19,
+      "7": 1.188,
+      "8": 1.17
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "4": 1,
+      "7": 1
+     }
+    },
+    "ctx2048/prose": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.997,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.251,
+     "mk_pld_best_T_over_fast_plain": 1.247,
+     "mk_pld_T4_over_fast_pld": 1.248,
+     "mk_pld_T4_over_fast_plain": 1.244,
+     "mk_pld_T8_over_fast_pld": 1.207,
+     "mk_pld_T4_over_mk_plain": 1.028,
+     "mk_pld_best_T_over_mk_plain": 1.03,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.97,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.968,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.242,
+      "3": 1.251,
+      "4": 1.248,
+      "5": 1.237,
+      "6": 1.229,
+      "7": 1.22,
+      "8": 1.207
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx2048/terminal": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.908,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.369,
+     "mk_pld_best_T_over_fast_plain": 1.243,
+     "mk_pld_T4_over_fast_pld": 1.328,
+     "mk_pld_T4_over_fast_plain": 1.206,
+     "mk_pld_T8_over_fast_pld": 1.206,
+     "mk_pld_T4_over_mk_plain": 0.996,
+     "mk_pld_best_T_over_mk_plain": 1.027,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.912,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.884,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.369,
+      "3": 1.358,
+      "4": 1.328,
+      "5": 1.289,
+      "6": 1.261,
+      "7": 1.238,
+      "8": 1.206
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    },
+    "ctx2048/edit": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 3.809,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 0.812,
+     "mk_pld_best_T_over_fast_plain": 3.094,
+     "mk_pld_T4_over_fast_pld": 0.596,
+     "mk_pld_T4_over_fast_plain": 2.271,
+     "mk_pld_T8_over_fast_pld": 0.812,
+     "mk_pld_T4_over_mk_plain": 1.876,
+     "mk_pld_best_T_over_mk_plain": 2.556,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 2.03,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.49,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.429,
+      "3": 0.522,
+      "4": 0.596,
+      "5": 0.652,
+      "6": 0.714,
+      "7": 0.773,
+      "8": 0.812
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx2048/extract": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.988,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.002,
+     "mk_pld_best_T_over_fast_plain": 1.991,
+     "mk_pld_T4_over_fast_pld": 0.856,
+     "mk_pld_T4_over_fast_plain": 1.702,
+     "mk_pld_T8_over_fast_pld": 1.002,
+     "mk_pld_T4_over_mk_plain": 1.405,
+     "mk_pld_best_T_over_mk_plain": 1.645,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.415,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.209,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.711,
+      "3": 0.793,
+      "4": 0.856,
+      "5": 0.899,
+      "6": 0.943,
+      "7": 0.982,
+      "8": 1.002
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx2048/summarize": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.849,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.515,
+     "mk_pld_best_T_over_fast_plain": 1.286,
+     "mk_pld_T4_over_fast_pld": 1.434,
+     "mk_pld_T4_over_fast_plain": 1.217,
+     "mk_pld_T8_over_fast_pld": 1.202,
+     "mk_pld_T4_over_mk_plain": 1.006,
+     "mk_pld_best_T_over_mk_plain": 1.062,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.844,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.799,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.515,
+      "3": 1.496,
+      "4": 1.434,
+      "5": 1.355,
+      "6": 1.303,
+      "7": 1.259,
+      "8": 1.202
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    },
+    "ctx8192/code": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.017,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 1.322,
+     "mk_pld_best_T_over_fast_plain": 1.345,
+     "mk_pld_T4_over_fast_pld": 1.266,
+     "mk_pld_T4_over_fast_plain": 1.287,
+     "mk_pld_T8_over_fast_pld": 1.204,
+     "mk_pld_T4_over_mk_plain": 1.067,
+     "mk_pld_best_T_over_mk_plain": 1.115,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.953,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.912,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.26,
+      "3": 1.283,
+      "4": 1.266,
+      "5": 1.263,
+      "6": 1.243,
+      "7": 1.223,
+      "8": 1.204
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "2": 1,
+      "6": 1
+     }
+    },
+    "ctx8192/prose": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.983,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 1.267,
+     "mk_pld_best_T_over_fast_plain": 1.246,
+     "mk_pld_T4_over_fast_pld": 1.256,
+     "mk_pld_T4_over_fast_plain": 1.236,
+     "mk_pld_T8_over_fast_pld": 1.213,
+     "mk_pld_T4_over_mk_plain": 1.024,
+     "mk_pld_best_T_over_mk_plain": 1.033,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.96,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.952,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.258,
+      "3": 1.267,
+      "4": 1.256,
+      "5": 1.251,
+      "6": 1.238,
+      "7": 1.225,
+      "8": 1.213
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx8192/terminal": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.008,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 1.286,
+     "mk_pld_best_T_over_fast_plain": 1.296,
+     "mk_pld_T4_over_fast_pld": 1.275,
+     "mk_pld_T4_over_fast_plain": 1.285,
+     "mk_pld_T8_over_fast_pld": 1.215,
+     "mk_pld_T4_over_mk_plain": 1.065,
+     "mk_pld_best_T_over_mk_plain": 1.074,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.946,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.939,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.261,
+      "3": 1.286,
+      "4": 1.275,
+      "5": 1.271,
+      "6": 1.252,
+      "7": 1.233,
+      "8": 1.215
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx8192/edit": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 3.841,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 0.838,
+     "mk_pld_best_T_over_fast_plain": 3.22,
+     "mk_pld_T4_over_fast_pld": 0.588,
+     "mk_pld_T4_over_fast_plain": 2.26,
+     "mk_pld_T8_over_fast_pld": 0.838,
+     "mk_pld_T4_over_mk_plain": 1.873,
+     "mk_pld_best_T_over_mk_plain": 2.669,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 2.051,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.439,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.426,
+      "3": 0.521,
+      "4": 0.588,
+      "5": 0.668,
+      "6": 0.728,
+      "7": 0.784,
+      "8": 0.838
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx8192/extract": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.638,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 1.092,
+     "mk_pld_best_T_over_fast_plain": 1.788,
+     "mk_pld_T4_over_fast_pld": 0.97,
+     "mk_pld_T4_over_fast_plain": 1.589,
+     "mk_pld_T8_over_fast_pld": 1.092,
+     "mk_pld_T4_over_mk_plain": 1.317,
+     "mk_pld_best_T_over_mk_plain": 1.482,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.244,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.105,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.84,
+      "3": 0.922,
+      "4": 0.97,
+      "5": 1.022,
+      "6": 1.052,
+      "7": 1.074,
+      "8": 1.092
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx8192/summarize": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.768,
+     "mk_plain_over_fast_plain": 1.206,
+     "mk_pld_best_T_over_fast_pld": 1.681,
+     "mk_pld_best_T_over_fast_plain": 1.291,
+     "mk_pld_T4_over_fast_pld": 1.51,
+     "mk_pld_T4_over_fast_plain": 1.16,
+     "mk_pld_T8_over_fast_pld": 1.24,
+     "mk_pld_T4_over_mk_plain": 0.962,
+     "mk_pld_best_T_over_mk_plain": 1.07,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.798,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.718,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.681,
+      "3": 1.636,
+      "4": 1.51,
+      "5": 1.446,
+      "6": 1.362,
+      "7": 1.295,
+      "8": 1.24
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    }
+   },
+   "h13_natural_by_kind": {
+    "code": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.146,
+     "mk_plain_over_fast_plain": 1.187,
+     "mk_pld_best_T_over_fast_pld": 1.174,
+     "mk_pld_best_T_over_fast_plain": 1.346,
+     "mk_pld_T4_over_fast_pld": 1.155,
+     "mk_pld_T4_over_fast_plain": 1.324,
+     "mk_pld_T8_over_fast_pld": 1.166,
+     "mk_pld_T4_over_mk_plain": 1.115,
+     "mk_pld_best_T_over_mk_plain": 1.133,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.028,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.011,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.124,
+      "3": 1.14,
+      "4": 1.155,
+      "5": 1.158,
+      "6": 1.162,
+      "7": 1.169,
+      "8": 1.166
+     },
+     "tasks_mk_T4_beats_fast_pld": 7,
+     "tasks_mk_best_beats_fast_pld": 7,
+     "best_T_histogram": {
+      "2": 1,
+      "4": 1,
+      "6": 1,
+      "7": 2,
+      "8": 2
+     }
+    },
+    "terminal": {
+     "n": 4,
+     "fast_pld_over_fast_plain": 1.066,
+     "mk_plain_over_fast_plain": 1.187,
+     "mk_pld_best_T_over_fast_pld": 1.196,
+     "mk_pld_best_T_over_fast_plain": 1.275,
+     "mk_pld_T4_over_fast_pld": 1.191,
+     "mk_pld_T4_over_fast_plain": 1.27,
+     "mk_pld_T8_over_fast_pld": 1.188,
+     "mk_pld_T4_over_mk_plain": 1.07,
+     "mk_pld_best_T_over_mk_plain": 1.074,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.996,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.993,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.169,
+      "3": 1.186,
+      "4": 1.191,
+      "5": 1.186,
+      "6": 1.189,
+      "7": 1.192,
+      "8": 1.188
+     },
+     "tasks_mk_T4_beats_fast_pld": 4,
+     "tasks_mk_best_beats_fast_pld": 4,
+     "best_T_histogram": {
+      "4": 1,
+      "6": 2,
+      "7": 1
+     }
+    },
+    "prose": {
+     "n": 4,
+     "fast_pld_over_fast_plain": 1.101,
+     "mk_plain_over_fast_plain": 1.187,
+     "mk_pld_best_T_over_fast_pld": 1.189,
+     "mk_pld_best_T_over_fast_plain": 1.309,
+     "mk_pld_T4_over_fast_pld": 1.184,
+     "mk_pld_T4_over_fast_plain": 1.303,
+     "mk_pld_T8_over_fast_pld": 1.176,
+     "mk_pld_T4_over_mk_plain": 1.097,
+     "mk_pld_best_T_over_mk_plain": 1.102,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.004,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.999,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.15,
+      "3": 1.181,
+      "4": 1.184,
+      "5": 1.18,
+      "6": 1.18,
+      "7": 1.179,
+      "8": 1.176
+     },
+     "tasks_mk_T4_beats_fast_pld": 4,
+     "tasks_mk_best_beats_fast_pld": 4,
+     "best_T_histogram": {
+      "2": 1,
+      "3": 2,
+      "8": 1
+     }
+    },
+    "edit": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.18,
+     "mk_plain_over_fast_plain": 1.187,
+     "mk_pld_best_T_over_fast_pld": 1.166,
+     "mk_pld_best_T_over_fast_plain": 1.376,
+     "mk_pld_T4_over_fast_pld": 1.146,
+     "mk_pld_T4_over_fast_plain": 1.352,
+     "mk_pld_T8_over_fast_pld": 1.155,
+     "mk_pld_T4_over_mk_plain": 1.139,
+     "mk_pld_best_T_over_mk_plain": 1.159,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.036,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.018,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.105,
+      "3": 1.131,
+      "4": 1.146,
+      "5": 1.157,
+      "6": 1.162,
+      "7": 1.163,
+      "8": 1.155
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "6": 1,
+      "7": 1
+     }
+    },
+    "extract": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.484,
+     "mk_plain_over_fast_plain": 1.187,
+     "mk_pld_best_T_over_fast_pld": 1.115,
+     "mk_pld_best_T_over_fast_plain": 1.654,
+     "mk_pld_T4_over_fast_pld": 1.034,
+     "mk_pld_T4_over_fast_plain": 1.533,
+     "mk_pld_T8_over_fast_pld": 1.115,
+     "mk_pld_T4_over_mk_plain": 1.292,
+     "mk_pld_best_T_over_mk_plain": 1.393,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.149,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.065,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.946,
+      "3": 0.998,
+      "4": 1.034,
+      "5": 1.058,
+      "6": 1.087,
+      "7": 1.092,
+      "8": 1.115
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "8": 2
+     }
+    },
+    "summarize": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.149,
+     "mk_plain_over_fast_plain": 1.187,
+     "mk_pld_best_T_over_fast_pld": 1.185,
+     "mk_pld_best_T_over_fast_plain": 1.361,
+     "mk_pld_T4_over_fast_pld": 1.172,
+     "mk_pld_T4_over_fast_plain": 1.347,
+     "mk_pld_T8_over_fast_pld": 1.164,
+     "mk_pld_T4_over_mk_plain": 1.134,
+     "mk_pld_best_T_over_mk_plain": 1.147,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.013,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.002,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.152,
+      "3": 1.169,
+      "4": 1.172,
+      "5": 1.173,
+      "6": 1.176,
+      "7": 1.175,
+      "8": 1.164
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "2": 1,
+      "7": 1
+     }
+    }
+   },
+   "aggregate_model_validation_on_h13_tasks": {
+    "n": 42,
+    "median_abs_rel_err": 0.0115,
+    "max_abs_rel_err": 0.0939,
+    "mean_signed_rel_err": -0.0127
+   },
+   "h15_mix_99": {
+    "n": 99,
+    "fast_pld_over_fast_plain": 1.116,
+    "mk_plain_over_fast_plain": 1.196,
+    "mk_pld_best_T_over_fast_pld": 1.191,
+    "mk_pld_best_T_over_fast_plain": 1.329,
+    "mk_pld_T4_over_fast_pld": 1.152,
+    "mk_pld_T4_over_fast_plain": 1.286,
+    "mk_pld_T8_over_fast_pld": 1.152,
+    "mk_pld_T4_over_mk_plain": 1.075,
+    "mk_pld_best_T_over_mk_plain": 1.111,
+    "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.038,
+    "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.005,
+    "mk_T_cap_over_fast_pld": {
+     "2": 1.141,
+     "3": 1.16,
+     "4": 1.152,
+     "5": 1.148,
+     "6": 1.151,
+     "7": 1.152,
+     "8": 1.152
+    },
+    "tasks_mk_T4_beats_fast_pld": 96,
+    "tasks_mk_best_beats_fast_pld": 99,
+    "best_T_histogram": {
+     "2": 42,
+     "3": 28,
+     "4": 10,
+     "5": 3,
+     "6": 7,
+     "7": 6,
+     "8": 3
+    },
+    "model_fast_pld_over_fast_plain_vs_measured": {
+     "model": 1.116,
+     "measured_h15_exact_executor": 1.151
+    }
+   },
+   "h15_by_category": {
+    "canitedit": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.305,
+     "mk_plain_over_fast_plain": 1.187,
+     "mk_pld_best_T_over_fast_pld": 1.149,
+     "mk_pld_best_T_over_fast_plain": 1.5,
+     "mk_pld_T4_over_fast_pld": 1.098,
+     "mk_pld_T4_over_fast_plain": 1.433,
+     "mk_pld_T8_over_fast_pld": 1.14,
+     "mk_pld_T4_over_mk_plain": 1.207,
+     "mk_pld_best_T_over_mk_plain": 1.263,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.081,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.033,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.007,
+      "3": 1.067,
+      "4": 1.098,
+      "5": 1.113,
+      "6": 1.129,
+      "7": 1.139,
+      "8": 1.14
+     },
+     "tasks_mk_T4_beats_fast_pld": 7,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "3": 2,
+      "4": 2,
+      "6": 3,
+      "8": 2
+     }
+    },
+    "cnn_summ": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.008,
+     "mk_plain_over_fast_plain": 1.203,
+     "mk_pld_best_T_over_fast_pld": 1.226,
+     "mk_pld_best_T_over_fast_plain": 1.236,
+     "mk_pld_T4_over_fast_pld": 1.177,
+     "mk_pld_T4_over_fast_plain": 1.187,
+     "mk_pld_T8_over_fast_pld": 1.168,
+     "mk_pld_T4_over_mk_plain": 0.987,
+     "mk_pld_best_T_over_mk_plain": 1.028,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.021,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.981,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.226,
+      "3": 1.207,
+      "4": 1.177,
+      "5": 1.168,
+      "6": 1.168,
+      "7": 1.168,
+      "8": 1.168
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 9
+     }
+    },
+    "glaive_tool": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.071,
+     "mk_plain_over_fast_plain": 1.187,
+     "mk_pld_best_T_over_fast_pld": 1.183,
+     "mk_pld_best_T_over_fast_plain": 1.267,
+     "mk_pld_T4_over_fast_pld": 1.164,
+     "mk_pld_T4_over_fast_plain": 1.246,
+     "mk_pld_T8_over_fast_pld": 1.158,
+     "mk_pld_T4_over_mk_plain": 1.05,
+     "mk_pld_best_T_over_mk_plain": 1.067,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.02,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.004,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.159,
+      "3": 1.172,
+      "4": 1.164,
+      "5": 1.158,
+      "6": 1.158,
+      "7": 1.158,
+      "8": 1.158
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 4,
+      "3": 3,
+      "4": 1,
+      "6": 1
+     }
+    },
+    "gov4k": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 0.982,
+     "mk_plain_over_fast_plain": 1.211,
+     "mk_pld_best_T_over_fast_pld": 1.253,
+     "mk_pld_best_T_over_fast_plain": 1.231,
+     "mk_pld_T4_over_fast_pld": 1.182,
+     "mk_pld_T4_over_fast_plain": 1.161,
+     "mk_pld_T8_over_fast_pld": 1.168,
+     "mk_pld_T4_over_mk_plain": 0.959,
+     "mk_pld_best_T_over_mk_plain": 1.017,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.024,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.966,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.253,
+      "3": 1.22,
+      "4": 1.182,
+      "5": 1.17,
+      "6": 1.168,
+      "7": 1.168,
+      "8": 1.168
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 9
+     }
+    },
+    "gov8k": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.01,
+     "mk_plain_over_fast_plain": 1.207,
+     "mk_pld_best_T_over_fast_pld": 1.238,
+     "mk_pld_best_T_over_fast_plain": 1.25,
+     "mk_pld_T4_over_fast_pld": 1.166,
+     "mk_pld_T4_over_fast_plain": 1.178,
+     "mk_pld_T8_over_fast_pld": 1.162,
+     "mk_pld_T4_over_mk_plain": 0.976,
+     "mk_pld_best_T_over_mk_plain": 1.036,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.035,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.975,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.237,
+      "3": 1.216,
+      "4": 1.166,
+      "5": 1.162,
+      "6": 1.162,
+      "7": 1.162,
+      "8": 1.162
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 8,
+      "3": 1
+     }
+    },
+    "humaneval": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.145,
+     "mk_plain_over_fast_plain": 1.187,
+     "mk_pld_best_T_over_fast_pld": 1.171,
+     "mk_pld_best_T_over_fast_plain": 1.341,
+     "mk_pld_T4_over_fast_pld": 1.14,
+     "mk_pld_T4_over_fast_plain": 1.305,
+     "mk_pld_T8_over_fast_pld": 1.148,
+     "mk_pld_T4_over_mk_plain": 1.099,
+     "mk_pld_best_T_over_mk_plain": 1.129,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.042,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.014,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.11,
+      "3": 1.138,
+      "4": 1.14,
+      "5": 1.138,
+      "6": 1.144,
+      "7": 1.148,
+      "8": 1.148
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 3,
+      "3": 3,
+      "4": 1,
+      "7": 1,
+      "8": 1
+     }
+    },
+    "mbpp": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.144,
+     "mk_plain_over_fast_plain": 1.187,
+     "mk_pld_best_T_over_fast_pld": 1.176,
+     "mk_pld_best_T_over_fast_plain": 1.345,
+     "mk_pld_T4_over_fast_pld": 1.147,
+     "mk_pld_T4_over_fast_plain": 1.312,
+     "mk_pld_T8_over_fast_pld": 1.137,
+     "mk_pld_T4_over_mk_plain": 1.105,
+     "mk_pld_best_T_over_mk_plain": 1.133,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.035,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.01,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.117,
+      "3": 1.147,
+      "4": 1.147,
+      "5": 1.132,
+      "6": 1.134,
+      "7": 1.137,
+      "8": 1.137
+     },
+     "tasks_mk_T4_beats_fast_pld": 8,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "3": 6,
+      "4": 2,
+      "7": 1
+     }
+    },
+    "quality_qa": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.335,
+     "mk_plain_over_fast_plain": 1.207,
+     "mk_pld_best_T_over_fast_pld": 1.163,
+     "mk_pld_best_T_over_fast_plain": 1.553,
+     "mk_pld_T4_over_fast_pld": 1.124,
+     "mk_pld_T4_over_fast_plain": 1.501,
+     "mk_pld_T8_over_fast_pld": 1.147,
+     "mk_pld_T4_over_mk_plain": 1.243,
+     "mk_pld_best_T_over_mk_plain": 1.286,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.074,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.038,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.034,
+      "3": 1.106,
+      "4": 1.124,
+      "5": 1.141,
+      "6": 1.146,
+      "7": 1.147,
+      "8": 1.147
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "3": 3,
+      "5": 3,
+      "6": 1,
+      "7": 2
+     }
+    },
+    "squad_qa": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.25,
+     "mk_plain_over_fast_plain": 1.187,
+     "mk_pld_best_T_over_fast_pld": 1.147,
+     "mk_pld_best_T_over_fast_plain": 1.434,
+     "mk_pld_T4_over_fast_pld": 1.132,
+     "mk_pld_T4_over_fast_plain": 1.415,
+     "mk_pld_T8_over_fast_pld": 1.13,
+     "mk_pld_T4_over_mk_plain": 1.192,
+     "mk_pld_best_T_over_mk_plain": 1.208,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.049,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.035,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.058,
+      "3": 1.113,
+      "4": 1.132,
+      "5": 1.128,
+      "6": 1.131,
+      "7": 1.132,
+      "8": 1.13
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "3": 3,
+      "4": 2,
+      "6": 2,
+      "7": 2
+     }
+    },
+    "ultrachat": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.02,
+     "mk_plain_over_fast_plain": 1.203,
+     "mk_pld_best_T_over_fast_pld": 1.21,
+     "mk_pld_best_T_over_fast_plain": 1.234,
+     "mk_pld_T4_over_fast_pld": 1.184,
+     "mk_pld_T4_over_fast_plain": 1.207,
+     "mk_pld_T8_over_fast_pld": 1.179,
+     "mk_pld_T4_over_mk_plain": 1.004,
+     "mk_pld_best_T_over_mk_plain": 1.026,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.016,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.994,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.204,
+      "3": 1.197,
+      "4": 1.184,
+      "5": 1.179,
+      "6": 1.179,
+      "7": 1.179,
+      "8": 1.179
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 7,
+      "3": 1,
+      "4": 1
+     }
+    },
+    "xsum_summ": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.071,
+     "mk_plain_over_fast_plain": 1.19,
+     "mk_pld_best_T_over_fast_pld": 1.193,
+     "mk_pld_best_T_over_fast_plain": 1.277,
+     "mk_pld_T4_over_fast_pld": 1.166,
+     "mk_pld_T4_over_fast_plain": 1.248,
+     "mk_pld_T8_over_fast_pld": 1.139,
+     "mk_pld_T4_over_mk_plain": 1.049,
+     "mk_pld_best_T_over_mk_plain": 1.073,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.021,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.998,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.179,
+      "3": 1.187,
+      "4": 1.166,
+      "5": 1.143,
+      "6": 1.139,
+      "7": 1.139,
+      "8": 1.139
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 6,
+      "4": 1
+     }
+    }
+   },
+   "breakeven_iid_ctx2K": {
+    "tokens_per_round_to_tie_own_plain": {
+     "2": 1.2511534113477345,
+     "3": 1.465367105624981,
+     "4": 1.6760365425158117,
+     "5": 1.903785633536008,
+     "6": 2.0618106266613707,
+     "7": 2.196584069174127,
+     "8": 2.379968834978154
+    },
+    "a_vs_mk_plain": {
+     "2": 0.252,
+     "3": 0.346,
+     "4": 0.423,
+     "5": 0.49,
+     "6": 0.526,
+     "7": 0.552,
+     "8": 0.586
+    },
+    "a_vs_fast_plain": {
+     "2": 0.034,
+     "3": 0.179,
+     "4": 0.283,
+     "5": 0.369,
+     "6": 0.416,
+     "7": 0.451,
+     "8": 0.494
+    },
+    "a_intervals_mk_best_T_le8_ge_fast_pld_best_T_le13": [
+     [
+      0.034,
+      0.851
+     ]
+    ],
+    "a_intervals_mk_cap4_ge_fast_pld_best_T_le13": [
+     [
+      0.0,
+      0.823
+     ]
+    ],
+    "mk_over_fastpld_ratio_at_a": {
+     "0.1": 1.0643940611914309,
+     "0.3": 1.202819082407367,
+     "0.5": 1.168513810981915,
+     "0.7": 1.0796488295071303,
+     "0.9": 0.9147050317060559
+    }
+   }
+  },
+  "fast_fp3": {
+   "fast_curve_ms_T1_T4_T8_ctx2K": {
+    "1": 3.32,
+    "4": 5.18,
+    "8": 6.76
+   },
+   "h13_cells": {
+    "natural": {
+     "n": 21,
+     "fast_pld_over_fast_plain": 1.137,
+     "mk_plain_over_fast_plain": 0.995,
+     "mk_pld_best_T_over_fast_pld": 0.999,
+     "mk_pld_best_T_over_fast_plain": 1.136,
+     "mk_pld_T4_over_fast_pld": 0.982,
+     "mk_pld_T4_over_fast_plain": 1.116,
+     "mk_pld_T8_over_fast_pld": 0.991,
+     "mk_pld_T4_over_mk_plain": 1.123,
+     "mk_pld_best_T_over_mk_plain": 1.142,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.012,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.996,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.951,
+      "3": 0.972,
+      "4": 0.982,
+      "5": 0.984,
+      "6": 0.989,
+      "7": 0.992,
+      "8": 0.991
+     },
+     "tasks_mk_T4_beats_fast_pld": 8,
+     "tasks_mk_best_beats_fast_pld": 14,
+     "best_T_histogram": {
+      "2": 3,
+      "3": 2,
+      "4": 2,
+      "6": 4,
+      "7": 5,
+      "8": 5
+     }
+    }
+   },
+   "h13_dbar_eq_abar": {
+    "ctx2048": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.544,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 0.961,
+     "mk_pld_best_T_over_fast_plain": 1.484,
+     "mk_pld_T4_over_fast_pld": 0.878,
+     "mk_pld_T4_over_fast_plain": 1.356,
+     "mk_pld_T8_over_fast_pld": 0.961,
+     "mk_pld_T4_over_mk_plain": 1.339,
+     "mk_pld_best_T_over_mk_plain": 1.465,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.153,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.054,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.765,
+      "3": 0.833,
+      "4": 0.878,
+      "5": 0.903,
+      "6": 0.928,
+      "7": 0.951,
+      "8": 0.961
+     },
+     "tasks_mk_T4_beats_fast_pld": 5,
+     "tasks_mk_best_beats_fast_pld": 5,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 1,
+      "4": 2,
+      "8": 2
+     }
+    },
+    "ctx8192": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.491,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 0.973,
+     "mk_pld_best_T_over_fast_plain": 1.45,
+     "mk_pld_T4_over_fast_pld": 0.897,
+     "mk_pld_T4_over_fast_plain": 1.337,
+     "mk_pld_T8_over_fast_pld": 0.973,
+     "mk_pld_T4_over_mk_plain": 1.32,
+     "mk_pld_best_T_over_mk_plain": 1.432,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.13,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.041,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.797,
+      "3": 0.859,
+      "4": 0.897,
+      "5": 0.929,
+      "6": 0.95,
+      "7": 0.962,
+      "8": 0.973
+     },
+     "tasks_mk_T4_beats_fast_pld": 5,
+     "tasks_mk_best_beats_fast_pld": 5,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 2,
+      "4": 1,
+      "6": 1,
+      "8": 1
+     }
+    }
+   },
+   "h13_dbar_eq_abar_by_kind": {
+    "ctx2048/code": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.366,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.006,
+     "mk_pld_best_T_over_fast_plain": 1.375,
+     "mk_pld_T4_over_fast_pld": 1.006,
+     "mk_pld_T4_over_fast_plain": 1.375,
+     "mk_pld_T8_over_fast_pld": 1.006,
+     "mk_pld_T4_over_mk_plain": 1.358,
+     "mk_pld_best_T_over_mk_plain": 1.358,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.006,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.006,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.848,
+      "3": 0.951,
+      "4": 1.006,
+      "5": 1.006,
+      "6": 1.006,
+      "7": 1.006,
+      "8": 1.006
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "4": 2
+     }
+    },
+    "ctx2048/prose": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.066,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.018,
+     "mk_pld_best_T_over_fast_plain": 1.086,
+     "mk_pld_T4_over_fast_pld": 1.018,
+     "mk_pld_T4_over_fast_plain": 1.086,
+     "mk_pld_T8_over_fast_pld": 1.018,
+     "mk_pld_T4_over_mk_plain": 1.072,
+     "mk_pld_best_T_over_mk_plain": 1.072,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.994,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.994,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.002,
+      "3": 1.018,
+      "4": 1.018,
+      "5": 1.018,
+      "6": 1.018,
+      "7": 1.018,
+      "8": 1.018
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx2048/terminal": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.078,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.022,
+     "mk_pld_best_T_over_fast_plain": 1.102,
+     "mk_pld_T4_over_fast_pld": 1.022,
+     "mk_pld_T4_over_fast_plain": 1.102,
+     "mk_pld_T8_over_fast_pld": 1.022,
+     "mk_pld_T4_over_mk_plain": 1.088,
+     "mk_pld_best_T_over_mk_plain": 1.088,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.991,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.991,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.022,
+      "3": 1.022,
+      "4": 1.022,
+      "5": 1.022,
+      "6": 1.022,
+      "7": 1.022,
+      "8": 1.022
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    },
+    "ctx2048/edit": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 3.846,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 0.727,
+     "mk_pld_best_T_over_fast_plain": 2.796,
+     "mk_pld_T4_over_fast_pld": 0.509,
+     "mk_pld_T4_over_fast_plain": 1.959,
+     "mk_pld_T8_over_fast_pld": 0.727,
+     "mk_pld_T4_over_mk_plain": 1.934,
+     "mk_pld_best_T_over_mk_plain": 2.76,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.989,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.393,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.359,
+      "3": 0.441,
+      "4": 0.509,
+      "5": 0.563,
+      "6": 0.624,
+      "7": 0.684,
+      "8": 0.727
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx2048/extract": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 2.155,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 0.956,
+     "mk_pld_best_T_over_fast_plain": 2.06,
+     "mk_pld_T4_over_fast_pld": 0.726,
+     "mk_pld_T4_over_fast_plain": 1.563,
+     "mk_pld_T8_over_fast_pld": 0.956,
+     "mk_pld_T4_over_mk_plain": 1.543,
+     "mk_pld_best_T_over_mk_plain": 2.034,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.397,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.059,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.561,
+      "3": 0.648,
+      "4": 0.726,
+      "5": 0.793,
+      "6": 0.867,
+      "7": 0.941,
+      "8": 0.956
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx2048/summarize": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.176,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.035,
+     "mk_pld_best_T_over_fast_plain": 1.217,
+     "mk_pld_T4_over_fast_pld": 1.035,
+     "mk_pld_T4_over_fast_plain": 1.217,
+     "mk_pld_T8_over_fast_pld": 1.035,
+     "mk_pld_T4_over_mk_plain": 1.202,
+     "mk_pld_best_T_over_mk_plain": 1.202,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.978,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.978,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.035,
+      "3": 1.035,
+      "4": 1.035,
+      "5": 1.035,
+      "6": 1.035,
+      "7": 1.035,
+      "8": 1.035
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    },
+    "ctx8192/code": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.24,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.013,
+     "mk_pld_best_T_over_fast_plain": 1.256,
+     "mk_pld_T4_over_fast_pld": 1.013,
+     "mk_pld_T4_over_fast_plain": 1.256,
+     "mk_pld_T8_over_fast_pld": 1.013,
+     "mk_pld_T4_over_mk_plain": 1.241,
+     "mk_pld_best_T_over_mk_plain": 1.241,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.999,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.999,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.921,
+      "3": 0.98,
+      "4": 1.013,
+      "5": 1.013,
+      "6": 1.013,
+      "7": 1.013,
+      "8": 1.013
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "2": 1,
+      "4": 1
+     }
+    },
+    "ctx8192/prose": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.069,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.02,
+     "mk_pld_best_T_over_fast_plain": 1.09,
+     "mk_pld_T4_over_fast_pld": 1.02,
+     "mk_pld_T4_over_fast_plain": 1.09,
+     "mk_pld_T8_over_fast_pld": 1.02,
+     "mk_pld_T4_over_mk_plain": 1.077,
+     "mk_pld_best_T_over_mk_plain": 1.077,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.993,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.993,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.011,
+      "3": 1.02,
+      "4": 1.02,
+      "5": 1.02,
+      "6": 1.02,
+      "7": 1.02,
+      "8": 1.02
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx8192/terminal": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.153,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.026,
+     "mk_pld_best_T_over_fast_plain": 1.183,
+     "mk_pld_T4_over_fast_pld": 1.026,
+     "mk_pld_T4_over_fast_plain": 1.183,
+     "mk_pld_T8_over_fast_pld": 1.026,
+     "mk_pld_T4_over_mk_plain": 1.168,
+     "mk_pld_best_T_over_mk_plain": 1.168,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.987,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.987,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.984,
+      "3": 1.026,
+      "4": 1.026,
+      "5": 1.026,
+      "6": 1.026,
+      "7": 1.026,
+      "8": 1.026
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx8192/edit": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 3.872,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 0.754,
+     "mk_pld_best_T_over_fast_plain": 2.92,
+     "mk_pld_T4_over_fast_pld": 0.505,
+     "mk_pld_T4_over_fast_plain": 1.956,
+     "mk_pld_T8_over_fast_pld": 0.754,
+     "mk_pld_T4_over_mk_plain": 1.931,
+     "mk_pld_best_T_over_mk_plain": 2.883,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 2.005,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.343,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.358,
+      "3": 0.443,
+      "4": 0.505,
+      "5": 0.58,
+      "6": 0.639,
+      "7": 0.698,
+      "8": 0.754
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx8192/extract": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.83,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 0.98,
+     "mk_pld_best_T_over_fast_plain": 1.793,
+     "mk_pld_T4_over_fast_pld": 0.828,
+     "mk_pld_T4_over_fast_plain": 1.515,
+     "mk_pld_T8_over_fast_pld": 0.98,
+     "mk_pld_T4_over_mk_plain": 1.496,
+     "mk_pld_best_T_over_mk_plain": 1.771,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.223,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.033,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.652,
+      "3": 0.748,
+      "4": 0.828,
+      "5": 0.921,
+      "6": 0.98,
+      "7": 0.98,
+      "8": 0.98
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "6": 1
+     }
+    },
+    "ctx8192/summarize": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.22,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.038,
+     "mk_pld_best_T_over_fast_plain": 1.267,
+     "mk_pld_T4_over_fast_pld": 1.038,
+     "mk_pld_T4_over_fast_plain": 1.267,
+     "mk_pld_T8_over_fast_pld": 1.038,
+     "mk_pld_T4_over_mk_plain": 1.251,
+     "mk_pld_best_T_over_mk_plain": 1.251,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.975,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.975,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.038,
+      "3": 1.038,
+      "4": 1.038,
+      "5": 1.038,
+      "6": 1.038,
+      "7": 1.038,
+      "8": 1.038
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    }
+   },
+   "h13_dbar_12": {
+    "ctx2048": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.335,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 0.992,
+     "mk_pld_best_T_over_fast_plain": 1.324,
+     "mk_pld_T4_over_fast_pld": 0.915,
+     "mk_pld_T4_over_fast_plain": 1.221,
+     "mk_pld_T8_over_fast_pld": 0.933,
+     "mk_pld_T4_over_mk_plain": 1.206,
+     "mk_pld_best_T_over_mk_plain": 1.307,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.107,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.021,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.843,
+      "3": 0.891,
+      "4": 0.915,
+      "5": 0.921,
+      "6": 0.931,
+      "7": 0.938,
+      "8": 0.933
+     },
+     "tasks_mk_T4_beats_fast_pld": 4,
+     "tasks_mk_best_beats_fast_pld": 4,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 1,
+      "4": 1,
+      "7": 1,
+      "8": 2
+     }
+    },
+    "ctx8192": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.24,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.051,
+     "mk_pld_best_T_over_fast_plain": 1.303,
+     "mk_pld_T4_over_fast_pld": 0.953,
+     "mk_pld_T4_over_fast_plain": 1.182,
+     "mk_pld_T8_over_fast_pld": 0.966,
+     "mk_pld_T4_over_mk_plain": 1.167,
+     "mk_pld_best_T_over_mk_plain": 1.287,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.063,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.963,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.903,
+      "3": 0.947,
+      "4": 0.953,
+      "5": 0.97,
+      "6": 0.97,
+      "7": 0.968,
+      "8": 0.966
+     },
+     "tasks_mk_T4_beats_fast_pld": 4,
+     "tasks_mk_best_beats_fast_pld": 5,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 2,
+      "6": 1,
+      "8": 2
+     }
+    }
+   },
+   "h13_dbar_12_by_kind": {
+    "ctx2048/code": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.179,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.008,
+     "mk_pld_best_T_over_fast_plain": 1.189,
+     "mk_pld_T4_over_fast_pld": 1.004,
+     "mk_pld_T4_over_fast_plain": 1.184,
+     "mk_pld_T8_over_fast_pld": 0.99,
+     "mk_pld_T4_over_mk_plain": 1.169,
+     "mk_pld_best_T_over_mk_plain": 1.174,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.009,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.004,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.937,
+      "3": 0.983,
+      "4": 1.004,
+      "5": 1.005,
+      "6": 1.007,
+      "7": 1.005,
+      "8": 0.99
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "4": 1,
+      "7": 1
+     }
+    },
+    "ctx2048/prose": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.992,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.052,
+     "mk_pld_best_T_over_fast_plain": 1.044,
+     "mk_pld_T4_over_fast_pld": 1.049,
+     "mk_pld_T4_over_fast_plain": 1.041,
+     "mk_pld_T8_over_fast_pld": 1.014,
+     "mk_pld_T4_over_mk_plain": 1.028,
+     "mk_pld_best_T_over_mk_plain": 1.03,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.965,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.963,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.044,
+      "3": 1.052,
+      "4": 1.049,
+      "5": 1.04,
+      "6": 1.033,
+      "7": 1.026,
+      "8": 1.014
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx2048/terminal": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.899,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.157,
+     "mk_pld_best_T_over_fast_plain": 1.04,
+     "mk_pld_T4_over_fast_pld": 1.122,
+     "mk_pld_T4_over_fast_plain": 1.009,
+     "mk_pld_T8_over_fast_pld": 1.019,
+     "mk_pld_T4_over_mk_plain": 0.996,
+     "mk_pld_best_T_over_mk_plain": 1.027,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.903,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.875,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.157,
+      "3": 1.148,
+      "4": 1.122,
+      "5": 1.089,
+      "6": 1.066,
+      "7": 1.046,
+      "8": 1.019
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    },
+    "ctx2048/edit": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 3.725,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 0.695,
+     "mk_pld_best_T_over_fast_plain": 2.589,
+     "mk_pld_T4_over_fast_pld": 0.51,
+     "mk_pld_T4_over_fast_plain": 1.9,
+     "mk_pld_T8_over_fast_pld": 0.695,
+     "mk_pld_T4_over_mk_plain": 1.876,
+     "mk_pld_best_T_over_mk_plain": 2.556,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.986,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.457,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.367,
+      "3": 0.446,
+      "4": 0.51,
+      "5": 0.558,
+      "6": 0.611,
+      "7": 0.661,
+      "8": 0.695
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx2048/extract": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.96,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 0.85,
+     "mk_pld_best_T_over_fast_plain": 1.666,
+     "mk_pld_T4_over_fast_pld": 0.726,
+     "mk_pld_T4_over_fast_plain": 1.424,
+     "mk_pld_T8_over_fast_pld": 0.85,
+     "mk_pld_T4_over_mk_plain": 1.405,
+     "mk_pld_best_T_over_mk_plain": 1.645,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.395,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.191,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.603,
+      "3": 0.673,
+      "4": 0.726,
+      "5": 0.763,
+      "6": 0.801,
+      "7": 0.833,
+      "8": 0.85
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx2048/summarize": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.834,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.291,
+     "mk_pld_best_T_over_fast_plain": 1.076,
+     "mk_pld_T4_over_fast_pld": 1.222,
+     "mk_pld_T4_over_fast_plain": 1.019,
+     "mk_pld_T8_over_fast_pld": 1.024,
+     "mk_pld_T4_over_mk_plain": 1.006,
+     "mk_pld_best_T_over_mk_plain": 1.062,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.829,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.785,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.291,
+      "3": 1.274,
+      "4": 1.222,
+      "5": 1.154,
+      "6": 1.11,
+      "7": 1.072,
+      "8": 1.024
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    },
+    "ctx8192/code": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.004,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.124,
+     "mk_pld_best_T_over_fast_plain": 1.129,
+     "mk_pld_T4_over_fast_pld": 1.076,
+     "mk_pld_T4_over_fast_plain": 1.081,
+     "mk_pld_T8_over_fast_pld": 1.023,
+     "mk_pld_T4_over_mk_plain": 1.067,
+     "mk_pld_best_T_over_mk_plain": 1.115,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.941,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.9,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.071,
+      "3": 1.091,
+      "4": 1.076,
+      "5": 1.074,
+      "6": 1.056,
+      "7": 1.04,
+      "8": 1.023
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "2": 1,
+      "6": 1
+     }
+    },
+    "ctx8192/prose": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.978,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.07,
+     "mk_pld_best_T_over_fast_plain": 1.046,
+     "mk_pld_T4_over_fast_pld": 1.061,
+     "mk_pld_T4_over_fast_plain": 1.037,
+     "mk_pld_T8_over_fast_pld": 1.024,
+     "mk_pld_T4_over_mk_plain": 1.024,
+     "mk_pld_best_T_over_mk_plain": 1.033,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.955,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.947,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.062,
+      "3": 1.07,
+      "4": 1.061,
+      "5": 1.056,
+      "6": 1.045,
+      "7": 1.034,
+      "8": 1.024
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx8192/terminal": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.998,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.09,
+     "mk_pld_best_T_over_fast_plain": 1.088,
+     "mk_pld_T4_over_fast_pld": 1.081,
+     "mk_pld_T4_over_fast_plain": 1.079,
+     "mk_pld_T8_over_fast_pld": 1.03,
+     "mk_pld_T4_over_mk_plain": 1.065,
+     "mk_pld_best_T_over_mk_plain": 1.074,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.937,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.929,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.069,
+      "3": 1.09,
+      "4": 1.081,
+      "5": 1.077,
+      "6": 1.061,
+      "7": 1.045,
+      "8": 1.03
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx8192/edit": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 3.759,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 0.719,
+     "mk_pld_best_T_over_fast_plain": 2.703,
+     "mk_pld_T4_over_fast_pld": 0.505,
+     "mk_pld_T4_over_fast_plain": 1.897,
+     "mk_pld_T8_over_fast_pld": 0.719,
+     "mk_pld_T4_over_mk_plain": 1.873,
+     "mk_pld_best_T_over_mk_plain": 2.669,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 2.007,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.408,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.365,
+      "3": 0.447,
+      "4": 0.505,
+      "5": 0.573,
+      "6": 0.624,
+      "7": 0.673,
+      "8": 0.719
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx8192/extract": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.617,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 0.928,
+     "mk_pld_best_T_over_fast_plain": 1.501,
+     "mk_pld_T4_over_fast_pld": 0.825,
+     "mk_pld_T4_over_fast_plain": 1.334,
+     "mk_pld_T8_over_fast_pld": 0.928,
+     "mk_pld_T4_over_mk_plain": 1.317,
+     "mk_pld_best_T_over_mk_plain": 1.482,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.228,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.091,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.715,
+      "3": 0.784,
+      "4": 0.825,
+      "5": 0.869,
+      "6": 0.894,
+      "7": 0.914,
+      "8": 0.928
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx8192/summarize": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.751,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.443,
+     "mk_pld_best_T_over_fast_plain": 1.084,
+     "mk_pld_T4_over_fast_pld": 1.296,
+     "mk_pld_T4_over_fast_plain": 0.974,
+     "mk_pld_T8_over_fast_pld": 1.065,
+     "mk_pld_T4_over_mk_plain": 0.962,
+     "mk_pld_best_T_over_mk_plain": 1.07,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.781,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.702,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.443,
+      "3": 1.404,
+      "4": 1.296,
+      "5": 1.241,
+      "6": 1.169,
+      "7": 1.112,
+      "8": 1.065
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    }
+   },
+   "h13_natural_by_kind": {
+    "code": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.131,
+     "mk_plain_over_fast_plain": 0.995,
+     "mk_pld_best_T_over_fast_pld": 0.997,
+     "mk_pld_best_T_over_fast_plain": 1.127,
+     "mk_pld_T4_over_fast_pld": 0.98,
+     "mk_pld_T4_over_fast_plain": 1.109,
+     "mk_pld_T8_over_fast_pld": 0.99,
+     "mk_pld_T4_over_mk_plain": 1.115,
+     "mk_pld_best_T_over_mk_plain": 1.133,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.014,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.998,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.954,
+      "3": 0.968,
+      "4": 0.98,
+      "5": 0.983,
+      "6": 0.986,
+      "7": 0.992,
+      "8": 0.99
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 4,
+     "best_T_histogram": {
+      "2": 1,
+      "4": 1,
+      "6": 1,
+      "7": 2,
+      "8": 2
+     }
+    },
+    "terminal": {
+     "n": 4,
+     "fast_pld_over_fast_plain": 1.054,
+     "mk_plain_over_fast_plain": 0.995,
+     "mk_pld_best_T_over_fast_pld": 1.013,
+     "mk_pld_best_T_over_fast_plain": 1.068,
+     "mk_pld_T4_over_fast_pld": 1.009,
+     "mk_pld_T4_over_fast_plain": 1.064,
+     "mk_pld_T8_over_fast_pld": 1.007,
+     "mk_pld_T4_over_mk_plain": 1.07,
+     "mk_pld_best_T_over_mk_plain": 1.074,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.985,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.981,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.991,
+      "3": 1.005,
+      "4": 1.009,
+      "5": 1.005,
+      "6": 1.007,
+      "7": 1.01,
+      "8": 1.007
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 4,
+     "best_T_histogram": {
+      "4": 1,
+      "6": 2,
+      "7": 1
+     }
+    },
+    "prose": {
+     "n": 4,
+     "fast_pld_over_fast_plain": 1.085,
+     "mk_plain_over_fast_plain": 0.995,
+     "mk_pld_best_T_over_fast_pld": 1.01,
+     "mk_pld_best_T_over_fast_plain": 1.096,
+     "mk_pld_T4_over_fast_pld": 1.006,
+     "mk_pld_T4_over_fast_plain": 1.092,
+     "mk_pld_T8_over_fast_pld": 0.999,
+     "mk_pld_T4_over_mk_plain": 1.097,
+     "mk_pld_best_T_over_mk_plain": 1.102,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.989,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.985,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.977,
+      "3": 1.003,
+      "4": 1.006,
+      "5": 1.002,
+      "6": 1.003,
+      "7": 1.001,
+      "8": 0.999
+     },
+     "tasks_mk_T4_beats_fast_pld": 3,
+     "tasks_mk_best_beats_fast_pld": 3,
+     "best_T_histogram": {
+      "2": 1,
+      "3": 2,
+      "8": 1
+     }
+    },
+    "edit": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.162,
+     "mk_plain_over_fast_plain": 0.995,
+     "mk_pld_best_T_over_fast_pld": 0.992,
+     "mk_pld_best_T_over_fast_plain": 1.153,
+     "mk_pld_T4_over_fast_pld": 0.975,
+     "mk_pld_T4_over_fast_plain": 1.133,
+     "mk_pld_T8_over_fast_pld": 0.983,
+     "mk_pld_T4_over_mk_plain": 1.139,
+     "mk_pld_best_T_over_mk_plain": 1.159,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.02,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.003,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.94,
+      "3": 0.962,
+      "4": 0.975,
+      "5": 0.984,
+      "6": 0.989,
+      "7": 0.99,
+      "8": 0.983
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "6": 1,
+      "7": 1
+     }
+    },
+    "extract": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.461,
+     "mk_plain_over_fast_plain": 0.995,
+     "mk_pld_best_T_over_fast_pld": 0.949,
+     "mk_pld_best_T_over_fast_plain": 1.386,
+     "mk_pld_T4_over_fast_pld": 0.879,
+     "mk_pld_T4_over_fast_plain": 1.285,
+     "mk_pld_T8_over_fast_pld": 0.949,
+     "mk_pld_T4_over_mk_plain": 1.292,
+     "mk_pld_best_T_over_mk_plain": 1.393,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.131,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.049,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.805,
+      "3": 0.85,
+      "4": 0.879,
+      "5": 0.9,
+      "6": 0.925,
+      "7": 0.929,
+      "8": 0.949
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "8": 2
+     }
+    },
+    "summarize": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.126,
+     "mk_plain_over_fast_plain": 0.995,
+     "mk_pld_best_T_over_fast_pld": 1.013,
+     "mk_pld_best_T_over_fast_plain": 1.14,
+     "mk_pld_T4_over_fast_pld": 1.002,
+     "mk_pld_T4_over_fast_plain": 1.128,
+     "mk_pld_T8_over_fast_pld": 0.994,
+     "mk_pld_T4_over_mk_plain": 1.134,
+     "mk_pld_best_T_over_mk_plain": 1.147,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.993,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.982,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.984,
+      "3": 0.999,
+      "4": 1.002,
+      "5": 1.002,
+      "6": 1.005,
+      "7": 1.004,
+      "8": 0.994
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "2": 1,
+      "7": 1
+     }
+    }
+   },
+   "aggregate_model_validation_on_h13_tasks": {
+    "n": 42,
+    "median_abs_rel_err": 0.0174,
+    "max_abs_rel_err": 0.1013,
+    "mean_signed_rel_err": -0.0183
+   },
+   "h15_mix_99": {
+    "n": 99,
+    "fast_pld_over_fast_plain": 1.106,
+    "mk_plain_over_fast_plain": 1.002,
+    "mk_pld_best_T_over_fast_pld": 1.006,
+    "mk_pld_best_T_over_fast_plain": 1.113,
+    "mk_pld_T4_over_fast_pld": 0.974,
+    "mk_pld_T4_over_fast_plain": 1.077,
+    "mk_pld_T8_over_fast_pld": 0.973,
+    "mk_pld_T4_over_mk_plain": 1.075,
+    "mk_pld_best_T_over_mk_plain": 1.111,
+    "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.029,
+    "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.995,
+    "mk_T_cap_over_fast_pld": {
+     "2": 0.964,
+     "3": 0.98,
+     "4": 0.974,
+     "5": 0.97,
+     "6": 0.972,
+     "7": 0.973,
+     "8": 0.973
+    },
+    "tasks_mk_T4_beats_fast_pld": 12,
+    "tasks_mk_best_beats_fast_pld": 58,
+    "best_T_histogram": {
+     "2": 42,
+     "3": 28,
+     "4": 10,
+     "5": 3,
+     "6": 7,
+     "7": 6,
+     "8": 3
+    },
+    "model_fast_pld_over_fast_plain_vs_measured": {
+     "model": 1.106,
+     "measured_h15_exact_executor": 1.151
+    }
+   },
+   "h15_by_category": {
+    "canitedit": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.299,
+     "mk_plain_over_fast_plain": 0.995,
+     "mk_pld_best_T_over_fast_pld": 0.967,
+     "mk_pld_best_T_over_fast_plain": 1.257,
+     "mk_pld_T4_over_fast_pld": 0.924,
+     "mk_pld_T4_over_fast_plain": 1.201,
+     "mk_pld_T8_over_fast_pld": 0.96,
+     "mk_pld_T4_over_mk_plain": 1.207,
+     "mk_pld_best_T_over_mk_plain": 1.263,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.076,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.029,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.848,
+      "3": 0.898,
+      "4": 0.924,
+      "5": 0.937,
+      "6": 0.95,
+      "7": 0.958,
+      "8": 0.96
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 2,
+      "4": 2,
+      "6": 3,
+      "8": 2
+     }
+    },
+    "cnn_summ": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 0.997,
+     "mk_plain_over_fast_plain": 1.007,
+     "mk_pld_best_T_over_fast_pld": 1.038,
+     "mk_pld_best_T_over_fast_plain": 1.035,
+     "mk_pld_T4_over_fast_pld": 0.997,
+     "mk_pld_T4_over_fast_plain": 0.993,
+     "mk_pld_T8_over_fast_pld": 0.988,
+     "mk_pld_T4_over_mk_plain": 0.987,
+     "mk_pld_best_T_over_mk_plain": 1.028,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.01,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.97,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.038,
+      "3": 1.022,
+      "4": 0.997,
+      "5": 0.988,
+      "6": 0.988,
+      "7": 0.988,
+      "8": 0.988
+     },
+     "tasks_mk_T4_beats_fast_pld": 3,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 9
+     }
+    },
+    "glaive_tool": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.063,
+     "mk_plain_over_fast_plain": 0.995,
+     "mk_pld_best_T_over_fast_pld": 0.999,
+     "mk_pld_best_T_over_fast_plain": 1.062,
+     "mk_pld_T4_over_fast_pld": 0.982,
+     "mk_pld_T4_over_fast_plain": 1.044,
+     "mk_pld_T8_over_fast_pld": 0.977,
+     "mk_pld_T4_over_mk_plain": 1.05,
+     "mk_pld_best_T_over_mk_plain": 1.067,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.012,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.996,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.979,
+      "3": 0.989,
+      "4": 0.982,
+      "5": 0.978,
+      "6": 0.977,
+      "7": 0.977,
+      "8": 0.977
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 6,
+     "best_T_histogram": {
+      "2": 4,
+      "3": 3,
+      "4": 1,
+      "6": 1
+     }
+    },
+    "gov4k": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 0.971,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.061,
+     "mk_pld_best_T_over_fast_plain": 1.03,
+     "mk_pld_T4_over_fast_pld": 1.001,
+     "mk_pld_T4_over_fast_plain": 0.971,
+     "mk_pld_T8_over_fast_pld": 0.989,
+     "mk_pld_T4_over_mk_plain": 0.959,
+     "mk_pld_best_T_over_mk_plain": 1.017,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.013,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.955,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.061,
+      "3": 1.033,
+      "4": 1.001,
+      "5": 0.99,
+      "6": 0.989,
+      "7": 0.989,
+      "8": 0.989
+     },
+     "tasks_mk_T4_beats_fast_pld": 4,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 9
+     }
+    },
+    "gov8k": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 0.996,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 1.053,
+     "mk_pld_best_T_over_fast_plain": 1.049,
+     "mk_pld_T4_over_fast_pld": 0.992,
+     "mk_pld_T4_over_fast_plain": 0.988,
+     "mk_pld_T8_over_fast_pld": 0.989,
+     "mk_pld_T4_over_mk_plain": 0.976,
+     "mk_pld_best_T_over_mk_plain": 1.036,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.02,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.961,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.052,
+      "3": 1.034,
+      "4": 0.992,
+      "5": 0.989,
+      "6": 0.989,
+      "7": 0.989,
+      "8": 0.989
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 8,
+      "3": 1
+     }
+    },
+    "humaneval": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.138,
+     "mk_plain_over_fast_plain": 0.995,
+     "mk_pld_best_T_over_fast_pld": 0.987,
+     "mk_pld_best_T_over_fast_plain": 1.123,
+     "mk_pld_T4_over_fast_pld": 0.961,
+     "mk_pld_T4_over_fast_plain": 1.093,
+     "mk_pld_T8_over_fast_pld": 0.968,
+     "mk_pld_T4_over_mk_plain": 1.099,
+     "mk_pld_best_T_over_mk_plain": 1.129,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.035,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.008,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.936,
+      "3": 0.96,
+      "4": 0.961,
+      "5": 0.96,
+      "6": 0.965,
+      "7": 0.968,
+      "8": 0.968
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 3,
+     "best_T_histogram": {
+      "2": 3,
+      "3": 3,
+      "4": 1,
+      "7": 1,
+      "8": 1
+     }
+    },
+    "mbpp": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.136,
+     "mk_plain_over_fast_plain": 0.995,
+     "mk_pld_best_T_over_fast_pld": 0.991,
+     "mk_pld_best_T_over_fast_plain": 1.127,
+     "mk_pld_T4_over_fast_pld": 0.968,
+     "mk_pld_T4_over_fast_plain": 1.099,
+     "mk_pld_T8_over_fast_pld": 0.959,
+     "mk_pld_T4_over_mk_plain": 1.105,
+     "mk_pld_best_T_over_mk_plain": 1.133,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.028,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.003,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.942,
+      "3": 0.967,
+      "4": 0.968,
+      "5": 0.954,
+      "6": 0.956,
+      "7": 0.959,
+      "8": 0.959
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 3,
+     "best_T_histogram": {
+      "3": 6,
+      "4": 2,
+      "7": 1
+     }
+    },
+    "quality_qa": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.323,
+     "mk_plain_over_fast_plain": 1.013,
+     "mk_pld_best_T_over_fast_pld": 0.984,
+     "mk_pld_best_T_over_fast_plain": 1.302,
+     "mk_pld_T4_over_fast_pld": 0.951,
+     "mk_pld_T4_over_fast_plain": 1.259,
+     "mk_pld_T8_over_fast_pld": 0.971,
+     "mk_pld_T4_over_mk_plain": 1.243,
+     "mk_pld_best_T_over_mk_plain": 1.286,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.064,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.029,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.875,
+      "3": 0.936,
+      "4": 0.951,
+      "5": 0.965,
+      "6": 0.97,
+      "7": 0.971,
+      "8": 0.971
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 3,
+     "best_T_histogram": {
+      "3": 3,
+      "5": 3,
+      "6": 1,
+      "7": 2
+     }
+    },
+    "squad_qa": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.246,
+     "mk_plain_over_fast_plain": 0.995,
+     "mk_pld_best_T_over_fast_pld": 0.964,
+     "mk_pld_best_T_over_fast_plain": 1.201,
+     "mk_pld_T4_over_fast_pld": 0.952,
+     "mk_pld_T4_over_fast_plain": 1.186,
+     "mk_pld_T8_over_fast_pld": 0.95,
+     "mk_pld_T4_over_mk_plain": 1.192,
+     "mk_pld_best_T_over_mk_plain": 1.208,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.045,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.031,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.89,
+      "3": 0.936,
+      "4": 0.952,
+      "5": 0.949,
+      "6": 0.951,
+      "7": 0.952,
+      "8": 0.95
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 3,
+      "4": 2,
+      "6": 2,
+      "7": 2
+     }
+    },
+    "ultrachat": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.012,
+     "mk_plain_over_fast_plain": 1.007,
+     "mk_pld_best_T_over_fast_pld": 1.021,
+     "mk_pld_best_T_over_fast_plain": 1.033,
+     "mk_pld_T4_over_fast_pld": 0.999,
+     "mk_pld_T4_over_fast_plain": 1.01,
+     "mk_pld_T8_over_fast_pld": 0.995,
+     "mk_pld_T4_over_mk_plain": 1.004,
+     "mk_pld_best_T_over_mk_plain": 1.026,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.008,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.986,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.016,
+      "3": 1.01,
+      "4": 0.999,
+      "5": 0.995,
+      "6": 0.995,
+      "7": 0.995,
+      "8": 0.995
+     },
+     "tasks_mk_T4_beats_fast_pld": 5,
+     "tasks_mk_best_beats_fast_pld": 8,
+     "best_T_histogram": {
+      "2": 7,
+      "3": 1,
+      "4": 1
+     }
+    },
+    "xsum_summ": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.061,
+     "mk_plain_over_fast_plain": 0.997,
+     "mk_pld_best_T_over_fast_pld": 1.009,
+     "mk_pld_best_T_over_fast_plain": 1.07,
+     "mk_pld_T4_over_fast_pld": 0.986,
+     "mk_pld_T4_over_fast_plain": 1.046,
+     "mk_pld_T8_over_fast_pld": 0.963,
+     "mk_pld_T4_over_mk_plain": 1.049,
+     "mk_pld_best_T_over_mk_plain": 1.073,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.011,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.989,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.997,
+      "3": 1.004,
+      "4": 0.986,
+      "5": 0.967,
+      "6": 0.964,
+      "7": 0.963,
+      "8": 0.963
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 6,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 6,
+      "4": 1
+     }
+    }
+   },
+   "breakeven_iid_ctx2K": {
+    "tokens_per_round_to_tie_own_plain": {
+     "2": 1.2511534113477345,
+     "3": 1.465367105624981,
+     "4": 1.6760365425158117,
+     "5": 1.903785633536008,
+     "6": 2.0618106266613707,
+     "7": 2.196584069174127,
+     "8": 2.379968834978154
+    },
+    "a_vs_mk_plain": {
+     "2": 0.252,
+     "3": 0.346,
+     "4": 0.423,
+     "5": 0.49,
+     "6": 0.526,
+     "7": 0.552,
+     "8": 0.586
+    },
+    "a_vs_fast_plain": {
+     "2": 0.236,
+     "3": 0.335,
+     "4": 0.414,
+     "5": 0.482,
+     "6": 0.519,
+     "7": 0.546,
+     "8": 0.58
+    },
+    "a_intervals_mk_best_T_le8_ge_fast_pld_best_T_le13": [
+     [
+      0.236,
+      0.525
+     ]
+    ],
+    "a_intervals_mk_cap4_ge_fast_pld_best_T_le13": [
+     [
+      0.0,
+      0.525
+     ]
+    ],
+    "mk_over_fastpld_ratio_at_a": {
+     "0.1": 0.8905000973569915,
+     "0.3": 1.0524092059673535,
+     "0.5": 1.0123749979162582,
+     "0.7": 0.9252134425841281,
+     "0.9": 0.7884099016206386
+    }
+   }
+  },
+  "exact_ex1": {
+   "fast_curve_ms_T1_T4_T8_ctx2K": {
+    "1": 4.56,
+    "4": 6.38,
+    "8": 8.27
+   },
+   "h13_cells": {
+    "natural": {
+     "n": 21,
+     "fast_pld_over_fast_plain": 1.196,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.33,
+     "mk_pld_best_T_over_fast_plain": 1.591,
+     "mk_pld_T4_over_fast_pld": 1.308,
+     "mk_pld_T4_over_fast_plain": 1.564,
+     "mk_pld_T8_over_fast_pld": 1.319,
+     "mk_pld_T4_over_mk_plain": 1.123,
+     "mk_pld_best_T_over_mk_plain": 1.142,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.065,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.047,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.267,
+      "3": 1.294,
+      "4": 1.308,
+      "5": 1.311,
+      "6": 1.318,
+      "7": 1.321,
+      "8": 1.319
+     },
+     "tasks_mk_T4_beats_fast_pld": 21,
+     "tasks_mk_best_beats_fast_pld": 21,
+     "best_T_histogram": {
+      "2": 3,
+      "3": 2,
+      "4": 2,
+      "6": 4,
+      "7": 5,
+      "8": 5
+     }
+    }
+   },
+   "h13_dbar_eq_abar": {
+    "ctx2048": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.613,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.266,
+     "mk_pld_best_T_over_fast_plain": 2.042,
+     "mk_pld_T4_over_fast_pld": 1.157,
+     "mk_pld_T4_over_fast_plain": 1.866,
+     "mk_pld_T8_over_fast_pld": 1.266,
+     "mk_pld_T4_over_mk_plain": 1.339,
+     "mk_pld_best_T_over_mk_plain": 1.465,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.205,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.101,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.008,
+      "3": 1.097,
+      "4": 1.157,
+      "5": 1.189,
+      "6": 1.222,
+      "7": 1.252,
+      "8": 1.266
+     },
+     "tasks_mk_T4_beats_fast_pld": 5,
+     "tasks_mk_best_beats_fast_pld": 6,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 1,
+      "4": 2,
+      "8": 2
+     }
+    },
+    "ctx8192": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.558,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 1.266,
+     "mk_pld_best_T_over_fast_plain": 1.972,
+     "mk_pld_T4_over_fast_pld": 1.167,
+     "mk_pld_T4_over_fast_plain": 1.818,
+     "mk_pld_T8_over_fast_pld": 1.266,
+     "mk_pld_T4_over_mk_plain": 1.32,
+     "mk_pld_best_T_over_mk_plain": 1.432,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.18,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.088,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.037,
+      "3": 1.118,
+      "4": 1.167,
+      "5": 1.208,
+      "6": 1.236,
+      "7": 1.252,
+      "8": 1.266
+     },
+     "tasks_mk_T4_beats_fast_pld": 6,
+     "tasks_mk_best_beats_fast_pld": 6,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 2,
+      "4": 1,
+      "6": 1,
+      "8": 1
+     }
+    }
+   },
+   "h13_dbar_eq_abar_by_kind": {
+    "ctx2048/code": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.418,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.335,
+     "mk_pld_best_T_over_fast_plain": 1.892,
+     "mk_pld_T4_over_fast_pld": 1.335,
+     "mk_pld_T4_over_fast_plain": 1.892,
+     "mk_pld_T8_over_fast_pld": 1.335,
+     "mk_pld_T4_over_mk_plain": 1.358,
+     "mk_pld_best_T_over_mk_plain": 1.358,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.044,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.044,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.124,
+      "3": 1.261,
+      "4": 1.335,
+      "5": 1.335,
+      "6": 1.335,
+      "7": 1.335,
+      "8": 1.335
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "4": 2
+     }
+    },
+    "ctx2048/prose": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.08,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.383,
+     "mk_pld_best_T_over_fast_plain": 1.494,
+     "mk_pld_T4_over_fast_pld": 1.383,
+     "mk_pld_T4_over_fast_plain": 1.494,
+     "mk_pld_T8_over_fast_pld": 1.383,
+     "mk_pld_T4_over_mk_plain": 1.072,
+     "mk_pld_best_T_over_mk_plain": 1.072,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.007,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.007,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.36,
+      "3": 1.383,
+      "4": 1.383,
+      "5": 1.383,
+      "6": 1.383,
+      "7": 1.383,
+      "8": 1.383
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx2048/terminal": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.099,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.381,
+     "mk_pld_best_T_over_fast_plain": 1.517,
+     "mk_pld_T4_over_fast_pld": 1.381,
+     "mk_pld_T4_over_fast_plain": 1.517,
+     "mk_pld_T8_over_fast_pld": 1.381,
+     "mk_pld_T4_over_mk_plain": 1.088,
+     "mk_pld_best_T_over_mk_plain": 1.088,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.01,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.01,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.381,
+      "3": 1.381,
+      "4": 1.381,
+      "5": 1.381,
+      "6": 1.381,
+      "7": 1.381,
+      "8": 1.381
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    },
+    "ctx2048/edit": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 4.267,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 0.902,
+     "mk_pld_best_T_over_fast_plain": 3.847,
+     "mk_pld_T4_over_fast_pld": 0.632,
+     "mk_pld_T4_over_fast_plain": 2.695,
+     "mk_pld_T8_over_fast_pld": 0.902,
+     "mk_pld_T4_over_mk_plain": 1.934,
+     "mk_pld_best_T_over_mk_plain": 2.76,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 2.206,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.546,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.445,
+      "3": 0.547,
+      "4": 0.632,
+      "5": 0.699,
+      "6": 0.774,
+      "7": 0.848,
+      "8": 0.902
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx2048/extract": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 2.274,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.246,
+     "mk_pld_best_T_over_fast_plain": 2.835,
+     "mk_pld_T4_over_fast_pld": 0.946,
+     "mk_pld_T4_over_fast_plain": 2.151,
+     "mk_pld_T8_over_fast_pld": 1.246,
+     "mk_pld_T4_over_mk_plain": 1.543,
+     "mk_pld_best_T_over_mk_plain": 2.034,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.474,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.118,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.732,
+      "3": 0.844,
+      "4": 0.946,
+      "5": 1.034,
+      "6": 1.13,
+      "7": 1.226,
+      "8": 1.246
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx2048/summarize": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.227,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.364,
+     "mk_pld_best_T_over_fast_plain": 1.674,
+     "mk_pld_T4_over_fast_pld": 1.364,
+     "mk_pld_T4_over_fast_plain": 1.674,
+     "mk_pld_T8_over_fast_pld": 1.364,
+     "mk_pld_T4_over_mk_plain": 1.202,
+     "mk_pld_best_T_over_mk_plain": 1.202,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.021,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.021,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.364,
+      "3": 1.364,
+      "4": 1.364,
+      "5": 1.364,
+      "6": 1.364,
+      "7": 1.364,
+      "8": 1.364
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    },
+    "ctx8192/code": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.279,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 1.336,
+     "mk_pld_best_T_over_fast_plain": 1.708,
+     "mk_pld_T4_over_fast_pld": 1.336,
+     "mk_pld_T4_over_fast_plain": 1.708,
+     "mk_pld_T8_over_fast_pld": 1.336,
+     "mk_pld_T4_over_mk_plain": 1.241,
+     "mk_pld_best_T_over_mk_plain": 1.241,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.031,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.031,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.215,
+      "3": 1.292,
+      "4": 1.336,
+      "5": 1.336,
+      "6": 1.336,
+      "7": 1.336,
+      "8": 1.336
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "2": 1,
+      "4": 1
+     }
+    },
+    "ctx8192/prose": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.086,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 1.365,
+     "mk_pld_best_T_over_fast_plain": 1.483,
+     "mk_pld_T4_over_fast_pld": 1.365,
+     "mk_pld_T4_over_fast_plain": 1.483,
+     "mk_pld_T8_over_fast_pld": 1.365,
+     "mk_pld_T4_over_mk_plain": 1.077,
+     "mk_pld_best_T_over_mk_plain": 1.077,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.008,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.008,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.354,
+      "3": 1.365,
+      "4": 1.365,
+      "5": 1.365,
+      "6": 1.365,
+      "7": 1.365,
+      "8": 1.365
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx8192/terminal": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.191,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 1.351,
+     "mk_pld_best_T_over_fast_plain": 1.609,
+     "mk_pld_T4_over_fast_pld": 1.351,
+     "mk_pld_T4_over_fast_plain": 1.609,
+     "mk_pld_T8_over_fast_pld": 1.351,
+     "mk_pld_T4_over_mk_plain": 1.168,
+     "mk_pld_best_T_over_mk_plain": 1.168,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.02,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.02,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.296,
+      "3": 1.351,
+      "4": 1.351,
+      "5": 1.351,
+      "6": 1.351,
+      "7": 1.351,
+      "8": 1.351
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx8192/edit": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 4.281,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 0.927,
+     "mk_pld_best_T_over_fast_plain": 3.97,
+     "mk_pld_T4_over_fast_pld": 0.621,
+     "mk_pld_T4_over_fast_plain": 2.66,
+     "mk_pld_T8_over_fast_pld": 0.927,
+     "mk_pld_T4_over_mk_plain": 1.931,
+     "mk_pld_best_T_over_mk_plain": 2.883,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 2.217,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.485,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.44,
+      "3": 0.544,
+      "4": 0.621,
+      "5": 0.713,
+      "6": 0.786,
+      "7": 0.858,
+      "8": 0.927
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx8192/extract": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.913,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 1.275,
+     "mk_pld_best_T_over_fast_plain": 2.438,
+     "mk_pld_T4_over_fast_pld": 1.077,
+     "mk_pld_T4_over_fast_plain": 2.06,
+     "mk_pld_T8_over_fast_pld": 1.275,
+     "mk_pld_T4_over_mk_plain": 1.496,
+     "mk_pld_best_T_over_mk_plain": 1.771,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.279,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.08,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.848,
+      "3": 0.973,
+      "4": 1.077,
+      "5": 1.198,
+      "6": 1.275,
+      "7": 1.275,
+      "8": 1.275
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "6": 1
+     }
+    },
+    "ctx8192/summarize": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.289,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 1.336,
+     "mk_pld_best_T_over_fast_plain": 1.723,
+     "mk_pld_T4_over_fast_pld": 1.336,
+     "mk_pld_T4_over_fast_plain": 1.723,
+     "mk_pld_T8_over_fast_pld": 1.336,
+     "mk_pld_T4_over_mk_plain": 1.251,
+     "mk_pld_best_T_over_mk_plain": 1.251,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.03,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.03,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.336,
+      "3": 1.336,
+      "4": 1.336,
+      "5": 1.336,
+      "6": 1.336,
+      "7": 1.336,
+      "8": 1.336
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    }
+   },
+   "h13_dbar_12": {
+    "ctx2048": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.424,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.279,
+     "mk_pld_best_T_over_fast_plain": 1.821,
+     "mk_pld_T4_over_fast_pld": 1.18,
+     "mk_pld_T4_over_fast_plain": 1.68,
+     "mk_pld_T8_over_fast_pld": 1.203,
+     "mk_pld_T4_over_mk_plain": 1.206,
+     "mk_pld_best_T_over_mk_plain": 1.307,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.181,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.09,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.088,
+      "3": 1.15,
+      "4": 1.18,
+      "5": 1.188,
+      "6": 1.201,
+      "7": 1.21,
+      "8": 1.203
+     },
+     "tasks_mk_T4_beats_fast_pld": 5,
+     "tasks_mk_best_beats_fast_pld": 6,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 1,
+      "4": 1,
+      "7": 1,
+      "8": 2
+     }
+    },
+    "ctx8192": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.326,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 1.336,
+     "mk_pld_best_T_over_fast_plain": 1.772,
+     "mk_pld_T4_over_fast_pld": 1.212,
+     "mk_pld_T4_over_fast_plain": 1.607,
+     "mk_pld_T8_over_fast_pld": 1.228,
+     "mk_pld_T4_over_mk_plain": 1.167,
+     "mk_pld_best_T_over_mk_plain": 1.287,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.136,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.03,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.148,
+      "3": 1.204,
+      "4": 1.212,
+      "5": 1.233,
+      "6": 1.233,
+      "7": 1.231,
+      "8": 1.228
+     },
+     "tasks_mk_T4_beats_fast_pld": 6,
+     "tasks_mk_best_beats_fast_pld": 6,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 2,
+      "6": 1,
+      "8": 2
+     }
+    }
+   },
+   "h13_dbar_12_by_kind": {
+    "ctx2048/code": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.246,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.314,
+     "mk_pld_best_T_over_fast_plain": 1.636,
+     "mk_pld_T4_over_fast_pld": 1.307,
+     "mk_pld_T4_over_fast_plain": 1.628,
+     "mk_pld_T8_over_fast_pld": 1.29,
+     "mk_pld_T4_over_mk_plain": 1.169,
+     "mk_pld_best_T_over_mk_plain": 1.174,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.066,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.061,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.22,
+      "3": 1.28,
+      "4": 1.307,
+      "5": 1.309,
+      "6": 1.312,
+      "7": 1.309,
+      "8": 1.29
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "4": 1,
+      "7": 1
+     }
+    },
+    "ctx2048/prose": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.015,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.414,
+     "mk_pld_best_T_over_fast_plain": 1.436,
+     "mk_pld_T4_over_fast_pld": 1.411,
+     "mk_pld_T4_over_fast_plain": 1.433,
+     "mk_pld_T8_over_fast_pld": 1.364,
+     "mk_pld_T4_over_mk_plain": 1.028,
+     "mk_pld_best_T_over_mk_plain": 1.03,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.987,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.985,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.404,
+      "3": 1.414,
+      "4": 1.411,
+      "5": 1.398,
+      "6": 1.389,
+      "7": 1.379,
+      "8": 1.364
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx2048/terminal": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.944,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.516,
+     "mk_pld_best_T_over_fast_plain": 1.431,
+     "mk_pld_T4_over_fast_pld": 1.471,
+     "mk_pld_T4_over_fast_plain": 1.388,
+     "mk_pld_T8_over_fast_pld": 1.336,
+     "mk_pld_T4_over_mk_plain": 0.996,
+     "mk_pld_best_T_over_mk_plain": 1.027,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.948,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.919,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.516,
+      "3": 1.504,
+      "4": 1.471,
+      "5": 1.427,
+      "6": 1.397,
+      "7": 1.371,
+      "8": 1.336
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    },
+    "ctx2048/edit": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 4.163,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 0.856,
+     "mk_pld_best_T_over_fast_plain": 3.562,
+     "mk_pld_T4_over_fast_pld": 0.628,
+     "mk_pld_T4_over_fast_plain": 2.614,
+     "mk_pld_T8_over_fast_pld": 0.856,
+     "mk_pld_T4_over_mk_plain": 1.876,
+     "mk_pld_best_T_over_mk_plain": 2.556,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 2.219,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.629,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.452,
+      "3": 0.55,
+      "4": 0.628,
+      "5": 0.687,
+      "6": 0.752,
+      "7": 0.814,
+      "8": 0.856
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx2048/extract": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 2.102,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.09,
+     "mk_pld_best_T_over_fast_plain": 2.292,
+     "mk_pld_T4_over_fast_pld": 0.932,
+     "mk_pld_T4_over_fast_plain": 1.959,
+     "mk_pld_T8_over_fast_pld": 1.09,
+     "mk_pld_T4_over_mk_plain": 1.405,
+     "mk_pld_best_T_over_mk_plain": 1.645,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.496,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.278,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.774,
+      "3": 0.863,
+      "4": 0.932,
+      "5": 0.979,
+      "6": 1.027,
+      "7": 1.069,
+      "8": 1.09
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx2048/summarize": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.911,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.626,
+     "mk_pld_best_T_over_fast_plain": 1.481,
+     "mk_pld_T4_over_fast_pld": 1.539,
+     "mk_pld_T4_over_fast_plain": 1.401,
+     "mk_pld_T8_over_fast_pld": 1.29,
+     "mk_pld_T4_over_mk_plain": 1.006,
+     "mk_pld_best_T_over_mk_plain": 1.062,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.906,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.858,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.626,
+      "3": 1.605,
+      "4": 1.539,
+      "5": 1.454,
+      "6": 1.398,
+      "7": 1.351,
+      "8": 1.29
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    },
+    "ctx8192/code": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.067,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 1.439,
+     "mk_pld_best_T_over_fast_plain": 1.535,
+     "mk_pld_T4_over_fast_pld": 1.378,
+     "mk_pld_T4_over_fast_plain": 1.47,
+     "mk_pld_T8_over_fast_pld": 1.31,
+     "mk_pld_T4_over_mk_plain": 1.067,
+     "mk_pld_best_T_over_mk_plain": 1.115,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.0,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.957,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.371,
+      "3": 1.396,
+      "4": 1.378,
+      "5": 1.375,
+      "6": 1.352,
+      "7": 1.331,
+      "8": 1.31
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "2": 1,
+      "6": 1
+     }
+    },
+    "ctx8192/prose": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.005,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 1.416,
+     "mk_pld_best_T_over_fast_plain": 1.422,
+     "mk_pld_T4_over_fast_pld": 1.404,
+     "mk_pld_T4_over_fast_plain": 1.41,
+     "mk_pld_T8_over_fast_pld": 1.356,
+     "mk_pld_T4_over_mk_plain": 1.024,
+     "mk_pld_best_T_over_mk_plain": 1.033,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.981,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.973,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.406,
+      "3": 1.416,
+      "4": 1.404,
+      "5": 1.398,
+      "6": 1.383,
+      "7": 1.369,
+      "8": 1.356
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx8192/terminal": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.044,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 1.417,
+     "mk_pld_best_T_over_fast_plain": 1.479,
+     "mk_pld_T4_over_fast_pld": 1.405,
+     "mk_pld_T4_over_fast_plain": 1.467,
+     "mk_pld_T8_over_fast_pld": 1.339,
+     "mk_pld_T4_over_mk_plain": 1.065,
+     "mk_pld_best_T_over_mk_plain": 1.074,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.98,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.972,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.389,
+      "3": 1.417,
+      "4": 1.405,
+      "5": 1.4,
+      "6": 1.379,
+      "7": 1.359,
+      "8": 1.339
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "3": 1
+     }
+    },
+    "ctx8192/edit": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 4.184,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 0.879,
+     "mk_pld_best_T_over_fast_plain": 3.676,
+     "mk_pld_T4_over_fast_pld": 0.617,
+     "mk_pld_T4_over_fast_plain": 2.58,
+     "mk_pld_T8_over_fast_pld": 0.879,
+     "mk_pld_T4_over_mk_plain": 1.873,
+     "mk_pld_best_T_over_mk_plain": 2.669,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 2.234,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.568,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.446,
+      "3": 0.546,
+      "4": 0.617,
+      "5": 0.7,
+      "6": 0.763,
+      "7": 0.822,
+      "8": 0.879
+     },
+     "tasks_mk_T4_beats_fast_pld": 0,
+     "tasks_mk_best_beats_fast_pld": 0,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx8192/extract": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 1.721,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 1.186,
+     "mk_pld_best_T_over_fast_plain": 2.041,
+     "mk_pld_T4_over_fast_pld": 1.054,
+     "mk_pld_T4_over_fast_plain": 1.814,
+     "mk_pld_T8_over_fast_pld": 1.186,
+     "mk_pld_T4_over_mk_plain": 1.317,
+     "mk_pld_best_T_over_mk_plain": 1.482,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.307,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.161,
+     "mk_T_cap_over_fast_pld": {
+      "2": 0.913,
+      "3": 1.002,
+      "4": 1.054,
+      "5": 1.11,
+      "6": 1.142,
+      "7": 1.167,
+      "8": 1.186
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "8": 1
+     }
+    },
+    "ctx8192/summarize": {
+     "n": 1,
+     "fast_pld_over_fast_plain": 0.839,
+     "mk_plain_over_fast_plain": 1.377,
+     "mk_pld_best_T_over_fast_pld": 1.757,
+     "mk_pld_best_T_over_fast_plain": 1.474,
+     "mk_pld_T4_over_fast_pld": 1.578,
+     "mk_pld_T4_over_fast_plain": 1.324,
+     "mk_pld_T8_over_fast_pld": 1.296,
+     "mk_pld_T4_over_mk_plain": 0.962,
+     "mk_pld_best_T_over_mk_plain": 1.07,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 0.872,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.784,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.757,
+      "3": 1.71,
+      "4": 1.578,
+      "5": 1.511,
+      "6": 1.423,
+      "7": 1.353,
+      "8": 1.296
+     },
+     "tasks_mk_T4_beats_fast_pld": 1,
+     "tasks_mk_best_beats_fast_pld": 1,
+     "best_T_histogram": {
+      "2": 1
+     }
+    }
+   },
+   "h13_natural_by_kind": {
+    "code": {
+     "n": 7,
+     "fast_pld_over_fast_plain": 1.186,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.332,
+     "mk_pld_best_T_over_fast_plain": 1.58,
+     "mk_pld_T4_over_fast_pld": 1.31,
+     "mk_pld_T4_over_fast_plain": 1.554,
+     "mk_pld_T8_over_fast_pld": 1.322,
+     "mk_pld_T4_over_mk_plain": 1.115,
+     "mk_pld_best_T_over_mk_plain": 1.133,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.064,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.047,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.275,
+      "3": 1.294,
+      "4": 1.31,
+      "5": 1.313,
+      "6": 1.318,
+      "7": 1.325,
+      "8": 1.322
+     },
+     "tasks_mk_T4_beats_fast_pld": 7,
+     "tasks_mk_best_beats_fast_pld": 7,
+     "best_T_histogram": {
+      "2": 1,
+      "4": 1,
+      "6": 1,
+      "7": 2,
+      "8": 2
+     }
+    },
+    "terminal": {
+     "n": 4,
+     "fast_pld_over_fast_plain": 1.097,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.364,
+     "mk_pld_best_T_over_fast_plain": 1.497,
+     "mk_pld_T4_over_fast_pld": 1.359,
+     "mk_pld_T4_over_fast_plain": 1.491,
+     "mk_pld_T8_over_fast_pld": 1.356,
+     "mk_pld_T4_over_mk_plain": 1.07,
+     "mk_pld_best_T_over_mk_plain": 1.074,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.025,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.021,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.334,
+      "3": 1.353,
+      "4": 1.359,
+      "5": 1.353,
+      "6": 1.356,
+      "7": 1.36,
+      "8": 1.356
+     },
+     "tasks_mk_T4_beats_fast_pld": 4,
+     "tasks_mk_best_beats_fast_pld": 4,
+     "best_T_histogram": {
+      "4": 1,
+      "6": 2,
+      "7": 1
+     }
+    },
+    "prose": {
+     "n": 4,
+     "fast_pld_over_fast_plain": 1.142,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.346,
+     "mk_pld_best_T_over_fast_plain": 1.536,
+     "mk_pld_T4_over_fast_pld": 1.34,
+     "mk_pld_T4_over_fast_plain": 1.529,
+     "mk_pld_T8_over_fast_pld": 1.331,
+     "mk_pld_T4_over_mk_plain": 1.097,
+     "mk_pld_best_T_over_mk_plain": 1.102,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.041,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.036,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.301,
+      "3": 1.336,
+      "4": 1.34,
+      "5": 1.335,
+      "6": 1.336,
+      "7": 1.334,
+      "8": 1.331
+     },
+     "tasks_mk_T4_beats_fast_pld": 4,
+     "tasks_mk_best_beats_fast_pld": 4,
+     "best_T_histogram": {
+      "2": 1,
+      "3": 2,
+      "8": 1
+     }
+    },
+    "edit": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.227,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.316,
+     "mk_pld_best_T_over_fast_plain": 1.615,
+     "mk_pld_T4_over_fast_pld": 1.293,
+     "mk_pld_T4_over_fast_plain": 1.587,
+     "mk_pld_T8_over_fast_pld": 1.303,
+     "mk_pld_T4_over_mk_plain": 1.139,
+     "mk_pld_best_T_over_mk_plain": 1.159,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.077,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.059,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.246,
+      "3": 1.276,
+      "4": 1.293,
+      "5": 1.305,
+      "6": 1.311,
+      "7": 1.313,
+      "8": 1.303
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "6": 1,
+      "7": 1
+     }
+    },
+    "extract": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.55,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.253,
+     "mk_pld_best_T_over_fast_plain": 1.942,
+     "mk_pld_T4_over_fast_pld": 1.161,
+     "mk_pld_T4_over_fast_plain": 1.8,
+     "mk_pld_T8_over_fast_pld": 1.253,
+     "mk_pld_T4_over_mk_plain": 1.292,
+     "mk_pld_best_T_over_mk_plain": 1.393,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.2,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.113,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.062,
+      "3": 1.122,
+      "4": 1.161,
+      "5": 1.188,
+      "6": 1.221,
+      "7": 1.227,
+      "8": 1.253
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "8": 2
+     }
+    },
+    "summarize": {
+     "n": 2,
+     "fast_pld_over_fast_plain": 1.21,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.321,
+     "mk_pld_best_T_over_fast_plain": 1.598,
+     "mk_pld_T4_over_fast_pld": 1.306,
+     "mk_pld_T4_over_fast_plain": 1.581,
+     "mk_pld_T8_over_fast_pld": 1.297,
+     "mk_pld_T4_over_mk_plain": 1.134,
+     "mk_pld_best_T_over_mk_plain": 1.147,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.067,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.055,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.284,
+      "3": 1.303,
+      "4": 1.306,
+      "5": 1.307,
+      "6": 1.311,
+      "7": 1.31,
+      "8": 1.297
+     },
+     "tasks_mk_T4_beats_fast_pld": 2,
+     "tasks_mk_best_beats_fast_pld": 2,
+     "best_T_histogram": {
+      "2": 1,
+      "7": 1
+     }
+    }
+   },
+   "aggregate_model_validation_on_h13_tasks": {
+    "n": 42,
+    "median_abs_rel_err": 0.0079,
+    "max_abs_rel_err": 0.0946,
+    "mean_signed_rel_err": -0.0068
+   },
+   "h15_mix_99": {
+    "n": 99,
+    "fast_pld_over_fast_plain": 1.157,
+    "mk_plain_over_fast_plain": 1.391,
+    "mk_pld_best_T_over_fast_pld": 1.336,
+    "mk_pld_best_T_over_fast_plain": 1.546,
+    "mk_pld_T4_over_fast_pld": 1.293,
+    "mk_pld_T4_over_fast_plain": 1.496,
+    "mk_pld_T8_over_fast_pld": 1.293,
+    "mk_pld_T4_over_mk_plain": 1.075,
+    "mk_pld_best_T_over_mk_plain": 1.111,
+    "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.076,
+    "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.041,
+    "mk_T_cap_over_fast_pld": {
+     "2": 1.28,
+     "3": 1.301,
+     "4": 1.293,
+     "5": 1.288,
+     "6": 1.291,
+     "7": 1.293,
+     "8": 1.293
+    },
+    "tasks_mk_T4_beats_fast_pld": 99,
+    "tasks_mk_best_beats_fast_pld": 99,
+    "best_T_histogram": {
+     "2": 42,
+     "3": 28,
+     "4": 10,
+     "5": 3,
+     "6": 7,
+     "7": 6,
+     "8": 3
+    },
+    "model_fast_pld_over_fast_plain_vs_measured": {
+     "model": 1.157,
+     "measured_h15_exact_executor": 1.151
+    }
+   },
+   "h15_by_category": {
+    "canitedit": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.363,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.292,
+     "mk_pld_best_T_over_fast_plain": 1.761,
+     "mk_pld_T4_over_fast_pld": 1.235,
+     "mk_pld_T4_over_fast_plain": 1.682,
+     "mk_pld_T8_over_fast_pld": 1.282,
+     "mk_pld_T4_over_mk_plain": 1.207,
+     "mk_pld_best_T_over_mk_plain": 1.263,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.129,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.079,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.133,
+      "3": 1.2,
+      "4": 1.235,
+      "5": 1.251,
+      "6": 1.269,
+      "7": 1.28,
+      "8": 1.282
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "3": 2,
+      "4": 2,
+      "6": 3,
+      "8": 2
+     }
+    },
+    "cnn_summ": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.038,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.379,
+     "mk_pld_best_T_over_fast_plain": 1.432,
+     "mk_pld_T4_over_fast_pld": 1.324,
+     "mk_pld_T4_over_fast_plain": 1.375,
+     "mk_pld_T8_over_fast_pld": 1.313,
+     "mk_pld_T4_over_mk_plain": 0.987,
+     "mk_pld_best_T_over_mk_plain": 1.028,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.052,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.01,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.379,
+      "3": 1.358,
+      "4": 1.324,
+      "5": 1.313,
+      "6": 1.313,
+      "7": 1.313,
+      "8": 1.313
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 9
+     }
+    },
+    "glaive_tool": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.098,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.354,
+     "mk_pld_best_T_over_fast_plain": 1.487,
+     "mk_pld_T4_over_fast_pld": 1.332,
+     "mk_pld_T4_over_fast_plain": 1.463,
+     "mk_pld_T8_over_fast_pld": 1.325,
+     "mk_pld_T4_over_mk_plain": 1.05,
+     "mk_pld_best_T_over_mk_plain": 1.067,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.046,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.029,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.327,
+      "3": 1.341,
+      "4": 1.332,
+      "5": 1.326,
+      "6": 1.325,
+      "7": 1.325,
+      "8": 1.325
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 4,
+      "3": 3,
+      "4": 1,
+      "6": 1
+     }
+    },
+    "gov4k": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.013,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.398,
+     "mk_pld_best_T_over_fast_plain": 1.417,
+     "mk_pld_T4_over_fast_pld": 1.319,
+     "mk_pld_T4_over_fast_plain": 1.336,
+     "mk_pld_T8_over_fast_pld": 1.303,
+     "mk_pld_T4_over_mk_plain": 0.959,
+     "mk_pld_best_T_over_mk_plain": 1.017,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.056,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 0.996,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.398,
+      "3": 1.362,
+      "4": 1.319,
+      "5": 1.305,
+      "6": 1.303,
+      "7": 1.303,
+      "8": 1.303
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 9
+     }
+    },
+    "gov8k": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.045,
+     "mk_plain_over_fast_plain": 1.381,
+     "mk_pld_best_T_over_fast_pld": 1.369,
+     "mk_pld_best_T_over_fast_plain": 1.43,
+     "mk_pld_T4_over_fast_pld": 1.29,
+     "mk_pld_T4_over_fast_plain": 1.347,
+     "mk_pld_T8_over_fast_pld": 1.286,
+     "mk_pld_T4_over_mk_plain": 0.976,
+     "mk_pld_best_T_over_mk_plain": 1.036,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.071,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.009,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.368,
+      "3": 1.345,
+      "4": 1.29,
+      "5": 1.286,
+      "6": 1.286,
+      "7": 1.286,
+      "8": 1.286
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 8,
+      "3": 1
+     }
+    },
+    "humaneval": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.189,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.324,
+     "mk_pld_best_T_over_fast_plain": 1.574,
+     "mk_pld_T4_over_fast_pld": 1.289,
+     "mk_pld_T4_over_fast_plain": 1.532,
+     "mk_pld_T8_over_fast_pld": 1.299,
+     "mk_pld_T4_over_mk_plain": 1.099,
+     "mk_pld_best_T_over_mk_plain": 1.129,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.082,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.053,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.256,
+      "3": 1.287,
+      "4": 1.289,
+      "5": 1.287,
+      "6": 1.294,
+      "7": 1.298,
+      "8": 1.299
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 3,
+      "3": 3,
+      "4": 1,
+      "7": 1,
+      "8": 1
+     }
+    },
+    "mbpp": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.19,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.327,
+     "mk_pld_best_T_over_fast_plain": 1.579,
+     "mk_pld_T4_over_fast_pld": 1.295,
+     "mk_pld_T4_over_fast_plain": 1.541,
+     "mk_pld_T8_over_fast_pld": 1.283,
+     "mk_pld_T4_over_mk_plain": 1.105,
+     "mk_pld_best_T_over_mk_plain": 1.133,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.077,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.05,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.26,
+      "3": 1.294,
+      "4": 1.295,
+      "5": 1.277,
+      "6": 1.279,
+      "7": 1.283,
+      "8": 1.283
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "3": 6,
+      "4": 2,
+      "7": 1
+     }
+    },
+    "quality_qa": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.399,
+     "mk_plain_over_fast_plain": 1.381,
+     "mk_pld_best_T_over_fast_pld": 1.269,
+     "mk_pld_best_T_over_fast_plain": 1.776,
+     "mk_pld_T4_over_fast_pld": 1.227,
+     "mk_pld_T4_over_fast_plain": 1.716,
+     "mk_pld_T8_over_fast_pld": 1.252,
+     "mk_pld_T4_over_mk_plain": 1.243,
+     "mk_pld_best_T_over_mk_plain": 1.286,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.126,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.088,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.128,
+      "3": 1.207,
+      "4": 1.227,
+      "5": 1.245,
+      "6": 1.251,
+      "7": 1.252,
+      "8": 1.252
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "3": 3,
+      "5": 3,
+      "6": 1,
+      "7": 2
+     }
+    },
+    "squad_qa": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.317,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.278,
+     "mk_pld_best_T_over_fast_plain": 1.683,
+     "mk_pld_T4_over_fast_pld": 1.261,
+     "mk_pld_T4_over_fast_plain": 1.661,
+     "mk_pld_T8_over_fast_pld": 1.258,
+     "mk_pld_T4_over_mk_plain": 1.192,
+     "mk_pld_best_T_over_mk_plain": 1.208,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.105,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.09,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.178,
+      "3": 1.24,
+      "4": 1.261,
+      "5": 1.257,
+      "6": 1.26,
+      "7": 1.261,
+      "8": 1.258
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "3": 3,
+      "4": 2,
+      "6": 2,
+      "7": 2
+     }
+    },
+    "ultrachat": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.041,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.373,
+     "mk_pld_best_T_over_fast_plain": 1.43,
+     "mk_pld_T4_over_fast_pld": 1.343,
+     "mk_pld_T4_over_fast_plain": 1.399,
+     "mk_pld_T8_over_fast_pld": 1.338,
+     "mk_pld_T4_over_mk_plain": 1.004,
+     "mk_pld_best_T_over_mk_plain": 1.026,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.037,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.015,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.367,
+      "3": 1.358,
+      "4": 1.343,
+      "5": 1.338,
+      "6": 1.338,
+      "7": 1.338,
+      "8": 1.338
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 7,
+      "3": 1,
+      "4": 1
+     }
+    },
+    "xsum_summ": {
+     "n": 9,
+     "fast_pld_over_fast_plain": 1.113,
+     "mk_plain_over_fast_plain": 1.394,
+     "mk_pld_best_T_over_fast_pld": 1.345,
+     "mk_pld_best_T_over_fast_plain": 1.496,
+     "mk_pld_T4_over_fast_pld": 1.314,
+     "mk_pld_T4_over_fast_plain": 1.462,
+     "mk_pld_T8_over_fast_pld": 1.285,
+     "mk_pld_T4_over_mk_plain": 1.049,
+     "mk_pld_best_T_over_mk_plain": 1.073,
+     "plain_advantage_mk_over_fast_needed_for_T4_to_tie_fast_pld": 1.061,
+     "plain_advantage_mk_over_fast_needed_for_best_T_to_tie_fast_pld": 1.037,
+     "mk_T_cap_over_fast_pld": {
+      "2": 1.329,
+      "3": 1.338,
+      "4": 1.314,
+      "5": 1.289,
+      "6": 1.285,
+      "7": 1.285,
+      "8": 1.285
+     },
+     "tasks_mk_T4_beats_fast_pld": 9,
+     "tasks_mk_best_beats_fast_pld": 9,
+     "best_T_histogram": {
+      "2": 2,
+      "3": 6,
+      "4": 1
+     }
+    }
+   },
+   "breakeven_iid_ctx2K": {
+    "tokens_per_round_to_tie_own_plain": {
+     "2": 1.2511534113477345,
+     "3": 1.465367105624981,
+     "4": 1.6760365425158117,
+     "5": 1.903785633536008,
+     "6": 2.0618106266613707,
+     "7": 2.196584069174127,
+     "8": 2.379968834978154
+    },
+    "a_vs_mk_plain": {
+     "2": 0.252,
+     "3": 0.346,
+     "4": 0.423,
+     "5": 0.49,
+     "6": 0.526,
+     "7": 0.552,
+     "8": 0.586
+    },
+    "a_vs_fast_plain": {
+     "2": 0.0,
+     "3": 0.05,
+     "4": 0.17,
+     "5": 0.269,
+     "6": 0.325,
+     "7": 0.367,
+     "8": 0.415
+    },
+    "a_intervals_mk_best_T_le8_ge_fast_pld_best_T_le13": [
+     [
+      0.0,
+      0.862
+     ]
+    ],
+    "a_intervals_mk_cap4_ge_fast_pld_best_T_le13": [
+     [
+      0.0,
+      0.829
+     ]
+    ],
+    "mk_over_fastpld_ratio_at_a": {
+     "0.1": 1.225265019303693,
+     "0.3": 1.3065070889832153,
+     "0.5": 1.2278621118885644,
+     "0.7": 1.1360081563306625,
+     "0.9": 0.9323138208655067
+    }
+   }
+  }
+ },
+ "h15_measured_sam2_g12_geomean": 1.151
+}
