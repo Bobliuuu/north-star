@@ -1,0 +1,11 @@
+{"kind": "ref", "prompt_len": 301, "seq": [1244, 5642, 23169, 65, 351, 1333, 203, 348, 1244, 5642, 42127, 5912, 14520, 13317, 465, 348, 592, 6441, 3376, 5642, 13, 1518, 1244, 149921, 638], "jit_s": 0.1, "wall_s": 0.1, "t": 16.2}
+{"kind": "s2", "T": 2, "B": 2, "jit_s": 11.2, "rows": 24, "argmax_mismatch": 0, "mismatch_margin_gt_025": 0, "max_abs_dlogit": 6.8203125, "rounds": 15, "accept_hist": [1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1], "t": 31.4}
+{"kind": "s2", "T": 3, "B": 4, "jit_s": 11.2, "rows": 22, "argmax_mismatch": 0, "mismatch_margin_gt_025": 0, "max_abs_dlogit": 6.31640625, "rounds": 10, "accept_hist": [1, 0, 1, 2, 1, 2, 1, 2, 0, 2], "t": 42.8}
+{"kind": "s2", "T": 4, "B": 4, "jit_s": 0.1, "rows": 21, "argmax_mismatch": 0, "mismatch_margin_gt_025": 0, "max_abs_dlogit": 6.11328125, "rounds": 10, "accept_hist": [0, 2, 1, 1, 3, 0, 3, 0, 0, 1], "t": 43.3}
+{"kind": "s2", "T": 5, "B": 8, "jit_s": 11.2, "rows": 20, "argmax_mismatch": 0, "mismatch_margin_gt_025": 0, "max_abs_dlogit": 4.21875, "rounds": 5, "accept_hist": [3, 4, 3, 4, 1], "t": 54.8}
+{"kind": "s2", "T": 8, "B": 8, "jit_s": 0.1, "rows": 18, "argmax_mismatch": 0, "mismatch_margin_gt_025": 0, "max_abs_dlogit": 9.5, "rounds": 4, "accept_hist": [2, 2, 4, 6], "t": 55.3}
+DONE secs 55.28228950500488
+---
+NVIDIA H100 80GB HBM3, 615.71.09
+2.14.1+cu130 5.22.2
+67d0b9ca22ea3652796b715d1d1863459e0e2c3c

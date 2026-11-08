@@ -52,3 +52,4 @@
 | 2026-11-06 11:51 | weightedit_r2b | H100-80GB | 1658 | nan | H100 list ~$0.0011/s assumed; est $1.8 |
 | 20261106T153422Z | harness diag diag1 | A100 | 203 | 0.141 | True |
 | 20261106T160035Z | harness diag diag3 | A100 | 221 | 0.154 | True |
+| 2026-11-08 | mk_block s2 vast1 (Vast.ai H100 SXM, 1 instance ~1h incl. build+57GB weights) | H100 | 55 (GPU run) | ~1.47 (Vast balance 454.92 -> 453.45) | instance destroyed, show instances empty |
