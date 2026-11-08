@@ -1,0 +1,11 @@
+meanT 4.68 util 0.29
+cost B 16 {1: 23.24193572998047, 2: 14.741951942443848, 4: 19.34267234802246, 7: 26.9999361038208, 13: 71.53911972045898}
+B 16 grp 0 rep 0 plain 626 spec 339 agg tok/s ratio 0.542 spec==plain 16 / 16 meanT 6.41 util 0.22
+B 16 grp 0 rep 1 plain 626 spec 340 agg tok/s ratio 0.543 spec==plain 16 / 16 meanT 6.41 util 0.22
+B 16 grp 1 rep 0 plain 651 spec 335 agg tok/s ratio 0.515 spec==plain 16 / 16 meanT 6.37 util 0.22
+B 16 grp 1 rep 1 plain 652 spec 335 agg tok/s ratio 0.514 spec==plain 16 / 16 meanT 6.37 util 0.22
+cost B 32 {1: 44.58796691894531, 2: 27.342880249023438, 4: 37.03665542602539, 7: 52.31847953796387, 13: 140.19718170166016}
+B 32 grp 0 rep 0 plain 636 spec 267 agg tok/s ratio 0.419 spec==plain 32 / 32 meanT 8.27 util 0.15
+B 32 grp 0 rep 1 plain 636 spec 267 agg tok/s ratio 0.419 spec==plain 32 / 32 meanT 8.27 util 0.15
+BATCHSPEC_DONE secs 561.5976228713989 est usd 0.6161973917616739
+Runner terminated.
