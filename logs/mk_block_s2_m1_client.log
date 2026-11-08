@@ -1,0 +1,8 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-IPHcSkDm4A0ZpjY8w398ml
+✓ Created objects.
+├── ✓ Uploaded <home>/north-star/modal/mk_block.py
+├── ✓ Uploaded <home>/north-star/harness/mk_block.py
+├── ✓ Uploaded <home>/north-star/src/mk_selfspec/mk_selfspec.patch
+└── ✓ Created Function run.
