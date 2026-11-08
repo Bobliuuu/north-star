@@ -88,6 +88,6 @@ def project(rounds, verify_ms=H11_VERIFY_MS, plain_ms=None):
 def adopt_blocks(V, new, lo, hi, xp=np):
     """Persistent virtual page table V[L, P] shared by all T rows. Adopt (once) the pages the last row's host allocation made for
     logical blocks lo..hi that V does not have yet; never overwrite or drop an existing entry (history pages stay valid)."""
-    idx = xp.arange(V.shape[-1])[None, :]
+    idx = (xp.arange(V.shape[-1], device=V.device) if xp is not np else xp.arange(V.shape[-1]))[None, :]
     sel = (V < 0) & (new >= 0) & (idx >= lo) & (idx <= hi)
     return xp.where(sel, new, V)
