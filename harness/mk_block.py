@@ -77,3 +77,17 @@ def project(rounds, verify_ms=H11_VERIFY_MS, plain_ms=None):
     ms = sum(cost(1 + d) for d, _ in rounds)
     n = sum(a + 1 for _, a in rounds)
     return n * plain / ms
+
+
+# ---- engine mapping (S1 finding, 2026-11-07): the pinned megakernel already has per-row cache_seqlens (RoPE position + attention
+# length = pos+1, i.e. causal mask) and per-row page tables, and QKV writes ALL rows' K/V (one BM=8 tile) before the per-(layer,kv_head)
+# barrier the attention waits on. So a T-row block of ONE sequence = BS=T rows with cache_seqlens p..p+T-1 and page-table rows that all
+# alias one sequence's pages. No new instruction is needed; only the page-table aliasing below. Sliding layers use linear paged
+# addressing with host block eviction (not a ring); rollback is free because positions >= committed length are overwritten next round.
+# Engine window_size=W attends W+1 tokens (pos-W..pos); mk_block's W counts tokens, so W_mk = W_engine + 1.
+def adopt_blocks(V, new, lo, hi, xp=np):
+    """Persistent virtual page table V[L, P] shared by all T rows. Adopt (once) the pages the last row's host allocation made for
+    logical blocks lo..hi that V does not have yet; never overwrite or drop an existing entry (history pages stay valid)."""
+    idx = xp.arange(V.shape[-1])[None, :]
+    sel = (V < 0) & (new >= 0) & (idx >= lo) & (idx <= hi)
+    return xp.where(sel, new, V)
