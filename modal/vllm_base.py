@@ -1,7 +1,7 @@
 """vLLM baseline for North on H100.  modal run --detach modal/vllm_base.py::main --tag v1 [--cfgs plain,ngram_k8_n3,...] [--limit N]
 Each engine config runs in its own subprocess inside one container. Results -> Volume northstar-results:/vllm_<tag>.jsonl (+ .meta.json)."""
 import sys, time, json, pathlib, subprocess
-sys.path.insert(0, "modal")
+sys.path.insert(0, "modal"); sys.path.insert(0, "/root")
 import modal
 from nsapp import weights_vol, results_vol, WEIGHTS, MODEL_DIR
 
@@ -11,6 +11,7 @@ image = (
     .run_commands("pip install vllm==0.33.0")
     .env({"HF_HOME": "/tmp/hf", "TOKENIZERS_PARALLELISM": "false", "PYTHONUNBUFFERED": "1"})
     .add_local_dir("harness", "/root/harness", copy=False)
+    .add_local_file("modal/nsapp.py", "/root/nsapp.py", copy=False)
 )
 app = modal.App("northstar-vllm", image=image)
 
