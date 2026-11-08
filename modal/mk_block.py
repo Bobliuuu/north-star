@@ -173,6 +173,7 @@ def run(part: str, tag: str, ctxs: str = "2048,8192", n_ref: int = 24, rounds: i
     sys.path.insert(0, "/mk/src"); sys.path.insert(0, "/")
     write_lib()
     import torch
+    _im = torch.inference_mode(); _im.__enter__()  # engine tensors (page table) are inference tensors; in-place aliasing needs inference mode
     import mk_block_lib as L
     world = L.World(CKPT)
     out = dict(part=part, tag=tag, load_s=world.load_s, rows=[])
