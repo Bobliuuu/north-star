@@ -179,13 +179,14 @@ def run(part: str, tag: str, ctxs: str = "2048,8192", n_ref: int = 24, rounds: i
     out = dict(part=part, tag=tag, load_s=world.load_s, rows=[])
     outp = f"/results/mk_block_{part}_{tag}.jsonl"
 
-    def emit(rec):
+    def emit(rec, commit=True):
         rec["t"] = round(time.time() - t0, 1)
         print(json.dumps(rec), flush=True)
         out["rows"].append(rec)
         with open(outp, "a") as f:
             f.write(json.dumps(rec) + "\n")
-        res_vol.commit(); jit_vol.commit()
+        if commit:
+            res_vol.commit(); jit_vol.commit()
 
     text = world.prompt_text(300 if part == "s2" else 2000)
     # ---- reference: sequential BS=1 greedy, record logits
@@ -207,7 +208,7 @@ def run(part: str, tag: str, ctxs: str = "2048,8192", n_ref: int = 24, rounds: i
             pre = world.prefill(text, B)
             ex = L.BlockExec(world, pre, n_ref)
             assert int(pre.prompt_len) == p
-            c, rnd = 0, 0
+            c, rnd, prev_rej = 0, 0, False
             stat = dict(rows=0, argmax_mismatch=0, mismatch_margin_gt_025=0, max_abs_dlogit=0.0, rounds=0, accept_hist=[])
             while c + T <= n_ref:
                 a = rng.randint(0, T - 1)  # simulated accepted drafts; rows > a get WRONG tokens, their KV must be harmless after rollback
@@ -215,11 +216,22 @@ def run(part: str, tag: str, ctxs: str = "2048,8192", n_ref: int = 24, rounds: i
                 lg, ms = ex.step(toks, [p + c + j for j in range(T)], T)
                 for j in range(a + 1):
                     r = ref[c + j]; stat["rows"] += 1
-                    d = float((lg[j].cpu() - r).abs().max()); stat["max_abs_dlogit"] = max(stat["max_abs_dlogit"], d)
-                    if int(lg[j].argmax()) != int(r.argmax()):
+                    b = lg[j].cpu(); e = (b - r).abs()
+                    d = float(e.max()); stat["max_abs_dlogit"] = max(stat["max_abs_dlogit"], d)
+                    ra = int(r.argmax()); top = float(r[ra]); tk = torch.topk(r, 2)
+                    # per-row diagnostics (jsonl kind=s2row): margin, scale, error at the ref top-1 and at the worst vocab slot,
+                    # rank of the REFERENCE token under block logits (0 == argmax agrees), padding and post-reject flags
+                    emit(dict(kind="s2row", T=T, B=B, round=rnd, row=j, pos=c + j, acc=a, padded=bool(B > T), prev_rejected=bool(prev_rej),
+                              ref_margin=round(float(tk.values[0] - tk.values[1]), 4), ref_top=round(top, 3),
+                              ref_rms=round(float(r.float().pow(2).mean().sqrt()), 3),
+                              err_max=round(d, 4), err_argmax_tok=int(e.argmax()), err_at_top=round(float(e[ra]), 4),
+                              err_rms=round(float(e.pow(2).mean().sqrt()), 4), rel_err_max=round(d / max(abs(top), 1e-6), 4),
+                              ref_tok_rank_in_block=int((b > b[ra]).sum()), blk_margin=round(L.margin(b), 4)), commit=False)
+                    if int(b.argmax()) != ra:
                         stat["argmax_mismatch"] += 1
                         if L.margin(r) > 0.25:
                             stat["mismatch_margin_gt_025"] += 1
+                prev_rej = a < T - 1; rnd += 1
                 stat["accept_hist"].append(a); stat["rounds"] += 1
                 c += a + 1
             emit(dict(kind="s2", T=T, B=B, jit_s=round(ex.jit_s, 1), **stat))
