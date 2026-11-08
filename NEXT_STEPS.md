@@ -31,7 +31,7 @@ Pre-registered gate G0 (docs/THESIS.md): fused saving >= 15% of cycle time, and 
 - Draft-approximation sweep on North (`src/approx/modal_sweep.py`): built, not run.
 - KVM executor port; Phase 5 (asynchronous speculation live); Phase 7 (concurrent adaptation).
 - Sparse-attention/SSA: only independent approximations exist (SubQ's SSA is proprietary; not reproduced).
-- Live self-improvement: kernel track structured mode. Two live sessions x 3 rounds = 6 North proposals, all gate_fail:speed (2-13% slower; docs/SELFIMPROVE_ANALYSIS.md). Prompt/history changes were made after that analysis; run 3 was launched detached (RUNS.md, app ap-B0wZK4IVQWioxxurZCKpLO, log `logs/selfimprove_structured_run3.log`) but its outcome is NOT recorded in the repo. Pull it with `modal run modal/selfimprove_eval.py::pull` only if its store was a Volume store; otherwise check the app in the Modal dashboard. No North-authored optimization has passed the gates, so no self-improvement result exists. The policy track has no live run.
+- Live self-improvement: kernel track structured mode. Two live sessions x 3 rounds = 6 North proposals, all gate_fail:speed (2-13% slower; docs/SELFIMPROVE_ANALYSIS.md). Run 3 (after the prompt/history changes; app ap-B0wZK4IVQWioxxurZCKpLO, completed) gave 3 more proposals, 0 passes: 2 gate_fail:speed (dev 0.882x, 0.983x) and 1 gate_fail:correctness (harness renorm bug, see docs/SELFIMPROVE_ANALYSIS.md); outcome recorded in RUNS.md. No North-authored optimization has passed the gates, so no self-improvement result exists. The policy track has no live run.
 - TAGE: oracle simulation on local code with the Qwen3 tokenizer, NOT on North; proposer does not beat suffix/prompt lookup. Not pursued on North.
 
 ## Blockers and limits

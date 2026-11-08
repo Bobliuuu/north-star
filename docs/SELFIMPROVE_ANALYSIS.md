@@ -47,7 +47,10 @@ exercises. Recommended next step, to be done with a GPU box and a compile: add a
 the baseline is already near the HBM roofline (~0.7 of peak), so even a good tunable choice may sit under the 3% gate; an honest `no_change`
 (empty edits) is a valid outcome.
 
-## Next run suggestion
+## Run 3 outcome (MEASURED, A100-80GB; app ap-B0wZK4IVQWioxxurZCKpLO, log logs/selfimprove_structured_run3.log, store rows 7-9)
+This was the first live run after the history/guidance change. North still changed all 5 tunables and repeated the same edit set: round 0 gate_fail:speed (XPAD=HPAD=0 variant, dev 0.882x, held-out 0.877x), round 1 gate_fail:speed (KC128 XPAD16 HPAD16 MT8 MINB2, dev 0.983x, held-out 0.993x), round 2 gate_fail:correctness (rel_l2 0.78 on c7_fused; the v5 diagnosis below shows this failure class comes from the correctness harness bug and also hits the unmodified baseline, so it says nothing about the edit). 0 of 3 passed; the store has no North version. The later v5 section (harness fixes, 33 proposals, 0 passes) supersedes this as the current state.
+
+## Next run suggestion (superseded by v5 below)
 Seed with `history_from_store` of both structured stores and run 3 rounds; cost as in docs/SELFIMPROVE.md (not run here).
 
 ## Human OFAT sweep (MEASURED, A100-80GB, 2026-11-06; results/kernel_sweep_sweep1_20261106T065947Z.jsonl, app ap-kYajfWtgyO3OPmzJ1fSN0O)
