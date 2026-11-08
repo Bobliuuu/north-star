@@ -1,0 +1,27 @@
+# PLD on the cohere-megakernel: design + plan (no GPU run yet)
+Status 2026-11-07: design and CPU-tested reference only (`harness/mk_block.py`, `tests/test_mk_block.py`, 10 CPU tests incl. test_pld). No GPU spend. Evidence classes as in RESULTS.md.
+
+## Why
+Megakernel plain decode is 3.25-3.34 ms/token (H1, H11) vs 3.9 ms for the Triton fast executor (H9). PLD on the fast executor gives 1.15x (natural, H15) to 1.5x (ctx 2K) over its own plain (H13/H14). H11 found the megakernel has no multi-token causal verify of ONE sequence and no KV rollback, so PLD could not be built on it.
+
+## Expected value (INFERRED, arithmetic only)
+Block/step cost ratio decides the gain. Fast executor (H13, MEASURED): T=4 1.52x, T=9 2.20x of a T=1 step. Megakernel, cost-shape emulation (H11, rows = BS, real-union): T=4 1.45x, T=8 1.95x. A real single-sequence block should be a little cheaper still in attention (no 8 KV copies). So per-round overhead is ~5-12% lower than the fast executor and the plain step is 15-17% faster: expect PLD tok/s on the megakernel of roughly 1.2-1.3x the fast-PLD tok/s on the same task mix, i.e. ~1.35-1.5x over fast plain on natural mix and up to ~2x at ctx 2K copy-heavy tasks, IF the kernel block cost lands on the emulated curve. This is a projection, not a measurement; the H11 curve is synthetic-weight, and any real block kernel may miss it (launch/barrier cost per extra row).
+
+## What must be built (in the pinned engine, patch like src/mk_selfspec/mk_selfspec.patch)
+1. **Block attention instruction** (the real work). Today each of BS rows is an independent sequence with its own KV slot and one new position. Needed: T rows sharing ONE sequence's KV: row j has position p+j, writes K/V at slot p+j (global) or (p+j) mod R (sliding), and attends keys <= p+j (> p+j-W sliding). Contract and mask are `mk_block.block_mask`; the order is "all T K/V writes first, then T attention rows" (needs an intra-instruction or inter-instruction barrier between write and read; the existing per-layer dependency counter can carry it). Per-row position vector replaces the scalar seq_len for RoPE and mask.
+2. **KV rollback = free by construction.** Global layers: KV append-only, a host-held committed length; rollback is `length = p+a+1`, rejected slots are overwritten next round. Sliding layers: allocate the ring with R = W + Tmax - 1 slots (not W). `test_ring_without_slack_breaks` shows R=W corrupts accepted rows inside a block; `test_rollback_exact_global_and_ring` shows R=W+Tmax-1 gives results exactly equal to sequential decode for all W/p/T/accept counts tried. No snapshot/restore or copy kernel needed. Memory cost: (Tmax-1) extra slots per sliding layer, negligible.
+3. **Logits for all T rows** (lm_head over T rows, argmax per row on device; return T int32 ids, not logits). lm_head is at the HBM floor (0.37 ms), extra rows ride the same weight stream. Device-side accept (`mk_block.accept`) can come later; first version does it on host.
+4. **MoE for T rows**: expert tiles are already per-row routed in the BS>1 path; the H11 emulation measured this path (union reads). Reuse as is.
+5. **Variant per T**: JIT variants are BS-specialised, so compile T in {1,2,4,8} (draft cap 7) and pad a block up to the next variant with masked rows (what H11 did; padded rows cost ~0.4-0.6 ms each, so prefer T in {1,2,3,4,5,6,7,8} if compile time allows). Policy (`pld.Policy` backoff) should pick T from the cost curve, not a fixed gamma.
+6. **Host loop**: reuse `pld.spec_loop` + proposers unchanged (CPU draft). verify(tcur, drafts) = launch variant T=1+len(drafts), read T ids. Same loop shape as H13, so the identity/near-tie analysis (H13/H14) transfers; EXACT mode needs the batch-invariance argument redone for the megakernel (row-count-dependent reduction orders in its GEMMs), which is unverified.
+
+## Staged plan and kill gates
+- S0 (done, CPU): reference semantics + tests (this commit).
+- S1 (CPU/local build only if explicitly safe; else Modal CPU image): add per-row position vector + shared-sequence KV addressing + block mask to the attention instruction; unit-check against `mk_block` on tiny random tensors on GPU (A100/H100 ~5 min, <$0.3).
+- S2 (H100, ~$0.5): block correctness vs the fast executor's block (`harness/fast_north.py` `_forward_block`) teacher-forced on 16 greedy tokens, T=2..8; gate: argmax agreement except bf16 near-ties (margin <= 0.25) as in H13.
+- S3 (H100, ~$1): block cost curve T=1..8 at ctx 2K/8K. Kill gate: T=4 cost > 1.7x or T=8 > 2.3x of T=1 => PLD gain over fast-PLD disappears, stop.
+- S4 (H100, ~$1.5): end-to-end PLD with proposer sam2 on the H13/H15 task sets, interleaved with fast-plain and fast-PLD in the same launch (ratios only, H13 variance note). Total plan <= $3.5 of the $5 allowance.
+Honest effort estimate: S1 is days of CUDA (instruction decode, barriers, JIT variants), not hours; it was out of reach in the $4 H11 budget and remains so for a single short session. That is why this commit stops at the contract and tests.
+
+## Files
+`harness/mk_block.py` (mask, ring/linear KV with rollback, block attention, accept, projection from verify-cost curve); `tests/test_mk_block.py`.
