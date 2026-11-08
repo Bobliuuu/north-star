@@ -7,3 +7,13 @@ __pycache__/
 src/kvm/replay_input.txt
 .w1work/
 .cache_tok/
+
+# --- secrets / infrastructure identifiers: never commit (see skill github-workflow) ---
+*.pem
+*.key
+known_hosts
+.env
+.env.*
+vast_api_key
+sw.sh
+*.local.sh
