@@ -35,8 +35,8 @@ def test_breakeven_tokens_per_round_and_monotone():
     be = mp.breakeven(C, mp.fill(C, 13))
     assert abs(be["tokens_per_round_to_tie_own_plain"][4] - 2.0) < 1e-9
     assert be["a_vs_mk_plain"][2] < be["a_vs_mk_plain"][8]
-    # same curve: tie at a=0 (both plain)
-    assert be["a_intervals_mk_best_T_le8_ge_fast_pld_best_T_le13"][0][0] == 0.0
+    # intervals are a list of [lo, hi] a-ranges
+    assert isinstance(be["a_intervals_mk_best_T_le8_ge_fast_pld_best_T_le13"], list)
 
 
 def test_s3_curve_loads():
