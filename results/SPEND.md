@@ -55,3 +55,4 @@
 | 2026-11-08 | mk_block s2 vast1 (Vast.ai H100 SXM, 1 instance ~1h incl. build+57GB weights) | H100 | 55 (GPU run) | ~1.47 (Vast balance 454.92 -> 453.45) | instance destroyed, show instances empty |
 | 2026-11-08 | mk_block s3 vast1 (Vast.ai H100 SXM, 1 instance, ~0.4 h incl. setup; 57GB weights parallel with build) | H100 | 61 (GPU run) | ~1.0 (est, 2.27/h rate; shared balance not isolable) | instance destroyed, show instances shows none of mine |
 | 2026-11-08 | mk_block s2 vast2 + S4 partial (Vast.ai H100 NVL, 3.375/h, 13:58-14:20Z) | H100 NVL | 69 (S2 GPU) | ~1.25 (est from uptime ~22 min, destroyed) | S4 stopped by user order; show instances shows none of mine |
+| 2026-11-08 | longexact le1 + le2 (Modal H100, 307 s + 517 s) | H100 | 824 | ~0.9 (Modal list $3.95/h x 824 s = 0.90) | both containers finished and exited; no Vast instance rented; no other resources left |
