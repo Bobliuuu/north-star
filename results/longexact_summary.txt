@@ -1,0 +1,15 @@
+== ctx8192: tasks 7
+ exact: plain 216.6 tok/s | spec 317.2 (excl prompt-index 326.4) | ratio 1.464x (excl index 1.507x) min 1.03 max 3.94 | identical 14/14 | mean index_s 0.02 | tok/round 2.21
+   per-task ratio: {'py_lru': 1.06, 'py_dataclass': 1.35, 'pr_story': 1.03, 'term_make': 1.11, 'edit_shutil': 3.94, 'extract_textwrap': 1.89, 'summ_argparse': 1.19}
+ old: plain 247.9 tok/s | spec 363.4 (excl prompt-index 374.9) | ratio 1.466x (excl index 1.512x) min 1.01 max 3.62 | identical 6/14 | mean index_s 0.01 | tok/round 2.25
+   per-task ratio: {'py_lru': 1.2, 'py_dataclass': 1.32, 'pr_story': 1.01, 'term_make': 1.23, 'edit_shutil': 3.62, 'extract_textwrap': 1.8, 'summ_argparse': 1.14}
+== ctx32768: tasks 7
+ exact: plain 197.5 tok/s | spec 203.7 (excl prompt-index 223.4) | ratio 1.031x (excl index 1.131x) min 0.92 max 1.24 | identical 14/14 | mean index_s 0.07 | tok/round 1.28
+   per-task ratio: {'py_lru': 1.24, 'py_dataclass': 1.23, 'pr_story': 0.96, 'term_make': 0.92, 'edit_shutil': 0.95, 'extract_textwrap': 0.98, 'summ_argparse': 0.99}
+ old: plain 235.4 tok/s | spec 226.6 (excl prompt-index 250.4) | ratio 0.963x (excl index 1.064x) min 0.83 max 1.17 | identical 0/14 | mean index_s 0.07 | tok/round 1.23
+   per-task ratio: {'py_lru': 0.95, 'py_dataclass': 1.17, 'pr_story': 0.96, 'term_make': 0.83, 'edit_shutil': 0.96, 'extract_textwrap': 0.93, 'summ_argparse': 0.97}
+== ctx131072: tasks 7
+ exact: plain 93.0 tok/s | spec 89.8 (excl prompt-index 110.3) | ratio 0.966x (excl index 1.186x) min 0.76 max 2.12 | identical 14/14 | mean index_s 0.37 | tok/round 1.85
+   per-task ratio: {'py_lru': 1.06, 'py_dataclass': 0.79, 'pr_story': 0.88, 'term_make': 0.76, 'edit_shutil': 2.12, 'extract_textwrap': 0.83, 'summ_argparse': 0.79}
+ old: plain 197.1 tok/s | spec 130.1 (excl prompt-index 193.2) | ratio 0.660x (excl index 0.980x) min 0.39 max 0.77 | identical 0/14 | mean index_s 0.37 | tok/round 1.16
+   per-task ratio: {'py_lru': 0.68, 'py_dataclass': 0.74, 'pr_story': 0.77, 'term_make': 0.39, 'edit_shutil': 0.73, 'extract_textwrap': 0.7, 'summ_argparse': 0.71}
