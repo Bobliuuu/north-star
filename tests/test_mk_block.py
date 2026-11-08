@@ -67,3 +67,11 @@ def test_projection():
     assert r["speedup"] > 2.0  # fully copyable text on a 3.42 ms verify curve
     assert abs(mb.project([(0, 0)] * 10) - 1.0) < 1e-9
     assert mb.project([(7, 7)]) > 3.0 and mb.project([(7, 0)]) < 0.6
+
+
+def test_adopt_blocks_keeps_history_and_adopts_new():
+    V = np.array([[5, 6, -1, -1], [-1, 7, -1, -1]])      # layer1 block0 evicted (sliding)
+    new = np.array([[9, 9, 11, 12], [9, 9, 11, -1]])      # last row's own pages
+    out = mb.adopt_blocks(V, new, 2, 3)
+    assert out.tolist() == [[5, 6, 11, 12], [-1, 7, 11, -1]]  # history kept, evicted not resurrected, new adopted
+    assert mb.adopt_blocks(out, np.where(new >= 0, new + 1, new), 2, 3).tolist() == out.tolist()  # idempotent once adopted
