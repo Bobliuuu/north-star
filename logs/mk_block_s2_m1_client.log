@@ -6,3 +6,98 @@ https://modal.com/apps/jerry-zhu/main/ap-IPHcSkDm4A0ZpjY8w398ml
 ├── ✓ Uploaded /Users/jhome/north-star/harness/mk_block.py
 ├── ✓ Uploaded /Users/jhome/north-star/src/mk_selfspec/mk_selfspec.patch
 └── ✓ Created Function run.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 13.0.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 987, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 266, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/mk_block.py", line 196, in run
+    lg, ms = ex.step([seq[i]], [p + i], 1)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mk/src/mk_block_lib.py", line 109, in step
+    self.V = adopt_blocks(self.V, pt[:, T - 1, :], min(positions) // pb, max(positions) // pb, xp=torch)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mk/src/mk_block_h.py", line 92, in adopt_blocks
+    sel = (V < 0) & (new >= 0) & (idx >= lo) & (idx <= hi)
+          ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /Users/jhome/north-star/modal/mk_block.py:247 in main                        │
+│                                                                              │
+│   246 @app.local_entrypoint()                                                │
+│ ❱ 247 def main(part: str = "s2", tag: str = "m1", ctxs: str = "2048,8192"):  │
+│   248 │   r = run.remote(part, tag, ctxs)                                    │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_obj │
+│ ect.py:49 in wrapped                                                         │
+│                                                                              │
+│    48 │   │   await self.hydrate()                                           │
+│ ❱  49 │   │   return await method(self, *args, **kwargs)                     │
+│    50                                                                        │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:2081 in remote                                                     │
+│                                                                              │
+│   2080 │   │                                                                 │
+│ ❱ 2081 │   │   return await self._call_function(args, kwargs)                │
+│   2082                                                                       │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:2018 in _call_function                                             │
+│                                                                              │
+│   2017 │   │                                                                 │
+│ ❱ 2018 │   │   return await invocation.run_function()                        │
+│   2019                                                                       │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_fun │
+│ ctions.py:517 in run_function                                                │
+│                                                                              │
+│    516 │   │   │   # No more retries left.                                   │
+│ ❱  517 │   │   │   return await _process_result(                             │
+│    518 │   │   │   │   await_response.output.result, await_response.output.d │
+│                                                                              │
+│ /Users/jhome/.pyenv/versions/3.12.10/lib/python3.12/site-packages/modal/_uti │
+│ ls/function_utils.py:572 in _process_result                                  │
+│                                                                              │
+│   571 │   │   │                                                              │
+│ ❱ 572 │   │   │   raise exc_with_hints(exc)                                  │
+│   573                                                                        │
+│                                                                              │
+│     ...Remote call to Modal Function (ta-01M6WTTG68AYRYM8S3XC1Q9S1R)...      │
+│                                                                              │
+│ /root/mk_block.py:196 in run                                                 │
+│                                                                              │
+│ ❱ 196 lg, ms = ex.step([seq[i]], [p + i], 1)                                 │
+│                                                                              │
+│                                                                              │
+│ /mk/src/mk_block_lib.py:109 in step                                          │
+│                                                                              │
+│ ❱ 109 self.V = adopt_blocks(self.V, pt[:, T - 1, :], min(positions) // pb, m │
+│                                                                              │
+│                                                                              │
+│ /mk/src/mk_block_h.py:92 in adopt_blocks                                     │
+│                                                                              │
+│ ❱ 92 sel = (V < 0) & (new >= 0) & (idx >= lo) & (idx <= hi)                  │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+RuntimeError: Expected all tensors to be on the same device, but found at least 
+two devices, cuda:0 and cpu!
