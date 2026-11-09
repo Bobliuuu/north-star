@@ -59,3 +59,10 @@
 | 2026-11-08 | vllm_v1 (ap-xaefnZoiyA75jtFnHwR4Ve; 3 vLLM engine loads + plain) | H100 | 1307 | 1.43 (est 3.95/h) | OK; H17; earlier 2 failed launches 0 GPU-s; no Vast instance rented |
 | 2026-11-08 | batchspec bs1 (ap-QOonWfL3UUuzGLPlYjPfBP) | H100 | 562 | 0.62 (est 3.95/h) | OK; H18 |
 | 2026-11-08 | batchdiag d1 (ap-Jj4SEUzRYCVCrArm62vjoS) | H100 | unknown | unknown | outcome not recorded in repo |
+| 2026-11-09 | tilegrid kernel tests x3 (Modal H100, short) (workspace <workspace>) | H100 | ~240 (est) | ~0.26 (est) (est 3.95/h) | OK; H19 |
+| 2026-11-09 | abtile ab1 (workspace <workspace>) | H100 | 210 | 0.23 (est 3.95/h) | OK; H19 |
+| 2026-11-09 | batchspec bs2 (workspace <workspace>) | H100 | 638 | 0.70 (est 3.95/h) | OK; H19 |
+| 2026-11-09 | batchspec bs2g (workspace <workspace>) | H100 | 630 | 0.69 (est 3.95/h) | OK; H19 |
+| 2026-11-09 | batchdiag d2 (workspace <workspace>) | H100 | 77 | 0.08 (est 3.95/h) | OK; H19 |
+| 2026-11-09 | batchspec bs3 (workspace <workspace>) | H100 | 728 | 0.80 (est 3.95/h) | OK; H19 |
+| 2026-11-09 | weights download (workspace <workspace>) | CPU | ~600 | ~0.05 (est) | OK |
