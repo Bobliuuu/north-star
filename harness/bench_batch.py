@@ -89,8 +89,26 @@ def run_plain(step, grp, n_new, eos):
     return out, td, time.perf_counter() - t0, None
 
 
-def run_spec(steps, grp, n_new, eos, name, gamma):
+def _pick_T(dr, q, cost, done):
+    """Cost-aware round width: T maximising expected new tokens / measured graph ms. Row b yields 1 + sum_{i<=min(d_b,T-1)} q_b^i tokens
+    (geometric prefix acceptance, q_b = running per-row continuation rate). T=1 (plain step) is always a candidate."""
+    tmax = 1 + max(len(d) for d in dr)
+    best, bT = -1.0, 1
+    for T in range(1, tmax + 1):
+        tok = 0.0
+        for b, d in enumerate(dr):
+            if done[b]: continue
+            m = min(len(d), T - 1); qb = q[b]
+            tok += 1.0 + (qb * (1 - qb ** m) / (1 - qb) if qb < 1 else m)
+        v = tok / cost[T]
+        if v > best: best, bT = v, T
+    return bT
+
+
+def run_spec(steps, grp, n_new, eos, name, gamma, cost=None):
+    """cost: {T: ms} enables the cost-aware cap (_pick_T); drafts are truncated to T-1 tokens. None = plain PLD (T = 1 + longest draft)."""
     B = len(grp)
+    qa = [1.0] * B; qr = [1.0] * B   # per-row accepted / rejected-continuation counts (prior q = 0.5)
     props = [pld.make(name) for _ in grp]
     for p, g in zip(props, grp): p.extend(g[2])
     tcur = [list(g[2]) for g in grp]; out = [[] for _ in range(B)]; done = [False] * B; td = [None] * B
@@ -98,6 +116,9 @@ def run_spec(steps, grp, n_new, eos, name, gamma):
     torch.cuda.synchronize(); t0 = time.perf_counter()
     while not all(done):
         dr = [(props[b].propose(gamma)[0] if not done[b] else []) for b in range(B)]
+        if cost is not None:
+            T = _pick_T(dr, [qa[b] / (qa[b] + qr[b]) for b in range(B)], cost, done)
+            dr = [d[:T - 1] for d in dr]
         T = 1 + max(len(d) for d in dr)
         ids = []; pos = []
         for b in range(B):
@@ -113,6 +134,7 @@ def run_spec(steps, grp, n_new, eos, name, gamma):
             new = d[:a] + [pred[b][a]]
             if eos in new: new = new[:new.index(eos) + 1]; done[b] = True
             used += 1 + len(d); acc += a; drafted += len(d)
+            qa[b] += a; qr[b] += int(a < len(d))
             tcur[b] += new; out[b] += new; props[b].extend(new)
             if len(out[b]) >= n_new: done[b] = True
             if done[b]: td[b] = now
@@ -123,7 +145,7 @@ def run_spec(steps, grp, n_new, eos, name, gamma):
 
 
 @torch.no_grad()
-def bench(m, tok, j, sizes=(1, 2, 4, 8, 16, 32), n_new=192, reps=2, name="sam2", gamma=12, pool_n=32, tag=""):
+def bench(m, tok, j, sizes=(1, 2, 4, 8, 16, 32), n_new=192, reps=2, name="sam2", gamma=12, pool_n=32, tag="", cc=False):
     ref = RefNorth(m); dev = ref.device
     eos = m.config.eos_token_id; eos = eos if isinstance(eos, int) else eos[0]
     pool = build_pool(tok, pool_n)
@@ -159,11 +181,18 @@ def bench(m, tok, j, sizes=(1, 2, 4, 8, 16, 32), n_new=192, reps=2, name="sam2",
                         _set_rows(steps[T], grp, T, real=False); cpad[T] = time_graph(steps[T], n=20)[0]   # control: old-style padded rows
                     j.add(phase="cost", B=B, inputs="prompt_tail", ms={str(k): v for k, v in c.items()}, ms_padded={str(k): v for k, v in cpad.items()})
                     print("cost B", B, c, "padded", cpad, flush=True)
+                    if cc:
+                        cfull = {}
+                        for T in range(1, TMAX + 1):
+                            _set_rows(steps[T], grp, T, real=True); cfull[T] = time_graph(steps[T], n=10)[0]
+                        j.add(phase="cost_full", B=B, ms={str(k): v for k, v in cfull.items()}); print("cost_full B", B, {k: round(v, 2) for k, v in cfull.items()}, flush=True)
                 for rep in range(reps):
                     order = ("plain", "spec") if rep % 2 == 0 else ("spec", "plain")
+                    if cc: order = order + ("speccc",) if rep % 2 == 0 else ("speccc",) + order
                     res = {}
                     for w in order:
-                        res[w] = run_plain(steps[1], grp, n_new, eos) if w == "plain" else run_spec(steps, grp, n_new, eos, name, gamma)
+                        res[w] = (run_plain(steps[1], grp, n_new, eos) if w == "plain" else
+                                  run_spec(steps, grp, n_new, eos, name, gamma, cost=cfull if w == "speccc" else None))
                     po, ptd, pw, _ = res["plain"]; so, std, sw, sinfo = res["spec"]
                     if B == 1 and rep == 0: ref1[idxs[0]] = po[0]
                     ntp = [len(o) for o in po]; nts = [len(o) for o in so]
@@ -174,6 +203,12 @@ def bench(m, tok, j, sizes=(1, 2, 4, 8, 16, 32), n_new=192, reps=2, name="sam2",
                           fd_spec_vs_plain=[_fd(a, b) for a, b in zip(so, po)],
                           plain_eq_B1=[(po[k] == ref1[i]) if i in ref1 else "na" for k, i in enumerate(idxs)],
                           spec_eq_B1=[(so[k] == ref1[i]) if i in ref1 else "na" for k, i in enumerate(idxs)], capture_s=cap_s, **sinfo)
+                    if cc:
+                        co, ctd, cw, cinfo = res["speccc"]; ntc = [len(o) for o in co]
+                        j.add(phase="group_cc", B=B, group=gi, rep=rep, tag=tag, cc_wall=cw, cc_agg_tok_s=sum(ntc) / cw, plain_agg_tok_s=sum(ntp) / pw, spec_agg_tok_s=sum(nts) / sw,
+                              cc_eq_plain=[a == b for a, b in zip(co, po)], n_cc=ntc, **{"cc_" + k: v for k, v in cinfo.items()})
+                        print("  cc B", B, "grp", gi, "rep", rep, "cc %.0f (plain %.0f spec %.0f)" % (sum(ntc) / cw, sum(ntp) / pw, sum(nts) / sw),
+                              "cc==plain", sum(a == b for a, b in zip(co, po)), "/", B, "meanT %.2f" % cinfo["mean_T"], flush=True)
                     print("B", B, "grp", gi, "rep", rep, "plain %.0f spec %.0f agg tok/s ratio %.3f" % (sum(ntp) / pw, sum(nts) / sw, (sum(nts) / sw) / (sum(ntp) / pw)),
                           "spec==plain", sum(a == b for a, b in zip(so, po)), "/", B, "meanT %.2f util %.2f" % (sinfo["mean_T"], sinfo["slot_util"]), flush=True)
                 del steps
@@ -183,10 +218,10 @@ def bench(m, tok, j, sizes=(1, 2, 4, 8, 16, 32), n_new=192, reps=2, name="sam2",
                 steps = {}; torch.cuda.empty_cache()
 
 
-def run(m, tok, tag="", reps=2, n_new=192, sizes=(1, 2, 4, 8, 16, 32)):
+def run(m, tok, tag="", reps=2, n_new=192, sizes=(1, 2, 4, 8, 16, 32), cc=False):
     j = Jsonl()
     try:
-        bench(m, tok, j, sizes=sizes, n_new=n_new, reps=reps, tag=tag)
+        bench(m, tok, j, sizes=sizes, n_new=n_new, reps=reps, tag=tag, cc=cc)
     except Exception:
         j.add(phase="fatal", err=traceback.format_exc()[-1200:]); print("FATAL", traceback.format_exc()[-1200:], flush=True)
     return j
