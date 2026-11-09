@@ -57,3 +57,5 @@
 | 2026-11-08 | mk_block s2 vast2 + S4 partial (Vast.ai H100 NVL, 3.375/h, 13:58-14:20Z) | H100 NVL | 69 (S2 GPU) | ~1.25 (est from uptime ~22 min, destroyed) | S4 stopped by user order; show instances shows none of mine |
 | 2026-11-08 | longexact le1 + le2 (Modal H100, 307 s + 517 s) | H100 | 824 | ~0.9 (Modal list $3.95/h x 824 s = 0.90) | both containers finished and exited; no Vast instance rented; no other resources left |
 | 2026-11-08 | vllm_v1 (ap-xaefnZoiyA75jtFnHwR4Ve; 3 vLLM engine loads + plain) | H100 | 1307 | 1.43 (est 3.95/h) | OK; H17; earlier 2 failed launches 0 GPU-s; no Vast instance rented |
+| 2026-11-08 | batchspec bs1 (ap-QOonWfL3UUuzGLPlYjPfBP) | H100 | 562 | 0.62 (est 3.95/h) | OK; H18 |
+| 2026-11-08 | batchdiag d1 (ap-Jj4SEUzRYCVCrArm62vjoS) | H100 | unknown | unknown | outcome not recorded in repo |
