@@ -14,7 +14,7 @@ TP = 16
 # Read at launch/capture time, so set it before make_step. Env NS_MOE_TILE_GRID=1 sets the default.
 import os
 TILE_GRID = int(os.environ.get("NS_MOE_TILE_GRID", "0"))   # 0 serial | 1 leader x tile | 2 expert x tile | 3 expert-gathered rows | 4 auto (3 if rows >= GATHER_MIN_NT else 0)
-GATHER_MIN_NT = 32   # kernel test (H100, E=128 k=8 Dm=2048 I=512): gather loses at NT<=17 (sort overhead), wins 1.25x at 32, 2x at 64, 5x at 416
+GATHER_MIN_NT = 48   # real North A/B (abtile_ab1, H100): gather 0.97x at NT=32, 1.02-1.35x at 52-64, 1.6-2.2x at NT>=104; plain T=1 never gains below B=32
 
 
 @triton.jit

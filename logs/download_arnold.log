@@ -1,0 +1,296 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/arnold-17059/main/ap-mKynXGPr6hNPidr41Nwvas
+Building image im-pJaixJCfHnHx4kRB3O9I2b
+
+=> Step 0: FROM base
+
+=> Step 1: RUN python -m pip install accelerate==1.15.0 huggingface_hub numpy==2.2.5 pytest==8.3.5 safetensors torch==2.10.0 transformers==5.22.1
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting accelerate==1.15.0
+  Downloading accelerate-1.15.0-py3-none-any.whl.metadata (19 kB)
+Collecting huggingface_hub
+  Downloading huggingface_hub-2.4.0-py3-none-any.whl.metadata (16 kB)
+Collecting numpy==2.2.5
+  Downloading numpy-2.2.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+Collecting pytest==8.3.5
+  Downloading pytest-8.3.5-py3-none-any.whl.metadata (7.6 kB)
+Collecting safetensors
+  Downloading safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.2 kB)
+Collecting torch==2.10.0
+  Downloading torch-2.10.0-3-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (31 kB)
+Collecting transformers==5.22.1
+  Downloading transformers-5.22.1-py3-none-any.whl.metadata (31 kB)
+Requirement already satisfied: packaging>=20.0 in ./usr/local/lib/python3.12/site-packages (from accelerate==1.15.0) (26.3)
+Collecting psutil (from accelerate==1.15.0)
+  Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
+Collecting pyyaml (from accelerate==1.15.0)
+  Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting iniconfig (from pytest==8.3.5)
+  Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Collecting pluggy<2,>=1.5 (from pytest==8.3.5)
+  Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting filelock (from torch==2.10.0)
+  Downloading filelock-4.2.9-py3-none-any.whl.metadata (2.3 kB)
+Collecting typing-extensions>=4.10.0 (from torch==2.10.0)
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting setuptools (from torch==2.10.0)
+  Downloading setuptools-84.2.1-py3-none-any.whl.metadata (6.6 kB)
+Collecting sympy>=1.13.3 (from torch==2.10.0)
+  Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx>=2.5.1 (from torch==2.10.0)
+  Downloading networkx-3.7-py3-none-any.whl.metadata (6.7 kB)
+Collecting jinja2 (from torch==2.10.0)
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec>=0.8.5 (from torch==2.10.0)
+  Downloading fsspec-2026.9.0-py3-none-any.whl.metadata (10 kB)
+Collecting cuda-bindings==12.9.4 (from torch==2.10.0)
+  Downloading cuda_bindings-12.9.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (2.6 kB)
+Collecting nvidia-cuda-nvrtc-cu12==12.8.93 (from torch==2.10.0)
+  Downloading nvidia_cuda_nvrtc_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cuda-runtime-cu12==12.8.90 (from torch==2.10.0)
+  Downloading nvidia_cuda_runtime_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cuda-cupti-cu12==12.8.90 (from torch==2.10.0)
+  Downloading nvidia_cuda_cupti_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cudnn-cu12==9.10.2.21 (from torch==2.10.0)
+  Downloading nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-cublas-cu12==12.8.4.1 (from torch==2.10.0)
+  Downloading nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cufft-cu12==11.3.3.83 (from torch==2.10.0)
+  Downloading nvidia_cufft_cu12-11.3.3.83-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-curand-cu12==10.3.9.90 (from torch==2.10.0)
+  Downloading nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cusolver-cu12==11.7.3.90 (from torch==2.10.0)
+  Downloading nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-cusparse-cu12==12.5.8.93 (from torch==2.10.0)
+  Downloading nvidia_cusparse_cu12-12.5.8.93-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-cusparselt-cu12==0.7.1 (from torch==2.10.0)
+  Downloading nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl.metadata (7.0 kB)
+Collecting nvidia-nccl-cu12==2.27.5 (from torch==2.10.0)
+  Downloading nvidia_nccl_cu12-2.27.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.0 kB)
+Collecting nvidia-nvshmem-cu12==3.4.5 (from torch==2.10.0)
+  Downloading nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.1 kB)
+Collecting nvidia-nvtx-cu12==12.8.90 (from torch==2.10.0)
+  Downloading nvidia_nvtx_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-nvjitlink-cu12==12.8.93 (from torch==2.10.0)
+  Downloading nvidia_nvjitlink_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cufile-cu12==1.13.1.3 (from torch==2.10.0)
+  Downloading nvidia_cufile_cu12-1.13.1.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting triton==3.6.0 (from torch==2.10.0)
+  Downloading triton-3.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (1.7 kB)
+Collecting regex>=2025.10.22 (from transformers==5.22.1)
+  Downloading regex-2026.11.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting tokenizers<0.24.0,>=0.23.1 (from transformers==5.22.1)
+  Downloading tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.8 kB)
+Collecting typer (from transformers==5.22.1)
+  Downloading typer-0.28.0-py3-none-any.whl.metadata (16 kB)
+Collecting tqdm>=4.60 (from transformers==5.22.1)
+  Downloading tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
+Collecting cuda-pathfinder~=1.1 (from cuda-bindings==12.9.4->torch==2.10.0)
+  Downloading cuda_pathfinder-1.8.6-py3-none-any.whl.metadata (1.9 kB)
+Collecting click<9.0.0,>=8.4.2 (from huggingface_hub)
+  Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+Collecting hf-xet<2.0.0,>=1.6.0 (from huggingface_hub)
+  Downloading hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+Collecting httpx2<3,>=2.0.0 (from huggingface_hub)
+  Downloading httpx2-2.16.0-py3-none-any.whl.metadata (10 kB)
+Collecting anyio>=4.10 (from httpx2<3,>=2.0.0->huggingface_hub)
+  Downloading anyio-4.16.0-py3-none-any.whl.metadata (4.7 kB)
+Collecting httpcore2==2.16.0 (from httpx2<3,>=2.0.0->huggingface_hub)
+  Downloading httpcore2-2.16.0-py3-none-any.whl.metadata (27 kB)
+Collecting idna>=3.18 (from httpx2<3,>=2.0.0->huggingface_hub)
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting truststore>=0.10 (from httpx2<3,>=2.0.0->huggingface_hub)
+  Downloading truststore-0.10.5-py3-none-any.whl.metadata (4.5 kB)
+Collecting h11>=0.16 (from httpcore2==2.16.0->httpx2<3,>=2.0.0->huggingface_hub)
+  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch==2.10.0)
+  Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.10.0)
+  Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Collecting shellingham>=1.3.0 (from typer->transformers==5.22.1)
+  Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+Collecting rich>=13.8.0 (from typer->transformers==5.22.1)
+  Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+Collecting annotated-doc>=0.0.2 (from typer->transformers==5.22.1)
+  Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+Collecting markdown-it-py>=2.2.0 (from rich>=13.8.0->typer->transformers==5.22.1)
+  Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich>=13.8.0->typer->transformers==5.22.1)
+  Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=13.8.0->typer->transformers==5.22.1)
+  Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Downloading accelerate-1.15.0-py3-none-any.whl (394 kB)
+Downloading numpy-2.2.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.1/16.1 MB 657.2 MB/s  0:00:00
+Downloading pytest-8.3.5-py3-none-any.whl (343 kB)
+Downloading torch-2.10.0-3-cp312-cp312-manylinux_2_28_x86_64.whl (915.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 915.6/915.6 MB 763.8 MB/s  0:00:01
+Downloading transformers-5.22.1-py3-none-any.whl (13.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.1/13.1 MB 934.5 MB/s  0:00:00
+Downloading cuda_bindings-12.9.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.2/12.2 MB 585.7 MB/s  0:00:00
+Downloading nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_x86_64.whl (594.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 594.3/594.3 MB 851.8 MB/s  0:00:00
+Downloading nvidia_cuda_cupti_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (10.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.2/10.2 MB 864.4 MB/s  0:00:00
+Downloading nvidia_cuda_nvrtc_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (88.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 88.0/88.0 MB 852.3 MB/s  0:00:00
+Downloading nvidia_cuda_runtime_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (954 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 954.8/954.8 kB 1.2 GB/s  0:00:00
+Downloading nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl (706.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 706.8/706.8 MB 870.5 MB/s  0:00:00
+Downloading nvidia_cufft_cu12-11.3.3.83-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (193.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 193.1/193.1 MB 855.7 MB/s  0:00:00
+Downloading nvidia_cufile_cu12-1.13.1.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 1.2 GB/s  0:00:00
+Downloading nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_x86_64.whl (63.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.6/63.6 MB 830.9 MB/s  0:00:00
+Downloading nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_x86_64.whl (267.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 267.5/267.5 MB 852.0 MB/s  0:00:00
+Downloading nvidia_cusparse_cu12-12.5.8.93-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (288.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 288.2/288.2 MB 837.1 MB/s  0:00:00
+Downloading nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl (287.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 287.2/287.2 MB 796.8 MB/s  0:00:00
+Downloading nvidia_nccl_cu12-2.27.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (322.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 322.3/322.3 MB 703.8 MB/s  0:00:00
+Downloading nvidia_nvjitlink_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (39.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 39.3/39.3 MB 762.5 MB/s  0:00:00
+Downloading nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (139.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 139.1/139.1 MB 659.6 MB/s  0:00:00
+Downloading nvidia_nvtx_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (89 kB)
+Downloading triton-3.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (188.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 188.3/188.3 MB 768.7 MB/s  0:00:00
+Downloading huggingface_hub-2.4.0-py3-none-any.whl (857 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 857.0/857.0 kB 1.0 GB/s  0:00:00
+Downloading click-8.5.1-py3-none-any.whl (126 kB)
+Downloading cuda_pathfinder-1.8.6-py3-none-any.whl (62 kB)
+Downloading hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 1.2 GB/s  0:00:00
+Downloading httpx2-2.16.0-py3-none-any.whl (97 kB)
+Downloading httpcore2-2.16.0-py3-none-any.whl (85 kB)
+Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+Downloading tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 1.4 GB/s  0:00:00
+Downloading safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (516 kB)
+Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+Downloading filelock-4.2.9-py3-none-any.whl (164 kB)
+Downloading fsspec-2026.9.0-py3-none-any.whl (221 kB)
+Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading networkx-3.7-py3-none-any.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 1.1 GB/s  0:00:00
+Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 1.0 GB/s  0:00:00
+Downloading regex-2026.11.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (808 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 808.8/808.8 kB 1.2 GB/s  0:00:00
+Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 798.4 MB/s  0:00:00
+Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 979.8 MB/s  0:00:00
+Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (155 kB)
+Downloading setuptools-84.2.1-py3-none-any.whl (876 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 876.3/876.3 kB 1.2 GB/s  0:00:00
+Downloading typer-0.28.0-py3-none-any.whl (123 kB)
+Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 1.1 GB/s  0:00:00
+Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Installing collected packages: nvidia-cusparselt-cu12, mpmath, typing-extensions, truststore, triton, tqdm, sympy, shellingham, setuptools, safetensors, regex, pyyaml, pygments, psutil, pluggy, nvidia-nvtx-cu12, nvidia-nvshmem-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufile-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, numpy, networkx, mdurl, MarkupSafe, iniconfig, idna, hf-xet, h11, fsspec, filelock, cuda-pathfinder, click, annotated-doc, pytest, nvidia-cusparse-cu12, nvidia-cufft-cu12, nvidia-cudnn-cu12, markdown-it-py, jinja2, httpcore2, cuda-bindings, anyio, rich, nvidia-cusolver-cu12, httpx2, typer, torch, huggingface_hub, tokenizers, accelerate, transformers
+
+Successfully installed MarkupSafe-3.0.4 accelerate-1.15.0 annotated-doc-0.0.5 anyio-4.16.0 click-8.5.1 cuda-bindings-12.9.4 cuda-pathfinder-1.8.6 filelock-4.2.9 fsspec-2026.9.0 h11-0.16.0 hf-xet-1.8.0 httpcore2-2.16.0 httpx2-2.16.0 huggingface_hub-2.4.0 idna-3.20 iniconfig-2.3.1 jinja2-3.1.6 markdown-it-py-4.2.0 mdurl-0.1.2 mpmath-1.3.0 networkx-3.7 numpy-2.2.5 nvidia-cublas-cu12-12.8.4.1 nvidia-cuda-cupti-cu12-12.8.90 nvidia-cuda-nvrtc-cu12-12.8.93 nvidia-cuda-runtime-cu12-12.8.90 nvidia-cudnn-cu12-9.10.2.21 nvidia-cufft-cu12-11.3.3.83 nvidia-cufile-cu12-1.13.1.3 nvidia-curand-cu12-10.3.9.90 nvidia-cusolver-cu12-11.7.3.90 nvidia-cusparse-cu12-12.5.8.93 nvidia-cusparselt-cu12-0.7.1 nvidia-nccl-cu12-2.27.5 nvidia-nvjitlink-cu12-12.8.93 nvidia-nvshmem-cu12-3.4.5 nvidia-nvtx-cu12-12.8.90 pluggy-1.7.0 psutil-7.2.2 pygments-2.21.0 pytest-8.3.5 pyyaml-6.0.3 regex-2026.11.9 rich-15.0.0 safetensors-0.8.0 setuptools-84.2.1 shellingham-1.5.4 sympy-1.14.0 tokenizers-0.23.3 torch-2.10.0 tqdm-4.70.1 transformers-5.22.1 triton-3.6.0 truststore-0.10.5 typer-0.28.0 typing-extensions-4.16.0
+
+[notice] A new release of pip is available: 26.2.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+Saving image...
+Image saved, took 4.31s
+
+Built image im-pJaixJCfHnHx4kRB3O9I2b in 63.08s
+
+
+Building image im-Hqy4Pax7slZ2ewwPkMSNtk
+
+=> Step 0: FROM base
+
+=> Step 1: ENV HF_HOME=/tmp/hf
+
+=> Step 2: ENV TOKENIZERS_PARALLELISM=false
+
+=> Step 3: ENV PYTHONUNBUFFERED=1
+Saving image...
+Image saved, took 588.00ms
+
+Built image im-Hqy4Pax7slZ2ewwPkMSNtk in 1.39s
+
+
+✓ Created objects.
+├── ✓ Uploaded /Users/jerry/code/north-star/modal/download.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded /Users/jerry/code/north-star/src/northstar
+├── ✓ Uploaded /Users/jerry/code/north-star/tests
+├── ✓ Uploaded /Users/jerry/code/north-star/harness
+└── ✓ Created Function download.
+
+[1AFetching 61 files:   0%|          | 0/61 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+[1AFetching 61 files:   2%|▏         | 1/61 [00:00<00:10,  5.51it/s]
+[1AFetching 61 files:  15%|█▍        | 9/61 [00:07<00:45,  1.14it/s]
+[1AFetching 61 files:  16%|█▋        | 10/61 [00:13<01:20,  1.58s/it]
+[1AFetching 61 files:  18%|█▊        | 11/61 [00:22<02:17,  2.75s/it]
+[1AFetching 61 files:  20%|█▉        | 12/61 [00:25<02:24,  2.95s/it]
+[1AFetching 61 files:  21%|██▏       | 13/61 [00:29<02:23,  3.00s/it]
+[1AFetching 61 files:  23%|██▎       | 14/61 [00:34<02:49,  3.60s/it]
+[1AFetching 61 files:  25%|██▍       | 15/61 [00:38<02:46,  3.63s/it]
+[1AFetching 61 files:  26%|██▌       | 16/61 [00:41<02:39,  3.55s/it]
+[1AFetching 61 files:  28%|██▊       | 17/61 [00:48<03:17,  4.49s/it]
+[1AFetching 61 files:  30%|██▉       | 18/61 [00:52<03:01,  4.21s/it]
+[1AFetching 61 files:  31%|███       | 19/61 [00:52<02:09,  3.08s/it]
+[1AFetching 61 files:  33%|███▎      | 20/61 [01:06<04:12,  6.15s/it]
+[1AFetching 61 files:  34%|███▍      | 21/61 [01:08<03:28,  5.22s/it]
+[1AFetching 61 files:  36%|███▌      | 22/61 [01:09<02:31,  3.89s/it]
+[1AFetching 61 files:  38%|███▊      | 23/61 [01:13<02:28,  3.90s/it]
+[1AFetching 61 files:  39%|███▉      | 24/61 [01:13<01:43,  2.81s/it]
+[1AFetching 61 files:  41%|████      | 25/61 [01:20<02:18,  3.86s/it]
+[1AFetching 61 files:  43%|████▎     | 26/61 [01:28<03:00,  5.16s/it]
+[1AFetching 61 files:  44%|████▍     | 27/61 [01:30<02:21,  4.17s/it]
+[1AFetching 61 files:  46%|████▌     | 28/61 [01:32<01:55,  3.49s/it]
+[1AFetching 61 files:  48%|████▊     | 29/61 [01:39<02:24,  4.52s/it]
+[1AFetching 61 files:  49%|████▉     | 30/61 [01:44<02:28,  4.80s/it]
+[1AFetching 61 files:  51%|█████     | 31/61 [01:48<02:19,  4.64s/it]
+[1AFetching 61 files:  52%|█████▏    | 32/61 [01:51<01:55,  3.97s/it]
+[1AFetching 61 files:  54%|█████▍    | 33/61 [01:53<01:35,  3.43s/it]
+[1AFetching 61 files:  56%|█████▌    | 34/61 [01:59<01:57,  4.34s/it]
+[1AFetching 61 files:  57%|█████▋    | 35/61 [02:14<03:10,  7.32s/it]
+[1AFetching 61 files:  62%|██████▏   | 38/61 [02:14<01:14,  3.25s/it]
+[1AFetching 61 files:  64%|██████▍   | 39/61 [02:18<01:17,  3.50s/it]
+[1AFetching 61 files:  66%|██████▌   | 40/61 [02:22<01:13,  3.50s/it]
+[1AFetching 61 files:  67%|██████▋   | 41/61 [02:24<01:01,  3.08s/it]
+[1AFetching 61 files:  69%|██████▉   | 42/61 [02:31<01:17,  4.10s/it]
+[1AFetching 61 files:  70%|███████   | 43/61 [02:31<00:54,  3.04s/it]
+[1AFetching 61 files:  74%|███████▍  | 45/61 [02:43<01:11,  4.46s/it]
+[1AFetching 61 files:  75%|███████▌  | 46/61 [02:46<00:58,  3.90s/it]
+[1AFetching 61 files:  79%|███████▊  | 48/61 [02:53<00:48,  3.74s/it]
+[1AFetching 61 files:  80%|████████  | 49/61 [02:56<00:43,  3.66s/it]
+[1AFetching 61 files:  84%|████████▎ | 51/61 [02:59<00:29,  2.92s/it]
+[1AFetching 61 files:  85%|████████▌ | 52/61 [03:02<00:24,  2.76s/it]
+[1AFetching 61 files:  87%|████████▋ | 53/61 [03:15<00:41,  5.24s/it]
+[1AFetching 61 files:  89%|████████▊ | 54/61 [03:19<00:35,  5.02s/it]
+[1AFetching 61 files:  90%|█████████ | 55/61 [03:30<00:39,  6.63s/it]
+[1AFetching 61 files:  92%|█████████▏| 56/61 [03:31<00:24,  4.96s/it]
+[1AFetching 61 files:  97%|█████████▋| 59/61 [03:34<00:05,  2.76s/it]
+[1AFetching 61 files:  98%|█████████▊| 60/61 [03:35<00:02,  2.57s/it]
+[1AFetching 61 files: 100%|██████████| 61/61 [03:36<00:00,  2.16s/it]
+[1AFetching 61 files: 100%|██████████| 61/61 [03:36<00:00,  3.55s/it]
+('/__modal/volumes/vo-3mCmEilkFCVhfuOzhd0JPC/north-mini-code-d11e61a8', 56.78357685357332)
+[modal-client] 2026-11-09T00:56:43-0800 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/arnold-17059/main/ap-mKynXGPr6hNPidr41Nwvas

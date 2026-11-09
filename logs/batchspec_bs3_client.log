@@ -1,0 +1,3 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/arnold-17059/main/ap-TdQxkOCIpBv5pQNZmJg4gw

@@ -87,10 +87,8 @@ class BatchExact:
         def fn():
             return fx.argmax_rows(self.forward(ids, starts, kvs)).view(B, T)
 
-        saved = starts.clone()
-        starts.fill_(max(0, X.Lmax - 16))   # warmup/trace write junk KV at a scratch position in the unused tail
-        try:
-            g, out = X._capture(fn)
-        finally:
-            starts.copy_(saved)
+        # warmup/trace write junk KV at a scratch position in the unused tail. starts STAYS there until .set(): replaying a graph whose inputs were
+        # never set used to write junk KV at positions 0..T-1 (the prompt prefix) of every row; that is what broke plain B>1 == B=1 in bs1 group 0 (H18).
+        starts.fill_(max(0, X.Lmax - 16))
+        g, out = X._capture(fn)
         return Stepb(self, g, ids, starts, out, B, T)
