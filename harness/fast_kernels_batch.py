@@ -10,6 +10,11 @@ import fast_kernels_exact as fx
 import fast_kernels_blk as fb
 
 TP = 16
+# MoE row-tile scheduling: 0 = leader program walks the 16-row tiles serially (H18 bs1); 1/2 = one program per tile (grid axis 2).
+# Read at launch/capture time, so set it before make_step. Env NS_MOE_TILE_GRID=1 sets the default.
+import os
+TILE_GRID = int(os.environ.get("NS_MOE_TILE_GRID", "0"))   # 0 serial | 1 leader x tile | 2 expert x tile | 3 expert-gathered rows | 4 auto (3 if rows >= GATHER_MIN_NT else 0)
+GATHER_MIN_NT = 32   # kernel test (H100, E=128 k=8 Dm=2048 I=512): gather loses at NT<=17 (sort overhead), wins 1.25x at 32, 2x at 64, 5x at 416
 
 
 @triton.jit
@@ -49,16 +54,25 @@ def _leader(idx_ptr, flag_ptr, NK, TKP: tl.constexpr):
 
 @triton.jit
 def _gateup_bt(x_ptr, idx_ptr, flag_ptr, w_ptr, out_ptr, NT, K: tl.constexpr, I: tl.constexpr, KK: tl.constexpr, TPAD: tl.constexpr,
-               BN: tl.constexpr, BK: tl.constexpr):
+               BN: tl.constexpr, BK: tl.constexpr, GRID_T: tl.constexpr, EGRID: tl.constexpr):
     p = tl.program_id(0)
     pn = tl.program_id(1)
-    if tl.load(flag_ptr + p) != 0:
+    # GRID_T=1: one 16-row tile per program (grid axis 2); GRID_T=0: the leader walks every tile (axis 2 has size 1). Same per-row math.
+    t_lo = tl.program_id(2) * TPAD
+    t_hi = NT * (1 - GRID_T) + (t_lo + TPAD) * GRID_T
+    # EGRID=1: axis 0 is the expert id itself (grid size E, no leader flags); tiles with no row routed to it are skipped below.
+    if EGRID:
+        go = p >= 0
+        e32 = p
+    else:
+        go = tl.load(flag_ptr + p) != 0
         e32 = tl.load(idx_ptr + p)
+    if go:
         e = e32.to(tl.int64)
         rj = tl.arange(0, KK)
         rn = pn * BN + tl.arange(0, BN)
         base = w_ptr + e * (2 * I * K)
-        for tt in range(0, NT, TPAD):
+        for tt in range(t_lo, t_hi, TPAD):
             rt = tt + tl.arange(0, TPAD)
             id2 = tl.load(idx_ptr + rt[:, None] * KK + rj[None, :], mask=(rt < NT)[:, None], other=-1)
             match = id2 == e32
@@ -82,16 +96,25 @@ def _gateup_bt(x_ptr, idx_ptr, flag_ptr, w_ptr, out_ptr, NT, K: tl.constexpr, I:
 
 @triton.jit
 def _down_bt(h_ptr, idx_ptr, flag_ptr, sc_ptr, w_ptr, out_ptr, NT, K: tl.constexpr, N: tl.constexpr, KK: tl.constexpr, TPAD: tl.constexpr,
-             BN: tl.constexpr, BK: tl.constexpr):
+             BN: tl.constexpr, BK: tl.constexpr, GRID_T: tl.constexpr, EGRID: tl.constexpr):
     p = tl.program_id(0)
     pn = tl.program_id(1)
-    if tl.load(flag_ptr + p) != 0:
+    # GRID_T=1: one 16-row tile per program (grid axis 2); GRID_T=0: the leader walks every tile (axis 2 has size 1). Same per-row math.
+    t_lo = tl.program_id(2) * TPAD
+    t_hi = NT * (1 - GRID_T) + (t_lo + TPAD) * GRID_T
+    # EGRID=1: axis 0 is the expert id itself (grid size E, no leader flags); tiles with no row routed to it are skipped below.
+    if EGRID:
+        go = p >= 0
+        e32 = p
+    else:
+        go = tl.load(flag_ptr + p) != 0
         e32 = tl.load(idx_ptr + p)
+    if go:
         e = e32.to(tl.int64)
         rj = tl.arange(0, KK)
         rn = pn * BN + tl.arange(0, BN)
         base = w_ptr + e * (N * K)
-        for tt in range(0, NT, TPAD):
+        for tt in range(t_lo, t_hi, TPAD):
             rt = tt + tl.arange(0, TPAD)
             id2 = tl.load(idx_ptr + rt[:, None] * KK + rj[None, :], mask=(rt < NT)[:, None], other=-1)
             match = id2 == e32
@@ -119,9 +142,18 @@ def moe_bt(x, idx, sc, gate_up, down, hbuf, obuf, flag, cfg=None):
     NT, k = idx.shape
     Dm, I = x.shape[-1], down.shape[-1]
     NK = NT * k
-    _leader[(NK,)](idx, flag, NK, TKP=triton.next_power_of_2(NK), num_warps=4)
-    _gateup_bt[(NK, I // c["BN1"])](x, idx, flag, gate_up, hbuf, NT, K=Dm, I=I, KK=k, TPAD=TP, BN=c["BN1"], BK=c["BK1"], num_warps=c["nw1"])
-    _down_bt[(NK, Dm // c["BN2"])](hbuf, idx, flag, sc, down, obuf, NT, K=I, N=Dm, KK=k, TPAD=TP, BN=c["BN2"], BK=c["BK2"], num_warps=c["nw2"])
+    mode = int(TILE_GRID)            # 0 serial tiles (bs1), 1 leader x tile grid, 2 expert x tile grid
+    if mode == 3 or (mode == 4 and idx.shape[0] >= GATHER_MIN_NT):
+        return moe_eg(x, idx, sc, gate_up, down, hbuf, obuf, c)
+    if mode == 4:
+        mode = 0
+    gt, eg = int(mode >= 1), int(mode == 2)
+    nt = triton.cdiv(NT, TP) if gt else 1
+    g0 = gate_up.shape[0] if eg else NK
+    if not eg:
+        _leader[(NK,)](idx, flag, NK, TKP=triton.next_power_of_2(NK), num_warps=4)
+    _gateup_bt[(g0, I // c["BN1"], nt)](x, idx, flag, gate_up, hbuf, NT, K=Dm, I=I, KK=k, TPAD=TP, BN=c["BN1"], BK=c["BK1"], GRID_T=gt, EGRID=eg, num_warps=c["nw1"])
+    _down_bt[(g0, Dm // c["BN2"], nt)](hbuf, idx, flag, sc, down, obuf, NT, K=I, N=Dm, KK=k, TPAD=TP, BN=c["BN2"], BK=c["BK2"], GRID_T=gt, EGRID=eg, num_warps=c["nw2"])
     return obuf
 
 
@@ -132,3 +164,75 @@ def attn_seq(ws, qkv, cos, sin, start, kc, vc, Lmax, rope, sliding, window, out,
     fx._attn_split_x[(Hkv, NS)](ws.q, kc, vc, start, ws.acc, ws.m, ws.l, Lmax, D ** -0.5, T=T, G=G, D=D, MP=MP, NS=NS, BN=BN, C=fx.CHUNK,
                                 SLIDING=sliding, W=window, num_warps=8)
     fx._attn_combine_x[(Hkv * T * G,)](ws.acc, ws.m, ws.l, out, T=T, G=G, Hkv=Hkv, D=D, MP=MP, NS=NS, num_warps=4)
+
+
+# ---- mode 3: expert-GATHERED rows. Slots (row*k + j) are sorted by expert; program (e, n-block, t) handles slots [off_e + 16t, off_e + 16t + 16)
+# of expert e. Each expert's weights are streamed once per 16 of ITS OWN rows (vs once per 16-row tile that touches it in modes 0-2).
+# Per-slot math is unchanged: same 16-wide tile, same fixed K loop and bf16 rounding points, masked columns contribute zeros.
+@triton.jit
+def _gateup_eg(x_ptr, ord_ptr, off_ptr, w_ptr, out_ptr, K: tl.constexpr, I: tl.constexpr, KK: tl.constexpr, TPAD: tl.constexpr,
+               BN: tl.constexpr, BK: tl.constexpr):
+    e = tl.program_id(0)
+    pn = tl.program_id(1)
+    t = tl.program_id(2)
+    lo = tl.load(off_ptr + e)
+    hi = tl.load(off_ptr + e + 1)
+    if lo + t * TPAD < hi:
+        rs = lo + t * TPAD + tl.arange(0, TPAD)
+        has = rs < hi
+        slot = tl.load(ord_ptr + rs, mask=has, other=0)
+        row = slot // KK
+        rn = pn * BN + tl.arange(0, BN)
+        base = w_ptr + e.to(tl.int64) * (2 * I * K)
+        ag = tl.zeros([BN, TPAD], dtype=tl.float32)
+        au = tl.zeros([BN, TPAD], dtype=tl.float32)
+        for k0 in range(0, K, BK):
+            rk = k0 + tl.arange(0, BK)
+            xt = tl.load(x_ptr + row[None, :] * K + rk[:, None], mask=has[None, :], other=0.0)
+            wg = tl.load(base + rn[:, None] * K + rk[None, :])
+            wu = tl.load(base + (rn[:, None] + I) * K + rk[None, :])
+            ag = tl.dot(wg, xt, ag)
+            au = tl.dot(wu, xt, au)
+        g = ag.to(tl.bfloat16).to(tl.float32)
+        u = au.to(tl.bfloat16).to(tl.float32)
+        s = (g * tl.sigmoid(g)).to(tl.bfloat16).to(tl.float32)
+        tl.store(out_ptr + slot[None, :] * I + rn[:, None], (s * u).to(tl.bfloat16), mask=has[None, :])
+
+
+@triton.jit
+def _down_eg(h_ptr, ord_ptr, off_ptr, sc_ptr, w_ptr, out_ptr, K: tl.constexpr, N: tl.constexpr, TPAD: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr):
+    e = tl.program_id(0)
+    pn = tl.program_id(1)
+    t = tl.program_id(2)
+    lo = tl.load(off_ptr + e)
+    hi = tl.load(off_ptr + e + 1)
+    if lo + t * TPAD < hi:
+        rs = lo + t * TPAD + tl.arange(0, TPAD)
+        has = rs < hi
+        slot = tl.load(ord_ptr + rs, mask=has, other=0)
+        sc = tl.load(sc_ptr + slot, mask=has, other=0.0).to(tl.float32)
+        rn = pn * BN + tl.arange(0, BN)
+        base = w_ptr + e.to(tl.int64) * (N * K)
+        acc = tl.zeros([BN, TPAD], dtype=tl.float32)
+        for k0 in range(0, K, BK):
+            rk = k0 + tl.arange(0, BK)
+            ht = tl.load(h_ptr + slot[None, :] * K + rk[:, None], mask=has[None, :], other=0.0)
+            w = tl.load(base + rn[:, None] * K + rk[None, :])
+            acc = tl.dot(w, ht, acc)
+        o = acc.to(tl.bfloat16).to(tl.float32)
+        tl.store(out_ptr + slot[None, :] * N + rn[:, None], (o * sc[None, :]).to(tl.bfloat16), mask=has[None, :])
+
+
+def moe_eg(x, idx, sc, gate_up, down, hbuf, obuf, c):
+    """Mode 3 of moe_bt. Graph-capturable: fixed-shape sort / scatter_add / cumsum on device, no host sync."""
+    NT, k = idx.shape
+    E, Dm, I = gate_up.shape[0], x.shape[-1], down.shape[-1]
+    flat = idx.reshape(-1).long()
+    order = torch.argsort(flat, stable=True).to(torch.int32)
+    cnt = torch.zeros(E, dtype=torch.int32, device=x.device).scatter_add_(0, flat, torch.ones_like(flat, dtype=torch.int32))
+    off = torch.zeros(E + 1, dtype=torch.int32, device=x.device)
+    off[1:] = torch.cumsum(cnt, 0)
+    nt = triton.cdiv(NT, TP)   # an expert gets at most one slot per row
+    _gateup_eg[(E, I // c["BN1"], nt)](x, order, off, gate_up, hbuf, K=Dm, I=I, KK=k, TPAD=TP, BN=c["BN1"], BK=c["BK1"], num_warps=c["nw1"])
+    _down_eg[(E, Dm // c["BN2"], nt)](hbuf, order, off, sc, down, obuf, K=I, N=Dm, TPAD=TP, BN=c["BN2"], BK=c["BK2"], num_warps=c["nw2"])
+    return obuf
