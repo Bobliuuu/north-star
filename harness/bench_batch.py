@@ -35,6 +35,13 @@ def build_pool(tok, n=32, maxlen=1700):
     return items[:n]
 
 
+def _set_rows(step, grp, T, real=True):
+    """Graph inputs for cost timing. real: each row = its prompt's last T tokens (distinct, real routing); else every slot = the prompt's last
+    token (what a mostly-padded spec round looks like). Writes KV only at positions >= P-1, which every later run overwrites (same as the warmup)."""
+    ids = [(list(g[2][-T:]) if real else [g[2][-1]] * T) for g in grp]
+    step.set(ids, [len(g[2]) - 1 for g in grp])
+
+
 def _fd(a, b):
     n = min(len(a), len(b))
     return next((i for i in range(n) if a[i] != b[i]), None if len(a) == len(b) else n)
@@ -87,7 +94,7 @@ def run_spec(steps, grp, n_new, eos, name, gamma):
     props = [pld.make(name) for _ in grp]
     for p, g in zip(props, grp): p.extend(g[2])
     tcur = [list(g[2]) for g in grp]; out = [[] for _ in range(B)]; done = [False] * B; td = [None] * B
-    rounds = 0; slots = 0; used = 0; nT = []; acc = 0; drafted = 0; roundsT = {}
+    rounds = 0; slots = 0; used = 0; nT = []; acc = 0; drafted = 0; roundsT = {}; t_dev = 0.0
     torch.cuda.synchronize(); t0 = time.perf_counter()
     while not all(done):
         dr = [(props[b].propose(gamma)[0] if not done[b] else []) for b in range(B)]
@@ -96,7 +103,8 @@ def run_spec(steps, grp, n_new, eos, name, gamma):
         for b in range(B):
             row = [tcur[b][-1]] + dr[b]
             ids.append(row + [row[-1]] * (T - len(row))); pos.append(len(tcur[b]) - 1)
-        pred = steps[T].set(ids, pos) or steps[T].run().tolist(); now = time.perf_counter() - t0
+        steps[T].set(ids, pos); tg = time.perf_counter()
+        pred = steps[T].run().tolist(); now = time.perf_counter() - t0; t_dev += time.perf_counter() - tg
         rounds += 1; roundsT[T] = roundsT.get(T, 0) + 1; slots += B * T
         for b in range(B):
             if done[b]: continue
@@ -110,7 +118,8 @@ def run_spec(steps, grp, n_new, eos, name, gamma):
             if done[b]: td[b] = now
     wall = time.perf_counter() - t0
     out = [o[:n_new] for o in out]
-    return out, td, wall, dict(rounds=rounds, mean_T=sum(k * v for k, v in roundsT.items()) / rounds, T_hist=roundsT, slot_util=used / max(1, slots), accepted=acc, drafted=drafted)
+    return out, td, wall, dict(rounds=rounds, mean_T=sum(k * v for k, v in roundsT.items()) / rounds, T_hist=roundsT, slot_util=used / max(1, slots), accepted=acc, drafted=drafted,
+                            dev_wall=t_dev, host_wall=wall - t_dev)
 
 
 @torch.no_grad()
@@ -142,8 +151,14 @@ def bench(m, tok, j, sizes=(1, 2, 4, 8, 16, 32), n_new=192, reps=2, name="sam2",
                 cap_s = time.time() - t_c
                 if gi == 0:
                     run_plain(steps[1], grp, 16, eos); run_spec(steps, grp, 32, eos, name, gamma)   # warmup
-                    c = {T: time_graph(steps[T], n=20)[0] for T in (1, 2, 4, 7, 13)}
-                    j.add(phase="cost", B=B, ms={str(k): v for k, v in c.items()}); print("cost B", B, c, flush=True)
+                    c, cpad = {}, {}
+                    for T in (1, 2, 4, 7, 13):
+                        # time on REAL distinct tokens (prompt tail), not on whatever the warmup left in the graph inputs: the MoE skips
+                        # experts no row routes to, so padded rows (copies of one token) under-state the cost (bs1: live rounds 1.5-2.0x the old table)
+                        _set_rows(steps[T], grp, T, real=True); c[T] = time_graph(steps[T], n=20)[0]
+                        _set_rows(steps[T], grp, T, real=False); cpad[T] = time_graph(steps[T], n=20)[0]   # control: old-style padded rows
+                    j.add(phase="cost", B=B, inputs="prompt_tail", ms={str(k): v for k, v in c.items()}, ms_padded={str(k): v for k, v in cpad.items()})
+                    print("cost B", B, c, "padded", cpad, flush=True)
                 for rep in range(reps):
                     order = ("plain", "spec") if rep % 2 == 0 else ("spec", "plain")
                     res = {}

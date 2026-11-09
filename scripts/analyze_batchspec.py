@@ -17,6 +17,15 @@ for B in sorted({r["B"] for r in G}):
     print("| %d | %d | %.0f | %.0f | %.0f | %.0f | %.3fx | %.3fx | %.2f / %.2f | %.3fx | %d/%d | %d/%d | %d/%d | %.2f | %.2f | %.2f |" % (
         B, len({r["group"] for r in g}), pa, ps, sa, ss, gm(rat), st.median(rat), min(rat), max(rat), tw("spec") / tw("plain"), sum(eq), len(eq), sum(e1), len(e1), sum(p1), len(p1),
         st.mean(r["mean_T"] for r in g), st.mean(r["slot_util"] for r in g), sum(r["accepted"] for r in g) / max(1, sum(r["drafted"] for r in g))))
-print("\ncost (graph ms, median):")
+print("\ncost (graph ms, median; 'padded' = control on copies of one token, only in runs after bs1):")
 for r in rows:
-    if r["phase"] == "cost": print("B", r["B"], {k: round(v, 2) for k, v in r["ms"].items()})
+    if r["phase"] == "cost": print("B", r["B"], r.get("inputs", "leftover warmup inputs (bs1: NOT representative for T>1)"), {k: round(v, 2) for k, v in r["ms"].items()},
+                                   "padded", {k: round(v, 2) for k, v in r.get("ms_padded", {}).items()})
+print("\nlive per-step cost (ms; plain step = plain_wall / max n; spec round = spec_wall / rounds; dev = inside graph replay + .tolist() sync):")
+print("| B | plain ms/step | spec ms/round | mean T | spec dev ms/round | spec host ms/round |")
+print("|---|---|---|---|---|---|")
+for B in sorted({r["B"] for r in G}):
+    g = [r for r in G if r["B"] == B]
+    dev = [r["dev_wall"] * 1e3 / r["rounds"] for r in g if "dev_wall" in r]; host = [r["host_wall"] * 1e3 / r["rounds"] for r in g if "host_wall" in r]
+    print("| %d | %.2f | %.2f | %.2f | %s | %s |" % (B, st.mean(r["plain_wall"] * 1e3 / max(r["n_plain"]) for r in g), st.mean(r["spec_wall"] * 1e3 / r["rounds"] for r in g),
+          st.mean(r["mean_T"] for r in g), "%.2f" % st.mean(dev) if dev else "n/a", "%.2f" % st.mean(host) if host else "n/a"))
