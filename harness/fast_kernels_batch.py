@@ -133,7 +133,7 @@ def _down_bt(h_ptr, idx_ptr, flag_ptr, sc_ptr, w_ptr, out_ptr, NT, K: tl.constex
                 tl.store(out_ptr + row[None, :] * N + rn[:, None], (o * sc[None, :]).to(tl.bfloat16), mask=has[None, :])
 
 
-def moe_bt(x, idx, sc, gate_up, down, hbuf, obuf, flag, cfg=None):
+def moe_bt(x, idx, sc, gate_up, down, hbuf, obuf, flag, cfg=None, valid=None):
     """x [NT,Dm], idx [NT,k] int32, sc [NT,k] bf16 -> obuf [NT*k, Dm]. One leader program per distinct expert across ALL rows; the leader
     walks the rows in 16-row tiles (weights re-read from L2, same per-row math as fb.moe_gemv_blk)."""
     c = dict(BN1=16, BK1=128, BN2=16, BK2=128, nw1=4, nw2=4)
@@ -144,7 +144,7 @@ def moe_bt(x, idx, sc, gate_up, down, hbuf, obuf, flag, cfg=None):
     NK = NT * k
     mode = int(TILE_GRID)            # 0 serial tiles (bs1), 1 leader x tile grid, 2 expert x tile grid
     if mode == 3 or (mode == 4 and idx.shape[0] >= GATHER_MIN_NT):
-        return moe_eg(x, idx, sc, gate_up, down, hbuf, obuf, c)
+        return moe_eg(x, idx, sc, gate_up, down, hbuf, obuf, c, valid)
     if mode == 4:
         mode = 0
     gt, eg = int(mode >= 1), int(mode == 2)
@@ -223,15 +223,20 @@ def _down_eg(h_ptr, ord_ptr, off_ptr, sc_ptr, w_ptr, out_ptr, K: tl.constexpr, N
         tl.store(out_ptr + slot[None, :] * N + rn[:, None], (o * sc[None, :]).to(tl.bfloat16), mask=has[None, :])
 
 
-def moe_eg(x, idx, sc, gate_up, down, hbuf, obuf, c):
-    """Mode 3 of moe_bt. Graph-capturable: fixed-shape sort / scatter_add / cumsum on device, no host sync."""
+def moe_eg(x, idx, sc, gate_up, down, hbuf, obuf, c, valid=None):
+    """Mode 3 of moe_bt. Graph-capturable: fixed-shape sort / scatter_add / cumsum on device, no host sync.
+    valid [NT] bool (optional): rows with False (padding of a short draft, finished sequences) are routed to a sentinel expert E that no
+    program reads, so they cost no expert work; their obuf rows keep stale (finite) values and must be ignored by the caller. Other rows
+    are unaffected (row-invariant kernels)."""
     NT, k = idx.shape
     E, Dm, I = gate_up.shape[0], x.shape[-1], down.shape[-1]
     flat = idx.reshape(-1).long()
+    if valid is not None:
+        flat = torch.where(valid[:, None].expand(NT, k).reshape(-1), flat, E)
     order = torch.argsort(flat, stable=True).to(torch.int32)
-    cnt = torch.zeros(E, dtype=torch.int32, device=x.device).scatter_add_(0, flat, torch.ones_like(flat, dtype=torch.int32))
+    cnt = torch.zeros(E + 1, dtype=torch.int32, device=x.device).scatter_add_(0, flat, torch.ones_like(flat, dtype=torch.int32))
     off = torch.zeros(E + 1, dtype=torch.int32, device=x.device)
-    off[1:] = torch.cumsum(cnt, 0)
+    off[1:] = torch.cumsum(cnt[:E], 0)
     nt = triton.cdiv(NT, TP)   # an expert gets at most one slot per row
     _gateup_eg[(E, I // c["BN1"], nt)](x, order, off, gate_up, hbuf, K=Dm, I=I, KK=k, TPAD=TP, BN=c["BN1"], BK=c["BK1"], num_warps=c["nw1"])
     _down_eg[(E, Dm // c["BN2"], nt)](hbuf, order, off, sc, down, obuf, K=I, N=Dm, TPAD=TP, BN=c["BN2"], BK=c["BK2"], num_warps=c["nw2"])

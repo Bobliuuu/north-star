@@ -78,7 +78,7 @@ def run_plain(step, grp, n_new, eos):
     out = [[] for _ in range(B)]; done = [False] * B; td = [None] * B
     torch.cuda.synchronize(); t0 = time.perf_counter()
     for i in range(n_new):
-        step.set([[c] for c in cur], pos)
+        step.set([[c] for c in cur], pos, [[not d] for d in done])
         pred = step.run().tolist(); now = time.perf_counter() - t0
         for b in range(B):
             pos[b] += 1
@@ -120,11 +120,12 @@ def run_spec(steps, grp, n_new, eos, name, gamma, cost=None):
             T = _pick_T(dr, [qa[b] / (qa[b] + qr[b]) for b in range(B)], cost, done)
             dr = [d[:T - 1] for d in dr]
         T = 1 + max(len(d) for d in dr)
-        ids = []; pos = []
+        ids = []; pos = []; val = []
         for b in range(B):
             row = [tcur[b][-1]] + dr[b]
             ids.append(row + [row[-1]] * (T - len(row))); pos.append(len(tcur[b]) - 1)
-        steps[T].set(ids, pos); tg = time.perf_counter()
+            val.append([(not done[b]) and t < len(row) for t in range(T)])
+        steps[T].set(ids, pos, val); tg = time.perf_counter()
         pred = steps[T].run().tolist(); now = time.perf_counter() - t0; t_dev += time.perf_counter() - tg
         rounds += 1; roundsT[T] = roundsT.get(T, 0) + 1; slots += B * T
         for b in range(B):
