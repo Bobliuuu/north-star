@@ -1,0 +1,347 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-oNhBNZQkrbT7cOmOPtjXBr
+✓ Created objects.
+├── ✓ Uploaded <home>/code/north-star/modal/batchspec_run.py
+├── ✓ Uploaded modal/nsapp.py
+├── ✓ Uploaded <home>/code/north-star/src/northstar
+├── ✓ Uploaded <home>/code/north-star/tests
+├── ✓ Uploaded <home>/code/north-star/harness
+└── ✓ Created Function remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:07, 51.63it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:01<00:40,  9.20it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:02<00:31, 11.71it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:02<00:26, 13.62it/s]
+[1ALoading weights:  10%|▉         | 38/394 [00:02<00:24, 14.69it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:03<00:23, 15.21it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:03<00:20, 16.50it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:19, 17.30it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:18, 18.07it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:17, 18.34it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:16, 18.57it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:16, 18.88it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:05<00:15, 18.91it/s]
+[1ALoading weights:  27%|██▋       | 106/394 [00:06<00:12, 23.71it/s]
+[1ALoading weights:  28%|██▊       | 110/394 [00:06<00:14, 20.07it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:06<00:15, 17.47it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:15, 17.85it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:07<00:14, 18.07it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:08<00:13, 18.46it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:08<00:13, 18.73it/s]
+[1ALoading weights:  38%|███▊      | 150/394 [00:08<00:12, 19.78it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:08<00:12, 18.55it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:09<00:12, 18.85it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:09<00:11, 19.10it/s]
+[1ALoading weights:  44%|████▍     | 174/394 [00:09<00:11, 19.57it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:10<00:11, 18.77it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:10<00:10, 19.10it/s]
+[1ALoading weights:  48%|████▊     | 189/394 [00:10<00:10, 19.17it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:10<00:10, 18.98it/s]
+[1ALoading weights:  50%|█████     | 197/394 [00:11<00:10, 18.28it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:11<00:10, 19.01it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:11<00:09, 19.15it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:12<00:09, 19.16it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:12<00:08, 18.79it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:13<00:08, 18.94it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:13<00:07, 18.97it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:13<00:07, 19.06it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:14<00:07, 19.04it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:14<00:06, 19.18it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:15<00:06, 19.04it/s]
+[1ALoading weights:  70%|███████   | 277/394 [00:15<00:06, 18.83it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:15<00:05, 19.37it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:16<00:05, 19.46it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:16<00:04, 19.35it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:16<00:04, 19.04it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:17<00:04, 19.06it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:17<00:03, 18.97it/s]
+[1ALoading weights:  82%|████████▏ | 325/394 [00:17<00:03, 18.63it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:18<00:03, 19.32it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:18<00:02, 19.43it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:18<00:02, 19.20it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:19<00:02, 18.97it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:19<00:01, 19.10it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:20<00:01, 19.12it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:20<00:00, 19.09it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:21<00:00, 18.98it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:21<00:00, 18.70it/s]
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-10T02:05:46Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "3c88f18ec2f9", "load_s": 25.92424488067627, "moe_tile_grid": 6}
+pool 32 [175, 1153, 517, 1176, 341, 1297, 174, 937, 167, 167, 162, 492, 179, 160, 203, 346, 147, 177, 168, 219, 186, 133, 232, 167, 164, 973, 138, 216, 289, 232, 165, 934]
+prefilled 32 mem GB 66.99472128
+inv B 3 T 1 all_equal True 
+inv B 3 T 5 all_equal True 
+inv B 3 T 13 all_equal True 
+inv B 16 T 1 all_equal True 
+inv B 16 T 5 all_equal True 
+inv B 16 T 13 all_equal True 
+cost B 1 {1: 4.496927976608276, 2: 5.227760076522827, 4: 6.60593581199646, 7: 7.328959941864014, 13: 8.778207778930664} padded {1: 4.429440021514893, 2: 4.922640085220337, 4: 5.23633599281311, 7: 5.500751972198486, 13: 6.100752115249634}
+cost_full B 1 {1: 4.5, 2: 5.18, 3: 6.04, 4: 6.71, 5: 6.89, 6: 7.05, 7: 7.31, 8: 7.64, 9: 7.83, 10: 8.12, 11: 8.37, 12: 8.8, 13: 8.77}
+  cc B 1 grp 0 rep 0 cc 259 (plain 217 spec 259) cc==plain 1 / 1 meanT 1.65
+B 1 grp 0 rep 0 plain 217 spec 259 agg tok/s ratio 1.193 spec==plain 1 / 1 meanT 1.77 util 1.00
+  cc B 1 grp 0 rep 1 cc 259 (plain 218 spec 259) cc==plain 1 / 1 meanT 1.65
+B 1 grp 0 rep 1 plain 218 spec 259 agg tok/s ratio 1.189 spec==plain 1 / 1 meanT 1.77 util 1.00
+  cc B 1 grp 1 rep 0 cc 219 (plain 214 spec 216) cc==plain 1 / 1 meanT 1.26
+B 1 grp 1 rep 0 plain 214 spec 216 agg tok/s ratio 1.009 spec==plain 1 / 1 meanT 1.47 util 1.00
+  cc B 1 grp 1 rep 1 cc 223 (plain 217 spec 220) cc==plain 1 / 1 meanT 1.26
+B 1 grp 1 rep 1 plain 217 spec 220 agg tok/s ratio 1.015 spec==plain 1 / 1 meanT 1.47 util 1.00
+  cc B 1 grp 2 rep 0 cc 259 (plain 217 spec 261) cc==plain 1 / 1 meanT 1.60
+B 1 grp 2 rep 0 plain 217 spec 261 agg tok/s ratio 1.204 spec==plain 1 / 1 meanT 1.68 util 1.00
+  cc B 1 grp 2 rep 1 cc 260 (plain 218 spec 260) cc==plain 1 / 1 meanT 1.60
+B 1 grp 2 rep 1 plain 218 spec 260 agg tok/s ratio 1.197 spec==plain 1 / 1 meanT 1.68 util 1.00
+  cc B 1 grp 3 rep 0 cc 232 (plain 216 spec 228) cc==plain 1 / 1 meanT 1.44
+B 1 grp 3 rep 0 plain 216 spec 228 agg tok/s ratio 1.054 spec==plain 1 / 1 meanT 2.07 util 1.00
+  cc B 1 grp 3 rep 1 cc 232 (plain 217 spec 228) cc==plain 1 / 1 meanT 1.44
+B 1 grp 3 rep 1 plain 217 spec 228 agg tok/s ratio 1.050 spec==plain 1 / 1 meanT 2.07 util 1.00
+  cc B 1 grp 4 rep 0 cc 919 (plain 217 spec 920) cc==plain 1 / 1 meanT 6.72
+B 1 grp 4 rep 0 plain 217 spec 920 agg tok/s ratio 4.244 spec==plain 1 / 1 meanT 6.93 util 1.00
+  cc B 1 grp 4 rep 1 cc 924 (plain 217 spec 917) cc==plain 1 / 1 meanT 6.72
+B 1 grp 4 rep 1 plain 217 spec 917 agg tok/s ratio 4.217 spec==plain 1 / 1 meanT 6.93 util 1.00
+  cc B 1 grp 5 rep 0 cc 248 (plain 216 spec 253) cc==plain 1 / 1 meanT 1.75
+B 1 grp 5 rep 0 plain 216 spec 253 agg tok/s ratio 1.171 spec==plain 1 / 1 meanT 1.95 util 1.00
+  cc B 1 grp 5 rep 1 cc 248 (plain 217 spec 254) cc==plain 1 / 1 meanT 1.75
+B 1 grp 5 rep 1 plain 217 spec 254 agg tok/s ratio 1.173 spec==plain 1 / 1 meanT 1.95 util 1.00
+  cc B 1 grp 6 rep 0 cc 226 (plain 218 spec 226) cc==plain 1 / 1 meanT 1.36
+B 1 grp 6 rep 0 plain 218 spec 226 agg tok/s ratio 1.037 spec==plain 1 / 1 meanT 1.51 util 1.00
+  cc B 1 grp 6 rep 1 cc 226 (plain 217 spec 226) cc==plain 1 / 1 meanT 1.36
+B 1 grp 6 rep 1 plain 217 spec 226 agg tok/s ratio 1.039 spec==plain 1 / 1 meanT 1.51 util 1.00
+  cc B 1 grp 7 rep 0 cc 246 (plain 217 spec 247) cc==plain 1 / 1 meanT 1.63
+B 1 grp 7 rep 0 plain 217 spec 247 agg tok/s ratio 1.141 spec==plain 1 / 1 meanT 1.85 util 1.00
+  cc B 1 grp 7 rep 1 cc 247 (plain 217 spec 248) cc==plain 1 / 1 meanT 1.63
+B 1 grp 7 rep 1 plain 217 spec 248 agg tok/s ratio 1.141 spec==plain 1 / 1 meanT 1.85 util 1.00
+  cc B 1 grp 8 rep 0 cc 255 (plain 218 spec 256) cc==plain 1 / 1 meanT 1.66
+B 1 grp 8 rep 0 plain 218 spec 256 agg tok/s ratio 1.176 spec==plain 1 / 1 meanT 1.81 util 1.00
+  cc B 1 grp 8 rep 1 cc 255 (plain 219 spec 256) cc==plain 1 / 1 meanT 1.66
+B 1 grp 8 rep 1 plain 219 spec 256 agg tok/s ratio 1.173 spec==plain 1 / 1 meanT 1.81 util 1.00
+  cc B 1 grp 9 rep 0 cc 253 (plain 218 spec 257) cc==plain 1 / 1 meanT 1.51
+B 1 grp 9 rep 0 plain 218 spec 257 agg tok/s ratio 1.179 spec==plain 1 / 1 meanT 1.61 util 1.00
+  cc B 1 grp 9 rep 1 cc 253 (plain 218 spec 257) cc==plain 1 / 1 meanT 1.51
+B 1 grp 9 rep 1 plain 218 spec 257 agg tok/s ratio 1.178 spec==plain 1 / 1 meanT 1.61 util 1.00
+  cc B 1 grp 10 rep 0 cc 220 (plain 218 spec 216) cc==plain 1 / 1 meanT 1.16
+B 1 grp 10 rep 0 plain 218 spec 216 agg tok/s ratio 0.993 spec==plain 1 / 1 meanT 1.28 util 1.00
+  cc B 1 grp 10 rep 1 cc 220 (plain 219 spec 217) cc==plain 1 / 1 meanT 1.16
+B 1 grp 10 rep 1 plain 219 spec 217 agg tok/s ratio 0.993 spec==plain 1 / 1 meanT 1.28 util 1.00
+  cc B 1 grp 11 rep 0 cc 305 (plain 217 spec 304) cc==plain 1 / 1 meanT 1.96
+B 1 grp 11 rep 0 plain 217 spec 304 agg tok/s ratio 1.400 spec==plain 1 / 1 meanT 2.09 util 1.00
+  cc B 1 grp 11 rep 1 cc 306 (plain 218 spec 304) cc==plain 1 / 1 meanT 1.96
+B 1 grp 11 rep 1 plain 218 spec 304 agg tok/s ratio 1.398 spec==plain 1 / 1 meanT 2.09 util 1.00
+  cc B 1 grp 12 rep 0 cc 249 (plain 217 spec 246) cc==plain 1 / 1 meanT 1.72
+B 1 grp 12 rep 0 plain 217 spec 246 agg tok/s ratio 1.131 spec==plain 1 / 1 meanT 2.08 util 1.00
+  cc B 1 grp 12 rep 1 cc 250 (plain 218 spec 245) cc==plain 1 / 1 meanT 1.72
+B 1 grp 12 rep 1 plain 218 spec 245 agg tok/s ratio 1.125 spec==plain 1 / 1 meanT 2.08 util 1.00
+  cc B 1 grp 13 rep 0 cc 242 (plain 218 spec 241) cc==plain 1 / 1 meanT 1.47
+B 1 grp 13 rep 0 plain 218 spec 241 agg tok/s ratio 1.105 spec==plain 1 / 1 meanT 1.67 util 1.00
+  cc B 1 grp 13 rep 1 cc 243 (plain 218 spec 241) cc==plain 1 / 1 meanT 1.47
+B 1 grp 13 rep 1 plain 218 spec 241 agg tok/s ratio 1.106 spec==plain 1 / 1 meanT 1.67 util 1.00
+  cc B 1 grp 14 rep 0 cc 231 (plain 217 spec 229) cc==plain 1 / 1 meanT 1.48
+B 1 grp 14 rep 0 plain 217 spec 229 agg tok/s ratio 1.053 spec==plain 1 / 1 meanT 1.71 util 1.00
+  cc B 1 grp 14 rep 1 cc 231 (plain 217 spec 229) cc==plain 1 / 1 meanT 1.48
+B 1 grp 14 rep 1 plain 217 spec 229 agg tok/s ratio 1.056 spec==plain 1 / 1 meanT 1.71 util 1.00
+  cc B 1 grp 15 rep 0 cc 418 (plain 217 spec 433) cc==plain 1 / 1 meanT 2.93
+B 1 grp 15 rep 0 plain 217 spec 433 agg tok/s ratio 1.996 spec==plain 1 / 1 meanT 3.18 util 1.00
+  cc B 1 grp 15 rep 1 cc 422 (plain 218 spec 432) cc==plain 1 / 1 meanT 2.93
+B 1 grp 15 rep 1 plain 218 spec 432 agg tok/s ratio 1.984 spec==plain 1 / 1 meanT 3.18 util 1.00
+  cc B 1 grp 16 rep 0 cc 274 (plain 219 spec 276) cc==plain 1 / 1 meanT 2.07
+B 1 grp 16 rep 0 plain 219 spec 276 agg tok/s ratio 1.261 spec==plain 1 / 1 meanT 2.36 util 1.00
+  cc B 1 grp 16 rep 1 cc 274 (plain 218 spec 275) cc==plain 1 / 1 meanT 2.07
+B 1 grp 16 rep 1 plain 218 spec 275 agg tok/s ratio 1.257 spec==plain 1 / 1 meanT 2.36 util 1.00
+  cc B 1 grp 17 rep 0 cc 231 (plain 217 spec 230) cc==plain 1 / 1 meanT 1.42
+B 1 grp 17 rep 0 plain 217 spec 230 agg tok/s ratio 1.060 spec==plain 1 / 1 meanT 1.92 util 1.00
+  cc B 1 grp 17 rep 1 cc 232 (plain 218 spec 230) cc==plain 1 / 1 meanT 1.42
+B 1 grp 17 rep 1 plain 218 spec 230 agg tok/s ratio 1.056 spec==plain 1 / 1 meanT 1.92 util 1.00
+  cc B 1 grp 18 rep 0 cc 279 (plain 218 spec 282) cc==plain 1 / 1 meanT 1.65
+B 1 grp 18 rep 0 plain 218 spec 282 agg tok/s ratio 1.296 spec==plain 1 / 1 meanT 1.64 util 1.00
+  cc B 1 grp 18 rep 1 cc 279 (plain 218 spec 282) cc==plain 1 / 1 meanT 1.65
+B 1 grp 18 rep 1 plain 218 spec 282 agg tok/s ratio 1.292 spec==plain 1 / 1 meanT 1.64 util 1.00
+  cc B 1 grp 19 rep 0 cc 334 (plain 217 spec 337) cc==plain 1 / 1 meanT 2.05
+B 1 grp 19 rep 0 plain 217 spec 337 agg tok/s ratio 1.551 spec==plain 1 / 1 meanT 2.30 util 1.00
+  cc B 1 grp 19 rep 1 cc 335 (plain 218 spec 337) cc==plain 1 / 1 meanT 2.05
+B 1 grp 19 rep 1 plain 218 spec 337 agg tok/s ratio 1.547 spec==plain 1 / 1 meanT 2.30 util 1.00
+  cc B 1 grp 20 rep 0 cc 316 (plain 217 spec 319) cc==plain 1 / 1 meanT 2.15
+B 1 grp 20 rep 0 plain 217 spec 319 agg tok/s ratio 1.468 spec==plain 1 / 1 meanT 2.18 util 1.00
+  cc B 1 grp 20 rep 1 cc 315 (plain 218 spec 318) cc==plain 1 / 1 meanT 2.15
+B 1 grp 20 rep 1 plain 218 spec 318 agg tok/s ratio 1.463 spec==plain 1 / 1 meanT 2.18 util 1.00
+  cc B 1 grp 21 rep 0 cc 225 (plain 219 spec 223) cc==plain 1 / 1 meanT 1.19
+B 1 grp 21 rep 0 plain 219 spec 223 agg tok/s ratio 1.022 spec==plain 1 / 1 meanT 1.27 util 1.00
+  cc B 1 grp 21 rep 1 cc 225 (plain 219 spec 224) cc==plain 1 / 1 meanT 1.19
+B 1 grp 21 rep 1 plain 219 spec 224 agg tok/s ratio 1.021 spec==plain 1 / 1 meanT 1.27 util 1.00
+  cc B 1 grp 22 rep 0 cc 223 (plain 217 spec 226) cc==plain 1 / 1 meanT 1.18
+B 1 grp 22 rep 0 plain 217 spec 226 agg tok/s ratio 1.040 spec==plain 1 / 1 meanT 1.40 util 1.00
+  cc B 1 grp 22 rep 1 cc 225 (plain 218 spec 226) cc==plain 1 / 1 meanT 1.18
+B 1 grp 22 rep 1 plain 218 spec 226 agg tok/s ratio 1.038 spec==plain 1 / 1 meanT 1.40 util 1.00
+  cc B 1 grp 23 rep 0 cc 264 (plain 218 spec 267) cc==plain 1 / 1 meanT 1.88
+B 1 grp 23 rep 0 plain 218 spec 267 agg tok/s ratio 1.228 spec==plain 1 / 1 meanT 2.01 util 1.00
+  cc B 1 grp 23 rep 1 cc 263 (plain 218 spec 268) cc==plain 1 / 1 meanT 1.88
+B 1 grp 23 rep 1 plain 218 spec 268 agg tok/s ratio 1.229 spec==plain 1 / 1 meanT 2.01 util 1.00
+  cc B 1 grp 24 rep 0 cc 279 (plain 218 spec 279) cc==plain 1 / 1 meanT 1.61
+B 1 grp 24 rep 0 plain 218 spec 279 agg tok/s ratio 1.277 spec==plain 1 / 1 meanT 1.68 util 1.00
+  cc B 1 grp 24 rep 1 cc 281 (plain 218 spec 279) cc==plain 1 / 1 meanT 1.61
+B 1 grp 24 rep 1 plain 218 spec 279 agg tok/s ratio 1.279 spec==plain 1 / 1 meanT 1.68 util 1.00
+  cc B 1 grp 25 rep 0 cc 447 (plain 217 spec 455) cc==plain 1 / 1 meanT 2.67
+B 1 grp 25 rep 0 plain 217 spec 455 agg tok/s ratio 2.102 spec==plain 1 / 1 meanT 2.67 util 1.00
+  cc B 1 grp 25 rep 1 cc 446 (plain 217 spec 455) cc==plain 1 / 1 meanT 2.67
+B 1 grp 25 rep 1 plain 217 spec 455 agg tok/s ratio 2.098 spec==plain 1 / 1 meanT 2.67 util 1.00
+  cc B 1 grp 26 rep 0 cc 257 (plain 219 spec 256) cc==plain 1 / 1 meanT 1.51
+B 1 grp 26 rep 0 plain 219 spec 256 agg tok/s ratio 1.172 spec==plain 1 / 1 meanT 1.57 util 1.00
+  cc B 1 grp 26 rep 1 cc 258 (plain 219 spec 256) cc==plain 1 / 1 meanT 1.51
+B 1 grp 26 rep 1 plain 219 spec 256 agg tok/s ratio 1.170 spec==plain 1 / 1 meanT 1.57 util 1.00
+  cc B 1 grp 27 rep 0 cc 249 (plain 216 spec 248) cc==plain 1 / 1 meanT 1.26
+B 1 grp 27 rep 0 plain 216 spec 248 agg tok/s ratio 1.146 spec==plain 1 / 1 meanT 1.36 util 1.00
+  cc B 1 grp 27 rep 1 cc 250 (plain 218 spec 249) cc==plain 1 / 1 meanT 1.26
+B 1 grp 27 rep 1 plain 218 spec 249 agg tok/s ratio 1.142 spec==plain 1 / 1 meanT 1.36 util 1.00
+  cc B 1 grp 28 rep 0 cc 384 (plain 217 spec 389) cc==plain 1 / 1 meanT 2.94
+B 1 grp 28 rep 0 plain 217 spec 389 agg tok/s ratio 1.787 spec==plain 1 / 1 meanT 3.02 util 1.00
+  cc B 1 grp 28 rep 1 cc 385 (plain 218 spec 389) cc==plain 1 / 1 meanT 2.94
+B 1 grp 28 rep 1 plain 218 spec 389 agg tok/s ratio 1.783 spec==plain 1 / 1 meanT 3.02 util 1.00
+  cc B 1 grp 29 rep 0 cc 233 (plain 217 spec 232) cc==plain 1 / 1 meanT 1.32
+B 1 grp 29 rep 0 plain 217 spec 232 agg tok/s ratio 1.066 spec==plain 1 / 1 meanT 1.39 util 1.00
+  cc B 1 grp 29 rep 1 cc 233 (plain 218 spec 232) cc==plain 1 / 1 meanT 1.32
+B 1 grp 29 rep 1 plain 218 spec 232 agg tok/s ratio 1.064 spec==plain 1 / 1 meanT 1.39 util 1.00
+  cc B 1 grp 30 rep 0 cc 246 (plain 218 spec 244) cc==plain 1 / 1 meanT 1.59
+B 1 grp 30 rep 0 plain 218 spec 244 agg tok/s ratio 1.121 spec==plain 1 / 1 meanT 1.83 util 1.00
+  cc B 1 grp 30 rep 1 cc 246 (plain 218 spec 244) cc==plain 1 / 1 meanT 1.59
+B 1 grp 30 rep 1 plain 218 spec 244 agg tok/s ratio 1.119 spec==plain 1 / 1 meanT 1.83 util 1.00
+  cc B 1 grp 31 rep 0 cc 266 (plain 217 spec 280) cc==plain 1 / 1 meanT 1.83
+B 1 grp 31 rep 0 plain 217 spec 280 agg tok/s ratio 1.290 spec==plain 1 / 1 meanT 2.44 util 1.00
+  cc B 1 grp 31 rep 1 cc 265 (plain 217 spec 279) cc==plain 1 / 1 meanT 1.83
+B 1 grp 31 rep 1 plain 217 spec 279 agg tok/s ratio 1.284 spec==plain 1 / 1 meanT 2.44 util 1.00
+cost B 2 {1: 5.476207971572876, 2: 6.549903869628906, 4: 7.944383859634399, 7: 9.760368347167969, 13: 11.960559844970703} padded {1: 5.381504058837891, 2: 5.704783916473389, 4: 6.238447904586792, 7: 6.637632131576538, 13: 7.691200017929077}
+cost_full B 2 {1: 5.49, 2: 6.57, 3: 7.41, 4: 7.94, 5: 8.35, 6: 8.87, 7: 9.76, 8: 10.18, 9: 10.55, 10: 11.05, 11: 11.57, 12: 12.07, 13: 11.96}
+  cc B 2 grp 0 rep 0 cc 269 (plain 268 spec 268) cc==plain 2 / 2 meanT 1.50
+B 2 grp 0 rep 0 plain 268 spec 268 agg tok/s ratio 0.998 spec==plain 2 / 2 meanT 1.70 util 0.73
+  cc B 2 grp 0 rep 1 cc 269 (plain 268 spec 270) cc==plain 2 / 2 meanT 1.50
+B 2 grp 0 rep 1 plain 268 spec 270 agg tok/s ratio 1.008 spec==plain 2 / 2 meanT 1.70 util 0.73
+  cc B 2 grp 1 rep 0 cc 333 (plain 323 spec 337) cc==plain 2 / 2 meanT 1.78
+B 2 grp 1 rep 0 plain 323 spec 337 agg tok/s ratio 1.042 spec==plain 2 / 2 meanT 2.58 util 0.69
+  cc B 2 grp 1 rep 1 cc 334 (plain 324 spec 338) cc==plain 2 / 2 meanT 1.78
+B 2 grp 1 rep 1 plain 324 spec 338 agg tok/s ratio 1.043 spec==plain 2 / 2 meanT 2.58 util 0.69
+  cc B 2 grp 2 rep 0 cc 355 (plain 320 spec 362) cc==plain 2 / 2 meanT 2.69
+B 2 grp 2 rep 0 plain 320 spec 362 agg tok/s ratio 1.129 spec==plain 2 / 2 meanT 2.99 util 0.56
+  cc B 2 grp 2 rep 1 cc 356 (plain 320 spec 362) cc==plain 2 / 2 meanT 2.69
+B 2 grp 2 rep 1 plain 320 spec 362 agg tok/s ratio 1.131 spec==plain 2 / 2 meanT 2.99 util 0.56
+  cc B 2 grp 3 rep 0 cc 319 (plain 326 spec 323) cc==plain 2 / 2 meanT 1.66
+B 2 grp 3 rep 0 plain 326 spec 323 agg tok/s ratio 0.989 spec==plain 2 / 2 meanT 2.22 util 0.71
+  cc B 2 grp 3 rep 1 cc 319 (plain 326 spec 323) cc==plain 2 / 2 meanT 1.66
+B 2 grp 3 rep 1 plain 326 spec 323 agg tok/s ratio 0.990 spec==plain 2 / 2 meanT 2.22 util 0.71
+  cc B 2 grp 4 rep 0 cc 372 (plain 331 spec 381) cc==plain 2 / 2 meanT 1.96
+B 2 grp 4 rep 0 plain 331 spec 381 agg tok/s ratio 1.152 spec==plain 2 / 2 meanT 2.18 util 0.78
+  cc B 2 grp 4 rep 1 cc 373 (plain 331 spec 381) cc==plain 2 / 2 meanT 1.96
+B 2 grp 4 rep 1 plain 331 spec 381 agg tok/s ratio 1.152 spec==plain 2 / 2 meanT 2.18 util 0.78
+  cc B 2 grp 5 rep 0 cc 325 (plain 334 spec 324) cc==plain 2 / 2 meanT 1.71
+B 2 grp 5 rep 0 plain 334 spec 324 agg tok/s ratio 0.968 spec==plain 2 / 2 meanT 1.94 util 0.69
+  cc B 2 grp 5 rep 1 cc 325 (plain 334 spec 324) cc==plain 2 / 2 meanT 1.71
+B 2 grp 5 rep 1 plain 334 spec 324 agg tok/s ratio 0.969 spec==plain 2 / 2 meanT 1.94 util 0.69
+  cc B 2 grp 6 rep 0 cc 349 (plain 330 spec 349) cc==plain 2 / 2 meanT 1.87
+B 2 grp 6 rep 0 plain 330 spec 349 agg tok/s ratio 1.057 spec==plain 2 / 2 meanT 2.54 util 0.71
+  cc B 2 grp 6 rep 1 cc 349 (plain 330 spec 350) cc==plain 2 / 2 meanT 1.87
+B 2 grp 6 rep 1 plain 330 spec 350 agg tok/s ratio 1.059 spec==plain 2 / 2 meanT 2.54 util 0.71
+  cc B 2 grp 7 rep 0 cc 332 (plain 323 spec 330) cc==plain 2 / 2 meanT 2.32
+B 2 grp 7 rep 0 plain 323 spec 330 agg tok/s ratio 1.022 spec==plain 2 / 2 meanT 2.63 util 0.61
+  cc B 2 grp 7 rep 1 cc 333 (plain 323 spec 331) cc==plain 2 / 2 meanT 2.32
+B 2 grp 7 rep 1 plain 323 spec 331 agg tok/s ratio 1.023 spec==plain 2 / 2 meanT 2.63 util 0.61
+  cc B 2 grp 8 rep 0 cc 319 (plain 324 spec 334) cc==plain 2 / 2 meanT 1.85
+B 2 grp 8 rep 0 plain 324 spec 334 agg tok/s ratio 1.031 spec==plain 2 / 2 meanT 2.95 util 0.65
+  cc B 2 grp 8 rep 1 cc 319 (plain 324 spec 334) cc==plain 2 / 2 meanT 1.85
+B 2 grp 8 rep 1 plain 324 spec 334 agg tok/s ratio 1.032 spec==plain 2 / 2 meanT 2.95 util 0.65
+  cc B 2 grp 9 rep 0 cc 400 (plain 318 spec 408) cc==plain 2 / 2 meanT 2.26
+B 2 grp 9 rep 0 plain 318 spec 408 agg tok/s ratio 1.284 spec==plain 2 / 2 meanT 2.54 util 0.68
+  cc B 2 grp 9 rep 1 cc 401 (plain 318 spec 409) cc==plain 2 / 2 meanT 2.26
+B 2 grp 9 rep 1 plain 318 spec 409 agg tok/s ratio 1.286 spec==plain 2 / 2 meanT 2.54 util 0.68
+  cc B 2 grp 10 rep 0 cc 324 (plain 321 spec 324) cc==plain 2 / 2 meanT 1.81
+B 2 grp 10 rep 0 plain 321 spec 324 agg tok/s ratio 1.009 spec==plain 2 / 2 meanT 2.01 util 0.67
+  cc B 2 grp 10 rep 1 cc 325 (plain 322 spec 325) cc==plain 2 / 2 meanT 1.81
+B 2 grp 10 rep 1 plain 322 spec 325 agg tok/s ratio 1.010 spec==plain 2 / 2 meanT 2.01 util 0.67
+  cc B 2 grp 11 rep 0 cc 319 (plain 323 spec 328) cc==plain 2 / 2 meanT 1.68
+B 2 grp 11 rep 0 plain 323 spec 328 agg tok/s ratio 1.015 spec==plain 2 / 2 meanT 2.10 util 0.72
+  cc B 2 grp 11 rep 1 cc 320 (plain 323 spec 328) cc==plain 2 / 2 meanT 1.68
+B 2 grp 11 rep 1 plain 323 spec 328 agg tok/s ratio 1.017 spec==plain 2 / 2 meanT 2.10 util 0.72
+  cc B 2 grp 12 rep 0 cc 401 (plain 322 spec 403) cc==plain 2 / 2 meanT 2.46
+B 2 grp 12 rep 0 plain 322 spec 403 agg tok/s ratio 1.251 spec==plain 2 / 2 meanT 2.52 util 0.64
+  cc B 2 grp 12 rep 1 cc 401 (plain 322 spec 404) cc==plain 2 / 2 meanT 2.46
+B 2 grp 12 rep 1 plain 322 spec 404 agg tok/s ratio 1.253 spec==plain 2 / 2 meanT 2.52 util 0.64
+  cc B 2 grp 13 rep 0 cc 257 (plain 215 spec 259) cc==plain 2 / 2 meanT 1.60
+B 2 grp 13 rep 0 plain 215 spec 259 agg tok/s ratio 1.203 spec==plain 2 / 2 meanT 1.69 util 0.62
+  cc B 2 grp 13 rep 1 cc 257 (plain 215 spec 259) cc==plain 2 / 2 meanT 1.60
+B 2 grp 13 rep 1 plain 215 spec 259 agg tok/s ratio 1.204 spec==plain 2 / 2 meanT 1.69 util 0.62
+  cc B 2 grp 14 rep 0 cc 328 (plain 318 spec 330) cc==plain 2 / 2 meanT 2.17
+B 2 grp 14 rep 0 plain 318 spec 330 agg tok/s ratio 1.039 spec==plain 2 / 2 meanT 2.37 util 0.62
+  cc B 2 grp 14 rep 1 cc 329 (plain 318 spec 330) cc==plain 2 / 2 meanT 2.17
+B 2 grp 14 rep 1 plain 318 spec 330 agg tok/s ratio 1.038 spec==plain 2 / 2 meanT 2.37 util 0.62
+  cc B 2 grp 15 rep 0 cc 350 (plain 319 spec 344) cc==plain 2 / 2 meanT 1.93
+B 2 grp 15 rep 0 plain 319 spec 344 agg tok/s ratio 1.078 spec==plain 2 / 2 meanT 2.91 util 0.66
+  cc B 2 grp 15 rep 1 cc 351 (plain 319 spec 345) cc==plain 2 / 2 meanT 1.93
+B 2 grp 15 rep 1 plain 319 spec 345 agg tok/s ratio 1.079 spec==plain 2 / 2 meanT 2.91 util 0.66
+cost B 4 {1: 5.822768211364746, 2: 7.060671806335449, 4: 8.811599731445312, 7: 11.63044786453247, 13: 14.779551982879639} padded {1: 5.824703931808472, 2: 6.0919201374053955, 4: 6.572191953659058, 7: 7.652256011962891, 13: 8.706608295440674}
+cost_full B 4 {1: 5.82, 2: 7.06, 3: 8.09, 4: 8.81, 5: 9.63, 6: 10.51, 7: 11.63, 8: 12.17, 9: 12.78, 10: 13.39, 11: 14.29, 12: 14.74, 13: 14.78}
+  cc B 4 grp 0 rep 0 cc 481 (plain 488 spec 457) cc==plain 4 / 4 meanT 1.57
+B 4 grp 0 rep 0 plain 488 spec 457 agg tok/s ratio 0.937 spec==plain 4 / 4 meanT 2.80 util 0.51
+  cc B 4 grp 0 rep 1 cc 481 (plain 488 spec 458) cc==plain 4 / 4 meanT 1.57
+B 4 grp 0 rep 1 plain 488 spec 458 agg tok/s ratio 0.938 spec==plain 4 / 4 meanT 2.80 util 0.51
+  cc B 4 grp 1 rep 0 cc 507 (plain 528 spec 488) cc==plain 4 / 4 meanT 2.40
+B 4 grp 1 rep 0 plain 528 spec 488 agg tok/s ratio 0.924 spec==plain 4 / 4 meanT 3.60 util 0.41
+  cc B 4 grp 1 rep 1 cc 502 (plain 532 spec 490) cc==plain 4 / 4 meanT 2.40
+B 4 grp 1 rep 1 plain 532 spec 490 agg tok/s ratio 0.921 spec==plain 4 / 4 meanT 3.60 util 0.41
+  cc B 4 grp 2 rep 0 cc 516 (plain 547 spec 505) cc==plain 4 / 4 meanT 1.68
+B 4 grp 2 rep 0 plain 547 spec 505 agg tok/s ratio 0.923 spec==plain 4 / 4 meanT 2.68 util 0.51
+  cc B 4 grp 2 rep 1 cc 518 (plain 546 spec 506) cc==plain 4 / 4 meanT 1.68
+B 4 grp 2 rep 1 plain 546 spec 506 agg tok/s ratio 0.926 spec==plain 4 / 4 meanT 2.68 util 0.51
+  cc B 4 grp 3 rep 0 cc 545 (plain 533 spec 519) cc==plain 4 / 4 meanT 1.98
+B 4 grp 3 rep 0 plain 533 spec 519 agg tok/s ratio 0.973 spec==plain 4 / 4 meanT 3.67 util 0.45
+  cc B 4 grp 3 rep 1 cc 546 (plain 533 spec 519) cc==plain 4 / 4 meanT 1.98
+B 4 grp 3 rep 1 plain 533 spec 519 agg tok/s ratio 0.974 spec==plain 4 / 4 meanT 3.67 util 0.45
+  cc B 4 grp 4 rep 0 cc 524 (plain 527 spec 530) cc==plain 4 / 4 meanT 1.89
+B 4 grp 4 rep 0 plain 527 spec 530 agg tok/s ratio 1.004 spec==plain 4 / 4 meanT 4.01 util 0.42
+  cc B 4 grp 4 rep 1 cc 525 (plain 528 spec 530) cc==plain 4 / 4 meanT 1.89
+B 4 grp 4 rep 1 plain 528 spec 530 agg tok/s ratio 1.003 spec==plain 4 / 4 meanT 4.01 util 0.42
+  cc B 4 grp 5 rep 0 cc 505 (plain 529 spec 502) cc==plain 4 / 4 meanT 1.82
+B 4 grp 5 rep 0 plain 529 spec 502 agg tok/s ratio 0.949 spec==plain 4 / 4 meanT 2.79 util 0.50
+  cc B 4 grp 5 rep 1 cc 506 (plain 530 spec 503) cc==plain 4 / 4 meanT 1.82
+B 4 grp 5 rep 1 plain 530 spec 503 agg tok/s ratio 0.949 spec==plain 4 / 4 meanT 2.79 util 0.50
+  cc B 4 grp 6 rep 0 cc 495 (plain 437 spec 490) cc==plain 4 / 4 meanT 2.37
+B 4 grp 6 rep 0 plain 437 spec 490 agg tok/s ratio 1.121 spec==plain 4 / 4 meanT 2.82 util 0.44
+  cc B 4 grp 6 rep 1 cc 496 (plain 437 spec 490) cc==plain 4 / 4 meanT 2.37
+B 4 grp 6 rep 1 plain 437 spec 490 agg tok/s ratio 1.122 spec==plain 4 / 4 meanT 2.82 util 0.44
+  cc B 4 grp 7 rep 0 cc 515 (plain 522 spec 498) cc==plain 4 / 4 meanT 2.04
+B 4 grp 7 rep 0 plain 522 spec 498 agg tok/s ratio 0.956 spec==plain 4 / 4 meanT 3.82 util 0.42
+  cc B 4 grp 7 rep 1 cc 515 (plain 522 spec 499) cc==plain 4 / 4 meanT 2.04
+B 4 grp 7 rep 1 plain 522 spec 499 agg tok/s ratio 0.956 spec==plain 4 / 4 meanT 3.82 util 0.42
+cost B 8 {1: 6.1649439334869385, 2: 7.476079940795898, 4: 10.311535835266113, 7: 13.522528171539307, 13: 18.350239753723145} padded {1: 6.168864011764526, 2: 6.547008037567139, 4: 7.503135919570923, 7: 8.746511936187744, 13: 11.257472038269043}
+cost_full B 8 {1: 6.16, 2: 7.47, 3: 9.33, 4: 10.32, 5: 11.23, 6: 12.11, 7: 13.52, 8: 14.33, 9: 15.71, 10: 16.42, 11: 17.65, 12: 17.94, 13: 18.35}
+  cc B 8 grp 0 rep 0 cc 807 (plain 806 spec 779) cc==plain 8 / 8 meanT 1.60
+B 8 grp 0 rep 0 plain 806 spec 779 agg tok/s ratio 0.967 spec==plain 8 / 8 meanT 4.38 util 0.33
+  cc B 8 grp 0 rep 1 cc 806 (plain 806 spec 780) cc==plain 8 / 8 meanT 1.60
+B 8 grp 0 rep 1 plain 806 spec 780 agg tok/s ratio 0.967 spec==plain 8 / 8 meanT 4.38 util 0.33
+  cc B 8 grp 1 rep 0 cc 863 (plain 882 spec 803) cc==plain 8 / 8 meanT 1.50
+B 8 grp 1 rep 0 plain 882 spec 803 agg tok/s ratio 0.911 spec==plain 8 / 8 meanT 4.32 util 0.33
+  cc B 8 grp 1 rep 1 cc 864 (plain 882 spec 804) cc==plain 8 / 8 meanT 1.50
+B 8 grp 1 rep 1 plain 882 spec 804 agg tok/s ratio 0.912 spec==plain 8 / 8 meanT 4.32 util 0.33
+  cc B 8 grp 2 rep 0 cc 850 (plain 850 spec 792) cc==plain 8 / 8 meanT 1.54
+B 8 grp 2 rep 0 plain 850 spec 792 agg tok/s ratio 0.933 spec==plain 8 / 8 meanT 4.69 util 0.31
+  cc B 8 grp 2 rep 1 cc 849 (plain 850 spec 793) cc==plain 8 / 8 meanT 1.54
+B 8 grp 2 rep 1 plain 850 spec 793 agg tok/s ratio 0.933 spec==plain 8 / 8 meanT 4.69 util 0.31
+  cc B 8 grp 3 rep 0 cc 798 (plain 748 spec 751) cc==plain 8 / 8 meanT 1.60
+B 8 grp 3 rep 0 plain 748 spec 751 agg tok/s ratio 1.004 spec==plain 8 / 8 meanT 4.68 util 0.29
+  cc B 8 grp 3 rep 1 cc 799 (plain 749 spec 752) cc==plain 8 / 8 meanT 1.60
+B 8 grp 3 rep 1 plain 749 spec 752 agg tok/s ratio 1.004 spec==plain 8 / 8 meanT 4.68 util 0.29
+cost B 16 {1: 7.0354719161987305, 2: 8.83409595489502, 4: 12.945152282714844, 7: 17.254944801330566, 13: 24.379199981689453} padded {1: 6.952960014343262, 2: 7.819103956222534, 4: 9.254368305206299, 7: 11.786400318145752, 13: 17.153888702392578}
+cost_full B 16 {1: 7.05, 2: 8.82, 3: 11.41, 4: 12.94, 5: 14.2, 6: 15.45, 7: 17.25, 8: 18.58, 9: 20.43, 10: 21.08, 11: 22.16, 12: 22.91, 13: 24.38}
+  cc B 16 grp 0 rep 0 cc 1315 (plain 1314 spec 1125) cc==plain 16 / 16 meanT 1.40
+B 16 grp 0 rep 0 plain 1314 spec 1125 agg tok/s ratio 0.856 spec==plain 16 / 16 meanT 5.90 util 0.24
+  cc B 16 grp 0 rep 1 cc 1316 (plain 1315 spec 1126) cc==plain 16 / 16 meanT 1.40
+B 16 grp 0 rep 1 plain 1315 spec 1126 agg tok/s ratio 0.856 spec==plain 16 / 16 meanT 5.90 util 0.24
+  cc B 16 grp 1 rep 0 cc 1337 (plain 1315 spec 1143) cc==plain 16 / 16 meanT 1.43
+B 16 grp 1 rep 0 plain 1315 spec 1143 agg tok/s ratio 0.869 spec==plain 16 / 16 meanT 6.37 util 0.22
+  cc B 16 grp 1 rep 1 cc 1339 (plain 1314 spec 1144) cc==plain 16 / 16 meanT 1.43
+B 16 grp 1 rep 1 plain 1314 spec 1144 agg tok/s ratio 0.870 spec==plain 16 / 16 meanT 6.37 util 0.22
+cost B 32 {1: 8.246928215026855, 2: 10.739503860473633, 4: 16.919599533081055, 7: 23.455535888671875, 13: 34.53169631958008} padded {1: 8.245776176452637, 2: 9.518048286437988, 4: 12.722256183624268, 7: 18.00100803375244, 13: 28.46902370452881}
+cost_full B 32 {1: 8.22, 2: 10.73, 3: 14.57, 4: 16.9, 5: 18.57, 6: 20.35, 7: 23.45, 8: 25.13, 9: 27.55, 10: 28.75, 11: 31.22, 12: 32.45, 13: 34.53}
+  cc B 32 grp 0 rep 0 cc 1996 (plain 2012 spec 1459) cc==plain 32 / 32 meanT 1.26
+B 32 grp 0 rep 0 plain 2012 spec 1459 agg tok/s ratio 0.725 spec==plain 32 / 32 meanT 7.81 util 0.18
+  cc B 32 grp 0 rep 1 cc 1995 (plain 2012 spec 1459) cc==plain 32 / 32 meanT 1.26
+B 32 grp 0 rep 1 plain 2012 spec 1459 agg tok/s ratio 0.725 spec==plain 32 / 32 meanT 7.81 util 0.18
+BATCHSPEC_DONE secs 568.8750569820404 est usd 0.6241823541886277
+{'secs': 568.8750569820404, 'rows': 271}
+[modal-client] 2026-11-09T18:15:01-0800 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-oNhBNZQkrbT7cOmOPtjXBr

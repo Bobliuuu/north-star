@@ -1,5 +1,9 @@
 # NEXT_STEPS
 
+## STATUS UPDATE 2026-11-09 c (RESULTS.md H20; supersedes the batch items below)
+MEASURED: batched exact executor, full stack bitwise (30/30 cells; 384/384 output checks per bench): plain agg tok/s B=32 2012 (H19 742, H18 636); step 3.9x (T=1) to 5.9x (T=13) vs the H18 path at B=32. PLD at batch>1 is now near break-even (capped 0.99-1.01x of plain at B>=4); B=1 unchanged (~220-233 tok/s, 1.27-1.29x with PLD).
+NEXT: (a) cost model for the cap that accounts for masked rows (time the table with realistic valid fractions); (b) B=1: the remaining single-sequence cost is lin (1.8 ms of 4.4, 150 launches incl. lm_head) + MoE (1.6 ms): fuse qkv/o/router launches or port the 64-row lin tiles' lm_head gain to the B=1 path if bitwise; (c) larger B (64+) and longer contexts for the batched path (only <=32 x <=1.7K prompts measured); (d) ragged attention rows (attention still runs all T rows per sequence; masked rows still cost lin_bt and attention).
+
 ## STATUS UPDATE 2026-11-09 b (RESULTS.md H19; supersedes the batch items below)
 MEASURED: expert-gathered batched MoE is bitwise exact and makes batched verify steps up to 2.2x cheaper; PLD at B=16/32 +29%/+50% agg tok/s. The H18 plain-B>1 divergence was a benchmark bug (unset graph replay overwrote prompt KV), fixed; 384/384 exact in every re-run. Cost-aware draft cap: 1.29x / 1.07x at B=1/2, 0.94-0.99x at B>=4 (plain PLD 0.64-0.92x).
 NEXT: (a) ragged verify: rows carry their own T (flat row count, per-sequence attention already per-row), so short-draft rows stop paying for the longest draft (slot utilisation 0.18-0.46 now); (b) cheaper T=2 step at large B (the break-even barrier in H19 (3)); (c) carry the gathered MoE into FastNorth's single-sequence blk path for T>=8 at B=1 only if it wins there (abtile_ab1 says no below 48 rows); (d) serving-loop policy: capped PLD at B<=2, plain above.

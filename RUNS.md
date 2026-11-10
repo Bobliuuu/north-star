@@ -116,3 +116,11 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-09 | ap-9SzhzMLTE9s4cSQhgPzVha | `modal run --detach modal/batchspec_run.py::main --tag bs2g --tilegrid 4` | H19 same with auto-gathered MoE (GATHER_MIN_NT was 32); 630 s |
 | 2026-11-09 | ap-jLPbKFDYFhL7CJwI64sYf1 | `modal run --detach modal/batchdiag_run.py::main --tag d2` | diag_batch rerun: no eager/graph teacher-forced mismatch at B=2/4; 77 s; results/batchdiag_d2.jsonl |
 | 2026-11-09 | ap-TdQxkOCIpBv5pQNZmJg4gw | `modal run --detach modal/batchspec_run.py::main --tag bs3 --tilegrid 4 --cc 1` | H19 cost-aware draft cap arm, gathered MoE (threshold 48); 728 s |
+| 2026-11-09 | (attached, short) | `modal run modal/prof_batch_run.py::main --tag p1` | H20 per-kernel profile before batched attention; 94 s; results/profbatch_p1.jsonl |
+| 2026-11-09 | (attached, short) | `modal run modal/ab_battn_run.py::main --tag ba1` | H20 per-sequence vs batched attention A/B; 124 s; results/abattn_ba1.jsonl |
+| 2026-11-09 | ap-NzwutMKxIzGR6v9pC5ViGA | `modal run --detach modal/prof_batch_run.py::main --tag p2` | profile after batched attention; 64 s |
+| 2026-11-09 | ap-HCzw32NpRlJf86IRKpJUf5 | `modal run --detach modal/batchspec_run.py::main --tag bs4 --tilegrid 4 --cc 1` | H20 bench + batched attention; 635 s |
+| 2026-11-09 | ap-KABF9ix2NV6v5Iz0JKx39F | `modal run --detach modal/batchspec_run.py::main --tag bs5 --tilegrid 4 --cc 1` | H20 bench + padded-row masking; 576 s |
+| 2026-11-09 | (attached, short) | `modal run modal/ab_stack_run.py::main --tag st1` | H20 full-stack exactness vs H18 path, 30 cells bitwise; 114 s; results/abstack_st1.jsonl, logs/abstack_st1_client.log |
+| 2026-11-09 | ap-oNhBNZQkrbT7cOmOPtjXBr | `modal run --detach modal/batchspec_run.py::main --tag bs6 --tilegrid 6 --cc 1` | H20 full-stack bench; 569 s |
+| 2026-11-09 | (forked agent, branch moe-tune) | see results/moe_tune_runs.md | mode 5/6 MoE + lin_bt tile sweeps and real-model A/B mt1; ~$1.0 |
