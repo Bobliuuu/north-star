@@ -18,7 +18,7 @@ LIN_TW = int(os.environ.get("NS_LIN_TW", "64"))   # lin_bt max row-tile width (d
                    # Kernel test (results/moe_tune_kernel2.json): bitwise equal to 16 for qkv/o_proj/router/lm_head at NT 16..416.
 # MoE row-tile scheduling: 0 = leader program walks the 16-row tiles serially (H18 bs1); 1/2 = one program per tile (grid axis 2).
 # Read at launch/capture time, so set it before make_step. Env NS_MOE_TILE_GRID=1 sets the default.
-TILE_GRID = int(os.environ.get("NS_MOE_TILE_GRID", "0"))   # 0 serial | 1 leader x tile | 2 expert x tile | 3 expert-gathered rows | 4 auto (3 if rows >= GATHER_MIN_NT else 0)
+TILE_GRID = int(os.environ.get("NS_MOE_TILE_GRID", "6"))   # default 6 since H20 (bitwise = 0 in abstack_st1, all 30 cells)   # 0 serial | 1 leader x tile | 2 expert x tile | 3 expert-gathered rows | 4 auto (3 if rows >= GATHER_MIN_NT else 0)
 # | 5 mode-3 math, Triton counting sort + compact (expert, tile) grid | 6 auto (5 if rows >= GATHER5_MIN_NT else 0)
 GATHER5_MIN_NT = 16  # mode 6 = auto(5): kernel test mode 5 bn64 beats serial from NT=16; real A/B mt1 neutral at 16 rows, 1.17-1.56x from 32
 GATHER_MIN_NT = 48   # real North A/B (abtile_ab1, H100): gather 0.97x at NT=32, 1.02-1.35x at 52-64, 1.6-2.2x at NT>=104; plain T=1 never gains below B=32

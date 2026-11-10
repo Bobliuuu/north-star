@@ -7,7 +7,7 @@ from nsapp import app, weights_vol, results_vol, WEIGHTS, MODEL_DIR
 
 
 @app.function(gpu="H100", timeout=3300, volumes={WEIGHTS: weights_vol, "/results": results_vol}, memory=65536, scaledown_window=2, max_containers=1)
-def remote(tag: str, n_new: int, reps: int, sizes: str, tilegrid: int = 0, cc: int = 0):
+def remote(tag: str, n_new: int, reps: int, sizes: str, tilegrid: int = 6, cc: int = 0):
     sys.path.insert(0, "/root"); sys.path.insert(0, "/root/harness")
     from loader import load_model
     from common import env_meta
@@ -27,5 +27,5 @@ def remote(tag: str, n_new: int, reps: int, sizes: str, tilegrid: int = 0, cc: i
 
 
 @app.local_entrypoint()
-def main(tag: str = "bs1", n_new: int = 192, reps: int = 2, sizes: str = "1,2,4,8,16,32", tilegrid: int = 0, cc: int = 0):
+def main(tag: str = "bs1", n_new: int = 192, reps: int = 2, sizes: str = "1,2,4,8,16,32", tilegrid: int = 6, cc: int = 0):
     print(remote.remote(tag, n_new, reps, sizes, tilegrid, cc))
