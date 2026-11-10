@@ -1,0 +1,20 @@
+{"B": 1, "T": 1, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 4.6972479820251465, "perseq": 4.521600008010864}, "phase": "ab", "speedup": 0.9626061952261344}
+{"B": 1, "T": 4, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 7.003087997436523, "perseq": 6.734512090682983}, "phase": "ab", "speedup": 0.9616489316067638}
+{"B": 1, "T": 8, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 7.975967884063721, "perseq": 7.736975908279419}, "phase": "ab", "speedup": 0.9700359907088121}
+{"B": 1, "T": 13, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 9.11513614654541, "perseq": 8.790799617767334}, "phase": "ab", "speedup": 0.9644178075276475}
+{"B": 1, "batched_tok_s": 204.61424300563166, "n_new": 64, "outputs_equal": true, "perseq_tok_s": 216.47469431456057, "phase": "live_plain"}
+{"B": 4, "T": 1, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 5.832495927810669, "perseq": 7.808624029159546}, "phase": "ab", "speedup": 1.3388134558185028}
+{"B": 4, "T": 4, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 8.997039794921875, "perseq": 10.984303951263428}, "phase": "ab", "speedup": 1.2208797784203653}
+{"B": 4, "T": 8, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 16.412031173706055, "perseq": 18.4475679397583}, "phase": "ab", "speedup": 1.124027108193251}
+{"B": 4, "T": 13, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 19.625232696533203, "perseq": 21.725343704223633}, "phase": "ab", "speedup": 1.107010757027172}
+{"B": 4, "batched_tok_s": 541.8558555857361, "n_new": 64, "outputs_equal": true, "perseq_tok_s": 425.6553959957042, "phase": "live_plain"}
+{"B": 16, "T": 1, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 7.096303939819336, "perseq": 17.46331214904785}, "phase": "ab", "speedup": 2.46090250602942}
+{"B": 16, "T": 4, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 18.632704734802246, "perseq": 29.420095443725586}, "phase": "ab", "speedup": 1.5789492648791137}
+{"B": 16, "T": 8, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 29.34001636505127, "perseq": 40.70783996582031}, "phase": "ab", "speedup": 1.3874511676929386}
+{"B": 16, "T": 13, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 40.90060806274414, "perseq": 52.9289436340332}, "phase": "ab", "speedup": 1.2940869620529072}
+{"B": 16, "batched_tok_s": 1358.1959916659964, "n_new": 64, "outputs_equal": true, "perseq_tok_s": 710.3972723586357, "phase": "live_plain"}
+{"B": 32, "T": 1, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 10.492591857910156, "perseq": 32.54684829711914}, "phase": "ab", "speedup": 3.101888335872201}
+{"B": 32, "T": 4, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 27.85172748565674, "perseq": 51.57868766784668}, "phase": "ab", "speedup": 1.8519026403087206}
+{"B": 32, "T": 8, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 46.57588768005371, "perseq": 71.38046264648438}, "phase": "ab", "speedup": 1.5325625812399344}
+{"B": 32, "T": 13, "kv_bitwise": true, "logits_bitwise": true, "ms": {"batched": 68.55652618408203, "perseq": 94.6158561706543}, "phase": "ab", "speedup": 1.3801145045856031}
+{"B": 32, "batched_tok_s": 1625.5298363108577, "n_new": 64, "outputs_equal": true, "perseq_tok_s": 752.9741027546929, "phase": "live_plain"}
