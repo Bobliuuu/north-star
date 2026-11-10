@@ -1,0 +1,992 @@
+[
+ {
+  "kind": "moe",
+  "NT": 16,
+  "m0_ms": 0.21237759590148925,
+  "res": {
+   "tw16_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.20336960156758627
+   },
+   "tw16_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.20686079661051432
+   },
+   "tw16_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.2151701291402181
+   },
+   "tw16_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.20658133824666342
+   },
+   "tw16_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.20142292976379395
+   },
+   "tw16_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.2024277369181315
+   },
+   "tw16_bn128_w2": {
+    "bitwise": true,
+    "ms": 0.20276800791422525
+   },
+   "tw16_bn128_w4": {
+    "bitwise": true,
+    "ms": 0.20172692934672037
+   },
+   "tw16_bn128_w8": {
+    "bitwise": true,
+    "ms": 0.20157546997070314
+   },
+   "tw32_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.20569705963134766
+   },
+   "tw32_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.2069546699523926
+   },
+   "tw32_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.23376533190409343
+   },
+   "tw32_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.20923840204874675
+   },
+   "tw32_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.20463892618815105
+   },
+   "tw32_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.20728212992350262
+   },
+   "tw32_bn128_w2": {
+    "bitwise": true,
+    "ms": 0.2384928067525228
+   },
+   "tw32_bn128_w4": {
+    "bitwise": true,
+    "ms": 0.2063093344370524
+   },
+   "tw32_bn128_w8": {
+    "bitwise": true,
+    "ms": 0.20588053067525228
+   },
+   "tw64_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.21850773493448894
+   },
+   "tw64_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.22348693211873372
+   },
+   "tw64_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.255075200398763
+   },
+   "tw64_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.2772416114807129
+   },
+   "tw64_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.21226879755655925
+   },
+   "tw64_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.21441920598347983
+   },
+   "tw64_bn128_w2": {
+    "bitwise": true,
+    "ms": 6.735802714029948
+   },
+   "tw64_bn128_w4": {
+    "bitwise": false,
+    "ms": null,
+    "err": "out of resource: shared memory, Required: 245760, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+   },
+   "tw64_bn128_w8": {
+    "bitwise": false,
+    "ms": null,
+    "err": "out of resource: shared memory, Required: 245760, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+   }
+  }
+ },
+ {
+  "kind": "moe",
+  "NT": 32,
+  "m0_ms": 0.43999999364217124,
+  "res": {
+   "tw16_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.30843305587768555
+   },
+   "tw16_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.31090132395426434
+   },
+   "tw16_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.3230400085449219
+   },
+   "tw16_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.3080821355183919
+   },
+   "tw16_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.3049375851949056
+   },
+   "tw16_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.3082325299580892
+   },
+   "tw16_bn128_w2": {
+    "bitwise": true,
+    "ms": 0.3078410784403483
+   },
+   "tw16_bn128_w4": {
+    "bitwise": true,
+    "ms": 0.3039957364400228
+   },
+   "tw16_bn128_w8": {
+    "bitwise": true,
+    "ms": 0.30480321248372394
+   },
+   "tw32_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.30869226455688475
+   },
+   "tw32_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.31269652048746743
+   },
+   "tw32_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.34352318445841473
+   },
+   "tw32_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.3182165463765462
+   },
+   "tw32_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.30832853317260744
+   },
+   "tw32_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.31062612533569334
+   },
+   "tw32_bn128_w2": {
+    "bitwise": true,
+    "ms": 0.3658389409383138
+   },
+   "tw32_bn128_w4": {
+    "bitwise": true,
+    "ms": 0.3109631856282552
+   },
+   "tw32_bn128_w8": {
+    "bitwise": true,
+    "ms": 0.3113151868184408
+   },
+   "tw64_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.3217066764831543
+   },
+   "tw64_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.32985814412434894
+   },
+   "tw64_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.3781514803568522
+   },
+   "tw64_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.4180010795593262
+   },
+   "tw64_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.31972052256266276
+   },
+   "tw64_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.3204501469930013
+   },
+   "tw64_bn128_w2": {
+    "bitwise": true,
+    "ms": 10.806962076822916
+   },
+   "tw64_bn128_w4": {
+    "bitwise": false,
+    "ms": null,
+    "err": "out of resource: shared memory, Required: 245760, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+   },
+   "tw64_bn128_w8": {
+    "bitwise": false,
+    "ms": null,
+    "err": "out of resource: shared memory, Required: 245760, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+   }
+  }
+ },
+ {
+  "kind": "moe",
+  "NT": 64,
+  "m0_ms": 0.804689089457194,
+  "res": {
+   "tw16_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.3640351931254069
+   },
+   "tw16_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.36683839162190757
+   },
+   "tw16_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.37913173039754233
+   },
+   "tw16_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.3681354522705078
+   },
+   "tw16_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.3628170649210612
+   },
+   "tw16_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.36822080612182617
+   },
+   "tw16_bn128_w2": {
+    "bitwise": true,
+    "ms": 0.36897493998209635
+   },
+   "tw16_bn128_w4": {
+    "bitwise": true,
+    "ms": 0.364790407816569
+   },
+   "tw16_bn128_w8": {
+    "bitwise": true,
+    "ms": 0.3648725191752116
+   },
+   "tw32_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.3667210578918457
+   },
+   "tw32_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.36886399586995444
+   },
+   "tw32_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.41396907170613606
+   },
+   "tw32_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.37131519317626954
+   },
+   "tw32_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.3679786682128906
+   },
+   "tw32_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.3708928108215332
+   },
+   "tw32_bn128_w2": {
+    "bitwise": true,
+    "ms": 0.414358393351237
+   },
+   "tw32_bn128_w4": {
+    "bitwise": true,
+    "ms": 0.36666345596313477
+   },
+   "tw32_bn128_w8": {
+    "bitwise": true,
+    "ms": 0.3666015942891439
+   },
+   "tw64_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.38204800287882484
+   },
+   "tw64_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.39123627344767253
+   },
+   "tw64_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.4439296086629232
+   },
+   "tw64_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.46352532704671223
+   },
+   "tw64_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.3776480038960775
+   },
+   "tw64_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.37746667861938477
+   },
+   "tw64_bn128_w2": {
+    "bitwise": true,
+    "ms": 11.705694580078125
+   },
+   "tw64_bn128_w4": {
+    "bitwise": false,
+    "ms": null,
+    "err": "out of resource: shared memory, Required: 245760, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+   },
+   "tw64_bn128_w8": {
+    "bitwise": false,
+    "ms": null,
+    "err": "out of resource: shared memory, Required: 245760, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+   }
+  }
+ },
+ {
+  "kind": "moe",
+  "NT": 128,
+  "m0_ms": 1.6329930623372395,
+  "res": {
+   "tw16_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.4438762664794922
+   },
+   "tw16_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.4472522735595703
+   },
+   "tw16_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.46686506271362305
+   },
+   "tw16_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.4484906514485677
+   },
+   "tw16_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.44208958943684895
+   },
+   "tw16_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.4445151964823405
+   },
+   "tw16_bn128_w2": {
+    "bitwise": true,
+    "ms": 0.444702943166097
+   },
+   "tw16_bn128_w4": {
+    "bitwise": true,
+    "ms": 0.4423551877339681
+   },
+   "tw16_bn128_w8": {
+    "bitwise": true,
+    "ms": 0.44141867955525715
+   },
+   "tw32_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.44609705607096356
+   },
+   "tw32_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.4499402681986491
+   },
+   "tw32_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.5159285227457683
+   },
+   "tw32_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.45857280095418296
+   },
+   "tw32_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.45093441009521484
+   },
+   "tw32_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.45697708129882814
+   },
+   "tw32_bn128_w2": {
+    "bitwise": true,
+    "ms": 0.530627187093099
+   },
+   "tw32_bn128_w4": {
+    "bitwise": true,
+    "ms": 0.45169706344604493
+   },
+   "tw32_bn128_w8": {
+    "bitwise": true,
+    "ms": 0.4520629247029622
+   },
+   "tw64_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.4597578684488932
+   },
+   "tw64_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.46972586313883463
+   },
+   "tw64_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.5377248128255209
+   },
+   "tw64_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.5570314407348633
+   },
+   "tw64_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.45610345204671227
+   },
+   "tw64_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.4574176152547201
+   },
+   "tw64_bn128_w2": {
+    "bitwise": true,
+    "ms": 13.783315022786459
+   },
+   "tw64_bn128_w4": {
+    "bitwise": false,
+    "ms": null,
+    "err": "out of resource: shared memory, Required: 245760, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+   },
+   "tw64_bn128_w8": {
+    "bitwise": false,
+    "ms": null,
+    "err": "out of resource: shared memory, Required: 245760, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+   }
+  }
+ },
+ {
+  "kind": "moe",
+  "NT": 256,
+  "m0_ms": 3.446295420328776,
+  "res": {
+   "tw16_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.4889823913574219
+   },
+   "tw16_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.4924725214640299
+   },
+   "tw16_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.5712832132975261
+   },
+   "tw16_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.49116907119750974
+   },
+   "tw16_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.48715521494547526
+   },
+   "tw16_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.49127041498819984
+   },
+   "tw16_bn128_w2": {
+    "bitwise": true,
+    "ms": 0.4900309244791667
+   },
+   "tw16_bn128_w4": {
+    "bitwise": true,
+    "ms": 0.48719040552775067
+   },
+   "tw16_bn128_w8": {
+    "bitwise": true,
+    "ms": 0.48807786305745443
+   },
+   "tw32_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.49065707524617513
+   },
+   "tw32_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.49121599197387694
+   },
+   "tw32_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.581173324584961
+   },
+   "tw32_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.4934453328450521
+   },
+   "tw32_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.4957994778951009
+   },
+   "tw32_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.49956267674764
+   },
+   "tw32_bn128_w2": {
+    "bitwise": true,
+    "ms": 0.5708053588867188
+   },
+   "tw32_bn128_w4": {
+    "bitwise": true,
+    "ms": 0.49434452056884765
+   },
+   "tw32_bn128_w8": {
+    "bitwise": true,
+    "ms": 0.4939455986022949
+   },
+   "tw64_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.50742613474528
+   },
+   "tw64_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.5199957211812337
+   },
+   "tw64_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.587548828125
+   },
+   "tw64_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.6336640040079753
+   },
+   "tw64_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.5089119911193848
+   },
+   "tw64_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.5132735888163249
+   },
+   "tw64_bn128_w2": {
+    "bitwise": true,
+    "ms": 14.974190266927083
+   },
+   "tw64_bn128_w4": {
+    "bitwise": false,
+    "ms": null,
+    "err": "out of resource: shared memory, Required: 245760, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+   },
+   "tw64_bn128_w8": {
+    "bitwise": false,
+    "ms": null,
+    "err": "out of resource: shared memory, Required: 245760, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+   }
+  }
+ },
+ {
+  "kind": "moe",
+  "NT": 416,
+  "m0_ms": 5.431792195638021,
+  "res": {
+   "tw16_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.5443424224853516
+   },
+   "tw16_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.5550986607869466
+   },
+   "tw16_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.7595616022745768
+   },
+   "tw16_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.540391476949056
+   },
+   "tw16_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.5468928019205729
+   },
+   "tw16_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.5673472086588541
+   },
+   "tw16_bn128_w2": {
+    "bitwise": true,
+    "ms": 0.5612735748291016
+   },
+   "tw16_bn128_w4": {
+    "bitwise": true,
+    "ms": 0.5554517110188802
+   },
+   "tw16_bn128_w8": {
+    "bitwise": true,
+    "ms": 0.5570976257324218
+   },
+   "tw32_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.5444330851236979
+   },
+   "tw32_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.5503456115722656
+   },
+   "tw32_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.7202954610188802
+   },
+   "tw32_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.5560223897298177
+   },
+   "tw32_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.5579541524251302
+   },
+   "tw32_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.5662848154703776
+   },
+   "tw32_bn128_w2": {
+    "bitwise": true,
+    "ms": 0.7104960123697917
+   },
+   "tw32_bn128_w4": {
+    "bitwise": true,
+    "ms": 0.5612703959147135
+   },
+   "tw32_bn128_w8": {
+    "bitwise": true,
+    "ms": 0.5601727803548177
+   },
+   "tw64_bn32_w2": {
+    "bitwise": true,
+    "ms": 0.5600512186686198
+   },
+   "tw64_bn32_w4": {
+    "bitwise": true,
+    "ms": 0.5726410547892252
+   },
+   "tw64_bn32_w8": {
+    "bitwise": true,
+    "ms": 0.6554357528686523
+   },
+   "tw64_bn64_w2": {
+    "bitwise": true,
+    "ms": 0.6838901519775391
+   },
+   "tw64_bn64_w4": {
+    "bitwise": true,
+    "ms": 0.5598090489705404
+   },
+   "tw64_bn64_w8": {
+    "bitwise": true,
+    "ms": 0.5616362889607748
+   },
+   "tw64_bn128_w2": {
+    "bitwise": true,
+    "ms": 15.587379964192708
+   },
+   "tw64_bn128_w4": {
+    "bitwise": false,
+    "ms": null,
+    "err": "out of resource: shared memory, Required: 245760, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+   },
+   "tw64_bn128_w8": {
+    "bitwise": false,
+    "ms": null,
+    "err": "out of resource: shared memory, Required: 245760, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+   }
+  }
+ },
+ {
+  "kind": "lin",
+  "NT": 16,
+  "name": "qkv",
+  "ms16": 0.016643200318018594,
+  "bitwise32": true,
+  "ms32": 0.017017600933710735,
+  "bitwise64": true,
+  "ms64": 0.016140799721082053,
+  "bitwise128": false,
+  "err128": "out of resource: shared memory, Required: 294912, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+ },
+ {
+  "kind": "lin",
+  "NT": 16,
+  "name": "o_proj",
+  "ms16": 0.016197333733240765,
+  "bitwise32": true,
+  "ms32": 0.01656426688035329,
+  "bitwise64": true,
+  "ms64": 0.015931733449300132,
+  "bitwise128": true,
+  "ms128": 0.019318399826685588
+ },
+ {
+  "kind": "lin",
+  "NT": 16,
+  "name": "router",
+  "ms16": 0.017126399278640746,
+  "bitwise32": true,
+  "ms32": 0.01708693305651347,
+  "bitwise64": true,
+  "ms64": 0.01627413332462311,
+  "bitwise128": true,
+  "ms128": 0.01579093337059021
+ },
+ {
+  "kind": "lin",
+  "NT": 16,
+  "name": "lm_head",
+  "ms16": 0.35471038818359374,
+  "bitwise32": true,
+  "ms32": 0.35600640773773196,
+  "bitwise64": true,
+  "ms64": 0.3596191883087158,
+  "bitwise128": false,
+  "err128": "out of resource: shared memory, Required: 294912, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+ },
+ {
+  "kind": "lin",
+  "NT": 32,
+  "name": "qkv",
+  "ms16": 0.016771199305852254,
+  "bitwise32": true,
+  "ms32": 0.016596266627311708,
+  "bitwise64": true,
+  "ms64": 0.016777600844701132,
+  "bitwise128": false,
+  "err128": "out of resource: shared memory, Required: 294912, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+ },
+ {
+  "kind": "lin",
+  "NT": 32,
+  "name": "o_proj",
+  "ms16": 0.01690559983253479,
+  "bitwise32": true,
+  "ms32": 0.016103466351826985,
+  "bitwise64": true,
+  "ms64": 0.01541973352432251,
+  "bitwise128": true,
+  "ms128": 0.01946559945742289
+ },
+ {
+  "kind": "lin",
+  "NT": 32,
+  "name": "router",
+  "ms16": 0.015109333395957946,
+  "bitwise32": true,
+  "ms32": 0.015267200271288554,
+  "bitwise64": true,
+  "ms64": 0.015334399541219075,
+  "bitwise128": true,
+  "ms128": 0.015078399578730266
+ },
+ {
+  "kind": "lin",
+  "NT": 32,
+  "name": "lm_head",
+  "ms16": 0.42175679206848143,
+  "bitwise32": true,
+  "ms32": 0.3635200023651123,
+  "bitwise64": true,
+  "ms64": 0.36782400608062743,
+  "bitwise128": false,
+  "err128": "out of resource: shared memory, Required: 294912, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+ },
+ {
+  "kind": "lin",
+  "NT": 64,
+  "name": "qkv",
+  "ms16": 0.017529600858688356,
+  "bitwise32": true,
+  "ms32": 0.016391467054684958,
+  "bitwise64": true,
+  "ms64": 0.016359466314315795,
+  "bitwise128": false,
+  "err128": "out of resource: shared memory, Required: 294912, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+ },
+ {
+  "kind": "lin",
+  "NT": 64,
+  "name": "o_proj",
+  "ms16": 0.0211136003335317,
+  "bitwise32": true,
+  "ms32": 0.016216533382733662,
+  "bitwise64": true,
+  "ms64": 0.016505600015322367,
+  "bitwise128": true,
+  "ms128": 0.020467199881871543
+ },
+ {
+  "kind": "lin",
+  "NT": 64,
+  "name": "router",
+  "ms16": 0.016645333170890807,
+  "bitwise32": true,
+  "ms32": 0.016468266646067303,
+  "bitwise64": true,
+  "ms64": 0.016733866930007935,
+  "bitwise128": true,
+  "ms128": 0.0166485329469045
+ },
+ {
+  "kind": "lin",
+  "NT": 64,
+  "name": "lm_head",
+  "ms16": 0.6744544029235839,
+  "bitwise32": true,
+  "ms32": 0.4547872066497803,
+  "bitwise64": true,
+  "ms64": 0.37627201080322265,
+  "bitwise128": false,
+  "err128": "out of resource: shared memory, Required: 294912, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+ },
+ {
+  "kind": "lin",
+  "NT": 128,
+  "name": "qkv",
+  "ms16": 0.023669334252675374,
+  "bitwise32": true,
+  "ms32": 0.017256534099578856,
+  "bitwise64": true,
+  "ms64": 0.01542506714661916,
+  "bitwise128": false,
+  "err128": "out of resource: shared memory, Required: 294912, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+ },
+ {
+  "kind": "lin",
+  "NT": 128,
+  "name": "o_proj",
+  "ms16": 0.03831679821014404,
+  "bitwise32": true,
+  "ms32": 0.022563199202219646,
+  "bitwise64": true,
+  "ms64": 0.01938026746114095,
+  "bitwise128": true,
+  "ms128": 0.019591466585795084
+ },
+ {
+  "kind": "lin",
+  "NT": 128,
+  "name": "router",
+  "ms16": 0.015150933464368185,
+  "bitwise32": true,
+  "ms32": 0.015191466609636942,
+  "bitwise64": true,
+  "ms64": 0.01511893371740977,
+  "bitwise128": true,
+  "ms128": 0.01513706644376119
+ },
+ {
+  "kind": "lin",
+  "NT": 128,
+  "name": "lm_head",
+  "ms16": 1.222982406616211,
+  "bitwise32": true,
+  "ms32": 0.75730881690979,
+  "bitwise64": true,
+  "ms64": 0.5238815784454346,
+  "bitwise128": false,
+  "err128": "out of resource: shared memory, Required: 294912, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+ },
+ {
+  "kind": "lin",
+  "NT": 256,
+  "name": "qkv",
+  "ms16": 0.045483732223510744,
+  "bitwise32": true,
+  "ms32": 0.028281599283218384,
+  "bitwise64": true,
+  "ms64": 0.02218773365020752,
+  "bitwise128": false,
+  "err128": "out of resource: shared memory, Required: 294912, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+ },
+ {
+  "kind": "lin",
+  "NT": 256,
+  "name": "o_proj",
+  "ms16": 0.07257813612620036,
+  "bitwise32": true,
+  "ms32": 0.03994986613591512,
+  "bitwise64": true,
+  "ms64": 0.030159999926884968,
+  "bitwise128": true,
+  "ms128": 0.027569067478179932
+ },
+ {
+  "kind": "lin",
+  "NT": 256,
+  "name": "router",
+  "ms16": 0.015375999609629314,
+  "bitwise32": true,
+  "ms32": 0.01513813336690267,
+  "bitwise64": true,
+  "ms64": 0.015099733074506124,
+  "bitwise128": true,
+  "ms128": 0.015386666854222615
+ },
+ {
+  "kind": "lin",
+  "NT": 256,
+  "name": "lm_head",
+  "ms16": 2.256185531616211,
+  "bitwise32": true,
+  "ms32": 1.3918047904968263,
+  "bitwise64": true,
+  "ms64": 0.9281696319580078,
+  "bitwise128": false,
+  "err128": "out of resource: shared memory, Required: 294912, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+ },
+ {
+  "kind": "lin",
+  "NT": 416,
+  "name": "qkv",
+  "ms16": 0.06906133492787679,
+  "bitwise32": true,
+  "ms32": 0.04441279967625936,
+  "bitwise64": true,
+  "ms64": 0.035846400260925296,
+  "bitwise128": false,
+  "err128": "out of resource: shared memory, Required: 294912, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+ },
+ {
+  "kind": "lin",
+  "NT": 416,
+  "name": "o_proj",
+  "ms16": 0.11282133261362712,
+  "bitwise32": true,
+  "ms32": 0.06976213455200195,
+  "bitwise64": true,
+  "ms64": 0.05670293172200521,
+  "bitwise128": true,
+  "ms128": 0.061210668087005614
+ },
+ {
+  "kind": "lin",
+  "NT": 416,
+  "name": "router",
+  "ms16": 0.01549013356367747,
+  "bitwise32": true,
+  "ms32": 0.01527893344561259,
+  "bitwise64": true,
+  "ms64": 0.015266133348147075,
+  "bitwise128": true,
+  "ms128": 0.015313067038853963
+ },
+ {
+  "kind": "lin",
+  "NT": 416,
+  "name": "lm_head",
+  "ms16": 3.396713638305664,
+  "bitwise32": true,
+  "ms32": 2.120144081115723,
+  "bitwise64": true,
+  "ms64": 1.5611295700073242,
+  "bitwise128": false,
+  "err128": "out of resource: shared memory, Required: 294912, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+ }
+]
