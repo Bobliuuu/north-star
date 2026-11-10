@@ -66,3 +66,10 @@
 | 2026-11-09 | batchdiag d2 (workspace arnold-17059) | H100 | 77 | 0.08 (est 3.95/h) | OK; H19 |
 | 2026-11-09 | batchspec bs3 (workspace arnold-17059) | H100 | 728 | 0.80 (est 3.95/h) | OK; H19 |
 | 2026-11-09 | weights download (workspace arnold-17059) | CPU | ~600 | ~0.05 (est) | OK |
+| 2026-11-09 | profbatch p1 + p2 (workspace arnold-17059) | H100 | 158 | 0.17 (est 3.95/h) | OK; H20 |
+| 2026-11-09 | abattn ba1 (workspace arnold-17059) | H100 | 124 | 0.14 (est 3.95/h) | OK; H20 |
+| 2026-11-09 | batchspec bs4 (workspace arnold-17059) | H100 | 635 | 0.70 (est 3.95/h) | OK; H20 |
+| 2026-11-09 | batchspec bs5 (workspace arnold-17059) | H100 | 576 | 0.63 (est 3.95/h) | OK; H20 |
+| 2026-11-09 | abstack st1 (workspace arnold-17059) | H100 | 114 | 0.13 (est 3.95/h) | OK; H20 |
+| 2026-11-09 | batchspec bs6 (workspace arnold-17059) | H100 | 569 | 0.62 (est 3.95/h) | OK; H20 |
+| 2026-11-09 | moe-tune agent (kernel sweeps + mt1) (workspace arnold-17059) | H100 | see results/moe_tune_runs.md | ~1.0 (est 3.95/h) | OK; H20 |
