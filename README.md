@@ -1,8 +1,69 @@
 # Northstar
-**Result (MEASURED, H100, Cohere MoE "North", greedy):** a fast Triton decode executor (10.7 -> 3.9 ms/token) plus zero-cost prompt-lookup/suffix speculation reaches 3.2-4.4x tok/s over the original graphed baseline. In EXACT mode (batch-invariant kernels) speculative output equals the same executor's plain greedy on 70/70 runs, at 1.18x / 1.57x / 1.34x over its own plain decode (natural / ctx 2K / ctx 8K). Not bit-identical to HF generate. On a fixed-seed mix of 99 real prompts from 11 public datasets (H15), exact-mode PLD gives a more modest 1.15x geomean (82 wins / 15 ties / 2 losses, worst 0.96x; copy-heavy QA and code-edit 1.3-1.4x, summarization and chat 1.0-1.1x). Details: RESULTS.md H9, H10, H13, H14, H15.
-**Batched (MEASURED, H100, RESULTS.md H20):** the batched exact executor serves 2012 tok/s aggregate at 32 concurrent sequences (greedy, bitwise equal to each sequence decoded alone), via one-launch batched attention, expert-gathered MoE and padded-row masking.
-**Negative (the original thesis):** model-draft self-speculation (the model drafts for itself, fused with verify) never beat plain decode on any executor, context (up to 128K) or batch size tested: RESULTS.md H5-H8, H11, H12. North has authored no gate-passing optimization yet (docs/SELFIMPROVE_ANALYSIS.md).
 
-Original aim: North improving North: weight-stream-fused self-speculation on a persistent-kernel VM (KVM).
-Zero new weights. North is the only LLM that drafts, verifies, and proposes optimizations.
-See docs/PLAN.md (brief), docs/THESIS.md (hypothesis + kill gates), PRIOR_ART.md, DESIGN.md, RESULTS.md.
+**Fast, exact decoding for Cohere's MoE model "North" on a single H100.**
+A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossless against its own plain decode*, with every number measured, labeled and backed by raw logs in this repo.
+
+![Northstar results summary: decode latency, exact speculation, batching, and a vLLM comparison](docs/img/summary.png)
+
+## Headline results
+
+All numbers are MEASURED on one H100 80GB, greedy decoding, up to 192 new tokens. Full tables, methods and caveats are in [`RESULTS.md`](RESULTS.md).
+
+| Result | Number | Where |
+|---|---|---|
+| Plain decode, Triton executor vs graphed PyTorch baseline | 10.7 → 3.9 ms/token | H9 |
+| Executor plus speculation vs original graphed baseline | 3.2–4.4x tok/s | H9, H10, H13 |
+| Exact-mode speculation vs the same executor's plain decode | 1.18x / 1.57x / 1.34x (natural / 2K / 8K ctx) | H14 |
+| Same, on 99 real prompts from 11 public datasets | 1.15x geomean (82 wins, 15 ties, 2 losses, worst 0.96x) | H15 |
+| Batched exact executor, aggregate throughput | 2012 tok/s at 32 concurrent sequences | H20 |
+| Stock vLLM 0.33 at batch 1 (same prompt mix) | plain 253.5 tok/s vs ours exact plain 221.4, ours exact + speculation 254.8 | H17 |
+
+**Exact mode** uses batch-invariant kernels, so speculative output equals the same executor's plain greedy output on 70/70 runs (and 14/14 at every tested context up to 128K). It is **not** bit-identical to Hugging Face `generate`.
+
+## Where it does not help
+
+We report these as plainly as the wins.
+
+- **Long context.** Exact-mode speculation gains vanish at 32K (1.03x) and 128K (0.97x), and the exact executor's plain step is slower than the non-exact one there (H16).
+- **Batching.** Prompt-lookup speculation is break-even from batch 4 up; a cost-aware cap keeps it within 1% of plain (H18–H20).
+- **vs vLLM.** On the real-prompt mix our exact decode is about level with stock vLLM plain, not ahead of it. vLLM's built-in n-gram speculation is slower than its own plain on this model (0.87–0.96x) (H17).
+- **Self-speculation, the original thesis.** The model drafting for itself, fused with verification, never beat plain decode on any executor, context (up to 128K) or batch size tested (H5–H8, H11, H12).
+- **Self-improvement.** North has authored no gate-passing optimization yet ([`docs/SELFIMPROVE_ANALYSIS.md`](docs/SELFIMPROVE_ANALYSIS.md)).
+
+## Scope and caveats
+
+One model (`CohereLabs/North-Mini-Code-1.0`, pinned revision), one GPU type for the headline numbers (H100; some kernel sweeps on A100-80GB), greedy decoding only, no sampling path. Single launches per configuration; absolute tok/s moves by up to about 10% between hosts, so compare ratios inside one launch first. Every claim in `RESULTS.md` is tagged MEASURED, INFERRED or SIMULATED.
+
+## Quick start (CPU only, no GPU or weights needed)
+
+```bash
+make setup     # venv with the pinned versions from SETUP.md
+make test      # all CPU unit tests
+make check     # correctness: speculative == plain greedy, fused == two-pass reference
+make plots     # regenerate plots from raw results/
+make bench     # PRINTS the Modal commands for GPU runs (costs money; does not run them)
+```
+
+GPU runs go through [Modal](https://modal.com) and are launched with `modal run --detach`; see [`SETUP.md`](SETUP.md) for pins and [`RUNS.md`](RUNS.md) for the run ledger.
+
+## Repository map
+
+| Path | What is in it |
+|---|---|
+| `harness/` | Triton executors (`fast_north.py`, `fast_kernels*.py`), batched exact executor, PLD / suffix proposers, benchmarks |
+| `modal/` | Modal entry points for every GPU experiment |
+| `src/` | Subprojects: `northstar` reference model, `kvm` fused-MoE kernels, `approx`, `opt`, `selfedit`, `adapt_sched`, `async_spec`, `mk_selfspec` |
+| `tests/` | CPU unit tests for the core package |
+| `results/` | Raw JSONL / JSON results and plots, one file per run |
+| `logs/` | Client-side run logs |
+| `docs/` | Design notes: [`THESIS.md`](docs/THESIS.md), [`PLAN.md`](docs/PLAN.md), [`NORTH_ARCH.md`](docs/NORTH_ARCH.md), self-improvement and kernel notes |
+| `RESULTS.md` | Every experiment (H1–H20): setup, tables, findings, caveats |
+| `NEXT_STEPS.md` | Current status and the next experiments |
+
+## Background
+
+The project started as *North improving North*: weight-stream-fused self-speculation on a persistent-kernel VM, with zero new weights, where North drafts, verifies and proposes its own optimizations. The pre-registered kill gate ([`docs/THESIS.md`](docs/THESIS.md)) was not met, and the work that held up is the executor and the exact prompt-lookup speculation above. Related work is in [`PRIOR_ART.md`](PRIOR_ART.md) and the design in [`DESIGN.md`](DESIGN.md).
+
+## License
+
+Code is MIT ([`LICENSE`](LICENSE)). The prompts in `harness/workloads_real/realtraffic.jsonl` come from public datasets and keep their own licenses; see [`harness/workloads_real/LICENSES.md`](harness/workloads_real/LICENSES.md). The model weights are Cohere's and are not distributed here.

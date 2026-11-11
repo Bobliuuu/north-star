@@ -15,7 +15,7 @@ own terms (also recorded per row in the `license` and `source` fields).
 | google-research-datasets/mbpp | 9 | CC-BY-4.0 |
 | rajpurkar/squad_v2 | 9 | CC-BY-SA-4.0 (share-alike applies to these rows) |
 | ccdv/govreport-summarization | 18 | US government reports, public domain |
-| EdinburghNLP/xsum | 9 | see the dataset card on Hugging Face (not independently verified here) |
+| EdinburghNLP/xsum | 9 | **No license declared** on the Hugging Face dataset card (`unknown`); BBC news articles, used here as short benchmark excerpts. Remove these rows if you need clear redistribution rights. |
 
 Attribution: cite the datasets above when redistributing these rows. Row counts are
 from the file at the time of writing; the `source` field is authoritative.
