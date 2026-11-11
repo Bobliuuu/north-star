@@ -70,3 +70,37 @@ def build_arms(results_dir, n_random=33, seeds=(11, 12)):
         used |= {key(e) for e in r}
         arms += [(f"random{s}", e) for e in r]
     return arms, info
+
+
+def llm_samples(results_dir):
+    """{model: [edits_or_None per sample (None = invalid/empty/failed)]} from results/selfimprove_bench_llm_*.jsonl"""
+    out = {}
+    for f in sorted(pathlib.Path(results_dir).glob("selfimprove_bench_llm_*.jsonl")):
+        rows = [json.loads(l) for l in f.read_text().splitlines() if l.strip()]
+        if not rows:
+            continue
+        m = rows[0]["model"]
+        out[m] = [({k: v for k, v in r["edits"].items() if k in SPACE} or None) if r.get("edits") else None for r in rows]
+    return out
+
+
+def build_unique(results_dir, n_random=33, seeds=(11, 12)):
+    """Unique edit sets to measure; each carries every arm label that produced it. Returns (items, info)."""
+    arms, info = build_arms(results_dir, n_random, seeds)
+    uniq = {}
+    def add(arm, e):
+        k = key(e)
+        u = uniq.setdefault(k, dict(edits=dict(e), arms=[]))
+        if arm not in u["arms"]:
+            u["arms"].append(arm)
+    for arm, e in arms:
+        add(arm, e)
+    for model, samples in llm_samples(results_dir).items():
+        for e in samples:
+            if e and key(e):
+                add("llm:" + model, e)
+    base_k = key({})
+    items = [dict(edits=u["edits"], arms=u["arms"]) for k, u in uniq.items()]
+    items.sort(key=lambda u: (u["arms"] != ["base"], 0))
+    info["unique_configs"] = len(items)
+    return items, info

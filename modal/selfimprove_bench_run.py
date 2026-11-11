@@ -80,7 +80,7 @@ def run(items: list, passes: int = 3):
             if h: res[cid]["held"].append(h)
         print(f"pass {ps + 1}/{passes} done t={time.time() - t0:.0f}s", flush=True)
     med = lambda L: [statistics.median(col) for col in zip(*L)] if L else None
-    base_id = next(cid for cid, arm, e in items if arm == "base")
+    base_id = next(cid for cid, arm, e in items if arm.split("|")[0] == "base")
     mean = lambda v: sum(v) / len(v) if v else None
     bd, bh = mean(med(res[base_id]["dev"])), mean(med(res[base_id]["held"]))
     rows = []
@@ -106,9 +106,9 @@ def run(items: list, passes: int = 3):
 @app.local_entrypoint()
 def main(tag: str = "sib1", passes: int = 3, n_random: int = 33):
     from selfimprove_bench import arms
-    a, info = arms.build_arms(os.path.join(ROOT, "results"), n_random=n_random)
-    items = [[f"c{i:03d}", arm, e] for i, (arm, e) in enumerate(a)]
-    print("arms:", {k: sum(1 for x in items if x[1] == k) for k in sorted({x[1] for x in items})}, "north store:", info, flush=True)
+    u, info = arms.build_unique(os.path.join(ROOT, "results"), n_random=n_random)
+    items = [[f"c{i:03d}", "base" if x["arms"] == ["base"] else "|".join(x["arms"]), x["edits"]] for i, x in enumerate(u)]
+    print("unique configs:", len(items), "info:", info, flush=True)
     r = run.remote(items, passes)
     ts = datetime.datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
     path = os.path.join(ROOT, "results", f"selfimprove_bench_{tag}_{ts}.jsonl")

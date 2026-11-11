@@ -44,3 +44,20 @@ def test_analyze_gate_shape():
     assert not analyze.passes(dict(ok, build_rc=1))
     s = analyze.summarize([ok, dict(ok, arm="y", dev_speedup=0.9, held_speedup=0.9, check=None)])
     assert s["x"]["n_pass"] == 1 and s["y"]["frac_slower"] == 1.0
+
+
+def test_build_unique_merges_llm_and_dedupes(tmp_path):
+    import shutil, json
+    res = tmp_path / "results"
+    shutil.copytree(ROOT / "results" / "selfimprove_kernel_structured", res / "selfimprove_kernel_structured")
+    shutil.copytree(ROOT / "results" / "selfimprove_kernel_structured_v5", res / "selfimprove_kernel_structured_v5")
+    rows = [dict(model="m/x", edits={"KC": 64}), dict(model="m/x", edits={"KC": 64}), dict(model="m/x", edits={}), dict(model="m/x", error="invalid_edit:x")]
+    (res / "selfimprove_bench_llm_m_x.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
+    items, info = arms.build_unique(res)
+    kc64 = [u for u in items if arms.key(u["edits"]) == (("KC", 64),)]
+    assert len(kc64) == 1 and set(kc64[0]["arms"]) == {"human", "llm:m/x"}
+    assert arms.llm_samples(res)["m/x"] == [{"KC": 64}, {"KC": 64}, None, None]
+    from selfimprove_bench import analyze
+    meas = [dict(arm="human|llm:m/x", edits={"KC": 64}, build_rc=0, dev_speedup=1.06, held_speedup=1.05, check=dict(passed=True))]
+    s = analyze.summarize_llm(meas, arms.llm_samples(res))["m/x"]
+    assert s["samples"] == 4 and s["no_edit"] == 2 and s["n_pass"] == 2 and s["distinct_pass"] == 1
