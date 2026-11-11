@@ -28,7 +28,7 @@ We report these as plainly as the wins.
 - **Batching.** Prompt-lookup speculation is break-even from batch 4 up; a cost-aware cap keeps it within 1% of plain (H18–H20).
 - **vs vLLM.** On the real-prompt mix our exact decode is about level with stock vLLM plain, not ahead of it. vLLM's built-in n-gram speculation is slower than its own plain on this model (0.87–0.96x) (H17).
 - **Self-speculation, the original thesis.** The model drafting for itself, fused with verification, never beat plain decode on any executor, context (up to 128K) or batch size tested (H5–H8, H11, H12).
-- **Self-improvement.** North has authored no gate-passing optimization yet ([`docs/SELFIMPROVE_ANALYSIS.md`](docs/SELFIMPROVE_ANALYSIS.md)).
+- **Self-improvement.** North has authored no gate-passing optimization. On the kernel-tunable task its best edit set is 1.009x against 1.062x for the human sweep, and it is indistinguishable from budget-matched random search, which found 1 passing set in 66 draws (H21, [`docs/SELFIMPROVE_ANALYSIS.md`](docs/SELFIMPROVE_ANALYSIS.md)).
 
 ## Scope and caveats
 

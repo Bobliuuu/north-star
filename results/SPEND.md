@@ -73,3 +73,4 @@
 | 2026-11-09 | abstack st1 (workspace <workspace>) | H100 | 114 | 0.13 (est 3.95/h) | OK; H20 |
 | 2026-11-09 | batchspec bs6 (workspace <workspace>) | H100 | 569 | 0.62 (est 3.95/h) | OK; H20 |
 | 2026-11-09 | moe-tune agent (kernel sweeps + mt1) (workspace <workspace>) | H100 | see results/moe_tune_runs.md | ~1.0 (est 3.95/h) | OK; H20 |
+| 20261111T062610Z | selfimprove bench sib1 (build 78s, 85 configs) | A100-80GB | 748 | 0.519 | True |
