@@ -1,6 +1,6 @@
 """Self-improvement benchmark: base vs human vs North vs budget-matched random edit sets on the 8-tunable moe_fused.cu task.
 
-  modal run --detach modal/selfimprove_bench.py --tag sib1        # ALWAYS --detach
+  modal run --detach modal/selfimprove_bench_run.py --tag sib1        # ALWAYS --detach
 
 All arms are built and benchmarked in ONE launch, in interleaved shuffled passes on the same A100, with the same DEV / HELD-OUT
 shape sets and timing method as modal/kernel_sweep.py. Correctness (src/kvm/tests/check_cuda.py) runs for every config that clears
