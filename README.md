@@ -28,11 +28,16 @@ We report these as plainly as the wins.
 - **Batching.** Prompt-lookup speculation is break-even from batch 4 up; a cost-aware cap keeps it within 1% of plain (H18–H20).
 - **vs vLLM.** On the real-prompt mix our exact decode is about level with stock vLLM plain, not ahead of it. vLLM's built-in n-gram speculation is slower than its own plain on this model (0.87–0.96x) (H17).
 - **Self-speculation, the original thesis.** The model drafting for itself, fused with verification, never beat plain decode on any executor, context (up to 128K) or batch size tested (H5–H8, H11, H12).
-- **Self-improvement.** North has authored no gate-passing optimization. On the kernel-tunable task its best edit set is 1.009x against 1.062x for the human sweep, and it is indistinguishable from budget-matched random search, which found 1 passing set in 66 draws (H21, [`docs/SELFIMPROVE_ANALYSIS.md`](docs/SELFIMPROVE_ANALYSIS.md)).
+- **Self-improvement.** North has authored no gate-passing optimization. On the kernel-tunable task its best edit set is 1.003-1.009x against 1.054-1.062x for the human sweep. It is indistinguishable from budget-matched random search (1 passing set in 66 draws) and from general-purpose models given the same prompt (gpt-5-mini, gpt-4.1, gpt-4.1-mini: 0 passing sets in 99 samples; none found the winning move, KC=64). See H21 and H21b in [`RESULTS.md`](RESULTS.md) and [`docs/SELFIMPROVE_ANALYSIS.md`](docs/SELFIMPROVE_ANALYSIS.md).
+
+![Best edit set per proposer on the kernel-tunable task: human sweep and random search pass the 1.03x gate, North and the tested LLMs do not](docs/img/selfimprove.png)
 
 ## Scope and caveats
 
-One model (`CohereLabs/North-Mini-Code-1.0`, pinned revision), one GPU type for the headline numbers (H100; some kernel sweeps on A100-80GB), greedy decoding only, no sampling path. Single launches per configuration; absolute tok/s moves by up to about 10% between hosts, so compare ratios inside one launch first. Every claim in `RESULTS.md` is tagged MEASURED, INFERRED or SIMULATED.
+Terms: **PLD** is prompt-lookup decoding (drafting tokens by copying matching spans from the prompt); **exact mode** means speculative output equals the same executor's plain greedy output.
+
+
+One model (`CohereLabs/North-Mini-Code-1.0`, pinned revision), one GPU type for the headline numbers (H100; some kernel sweeps on A100-80GB), greedy decoding only, no sampling path. Single launches per configuration; absolute tok/s moves by up to about 10% between hosts, so compare ratios inside one launch first. Every claim in `RESULTS.md` is tagged MEASURED, INFERRED or SIMULATED. The self-improvement comparison ran only OpenAI models as external proposers; Anthropic, Google and other models were not tested.
 
 ## Quick start (CPU only, no GPU or weights needed)
 

@@ -54,3 +54,21 @@ fig.suptitle("Northstar on one H100: Cohere MoE North, greedy decoding (all MEAS
 fig.tight_layout(rect=(0, 0, 1, 0.96))
 fig.savefig(OUT, bbox_inches="tight")
 print("wrote", os.path.relpath(OUT))
+
+
+# ---- second figure: self-improvement benchmark (H21 / H21b, launch sib2) ----
+fig2, a = plt.subplots(figsize=(8.5, 3.9), dpi=150)
+arms = [("human sweep\n(5 sets)", 1.054, GREEN), ("random\n(66 draws)", 1.052, GREY), ("gpt-5-mini\n(33)", 1.014, GREY),
+        ("North\n(45 proposals)", 1.003, ORANGE), ("gpt-4.1\n(33)", 1.001, GREY), ("gpt-4.1-mini\n(33)", 0.999, GREY)]
+b = a.bar([x[0] for x in arms], [x[1] for x in arms], color=[x[2] for x in arms], width=0.6)
+a.bar_label(b, fmt="%.3fx", padding=3)
+a.axhline(1.03, color="k", ls="--", lw=0.9); a.text(5.45, 1.0315, "gate: 1.03x", ha="right", fontsize=8)
+a.axhline(1.0, color="k", lw=0.8)
+a.set_ylim(0.97, 1.075); a.set_ylabel("best dev speedup vs baseline")
+a.set_title("Self-improvement on the kernel-tunable task: best edit set per proposer (H21, H21b)")
+a.tick_params(axis="x", labelsize=8)
+fig2.text(0.01, -0.02, "Same task, gates and A100, measured in one interleaved launch. Only the human sweep and 1 of 66 random draws pass all gates.",
+          fontsize=7.5, color="#555")
+fig2.tight_layout()
+fig2.savefig(os.path.join(os.path.dirname(OUT), "selfimprove.png"), bbox_inches="tight")
+print("wrote docs/img/selfimprove.png")

@@ -1,0 +1,11 @@
+arm          n cfail pass best_dev  median  %slower
+base         1     0    0    1.000   1.000       0%
+human        5     0    3    1.054   1.042       0%
+north       13     0    0    1.003   0.990      85%
+random11    33     1    1    1.052   0.990      78%
+random12    33     2    0    1.004   0.955      87%
+
+model (sample level)                 n noedit dist pass dpass   best  median  %slower
+openai/gpt-5-mini                   33      0   11    0     0  1.014   0.998      52%
+openai/gpt-4.1                      33      0    4    0     0  1.001   0.989      82%
+openai/gpt-4.1-mini                 33      0    3    0     0  0.999   0.998     100%
