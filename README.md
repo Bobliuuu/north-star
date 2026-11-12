@@ -22,7 +22,7 @@ A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossl
 | 👥 Many users at once | **7.2x** total throughput | ✅ WIN | 2,219 tokens/s with 32 users together vs 308 tok/s for one user (H24 bs7; was 2,012 in H20) |
 | 🏁 vs vLLM (popular tool) | **1.29x** plain, **1.49x** with speculation | ✅ WIN | same H100, same container, 99 real prompts: 321.7 / 369.8 vs 248.8 tok/s, faster on 99/99 prompts (H24; was a tie in H17) |
 | 🏁 vs vLLM, many users | **1.02-1.21x** at 1-32 users | ✅ WIN (small at 8+) | same container, same 32 prompts: 2,325 vs 2,217 tok/s at 32 users, 637 vs 528 at 4 (H25) |
-| 🚦 vs vLLM, requests arriving over time | **1.04-1.08x** up to 8 req/s, **0.91x** when all arrive at once | 🟡 PARTIAL | continuous batching, same container, 64 requests; answers never depend on other requests (H27) |
+| 🚦 vs vLLM, requests arriving over time | **1.04-1.05x** up to 8 req/s, 0.98x at 16, **1.16x** when all arrive at once | ✅ WIN (except ~16 req/s) | continuous batching with batched prefill, same container, 64 requests; answers never depend on other requests (H27, H28) |
 | 📜 Long context (8K-128K) | **1.4-2.1x** plain, **2.2x** with speculation at 128K | ✅ WIN | exact plain 90 → 187 tok/s at 128K, 211 → 322 at 32K; with the speculation index built during prefill 203 tok/s at 128K (H24, H25; was the weakest regime) |
 | 🤖 North improves its own kernel | **1.056x** best, **1.026x** average | 🟡 PARTIAL | best of 3 sessions; only 1 of 3 sessions clears our 1.03x bar; 4 extra North helper copies called from outside did not change the average (1.026x with or without) |
 | 🧬 North EMBEDDED inside North: workers live inside one forward pass (qwenagent-style) | **6.6x** accuracy at 4 entities (0.14 → 0.92); **6.0x** at 8 (0.14 → 0.85) | ✅ WIN (capability) / ❌ no edge over simpler adapters | a different task from the kernel test: tracking who owns what across a text. Frozen North is at chance; embedded workers get it to 0.85-0.99. The "private slots" version is 0.94x of a plain adapter (0.92 vs 0.98 at 4 entities). See H23 |
@@ -64,6 +64,7 @@ All numbers are MEASURED on one H100 80GB, greedy decoding, up to 192 new tokens
 | Speculation that does not lose (cost-aware cap + index built during prefill) | mix99 1.125x, worst 0.98x; 32K 1.08x, 128K 1.08x over v2 plain, all exact | H25 |
 | Serving engine (`harness/serve.py`), end to end | 1 user: mix99 368 vs 321 tok/s plain (1.146x, worst 0.974x), all paths exact; batched rows == single-user outputs at B=2..32 | H26 |
 | Continuous batching (`harness/cbatch.py`) vs vLLM 0.33 under Poisson arrivals, same container | 1.04-1.08x at 2-8 req/s, 0.99x at 16, 0.91x saturated; every request == its isolated decode (64/64 at every rate) | H27 |
+| Continuous batching + batch-invariant batched prefill | saturated 2,246 vs vLLM 1,941 tok/s (1.16x), still 64/64 == isolated decode at every rate | H28 |
 | Stock vLLM 0.33 at batch 1 (same prompt mix, separate launches) | plain 253.5 tok/s vs ours exact plain 221.4, ours exact + speculation 254.8 (superseded by the same-container H24 comparison) | H17 |
 | North improving its own kernel, closed loop (3 sessions/arm) | North alone 1.026x mean best, North + 4 North helpers called from outside 1.026x (best session 1.056x); 1 of 3 sessions pass the 1.03x gate in each | H22 |
 
@@ -123,7 +124,7 @@ GPU runs go through [Modal](https://modal.com) and are launched with `modal run 
 | `results/` | Raw JSONL / JSON results and plots, one file per run |
 | `logs/` | Client-side run logs |
 | `docs/` | Design notes: [`THESIS.md`](docs/THESIS.md), [`PLAN.md`](docs/PLAN.md), [`NORTH_ARCH.md`](docs/NORTH_ARCH.md), self-improvement and kernel notes |
-| `RESULTS.md` | Every experiment (H1–H27): setup, tables, findings, caveats |
+| `RESULTS.md` | Every experiment (H1–H28): setup, tables, findings, caveats |
 | `NEXT_STEPS.md` | Current status and the next experiments |
 
 ## 🧬 Two meanings of "North inside North"

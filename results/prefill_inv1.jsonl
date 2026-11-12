@@ -1,0 +1,9 @@
+{"N": 8192, "comp": "cublas F.linear qkv", "invariant": true, "maxabs": 0.0, "ms_at_N": 0.23298320000009198, "phase": "probe"}
+{"N": 8192, "comp": "triton lin_bt qkv", "invariant": true, "maxabs": 0.0, "ms_at_N": 0.5389550000003851, "phase": "probe"}
+{"N": 8192, "comp": "cublas o_proj", "invariant": true, "maxabs": 0.0, "ms_at_N": 0.2113035999997237, "phase": "probe"}
+{"N": 8192, "comp": "cublas router", "invariant": true, "maxabs": 0.0, "ms_at_N": 0.018894599999441652, "phase": "probe"}
+{"N": 8192, "comp": "HF gate+grouped_mm experts", "invariant": true, "maxabs": 0.0, "ms_at_N": 2.2991288000000054, "phase": "probe"}
+{"N": 8192, "comp": "triton eg5 MoE tw=16", "invariant": true, "maxabs": 0.0, "ms_at_N": 7.846271799999727, "phase": "probe"}
+{"N": 8192, "comp": "triton eg5 MoE tw=32", "invariant": true, "maxabs": 0.0, "ms_at_N": 7.03039959999785, "phase": "probe"}
+{"N": 8192, "comp": "triton eg5 MoE tw=64", "invariant": true, "maxabs": 0.0, "ms_at_N": 6.146052799999779, "phase": "probe"}
+{"comp": "eg5 tw64 vs tw16 (alone)", "invariant": true, "phase": "probe"}

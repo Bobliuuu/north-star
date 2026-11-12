@@ -1,0 +1,332 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-F1426mDCLEUcZzSm3AVSzd
+✓ Created objects.
+├── ✓ Uploaded <home>\Documents\Projects\north-star\modal\vllm_vs_x2.py
+├── ✓ Uploaded modal\nsapp.py
+├── ✓ Uploaded <home>\Documents\Projects\north-star\src\northstar
+├── ✓ Uploaded <home>\Documents\Projects\north-star\harness
+├── ✓ Created Function remote.
+├── ✓ Created Function remote_batch.
+└── ✓ Created Function remote_cb.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 13.0.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:09, 41.62it/s]
+[1ALoading weights:   4%|▍         | 16/394 [00:00<00:11, 33.72it/s]
+[1ALoading weights:   5%|▌         | 20/394 [00:00<00:19, 19.28it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:21, 17.38it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:22, 16.26it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:21, 16.04it/s]
+[1ALoading weights:  11%|█▏        | 45/394 [00:02<00:21, 16.04it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:22, 15.28it/s]
+[1ALoading weights:  13%|█▎        | 53/394 [00:03<00:22, 14.95it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:21, 15.27it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:03<00:21, 15.63it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:03<00:22, 14.81it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:04<00:22, 14.29it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:20, 15.75it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:04<00:19, 15.78it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:19, 15.69it/s]
+[1ALoading weights:  24%|██▍       | 94/394 [00:05<00:17, 16.90it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:19, 15.06it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:06<00:19, 14.86it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:06<00:18, 15.66it/s]
+[1ALoading weights:  28%|██▊       | 109/394 [00:06<00:18, 15.67it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:17, 15.58it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:17, 15.31it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:08<00:17, 14.92it/s]
+[1ALoading weights:  34%|███▍      | 133/394 [00:08<00:17, 15.16it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:08<00:16, 15.04it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:09<00:16, 15.31it/s]
+[1ALoading weights:  38%|███▊      | 149/394 [00:09<00:16, 14.80it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:09<00:15, 15.64it/s]
+[1ALoading weights:  40%|███▉      | 157/394 [00:09<00:15, 15.12it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:10<00:14, 15.92it/s]
+[1ALoading weights:  42%|████▏     | 165/394 [00:10<00:14, 15.55it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:10<00:13, 16.39it/s]
+[1ALoading weights:  44%|████▍     | 175/394 [00:10<00:11, 19.45it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:11<00:13, 15.48it/s]
+[1ALoading weights:  46%|████▋     | 183/394 [00:11<00:11, 18.58it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:11<00:13, 15.08it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:12<00:13, 15.07it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:12<00:12, 15.59it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:13<00:11, 15.56it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:13<00:11, 15.78it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:14<00:10, 15.94it/s]
+[1ALoading weights:  58%|█████▊    | 229/394 [00:14<00:10, 15.45it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:14<00:09, 16.10it/s]
+[1ALoading weights:  60%|██████    | 237/394 [00:14<00:09, 16.51it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:15<00:09, 15.80it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:15<00:09, 15.84it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:16<00:08, 15.74it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:16<00:08, 15.78it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:17<00:07, 15.89it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:17<00:06, 15.90it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:18<00:06, 15.67it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:18<00:05, 15.87it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:19<00:05, 15.85it/s]
+[1ALoading weights:  78%|███████▊  | 309/394 [00:19<00:05, 16.10it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:19<00:05, 15.67it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:20<00:04, 15.77it/s]
+[1ALoading weights:  82%|████████▏ | 325/394 [00:20<00:04, 15.29it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:20<00:03, 15.98it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:21<00:03, 15.89it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:21<00:02, 15.91it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:22<00:02, 15.95it/s]
+[1ALoading weights:  91%|█████████ | 357/394 [00:22<00:02, 15.80it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:22<00:01, 16.39it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:23<00:01, 16.38it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:23<00:00, 16.25it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:24<00:00, 15.98it/s]Loading weights: 100%|██████████| 394/394 [00:24<00:00, 16.26it/s]
+EXACT 64 / 64 {'wall': 5.476677596999991, 'steps': 384, 'mean_active': 31.84375, 'mean_bucket': 32.0, 'tokens': 12228}
+LOAD ours rate 2 {"requests": 64, "tokens": 12228, "makespan_s": 33.959, "throughput_tok_s": 360.085, "lat_mean_s": 1.192, "lat_p50_s": 1.169, "lat_p90_s": 1.578, "ttft_mean_s": 0.064, "ttft_p50_s": 0.061, "ttft_p90_s": 0.076, "tpot_mean_ms": 5.94, "tpot_p90_ms": 7.763} exact 64
+LOAD ours rate 4 {"requests": 64, "tokens": 12228, "makespan_s": 17.822, "throughput_tok_s": 686.117, "lat_mean_s": 1.881, "lat_p50_s": 1.856, "lat_p90_s": 2.382, "ttft_mean_s": 0.072, "ttft_p50_s": 0.065, "ttft_p90_s": 0.107, "tpot_mean_ms": 9.523, "tpot_p90_ms": 11.976} exact 64
+LOAD ours rate 8 {"requests": 64, "tokens": 12228, "makespan_s": 10.178, "throughput_tok_s": 1201.465, "lat_mean_s": 3.28, "lat_p50_s": 3.452, "lat_p90_s": 3.976, "ttft_mean_s": 0.093, "ttft_p50_s": 0.074, "ttft_p90_s": 0.136, "tpot_mean_ms": 16.78, "tpot_p90_ms": 20.416} exact 64
+LOAD ours rate 16 {"requests": 64, "tokens": 12228, "makespan_s": 8.255, "throughput_tok_s": 1481.22, "lat_mean_s": 4.409, "lat_p50_s": 4.106, "lat_p90_s": 5.24, "ttft_mean_s": 0.992, "ttft_p50_s": 1.637, "ttft_p90_s": 2.034, "tpot_mean_ms": 17.98, "tpot_p90_ms": 20.362} exact 64
+LOAD ours rate inf {"requests": 64, "tokens": 12228, "makespan_s": 5.444, "throughput_tok_s": 2246.318, "lat_mean_s": 4.165, "lat_p50_s": 4.726, "lat_p90_s": 5.444, "ttft_mean_s": 1.846, "ttft_p50_s": 3.198, "ttft_p90_s": 3.198, "tpot_mean_ms": 12.197, "tpot_p90_ms": 12.64} exact 64
+STEP ours_batched_inv {'rc': 0, 'secs': 218.12055683135986}
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:04, 91.67it/s]
+[1ALoading weights:   5%|▌         | 21/394 [00:00<00:06, 61.26it/s]
+[1ALoading weights:   7%|▋         | 28/394 [00:00<00:07, 48.52it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:00<00:08, 43.42it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:00<00:08, 41.93it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:01<00:08, 39.30it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:01<00:08, 38.67it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:01<00:08, 38.40it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:01<00:08, 39.26it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:01<00:07, 39.33it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:02<00:07, 39.72it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:02<00:07, 39.82it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:02<00:07, 40.53it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:02<00:06, 40.66it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:02<00:06, 39.71it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:03<00:06, 38.49it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:03<00:06, 37.82it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:03<00:06, 38.90it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:03<00:06, 39.02it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:04<00:05, 39.19it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:04<00:05, 40.10it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:04<00:05, 40.51it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:04<00:05, 41.04it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:04<00:04, 40.25it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:04<00:04, 40.14it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:05<00:04, 39.71it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:05<00:04, 40.56it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:05<00:04, 40.55it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:05<00:04, 39.71it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:05<00:03, 39.50it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:06<00:03, 39.46it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:06<00:03, 38.94it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:06<00:03, 39.14it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:06<00:02, 39.78it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:06<00:02, 39.88it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:07<00:02, 39.03it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:07<00:02, 39.09it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:07<00:02, 39.39it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:07<00:02, 38.99it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:08<00:01, 38.92it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:08<00:01, 39.39it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:08<00:01, 39.33it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:08<00:01, 39.63it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:08<00:00, 40.16it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:09<00:00, 41.36it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:09<00:00, 41.61it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:09<00:00, 40.83it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:09<00:00, 38.29it/s]Loading weights: 100%|██████████| 394/394 [00:09<00:00, 40.80it/s]
+EXACT 64 / 64 {'wall': 7.112647247999973, 'steps': 384, 'mean_active': 31.84375, 'mean_bucket': 32.0, 'tokens': 12228}
+LOAD ours rate 2 {"requests": 64, "tokens": 12228, "makespan_s": 33.925, "throughput_tok_s": 360.441, "lat_mean_s": 1.121, "lat_p50_s": 1.044, "lat_p90_s": 1.465, "ttft_mean_s": 0.047, "ttft_p50_s": 0.041, "ttft_p90_s": 0.069, "tpot_mean_ms": 5.656, "tpot_p90_ms": 7.448} exact 64
+LOAD ours rate 4 {"requests": 64, "tokens": 12228, "makespan_s": 17.759, "throughput_tok_s": 688.558, "lat_mean_s": 1.708, "lat_p50_s": 1.712, "lat_p90_s": 2.16, "ttft_mean_s": 0.054, "ttft_p50_s": 0.046, "ttft_p90_s": 0.082, "tpot_mean_ms": 8.706, "tpot_p90_ms": 10.972} exact 64
+LOAD ours rate 8 {"requests": 64, "tokens": 12228, "makespan_s": 10.055, "throughput_tok_s": 1216.135, "lat_mean_s": 2.999, "lat_p50_s": 3.23, "lat_p90_s": 3.622, "ttft_mean_s": 0.071, "ttft_p50_s": 0.056, "ttft_p90_s": 0.107, "tpot_mean_ms": 15.412, "tpot_p90_ms": 18.557} exact 64
+LOAD ours rate 16 {"requests": 64, "tokens": 12228, "makespan_s": 8.231, "throughput_tok_s": 1485.527, "lat_mean_s": 4.359, "lat_p50_s": 4.082, "lat_p90_s": 5.183, "ttft_mean_s": 0.971, "ttft_p50_s": 1.61, "ttft_p90_s": 2.005, "tpot_mean_ms": 17.829, "tpot_p90_ms": 20.18} exact 64
+LOAD ours rate inf {"requests": 64, "tokens": 12228, "makespan_s": 7.108, "throughput_tok_s": 1720.23, "lat_mean_s": 5.418, "lat_p50_s": 6.389, "lat_p90_s": 7.108, "ttft_mean_s": 3.1, "ttft_p50_s": 4.862, "ttft_p90_s": 4.862, "tpot_mean_ms": 12.196, "tpot_p90_ms": 12.635} exact 64
+STEP ours_graph {'rc': 0, 'secs': 132.56277775764465}
+W1112 20:16:27.127000 109 site-packages/torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1112 20:16:27.128000 109 site-packages/torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1112 20:16:27.128000 109 site-packages/torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+(MainProcess pid=109) INFO 11-12 20:16:40 [model.py:744] Resolved architecture: Cohere2MoeForCausalLM
+(MainProcess pid=109) INFO 11-12 20:16:40 [model.py:2170] Using max model len 8192
+(MainProcess pid=109) INFO 11-12 20:16:40 [scheduler.py:310] Chunked prefill is enabled with max_num_batched_tokens=2048.
+(MainProcess pid=109) INFO 11-12 20:16:40 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native'])
+(EngineCore pid=126) INFO 11-12 20:16:44 [core.py:139] Initializing a V1 LLM engine (v0.33.0) with config: model='/weights/north-mini-code-d11e61a8', speculative_config=None, tokenizer='/weights/north-mini-code-d11e61a8', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, custom_histogram_buckets=None, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=/weights/north-mini-code-d11e61a8, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::qwen4_exp_ple_short_conv', 'vllm::qwen4_exp_qsa_with_output', 'vllm::qwen4_exp_qsa_prepare_with_output', 'vllm::linear_attention', 'vllm::qwen_gdn_attention_core', 'vllm::qwen_gdn_attention_core_fused_norm_packed', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::hpc_rope_norm_forward', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 64, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native']), enable_flashinfer_autotune=True, enable_rocm_segmented_attn_autotune=False, enable_cutedsl_warmup=True, enable_jit_warmup=True, monokernel=False, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+(EngineCore pid=126) INFO 11-12 20:16:45 [parallel_state.py:1929] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_5009bdc4e1c1444f800c1d8ab9cfc145 backend=nccl
+(EngineCore pid=126) INFO 11-12 20:16:45 [parallel_state.py:2385] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank 0, EPLB rank N/A
+(EngineCore pid=126) INFO 11-12 20:16:45 [gpu_worker.py:513] Using V2 Model Runner
+(EngineCore pid=126) WARNING 11-12 20:16:45 [flashinfer.py:143] FlashInfer's precompiled kernels are missing or do not match flashinfer-python 0.7.2.post1 (flashinfer-cubin not installed, flashinfer-jit-cache not installed). FlashInfer then downloads and compiles kernels at startup, which can take several minutes, or fails to import mismatched ones. Run `vllm download-kernels` in this Python environment to install them.
+(EngineCore pid=126) INFO 11-12 20:16:47 [model_runner.py:399] Loading model from scratch...
+(EngineCore pid=126) INFO 11-12 20:16:47 [cohere2_moe.py:401] Cohere2MoE attention/MoE dual stream enabled (token threshold=256).
+(EngineCore pid=126) INFO 11-12 20:16:48 [cuda.py:508] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(EngineCore pid=126) INFO 11-12 20:16:48 [flash_attn.py:1122] Using FlashAttention version 3
+(EngineCore pid=126) INFO 11-12 20:16:48 [unquantized.py:365] Using TRITON Unquantized MoE backend out of potential backends: ['TRITON', 'BATCHED_TRITON', 'FlashInfer TRTLLM', 'FlashInfer CUTLASS'].
+(EngineCore pid=126) INFO 11-12 20:16:48 [base_loader.py:82] Initializing model took 1.457217 seconds
+(EngineCore pid=126) INFO 11-12 20:16:48 [weight_utils.py:1144] Filesystem type for checkpoints: 9P. Checkpoint size: 56.78 GiB. Available RAM: 1016.84 GiB.
+(EngineCore pid=126) INFO 11-12 20:16:48 [weight_utils.py:1167] Auto-prefetch is disabled because the filesystem (9P) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+Loading safetensors checkpoint shards:   0% Completed | 0/49 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:   2% Completed | 1/49 [00:00<00:13,  3.65it/s]
+Loading safetensors checkpoint shards:   4% Completed | 2/49 [00:00<00:14,  3.34it/s]
+Loading safetensors checkpoint shards:   6% Completed | 3/49 [00:00<00:13,  3.33it/s]
+Loading safetensors checkpoint shards:   8% Completed | 4/49 [00:01<00:13,  3.36it/s]
+Loading safetensors checkpoint shards:  10% Completed | 5/49 [00:01<00:12,  3.39it/s]
+Loading safetensors checkpoint shards:  12% Completed | 6/49 [00:01<00:12,  3.38it/s]
+Loading safetensors checkpoint shards:  14% Completed | 7/49 [00:02<00:12,  3.27it/s]
+Loading safetensors checkpoint shards:  16% Completed | 8/49 [00:02<00:12,  3.26it/s]
+Loading safetensors checkpoint shards:  18% Completed | 9/49 [00:02<00:12,  3.30it/s]
+Loading safetensors checkpoint shards:  20% Completed | 10/49 [00:02<00:11,  3.36it/s]
+Loading safetensors checkpoint shards:  22% Completed | 11/49 [00:03<00:11,  3.42it/s]
+Loading safetensors checkpoint shards:  24% Completed | 12/49 [00:03<00:10,  3.46it/s]
+Loading safetensors checkpoint shards:  27% Completed | 13/49 [00:03<00:10,  3.48it/s]
+Loading safetensors checkpoint shards:  29% Completed | 14/49 [00:04<00:10,  3.49it/s]
+Loading safetensors checkpoint shards:  31% Completed | 15/49 [00:04<00:09,  3.48it/s]
+Loading safetensors checkpoint shards:  33% Completed | 16/49 [00:04<00:09,  3.45it/s]
+Loading safetensors checkpoint shards:  35% Completed | 17/49 [00:05<00:09,  3.39it/s]
+Loading safetensors checkpoint shards:  37% Completed | 18/49 [00:05<00:09,  3.37it/s]
+Loading safetensors checkpoint shards:  39% Completed | 19/49 [00:05<00:08,  3.39it/s]
+Loading safetensors checkpoint shards:  41% Completed | 20/49 [00:05<00:08,  3.44it/s]
+Loading safetensors checkpoint shards:  43% Completed | 21/49 [00:06<00:07,  3.51it/s]
+Loading safetensors checkpoint shards:  45% Completed | 22/49 [00:06<00:07,  3.56it/s]
+Loading safetensors checkpoint shards:  47% Completed | 23/49 [00:06<00:07,  3.58it/s]
+Loading safetensors checkpoint shards:  49% Completed | 24/49 [00:06<00:06,  3.63it/s]
+Loading safetensors checkpoint shards:  51% Completed | 25/49 [00:07<00:06,  3.59it/s]
+Loading safetensors checkpoint shards:  53% Completed | 26/49 [00:07<00:06,  3.56it/s]
+Loading safetensors checkpoint shards:  55% Completed | 27/49 [00:07<00:06,  3.55it/s]
+Loading safetensors checkpoint shards:  57% Completed | 28/49 [00:08<00:05,  3.58it/s]
+Loading safetensors checkpoint shards:  59% Completed | 29/49 [00:08<00:05,  3.56it/s]
+Loading safetensors checkpoint shards:  61% Completed | 30/49 [00:08<00:05,  3.48it/s]
+Loading safetensors checkpoint shards:  63% Completed | 31/49 [00:09<00:05,  3.37it/s]
+Loading safetensors checkpoint shards:  65% Completed | 32/49 [00:09<00:05,  3.26it/s]
+Loading safetensors checkpoint shards:  67% Completed | 33/49 [00:09<00:04,  3.22it/s]
+Loading safetensors checkpoint shards:  69% Completed | 34/49 [00:09<00:04,  3.19it/s]
+Loading safetensors checkpoint shards:  71% Completed | 35/49 [00:10<00:04,  3.16it/s]
+Loading safetensors checkpoint shards:  73% Completed | 36/49 [00:10<00:04,  3.16it/s]
+Loading safetensors checkpoint shards:  76% Completed | 37/49 [00:10<00:03,  3.14it/s]
+Loading safetensors checkpoint shards:  78% Completed | 38/49 [00:11<00:03,  3.10it/s]
+Loading safetensors checkpoint shards:  80% Completed | 39/49 [00:11<00:03,  3.14it/s]
+Loading safetensors checkpoint shards:  82% Completed | 40/49 [00:11<00:02,  3.13it/s]
+Loading safetensors checkpoint shards:  84% Completed | 41/49 [00:12<00:02,  3.16it/s]
+Loading safetensors checkpoint shards:  86% Completed | 42/49 [00:12<00:02,  3.19it/s]
+Loading safetensors checkpoint shards:  88% Completed | 43/49 [00:12<00:01,  3.23it/s]
+Loading safetensors checkpoint shards:  90% Completed | 44/49 [00:13<00:01,  3.24it/s]
+Loading safetensors checkpoint shards:  92% Completed | 45/49 [00:13<00:01,  3.23it/s]
+Loading safetensors checkpoint shards:  94% Completed | 46/49 [00:13<00:00,  3.22it/s]
+Loading safetensors checkpoint shards:  96% Completed | 47/49 [00:14<00:00,  3.24it/s]
+Loading safetensors checkpoint shards:  98% Completed | 48/49 [00:14<00:00,  3.27it/s]
+Loading safetensors checkpoint shards: 100% Completed | 49/49 [00:14<00:00,  3.61it/s]
+Loading safetensors checkpoint shards: 100% Completed | 49/49 [00:14<00:00,  3.37it/s]
+
+(EngineCore pid=126) INFO 11-12 20:17:03 [default_loader.py:506] Loading weights took 14.59 seconds
+(EngineCore pid=126) INFO 11-12 20:17:03 [unquantized.py:529] Using MoEPrepareAndFinalizeNoDPEPModular
+(EngineCore pid=126) INFO 11-12 20:17:03 [unquantized.py:530] Using TritonExperts MoE backend
+(EngineCore pid=126) INFO 11-12 20:17:04 [model_runner.py:428] Model loading took 56.9 GiB memory and 18.150803 seconds
+(EngineCore pid=126) INFO 11-12 20:17:04 [topk_topp_sampler.py:149] Using FlashInfer for top-p & top-k sampling.
+(EngineCore pid=126) INFO 11-12 20:17:04 [utils.py:381] Using LBNHC KV cache layout.
+(EngineCore pid=126) WARNING 11-12 20:17:04 [kv_cache_planning.py:537] Add 3 padding layers, may waste at most 8.33% KV cache memory
+(EngineCore pid=126) INFO 11-12 20:17:05 [monitor.py:40] [backbone] Starting torch.compile
+(EngineCore pid=126) INFO 11-12 20:17:11 [backends.py:1125] [backbone] Using cache directory: /root/.cache/vllm/torch_compile_cache/1c83b5bd4c/rank_0_0/backbone for vLLM's torch.compile
+(EngineCore pid=126) INFO 11-12 20:17:11 [backends.py:1187] [backbone] Dynamo bytecode transform time: 5.63 s
+(EngineCore pid=126) INFO 11-12 20:17:15 [backends.py:417] [backbone] Compiling a graph for compile range (1, 2048) takes 3.39 s
+(EngineCore pid=126) INFO 11-12 20:17:18 [backends.py:948] collected artifacts: 50 entries, 4 artifacts, 3802674 bytes total
+(EngineCore pid=126) INFO 11-12 20:17:18 [decorators.py:752] [backbone] saved AOT compiled function to /root/.cache/vllm/torch_compile_cache/torch_aot_compile/e68f4e52378ab0d466eff075bd4e8ddbd098695ef41eed1502e794b8516c4809/rank_0_0/model
+(EngineCore pid=126) INFO 11-12 20:17:18 [monitor.py:62] [backbone] torch.compile took 12.84 s in total
+(EngineCore pid=126) WARNING 11-12 20:17:20 [fused_moe.py:1165] Using default MoE config. Performance might be sub-optimal! Config file not found at /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/configs/E=128,N=768,device_name=NVIDIA_H100_80GB_HBM3.json
+(EngineCore pid=126) INFO 11-12 20:17:20 [monitor.py:91] [backbone] Initial profiling/warmup run took 1.98 s
+2026-11-12 20:17:22,153 - INFO - core.py:594 - flashinfer.jit: Building JIT module sampling; this can take several minutes on first use.
+(EngineCore pid=126) WARNING 11-12 20:18:27 [kv_cache_planning.py:537] Add 3 padding layers, may waste at most 8.33% KV cache memory
+
+(EngineCore pid=126) INFO 11-12 20:18:27 [cohere2_moe.py:523] Cohere2MoE attention/MoE dual stream is active.
+[1ACapturing CUDA graphs (PIECEWISE):   0%|          | 0/11 [00:00<?, ?it/s]
+[1ACapturing CUDA graphs (PIECEWISE):   9%|▉         | 1/11 [00:01<00:11,  1.13s/it]
+[1ACapturing CUDA graphs (PIECEWISE):  18%|█▊        | 2/11 [00:01<00:05,  1.78it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  27%|██▋       | 3/11 [00:01<00:03,  2.62it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  36%|███▋      | 4/11 [00:01<00:02,  3.41it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  45%|████▌     | 5/11 [00:02<00:02,  2.09it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  55%|█████▍    | 6/11 [00:02<00:01,  2.71it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  64%|██████▎   | 7/11 [00:02<00:01,  3.25it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  73%|███████▎  | 8/11 [00:02<00:00,  3.81it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  82%|████████▏ | 9/11 [00:03<00:00,  2.63it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  91%|█████████ | 10/11 [00:03<00:00,  3.33it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 11/11 [00:05<00:00,  1.54it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 11/11 [00:05<00:00,  2.15it/s]
+
+[1ACapturing CUDA graphs (FULL):   0%|          | 0/2 [00:00<?, ?it/s]
+[1ACapturing CUDA graphs (FULL):  50%|█████     | 1/2 [00:00<00:00,  8.35it/s]Capturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00,  8.64it/s]Capturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00,  8.59it/s]
+(EngineCore pid=126) INFO 11-12 20:18:33 [model_runner.py:1163] Graph capturing finished in 6 secs, took 0.17 GiB
+(EngineCore pid=126) INFO 11-12 20:18:34 [gpu_worker.py:772] Available KV cache memory: 11.47 GiB
+(EngineCore pid=126) INFO 11-12 20:18:34 [gpu_worker.py:787] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.8800 is equivalent to --gpu-memory-utilization=0.8777 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.8823. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(EngineCore pid=126) INFO 11-12 20:18:34 [kv_cache_utils.py:1147] GPU KV cache size: 115,438 tokens, Maximum concurrency for 8,192 tokens per request: 14.09x
+(EngineCore pid=126) INFO 11-12 20:18:34 [kv_cache_utils.py:865] kv cache group sizes (16, 16, 16, 16)
+(EngineCore pid=126) INFO 11-12 20:18:34 [kv_cache_utils.py:866] kv lcm block sizes 16
+(EngineCore pid=126) INFO 11-12 20:18:34 [kernel_warmup.py:179] JIT kernel warmup starting.
+(EngineCore pid=126) INFO 11-12 20:18:34 [kernel_warmup.py:192] JIT kernel warmup finished in 0.00s.
+(EngineCore pid=126) INFO 11-12 20:18:34 [kernel_warmup.py:100] Warming up ll_bf16 router GEMM kernels for shapes: ((2048, 128),).
+(EngineCore pid=126) INFO 11-12 20:18:35 [kernel_warmup.py:485] Using FlashInfer managed autotune cache (root=flashinfer default). Pass --disable-flashinfer-autotune to skip autotuning.
+2026-11-12 20:18:35,707 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-11-12 20:18:35,802 - INFO - autotune_cache.py:495 - flashinfer.jit: [Autotuner]: Managed autotune cache attached for this process: ManagedAutotuneCache(env_dir='/root/.cache/flashinfer/autotune/v2/5e9bee35662caab8', hits=0, misses=0)
+(EngineCore pid=126) INFO 11-12 20:18:35 [kernel_warmup.py:371] Running FlashInfer autotune with 2048 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048).
+2026-11-12 20:18:35,857 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+
+[1ACapturing CUDA graphs (PIECEWISE):   0%|          | 0/11 [00:00<?, ?it/s]
+[1ACapturing CUDA graphs (PIECEWISE):   9%|▉         | 1/11 [00:00<00:02,  4.68it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  18%|█▊        | 2/11 [00:00<00:01,  5.91it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  27%|██▋       | 3/11 [00:00<00:01,  6.47it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  36%|███▋      | 4/11 [00:00<00:01,  4.87it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  45%|████▌     | 5/11 [00:00<00:01,  5.56it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  55%|█████▍    | 6/11 [00:01<00:01,  4.89it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  64%|██████▎   | 7/11 [00:01<00:00,  5.46it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  73%|███████▎  | 8/11 [00:01<00:00,  5.89it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  82%|████████▏ | 9/11 [00:01<00:00,  6.25it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  91%|█████████ | 10/11 [00:01<00:00,  6.79it/s]
+[1ACapturing CUDA graphs (PIECEWISE): 100%|██████████| 11/11 [00:01<00:00,  7.28it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 11/11 [00:01<00:00,  6.07it/s]
+
+[1ACapturing CUDA graphs (FULL):   0%|          | 0/7 [00:00<?, ?it/s]
+[1ACapturing CUDA graphs (FULL):  14%|█▍        | 1/7 [00:00<00:00,  7.56it/s]
+[1ACapturing CUDA graphs (FULL):  29%|██▊       | 2/7 [00:00<00:00,  8.50it/s]
+[1ACapturing CUDA graphs (FULL):  43%|████▎     | 3/7 [00:00<00:00,  8.15it/s]
+[1ACapturing CUDA graphs (FULL):  57%|█████▋    | 4/7 [00:00<00:00,  8.50it/s]
+[1ACapturing CUDA graphs (FULL):  71%|███████▏  | 5/7 [00:00<00:00,  8.83it/s]
+[1ACapturing CUDA graphs (FULL):  86%|████████▌ | 6/7 [00:00<00:00,  8.47it/s]
+[1ACapturing CUDA graphs (FULL): 100%|██████████| 7/7 [00:00<00:00,  7.94it/s]Capturing CUDA graphs (FULL): 100%|██████████| 7/7 [00:00<00:00,  8.20it/s]
+(EngineCore pid=126) INFO 11-12 20:18:40 [model_runner.py:1163] Graph capturing finished in 4 secs, took 0.07 GiB
+(EngineCore pid=126) INFO 11-12 20:18:40 [gpu_worker.py:1003] CUDA graph pool memory: 0.07 GiB (actual), 0.18 GiB (estimated), difference: 0.11 GiB (151.4%).
+(EngineCore pid=126) INFO 11-12 20:18:40 [gpu_worker.py:1066] Free memory on device (78.47/79.17 GiB) on startup. Desired GPU memory utilization is (0.88, 69.67 GiB). Actual usage is 57.13 GiB for consumed memory (weights + non-torch), 1.07 GiB for peak activation, and 0.07 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=12077103924` (11.25 GiB) to fit into requested memory, or `--kv-cache-memory=21522401280` (20.04 GiB) to fully utilize gpu memory. Current kv cache memory in use is 11.47 GiB.
+(EngineCore pid=126) INFO 11-12 20:18:41 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore pid=126) INFO 11-12 20:18:41 [core.py:405] init engine (profile, create kv cache, warmup model) took 96.95 s (compilation: 12.84 s)
+(EngineCore pid=126) INFO 11-12 20:18:41 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native'])
+(MainProcess pid=109) WARNING 11-12 20:18:41 [input_processor.py:408] Passing raw prompts to InputProcessor is deprecated and will be removed in the future. You should instead pass the outputs of Renderer.render_cmpl() or Renderer.render_chat().
+(EngineCore pid=126) WARNING 11-12 20:18:42 [jit_monitor.py:140] Triton kernel JIT compilation during inference: fused_moe_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+(MainProcess pid=109) INFO 11-12 20:18:52 [loggers.py:335] Engine 000: Avg prompt throughput: 1486.5 tokens/s, Avg generation throughput: 757.7 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.2%
+(MainProcess pid=109) INFO 11-12 20:19:02 [loggers.py:335] Engine 000: Avg prompt throughput: 1013.6 tokens/s, Avg generation throughput: 363.8 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.2%
+(MainProcess pid=109) INFO 11-12 20:19:13 [loggers.py:335] Engine 000: Avg prompt throughput: 462.8 tokens/s, Avg generation throughput: 320.6 tokens/s, Running: 1 reqs, Waiting: 0 reqs, GPU KV cache usage: 0.5%
+LOAD vllm rate 2 {"requests": 64, "tokens": 11791, "makespan_s": 34.129, "throughput_tok_s": 345.488, "lat_mean_s": 1.397, "lat_p50_s": 1.527, "lat_p90_s": 1.895, "ttft_mean_s": 0.081, "ttft_p50_s": 0.063, "ttft_p90_s": 0.08, "tpot_mean_ms": 7.096, "tpot_p90_ms": 9.275}
+(MainProcess pid=109) INFO 11-12 20:19:23 [loggers.py:335] Engine 000: Avg prompt throughput: 607.7 tokens/s, Avg generation throughput: 363.5 tokens/s, Running: 9 reqs, Waiting: 0 reqs, GPU KV cache usage: 3.3%
+(MainProcess pid=109) INFO 11-12 20:19:33 [loggers.py:335] Engine 000: Avg prompt throughput: 1489.3 tokens/s, Avg generation throughput: 698.1 tokens/s, Running: 11 reqs, Waiting: 0 reqs, GPU KV cache usage: 3.4%
+LOAD vllm rate 4 {"requests": 64, "tokens": 11787, "makespan_s": 17.994, "throughput_tok_s": 655.048, "lat_mean_s": 1.948, "lat_p50_s": 1.979, "lat_p90_s": 2.415, "ttft_mean_s": 0.075, "ttft_p50_s": 0.07, "ttft_p90_s": 0.096, "tpot_mean_ms": 10.148, "tpot_p90_ms": 12.099}
+(MainProcess pid=109) INFO 11-12 20:19:43 [loggers.py:335] Engine 000: Avg prompt throughput: 1741.0 tokens/s, Avg generation throughput: 716.6 tokens/s, Running: 20 reqs, Waiting: 0 reqs, GPU KV cache usage: 10.2%
+LOAD vllm rate 8 {"requests": 64, "tokens": 11877, "makespan_s": 10.294, "throughput_tok_s": 1153.821, "lat_mean_s": 2.975, "lat_p50_s": 3.196, "lat_p90_s": 3.534, "ttft_mean_s": 0.088, "ttft_p50_s": 0.079, "ttft_p90_s": 0.125, "tpot_mean_ms": 15.622, "tpot_p90_ms": 18.088}
+(MainProcess pid=109) INFO 11-12 20:19:53 [loggers.py:335] Engine 000: Avg prompt throughput: 2301.9 tokens/s, Avg generation throughput: 1315.7 tokens/s, Running: 32 reqs, Waiting: 14 reqs, GPU KV cache usage: 15.5%
+LOAD vllm rate 16 {"requests": 64, "tokens": 11717, "makespan_s": 7.76, "throughput_tok_s": 1509.829, "lat_mean_s": 3.673, "lat_p50_s": 3.568, "lat_p90_s": 4.421, "ttft_mean_s": 0.658, "ttft_p50_s": 0.153, "ttft_p90_s": 1.416, "tpot_mean_ms": 16.602, "tpot_p90_ms": 18.189}
+(MainProcess pid=109) INFO 11-12 20:20:03 [loggers.py:335] Engine 000: Avg prompt throughput: 2808.8 tokens/s, Avg generation throughput: 1831.9 tokens/s, Running: 27 reqs, Waiting: 0 reqs, GPU KV cache usage: 10.1%
+LOAD vllm rate inf {"requests": 64, "tokens": 11705, "makespan_s": 6.029, "throughput_tok_s": 1941.374, "lat_mean_s": 4.335, "lat_p50_s": 3.311, "lat_p90_s": 6.025, "ttft_mean_s": 1.645, "ttft_p50_s": 1.352, "ttft_p90_s": 3.358, "tpot_mean_ms": 14.773, "tpot_p90_ms": 15.283}
+(MainProcess pid=109) INFO 11-12 20:20:03 [utils.py:628] [shutdown] Process manager: send sigterm to process EngineCore
+(EngineCore pid=126) INFO 11-12 20:20:03 [core.py:1525] [shutdown] EngineCore: trigger received signal=SIGTERM
+(EngineCore pid=126) INFO 11-12 20:20:03 [core.py:1712] [shutdown] EngineCore: start mode=abort timeout=0s
+(EngineCore pid=126) INFO 11-12 20:20:03 [core.py:1743] [shutdown] EngineCore: request processing complete; starting resource teardown
+(EngineCore pid=126) INFO 11-12 20:20:03 [core.py:1573] [shutdown] EngineCore: exiting busy loop
+STEP vllm {'rc': 0, 'secs': 227.95823860168457}
+VXCB_DONE secs 582.5150640010834 est usd 0.6391484730011887
+{'ours_batched_inv': {'rc': 0, 'secs': 218.12055683135986}, 'ours_graph': {'rc': 0, 'secs': 132.56277775764465}, 'vllm': {'rc': 0, 'secs': 227.95823860168457}}
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-F1426mDCLEUcZzSm3AVSzd

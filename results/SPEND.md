@@ -114,3 +114,5 @@
 | 2026-11-12 | vxcb cb1 (ap-1BitGtaYxcZKibPplTwEvL) | H100 | 532 | 0.58 (est 3.95/h) | True |
 | 2026-11-12 | vxcb cb2 (ap-U11oMwJWeT9dbqVgpfhm3s) | H100 | 319 | 0.35 (est 3.95/h) | True |
 | 2026-11-12 | vxcb cb3 (ap-ul2ctFPWt9LizQdynmJ7Ng) | H100 | 557 | 0.61 (est 3.95/h) | True |
+| 2026-11-12 | prefill inv1 (probe) (ap-BkRkt4juTIT9t0yiJ2MDc8) | H100 | 61 | 0.07 (est 3.95/h) | True |
+| 2026-11-12 | vxcb cb4 (ap-F1426mDCLEUcZzSm3AVSzd) | H100 | 583 | 0.64 (est 3.95/h) | True |
