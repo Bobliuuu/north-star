@@ -1,0 +1,220 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-0WWjsqmP8t9ej2DFgxM2Xn
+✓ Created objects.
+├── ✓ Uploaded <home>\Documents\Projects\north-star\modal\serve_run.py
+├── ✓ Uploaded modal\nsapp.py
+├── ✓ Uploaded <home>\Documents\Projects\north-star\tests
+├── ✓ Uploaded <home>\Documents\Projects\north-star\src\northstar
+├── ✓ Uploaded <home>\Documents\Projects\north-star\harness
+└── ✓ Created Function remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:08, 42.78it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:18, 20.61it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:21, 17.26it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:22, 16.14it/s]
+[1ALoading weights:   9%|▉         | 37/394 [00:02<00:22, 15.70it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:22, 15.61it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:03<00:22, 15.40it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:22, 15.21it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:21, 15.25it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:04<00:20, 15.56it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:21, 14.65it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:21, 14.66it/s]
+[1ALoading weights:  22%|██▏       | 85/394 [00:05<00:21, 14.47it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:19, 15.20it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:18, 15.55it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:06<00:18, 15.58it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:06<00:18, 15.41it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:17, 15.61it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:17, 15.78it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:08<00:16, 15.85it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:08<00:16, 15.85it/s]
+[1ALoading weights:  36%|███▌      | 141/394 [00:08<00:15, 15.86it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:09<00:15, 15.85it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:09<00:14, 15.96it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:10<00:14, 15.94it/s]
+[1ALoading weights:  42%|████▏     | 165/394 [00:10<00:14, 16.02it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:10<00:13, 16.23it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:11<00:13, 16.09it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:11<00:12, 15.94it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:12<00:12, 15.97it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:12<00:12, 15.79it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:13<00:11, 15.85it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:13<00:11, 15.87it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:14<00:10, 15.73it/s]
+[1ALoading weights:  58%|█████▊    | 229/394 [00:14<00:10, 15.65it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:14<00:09, 15.94it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:15<00:09, 15.95it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:15<00:08, 15.89it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:16<00:08, 15.47it/s]
+[1ALoading weights:  66%|██████▌   | 261/394 [00:16<00:08, 15.56it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:16<00:08, 15.43it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:17<00:07, 15.40it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:17<00:07, 15.66it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:18<00:06, 15.73it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:18<00:05, 15.90it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:19<00:05, 15.89it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:19<00:04, 15.92it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:20<00:04, 15.60it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:20<00:04, 15.71it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:21<00:03, 15.72it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:21<00:03, 15.50it/s]
+[1ALoading weights:  89%|████████▊ | 349/394 [00:22<00:02, 15.72it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:22<00:02, 15.07it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:22<00:02, 15.21it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:23<00:01, 15.29it/s]
+[1ALoading weights:  95%|█████████▍| 373/394 [00:23<00:01, 15.54it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:24<00:00, 15.26it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:24<00:00, 15.46it/s]Loading weights: 100%|██████████| 394/394 [00:24<00:00, 16.05it/s]
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-12T19:12:12Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "3c88f18ec2f9", "load_s": 34.39756512641907}
+MIX humaneval_00_12 B 1 single+pld_cost 343 vs plain 329 tok/s (1.042x) EXACT prefill 0.49s wait 0.000s
+MIX humaneval_01_22 B 1 single+pld_cost 346 vs plain 329 tok/s (1.051x) EXACT prefill 0.08s wait 0.000s
+MIX humaneval_02_34 B 1 single+pld_cost 370 vs plain 329 tok/s (1.126x) EXACT prefill 0.08s wait 0.000s
+MIX humaneval_03_60 B 1 single+pld_cost 439 vs plain 329 tok/s (1.335x) EXACT prefill 0.07s wait 0.000s
+MIX humaneval_04_1 B 1 single+pld_cost 446 vs plain 329 tok/s (1.356x) EXACT prefill 0.08s wait 0.000s
+MIX humaneval_05_158 B 1 single+pld_cost 425 vs plain 329 tok/s (1.291x) EXACT prefill 0.07s wait 0.000s
+MIX humaneval_06_83 B 1 single+pld_cost 368 vs plain 329 tok/s (1.117x) EXACT prefill 0.08s wait 0.000s
+MIX humaneval_07_103 B 1 single+pld_cost 351 vs plain 329 tok/s (1.068x) EXACT prefill 0.08s wait 0.000s
+MIX humaneval_08_71 B 1 single+pld_cost 356 vs plain 329 tok/s (1.083x) EXACT prefill 0.07s wait 0.000s
+MIX mbpp_00_332 B 1 single+pld_cost 363 vs plain 329 tok/s (1.103x) EXACT prefill 0.07s wait 0.000s
+MIX mbpp_01_24 B 1 single+pld_cost 364 vs plain 330 tok/s (1.104x) EXACT prefill 0.07s wait 0.000s
+MIX mbpp_02_45 B 1 single+pld_cost 364 vs plain 330 tok/s (1.104x) EXACT prefill 0.07s wait 0.000s
+MIX mbpp_03_68 B 1 single+pld_cost 386 vs plain 330 tok/s (1.170x) EXACT prefill 0.07s wait 0.000s
+MIX mbpp_04_120 B 1 single+pld_cost 370 vs plain 330 tok/s (1.121x) EXACT prefill 0.06s wait 0.000s
+MIX mbpp_05_3 B 1 single+pld_cost 381 vs plain 329 tok/s (1.159x) EXACT prefill 0.08s wait 0.000s
+MIX mbpp_06_316 B 1 single+pld_cost 362 vs plain 329 tok/s (1.099x) EXACT prefill 0.06s wait 0.000s
+MIX mbpp_07_435 B 1 single+pld_cost 543 vs plain 329 tok/s (1.652x) EXACT prefill 0.07s wait 0.000s
+MIX mbpp_08_166 B 1 single+pld_cost 394 vs plain 330 tok/s (1.195x) EXACT prefill 0.06s wait 0.000s
+MIX canitedit_00_83 B 1 single+pld_cost 605 vs plain 329 tok/s (1.841x) EXACT prefill 0.08s wait 0.000s
+MIX canitedit_01_6 B 1 single+pld_cost 480 vs plain 328 tok/s (1.461x) EXACT prefill 0.09s wait 0.000s
+MIX canitedit_02_11 B 1 single+pld_cost 425 vs plain 328 tok/s (1.295x) EXACT prefill 0.08s wait 0.000s
+MIX canitedit_03_17 B 1 single+pld_cost 555 vs plain 328 tok/s (1.691x) EXACT prefill 0.08s wait 0.000s
+MIX canitedit_04_30 B 1 single+pld_cost 351 vs plain 328 tok/s (1.070x) EXACT prefill 0.14s wait 0.000s
+MIX canitedit_05_0 B 1 single+pld_cost 384 vs plain 328 tok/s (1.171x) EXACT prefill 0.07s wait 0.000s
+MIX canitedit_06_79 B 1 single+pld_cost 465 vs plain 328 tok/s (1.416x) EXACT prefill 0.08s wait 0.000s
+MIX canitedit_07_41 B 1 single+pld_cost 374 vs plain 328 tok/s (1.140x) EXACT prefill 0.08s wait 0.000s
+MIX canitedit_08_51 B 1 single+pld_cost 364 vs plain 329 tok/s (1.106x) EXACT prefill 0.08s wait 0.000s
+MIX cnn_summ_00_10628 B 1 single+pld_cost 342 vs plain 325 tok/s (1.051x) EXACT prefill 0.19s wait 0.000s
+MIX cnn_summ_01_791 B 1 single+pld_cost 322 vs plain 325 tok/s (0.991x) EXACT prefill 0.17s wait 0.000s
+MIX cnn_summ_02_1447 B 1 single+pld_cost 334 vs plain 325 tok/s (1.028x) EXACT prefill 0.15s wait 0.000s
+MIX cnn_summ_04_3851 B 1 single+pld_cost 349 vs plain 324 tok/s (1.077x) EXACT prefill 0.10s wait 0.000s
+MIX cnn_summ_05_125 B 1 single+pld_cost 340 vs plain 324 tok/s (1.049x) EXACT prefill 0.10s wait 0.000s
+MIX cnn_summ_06_10117 B 1 single+pld_cost 333 vs plain 320 tok/s (1.039x) EXACT prefill 0.19s wait 0.000s
+MIX cnn_summ_07_5325 B 1 single+pld_cost 344 vs plain 322 tok/s (1.067x) EXACT prefill 0.22s wait 0.000s
+MIX cnn_summ_08_6649 B 1 single+pld_cost 333 vs plain 322 tok/s (1.033x) EXACT prefill 0.10s wait 0.000s
+MIX xsum_summ_00_10628 B 1 single+pld_cost 369 vs plain 322 tok/s (1.145x) EXACT prefill 0.09s wait 0.000s
+MIX xsum_summ_01_791 B 1 single+pld_cost 396 vs plain 321 tok/s (1.232x) EXACT prefill 0.08s wait 0.000s
+MIX xsum_summ_02_1447 B 1 single+pld_cost 347 vs plain 323 tok/s (1.072x) EXACT prefill 0.08s wait 0.000s
+MIX xsum_summ_03_2188 B 1 single+pld_cost 335 vs plain 325 tok/s (1.031x) EXACT prefill 0.23s wait 0.000s
+MIX xsum_summ_04_3851 B 1 single+pld_cost 375 vs plain 328 tok/s (1.143x) EXACT prefill 0.06s wait 0.000s
+MIX xsum_summ_05_125 B 1 single+pld_cost 354 vs plain 327 tok/s (1.082x) EXACT prefill 0.08s wait 0.000s
+MIX xsum_summ_06_10117 B 1 single+pld_cost 384 vs plain 328 tok/s (1.172x) EXACT prefill 0.07s wait 0.000s
+MIX xsum_summ_07_5325 B 1 single+pld_cost 383 vs plain 328 tok/s (1.167x) EXACT prefill 0.07s wait 0.000s
+MIX xsum_summ_08_6649 B 1 single+pld_cost 372 vs plain 324 tok/s (1.150x) EXACT prefill 0.07s wait 0.000s
+MIX squad_qa_00_10628 B 1 single+pld_cost 456 vs plain 326 tok/s (1.399x) EXACT prefill 0.07s wait 0.000s
+MIX squad_qa_01_791 B 1 single+pld_cost 416 vs plain 327 tok/s (1.273x) EXACT prefill 0.07s wait 0.000s
+MIX squad_qa_02_1447 B 1 single+pld_cost 508 vs plain 326 tok/s (1.555x) EXACT prefill 0.07s wait 0.000s
+MIX squad_qa_03_2188 B 1 single+pld_cost 393 vs plain 327 tok/s (1.202x) EXACT prefill 0.07s wait 0.000s
+MIX squad_qa_04_3851 B 1 single+pld_cost 380 vs plain 321 tok/s (1.183x) EXACT prefill 0.10s wait 0.000s
+MIX squad_qa_05_125 B 1 single+pld_cost 455 vs plain 327 tok/s (1.389x) EXACT prefill 0.10s wait 0.000s
+MIX squad_qa_06_10117 B 1 single+pld_cost 319 vs plain 328 tok/s (0.974x) EXACT prefill 0.08s wait 0.000s
+MIX squad_qa_07_5325 B 1 single+pld_cost 366 vs plain 327 tok/s (1.120x) EXACT prefill 0.08s wait 0.000s
+MIX squad_qa_08_6649 B 1 single+pld_cost 434 vs plain 327 tok/s (1.329x) EXACT prefill 0.06s wait 0.000s
+MIX ultrachat_00_21256 B 1 single+pld_cost 383 vs plain 326 tok/s (1.175x) EXACT prefill 0.10s wait 0.000s
+MIX ultrachat_03_4377 B 1 single+pld_cost 325 vs plain 326 tok/s (0.997x) EXACT prefill 0.10s wait 0.000s
+MIX ultrachat_04_7703 B 1 single+pld_cost 337 vs plain 325 tok/s (1.035x) EXACT prefill 0.16s wait 0.000s
+MIX ultrachat_05_250 B 1 single+pld_cost 332 vs plain 327 tok/s (1.018x) EXACT prefill 0.07s wait 0.000s
+MIX ultrachat_06_20235 B 1 single+pld_cost 336 vs plain 326 tok/s (1.034x) EXACT prefill 0.11s wait 0.000s
+MIX ultrachat_07_10651 B 1 single+pld_cost 348 vs plain 325 tok/s (1.068x) EXACT prefill 0.17s wait 0.000s
+MIX ultrachat_08_13298 B 1 single+pld_cost 353 vs plain 324 tok/s (1.088x) EXACT prefill 0.17s wait 0.000s
+MIX glaive_tool_00_85027 B 1 single+pld_cost 348 vs plain 327 tok/s (1.067x) EXACT prefill 0.07s wait 0.000s
+MIX glaive_tool_01_6334 B 1 single+pld_cost 351 vs plain 329 tok/s (1.067x) EXACT prefill 0.07s wait 0.000s
+MIX glaive_tool_02_11579 B 1 single+pld_cost 342 vs plain 328 tok/s (1.043x) EXACT prefill 0.08s wait 0.000s
+MIX glaive_tool_03_17509 B 1 single+pld_cost 332 vs plain 327 tok/s (1.013x) EXACT prefill 0.07s wait 0.000s
+MIX glaive_tool_04_30812 B 1 single+pld_cost 420 vs plain 328 tok/s (1.278x) EXACT prefill 0.06s wait 0.000s
+MIX glaive_tool_05_1000 B 1 single+pld_cost 324 vs plain 327 tok/s (0.990x) EXACT prefill 0.09s wait 0.000s
+MIX glaive_tool_06_80941 B 1 single+pld_cost 344 vs plain 328 tok/s (1.048x) EXACT prefill 0.08s wait 0.000s
+MIX glaive_tool_07_111370 B 1 single+pld_cost 334 vs plain 326 tok/s (1.025x) EXACT prefill 0.08s wait 0.000s
+MIX glaive_tool_08_42607 B 1 single+pld_cost 348 vs plain 328 tok/s (1.059x) EXACT prefill 0.07s wait 0.000s
+MIX cnn_summ_03_2188 B 1 single+pld_cost 354 vs plain 322 tok/s (1.100x) EXACT prefill 0.26s wait 0.000s
+MIX ultrachat_01_1583 B 1 single+pld_cost 319 vs plain 323 tok/s (0.986x) EXACT prefill 0.22s wait 0.000s
+MIX ultrachat_02_2894 B 1 single+pld_cost 327 vs plain 321 tok/s (1.018x) EXACT prefill 0.22s wait 0.000s
+MIX gov4k_01_49 B 1 single+pld_cost 319 vs plain 314 tok/s (1.018x) EXACT prefill 0.35s wait 0.000s
+MIX gov8k_06_153 B 1 single+pld_cost 338 vs plain 322 tok/s (1.050x) EXACT prefill 0.26s wait 0.000s
+MIX quality_qa_05_1331 B 1 single+pld_cost 574 vs plain 312 tok/s (1.838x) EXACT prefill 0.36s wait 0.000s
+MIX gov4k_00_664 B 1 single+pld_cost 321 vs plain 307 tok/s (1.044x) EXACT prefill 0.61s wait 0.000s
+MIX gov4k_02_90 B 1 single+pld_cost 336 vs plain 309 tok/s (1.085x) EXACT prefill 0.56s wait 0.000s
+MIX gov4k_03_136 B 1 single+pld_cost 315 vs plain 308 tok/s (1.023x) EXACT prefill 0.56s wait 0.000s
+MIX gov4k_04_240 B 1 single+pld_cost 321 vs plain 310 tok/s (1.036x) EXACT prefill 0.55s wait 0.000s
+MIX gov4k_05_7 B 1 single+pld_cost 334 vs plain 310 tok/s (1.076x) EXACT prefill 0.55s wait 0.000s
+MIX gov4k_06_632 B 1 single+pld_cost 322 vs plain 310 tok/s (1.038x) EXACT prefill 0.56s wait 0.000s
+MIX gov4k_07_870 B 1 single+pld_cost 323 vs plain 309 tok/s (1.046x) EXACT prefill 0.59s wait 0.000s
+MIX gov4k_08_332 B 1 single+pld_cost 310 vs plain 309 tok/s (1.005x) EXACT prefill 0.60s wait 0.000s
+MIX gov8k_00_578 B 1 single+pld_cost 325 vs plain 305 tok/s (1.065x) EXACT prefill 1.01s wait 0.000s
+MIX gov8k_02_389 B 1 single+pld_cost 326 vs plain 309 tok/s (1.057x) EXACT prefill 0.59s wait 0.000s
+MIX gov8k_03_452 B 1 single+pld_cost 320 vs plain 305 tok/s (1.049x) EXACT prefill 0.96s wait 0.000s
+MIX quality_qa_03_962 B 1 single+pld_cost 373 vs plain 310 tok/s (1.203x) EXACT prefill 0.54s wait 0.000s
+MIX gov8k_01_676 B 1 single+pld_cost 331 vs plain 304 tok/s (1.087x) EXACT prefill 1.86s wait 0.000s
+MIX gov8k_04_827 B 1 single+pld_cost 320 vs plain 304 tok/s (1.051x) EXACT prefill 1.76s wait 0.000s
+MIX gov8k_05_35 B 1 single+pld_cost 334 vs plain 303 tok/s (1.105x) EXACT prefill 1.75s wait 0.000s
+MIX gov8k_07_749 B 1 single+pld_cost 325 vs plain 304 tok/s (1.068x) EXACT prefill 1.88s wait 0.000s
+MIX gov8k_08_622 B 1 single+pld_cost 314 vs plain 304 tok/s (1.032x) EXACT prefill 2.08s wait 0.000s
+MIX quality_qa_00_197 B 1 single+pld_cost 448 vs plain 303 tok/s (1.477x) EXACT prefill 2.15s wait 0.000s
+MIX quality_qa_01_361 B 1 single+pld_cost 393 vs plain 303 tok/s (1.299x) EXACT prefill 2.19s wait 0.000s
+MIX quality_qa_02_547 B 1 single+pld_cost 411 vs plain 303 tok/s (1.354x) EXACT prefill 2.14s wait 0.000s
+MIX quality_qa_04_31 B 1 single+pld_cost 335 vs plain 303 tok/s (1.106x) EXACT prefill 2.15s wait 0.000s
+MIX quality_qa_06_1662 B 1 single+pld_cost 375 vs plain 302 tok/s (1.240x) EXACT prefill 2.34s wait 0.000s
+MIX quality_qa_07_1140 B 1 single+pld_cost 408 vs plain 302 tok/s (1.353x) EXACT prefill 2.27s wait 0.000s
+MIX quality_qa_08_47 B 1 single+pld_cost 400 vs plain 302 tok/s (1.325x) EXACT prefill 2.17s wait 0.000s
+LONG py_lru@32768 B 1 single+pld_cost 286 vs plain 273 tok/s (1.050x) EXACT prefill 4.19s wait 0.000s
+LONG py_dataclass@32768 B 1 single+pld_cost 269 vs plain 273 tok/s (0.987x) EXACT prefill 3.99s wait 0.000s
+LONG py_lru@131072 B 1 single+pld_cost 217 vs plain 189 tok/s (1.149x) EXACT prefill 33.94s wait 0.000s
+POOL term_git_conflict B 1 single+pld_cost 391 vs plain 329 tok/s (1.189x) EXACT prefill 0.10s wait 0.000s
+POOL cnn_summ_00_10628 B 1 single+pld_cost 332 vs plain 325 tok/s (1.019x) EXACT prefill 0.18s wait 0.000s
+POOL edit_difflib B 1 single+pld_cost 384 vs plain 328 tok/s (1.172x) EXACT prefill 0.08s wait 0.000s
+POOL cnn_summ_06_10117 B 1 single+pld_cost 346 vs plain 325 tok/s (1.065x) EXACT prefill 0.16s wait 0.000s
+POOL edit_shutil B 1 single+pld_cost 1182 vs plain 328 tok/s (3.598x) EXACT prefill 0.07s wait 0.000s
+POOL extract_heapq B 1 single+pld_cost 370 vs plain 324 tok/s (1.143x) EXACT prefill 0.17s wait 0.000s
+POOL humaneval_06_83 B 1 single+pld_cost 343 vs plain 329 tok/s (1.043x) EXACT prefill 0.06s wait 0.000s
+POOL summ_argparse B 1 single+pld_cost 372 vs plain 325 tok/s (1.144x) EXACT prefill 0.11s wait 0.000s
+POOL sql_topn B 1 single+pld_cost 379 vs plain 329 tok/s (1.151x) EXACT prefill 0.06s wait 0.000s
+POOL go_worker B 1 single+pld_cost 376 vs plain 329 tok/s (1.143x) EXACT prefill 0.06s wait 0.000s
+POOL py_interval B 1 single+pld_cost 329 vs plain 329 tok/s (1.000x) EXACT prefill 0.07s wait 0.000s
+POOL canitedit_06_79 B 1 single+pld_cost 445 vs plain 328 tok/s (1.357x) EXACT prefill 0.07s wait 0.000s
+POOL mbpp_06_316 B 1 single+pld_cost 382 vs plain 329 tok/s (1.161x) EXACT prefill 0.06s wait 0.000s
+POOL sh_logs B 1 single+pld_cost 368 vs plain 330 tok/s (1.117x) EXACT prefill 0.06s wait 0.000s
+POOL term_docker B 1 single+pld_cost 352 vs plain 329 tok/s (1.070x) EXACT prefill 0.06s wait 0.000s
+POOL canitedit_00_83 B 1 single+pld_cost 604 vs plain 328 tok/s (1.839x) EXACT prefill 0.06s wait 0.000s
+POOL pr_hbm B 1 single+pld_cost 424 vs plain 330 tok/s (1.284x) EXACT prefill 0.06s wait 0.000s
+POOL mbpp_00_332 B 1 single+pld_cost 354 vs plain 329 tok/s (1.077x) EXACT prefill 0.06s wait 0.000s
+POOL rs_stack B 1 single+pld_cost 422 vs plain 329 tok/s (1.281x) EXACT prefill 0.07s wait 0.000s
+POOL humaneval_03_60 B 1 single+pld_cost 479 vs plain 329 tok/s (1.457x) EXACT prefill 0.06s wait 0.000s
+POOL py_dataclass B 1 single+pld_cost 471 vs plain 329 tok/s (1.433x) EXACT prefill 0.07s wait 0.000s
+POOL pr_tradeoff B 1 single+pld_cost 339 vs plain 330 tok/s (1.029x) EXACT prefill 0.07s wait 0.000s
+POOL humaneval_00_12 B 1 single+pld_cost 337 vs plain 329 tok/s (1.025x) EXACT prefill 0.06s wait 0.000s
+POOL mbpp_03_68 B 1 single+pld_cost 395 vs plain 330 tok/s (1.198x) EXACT prefill 0.05s wait 0.000s
+POOL py_lru B 1 single+pld_cost 417 vs plain 329 tok/s (1.269x) EXACT prefill 0.06s wait 0.000s
+POOL extract_textwrap B 1 single+pld_cost 633 vs plain 325 tok/s (1.946x) EXACT prefill 0.11s wait 0.000s
+POOL pr_story B 1 single+pld_cost 384 vs plain 330 tok/s (1.165x) EXACT prefill 0.07s wait 0.000s
+POOL term_make B 1 single+pld_cost 377 vs plain 328 tok/s (1.148x) EXACT prefill 0.07s wait 0.000s
+POOL canitedit_03_17 B 1 single+pld_cost 552 vs plain 328 tok/s (1.683x) EXACT prefill 0.09s wait 0.000s
+POOL term_pytest_fail B 1 single+pld_cost 348 vs plain 329 tok/s (1.060x) EXACT prefill 0.05s wait 0.000s
+POOL pr_reason B 1 single+pld_cost 375 vs plain 329 tok/s (1.137x) EXACT prefill 0.07s wait 0.000s
+POOL summ_shutil B 1 single+pld_cost 396 vs plain 326 tok/s (1.217x) EXACT prefill 0.11s wait 0.000s
+POOL first2 B 2 batched+pld_cost 362 vs plain 367 tok/s (0.985x) EXACT prefill 0.26s wait 0.000s
+  batched rows == B=1 outputs: 2 / 2
+POOL first4 B 4 batched_plain 633 vs plain 632 tok/s (1.001x) EXACT prefill 0.45s wait 0.000s
+  batched rows == B=1 outputs: 4 / 4
+POOL first8 B 8 batched_plain 935 vs plain 927 tok/s (1.009x) EXACT prefill 0.85s wait 0.000s
+  batched rows == B=1 outputs: 8 / 8
+POOL first16 B 16 batched_plain 1513 vs plain 1504 tok/s (1.006x) EXACT prefill 1.56s wait 0.000s
+  batched rows == B=1 outputs: 16 / 16
+POOL first32 B 32 batched_plain 2254 vs plain 2259 tok/s (0.998x) EXACT prefill 2.38s wait 0.000s
+  batched rows == B=1 outputs: 32 / 32
+SERVE_DONE secs 518.8569211959839 est usd 0.5693013440900379
+wrote results/serve_sv1.jsonl
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-0WWjsqmP8t9ej2DFgxM2Xn

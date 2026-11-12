@@ -61,6 +61,7 @@ All numbers are MEASURED on one H100 80GB, greedy decoding, up to 192 new tokens
 | Exact v2, batched | 2219 tok/s at B=32, 308 at B=1; all exactness checks 64/64 | H24 |
 | Exact v2 batched vs vLLM 0.33 batched, same container | 1.20x / 1.11x / 1.21x / 1.02x / 1.02x / 1.05x at B=1/2/4/8/16/32 | H25 |
 | Speculation that does not lose (cost-aware cap + index built during prefill) | mix99 1.125x, worst 0.98x; 32K 1.08x, 128K 1.08x over v2 plain, all exact | H25 |
+| Serving engine (`harness/serve.py`), end to end | 1 user: mix99 368 vs 321 tok/s plain (1.146x, worst 0.974x), all paths exact; batched rows == single-user outputs at B=2..32 | H26 |
 | Stock vLLM 0.33 at batch 1 (same prompt mix, separate launches) | plain 253.5 tok/s vs ours exact plain 221.4, ours exact + speculation 254.8 (superseded by the same-container H24 comparison) | H17 |
 | North improving its own kernel, closed loop (3 sessions/arm) | North alone 1.026x mean best, North + 4 North helpers called from outside 1.026x (best session 1.056x); 1 of 3 sessions pass the 1.03x gate in each | H22 |
 
@@ -99,20 +100,28 @@ make plots     # regenerate plots from raw results/
 make bench     # PRINTS the Modal commands for GPU runs (costs money; does not run them)
 ```
 
+Serving with the measured configuration (exact v2, speculation only where it never lost; needs an H100 and the weights, H26):
+
+```python
+from serve import Engine                       # harness/serve.py
+eng = Engine(model, Lmax=4096)                 # captures graphs + cost tables once
+outs, stats = eng.generate([ids_a, ids_b], max_new=192)   # == plain greedy of the same executor, token for token
+```
+
 GPU runs go through [Modal](https://modal.com) and are launched with `modal run --detach`; see [`SETUP.md`](SETUP.md) for pins and [`RUNS.md`](RUNS.md) for the run ledger.
 
 ## 🗺️ Repository map
 
 | Path | What is in it |
 |---|---|
-| `harness/` | Triton executors (`fast_north.py`, `fast_kernels*.py`; exact v2 = `FastNorth.set_x2(**fast_kernels_x2.recommended(Lmax))`), batched exact executor, PLD / suffix proposers, benchmarks |
+| `harness/` | Serving engine (`serve.py`), Triton executors (`fast_north.py`, `fast_kernels*.py`; exact v2 = `FastNorth.set_x2(**fast_kernels_x2.recommended(Lmax))`), batched exact executor, PLD / suffix proposers, benchmarks |
 | `modal/` | Modal entry points for every GPU experiment |
 | `src/` | Subprojects: `northstar` reference model, `kvm` fused-MoE kernels, `approx`, `opt`, `selfedit`, `adapt_sched`, `async_spec`, `mk_selfspec` |
 | `tests/` | CPU unit tests for the core package |
 | `results/` | Raw JSONL / JSON results and plots, one file per run |
 | `logs/` | Client-side run logs |
 | `docs/` | Design notes: [`THESIS.md`](docs/THESIS.md), [`PLAN.md`](docs/PLAN.md), [`NORTH_ARCH.md`](docs/NORTH_ARCH.md), self-improvement and kernel notes |
-| `RESULTS.md` | Every experiment (H1–H25): setup, tables, findings, caveats |
+| `RESULTS.md` | Every experiment (H1–H26): setup, tables, findings, caveats |
 | `NEXT_STEPS.md` | Current status and the next experiments |
 
 ## 🧬 Two meanings of "North inside North"
