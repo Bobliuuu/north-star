@@ -158,3 +158,9 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-12 | ap-Gny2DFpzBiQDd4OZEi2lwd | `modal run --detach modal/serve_run.py::main --tag sv0smoke --sections pool,mix --limit 6` | H26 serving engine smoke; results/serve_sv0smoke.jsonl |
 | 2026-11-12 | ap-0WWjsqmP8t9ej2DFgxM2Xn | `modal run --detach modal/serve_run.py::main --tag sv1 --sections mix,long,pool` | H26 full validation (mix99, 32K/128K, pool B=1..32); results/serve_sv1.jsonl |
 | 2026-11-12 | ap-xzhBwYqhEU8QUQ7zpT0l3F | `modal run --detach modal/serve_run.py::main --tag sv2b2 --sections b2` | H26 B=2 capped PLD over 16 pairs; results/serve_sv2b2.jsonl |
+| 2026-11-12 | ap-94EYUQ1HgO77T5R5QSMXOd | `modal run --detach modal/prof_prefill_run.py::main --tag pf1` | H27 prefill profile (graph vs chunked SDPA, 128-1700 tokens); results/prefill_pf1.jsonl |
+| 2026-11-12 | ap-uKtWF3aovIqBomjs5HTYnO | `modal run --detach modal/vllm_vs_x2.py::cb --tag cb0smoke --n-req 24 --rates 8,inf` | H27 smoke; ours crashed after the exactness phase on a stats-key collision (fixed), vLLM ran |
+| 2026-11-12 | ap-UFTAgWtGDxteI3eJK2yCnA | `modal run --detach modal/vllm_vs_x2.py::cb --tag cb0smoke2 --n-req 24 --rates 8,inf` | H27 smoke rerun; results/vxcb_cb0smoke2_* |
+| 2026-11-12 | ap-1BitGtaYxcZKibPplTwEvL | `modal run --detach modal/vllm_vs_x2.py::cb --tag cb1 --n-req 64 --rates 2,4,8,16,inf` | H27 batched + single prefill vs vLLM; results/vxcb_cb1_* |
+| 2026-11-12 | ap-U11oMwJWeT9dbqVgpfhm3s | `modal run --detach modal/vllm_vs_x2.py::cb --tag cb2 --prefills graph` | H27 graph prefill crashed on bucket > Lmax (fixed); vLLM ran; results/vxcb_cb2_* |
+| 2026-11-12 | ap-ul2ctFPWt9LizQdynmJ7Ng | `modal run --detach modal/vllm_vs_x2.py::cb --tag cb3 --prefills graph,single` | H27 main: graph + single prefill vs vLLM, same container; results/vxcb_cb3_* |

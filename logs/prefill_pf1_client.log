@@ -1,0 +1,123 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-94EYUQ1HgO77T5R5QSMXOd
+✓ Created objects.
+├── ✓ Uploaded 
+│   <home>\Documents\Projects\north-star\modal\prof_prefill_run.py
+├── ✓ Uploaded modal\nsapp.py
+├── ✓ Uploaded <home>\Documents\Projects\north-star\src\northstar
+├── ✓ Uploaded <home>\Documents\Projects\north-star\tests
+├── ✓ Uploaded <home>\Documents\Projects\north-star\harness
+└── ✓ Created Function remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:08, 45.29it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:16, 22.49it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:20, 18.12it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:21, 16.54it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:22, 15.88it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:22, 15.57it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:21, 15.46it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:21, 15.24it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:20, 15.25it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:20, 15.24it/s]
+[1ALoading weights:  22%|██▏       | 85/394 [00:05<00:20, 15.06it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:19, 15.19it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:19, 15.20it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:06<00:19, 15.10it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:18, 15.07it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:18, 14.97it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:08<00:17, 14.77it/s]
+[1ALoading weights:  34%|███▍      | 134/394 [00:08<00:16, 15.93it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:08<00:18, 13.97it/s]
+[1ALoading weights:  36%|███▌      | 141/394 [00:09<00:18, 13.89it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:09<00:16, 14.56it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:09<00:16, 14.70it/s]
+[1ALoading weights:  40%|███▉      | 157/394 [00:10<00:15, 15.13it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:10<00:16, 14.42it/s]
+[1ALoading weights:  42%|████▏     | 165/394 [00:10<00:16, 14.14it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:11<00:14, 14.98it/s]
+[1ALoading weights:  44%|████▍     | 173/394 [00:11<00:15, 14.58it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:11<00:14, 14.90it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:12<00:13, 15.23it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:12<00:13, 15.14it/s]
+[1ALoading weights:  50%|█████     | 197/394 [00:12<00:12, 15.54it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:13<00:12, 14.94it/s]
+[1ALoading weights:  52%|█████▏    | 205/394 [00:13<00:12, 14.85it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:13<00:12, 14.75it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:14<00:12, 14.57it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:14<00:11, 14.69it/s]
+[1ALoading weights:  58%|█████▊    | 229/394 [00:14<00:11, 14.95it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:15<00:10, 14.74it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:15<00:10, 14.88it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:16<00:09, 14.78it/s]
+[1ALoading weights:  64%|██████▍   | 253/394 [00:16<00:09, 15.10it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:16<00:09, 14.53it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:17<00:08, 14.77it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:18<00:08, 14.73it/s]
+[1ALoading weights:  70%|███████   | 277/394 [00:18<00:07, 14.93it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:18<00:07, 14.61it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:19<00:07, 14.53it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:19<00:06, 14.67it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:20<00:05, 14.55it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:20<00:05, 14.71it/s]
+[1ALoading weights:  80%|████████  | 317/394 [00:20<00:05, 14.97it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:21<00:04, 14.77it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:21<00:04, 14.72it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:22<00:03, 14.83it/s]
+[1ALoading weights:  87%|████████▋ | 341/394 [00:22<00:03, 15.23it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:22<00:03, 14.90it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:23<00:02, 14.70it/s]
+[1ALoading weights:  91%|█████████ | 357/394 [00:23<00:02, 14.89it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:24<00:02, 14.55it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:24<00:01, 14.62it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:25<00:01, 14.58it/s]
+[1ALoading weights:  98%|█████████▊| 385/394 [00:25<00:00, 18.23it/s]
+[1ALoading weights:  98%|█████████▊| 388/394 [00:25<00:00, 14.43it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:25<00:00, 15.36it/s]
+PREFILL graph_bmm 128 0.062s 2070 tok/s
+PREFILL lc_sdpa 128 0.063s 2034 tok/s
+PREFILL graph_bmm 512 0.069s 7377 tok/s
+PREFILL lc_sdpa 512 0.064s 8020 tok/s
+PREFILL graph_bmm 1024 0.110s 9319 tok/s
+PREFILL lc_sdpa 1024 0.065s 15710 tok/s
+PREFILL graph_bmm 1700 0.192s 8850 tok/s
+PREFILL lc_sdpa 1700 0.130s 13046 tok/s
+/usr/local/lib/python3.12/site-packages/torch/profiler/profiler.py:217: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.
+  _warn_once(
+PROF graph_bmm kernel ms 104.0 launches 4100
+      24.64 ms    96 _ZN7cutlass13device_kernelIN2at4cuda6detail25enable_3x_kernel_for_sm9x
+      14.70 ms   397 void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_imp
+      10.36 ms    49 void (anonymous namespace)::softmax_warp_forward<float, float, float, 
+       8.82 ms    51 void at::native::vectorized_elementwise_kernel<4, at::native::AUnaryFu
+       8.78 ms    97 Memcpy DtoD (Device -> Device)
+       7.15 ms   443 void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_imp
+       7.10 ms   174 void at::native::vectorized_elementwise_kernel<8, at::native::bfloat16
+       5.06 ms    49 nvjet_tss_256x128_64x4_1x2_h_bz_coopA_TNT
+       2.83 ms    49 nvjet_tst_128x256_64x4_1x2_h_bz_coopA_NNN
+       2.35 ms   384 void at_cuda_detail::cub::DeviceRadixSortOnesweepKernel<at_cuda_detail
+       1.62 ms    97 void at::native::vectorized_gather_kernel<16, long>(char*, char*, long
+       1.20 ms    49 nvjet_tst_256x128_64x4_1x2_h_bz_coopA_TNT
+       1.17 ms    50 nvjet_tst_128x128_64x6_2x1_v_bz_TNT
+       1.02 ms   172 void at::native::unrolled_elementwise_kernel<at::native::direct_copy_k
+       1.02 ms    48 void at::native::reduce_kernel<128, 4, at::native::ReduceOp<c10::BFloa
+PROF lc_sdpa kernel ms 58.2 launches 4151
+      24.59 ms    96 _ZN7cutlass13device_kernelIN2at4cuda6detail25enable_3x_kernel_for_sm9x
+       9.63 ms   671 void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_imp
+       6.92 ms    49 fmha_cutlassF_bf16_aligned_64x128_rf_sm80(PyTorchMemEffAttention::Atte
+       2.58 ms   347 void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_imp
+       2.35 ms   384 void at_cuda_detail::cub::DeviceRadixSortOnesweepKernel<at_cuda_detail
+       1.63 ms    97 void at::native::vectorized_gather_kernel<16, long>(char*, char*, long
+       1.20 ms    49 nvjet_tst_256x128_64x4_1x2_h_bz_coopA_TNT
+       1.17 ms    50 nvjet_tst_128x128_64x6_2x1_v_bz_TNT
+       1.02 ms    48 void at::native::reduce_kernel<128, 4, at::native::ReduceOp<c10::BFloa
+       1.01 ms   172 void at::native::unrolled_elementwise_kernel<at::native::direct_copy_k
+       0.65 ms    98 nvjet_tst_64x64_64x13_2x1_v_bz_TNT
+       0.58 ms   480 Memset (Device)
+       0.52 ms   125 void at::native::vectorized_elementwise_kernel<8, at::native::bfloat16
+       0.47 ms    48 void at::native::sbtopk::gatherTopK<c10::BFloat16, unsigned int, 2, fa
+       0.47 ms    96 void at::native::index_elementwise_kernel<128, 4, at::native::gpu_inde
+PF_DONE secs 44.84133291244507
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-94EYUQ1HgO77T5R5QSMXOd
