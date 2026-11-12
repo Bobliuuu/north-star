@@ -1,11 +1,28 @@
-# Northstar
+# 🌟 Northstar
+
+![license MIT](https://img.shields.io/badge/license-MIT-green) ![GPU H100](https://img.shields.io/badge/GPU-H100%2080GB-76b900?logo=nvidia&logoColor=white) ![decode 2.7x faster](https://img.shields.io/badge/decode-2.7x%20faster-brightgreen) ![batched 2012 tok/s](https://img.shields.io/badge/batched-2012%20tok%2Fs-blue) ![output exact](https://img.shields.io/badge/output-bit--exact%20vs%20own%20decode-success) ![self-improvement 1.056x](https://img.shields.io/badge/North%20tunes%20itself-%2B5.6%25-orange) ![every number measured](https://img.shields.io/badge/every%20number-measured%20%26%20logged-informational)
 
 **Fast, exact decoding for Cohere's MoE model "North" on a single H100.**
 A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossless against its own plain decode*, with every number measured, labeled and backed by raw logs in this repo.
 
+## 🏆 HEADLINE: how far did we push it, and what does it mean?
+
+**In plain English:** we made the AI model **about 3x faster at writing text**, with **exactly the same words coming out**, on one GPU. Then we asked the model to speed *itself* up. It **barely managed it (about 5%)**, so for now humans are still better at tuning it.
+
+| | What we got | What that means |
+|---|---|---|
+| ⚡ **Speed** | 10.7 → 3.9 ms per word-piece (**2.7x**); **3.2-4.4x** with speculation vs the original setup | Replies show up roughly 3x sooner. Same hardware, same model. |
+| 🎯 **Same answers** | Output identical to the model's own normal decoding on 70/70 runs | The speed-up is a free lunch: no quality traded away. |
+| 👥 **Many users at once** | **2,012 word-pieces (tokens)/second** with 32 people served together | One GPU can serve far more people for the same cost. |
+| 🏁 **vs the popular tool (vLLM)** | About level (254.8 vs 253.5 tok/s, one user) | We match the industry standard; we do not beat it. |
+| 🤖 **Can the model improve itself?** | Best **+5.6%** (1.056x) on one of its own GPU kernels, found by North steering four copies of North. Typical sessions: +0% to +4% | Yes, a little, and only sometimes (1 of 3 tries). A human found the same size of win (+5.4-6.2%) with a simple sweep. So: not a self-improvement explosion, but a real first sign. |
+| 👯 **Does "North inside North" help?** | Same average as one North (+2.6% each) | Extra copies did not make it smarter on average; they just found one lucky win. |
+
+**Honest bottom line:** ✅ big, verified speed-ups for running North. ❌ no evidence yet that the model can make itself dramatically faster. Details, failures and caveats below. 👇
+
 ![Northstar results summary: decode latency, exact speculation, batching, and a vLLM comparison](docs/img/summary.png)
 
-## Headline results
+## 📊 Detailed headline results
 
 All numbers are MEASURED on one H100 80GB, greedy decoding, up to 192 new tokens. Full tables, methods and caveats are in [`RESULTS.md`](RESULTS.md).
 
@@ -21,7 +38,7 @@ All numbers are MEASURED on one H100 80GB, greedy decoding, up to 192 new tokens
 
 **Exact mode** uses batch-invariant kernels, so speculative output equals the same executor's plain greedy output on 70/70 runs (and 14/14 at every tested context up to 128K). It is **not** bit-identical to Hugging Face `generate`.
 
-## Where it does not help
+## ⚠️ Where it does not help
 
 We report these as plainly as the wins.
 
@@ -36,14 +53,14 @@ We report these as plainly as the wins.
 
 ![Best-so-far dev speedup per round (closed loop): standard autotuner, North alone, North with North subagents](docs/img/north_in_north.png)
 
-## Scope and caveats
+## 🔍 Scope and caveats
 
 Terms: **PLD** is prompt-lookup decoding (drafting tokens by copying matching spans from the prompt); **exact mode** means speculative output equals the same executor's plain greedy output.
 
 
 One model (`CohereLabs/North-Mini-Code-1.0`, pinned revision), one GPU type for the headline numbers (H100; some kernel sweeps on A100-80GB), greedy decoding only, no sampling path. Single launches per configuration; absolute tok/s moves by up to about 10% between hosts, so compare ratios inside one launch first. Every claim in `RESULTS.md` is tagged MEASURED, INFERRED or SIMULATED. The self-improvement comparison ran only OpenAI models as external proposers; Anthropic, Google and other models were not tested.
 
-## Quick start (CPU only, no GPU or weights needed)
+## 🚀 Quick start (CPU only, no GPU or weights needed)
 
 ```bash
 make setup     # venv with the pinned versions from SETUP.md
@@ -55,7 +72,7 @@ make bench     # PRINTS the Modal commands for GPU runs (costs money; does not r
 
 GPU runs go through [Modal](https://modal.com) and are launched with `modal run --detach`; see [`SETUP.md`](SETUP.md) for pins and [`RUNS.md`](RUNS.md) for the run ledger.
 
-## Repository map
+## 🗺️ Repository map
 
 | Path | What is in it |
 |---|---|
