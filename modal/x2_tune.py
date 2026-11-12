@@ -145,6 +145,64 @@ def moe_part(rec):
             print("moe dn T", T, c, f"{ms*1e3:.1f}us (base {base_ms*1e3:.1f}us) inv={inv}", flush=True)
 
 
+def moef_part(rec):
+    """Fused MoE (gate_up + down slice, reduce in resid norm) vs blk gate_up/down + resid_norm: chain time, T-invariance, closeness."""
+    import torch
+    import fast_kernels as fk, fast_kernels_blk as fb, fast_kernels_x2 as f2
+    dev, bf = "cuda", torch.bfloat16
+    torch.manual_seed(0)
+    E, Dm, I, k = 128, 2048, 768, 8
+    NL = 4
+    gus = [(torch.randn(E, 2 * I, Dm, device=dev) * 0.02).to(bf) for _ in range(NL)]
+    dns = [(torch.randn(E, Dm, I, device=dev) * 0.02).to(bf) for _ in range(NL)]
+    wn = (torch.rand(Dm, device=dev) + .5).to(bf)
+    R = 48
+    for T in (1, 13):
+        idxs = [torch.stack([torch.randperm(E)[:k] for _ in range(T)]).to(torch.int32).to(dev) for _ in range(R)]
+        x = torch.randn(T, Dm, device=dev).to(bf); a = torch.randn(T, Dm, device=dev).to(bf); h = torch.randn(T, Dm, device=dev).to(bf)
+        sc = torch.rand(T, k, device=dev).to(bf)
+        hb = torch.zeros(T * k, I, device=dev, dtype=bf); ob = torch.zeros(T * k, Dm, device=dev, dtype=bf)
+        xo = torch.zeros(T, Dm, device=dev, dtype=bf); ho = torch.zeros_like(xo)
+        mc = f2.TUNED_MOE_CFG
+
+        def base(i):
+            m = fb.moe_gemv_blk(h, idxs[i], sc, gus[i % NL], dns[i % NL], hb, ob, mc)
+            fk.resid_norm(x, a, m, wn, xo, ho, 1e-6)
+        tb = _graph_ms(base, R)
+        base(0); ref_ho = ho.clone()
+        rec(part="moef", T=T, cfg="blk+resid_norm", ms=tb); print("moef T", T, "blk", f"{tb*1e3:.1f}us", flush=True)
+        cands = [dict(BJ=bj, BK=bk, BN2=bn2, nw=nw, ns=ns) for bj in (32, 64, 128) for bk in (64, 128, 256) for bn2 in (64, 128, 256) for nw in (4, 8) for ns in (2, 3)
+                 if (2 * bj * bk + bn2 * bj) * 2 * ns <= 200_000]
+        res = []
+        for c in cands:
+            J = I // c["BJ"]
+            part = torch.zeros(T * k * J, Dm, device=dev, dtype=torch.float32)
+            try:
+                def fz(i, c=c, part=part, J=J):
+                    f2.moe_fused(h, idxs[i], gus[i % NL], dns[i % NL], part, c)
+                    f2.resid_norm_moe(x, a, part, sc, J, wn, xo, ho, 1e-6)
+                ms = _graph_ms(fz, R)
+                res.append((ms, c))
+            except Exception as e:
+                rec(part="moef", T=T, cfg=c, err=str(e)[:200])
+        res.sort(key=lambda r: r[0])
+        for ms, c in res[:6]:
+            J = I // c["BJ"]
+            part = torch.zeros(T * k * J, Dm, device=dev, dtype=torch.float32)
+            f2.moe_fused(h, idxs[0], gus[0], dns[0], part, c); f2.resid_norm_moe(x, a, part, sc, J, wn, xo, ho, 1e-6)
+            diff = float((ho.float() - ref_ho.float()).abs().max()); full = ho.clone()
+            inv = None
+            if T > 1:
+                inv = True
+                for t in (0, 6, 12):
+                    p1 = torch.zeros(k * J, Dm, device=dev, dtype=torch.float32); xo1 = torch.zeros(1, Dm, device=dev, dtype=bf); ho1 = torch.zeros_like(xo1)
+                    f2.moe_fused(h[t:t + 1].contiguous(), idxs[0][t:t + 1].contiguous(), gus[0], dns[0], p1, c)
+                    f2.resid_norm_moe(x[t:t + 1].contiguous(), a[t:t + 1].contiguous(), p1, sc[t:t + 1].contiguous(), J, wn, xo1, ho1, 1e-6)
+                    inv &= bool(torch.equal(ho1[0], full[t]))
+            rec(part="moef", T=T, cfg=c, ms=ms, base_ms=tb, maxabs_vs_blk=diff, invariant=inv)
+            print("moef T", T, c, f"{ms*1e3:.1f}us (blk {tb*1e3:.1f}) maxabs {diff:.3g} inv {inv}", flush=True)
+
+
 @app.function(gpu="H100", timeout=3000)
 def run(part: str):
     sys.path.insert(0, "/root/harness")
@@ -163,6 +221,8 @@ def run(part: str):
             lin_part(rec)
         if part in ("moe", "all"):
             moe_part(rec)
+        if part == "moef":
+            moef_part(rec)
     except Exception:
         rec(part="fatal", err=traceback.format_exc()[-1500:])
         print(traceback.format_exc(), flush=True)

@@ -116,6 +116,7 @@ def phase_traffic(m, tok, j, lin_cfg, moe_cfg, n_new=192, limit=None, cand=None)
         p_s = _cap(X, kv, V["s"], (1,), logits="last")[1]
         sts = _cap(X, kv, cand or V["ts"], range(1, TMAX + 1))
         print("bucket", edge, "captured; tasks", len(cell), flush=True)
+        cost = None
         for t, ids in cell:
             try:
                 P = len(ids)
@@ -147,17 +148,65 @@ def phase_traffic(m, tok, j, lin_cfg, moe_cfg, n_new=192, limit=None, cand=None)
                 torch.cuda.synchronize(); t0 = time.perf_counter()
                 out, rounds = pld.spec_loop(pld.make("sam2"), ids, n, 12, verify, eos, policy=pld.Policy("fixed", 12))
                 torch.cuda.synchronize(); sdt = time.perf_counter() - t0
+                if cost is None:  # cost table of this bucket's v2 graphs, timed on this prompt's tail (real distinct tokens)
+                    cost = {}
+                    for T in range(1, TMAX + 1):
+                        sts[T].set(ids[-T:] if T > 1 else ids[-1:], P - 1); cost[T] = time_graph(sts[T], n=10, warm=2)[0]
+                    j.add(phase="cost", bucket=edge, ms=cost); print("COST", edge, {k: round(v, 2) for k, v in cost.items()}, flush=True)
+                    gb.eager_prefill(ids[:-1], kv)  # the timing replays wrote scratch KV at P-1.. ; restore before the next arm
+                torch.cuda.synchronize(); t0 = time.perf_counter()
+                outc, roundsc = pld.spec_loop(pld.make("sam2"), ids, n, 12, verify, eos, policy=pld.CostPolicy(12, cost))
+                torch.cuda.synchronize(); cdt = time.perf_counter() - t0
                 row = dict(phase="traffic", task=t["id"], kind=t["kind"], prompt_len=P, bucket=edge, n_v1=len(res["v1"][0]), n_ts=n,
                            v1_tok_s=len(res["v1"][0]) / res["v1"][1], v1b_tok_s=v1b, s_tok_s=len(res["s"][0]) / res["s"][1], ts_tok_s=n / res["ts"][1],
-                           ts_spec_tok_s=len(out) / sdt, spec_identical=out == ptoks, s_equals_v1=res["s"][0] == res["v1"][0],
+                           ts_spec_tok_s=len(out) / sdt, spec_identical=out == ptoks, ts_cost_tok_s=len(outc) / cdt, cost_identical=outc == ptoks,
+                           cost_rounds=len(roundsc), cost_mean_T=sum(d + 1 for d, _ in roundsc) / len(roundsc), s_equals_v1=res["s"][0] == res["v1"][0],
                            ts_equals_v1=res["ts"][0] == res["v1"][0], rounds=len(rounds))
                 j.add(**row)
-                print("TR", t["id"], "P", P, "v1 %.0f/%.0f s %.0f ts %.0f spec %.0f" % (row["v1_tok_s"], v1b, row["s_tok_s"], row["ts_tok_s"], row["ts_spec_tok_s"]),
-                      "exact" if row["spec_identical"] else "MISMATCH", "s==v1" if row["s_equals_v1"] else "s!=v1", flush=True)
+                print("TR", t["id"], "P", P, "v1 %.0f/%.0f s %.0f ts %.0f spec %.0f cost %.0f" % (row["v1_tok_s"], v1b, row["s_tok_s"], row["ts_tok_s"], row["ts_spec_tok_s"], row["ts_cost_tok_s"]),
+                      "exact" if row["spec_identical"] and row["cost_identical"] else "MISMATCH", "s==v1" if row["s_equals_v1"] else "s!=v1", flush=True)
             except Exception:
                 j.add(phase="task_error", task=t["id"], err=traceback.format_exc()[-900:]); print("TASK ERR", t["id"], traceback.format_exc()[-700:], flush=True)
         del X, gb, kv, p_v1, p_s, sts
         torch.cuda.empty_cache()
+
+
+def _critical(prof):
+    """Per-layer critical branch from the CUDA kernel timeline (chrome trace, per-stream). Layers are delimited by _resid_norm_kernel
+    on the main stream. For each layer: main_end = last main-stream kernel end before the norm, side_end = last other-stream kernel end;
+    attention-critical layers have side_end > main_end (main idles, waiting for the join). Returns sums in ms."""
+    import os, tempfile
+    fd, path = tempfile.mkstemp(suffix=".json"); os.close(fd)
+    prof.export_chrome_trace(path)
+    ev = [e for e in json.load(open(path))["traceEvents"] if e.get("cat") == "kernel"]
+    os.remove(path)
+    norms = sorted((e for e in ev if "_resid_norm" in e["name"]), key=lambda e: e["ts"])
+    if len(norms) < 3:
+        return {}
+    # graph replay maps branches onto its own streams: label the ATTENTION branch by the stream that runs _attn_split_x
+    attn_streams = {e["args"].get("stream") for e in ev if "_attn_split" in e["name"]}
+    norm_stream = norms[0]["args"].get("stream")
+    side_crit = moe_crit = 0
+    wait_side = wait_main = 0.0   # us the main stream idled waiting for attention / attention finished early (slack)
+    gap_after_join = 0.0
+    names = {"attn_last": {}, "moe_last": {}}
+    for a, b in zip(norms[:-1], norms[1:]):
+        lo, hi = a["ts"] + a["dur"], b["ts"]
+        inl = [e for e in ev if lo <= e["ts"] < hi]
+        se = [e for e in inl if e["args"].get("stream") in attn_streams]       # attention branch
+        me = [e for e in inl if e["args"].get("stream") not in attn_streams]   # router + MoE branch
+        if not me or not se:
+            continue
+        m_end = max(e["ts"] + e["dur"] for e in me); s_end = max(e["ts"] + e["dur"] for e in se)
+        ml = max(me, key=lambda e: e["ts"] + e["dur"])["name"][:24]; sl = max(se, key=lambda e: e["ts"] + e["dur"])["name"][:24]
+        names["moe_last"][ml] = names["moe_last"].get(ml, 0) + 1; names["attn_last"][sl] = names["attn_last"].get(sl, 0) + 1
+        if s_end > m_end:
+            side_crit += 1; wait_side += s_end - m_end
+        else:
+            moe_crit += 1; wait_main += m_end - s_end
+        gap_after_join += hi - max(m_end, s_end)
+    return dict(layers_attn_critical=side_crit, layers_moe_critical=moe_crit, attn_late_ms=wait_side / 1e3,
+                moe_late_ms=wait_main / 1e3, norm_stream_is_attn=norm_stream in attn_streams, join_to_norm_gap_ms=gap_after_join / 1e3, **names)
 
 
 @torch.no_grad()
@@ -198,8 +247,10 @@ def phase_prof(m, tok, j, lin_cfg, moe_cfg, extra=None):
             if cur_e is not None: busy += cur_e - cur_s
             span = (iv[-1][1] - iv[0][0]) / 1e3 if iv else 0
             top = sorted(agg.items(), key=lambda kv_: -kv_[1][0])[:14]
+            crit = _critical(prof)
             j.add(phase="prof", variant=name, T=T, ctx=P, graph_ms=med, span_ms=span, busy_ms=busy / 1e3, kernel_sum_ms=sum(v_[0] for v_ in agg.values()),
-                  launches=len(iv), top={k: dict(ms=v_[0], n=v_[1]) for k, v_ in top})
+                  launches=len(iv), top={k: dict(ms=v_[0], n=v_[1]) for k, v_ in top}, critical=crit)
+            print("CRIT", name, "T", T, json.dumps(crit), flush=True)
             print("PROF", name, "T", T, "graph %.3f span %.3f busy %.3f ksum %.3f launches %d" % (med, span, busy / 1e3, sum(v_[0] for v_ in agg.values()), len(iv)), flush=True)
             for k_, v_ in top: print("   %7.3f ms %4d  %s" % (v_[0], v_[1], k_), flush=True)
             del s
