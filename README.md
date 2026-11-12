@@ -18,7 +18,7 @@ A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossl
 | Metric | Gain | Win? | Numbers |
 |---|---|---|---|
 | ⚡ Speed (plain decode) | **2.7x**, exact mode now **1.63x** more (H24) | ✅ WIN | 10.7 → 3.9 ms per token; exact decode 4.5 → 3.05 ms by running attention and MoE concurrently (H24); **3.2-4.4x** with speculation vs the original setup |
-| 🎯 Same answers | **1.00x** (no quality lost) | ✅ WIN | identical to the model's own normal decoding on 70/70 runs |
+| 🎯 Same answers | **1.00x** (no quality lost) | ✅ WIN | identical to the model's own normal decoding on every run checked: 70/70 (H14), 99/99 real prompts (H24), every serving and continuous-batching request (H26-H28) |
 | 👥 Many users at once | **7.2x** total throughput | ✅ WIN | 2,219 tokens/s with 32 users together vs 308 tok/s for one user (H24 bs7; was 2,012 in H20) |
 | 🏁 vs vLLM (popular tool) | **1.29x** plain, **1.49x** with speculation | ✅ WIN | same H100, same container, 99 real prompts: 321.7 / 369.8 vs 248.8 tok/s, faster on 99/99 prompts (H24; was a tie in H17) |
 | 🏁 vs vLLM, many users | **1.02-1.21x** at 1-32 users | ✅ WIN (small at 8+) | same container, same 32 prompts: 2,325 vs 2,217 tok/s at 32 users, 637 vs 528 at 4 (H25) |
@@ -41,7 +41,7 @@ Legend: ✅ clear win · 🟡 small or partial win · ➖ tie · ❌ no win. The
 | 🤖 Self-improvement | Yes, a little, and only sometimes. A human found the same size of win (+5.4-6.2%) with a simple sweep. Not a self-improvement explosion, but a real first sign. |
 | 🧬 Embedded North-in-North | We really did put small trainable workers inside North's forward pass. North went from guessing to mostly right at tracking several things in a story, so embedding works. But the fancy "separate private workers" design was no better than a simple add-on, same as we saw on Qwen. Note this tests tracking ability, not making North faster. |
 
-**Honest bottom line:** ✅ big, verified speed-ups for running North, now ahead of stock vLLM at batch 1 on the same H100. ❌ no evidence yet that the model can make itself dramatically faster. Details, failures and caveats below. 👇
+**Honest bottom line:** ✅ big, verified speed-ups for running North, now ahead of stock vLLM on the same H100 for one user, for static batches up to 32, and under most arrival rates we tested. ❌ no evidence yet that the model can make itself dramatically faster. Details, failures and caveats below. 👇
 
 ![Northstar results summary: decode latency, exact speculation, batching, and a vLLM comparison](docs/img/summary.png)
 
@@ -76,7 +76,7 @@ We report these as plainly as the wins.
 
 - **Long context speculation needs the index off the decode path.** Speculation looked like a loss at 32K/128K (0.92x / 0.75x, H24) because the proposer indexes the whole prompt on the decode path; built during prefill it gains 1.08x (H25). Prefill is 9-12% slower in our bench while the thread runs.
 - **Batching.** Prompt-lookup speculation is break-even from batch 4 up; a cost-aware cap keeps it within 1% of plain (H18–H20).
-- **vs vLLM, at scale.** Against vLLM batched serving the lead is small from 8 users up (1.02-1.05x at B=8-32) and only static batches of 1-32 were measured: no continuous batching with arrivals, no B>32, vLLM defaults (H25). vLLM's built-in n-gram speculation is slower than its own plain on this model (0.87–0.96x) (H17).
+- **vs vLLM, at scale.** Against vLLM batched serving the lead is small from 8 users up (1.02-1.05x at B=8-32, H25). With requests arriving over time we are slightly slower around 16 req/s (0.98x) and vLLM has lower mean latency at 8-16 req/s, because its chunked prefill interleaves with decoding while ours pauses decoding (H27, H28). Not measured: more than 32 concurrent sequences, prompts over 1.7K tokens in the arrival tests, tuned vLLM settings. vLLM's built-in n-gram speculation is slower than its own plain on this model (0.87–0.96x) (H17).
 - **Batching gains shrink.** The concurrent-branch trick gives 1.4x at 1 user but only 1.10-1.15x at 32: large batches are limited by reading expert weights, not by running branches one after another (H24).
 - **Self-speculation, the original thesis.** The model drafting for itself, fused with verification, never beat plain decode on any executor, context (up to 128K) or batch size tested (H5–H8, H11, H12).
 - **Self-improvement, open loop (H21, H21b).** Proposing without measured feedback, North authored no gate-passing optimization: its best edit set was 1.003-1.009x against 1.054-1.062x for the human sweep, indistinguishable from budget-matched random search (1 passing set in 66 draws) and from general-purpose models given the same prompt (0 passing sets in 99 samples). See [`docs/SELFIMPROVE_ANALYSIS.md`](docs/SELFIMPROVE_ANALYSIS.md).
@@ -109,6 +109,11 @@ Serving with the measured configuration (exact v2, speculation only where it nev
 from serve import Engine                       # harness/serve.py
 eng = Engine(model, Lmax=4096)                 # captures graphs + cost tables once
 outs, stats = eng.generate([ids_a, ids_b], max_new=192)   # == plain greedy of the same executor, token for token
+
+from cbatch import ContinuousEngine, Request   # harness/cbatch.py: requests join/leave between decode steps (H27, H28)
+ce = ContinuousEngine(model, Lmax=4096, slots=32)
+reqs = [Request(i, ids, max_new=192, arrival=t) for i, (ids, t) in enumerate(arrivals)]
+stats = ce.run(reqs)                           # each request's tokens == the same request decoded alone
 ```
 
 GPU runs go through [Modal](https://modal.com) and are launched with `modal run --detach`; see [`SETUP.md`](SETUP.md) for pins and [`RUNS.md`](RUNS.md) for the run ledger.

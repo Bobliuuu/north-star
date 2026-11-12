@@ -1,5 +1,8 @@
 # NEXT_STEPS
 
+## STATUS 2026-11-12 (release freeze)
+Parked, not merged: chunked prefill interleaved with decode, branch `feat/chunked-prefill` (exact 64/64 at every rate, but no latency win over `batched_inv` at 8-16 req/s and slower at saturation in cb5; its vLLM arm was stopped for the freeze).
+
 ## STATUS UPDATE 2026-11-12 e (RESULTS.md H28)
 DONE: (a) of 2026-11-12 d. Batch-invariant batched prefill (attention per request, rest batched) is the continuous-batching default: saturated 1.16x vLLM, every request still == its isolated decode.
 NEXT: (a) prefill chunks interleaved with decode steps (vLLM still has lower latency at 8-16 req/s); (b) switch prefill GEMMs to the invariant-by-construction Triton kernels behind a flag, or test cuBLAS/grouped_mm invariance across more shapes; (c) speculation for a lone active request.
