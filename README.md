@@ -17,6 +17,7 @@ All numbers are MEASURED on one H100 80GB, greedy decoding, up to 192 new tokens
 | Same, on 99 real prompts from 11 public datasets | 1.15x geomean (82 wins, 15 ties, 2 losses, worst 0.96x) | H15 |
 | Batched exact executor, aggregate throughput | 2012 tok/s at 32 concurrent sequences | H20 |
 | Stock vLLM 0.33 at batch 1 (same prompt mix) | plain 253.5 tok/s vs ours exact plain 221.4, ours exact + speculation 254.8 | H17 |
+| North improving its own kernel, closed loop (3 sessions/arm) | North alone 1.026x mean best, North + 4 North subagents 1.026x (best session 1.056x); 1 of 3 sessions pass the 1.03x gate in each | H22 |
 
 **Exact mode** uses batch-invariant kernels, so speculative output equals the same executor's plain greedy output on 70/70 runs (and 14/14 at every tested context up to 128K). It is **not** bit-identical to Hugging Face `generate`.
 
@@ -28,13 +29,12 @@ We report these as plainly as the wins.
 - **Batching.** Prompt-lookup speculation is break-even from batch 4 up; a cost-aware cap keeps it within 1% of plain (H18–H20).
 - **vs vLLM.** On the real-prompt mix our exact decode is about level with stock vLLM plain, not ahead of it. vLLM's built-in n-gram speculation is slower than its own plain on this model (0.87–0.96x) (H17).
 - **Self-speculation, the original thesis.** The model drafting for itself, fused with verification, never beat plain decode on any executor, context (up to 128K) or batch size tested (H5–H8, H11, H12).
-- **Self-improvement.** North has authored no gate-passing optimization. On the kernel-tunable task its best edit set is 1.003-1.009x against 1.054-1.062x for the human sweep. It is indistinguishable from budget-matched random search (1 passing set in 66 draws) and from general-purpose models given the same prompt (gpt-5-mini, gpt-4.1, gpt-4.1-mini: 0 passing sets in 99 samples; none found the winning move, KC=64). See H21 and H21b in [`RESULTS.md`](RESULTS.md) and [`docs/SELFIMPROVE_ANALYSIS.md`](docs/SELFIMPROVE_ANALYSIS.md).
+- **Self-improvement, open loop (H21, H21b).** Proposing without measured feedback, North authored no gate-passing optimization: its best edit set was 1.003-1.009x against 1.054-1.062x for the human sweep, indistinguishable from budget-matched random search (1 passing set in 66 draws) and from general-purpose models given the same prompt (0 passing sets in 99 samples). See [`docs/SELFIMPROVE_ANALYSIS.md`](docs/SELFIMPROVE_ANALYSIS.md).
+- **Self-improvement, closed loop, and North inside North (H22).** With measured speedups fed back each round (8 rounds x 3 builds, 3 sessions per arm), a single North finds a gate-passing config in 1 of 3 sessions (best 1.041x). A North orchestrator driving four North subagents (only North, no other model) also passes in 1 of 3 sessions (best 1.056x, the only arm that found the human sweep's KC=64 move). Mean best is identical (1.026x), so the subagents did not help on average at n=3; a standard autotuner at the same budget got 1.002x. Feedback timings are noisy (about 4%), which affects every arm. See H22 in [`RESULTS.md`](RESULTS.md).
 
-![Best edit set per proposer on the kernel-tunable task: human sweep and random search pass the 1.03x gate, North and the tested LLMs do not](docs/img/selfimprove.png)
+![Best edit set per proposer on the kernel-tunable task (open loop): human sweep and random search pass the 1.03x gate, North and the tested LLMs do not](docs/img/selfimprove.png)
 
-- **North inside North (H22).** With measured feedback, one North improves its own kernel in 1 of 3 sessions (best 1.041x); a North orchestrator with four North subagents does too in 1 of 3 (best 1.056x, found KC=64). Mean best is equal (1.026x), so subagents did not help on average; a standard autotuner at the same budget got 1.002x. See H22 in [`RESULTS.md`](RESULTS.md).
-
-![Best-so-far dev speedup per round: standard autotuner, North alone, North with North subagents](docs/img/north_in_north.png)
+![Best-so-far dev speedup per round (closed loop): standard autotuner, North alone, North with North subagents](docs/img/north_in_north.png)
 
 ## Scope and caveats
 
