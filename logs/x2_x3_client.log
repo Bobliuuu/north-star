@@ -1,0 +1,206 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-yxquFGZyx4Ta6R3C4ECVG9
+✓ Created objects.
+├── ✓ Uploaded <home>\Documents\Projects\north-star\modal\x2_run.py
+├── ✓ Uploaded modal\nsapp.py
+├── ✓ Uploaded <home>\Documents\Projects\north-star\src\northstar
+├── ✓ Uploaded <home>\Documents\Projects\north-star\tests
+├── ✓ Uploaded <home>\Documents\Projects\north-star\harness
+└── ✓ Created Function remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:04, 79.62it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:17, 21.82it/s]
+[1ALoading weights:   6%|▌         | 24/394 [00:00<00:15, 24.51it/s]
+[1ALoading weights:   7%|▋         | 28/394 [00:01<00:24, 15.16it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:22, 15.72it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:23, 14.71it/s]
+[1ALoading weights:  12%|█▏        | 47/394 [00:02<00:20, 16.94it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:03<00:24, 14.25it/s]
+[1ALoading weights:  14%|█▎        | 54/394 [00:03<00:21, 15.50it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:24, 13.71it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:03<00:23, 13.92it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:24, 13.55it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:23, 13.59it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:24, 12.50it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:22, 13.72it/s]
+[1ALoading weights:  24%|██▎       | 93/394 [00:06<00:21, 14.17it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:20, 14.12it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:06<00:20, 14.39it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:07<00:20, 14.06it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:19, 14.46it/s]
+[1ALoading weights:  30%|██▉       | 118/394 [00:07<00:17, 15.85it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:08<00:19, 13.95it/s]
+[1ALoading weights:  32%|███▏      | 125/394 [00:08<00:19, 14.11it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:08<00:19, 13.35it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:09<00:18, 13.74it/s]
+[1ALoading weights:  36%|███▌      | 141/394 [00:09<00:18, 13.78it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:09<00:18, 13.47it/s]
+[1ALoading weights:  38%|███▊      | 149/394 [00:10<00:17, 13.96it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:10<00:16, 14.54it/s]
+[1ALoading weights:  41%|████      | 162/394 [00:10<00:11, 21.04it/s]
+[1ALoading weights:  42%|████▏     | 166/394 [00:11<00:14, 15.59it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:11<00:17, 12.86it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:12<00:17, 12.51it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:12<00:14, 14.16it/s]
+[1ALoading weights:  48%|████▊     | 189/394 [00:12<00:14, 14.31it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:13<00:14, 14.13it/s]
+[1ALoading weights:  51%|█████     | 201/394 [00:13<00:10, 18.69it/s]
+[1ALoading weights:  52%|█████▏    | 204/394 [00:13<00:15, 11.99it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:14<00:13, 14.01it/s]
+[1ALoading weights:  54%|█████▍    | 214/394 [00:14<00:11, 15.20it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:14<00:12, 14.08it/s]
+[1ALoading weights:  56%|█████▌    | 221/394 [00:15<00:12, 14.00it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:15<00:11, 14.53it/s]
+[1ALoading weights:  58%|█████▊    | 229/394 [00:15<00:11, 14.84it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:15<00:11, 13.92it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:16<00:10, 14.57it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:17<00:09, 14.85it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:17<00:09, 14.37it/s]
+[1ALoading weights:  66%|██████▌   | 261/394 [00:17<00:09, 14.42it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:18<00:08, 14.35it/s]
+[1ALoading weights:  68%|██████▊   | 269/394 [00:18<00:08, 14.43it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:18<00:07, 14.93it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:19<00:07, 15.10it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:19<00:06, 14.91it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:20<00:06, 14.08it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:20<00:05, 15.04it/s]
+[1ALoading weights:  78%|███████▊  | 309/394 [00:20<00:05, 15.15it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:21<00:05, 14.75it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:21<00:04, 14.53it/s]
+[1ALoading weights:  82%|████████▏ | 325/394 [00:22<00:04, 14.25it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:22<00:04, 14.62it/s]
+[1ALoading weights:  85%|████████▍ | 333/394 [00:22<00:04, 14.57it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:23<00:03, 14.05it/s]
+[1ALoading weights:  87%|████████▋ | 341/394 [00:23<00:03, 14.38it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:23<00:03, 13.64it/s]
+[1ALoading weights:  89%|████████▊ | 349/394 [00:23<00:03, 14.18it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:24<00:02, 13.69it/s]
+[1ALoading weights:  91%|█████████ | 357/394 [00:24<00:02, 13.93it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:24<00:02, 13.97it/s]
+[1ALoading weights:  93%|█████████▎| 365/394 [00:25<00:02, 13.51it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:25<00:01, 14.51it/s]
+[1ALoading weights:  95%|█████████▍| 373/394 [00:25<00:01, 13.94it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:25<00:01, 13.64it/s]
+[1ALoading weights:  97%|█████████▋| 381/394 [00:26<00:00, 13.68it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:26<00:00, 14.33it/s]Loading weights: 100%|██████████| 394/394 [00:26<00:00, 14.85it/s]
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-12T17:43:02Z", "gpu": "NVIDIA H200", "cuda": "12.8", "gpu_mem_gb": 139.8, "pip_freeze_sha": "3c88f18ec2f9", "load_s": 37.953425884246826}
+STEP humaneval_05_158 P 249 v1 T1=4.174 T2=4.988 T4=5.784 T8=6.745 T13=7.895 inv True
+STEP humaneval_05_158 P 249 s T1=3.289 T2=3.349 T4=4.342 T8=6.178 T13=6.666 inv True
+STEP humaneval_05_158 P 249 t T1=3.562 T2=4.073 T4=4.707 T8=5.477 T13=6.255 inv True
+STEP humaneval_05_158 P 249 ts T1=2.468 T2=3.049 T4=3.666 T8=4.460 T13=5.204 inv True
+V1_VS_S {'ctx': 249, 'logits_equal': True, 'phase': 'v1_vs_s', 'task': 'humaneval_05_158', 'ts_vs_v1_argmax_equal': True, 'ts_vs_v1_maxabs': 0.0}
+STEP gov8k_08_622 P 5519 v1 T1=4.229 T2=5.047 T4=5.847 T8=7.192 T13=8.374 inv True
+STEP gov8k_08_622 P 5519 s T1=3.224 T2=4.596 T4=4.999 T8=6.653 T13=7.403 inv True
+STEP gov8k_08_622 P 5519 t T1=3.626 T2=4.203 T4=4.841 T8=5.844 T13=6.739 inv True
+STEP gov8k_08_622 P 5519 ts T1=2.741 T2=3.200 T4=3.894 T8=4.856 T13=5.718 inv True
+V1_VS_S {'ctx': 5519, 'logits_equal': True, 'phase': 'v1_vs_s', 'task': 'gov8k_08_622', 'ts_vs_v1_argmax_equal': True, 'ts_vs_v1_maxabs': 0.0}
+bucket 1280 captured; tasks 69
+TR humaneval_00_12 P 232 v1 239/238 s 265 ts 397 spec 364 exact s==v1
+TR humaneval_01_22 P 221 v1 238/239 s 262 ts 397 spec 417 exact s==v1
+TR humaneval_02_34 P 203 v1 238/239 s 258 ts 398 spec 451 exact s==v1
+TR humaneval_03_60 P 219 v1 239/239 s 264 ts 398 spec 579 exact s==v1
+TR humaneval_04_1 P 246 v1 239/239 s 270 ts 398 spec 532 exact s==v1
+TR humaneval_05_158 P 249 v1 239/239 s 271 ts 398 spec 546 exact s==v1
+TR humaneval_06_83 P 174 v1 239/239 s 248 ts 398 spec 438 exact s==v1
+TR humaneval_07_103 P 270 v1 239/239 s 280 ts 398 spec 415 exact s==v1
+TR humaneval_08_71 P 251 v1 239/239 s 271 ts 397 spec 415 exact s==v1
+TR mbpp_00_332 P 177 v1 239/239 s 250 ts 399 spec 423 exact s==v1
+TR mbpp_01_24 P 166 v1 240/240 s 245 ts 399 spec 434 exact s==v1
+TR mbpp_02_45 P 164 v1 240/239 s 244 ts 399 spec 425 exact s==v1
+TR mbpp_03_68 P 167 v1 240/240 s 245 ts 399 spec 463 exact s==v1
+TR mbpp_04_120 P 171 v1 239/239 s 248 ts 399 spec 448 exact s==v1
+TR mbpp_05_3 P 183 v1 239/239 s 252 ts 398 spec 463 exact s==v1
+TR mbpp_06_316 P 179 v1 239/239 s 251 ts 398 spec 426 exact s==v1
+TR mbpp_07_435 P 241 v1 239/239 s 269 ts 398 spec 692 exact s==v1
+TR mbpp_08_166 P 181 v1 239/239 s 252 ts 398 spec 464 exact s==v1
+TR canitedit_00_83 P 346 v1 239/239 s 316 ts 398 spec 771 exact s==v1
+TR canitedit_01_6 P 397 v1 239/239 s 320 ts 397 spec 594 exact s==v1
+TR canitedit_02_11 P 466 v1 239/239 s 320 ts 398 spec 522 exact s==v1
+TR canitedit_03_17 P 289 v1 239/238 s 292 ts 398 spec 717 exact s==v1
+TR canitedit_04_30 P 581 v1 237/237 s 319 ts 393 spec 429 exact s==v1
+TR canitedit_05_0 P 234 v1 236/238 s 264 ts 394 spec 458 exact s==v1
+TR canitedit_06_79 P 492 v1 238/238 s 319 ts 394 spec 553 exact s==v1
+TR canitedit_07_41 P 434 v1 239/239 s 320 ts 397 spec 452 exact s==v1
+TR canitedit_08_51 P 318 v1 239/239 s 311 ts 397 spec 427 exact s==v1
+TR cnn_summ_00_10628 P 1153 v1 238/238 s 321 ts 395 spec 408 exact s==v1
+TR cnn_summ_01_791 P 1098 v1 238/238 s 321 ts 395 spec 394 exact s==v1
+TR cnn_summ_02_1447 P 1188 v1 238/238 s 321 ts 395 spec 395 exact s==v1
+TR cnn_summ_04_3851 P 823 v1 238/238 s 321 ts 396 spec 415 exact s==v1
+TR cnn_summ_05_125 P 430 v1 239/239 s 320 ts 397 spec 409 exact s==v1
+TR cnn_summ_06_10117 P 1176 v1 238/238 s 321 ts 395 spec 400 exact s==v1
+TR cnn_summ_07_5325 P 1034 v1 238/237 s 322 ts 395 spec 419 exact s==v1
+TR cnn_summ_08_6649 P 798 v1 238/238 s 322 ts 396 spec 401 exact s==v1
+TR xsum_summ_00_10628 P 282 v1 238/238 s 287 ts 395 spec 436 exact s==v1
+TR xsum_summ_01_791 P 190 v1 238/238 s 256 ts 396 spec 496 exact s==v1
+TR xsum_summ_02_1447 P 429 v1 238/237 s 319 ts 397 spec 420 exact s==v1
+TR xsum_summ_03_2188 P 1086 v1 238/238 s 321 ts 395 spec 392 exact s==v1
+TR xsum_summ_04_3851 P 430 v1 238/238 s 319 ts 397 spec 440 exact s==v1
+TR xsum_summ_05_125 P 487 v1 238/238 s 319 ts 397 spec 416 exact s==v1
+TR xsum_summ_06_10117 P 429 v1 238/238 s 320 ts 396 spec 447 exact s==v1
+TR xsum_summ_07_5325 P 245 v1 238/238 s 269 ts 396 spec 455 exact s==v1
+TR xsum_summ_08_6649 P 269 v1 238/238 s 280 ts 396 spec 442 exact s==v1
+TR squad_qa_00_10628 P 479 v1 238/238 s 318 ts 397 spec 566 exact s==v1
+TR squad_qa_01_791 P 218 v1 238/238 s 239 ts 397 spec 535 exact s==v1
+TR squad_qa_02_1447 P 342 v1 238/238 s 315 ts 397 spec 630 exact s==v1
+TR squad_qa_03_2188 P 275 v1 238/238 s 254 ts 396 spec 478 exact s==v1
+TR squad_qa_04_3851 P 304 v1 238/238 s 273 ts 397 spec 490 exact s==v1
+TR squad_qa_05_125 P 212 v1 238/238 s 241 ts 396 spec 572 exact s==v1
+TR squad_qa_06_10117 P 272 v1 238/238 s 235 ts 397 spec 418 exact s==v1
+TR squad_qa_07_5325 P 277 v1 238/238 s 262 ts 397 spec 449 exact s==v1
+TR squad_qa_08_6649 P 270 v1 238/239 s 235 ts 397 spec 568 exact s==v1
+TR ultrachat_00_21256 P 742 v1 237/238 s 322 ts 396 spec 470 exact s==v1
+TR ultrachat_03_4377 P 688 v1 237/238 s 321 ts 392 spec 387 exact s==v1
+TR ultrachat_04_7703 P 1031 v1 237/238 s 321 ts 395 spec 398 exact s==v1
+TR ultrachat_05_250 P 274 v1 238/239 s 284 ts 397 spec 396 exact s==v1
+TR ultrachat_06_20235 P 959 v1 238/238 s 321 ts 395 spec 402 exact s==v1
+TR ultrachat_07_10651 P 1073 v1 238/238 s 321 ts 395 spec 486 exact s==v1
+TR ultrachat_08_13298 P 1117 v1 238/238 s 321 ts 395 spec 431 exact s==v1
+TR glaive_tool_00_85027 P 319 v1 239/238 s 302 ts 397 spec 408 exact s==v1
+TR glaive_tool_01_6334 P 160 v1 240/240 s 242 ts 399 spec 441 exact s==v1
+TR glaive_tool_02_11579 P 293 v1 238/238 s 271 ts 397 spec 417 exact s==v1
+TR glaive_tool_03_17509 P 433 v1 238/238 s 317 ts 397 spec 401 exact s==v1
+TR glaive_tool_04_30812 P 183 v1 239/239 s 253 ts 397 spec 517 exact s==v1
+TR glaive_tool_05_1000 P 540 v1 238/238 s 321 ts 396 spec 453 exact s==v1
+TR glaive_tool_06_80941 P 222 v1 238/238 s 265 ts 396 spec 412 exact s==v1
+TR glaive_tool_07_111370 P 403 v1 238/238 s 317 ts 397 spec 396 exact s==v1
+TR glaive_tool_08_42607 P 223 v1 239/238 s 265 ts 397 spec 415 exact s==v1
+bucket 2560 captured; tasks 6
+TR cnn_summ_03_2188 P 1730 v1 236/237 s 317 ts 391 spec 419 exact s==v1
+TR ultrachat_01_1583 P 1404 v1 237/237 s 319 ts 393 spec 374 exact s==v1
+TR ultrachat_02_2894 P 1416 v1 237/237 s 319 ts 393 spec 398 exact s==v1
+TR gov4k_01_49 P 2421 v1 236/236 s 316 ts 373 spec 374 exact s==v1
+TR gov8k_06_153 P 1685 v1 237/237 s 318 ts 392 spec 409 exact s==v1
+TR quality_qa_05_1331 P 2537 v1 236/236 s 315 ts 369 spec 718 exact s==v1
+bucket 5120 captured; tasks 12
+TR gov4k_00_664 P 2942 v1 236/236 s 312 ts 364 spec 356 exact s==v1
+TR gov4k_02_90 P 2748 v1 236/236 s 313 ts 365 spec 383 exact s==v1
+TR gov4k_03_136 P 2686 v1 236/236 s 314 ts 366 spec 367 exact s==v1
+TR gov4k_04_240 P 2652 v1 236/236 s 314 ts 367 spec 375 exact s==v1
+TR gov4k_05_7 P 2587 v1 236/236 s 315 ts 368 spec 376 exact s==v1
+TR gov4k_06_632 P 2709 v1 236/236 s 314 ts 367 spec 375 exact s==v1
+TR gov4k_07_870 P 2925 v1 236/236 s 313 ts 365 spec 369 exact s==v1
+TR gov4k_08_332 P 2883 v1 236/236 s 313 ts 365 spec 355 exact s==v1
+TR gov8k_00_578 P 5020 v1 234/234 s 305 ts 359 spec 372 exact s==v1
+TR gov8k_02_389 P 2925 v1 236/236 s 313 ts 365 spec 377 exact s==v1
+TR gov8k_03_452 P 4697 v1 235/235 s 306 ts 360 spec 363 exact s==v1
+TR quality_qa_03_962 P 2595 v1 236/236 s 315 ts 367 spec 430 exact s==v1
+bucket 10240 captured; tasks 12
+TR gov8k_01_676 P 5534 v1 233/233 s 304 ts 355 spec 376 exact s==v1
+TR gov8k_04_827 P 5192 v1 233/233 s 304 ts 355 spec 355 exact s==v1
+TR gov8k_05_35 P 5143 v1 233/232 s 305 ts 356 spec 391 exact s==v1
+TR gov8k_07_749 P 5657 v1 233/233 s 304 ts 355 spec 373 exact s==v1
+TR gov8k_08_622 P 5519 v1 233/233 s 304 ts 355 spec 361 exact s==v1
+TR quality_qa_00_197 P 6453 v1 233/233 s 304 ts 354 spec 580 exact s==v1
+TR quality_qa_01_361 P 6569 v1 233/233 s 304 ts 354 spec 489 exact s==v1
+TR quality_qa_02_547 P 6459 v1 232/233 s 304 ts 355 spec 477 exact s==v1
+TR quality_qa_04_31 P 6543 v1 232/232 s 304 ts 354 spec 392 exact s==v1
+TR quality_qa_06_1662 P 7161 v1 232/233 s 304 ts 353 spec 441 exact s==v1
+TR quality_qa_07_1140 P 6868 v1 232/233 s 305 ts 354 spec 472 exact s==v1
+TR quality_qa_08_47 P 6526 v1 232/232 s 304 ts 354 spec 495 exact s==v1
+wrote results/x2_x3.jsonl
+X2_DONE secs 543.0945637226105 est usd 0.595895424084531
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-yxquFGZyx4Ta6R3C4ECVG9

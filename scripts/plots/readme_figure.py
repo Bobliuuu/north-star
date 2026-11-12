@@ -11,41 +11,48 @@ plt.rcParams.update({"font.size": 9, "axes.spines.top": False, "axes.spines.righ
                      "axes.titlesize": 10, "axes.titleweight": "bold", "axes.titlelocation": "left"})
 fig, ax = plt.subplots(2, 2, figsize=(11, 7.2), dpi=150)
 
-a = ax[0, 0]  # H9
-v = [10.73, 3.9]
-b = a.bar(["graphed PyTorch\nbaseline", "Triton executor"], v, color=[GREY, BLUE], width=0.55)
-a.bar_label(b, fmt="%.1f ms", padding=3)
-a.set_ylabel("ms per token (plain decode)"); a.set_ylim(0, 13)
-a.set_title("A. Fast decode executor (H9)")
-
-a = ax[0, 1]  # H14 / H15 / H16
-lab = ["natural\n(21 tasks)", "ctx 2K", "ctx 8K", "real mix\n(99 prompts)", "ctx 32K", "ctx 128K"]
-val = [1.18, 1.57, 1.34, 1.15, 1.03, 0.97]
-col = [BLUE] * 4 + [GREY] * 2
-b = a.bar(lab, val, color=col, width=0.6)
-a.bar_label(b, fmt="%.2fx", padding=3)
-a.axhline(1, color="k", lw=0.8)
-a.set_ylabel("tok/s vs same executor's plain decode"); a.set_ylim(0, 1.85)
-a.set_title("B. Exact-mode speculation (H14, H15, H16)")
+a = ax[0, 0]  # H9 / H24
+v = [10.73, 3.9, 4.52, 3.05]
+b = a.bar(["graphed PyTorch\nbaseline (H2)", "Triton executor\n(H9, not exact)", "exact v1\n(H14)", "exact v2\n(H24)"], v,
+          color=[GREY, GREY, BLUE, GREEN], width=0.6)
+a.bar_label(b, fmt="%.2f ms", padding=3)
+a.set_ylabel("ms per token (plain decode, graph step)"); a.set_ylim(0, 13)
+a.set_title("A. Decode step on one H100 (H9, H24)")
 a.tick_params(axis="x", labelsize=8)
 
-a = ax[1, 0]  # H20 bs6 plain
-B = [1, 2, 4, 8, 16, 32]; t = [218, 314, 514, 822, 1314, 2012]
-a.plot(B, t, marker="o", color=GREEN, lw=2)
-for x, y in zip(B, t):
+a = ax[0, 1]  # H24 long context: exact v1 vs exact v2 plain, same launch per context (le3 8K, le6 32K, le5 128K)
+lab = ["ctx 8K", "ctx 32K", "ctx 128K"]
+v1, v2 = [214.2, 211.0, 90.1], [298.1, 322.1, 186.6]
+xs = range(len(lab))
+b1 = a.bar([x - 0.18 for x in xs], v1, width=0.36, color=BLUE, label="exact v1")
+b2 = a.bar([x + 0.18 for x in xs], v2, width=0.36, color=GREEN, label="exact v2")
+a.bar_label(b1, fmt="%.0f", padding=2, fontsize=8); a.bar_label(b2, fmt="%.0f", padding=2, fontsize=8)
+for x, p, q in zip(xs, v1, v2):
+    a.annotate("%.2fx" % (q / p), (x + 0.18, q), textcoords="offset points", xytext=(0, 14), ha="center", fontsize=8, color=GREEN, fontweight="bold")
+a.set_xticks(list(xs)); a.set_xticklabels(lab)
+a.set_ylabel("plain decode tok/s (exact)"); a.set_ylim(0, 400)
+a.legend(frameon=False, loc="upper right", fontsize=8)
+a.set_title("B. Long context, exact plain decode (H24)")
+
+a = ax[1, 0]  # H20 bs6 plain, H24 bs7 plain
+B = [1, 2, 4, 8, 16, 32]; t = [218, 314, 514, 822, 1314, 2012]; t2 = [308, 431, 676, 984, 1508, 2219]
+a.plot(B, t, marker="o", color=GREY, lw=2, label="H20 (bs6)")
+a.plot(B, t2, marker="o", color=GREEN, lw=2, label="exact v2, H24 (bs7)")
+for x, y in zip(B, t2):
     a.annotate(str(y), (x, y), textcoords="offset points", xytext=(0, 7), ha="center", fontsize=8)
 a.set_xscale("log", base=2); a.set_xticks(B); a.set_xticklabels(B)
-a.set_xlabel("concurrent sequences"); a.set_ylabel("aggregate tok/s"); a.set_ylim(0, 2300)
-a.set_title("C. Batched exact executor (H20)")
+a.set_xlabel("concurrent sequences"); a.set_ylabel("aggregate tok/s (plain, exact)"); a.set_ylim(0, 2500)
+a.legend(frameon=False, loc="upper left", fontsize=8)
+a.set_title("C. Batched exact executor (H20, H24)")
 
-a = ax[1, 1]  # H17 / H15 mix99
-lab = ["vLLM 0.33\nplain", "vLLM\nngram (best)", "ours exact\nplain", "ours exact\n+ suffix spec"]
-val = [253.5, 243.2, 221.4, 254.8]
-b = a.bar(lab, val, color=[GREY, GREY, BLUE, BLUE], width=0.6)
+a = ax[1, 1]  # H24 vx1: same container, back to back
+lab = ["vLLM 0.33\nplain", "ours exact v1\nplain", "ours exact v2\nplain", "ours exact v2\n+ suffix spec"]
+val = [248.8, 220.8, 321.7, 369.8]
+b = a.bar(lab, val, color=[GREY, BLUE, GREEN, GREEN], width=0.6)
 a.bar_label(b, fmt="%.0f", padding=3)
-a.set_ylabel("decode tok/s, geomean, 99-prompt mix"); a.set_ylim(0, 300)
-a.set_title("D. Against stock vLLM, batch 1 (H17)")
-a.text(0.5, -0.27, "Separate launches; cross-system ratios carry about +-10% host noise.", transform=a.transAxes,
+a.set_ylabel("decode tok/s, geomean, 99-prompt mix"); a.set_ylim(0, 430)
+a.set_title("D. Against stock vLLM, batch 1, same H100 (H24)")
+a.text(0.5, -0.27, "One container, run back to back. v2 beats vLLM plain on 99/99 prompts (1.29x; 1.49x with spec).", transform=a.transAxes,
        ha="center", fontsize=7.5, color="#555")
 a.tick_params(axis="x", labelsize=8)
 

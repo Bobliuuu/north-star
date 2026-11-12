@@ -1,0 +1,269 @@
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-XvSbyE9paS6he5AC4p7Xmj
+Building image im-smQoQH8sGOlat9qcgkmPxG
+
+=> Step 0: FROM base
+
+=> Step 1: RUN python -m pip install numpy==2.2.5 torch==2.10.0
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting numpy==2.2.5
+  Downloading numpy-2.2.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+Collecting torch==2.10.0
+  Downloading torch-2.10.0-3-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (31 kB)
+Collecting filelock (from torch==2.10.0)
+  Downloading filelock-4.2.10-py3-none-any.whl.metadata (2.3 kB)
+Collecting typing-extensions>=4.10.0 (from torch==2.10.0)
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting setuptools (from torch==2.10.0)
+  Downloading setuptools-84.2.1-py3-none-any.whl.metadata (6.6 kB)
+Collecting sympy>=1.13.3 (from torch==2.10.0)
+  Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx>=2.5.1 (from torch==2.10.0)
+  Downloading networkx-3.7-py3-none-any.whl.metadata (6.7 kB)
+Collecting jinja2 (from torch==2.10.0)
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec>=0.8.5 (from torch==2.10.0)
+  Downloading fsspec-2026.9.0-py3-none-any.whl.metadata (10 kB)
+Collecting cuda-bindings==12.9.4 (from torch==2.10.0)
+  Downloading cuda_bindings-12.9.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (2.6 kB)
+Collecting nvidia-cuda-nvrtc-cu12==12.8.93 (from torch==2.10.0)
+  Downloading nvidia_cuda_nvrtc_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cuda-runtime-cu12==12.8.90 (from torch==2.10.0)
+  Downloading nvidia_cuda_runtime_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cuda-cupti-cu12==12.8.90 (from torch==2.10.0)
+  Downloading nvidia_cuda_cupti_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cudnn-cu12==9.10.2.21 (from torch==2.10.0)
+  Downloading nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-cublas-cu12==12.8.4.1 (from torch==2.10.0)
+  Downloading nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cufft-cu12==11.3.3.83 (from torch==2.10.0)
+  Downloading nvidia_cufft_cu12-11.3.3.83-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-curand-cu12==10.3.9.90 (from torch==2.10.0)
+  Downloading nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cusolver-cu12==11.7.3.90 (from torch==2.10.0)
+  Downloading nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-cusparse-cu12==12.5.8.93 (from torch==2.10.0)
+  Downloading nvidia_cusparse_cu12-12.5.8.93-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-cusparselt-cu12==0.7.1 (from torch==2.10.0)
+  Downloading nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl.metadata (7.0 kB)
+Collecting nvidia-nccl-cu12==2.27.5 (from torch==2.10.0)
+  Downloading nvidia_nccl_cu12-2.27.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.0 kB)
+Collecting nvidia-nvshmem-cu12==3.4.5 (from torch==2.10.0)
+  Downloading nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.1 kB)
+Collecting nvidia-nvtx-cu12==12.8.90 (from torch==2.10.0)
+  Downloading nvidia_nvtx_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-nvjitlink-cu12==12.8.93 (from torch==2.10.0)
+  Downloading nvidia_nvjitlink_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cufile-cu12==1.13.1.3 (from torch==2.10.0)
+  Downloading nvidia_cufile_cu12-1.13.1.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting triton==3.6.0 (from torch==2.10.0)
+  Downloading triton-3.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (1.7 kB)
+Collecting cuda-pathfinder~=1.1 (from cuda-bindings==12.9.4->torch==2.10.0)
+  Downloading cuda_pathfinder-1.8.6-py3-none-any.whl.metadata (1.9 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch==2.10.0)
+  Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.10.0)
+  Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Downloading numpy-2.2.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.1/16.1 MB 735.4 MB/s  0:00:00
+Downloading torch-2.10.0-3-cp312-cp312-manylinux_2_28_x86_64.whl (915.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 915.6/915.6 MB 1.1 GB/s  0:00:00
+Downloading cuda_bindings-12.9.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.2/12.2 MB 1.2 GB/s  0:00:00
+Downloading nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_x86_64.whl (594.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 594.3/594.3 MB 1.0 GB/s  0:00:00
+Downloading nvidia_cuda_cupti_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (10.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.2/10.2 MB 1.1 GB/s  0:00:00
+Downloading nvidia_cuda_nvrtc_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (88.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 88.0/88.0 MB 1.1 GB/s  0:00:00
+Downloading nvidia_cuda_runtime_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (954 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 954.8/954.8 kB 1.9 GB/s  0:00:00
+Downloading nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl (706.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 706.8/706.8 MB 1.0 GB/s  0:00:00
+Downloading nvidia_cufft_cu12-11.3.3.83-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (193.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 193.1/193.1 MB 1.0 GB/s  0:00:00
+Downloading nvidia_cufile_cu12-1.13.1.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 2.4 GB/s  0:00:00
+Downloading nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_x86_64.whl (63.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.6/63.6 MB 1.0 GB/s  0:00:00
+Downloading nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_x86_64.whl (267.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 267.5/267.5 MB 923.7 MB/s  0:00:00
+Downloading nvidia_cusparse_cu12-12.5.8.93-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (288.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 288.2/288.2 MB 1.0 GB/s  0:00:00
+Downloading nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl (287.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 287.2/287.2 MB 1.1 GB/s  0:00:00
+Downloading nvidia_nccl_cu12-2.27.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (322.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 322.3/322.3 MB 1.0 GB/s  0:00:00
+Downloading nvidia_nvjitlink_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (39.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 39.3/39.3 MB 1.0 GB/s  0:00:00
+Downloading nvidia_nvshmem_cu12-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (139.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 139.1/139.1 MB 987.7 MB/s  0:00:00
+Downloading nvidia_nvtx_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (89 kB)
+Downloading triton-3.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (188.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 188.3/188.3 MB 1.1 GB/s  0:00:00
+Downloading cuda_pathfinder-1.8.6-py3-none-any.whl (62 kB)
+Downloading fsspec-2026.9.0-py3-none-any.whl (221 kB)
+Downloading networkx-3.7-py3-none-any.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 1.5 GB/s  0:00:00
+Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 1.2 GB/s  0:00:00
+Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 1.2 GB/s  0:00:00
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading filelock-4.2.10-py3-none-any.whl (218 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Downloading setuptools-84.2.1-py3-none-any.whl (876 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 876.3/876.3 kB 1.3 GB/s  0:00:00
+Installing collected packages: nvidia-cusparselt-cu12, mpmath, typing-extensions, triton, sympy, setuptools, nvidia-nvtx-cu12, nvidia-nvshmem-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufile-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, numpy, networkx, MarkupSafe, fsspec, filelock, cuda-pathfinder, nvidia-cusparse-cu12, nvidia-cufft-cu12, nvidia-cudnn-cu12, jinja2, cuda-bindings, nvidia-cusolver-cu12, torch
+
+Successfully installed MarkupSafe-3.0.4 cuda-bindings-12.9.4 cuda-pathfinder-1.8.6 filelock-4.2.10 fsspec-2026.9.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.7 numpy-2.2.5 nvidia-cublas-cu12-12.8.4.1 nvidia-cuda-cupti-cu12-12.8.90 nvidia-cuda-nvrtc-cu12-12.8.93 nvidia-cuda-runtime-cu12-12.8.90 nvidia-cudnn-cu12-9.10.2.21 nvidia-cufft-cu12-11.3.3.83 nvidia-cufile-cu12-1.13.1.3 nvidia-curand-cu12-10.3.9.90 nvidia-cusolver-cu12-11.7.3.90 nvidia-cusparse-cu12-12.5.8.93 nvidia-cusparselt-cu12-0.7.1 nvidia-nccl-cu12-2.27.5 nvidia-nvjitlink-cu12-12.8.93 nvidia-nvshmem-cu12-3.4.5 nvidia-nvtx-cu12-12.8.90 setuptools-84.2.1 sympy-1.14.0 torch-2.10.0 triton-3.6.0 typing-extensions-4.16.0
+
+[notice] A new release of pip is available: 26.2.2 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+Saving image...
+Image saved, took 3.90s
+
+Built image im-smQoQH8sGOlat9qcgkmPxG in 52.01s
+
+
+Building image im-4p0Qmgfa6enSDaJJsEXVip
+
+=> Step 0: FROM base
+
+=> Step 1: ENV PYTHONUNBUFFERED=1
+Saving image...
+Image saved, took 930.70ms
+
+Built image im-4p0Qmgfa6enSDaJJsEXVip in 1.76s
+
+
+✓ Created objects.
+├── ✓ Uploaded <home>\Documents\Projects\north-star\modal\x2_tune.py
+├── ✓ Uploaded <home>\Documents\Projects\north-star\harness
+└── ✓ Created Function run.
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 1} T1 9.7us T13 9.7us 2163GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 1} T1 9.2us T13 9.3us 2274GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 1} T1 9.3us T13 9.4us 2248GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 1} T1 9.7us T13 9.7us 2160GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 4, 'SK': 1} T1 9.7us T13 9.7us 2168GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 1} T1 9.7us T13 9.7us 2169GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 64, 'nw': 4, 'ns': 6, 'SK': 1} T1 10.1us T13 10.1us 2080GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 2} T1 12.0us T13 12.1us 1753GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 4} T1 12.3us T13 12.6us 1711GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 8} T1 13.4us T13 13.9us 1562GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 2} T1 12.2us T13 12.3us 1717GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 4} T1 12.6us T13 12.9us 1668GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 8} T1 14.0us T13 14.2us 1499GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 2} T1 12.2us T13 12.2us 1720GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 4} T1 12.7us T13 12.9us 1654GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 8} T1 14.0us T13 14.2us 1499GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 4, 'SK': 2} T1 10.9us T13 11.0us 1932GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 4, 'SK': 4} T1 11.5us T13 11.8us 1819GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 4, 'SK': 8} T1 11.6us T13 12.1us 1805GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 2} T1 12.2us T13 12.2us 1722GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 4} T1 12.7us T13 12.9us 1652GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 8} T1 14.0us T13 14.2us 1497GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 64, 'nw': 4, 'ns': 6, 'SK': 2} T1 10.9us T13 11.1us 1918GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 64, 'nw': 4, 'ns': 6, 'SK': 4} T1 11.0us T13 11.2us 1905GB/s inv=True err=2.7e-03
+lin 5120x2048 {'BN': 64, 'BK': 64, 'nw': 4, 'ns': 6, 'SK': 8} T1 11.2us T13 11.4us 1874GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 1} T1 9.8us T13 9.8us 2197GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 1} T1 9.3us T13 9.4us 2307GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 1} T1 9.5us T13 9.5us 2274GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 1} T1 9.8us T13 9.8us 2199GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 1} T1 9.8us T13 9.8us 2204GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 4, 'SK': 1} T1 9.8us T13 9.8us 2199GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 64, 'nw': 4, 'ns': 6, 'SK': 1} T1 10.2us T13 10.2us 2109GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 2} T1 12.1us T13 12.2us 1779GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 4} T1 12.4us T13 12.6us 1730GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 8} T1 13.6us T13 14.0us 1581GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 2} T1 12.4us T13 12.5us 1740GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 4} T1 12.7us T13 12.9us 1687GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 8} T1 14.1us T13 14.4us 1519GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 2} T1 12.3us T13 12.4us 1749GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 4} T1 12.9us T13 13.1us 1672GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 8} T1 14.2us T13 14.4us 1515GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 2} T1 12.3us T13 12.3us 1750GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 4} T1 12.8us T13 13.0us 1683GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 8} T1 14.1us T13 14.4us 1522GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 4, 'SK': 2} T1 10.9us T13 11.2us 1967GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 4, 'SK': 4} T1 11.7us T13 11.9us 1837GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 4, 'SK': 8} T1 11.9us T13 12.3us 1811GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 64, 'nw': 4, 'ns': 6, 'SK': 2} T1 11.1us T13 11.2us 1940GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 64, 'nw': 4, 'ns': 6, 'SK': 4} T1 11.1us T13 11.3us 1928GB/s inv=True err=2.7e-03
+lin 5248x2048 {'BN': 64, 'BK': 64, 'nw': 4, 'ns': 6, 'SK': 8} T1 11.3us T13 11.6us 1894GB/s inv=True err=2.7e-03
+lin 2048x4096 {'BN': 16, 'BK': 128, 'nw': 4, 'ns': 3, 'SK': 1} T1 14.9us T13 14.9us 1127GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 4, 'SK': 1} T1 9.1us T13 9.0us 1836GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 6, 'SK': 1} T1 9.4us T13 9.3us 1793GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 1} T1 9.5us T13 9.4us 1774GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 1} T1 9.7us T13 9.6us 1736GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 1} T1 9.8us T13 9.6us 1715GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 3, 'SK': 1} T1 9.8us T13 9.8us 1713GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 4, 'SK': 2} T1 9.8us T13 9.9us 1708GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 4, 'SK': 4} T1 11.6us T13 11.8us 1448GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 4, 'SK': 8} T1 14.4us T13 14.4us 1165GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 6, 'SK': 2} T1 9.9us T13 10.1us 1690GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 6, 'SK': 4} T1 11.9us T13 12.0us 1410GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 6, 'SK': 8} T1 13.5us T13 13.6us 1245GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 2} T1 9.4us T13 9.4us 1784GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 4} T1 9.1us T13 9.2us 1837GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 8} T1 10.6us T13 10.7us 1583GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 2} T1 9.6us T13 9.6us 1754GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 4} T1 9.3us T13 9.4us 1803GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 8} T1 10.8us T13 10.9us 1552GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 2} T1 9.8us T13 9.8us 1707GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 4} T1 9.9us T13 10.0us 1699GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 8} T1 10.3us T13 10.4us 1630GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 3, 'SK': 2} T1 9.7us T13 9.7us 1729GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 3, 'SK': 4} T1 10.0us T13 10.4us 1672GB/s inv=True err=2.0e-03
+lin 2048x4096 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 3, 'SK': 8} T1 10.9us T13 11.0us 1533GB/s inv=True err=2.0e-03
+lin 128x2048 {'BN': 16, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 1} T1 5.1us T13 4.5us 103GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 3, 'SK': 1} T1 4.4us T13 4.4us 118GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 16, 'BK': 64, 'nw': 4, 'ns': 6, 'SK': 1} T1 4.5us T13 4.5us 116GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 4, 'SK': 1} T1 4.5us T13 4.5us 115GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 16, 'BK': 64, 'nw': 4, 'ns': 4, 'SK': 1} T1 4.6us T13 4.6us 115GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 1} T1 4.7us T13 4.6us 111GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 1} T1 4.8us T13 4.5us 110GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 3, 'SK': 2} T1 4.4us T13 4.4us 120GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 3, 'SK': 4} T1 4.0us T13 4.0us 132GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 16, 'BK': 64, 'nw': 4, 'ns': 6, 'SK': 2} T1 5.0us T13 5.1us 104GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 16, 'BK': 64, 'nw': 4, 'ns': 6, 'SK': 4} T1 3.9us T13 4.0us 133GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 16, 'BK': 64, 'nw': 4, 'ns': 6, 'SK': 8} T1 3.7us T13 3.8us 142GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 4, 'SK': 2} T1 4.6us T13 4.7us 113GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 4, 'SK': 4} T1 4.2us T13 4.3us 125GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 16, 'BK': 64, 'nw': 4, 'ns': 4, 'SK': 2} T1 5.0us T13 5.1us 104GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 16, 'BK': 64, 'nw': 4, 'ns': 4, 'SK': 4} T1 3.9us T13 4.0us 134GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 16, 'BK': 64, 'nw': 4, 'ns': 4, 'SK': 8} T1 3.5us T13 3.6us 150GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 2} T1 4.4us T13 4.4us 119GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 4} T1 3.7us T13 3.8us 143GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 8} T1 3.6us T13 3.8us 147GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 2} T1 4.6us T13 4.6us 114GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 4} T1 3.9us T13 3.9us 135GB/s inv=True err=2.6e-03
+lin 128x2048 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 8} T1 3.5us T13 3.7us 150GB/s inv=True err=2.6e-03
+lin 262144x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 1} T1 342.8us T13 354.9us 3132GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 1} T1 341.8us T13 354.8us 3141GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 4, 'SK': 1} T1 342.1us T13 354.3us 3139GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 1} T1 342.2us T13 354.5us 3138GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 6, 'SK': 1} T1 342.3us T13 354.8us 3137GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 1} T1 342.7us T13 354.7us 3133GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 3, 'SK': 1} T1 343.2us T13 356.3us 3128GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 2} T1 352.7us T13 385.8us 3044GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 4} T1 360.0us T13 404.6us 2982GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 4, 'SK': 8} T1 432.7us T13 538.4us 2482GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 4, 'SK': 2} T1 378.7us T13 420.6us 2835GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 4, 'SK': 4} T1 530.0us T13 579.7us 2026GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 2} T1 352.7us T13 385.5us 3045GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 4} T1 358.9us T13 403.5us 2991GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 64, 'BK': 128, 'nw': 4, 'ns': 6, 'SK': 8} T1 425.1us T13 532.2us 2526GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 6, 'SK': 2} T1 407.7us T13 445.8us 2634GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 6, 'SK': 4} T1 525.9us T13 579.4us 2042GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 32, 'BK': 256, 'nw': 4, 'ns': 6, 'SK': 8} T1 745.6us T13 861.9us 1440GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 2} T1 353.9us T13 386.2us 3034GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 4} T1 360.8us T13 405.1us 2976GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 64, 'BK': 256, 'nw': 4, 'ns': 3, 'SK': 8} T1 432.7us T13 538.3us 2481GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 3, 'SK': 2} T1 351.2us T13 386.7us 3057GB/s inv=True err=2.0e-03
+lin 262144x2048 {'BN': 32, 'BK': 512, 'nw': 4, 'ns': 3, 'SK': 4} T1 370.5us T13 413.1us 2898GB/s inv=True err=2.0e-03
+wrote results\x2_tune_t1lin.jsonl 153 rows
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-XvSbyE9paS6he5AC4p7Xmj
