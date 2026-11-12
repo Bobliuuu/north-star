@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![license MIT](https://img.shields.io/badge/license-MIT-green) ![GPU H100](https://img.shields.io/badge/GPU-H100%2080GB-76b900?logo=nvidia&logoColor=white) ![decode 2.7x faster](https://img.shields.io/badge/decode-2.7x%20faster-brightgreen) ![exact decode 1.29x vLLM](https://img.shields.io/badge/exact%20decode-1.29x%20vLLM%20(same%20H100)-brightgreen) ![batched 2219 tok/s](https://img.shields.io/badge/batched-2219%20tok%2Fs-blue) ![output exact](https://img.shields.io/badge/output-bit--exact%20vs%20own%20decode-success) ![self-improvement 1.056x](https://img.shields.io/badge/North%20tunes%20itself-%2B5.6%25-orange) ![every number measured](https://img.shields.io/badge/every%20number-measured%20%26%20logged-informational)
+![license MIT](https://img.shields.io/badge/license-MIT-green) ![GPU H100](https://img.shields.io/badge/GPU-H100%2080GB-76b900?logo=nvidia&logoColor=white) ![exact decode 3.4x faster](https://img.shields.io/badge/exact%20decode-3.4x%20faster-brightgreen) ![exact decode 1.29x vLLM](https://img.shields.io/badge/exact%20decode-1.29x%20vLLM%20(same%20H100)-brightgreen) ![batched 2219 tok/s](https://img.shields.io/badge/batched-2219%20tok%2Fs-blue) ![output exact](https://img.shields.io/badge/output-bit--exact%20vs%20own%20decode-success) ![self-improvement 1.056x](https://img.shields.io/badge/North%20tunes%20itself-%2B5.6%25-orange) ![every number measured](https://img.shields.io/badge/every%20number-measured%20%26%20logged-informational)
 
 </div>
 
@@ -11,13 +11,13 @@ A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossl
 
 ## 🏆 HEADLINE: how far did we push it, and what does it mean?
 
-**In plain English:** we made the AI model **about 3x faster at writing text**, with **the same words coming out as its own normal decoding**, on one GPU, and it now **beats the popular serving engine vLLM on the same GPU by 29% (49% with free speculation)**. Then we asked the model to speed *itself* up. It **barely managed it (about 5%)**, so for now humans are still better at tuning it.
+**In plain English:** we made the AI model **about 3.4x faster at writing text**, with **the same words coming out as its own normal decoding**, on one GPU, and it now **beats the popular serving engine vLLM on the same GPU by 29% (49% with free speculation)**. Then we asked the model to speed *itself* up. It **barely managed it (about 5%)**, so for now humans are still better at tuning it.
 
 ### 📈 What we got
 
 | Metric | Gain | Win? | Numbers |
 |---|---|---|---|
-| ⚡ Speed (plain decode) | **2.7x**, exact mode now **1.63x** more (H24) | ✅ WIN | 10.7 → 3.9 ms per token; exact decode 4.5 → 3.05 ms by running attention and MoE concurrently (H24); **3.2-4.4x** with speculation vs the original setup |
+| ⚡ Speed (plain decode) | **3.4x** (exact), up from 2.7x (not exact) | ✅ WIN | one launch, same H100 (H29): 10.70 → 3.12 ms per token at 2K context (93 → 319 tok/s live), 3.42x at 8K; the old non-exact executor re-measures at 2.71x and the old exact one at 2.34x |
 | 🎯 Same answers | **1.00x** (no quality lost) | ✅ WIN | identical to the model's own normal decoding on every run checked: 70/70 (H14), 99/99 real prompts (H24), every serving and continuous-batching request (H26-H28) |
 | 👥 Many users at once | **7.2x** total throughput | ✅ WIN | 2,219 tokens/s with 32 users together vs 308 tok/s for one user (H24 bs7; was 2,012 in H20) |
 | 🏁 vs vLLM (popular tool) | **1.29x** plain, **1.49x** with speculation | ✅ WIN | same H100, same container, 99 real prompts: 321.7 / 369.8 vs 248.8 tok/s, faster on 99/99 prompts (H24; was a tie in H17) |
@@ -33,7 +33,7 @@ Legend: ✅ clear win · 🟡 small or partial win · ➖ tie · ❌ no win. The
 
 | Metric | In plain English |
 |---|---|
-| ⚡ Speed | Replies show up roughly 3x sooner. Same hardware, same model. |
+| ⚡ Speed | Replies show up roughly 3.4x sooner. Same hardware, same model, same answers. |
 | 🎯 Same answers | The speed-up is a free lunch: no quality traded away. |
 | 👥 Many users at once | One GPU can serve far more people for the same cost. |
 | 🏁 vs vLLM | On the same GPU we are now clearly faster than the industry standard for one user, and level-to-ahead of it with up to 32 users, with identical answers to our own normal decoding. |
@@ -52,6 +52,7 @@ All numbers are MEASURED on one H100 80GB, greedy decoding, up to 192 new tokens
 | Result | Number | Where |
 |---|---|---|
 | Plain decode, Triton executor vs graphed PyTorch baseline | 10.7 → 3.9 ms/token | H9 |
+| **Same launch: baseline vs old fast (non-exact) vs old exact vs exact v2**, ctx 2K / 8K | 10.70 / 3.95 / 4.58 / **3.12 ms** (2.71x / 2.34x / **3.43x**); 8K: 11.38 / 4.06 / 4.64 / **3.33 ms** (**3.42x**) | H29 |
 | Executor plus speculation vs original graphed baseline | 3.2–4.4x tok/s | H9, H10, H13 |
 | Exact-mode speculation vs the same executor's plain decode | 1.18x / 1.57x / 1.34x (natural / 2K / 8K ctx) | H14 |
 | Same, on 99 real prompts from 11 public datasets | 1.15x geomean (82 wins, 15 ties, 2 losses, worst 0.96x) | H15 |
