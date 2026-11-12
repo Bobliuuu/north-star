@@ -127,3 +127,4 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-12 | (see logs/nin1_client.log) | `modal run --detach modal/north_in_north_run.py --tag nin1 --rounds 8 --sessions 3` | North-in-North 3-arm benchmark (standard / North / North+North subagents), A100, est <=$3; smoke nin0smoke OK $0.14 |
 | 2026-11-12 | ap-IMa8aKwSg4KdGlN2S4yylj | (result) | nin1 done OK, 1645 s, ~$1.14. H22 in RESULTS.md; results/nin_nin1_20261112T131251Z.json, logs/nin1_trace.jsonl |
 | 2026-11-12 | (see logs/embedded_main_client.log) | `modal run --detach modal/embedded_north_run.py --batch main` | Embedded North-in-North (qwenagent-style workers in frozen North, ledger task): none/adapter/single/multi, 2 seeds, 1500 steps, 7 A100s in parallel, est <=$15; smoke OK 124 s |
+| 2026-11-12 | (embedded main) | (result) | embedded main done OK, 7 runs, ~$4.3; H23 in RESULTS.md; results/embedded_main_20261112T144436Z.json, logs/embedded_main_vol |
