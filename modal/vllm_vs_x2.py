@@ -2,6 +2,7 @@
 ours (99 prompts) -> vLLM plain (21 natural + 99 mix) -> ours again (33-prompt subset, drift check).
     modal run --detach modal/vllm_vs_x2.py::main --tag vx1          (batch 1, 99-prompt mix)
     modal run --detach modal/vllm_vs_x2.py::batch --tag vxb1        (batched B=1..32, 32-prompt pool)
+    modal run --detach modal/vllm_vs_x2.py::cb --tag cb1            (continuous batching under Poisson arrivals)
 Rows -> Volume northstar-results:/vx_<tag>_{ours1,vllm,ours2}.jsonl"""
 import sys, time, json, pathlib, subprocess
 sys.path.insert(0, "modal"); sys.path.insert(0, "/root")
@@ -57,6 +58,31 @@ def remote_batch(tag: str, sizes: str):
     pathlib.Path(f"/results/vxb_{tag}.meta.json").write_text(json.dumps(dict(secs=secs, steps=log))); results_vol.commit()
     print("VXB_DONE secs", secs, "est usd", secs / 3600 * 3.95, flush=True)
     return log
+
+
+@app.function(gpu="H100", timeout=7000, volumes={WEIGHTS: weights_vol, "/results": results_vol}, memory=65536, scaledown_window=2, max_containers=1)
+def remote_cb(tag: str, n_req: int, rates: str, prefills: str = "batched,single"):
+    """Continuous batching under Poisson arrivals, same container: ours (cbatch.py) -> vLLM LLMEngine on the identical schedules."""
+    t0 = time.time()
+    sched = f"/results/vxcb_{tag}_sched.json"
+    import os
+    steps = [(f"ours_{pm}", [sys.executable, "/root/harness/bench_cbatch.py", MODEL_DIR, f"/results/vxcb_{tag}_ours_{pm}.jsonl", sched, str(n_req), rates], pm)
+             for pm in prefills.split(",")]
+    steps.append(("vllm", [sys.executable, "/root/harness/bench_vllm_cb.py", MODEL_DIR, f"/results/vxcb_{tag}_vllm.jsonl", sched], None))
+    log = {}
+    for name, cmd, pm in steps:
+        env = dict(os.environ, NS_CB_PREFILL=pm) if pm else None
+        s = time.time(); r = subprocess.run(cmd, cwd="/root", env=env); log[name] = dict(rc=r.returncode, secs=time.time() - s)
+        print("STEP", name, log[name], flush=True); results_vol.commit()
+    secs = time.time() - t0
+    pathlib.Path(f"/results/vxcb_{tag}.meta.json").write_text(json.dumps(dict(secs=secs, steps=log))); results_vol.commit()
+    print("VXCB_DONE secs", secs, "est usd", secs / 3600 * 3.95, flush=True)
+    return log
+
+
+@app.local_entrypoint()
+def cb(tag: str = "cb1", n_req: int = 64, rates: str = "2,4,8,16,inf", prefills: str = "batched,single"):
+    print(remote_cb.remote(tag, n_req, rates, prefills))
 
 
 @app.local_entrypoint()
