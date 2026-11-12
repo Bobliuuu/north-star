@@ -1,6 +1,10 @@
-# 🌟 Northstar
+<h1 align="center">🌟 Northstar 🌟</h1>
+
+<div align="center">
 
 ![license MIT](https://img.shields.io/badge/license-MIT-green) ![GPU H100](https://img.shields.io/badge/GPU-H100%2080GB-76b900?logo=nvidia&logoColor=white) ![decode 2.7x faster](https://img.shields.io/badge/decode-2.7x%20faster-brightgreen) ![batched 2012 tok/s](https://img.shields.io/badge/batched-2012%20tok%2Fs-blue) ![output exact](https://img.shields.io/badge/output-bit--exact%20vs%20own%20decode-success) ![self-improvement 1.056x](https://img.shields.io/badge/North%20tunes%20itself-%2B5.6%25-orange) ![every number measured](https://img.shields.io/badge/every%20number-measured%20%26%20logged-informational)
+
+</div>
 
 **Fast, exact decoding for Cohere's MoE model "North" on a single H100.**
 A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossless against its own plain decode*, with every number measured, labeled and backed by raw logs in this repo.
