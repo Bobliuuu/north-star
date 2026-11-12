@@ -15,6 +15,6 @@ North + North subagents: 1.056 / 1.006 / 1.017x, 1 of 3 pass
 4/ Honest read: subagents did not help on average (both arms 1.026x mean best, n=3). The one standout: a North-in-North session found KC=64, the same move our human sweep found (1.056x vs human 1.054-1.062x). No earlier North run did.
 
 5/ Caveats: tiny n, ~4% timing noise in the feedback loop, North-in-North uses ~1.4x the model calls. Everything correctness-checked, raw traces for all 266 North calls in the repo.
-Code + results: github.com/Bobliuuu/northstar (H22)
+Code + results: github.com/Bobliuuu/north-star (H22)
 
 [attach docs/img/north_in_north.png to tweet 3]
