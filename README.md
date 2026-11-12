@@ -22,7 +22,8 @@ A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossl
 | 👥 Many users at once | **9.1x** total throughput | ✅ WIN | 2,012 tokens/s with 32 users together vs 221 tok/s for one user (derived ratio) |
 | 🏁 vs vLLM (popular tool) | **1.01x** | ➖ TIE | 254.8 vs 253.5 tok/s, one user |
 | 🤖 North improves its own kernel | **1.056x** best, **1.026x** average | 🟡 PARTIAL | best of 3 sessions; only 1 of 3 sessions clears our 1.03x bar |
-| 👯 North inside North vs one North | **1.00x** | ❌ NO WIN | same average (1.026x) for both; one lucky session |
+| 👯 One North + 4 North helpers (called from outside, via prompts) vs one North alone | **1.00x** | ❌ NO WIN | average best 1.026x (about +2.6%) for both, so the ratio between the two is 1.00x; the helpers found one lucky session, not a better average |
+| 🧬 North truly EMBEDDED inside North (qwenagent-style) | n/a | ⏳ NOT TESTED | no benchmark run yet; see "Two meanings of North inside North" below |
 
 Legend: ✅ clear win · 🟡 small or partial win · ➖ tie · ❌ no win. The x is the ratio against the stated baseline (higher is better; 1.00x = no change).
 
@@ -35,7 +36,8 @@ Legend: ✅ clear win · 🟡 small or partial win · ➖ tie · ❌ no win. The
 | 👥 Many users at once | One GPU can serve far more people for the same cost. |
 | 🏁 vs vLLM | We match the industry standard; we do not beat it. |
 | 🤖 Self-improvement | Yes, a little, and only sometimes. A human found the same size of win (+5.4-6.2%) with a simple sweep. Not a self-improvement explosion, but a real first sign. |
-| 👯 North inside North | Extra copies did not make it smarter on average; they just found one lucky win. |
+| 👯 North + North helpers (outside) | Calling North several times from outside, each time in a different role, did not make it smarter on average; it just found one lucky win. |
+| 🧬 Embedded North-in-North | The real "model inside the model" idea (small workers living inside one forward pass) has not been tried on North. The closest evidence is our qwenagent project on Qwen (below). |
 
 **Honest bottom line:** ✅ big, verified speed-ups for running North. ❌ no evidence yet that the model can make itself dramatically faster. Details, failures and caveats below. 👇
 
@@ -53,7 +55,7 @@ All numbers are MEASURED on one H100 80GB, greedy decoding, up to 192 new tokens
 | Same, on 99 real prompts from 11 public datasets | 1.15x geomean (82 wins, 15 ties, 2 losses, worst 0.96x) | H15 |
 | Batched exact executor, aggregate throughput | 2012 tok/s at 32 concurrent sequences | H20 |
 | Stock vLLM 0.33 at batch 1 (same prompt mix) | plain 253.5 tok/s vs ours exact plain 221.4, ours exact + speculation 254.8 | H17 |
-| North improving its own kernel, closed loop (3 sessions/arm) | North alone 1.026x mean best, North + 4 North subagents 1.026x (best session 1.056x); 1 of 3 sessions pass the 1.03x gate in each | H22 |
+| North improving its own kernel, closed loop (3 sessions/arm) | North alone 1.026x mean best, North + 4 North helpers called from outside 1.026x (best session 1.056x); 1 of 3 sessions pass the 1.03x gate in each | H22 |
 
 **Exact mode** uses batch-invariant kernels, so speculative output equals the same executor's plain greedy output on 70/70 runs (and 14/14 at every tested context up to 128K). It is **not** bit-identical to Hugging Face `generate`.
 
@@ -66,11 +68,11 @@ We report these as plainly as the wins.
 - **vs vLLM.** On the real-prompt mix our exact decode is about level with stock vLLM plain, not ahead of it. vLLM's built-in n-gram speculation is slower than its own plain on this model (0.87–0.96x) (H17).
 - **Self-speculation, the original thesis.** The model drafting for itself, fused with verification, never beat plain decode on any executor, context (up to 128K) or batch size tested (H5–H8, H11, H12).
 - **Self-improvement, open loop (H21, H21b).** Proposing without measured feedback, North authored no gate-passing optimization: its best edit set was 1.003-1.009x against 1.054-1.062x for the human sweep, indistinguishable from budget-matched random search (1 passing set in 66 draws) and from general-purpose models given the same prompt (0 passing sets in 99 samples). See [`docs/SELFIMPROVE_ANALYSIS.md`](docs/SELFIMPROVE_ANALYSIS.md).
-- **Self-improvement, closed loop, and North inside North (H22).** With measured speedups fed back each round (8 rounds x 3 builds, 3 sessions per arm), a single North finds a gate-passing config in 1 of 3 sessions (best 1.041x). A North orchestrator driving four North subagents (only North, no other model) also passes in 1 of 3 sessions (best 1.056x, the only arm that found the human sweep's KC=64 move). Mean best is identical (1.026x), so the subagents did not help on average at n=3; a standard autotuner at the same budget got 1.002x. Feedback timings are noisy (about 4%), which affects every arm. See H22 in [`RESULTS.md`](RESULTS.md).
+- **Self-improvement, closed loop, with North helpers called from outside (H22).** With measured speedups fed back each round (8 rounds x 3 builds, 3 sessions per arm), a single North finds a gate-passing config in 1 of 3 sessions (best 1.041x). A North orchestrator calling four North helper copies through prompts (only North, no other model; this is NOT the embedded version) also passes in 1 of 3 sessions (best 1.056x, the only arm that found the human sweep's KC=64 move). Mean best is identical (1.026x), so the subagents did not help on average at n=3; a standard autotuner at the same budget got 1.002x. Feedback timings are noisy (about 4%), which affects every arm. See H22 in [`RESULTS.md`](RESULTS.md).
 
 ![Best edit set per proposer on the kernel-tunable task (open loop): human sweep and random search pass the 1.03x gate, North and the tested LLMs do not](docs/img/selfimprove.png)
 
-![Best-so-far dev speedup per round (closed loop): standard autotuner, North alone, North with North subagents](docs/img/north_in_north.png)
+![Best-so-far dev speedup per round (closed loop): standard autotuner, North alone, North with North helpers called from outside](docs/img/north_in_north.png)
 
 ## 🔍 Scope and caveats
 
@@ -104,6 +106,26 @@ GPU runs go through [Modal](https://modal.com) and are launched with `modal run 
 | `docs/` | Design notes: [`THESIS.md`](docs/THESIS.md), [`PLAN.md`](docs/PLAN.md), [`NORTH_ARCH.md`](docs/NORTH_ARCH.md), self-improvement and kernel notes |
 | `RESULTS.md` | Every experiment (H1–H20): setup, tables, findings, caveats |
 | `NEXT_STEPS.md` | Current status and the next experiments |
+
+## 🧬 Two meanings of "North inside North"
+
+1. **Outside helpers (what H22 tested).** North is called several times from outside, each call with a different role prompt (planner, four specialists, selector). This is how most agent frameworks make "subagents". Result above: no gain on average.
+2. **Embedded (NOT tested here).** Small trainable worker modules live *inside* one North forward pass: private recurrent state, a learned router, and a return channel into the residual stream; no prompts, no extra calls. This is what our sister project [qwenagent](https://github.com/Bobliuuu/qwenagent) built on frozen Qwen3-0.6B. Nothing equivalent has been built or benchmarked on North yet, so we make no claim about it.
+
+## 📚 Related benchmarks: embedded subagents inside Qwen (qwenagent, NOT North)
+
+These are results from the embedded approach on a different model (frozen Qwen3-0.6B up to 4B) and a different task (interleaved register / ledger tracking). They are the nearest evidence for what embedding would do, not evidence about North.
+
+| Benchmark | Result | Win? |
+|---|---|---|
+| Embedding trainable workers in a frozen Qwen works at all | chance → well above chance; zeroing the return channel sends it back to chance | ✅ WIN |
+| Random register names make tracking generalise (q7, 5 seeds) | trained on 2-3 registers, still well above chance at 16 | ✅ WIN |
+| Private slots vs a shared state or stateless adapter (q7, q9, 5 seeds) | no advantage: 16 registers `adapter` 28.4, `single` 27.3, `multi` 25.6, `oracle` 19.6 (%) | ❌ NO WIN |
+| Workers vs LoRA of about 441k parameters (q10, 5 seeds) | mean accuracy `multi` 0.410 vs LoRA 0.394 vs `adapter` 0.458 | ➖ TIE |
+| Realistic ledger task (q12) | trained modes ≥0.88 at P=2-3 (frozen Qwen at chance); at P=12 `single` 0.53 vs `multi` 0.39 | 🟡 PARTIAL |
+| Scale (q13) | `adapter` at P=4: 54% / 58% / 72% for 0.6B / 1.7B / 4B; `multi` falls further behind at 4B | 🟡 PARTIAL |
+
+Takeaway: embedding extra modules inside a frozen model is feasible, but the "private subagent slots" part did not beat simpler baselines. Source: qwenagent `README.md` and `results/`.
 
 ## Background
 
