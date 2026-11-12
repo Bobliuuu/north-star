@@ -13,14 +13,29 @@ A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossl
 
 **In plain English:** we made the AI model **about 3x faster at writing text**, with **the same words coming out as its own normal decoding**, on one GPU. Then we asked the model to speed *itself* up. It **barely managed it (about 5%)**, so for now humans are still better at tuning it.
 
-| | What we got | What that means |
-|---|---|---|
-| ⚡ **Speed** | 10.7 → 3.9 ms per word-piece (**2.7x**); **3.2-4.4x** with speculation vs the original setup | Replies show up roughly 3x sooner. Same hardware, same model. |
-| 🎯 **Same answers** | Output identical to the model's own normal decoding on 70/70 runs | The speed-up is a free lunch: no quality traded away. |
-| 👥 **Many users at once** | **2,012 word-pieces (tokens)/second** with 32 people served together | One GPU can serve far more people for the same cost. |
-| 🏁 **vs the popular tool (vLLM)** | About level (254.8 vs 253.5 tok/s, one user) | We match the industry standard; we do not beat it. |
-| 🤖 **Can the model improve itself?** | Best **+5.6%** (1.056x) on one of its own GPU kernels, found by North steering four copies of North. Typical sessions: +0% to +4% | Yes, a little, and only sometimes (1 of 3 tries). A human found the same size of win (+5.4-6.2%) with a simple sweep. So: not a self-improvement explosion, but a real first sign. |
-| 👯 **Does "North inside North" help?** | Same average as one North (+2.6% each) | Extra copies did not make it smarter on average; they just found one lucky win. |
+### 📈 What we got
+
+| Metric | Gain | Win? | Numbers |
+|---|---|---|---|
+| ⚡ Speed (plain decode) | **2.7x** | ✅ WIN | 10.7 → 3.9 ms per token; **3.2-4.4x** with speculation vs the original setup |
+| 🎯 Same answers | **1.00x** (no quality lost) | ✅ WIN | identical to the model's own normal decoding on 70/70 runs |
+| 👥 Many users at once | **9.1x** total throughput | ✅ WIN | 2,012 tokens/s with 32 users together vs 221 tok/s for one user (derived ratio) |
+| 🏁 vs vLLM (popular tool) | **1.01x** | ➖ TIE | 254.8 vs 253.5 tok/s, one user |
+| 🤖 North improves its own kernel | **1.056x** best, **1.026x** average | 🟡 PARTIAL | best of 3 sessions; only 1 of 3 sessions clears our 1.03x bar |
+| 👯 North inside North vs one North | **1.00x** | ❌ NO WIN | same average (1.026x) for both; one lucky session |
+
+Legend: ✅ clear win · 🟡 small or partial win · ➖ tie · ❌ no win. The x is the ratio against the stated baseline (higher is better; 1.00x = no change).
+
+### 💡 What that means
+
+| Metric | In plain English |
+|---|---|
+| ⚡ Speed | Replies show up roughly 3x sooner. Same hardware, same model. |
+| 🎯 Same answers | The speed-up is a free lunch: no quality traded away. |
+| 👥 Many users at once | One GPU can serve far more people for the same cost. |
+| 🏁 vs vLLM | We match the industry standard; we do not beat it. |
+| 🤖 Self-improvement | Yes, a little, and only sometimes. A human found the same size of win (+5.4-6.2%) with a simple sweep. Not a self-improvement explosion, but a real first sign. |
+| 👯 North inside North | Extra copies did not make it smarter on average; they just found one lucky win. |
 
 **Honest bottom line:** ✅ big, verified speed-ups for running North. ❌ no evidence yet that the model can make itself dramatically faster. Details, failures and caveats below. 👇
 
