@@ -145,3 +145,13 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-12 | ap-qBbqM15nkgrMCrljxR29Lb | `modal run --detach modal/longexact_run.py::main --tag le6 --ctxs 32768 --x2` | H24 32K v1 vs v2 with chunk 512; 241 s; results/longexact_le6.jsonl |
 | 2026-11-12 | ap-hP2aZ9N2fXoFSslF5zBtVO | `modal run --detach modal/vllm_vs_x2.py::main --tag vx1` | H24 same-container vLLM 0.33 plain vs exact v1/v2 (ours 99 -> vLLM -> ours 33); 1095 s; results/vx_vx1_*.jsonl |
 | 2026-11-12 | (2 launches) | `modal run modal/x2_tune.py ...` | first attempts died locally on a Windows console encoding error before any container started; 0 GPU-s |
+| 2026-11-12 | ap-wLrD5tl1tavxRyVvyEmEZv | `modal run --detach modal/x2_run.py::main --tag x5prof --phases prof --extra results/x2_extra5.json` | H25 per-branch timeline + in-graph tile retune (10 variants); results/x2_x5prof.jsonl |
+| 2026-11-12 | ap-hi4VCUdLDsmdZhNCa7mMb5 | `modal run --detach modal/x2_run.py::main --tag x6 --phases traffic` | H25 CostPolicy vs fixed PLD on the 99-prompt mix; results/x2_x6.jsonl |
+| 2026-11-12 | ap-xAWIRHQ5U8w9Asql5zMGaF | `modal run --detach modal/longexact_run.py::main --tag le7 --ctxs 32768 --x2` | H25 32K with x2cost arm; results/longexact_le7.jsonl |
+| 2026-11-12 | ap-gyNvZZEkL0W9SJVyVGL5Le | `modal run --detach modal/longexact_run.py::main --tag le8 --ctxs 131072 --x2` | H25 128K with x2cost arm; results/longexact_le8.jsonl |
+| 2026-11-12 | ap-2OgFw0fBGywr9MKSWDzipp | `modal run modal/x2_tune.py --part moef --tag t2moef` | H25 fused MoE microbench (an earlier launch failed every config on a signature bug, ~60 s); results/x2_tune_t2moef.jsonl |
+| 2026-11-12 | ap-mwmmoeSfYxnNeTgvTmXhZ0 | `modal run --detach modal/x2_run.py::main --tag x7rf --phases step,prof --extra results/x2_extra7.json` | H25 fused router+top-k v1 (serial rows); results/x2_x7rf.jsonl |
+| 2026-11-12 | ap-eMOiDZ26CHB6mHxImo5vas | `modal run --detach modal/x2_run.py::main --tag x8rf --phases step --extra results/x2_extra7.json` | H25 fused router+top-k vectorised; results/x2_x8rf.jsonl |
+| 2026-11-12 | ap-ekDA7RRIp3FCHgbnWqQfJu | `modal run --detach modal/longexact_run.py::main --tag le9 --ctxs 32768 --x2 --overlap` | H25 32K, proposer index built during prefill; results/longexact_le9.jsonl |
+| 2026-11-12 | ap-ciT7SYKCRqpZHrwl4r6ERd | `modal run --detach modal/longexact_run.py::main --tag le10 --ctxs 131072 --x2 --overlap` | H25 128K, index during prefill; results/longexact_le10.jsonl |
+| 2026-11-12 | ap-4eMweePyOvy0Ug8RY12uqW | `modal run --detach modal/vllm_vs_x2.py::batch --tag vxb1` | H25 batched B=1..32 ours vs vLLM, one container; results/vxb_vxb1_*.jsonl |

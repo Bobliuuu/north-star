@@ -1,0 +1,558 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-wLrD5tl1tavxRyVvyEmEZv
+✓ Created objects.
+├── ✓ Uploaded <home>\Documents\Projects\north-star\modal\x2_run.py
+├── ✓ Uploaded modal\nsapp.py
+├── ✓ Uploaded <home>\Documents\Projects\north-star\src\northstar
+├── ✓ Uploaded <home>\Documents\Projects\north-star\tests
+├── ✓ Uploaded <home>\Documents\Projects\north-star\harness
+└── ✓ Created Function remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:07, 53.49it/s]
+[1ALoading weights:   4%|▍         | 17/394 [00:00<00:08, 43.32it/s]
+[1ALoading weights:   6%|▌         | 22/394 [00:00<00:16, 22.21it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:22, 16.67it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:22, 15.62it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:23, 15.22it/s]
+[1ALoading weights:  11%|█▏        | 45/394 [00:02<00:23, 14.74it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:22, 15.10it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:22, 14.64it/s]
+[1ALoading weights:  16%|█▌        | 62/394 [00:03<00:20, 15.96it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:23, 14.13it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:04<00:22, 14.64it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:21, 14.69it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:21, 14.48it/s]
+[1ALoading weights:  22%|██▏       | 85/394 [00:05<00:20, 14.97it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:21, 14.36it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:20, 14.45it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:06<00:19, 14.47it/s]
+[1ALoading weights:  28%|██▊       | 109/394 [00:06<00:19, 14.61it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:19, 14.65it/s]
+[1ALoading weights:  30%|███       | 120/394 [00:07<00:14, 18.32it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:19, 13.94it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:08<00:18, 14.04it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:08<00:17, 14.39it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:09<00:16, 14.55it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:09<00:16, 14.84it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:10<00:15, 14.85it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:11<00:15, 14.77it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:11<00:14, 14.69it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:12<00:14, 14.77it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:12<00:13, 14.65it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:13<00:13, 14.45it/s]
+[1ALoading weights:  52%|█████▏    | 205/394 [00:13<00:12, 14.70it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:13<00:12, 14.48it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:14<00:11, 14.64it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:14<00:11, 14.67it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:15<00:10, 14.86it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:15<00:10, 14.97it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:16<00:09, 14.80it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:17<00:09, 14.73it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:17<00:08, 14.93it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:18<00:07, 15.08it/s]
+[1ALoading weights:  71%|███████   | 280/394 [00:18<00:06, 17.67it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:18<00:07, 14.40it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:19<00:07, 14.57it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:19<00:06, 14.84it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:20<00:05, 14.79it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:20<00:05, 14.79it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:21<00:04, 14.75it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:21<00:04, 14.57it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:22<00:03, 14.26it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:23<00:03, 14.47it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:23<00:02, 14.34it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:24<00:02, 14.52it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:24<00:01, 14.64it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:25<00:01, 14.86it/s]
+[1ALoading weights:  97%|█████████▋| 381/394 [00:25<00:00, 14.60it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:25<00:00, 15.10it/s]Loading weights: 100%|██████████| 394/394 [00:25<00:00, 15.34it/s]
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-12T18:36:24Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "3c88f18ec2f9", "load_s": 43.23949337005615}
+/usr/local/lib/python3.12/site-packages/torch/profiler/profiler.py:217: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.
+  _warn_once(
+CRIT v1 T 1 {"layers_attn_critical": 0, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 0.0, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.0, "side_last": {}, "main_last": {}}
+PROF v1 T 1 graph 4.505 span 4.533 busy 4.316 ksum 4.316 launches 509
+     1.790 ms  150  _lin_kernel
+     0.977 ms   48  _gateup_blk
+     0.557 ms   48  _down_blk
+     0.515 ms   49  _attn_split_x
+     0.148 ms   49  _rope_write_blk
+     0.119 ms   50  _resid_norm_kernel
+     0.094 ms   48  _topk_kernel
+     0.091 ms   49  _attn_combine_x
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.005 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.003 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    2  memcpy32_post
+     0.002 ms    1  _amax1
+CRIT v1 T 13 {"layers_attn_critical": 0, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 0.0, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.0, "side_last": {}, "main_last": {}}
+PROF v1 T 13 graph 9.021 span 9.065 busy 8.851 ksum 8.851 launches 509
+     3.924 ms   48  _gateup_blk
+     1.969 ms   48  _down_blk
+     1.819 ms  150  _lin_kernel
+     0.575 ms   49  _attn_split_x
+     0.170 ms   49  _rope_write_blk
+     0.132 ms   50  _resid_norm_kernel
+     0.130 ms   49  _attn_combine_x
+     0.096 ms   48  _topk_kernel
+     0.011 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.005 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.003 ms    2  Memcpy DtoD (Device -> Device)
+CRIT s T 1 {"layers_attn_critical": 0, "layers_moe_critical": 49, "main_idle_waiting_attn_ms": 0.0, "attn_slack_ms": 0.67076220703125, "join_to_norm_gap_ms": 0.02118994140625, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF s T 1 graph 3.549 span 3.496 busy 3.413 ksum 5.555 launches 509
+     2.100 ms  150  _lin_kernel
+     1.190 ms   49  _attn_split_x
+     1.043 ms   48  _gateup_blk
+     0.602 ms   48  _down_blk
+     0.216 ms   49  _rope_write_blk
+     0.164 ms   49  _attn_combine_x
+     0.117 ms   50  _resid_norm_kernel
+     0.098 ms   48  _topk_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.005 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.003 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  _amax1
+CRIT s T 13 {"layers_attn_critical": 39, "layers_moe_critical": 10, "main_idle_waiting_attn_ms": 0.99988037109375, "attn_slack_ms": 0.476439453125, "join_to_norm_gap_ms": 0.01478662109375, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF s T 13 graph 7.521 span 7.639 busy 7.588 ksum 10.304 launches 509
+     3.923 ms   48  _gateup_blk
+     2.808 ms  150  _lin_kernel
+     2.040 ms   48  _down_blk
+     0.876 ms   49  _attn_split_x
+     0.229 ms   49  _rope_write_blk
+     0.160 ms   49  _attn_combine_x
+     0.129 ms   50  _resid_norm_kernel
+     0.102 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.004 ms    1  _amax1
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.003 ms    2  Memcpy DtoD (Device -> Device)
+CRIT t T 1 {"layers_attn_critical": 0, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 0.0, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.0, "side_last": {}, "main_last": {}}
+PROF t T 1 graph 4.118 span 4.146 busy 3.929 ksum 3.929 launches 509
+     1.484 ms  150  _lin_kernel
+     0.932 ms   48  _gateup_blk
+     0.517 ms   49  _attn_split_x
+     0.503 ms   48  _down_blk
+     0.162 ms   49  _rope_write_blk
+     0.119 ms   50  _resid_norm_kernel
+     0.095 ms   48  _topk_kernel
+     0.092 ms   49  _attn_combine_x
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.005 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.002 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  _amax1
+CRIT t T 13 {"layers_attn_critical": 0, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 0.0, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.0, "side_last": {}, "main_last": {}}
+PROF t T 13 graph 7.821 span 7.904 busy 7.692 ksum 7.692 launches 509
+     3.328 ms   48  _gateup_blk
+     1.708 ms   48  _down_blk
+     1.515 ms  150  _lin_kernel
+     0.578 ms   49  _attn_split_x
+     0.168 ms   49  _rope_write_blk
+     0.130 ms   50  _resid_norm_kernel
+     0.130 ms   49  _attn_combine_x
+     0.096 ms   48  _topk_kernel
+     0.011 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.005 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.005 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+CRIT ts T 1 {"layers_attn_critical": 5, "layers_moe_critical": 44, "main_idle_waiting_attn_ms": 0.00345556640625, "attn_slack_ms": 0.3429267578125, "join_to_norm_gap_ms": 0.022142578125, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF ts T 1 graph 3.043 span 3.124 busy 3.058 ksum 5.147 launches 509
+     1.846 ms  150  _lin_kernel
+     1.022 ms   49  _attn_split_x
+     0.944 ms   48  _gateup_blk
+     0.594 ms   48  _down_blk
+     0.281 ms   49  _attn_combine_x
+     0.196 ms   49  _rope_write_blk
+     0.120 ms   48  _topk_kernel
+     0.118 ms   50  _resid_norm_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.002 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  _amax1
+CRIT ts T 13 {"layers_attn_critical": 1, "layers_moe_critical": 48, "main_idle_waiting_attn_ms": 0.00084765625, "attn_slack_ms": 0.430130859375, "join_to_norm_gap_ms": 0.02261181640625, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF ts T 13 graph 6.761 span 6.683 busy 6.608 ksum 8.579 launches 509
+     3.269 ms   48  _gateup_blk
+     1.757 ms   48  _down_blk
+     1.720 ms  150  _lin_kernel
+     0.984 ms   49  _attn_split_x
+     0.396 ms   49  _attn_combine_x
+     0.192 ms   49  _rope_write_blk
+     0.128 ms   50  _resid_norm_kernel
+     0.097 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.005 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+CRIT rec T 1 {"layers_attn_critical": 7, "layers_moe_critical": 42, "main_idle_waiting_attn_ms": 0.01091943359375, "attn_slack_ms": 0.30165234375, "join_to_norm_gap_ms": 0.0204287109375, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF rec T 1 graph 3.008 span 3.095 busy 3.029 ksum 5.127 launches 509
+     1.898 ms  150  _lin_kernel
+     0.982 ms   49  _attn_split_x
+     0.948 ms   48  _gateup_blk
+     0.605 ms   48  _down_blk
+     0.251 ms   49  _attn_combine_x
+     0.182 ms   49  _rope_write_blk
+     0.122 ms   48  _topk_kernel
+     0.113 ms   50  _resid_norm_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.003 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  _amax1
+CRIT rec T 13 {"layers_attn_critical": 49, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 2.419265625, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.01427490234375, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF rec T 13 graph 6.582 span 6.606 busy 6.540 ksum 9.990 launches 509
+     3.645 ms   48  _gateup_blk
+     2.232 ms  150  _lin_kernel
+     1.733 ms   48  _down_blk
+     1.360 ms   49  _attn_split_x
+     0.556 ms   49  _attn_combine_x
+     0.202 ms   49  _rope_write_blk
+     0.125 ms   50  _resid_norm_kernel
+     0.097 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+CRIT m_gu32 T 1 {"layers_attn_critical": 11, "layers_moe_critical": 38, "main_idle_waiting_attn_ms": 0.02242724609375, "attn_slack_ms": 0.2489072265625, "join_to_norm_gap_ms": 0.01804345703125, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF m_gu32 T 1 graph 3.051 span 3.124 busy 3.063 ksum 5.230 launches 509
+     1.975 ms  150  _lin_kernel
+     1.014 ms   48  _gateup_blk
+     0.970 ms   49  _attn_split_x
+     0.623 ms   48  _down_blk
+     0.204 ms   49  _attn_combine_x
+     0.182 ms   49  _rope_write_blk
+     0.121 ms   48  _topk_kernel
+     0.114 ms   50  _resid_norm_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.003 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    1  _amax1
+CRIT m_gu32 T 13 {"layers_attn_critical": 49, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 1.7668857421875, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.01389013671875, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF m_gu32 T 13 graph 6.571 span 6.591 busy 6.533 ksum 10.551 launches 509
+     3.608 ms   48  _gateup_blk
+     2.007 ms   49  _attn_split_x
+     1.991 ms  150  _lin_kernel
+     1.752 ms   48  _down_blk
+     0.718 ms   49  _attn_combine_x
+     0.215 ms   49  _rope_write_blk
+     0.125 ms   50  _resid_norm_kernel
+     0.099 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+CRIT m_gu64k256 T 1 {"layers_attn_critical": 9, "layers_moe_critical": 40, "main_idle_waiting_attn_ms": 0.01299169921875, "attn_slack_ms": 0.2304921875, "join_to_norm_gap_ms": 0.020453125, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF m_gu64k256 T 1 graph 3.044 span 3.104 busy 3.036 ksum 5.209 launches 509
+     1.991 ms  150  _lin_kernel
+     0.971 ms   48  _gateup_blk
+     0.943 ms   49  _attn_split_x
+     0.654 ms   48  _down_blk
+     0.196 ms   49  _attn_combine_x
+     0.187 ms   49  _rope_write_blk
+     0.127 ms   48  _topk_kernel
+     0.114 ms   50  _resid_norm_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.003 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    1  _amax1
+CRIT m_gu64k256 T 13 {"layers_attn_critical": 49, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 2.24616455078125, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.01417431640625, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF m_gu64k256 T 13 graph 6.602 span 6.626 busy 6.561 ksum 10.173 launches 509
+     3.661 ms   48  _gateup_blk
+     2.276 ms  150  _lin_kernel
+     1.731 ms   48  _down_blk
+     1.351 ms   49  _attn_split_x
+     0.687 ms   49  _attn_combine_x
+     0.203 ms   49  _rope_write_blk
+     0.128 ms   50  _resid_norm_kernel
+     0.099 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+CRIT m_gu64w8 T 1 {"layers_attn_critical": 31, "layers_moe_critical": 18, "main_idle_waiting_attn_ms": 0.071486328125, "attn_slack_ms": 0.10060595703125, "join_to_norm_gap_ms": 0.01747509765625, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF m_gu64w8 T 1 graph 2.978 span 3.044 busy 2.986 ksum 5.169 launches 509
+     2.041 ms  150  _lin_kernel
+     1.033 ms   48  _gateup_blk
+     0.820 ms   49  _attn_split_x
+     0.661 ms   48  _down_blk
+     0.185 ms   49  _rope_write_blk
+     0.163 ms   49  _attn_combine_x
+     0.127 ms   48  _topk_kernel
+     0.115 ms   50  _resid_norm_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.002 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  _amax1
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+CRIT m_gu64w8 T 13 {"layers_attn_critical": 49, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 2.84862939453125, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.0143408203125, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF m_gu64w8 T 13 graph 6.800 span 6.836 busy 6.773 ksum 9.959 launches 509
+     3.850 ms   48  _gateup_blk
+     2.460 ms  150  _lin_kernel
+     1.726 ms   48  _down_blk
+     1.108 ms   49  _attn_split_x
+     0.354 ms   49  _attn_combine_x
+     0.198 ms   49  _rope_write_blk
+     0.126 ms   50  _resid_norm_kernel
+     0.100 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.004 ms    1  _amax1
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+CRIT m_gu128 T 1 {"layers_attn_critical": 49, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 0.3609619140625, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.0210224609375, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF m_gu128 T 1 graph 2.974 span 3.010 busy 2.947 ksum 4.888 launches 509
+     1.880 ms  150  _lin_kernel
+     1.194 ms   48  _gateup_blk
+     0.636 ms   49  _attn_split_x
+     0.566 ms   48  _down_blk
+     0.184 ms   49  _rope_write_blk
+     0.161 ms   49  _attn_combine_x
+     0.128 ms   48  _topk_kernel
+     0.115 ms   50  _resid_norm_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.003 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    1  _amax1
+CRIT m_gu128 T 13 {"layers_attn_critical": 49, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 2.46222705078125, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.01417822265625, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF m_gu128 T 13 graph 6.823 span 6.875 busy 6.809 ksum 10.420 launches 509
+     3.885 ms   48  _gateup_blk
+     2.195 ms  150  _lin_kernel
+     1.734 ms   48  _down_blk
+     1.522 ms   49  _attn_split_x
+     0.619 ms   49  _attn_combine_x
+     0.203 ms   49  _rope_write_blk
+     0.125 ms   50  _resid_norm_kernel
+     0.099 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.005 ms    1  _amax1
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+CRIT m_dn128 T 1 {"layers_attn_critical": 13, "layers_moe_critical": 36, "main_idle_waiting_attn_ms": 0.03846435546875, "attn_slack_ms": 0.252525390625, "join_to_norm_gap_ms": 0.01731298828125, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF m_dn128 T 1 graph 3.017 span 3.093 busy 3.034 ksum 5.145 launches 509
+     1.971 ms  150  _lin_kernel
+     0.952 ms   48  _gateup_blk
+     0.917 ms   49  _attn_split_x
+     0.644 ms   48  _down_blk
+     0.210 ms   49  _attn_combine_x
+     0.185 ms   49  _rope_write_blk
+     0.127 ms   48  _topk_kernel
+     0.115 ms   50  _resid_norm_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.002 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  _amax1
+CRIT m_dn128 T 13 {"layers_attn_critical": 49, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 2.41218701171875, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.014109375, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF m_dn128 T 13 graph 6.609 span 6.616 busy 6.552 ksum 9.973 launches 509
+     3.638 ms   48  _gateup_blk
+     2.279 ms  150  _lin_kernel
+     1.751 ms   48  _down_blk
+     1.285 ms   49  _attn_split_x
+     0.557 ms   49  _attn_combine_x
+     0.204 ms   49  _rope_write_blk
+     0.124 ms   50  _resid_norm_kernel
+     0.097 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+CRIT m_dn32 T 1 {"layers_attn_critical": 14, "layers_moe_critical": 35, "main_idle_waiting_attn_ms": 0.03299267578125, "attn_slack_ms": 0.23905029296875, "join_to_norm_gap_ms": 0.01961181640625, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF m_dn32 T 1 graph 3.017 span 3.085 busy 3.021 ksum 5.155 launches 509
+     1.940 ms  150  _lin_kernel
+     0.955 ms   48  _gateup_blk
+     0.943 ms   49  _attn_split_x
+     0.650 ms   48  _down_blk
+     0.219 ms   49  _attn_combine_x
+     0.186 ms   49  _rope_write_blk
+     0.124 ms   48  _topk_kernel
+     0.113 ms   50  _resid_norm_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.003 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    1  _amax1
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+CRIT m_dn32 T 13 {"layers_attn_critical": 49, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 2.46419189453125, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.0154921875, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF m_dn32 T 13 graph 6.608 span 6.657 busy 6.592 ksum 10.020 launches 509
+     3.649 ms   48  _gateup_blk
+     2.329 ms  150  _lin_kernel
+     1.751 ms   48  _down_blk
+     1.300 ms   49  _attn_split_x
+     0.534 ms   49  _attn_combine_x
+     0.200 ms   49  _rope_write_blk
+     0.121 ms   50  _resid_norm_kernel
+     0.097 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.005 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.003 ms    2  Memcpy DtoD (Device -> Device)
+CRIT q_bn32 T 1 {"layers_attn_critical": 2, "layers_moe_critical": 47, "main_idle_waiting_attn_ms": 0.00470556640625, "attn_slack_ms": 0.42172021484375, "join_to_norm_gap_ms": 0.0225908203125, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF q_bn32 T 1 graph 3.101 span 3.166 busy 3.090 ksum 5.136 launches 509
+     1.823 ms  150  _lin_kernel
+     1.102 ms   49  _attn_split_x
+     0.941 ms   48  _gateup_blk
+     0.564 ms   48  _down_blk
+     0.256 ms   49  _attn_combine_x
+     0.212 ms   49  _rope_write_blk
+     0.115 ms   50  _resid_norm_kernel
+     0.099 ms   48  _topk_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.005 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.002 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    1  _amax1
+CRIT q_bn32 T 13 {"layers_attn_critical": 49, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 2.314216796875, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.01426123046875, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF q_bn32 T 13 graph 6.617 span 6.615 busy 6.544 ksum 10.089 launches 509
+     3.644 ms   48  _gateup_blk
+     2.321 ms  150  _lin_kernel
+     1.725 ms   48  _down_blk
+     1.368 ms   49  _attn_split_x
+     0.570 ms   49  _attn_combine_x
+     0.205 ms   49  _rope_write_blk
+     0.125 ms   50  _resid_norm_kernel
+     0.097 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+CRIT q_bn128 T 1 {"layers_attn_critical": 0, "layers_moe_critical": 49, "main_idle_waiting_attn_ms": 0.0, "attn_slack_ms": 0.5124599609375, "join_to_norm_gap_ms": 0.0217587890625, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF q_bn128 T 1 graph 3.061 span 3.120 busy 3.037 ksum 4.977 launches 509
+     1.696 ms  150  _lin_kernel
+     0.921 ms   48  _gateup_blk
+     0.752 ms   49  _rope_write_blk
+     0.684 ms   49  _attn_split_x
+     0.562 ms   48  _down_blk
+     0.120 ms   49  _attn_combine_x
+     0.114 ms   50  _resid_norm_kernel
+     0.101 ms   48  _topk_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.003 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  _amax1
+CRIT q_bn128 T 13 {"layers_attn_critical": 48, "layers_moe_critical": 1, "main_idle_waiting_attn_ms": 1.98600732421875, "attn_slack_ms": 0.00422412109375, "join_to_norm_gap_ms": 0.0149169921875, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF q_bn128 T 13 graph 6.473 span 6.504 busy 6.438 ksum 10.147 launches 509
+     3.616 ms   48  _gateup_blk
+     2.222 ms  150  _lin_kernel
+     1.745 ms   48  _down_blk
+     1.140 ms   49  _attn_split_x
+     0.769 ms   49  _rope_write_blk
+     0.383 ms   49  _attn_combine_x
+     0.125 ms   50  _resid_norm_kernel
+     0.108 ms   48  _topk_kernel
+     0.011 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+CRIT o_bn64 T 1 {"layers_attn_critical": 1, "layers_moe_critical": 48, "main_idle_waiting_attn_ms": 0.00444677734375, "attn_slack_ms": 0.33711328125, "join_to_norm_gap_ms": 0.0194931640625, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF o_bn64 T 1 graph 3.035 span 3.259 busy 3.191 ksum 5.394 launches 509
+     2.062 ms  150  _lin_kernel
+     1.008 ms   49  _attn_split_x
+     0.991 ms   48  _gateup_blk
+     0.636 ms   48  _down_blk
+     0.230 ms   49  _attn_combine_x
+     0.194 ms   49  _rope_write_blk
+     0.128 ms   48  _topk_kernel
+     0.119 ms   50  _resid_norm_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.003 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    1  _amax1
+CRIT o_bn64 T 13 {"layers_attn_critical": 49, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 2.18054052734375, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.01475390625, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF o_bn64 T 13 graph 6.590 span 6.612 busy 6.548 ksum 10.224 launches 509
+     3.646 ms   48  _gateup_blk
+     2.560 ms  150  _lin_kernel
+     1.735 ms   48  _down_blk
+     1.321 ms   49  _attn_split_x
+     0.498 ms   49  _attn_combine_x
+     0.202 ms   49  _rope_write_blk
+     0.125 ms   50  _resid_norm_kernel
+     0.100 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+CRIT lm_bn128 T 1 {"layers_attn_critical": 12, "layers_moe_critical": 37, "main_idle_waiting_attn_ms": 0.01340966796875, "attn_slack_ms": 0.2486171875, "join_to_norm_gap_ms": 0.0199697265625, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF lm_bn128 T 1 graph 3.017 span 3.085 busy 3.021 ksum 5.150 launches 509
+     1.943 ms  150  _lin_kernel
+     0.951 ms   48  _gateup_blk
+     0.942 ms   49  _attn_split_x
+     0.634 ms   48  _down_blk
+     0.232 ms   49  _attn_combine_x
+     0.183 ms   49  _rope_write_blk
+     0.124 ms   48  _topk_kernel
+     0.115 ms   50  _resid_norm_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.002 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    1  _amax1
+CRIT lm_bn128 T 13 {"layers_attn_critical": 49, "layers_moe_critical": 0, "main_idle_waiting_attn_ms": 2.39174365234375, "attn_slack_ms": 0.0, "join_to_norm_gap_ms": 0.01465673828125, "side_last": {"_lin_kernel": 1, "_down_blk": 48}, "main_last": {"_lin_kernel": 49}}
+PROF lm_bn128 T 13 graph 6.587 span 6.612 busy 6.546 ksum 10.026 launches 509
+     3.642 ms   48  _gateup_blk
+     2.286 ms  150  _lin_kernel
+     1.733 ms   48  _down_blk
+     1.352 ms   49  _attn_split_x
+     0.551 ms   49  _attn_combine_x
+     0.199 ms   49  _rope_write_blk
+     0.126 ms   50  _resid_norm_kernel
+     0.099 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+X2_DONE secs 68.51001453399658 est usd 0.07517071039146848
+wrote results/x2_x5prof.jsonl
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-wLrD5tl1tavxRyVvyEmEZv

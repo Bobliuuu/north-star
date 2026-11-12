@@ -1,0 +1,24 @@
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-2OgFw0fBGywr9MKSWDzipp
+✓ Created objects.
+├── ✓ Uploaded <home>\Documents\Projects\north-star\modal\x2_tune.py
+├── ✓ Uploaded <home>\Documents\Projects\north-star\harness
+└── ✓ Created Function run.
+moef T 1 blk 33.4us
+moef T 1 {'BJ': 64, 'BK': 128, 'BN2': 256, 'nw': 4, 'ns': 3} 39.6us (blk 33.4) maxabs 0 inv None
+moef T 1 {'BJ': 64, 'BK': 128, 'BN2': 256, 'nw': 8, 'ns': 3} 40.1us (blk 33.4) maxabs 0 inv None
+moef T 1 {'BJ': 64, 'BK': 128, 'BN2': 128, 'nw': 4, 'ns': 3} 40.8us (blk 33.4) maxabs 0 inv None
+moef T 1 {'BJ': 64, 'BK': 128, 'BN2': 128, 'nw': 8, 'ns': 3} 41.2us (blk 33.4) maxabs 0 inv None
+moef T 1 {'BJ': 64, 'BK': 256, 'BN2': 256, 'nw': 4, 'ns': 2} 43.8us (blk 33.4) maxabs 0 inv None
+moef T 1 {'BJ': 64, 'BK': 64, 'BN2': 256, 'nw': 4, 'ns': 3} 43.8us (blk 33.4) maxabs 0 inv None
+moef T 13 blk 232.5us
+moef T 13 {'BJ': 128, 'BK': 64, 'BN2': 64, 'nw': 4, 'ns': 3} 254.6us (blk 232.5) maxabs 0.0156 inv True
+moef T 13 {'BJ': 128, 'BK': 64, 'BN2': 128, 'nw': 8, 'ns': 3} 254.7us (blk 232.5) maxabs 0.0156 inv True
+wrote results\x2_tune_t2moef.jsonl 16 rows
+moef T 13 {'BJ': 128, 'BK': 64, 'BN2': 128, 'nw': 4, 'ns': 3} 255.1us (blk 232.5) maxabs 0.0156 inv True
+moef T 13 {'BJ': 128, 'BK': 64, 'BN2': 64, 'nw': 8, 'ns': 3} 255.5us (blk 232.5) maxabs 0.0156 inv True
+moef T 13 {'BJ': 128, 'BK': 64, 'BN2': 128, 'nw': 4, 'ns': 2} 260.2us (blk 232.5) maxabs 0.0156 inv True
+moef T 13 {'BJ': 128, 'BK': 64, 'BN2': 128, 'nw': 8, 'ns': 2} 260.3us (blk 232.5) maxabs 0.0156 inv True
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-2OgFw0fBGywr9MKSWDzipp
