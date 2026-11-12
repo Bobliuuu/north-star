@@ -82,8 +82,10 @@ def moe_gemv_blk(x, idx, sc, gate_up, down, hbuf, obuf, cfg=None):
     Dm, I = x.shape[-1], down.shape[-1]
     TP = max(16, triton.next_power_of_2(T))
     TKP = triton.next_power_of_2(T * k)
-    _gateup_blk[(T * k, I // c["BN1"])](x, idx, gate_up, hbuf, K=Dm, I=I, T=T, KK=k, TP=TP, TKP=TKP, BN=c["BN1"], BK=c["BK1"], num_warps=c["nw1"])
-    _down_blk[(T * k, Dm // c["BN2"])](hbuf, idx, sc, down, obuf, K=I, N=Dm, T=T, KK=k, TP=TP, TKP=TKP, BN=c["BN2"], BK=c["BK2"], num_warps=c["nw2"])
+    s1 = {"num_stages": c["ns1"]} if c.get("ns1") else {}
+    s2 = {"num_stages": c["ns2"]} if c.get("ns2") else {}
+    _gateup_blk[(T * k, I // c["BN1"])](x, idx, gate_up, hbuf, K=Dm, I=I, T=T, KK=k, TP=TP, TKP=TKP, BN=c["BN1"], BK=c["BK1"], num_warps=c["nw1"], **s1)
+    _down_blk[(T * k, Dm // c["BN2"])](hbuf, idx, sc, down, obuf, K=I, N=Dm, T=T, KK=k, TP=TP, TKP=TKP, BN=c["BN2"], BK=c["BK2"], num_warps=c["nw2"], **s2)
     return obuf
 
 

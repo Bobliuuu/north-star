@@ -92,13 +92,15 @@ class FastNorth(GraphNorth):
         return self.lm_head(h.view(1, T, -1)) * cfg.logit_scale
 
     def _x_state(self, T):
-        if T not in self._x:
+        akw = getattr(self, "attn_kw", None) or {}
+        key = (T, getattr(self, "mp_min", None), tuple(sorted(akw.items())))
+        if key not in self._x:
             c = self.cfg
             k = c.num_experts_per_tok
             z = lambda *s: torch.zeros(*s, dtype=torch.bfloat16, device=self.dev)
-            self._x[T] = dict(ws=fx.AttnWSX(self.Hkv, self.G, self.D, self.Lmax, T, self.dev), idx=torch.zeros(T, k, dtype=torch.int32, device=self.dev),
+            self._x[key] = dict(ws=fx.AttnWSX(self.Hkv, self.G, self.D, self.Lmax, T, self.dev, mp_min=getattr(self, "mp_min", None), **akw), idx=torch.zeros(T, k, dtype=torch.int32, device=self.dev),
                               sc=z(T, k), hb=z(T * k, c.intermediate_size), ob=z(T * k, self.Dm), x2=z(T, self.Dm), h2=z(T, self.Dm), zero=z(T, self.Dm))
-        return self._x[T]
+        return self._x[key]
 
     def _forward_exact(self, ids, kv):
         """Row-invariant forward for 1 <= T <= TBLK: returns bf16 logits [1,T,V]. Same code for plain (T=1) and verify blocks."""
@@ -137,6 +139,102 @@ class FastNorth(GraphNorth):
         lg = fx.lin(h, self.lm_head.weight).view(1, T, -1)
         return lg if cfg.logit_scale == 1.0 else lg * cfg.logit_scale
 
+    # ------------------------------------------------------------------ exact v2 (branch perf/exact-decode)
+    def _x2_state(self, T):
+        key = ("x2", T, getattr(self, "mp_min", None), tuple(sorted((getattr(self, "attn_kw", None) or {}).items())))
+        if key not in self._x:
+            b = dict(self._x_state(T))  # share the v1 attention workspace / MoE buffers
+            z = lambda *s: torch.zeros(*s, dtype=torch.bfloat16, device=self.dev)
+            c = self.cfg
+            b.update(qkv=z(T, self.wqkv[0].shape[0]), a=z(T, self.Dm), lg=z(T, c.num_experts),
+                     dg=z(T, c.prefix_dense_intermediate_size if hasattr(c, "prefix_dense_intermediate_size") else self.model.layers[0].mlp.gate_proj.weight.shape[0]),
+                     du=None, dm=z(T, self.Dm), lm=z(T, self.lm_head.weight.shape[0]))
+            b["du"] = torch.zeros_like(b["dg"])
+            self._x[key] = b
+        return self._x[key]
+
+    def _forward_x2(self, ids, kv):
+        """Exact v2: the same batch-invariant math as _forward_exact, with H100-tuned linear tiles (fast_kernels_x2.lin_x2) and,
+        when self.streams, the attention branch (qkv, rope/KV write, split-K attention, combine, o_proj) on a side stream that runs
+        concurrently with the router + MoE branch (North's parallel block: both read the same normed h and join at the residual).
+        Every output is written to a static buffer, so the captured graph has no cross-stream allocator reuse.
+        Stream concurrency does not change any value; x2 tiles change bf16 rounding vs v1 but stay T-invariant (plain == verify rows)."""
+        import fast_kernels_x2 as f2
+        cfg, T = self.cfg, ids.shape[1]
+        W = cfg.sliding_window
+        qpos = self.start + torch.arange(T, device=self.dev)
+        x = self.model.embed_tokens(ids).reshape(T, self.Dm).contiguous()
+        cos, sin = self.model.rotary_emb(x.view(1, T, -1), qpos[None])
+        cos, sin = cos.reshape(T, -1).contiguous(), sin.reshape(T, -1).contiguous()
+        layers = self.model.layers
+        b = self._x2_state(T)
+        k = cfg.num_experts_per_tok
+        h = b["h2"]
+        fk.resid_norm(x, b["zero"], b["zero"], layers[0].input_layernorm.weight, b["x2"], h, layers[0].input_layernorm.variance_epsilon)
+        x, h = b["x2"].clone(), b["h2"].clone()
+        main = torch.cuda.current_stream()
+        side = self._side_stream if self.streams else None
+        moe_s = getattr(self, "_moe_stream", None) if self.streams else None
+        for i, layer in enumerate(layers):
+            sliding = cfg.layer_types[i] == "sliding_attention"
+            at = layer.self_attn
+            kc, vc = kv[i]
+            if side is not None:
+                side.wait_stream(main)
+                ctx = torch.cuda.stream(side)
+            else:
+                import contextlib
+                ctx = contextlib.nullcontext()
+            with ctx:
+                f2.lin_x2(h, self.wqkv[i], b["qkv"])
+                ao = fx.exact_attention(b["ws"], b["qkv"], cos, sin, self.start, kc, vc, self.Lmax, bool(sliding or at.force_rope), bool(sliding), W, fb._rope_write_blk)
+                f2.lin_x2(ao, at.o_proj.weight, b["a"])
+            mlp = layer.mlp
+            if moe_s is not None:
+                moe_s.wait_stream(main)
+                mctx = torch.cuda.stream(moe_s)
+            else:
+                import contextlib
+                mctx = contextlib.nullcontext()
+            mctx.__enter__()
+            if not hasattr(mlp, "gate"):
+                f2.lin_x2(h, mlp.gate_proj.weight, b["dg"])
+                f2.lin_x2(h, mlp.up_proj.weight, b["du"])
+                m = f2.lin_x2((mlp.act_fn(b["dg"]) * b["du"]).contiguous(), mlp.down_proj.weight, b["dm"])
+            else:
+                f2.lin_x2(h, mlp.gate.weight, b["lg"])
+                fk.router_topk(b["lg"], b["idx"], b["sc"], k)
+                m = fb.moe_gemv_blk(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg_blk)
+            mctx.__exit__(None, None, None)
+            if moe_s is not None:
+                main.wait_stream(moe_s)
+            if side is not None:
+                main.wait_stream(side)
+            wn = layers[i + 1].input_layernorm.weight if i + 1 < self.nl else self.model.norm.weight
+            fk.resid_norm(x, b["a"], m, wn, b["x2"], b["h2"], layer.input_layernorm.variance_epsilon)
+            x, h = b["x2"], b["h2"]
+        lg = f2.lin_x2(h, self.lm_head.weight, b["lm"]).view(1, T, -1)
+        return lg if cfg.logit_scale == 1.0 else lg * cfg.logit_scale
+
+    def set_x2(self, on=True, streams=True, lin_cfg=None, moe_cfg=None, mp_min=None, side_prio=0, moe_prio=None, attn=None):
+        """Switch the exact path to v2 (tuned tiles, optional concurrent attention/MoE branches). Call before make_step.
+        side_prio: CUDA priority of the attention stream (lower = higher priority; 0 default). moe_prio: if not None, router + MoE run on
+        their own stream with this priority instead of the capture stream. Priorities only change scheduling, never values."""
+        import fast_kernels_x2 as f2
+        self.x2, self.streams = on, streams
+        if streams:
+            self._side_stream = torch.cuda.Stream(device=self.dev, priority=side_prio)
+            self._moe_stream = None if moe_prio is None else torch.cuda.Stream(device=self.dev, priority=moe_prio)
+        if lin_cfg is not None:
+            f2.CFG.clear(); f2.CFG.update(lin_cfg)
+        self.kcfg_blk = moe_cfg  # None = moe_gemv_blk defaults
+        self.attn_kw = dict(attn or {})  # exact attention split: chunk (absolute keys per program), bn (keys per inner step), nw (warps)
+        self.mp_min = mp_min  # attention query-row padding (workspaces are keyed by it; captured graphs keep theirs)
+        return self
+
+    def _fwd_exact_any(self, ids, kv):
+        return self._forward_x2(ids, kv) if getattr(self, "x2", False) else self._forward_exact(ids, kv)
+
     def make_step(self, T, kv, skip=frozenset(), r=None, parts=ALL, logits="last", argmax=True, sparse=None):
         if not (self.exact and 1 <= T <= TBLK and not skip and r is None and parts == ALL and sparse is None and logits in ("all", "last")):
             return super().make_step(T, kv, skip, r, parts, logits, argmax, sparse)
@@ -144,7 +242,7 @@ class FastNorth(GraphNorth):
         ids = torch.zeros(1, T, dtype=torch.long, device=self.dev)
 
         def fn():
-            lg = self._forward_exact(ids, kv)
+            lg = self._fwd_exact_any(ids, kv)
             return fx.argmax_rows(lg[0]).view(1, T) if argmax else lg
 
         g, out = self.capture(fn)
@@ -152,7 +250,7 @@ class FastNorth(GraphNorth):
 
     def forward(self, ids, kv, skip=frozenset(), r=None, parts=ALL, logits="last", sparse=None):
         if self.exact and 1 <= ids.shape[1] <= TBLK and logits in ("all", "last") and not skip and r is None and parts == ALL and sparse is None:
-            return self._forward_exact(ids, kv)
+            return self._fwd_exact_any(ids, kv)
         if 1 < ids.shape[1] <= TBLK and logits == "all" and not skip and r is None and parts == ALL and sparse is None and self.opts >= frozenset(OPTS):
             return self._forward_block(ids, kv)
         if ids.shape[1] != 1 or skip or r is not None or parts != ALL or logits != "last" or sparse is not None:
