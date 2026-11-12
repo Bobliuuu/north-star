@@ -141,7 +141,8 @@ class FastNorth(GraphNorth):
 
     # ------------------------------------------------------------------ exact v2 (branch perf/exact-decode)
     def _x2_state(self, T):
-        key = ("x2", T, getattr(self, "mp_min", None), tuple(sorted((getattr(self, "attn_kw", None) or {}).items())))
+        key = ("x2", T, getattr(self, "mp_min", None), tuple(sorted((getattr(self, "attn_kw", None) or {}).items())),
+               tuple(sorted((getattr(self, "moe_fused", None) or {}).items())), getattr(self, "moe_fused", None) is None)
         if key not in self._x:
             b = dict(self._x_state(T))  # share the v1 attention workspace / MoE buffers
             z = lambda *s: torch.zeros(*s, dtype=torch.bfloat16, device=self.dev)
@@ -202,21 +203,36 @@ class FastNorth(GraphNorth):
                 f2.lin_x2(h, mlp.up_proj.weight, b["du"])
                 m = f2.lin_x2((mlp.act_fn(b["dg"]) * b["du"]).contiguous(), mlp.down_proj.weight, b["dm"])
             else:
-                f2.lin_x2(h, mlp.gate.weight, b["lg"])
-                fk.router_topk(b["lg"], b["idx"], b["sc"], k)
-                m = fb.moe_gemv_blk(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg_blk)
+                if getattr(self, "router_fused", False):
+                    if "cnt" not in b:
+                        b["cnt"] = torch.zeros(1, dtype=torch.int32, device=self.dev)
+                    f2.router_topk_fused(h, mlp.gate.weight, b["lg"], b["idx"], b["sc"], b["cnt"])
+                else:
+                    f2.lin_x2(h, mlp.gate.weight, b["lg"])
+                    fk.router_topk(b["lg"], b["idx"], b["sc"], k)
+                if getattr(self, "moe_fused", None) is not None:
+                    if "part" not in b:
+                        J = cfg.intermediate_size // dict(f2.FUSED_MOE_CFG, **self.moe_fused)["BJ"]
+                        b["part"] = torch.zeros(T * k * J, self.Dm, dtype=torch.float32, device=self.dev)
+                    _, Jm = f2.moe_fused(h, b["idx"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["part"], self.moe_fused)
+                    m = None
+                else:
+                    m = fb.moe_gemv_blk(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg_blk)
             mctx.__exit__(None, None, None)
             if moe_s is not None:
                 main.wait_stream(moe_s)
             if side is not None:
                 main.wait_stream(side)
             wn = layers[i + 1].input_layernorm.weight if i + 1 < self.nl else self.model.norm.weight
-            fk.resid_norm(x, b["a"], m, wn, b["x2"], b["h2"], layer.input_layernorm.variance_epsilon)
+            if m is None:
+                f2.resid_norm_moe(x, b["a"], b["part"], b["sc"], Jm, wn, b["x2"], b["h2"], layer.input_layernorm.variance_epsilon)
+            else:
+                fk.resid_norm(x, b["a"], m, wn, b["x2"], b["h2"], layer.input_layernorm.variance_epsilon)
             x, h = b["x2"], b["h2"]
         lg = f2.lin_x2(h, self.lm_head.weight, b["lm"]).view(1, T, -1)
         return lg if cfg.logit_scale == 1.0 else lg * cfg.logit_scale
 
-    def set_x2(self, on=True, streams=True, lin_cfg=None, moe_cfg=None, mp_min=None, side_prio=0, moe_prio=None, attn=None):
+    def set_x2(self, on=True, streams=True, lin_cfg=None, moe_cfg=None, mp_min=None, side_prio=0, moe_prio=None, attn=None, moe_fused=None, router_fused=False):
         """Switch the exact path to v2 (tuned tiles, optional concurrent attention/MoE branches). Call before make_step.
         side_prio: CUDA priority of the attention stream (lower = higher priority; 0 default). moe_prio: if not None, router + MoE run on
         their own stream with this priority instead of the capture stream. Priorities only change scheduling, never values."""
@@ -228,6 +244,8 @@ class FastNorth(GraphNorth):
         if lin_cfg is not None:
             f2.CFG.clear(); f2.CFG.update(lin_cfg)
         self.kcfg_blk = moe_cfg  # None = moe_gemv_blk defaults
+        self.router_fused = router_fused  # router GEMV + top-k in one launch (fast_kernels_x2.router_topk_fused)
+        self.moe_fused = moe_fused  # None: gate_up/down blk kernels; dict: fast_kernels_x2.moe_fused tile cfg (reduce fused into resid norm)
         self.attn_kw = dict(attn or {})  # exact attention split: chunk (absolute keys per program), bn (keys per inner step), nw (warps)
         self.mp_min = mp_min  # attention query-row padding (workspaces are keyed by it; captured graphs keep theirs)
         return self
