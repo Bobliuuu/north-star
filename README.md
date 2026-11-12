@@ -7,7 +7,7 @@ A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossl
 
 ## 🏆 HEADLINE: how far did we push it, and what does it mean?
 
-**In plain English:** we made the AI model **about 3x faster at writing text**, with **exactly the same words coming out**, on one GPU. Then we asked the model to speed *itself* up. It **barely managed it (about 5%)**, so for now humans are still better at tuning it.
+**In plain English:** we made the AI model **about 3x faster at writing text**, with **the same words coming out as its own normal decoding**, on one GPU. Then we asked the model to speed *itself* up. It **barely managed it (about 5%)**, so for now humans are still better at tuning it.
 
 | | What we got | What that means |
 |---|---|---|
