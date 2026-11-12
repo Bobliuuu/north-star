@@ -124,3 +124,4 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-09 | (attached, short) | `modal run modal/ab_stack_run.py::main --tag st1` | H20 full-stack exactness vs H18 path, 30 cells bitwise; 114 s; results/abstack_st1.jsonl, logs/abstack_st1_client.log |
 | 2026-11-09 | ap-oNhBNZQkrbT7cOmOPtjXBr | `modal run --detach modal/batchspec_run.py::main --tag bs6 --tilegrid 6 --cc 1` | H20 full-stack bench; 569 s |
 | 2026-11-09 | (forked agent, branch moe-tune) | see results/moe_tune_runs.md | mode 5/6 MoE + lin_bt tile sweeps and real-model A/B mt1; ~$1.0 |
+| 2026-11-12 | (see logs/nin1_client.log) | `modal run --detach modal/north_in_north_run.py --tag nin1 --rounds 8 --sessions 3` | North-in-North 3-arm benchmark (standard / North / North+North subagents), A100, est <=$3; smoke nin0smoke OK $0.14 |

@@ -75,3 +75,4 @@
 | 2026-11-09 | moe-tune agent (kernel sweeps + mt1) (workspace <workspace>) | H100 | see results/moe_tune_runs.md | ~1.0 (est 3.95/h) | OK; H20 |
 | 20261111T062610Z | selfimprove bench sib1 (build 78s, 85 configs) | A100-80GB | 748 | 0.519 | True |
 | 20261111T072827Z | selfimprove bench sib2 (build 65s, 96 configs) | A100-80GB | 702 | 0.488 | True |
+| 20261112T124425Z | north-in-north nin0smoke (10 North calls) | A100-80GB | 197 | 0.137 | True |

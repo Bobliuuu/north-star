@@ -1,0 +1,221 @@
+{
+ "arms": {
+  "standard#0": [
+   {
+    "cid": "c0001",
+    "edits": {
+     "KC": 512
+    },
+    "dev_speedup": 1.0456836236762272,
+    "build_rc": 0
+   },
+   {
+    "cid": "c0002",
+    "edits": {
+     "KC": 128
+    },
+    "dev_speedup": 1.0339576031931463,
+    "build_rc": 0
+   },
+   {
+    "cid": "c0003",
+    "edits": {
+     "XPAD": 16
+    },
+    "dev_speedup": 1.044372606982847,
+    "build_rc": 0
+   }
+  ],
+  "north#0": [
+   {
+    "cid": "c0004",
+    "edits": {
+     "MT_SPLIT": 8
+    },
+    "dev_speedup": 1.0459685999102153,
+    "build_rc": 0
+   },
+   {
+    "cid": "c0002",
+    "edits": {
+     "KC": 128
+    },
+    "dev_speedup": 1.0339576031931463,
+    "build_rc": 0
+   },
+   {
+    "cid": "c0005",
+    "edits": {
+     "MT_SPLIT": 1
+    },
+    "dev_speedup": 0.9839978710110384,
+    "build_rc": 0
+   }
+  ],
+  "north_in_north#0": [
+   {
+    "cid": "c0002",
+    "edits": {
+     "KC": 128
+    },
+    "dev_speedup": 1.0339576031931463,
+    "build_rc": 0
+   },
+   {
+    "cid": "c0006",
+    "edits": {
+     "UNROLL_KS": 8,
+     "UNROLL_S2": 2,
+     "UNROLL_NT": 2
+    },
+    "dev_speedup": 0.9038217939695772,
+    "build_rc": 0
+   }
+  ]
+ },
+ "fallbacks": {
+  "standard#0": {
+   "planner_fallback": 0,
+   "selector_fallback": 0,
+   "sub_invalid": 0,
+   "sub_empty": 0,
+   "sub_dup": 0,
+   "b_invalid": 0,
+   "b_empty": 0,
+   "b_dup": 0
+  },
+  "north#0": {
+   "planner_fallback": 0,
+   "selector_fallback": 0,
+   "sub_invalid": 0,
+   "sub_empty": 0,
+   "sub_dup": 0,
+   "b_invalid": 0,
+   "b_empty": 1,
+   "b_dup": 0
+  },
+  "north_in_north#0": {
+   "planner_fallback": 0,
+   "selector_fallback": 0,
+   "sub_invalid": 1,
+   "sub_empty": 0,
+   "sub_dup": 0,
+   "b_invalid": 0,
+   "b_empty": 0,
+   "b_dup": 0
+  }
+ },
+ "final": {
+  "c0001": {
+   "cid": "c0001",
+   "edits": {
+    "KC": 512
+   },
+   "build_rc": 0,
+   "loop_dev_speedup": 1.0456836236762272,
+   "regs": [
+    "12",
+    "10",
+    "250"
+   ],
+   "dev_speedup": 0.9962345709247649,
+   "held_speedup": 0.9929301149492101
+  },
+  "c0002": {
+   "cid": "c0002",
+   "edits": {
+    "KC": 128
+   },
+   "build_rc": 0,
+   "loop_dev_speedup": 1.0339576031931463,
+   "regs": [
+    "12",
+    "10",
+    "176"
+   ],
+   "dev_speedup": 0.9925095003690352,
+   "held_speedup": 1.0003770090372361
+  },
+  "c0003": {
+   "cid": "c0003",
+   "edits": {
+    "XPAD": 16
+   },
+   "build_rc": 0,
+   "loop_dev_speedup": 1.044372606982847,
+   "regs": [
+    "12",
+    "10",
+    "252"
+   ],
+   "dev_speedup": 0.996857118351243,
+   "held_speedup": 0.9947913823038033
+  },
+  "c0004": {
+   "cid": "c0004",
+   "edits": {
+    "MT_SPLIT": 8
+   },
+   "build_rc": 0,
+   "loop_dev_speedup": 1.0459685999102153,
+   "regs": [
+    "12",
+    "10",
+    "252"
+   ],
+   "dev_speedup": 1.0012553150902412,
+   "held_speedup": 1.0003733473887644,
+   "check": {
+    "rc": 0,
+    "passed": true,
+    "worst_rel_l2": 0.00020952701743226498
+   }
+  },
+  "c0005": {
+   "cid": "c0005",
+   "edits": {
+    "MT_SPLIT": 1
+   },
+   "build_rc": 0,
+   "loop_dev_speedup": 0.9839978710110384,
+   "regs": [
+    "12",
+    "10",
+    "252"
+   ],
+   "dev_speedup": 0.9413428829287482,
+   "held_speedup": 0.9528733748688215
+  },
+  "c0006": {
+   "cid": "c0006",
+   "edits": {
+    "UNROLL_KS": 8,
+    "UNROLL_S2": 2,
+    "UNROLL_NT": 2
+   },
+   "build_rc": 0,
+   "loop_dev_speedup": 0.9038217939695772,
+   "regs": [
+    "12",
+    "10",
+    "184"
+   ],
+   "dev_speedup": 0.8808152438694309,
+   "held_speedup": 0.8920461777982316
+  }
+ },
+ "gpu": "NVIDIA A100-SXM4-80GB, 610.57.04",
+ "secs": 196.62407279014587,
+ "secs_loop": 151.91185474395752,
+ "north": {
+  "calls": 10,
+  "tokens_out": 651,
+  "gen_s": 38.05225396156311,
+  "load_s": 69.1771092414856
+ },
+ "model": "CohereLabs/North-Mini-Code-1.0",
+ "revision": "d11e61a842617a22dc328552fa5bb86231ee4f37",
+ "per_round": 3,
+ "rounds": 1,
+ "sessions": 1
+}

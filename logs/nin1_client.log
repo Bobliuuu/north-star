@@ -1,0 +1,24 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/jerry-zhu/main/ap-IMa8aKwSg4KdGlN2S4yylj
+✓ Created objects.
+├── ✓ Uploaded /Users/jhome/north-star/modal/north_in_north_run.py
+├── ✓ Uploaded /Users/jhome/north-star/src/selfimprove
+├── ✓ Uploaded /Users/jhome/north-star/src/kvm
+└── ✓ Created Function NIN.*.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.4.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+GPU NVIDIA A100 80GB PCIe, 610.57.04
