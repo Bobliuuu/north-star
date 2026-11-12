@@ -77,3 +77,4 @@
 | 20261111T072827Z | selfimprove bench sib2 (build 65s, 96 configs) | A100-80GB | 702 | 0.488 | True |
 | 20261112T124425Z | north-in-north nin0smoke (10 North calls) | A100-80GB | 197 | 0.137 | True |
 | 20261112T131251Z | north-in-north nin1 (266 North calls) | A100-80GB | 1645 | 1.142 | True |
+| 20261112T133950Z | embedded North-in-North smoke (1 runs) | A100-80GB | 124 | 0.086 | True |
