@@ -21,8 +21,7 @@ A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossl
 | 🎯 Same answers | **1.00x** (no quality lost) | ✅ WIN | identical to the model's own normal decoding on 70/70 runs |
 | 👥 Many users at once | **9.1x** total throughput | ✅ WIN | 2,012 tokens/s with 32 users together vs 221 tok/s for one user (derived ratio) |
 | 🏁 vs vLLM (popular tool) | **1.01x** | ➖ TIE | 254.8 vs 253.5 tok/s, one user |
-| 🤖 North improves its own kernel | **1.056x** best, **1.026x** average | 🟡 PARTIAL | best of 3 sessions; only 1 of 3 sessions clears our 1.03x bar |
-| 👯 One North + 4 North helpers (called from outside, via prompts) vs one North alone | **1.00x** | ❌ NO WIN | average best 1.026x (about +2.6%) for both, so the ratio between the two is 1.00x; the helpers found one lucky session, not a better average |
+| 🤖 North improves its own kernel | **1.056x** best, **1.026x** average | 🟡 PARTIAL | best of 3 sessions; only 1 of 3 sessions clears our 1.03x bar; 4 extra North helper copies called from outside did not change the average (1.026x with or without) |
 | 🧬 North truly EMBEDDED inside North (qwenagent-style) | n/a | ⏳ NOT TESTED | no benchmark run yet; see "Two meanings of North inside North" below |
 
 Legend: ✅ clear win · 🟡 small or partial win · ➖ tie · ❌ no win. The x is the ratio against the stated baseline (higher is better; 1.00x = no change).
@@ -36,7 +35,6 @@ Legend: ✅ clear win · 🟡 small or partial win · ➖ tie · ❌ no win. The
 | 👥 Many users at once | One GPU can serve far more people for the same cost. |
 | 🏁 vs vLLM | We match the industry standard; we do not beat it. |
 | 🤖 Self-improvement | Yes, a little, and only sometimes. A human found the same size of win (+5.4-6.2%) with a simple sweep. Not a self-improvement explosion, but a real first sign. |
-| 👯 North + North helpers (outside) | Calling North several times from outside, each time in a different role, did not make it smarter on average; it just found one lucky win. |
 | 🧬 Embedded North-in-North | The real "model inside the model" idea (small workers living inside one forward pass) has not been tried on North. The closest evidence is our qwenagent project on Qwen (below). |
 
 **Honest bottom line:** ✅ big, verified speed-ups for running North. ❌ no evidence yet that the model can make itself dramatically faster. Details, failures and caveats below. 👇
