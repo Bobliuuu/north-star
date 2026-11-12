@@ -7,7 +7,7 @@ bucket's graph runs on whichever slots are active (rows beyond the active count 
 they cost no expert work). No re-capture, no KV copies.
 
 Scheduling (simple, explicit): every iteration first admits arrived requests into free slots (FIFO) and prefills them (blocking; one
-batched forward for all of them by default, see `prefill`; no chunked prefill mixed into decode steps), then runs ONE plain decode step for all active slots in the smallest bucket that fits.
+batched forward for all of them with per-request attention by default ('batched_inv', H28), see `prefill`; no chunked prefill mixed into decode steps), then runs ONE plain decode step for all active slots in the smallest bucket that fits.
 Exactness: rows are batch-invariant (H20/H24/H26), so a request's tokens do not depend on which requests share its steps; bench_cbatch.py
 checks every request against the same request decoded alone. No speculation here (plain decode; H26 shows PLD loses from B=2)."""
 import time
@@ -31,15 +31,18 @@ class Request:
 
 
 class ContinuousEngine:
-    def __init__(self, model, Lmax, slots=32, buckets=(1, 2, 4, 8, 16, 32), prefill="batched", prefill_tokens=8192):
+    def __init__(self, model, Lmax, slots=32, buckets=(1, 2, 4, 8, 16, 32), prefill="batched_inv", prefill_tokens=8192):
         """prefill: 'single' = one chunked-SDPA forward per request (LCNorth; a request's KV never depends on other requests);
         'graph' = one request at a time like 'single', but through a CUDA graph per padded length bucket (128..pow2 >= Lmax) that
         prefills into a staging KV, then copies the request's positions into its slot: no per-request launch overhead, and the padding
         depends only on the request's own length, so its KV still never depends on other requests;
+        'batched_inv' (H28) = like 'batched' for embeddings, norms, projections and experts (one pass over all admitted requests' tokens),
+        but attention runs per request with exactly the call a lone request gets, so a request's KV does not depend on its neighbours
+        (cuBLAS linears and the grouped expert GEMM were measured row-invariant at these sizes, probe_inv; checked end to end);
         'batched' = every request admitted in an iteration is prefilled in ONE forward (concatenated tokens, block-diagonal causal mask,
         up to prefill_tokens per forward): far fewer launches and one expert-weight pass, but the batched expert GEMM may round a
         request's activations differently depending on its co-prefilled requests (measured in bench_cbatch.py)."""
-        assert max(buckets) >= slots and prefill in ("single", "batched", "graph")
+        assert max(buckets) >= slots and prefill in ("single", "batched", "graph", "batched_inv")
         self.Lmax, self.slots, self.prefill_mode, self.prefill_tokens = Lmax, slots, prefill, prefill_tokens
         self.buckets = tuple(b for b in buckets if b <= slots) or (slots,)
         eos = model.config.eos_token_id
@@ -78,7 +81,7 @@ class ContinuousEngine:
         elif self.prefill_mode == "graph":
             for r in rs:
                 self._prefill_graph(r)
-        else:
+        elif self.prefill_mode == "batched":
             grp, n = [], 0
             for r in rs:
                 L = len(r.ids) - 1
@@ -87,6 +90,15 @@ class ContinuousEngine:
                 grp.append(r); n += L
             if grp:
                 self._prefill_batched(grp)
+        elif self.prefill_mode == "batched_inv":
+            grp, n = [], 0
+            for r in rs:
+                L = len(r.ids) - 1
+                if grp and n + L > self.prefill_tokens:
+                    self._prefill_batched(grp, per_seq_attn=True); grp, n = [], 0
+                grp.append(r); n += L
+            if grp:
+                self._prefill_batched(grp, per_seq_attn=True)
         torch.cuda.synchronize()
         dt = time.perf_counter() - t
         for r in rs:
@@ -168,7 +180,18 @@ class ContinuousEngine:
             for w in (0, 1):
                 kv[i][w][:, :, :L].copy_(self._pf_kv[i][w][:, :, :L])
 
-    def _prefill_batched(self, rs):
+    def _seq_mask(self, L):
+        if not hasattr(self, "_masks"):
+            self._masks = {}
+        if L not in self._masks:
+            cfg = self.ref.model.config
+            G, W = cfg.num_attention_heads // cfg.num_key_value_heads, cfg.sliding_window
+            ix = torch.arange(L, device=self.ref.device)
+            mf = ix[None, :] <= ix[:, None]
+            self._masks[L] = (mf.repeat(G, 1), (mf & (ix[:, None] - ix[None, :] < W)).repeat(G, 1))
+        return self._masks[L]
+
+    def _prefill_batched(self, rs, per_seq_attn=False):
         import torch.nn.functional as F
         from transformers.models.cohere2_moe.modeling_cohere2_moe import apply_rotary_pos_emb
         mdl, cfg, dev = self.ref.model, self.ref.model.config, self.ref.device
@@ -181,8 +204,9 @@ class ContinuousEngine:
         pos = torch.cat([torch.arange(L, device=dev) for L in lens])
         seg = torch.repeat_interleave(torch.arange(len(lens), device=dev), torch.tensor(lens, device=dev))
         ix = torch.arange(N, device=dev)
-        mfull = (seg[:, None] == seg[None, :]) & (ix[None, :] <= ix[:, None])     # block-diagonal causal (sequences are contiguous)
-        msl = mfull & (ix[:, None] - ix[None, :] < W)
+        if not per_seq_attn:
+            mfull = (seg[:, None] == seg[None, :]) & (ix[None, :] <= ix[:, None])     # block-diagonal causal (sequences are contiguous)
+            msl = mfull & (ix[:, None] - ix[None, :] < W)
         offs = [0]
         for L in lens:
             offs.append(offs[-1] + L)
@@ -200,9 +224,18 @@ class ContinuousEngine:
             for r, a0, L in zip(rs, offs, lens):
                 kc, vc = self.kvs[r.slot][i]
                 kc[:, :, :L].copy_(k[:, :, a0:a0 + L]); vc[:, :, :L].copy_(v[:, :, a0:a0 + L])
-            kr, vr = k.repeat_interleave(G, dim=1), v.repeat_interleave(G, dim=1)
-            o = F.scaled_dot_product_attention(q, kr, vr, attn_mask=msl if sliding else mfull)
-            a = at.o_proj(o.transpose(1, 2).reshape(1, N, H * D))
+            if per_seq_attn:   # the same SDPA call (shapes, mask, layout) a lone request of this length gets
+                outs = []
+                for a0, L in zip(offs, lens):
+                    mf_, ms_ = self._seq_mask(L)
+                    qs = q[:, :, a0:a0 + L].reshape(1, Hkv, G * L, D)
+                    os_ = F.scaled_dot_product_attention(qs, k[:, :, a0:a0 + L].contiguous(), v[:, :, a0:a0 + L].contiguous(), attn_mask=ms_ if sliding else mf_)
+                    outs.append(os_.reshape(1, Hkv, G, L, D).reshape(1, H, L, D).transpose(1, 2).reshape(1, L, H * D))
+                a = at.o_proj(torch.cat(outs, 1))
+            else:
+                kr, vr = k.repeat_interleave(G, dim=1), v.repeat_interleave(G, dim=1)
+                o = F.scaled_dot_product_attention(q, kr, vr, attn_mask=msl if sliding else mfull)
+                a = at.o_proj(o.transpose(1, 2).reshape(1, N, H * D))
             mlp = layer.mlp
             if not hasattr(mlp, "gate"):
                 m = mlp(h)

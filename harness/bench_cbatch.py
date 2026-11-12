@@ -9,7 +9,7 @@ sys.path.insert(0, str(HERE)); sys.path.insert(0, str(HERE.parent))
 
 MAX_NEW = 192
 import os
-PREFILL = os.environ.get("NS_CB_PREFILL", "batched")
+PREFILL = os.environ.get("NS_CB_PREFILL", "batched_inv")
 
 
 def schedule(n, rate, seed, npool):
