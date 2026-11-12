@@ -32,6 +32,10 @@ We report these as plainly as the wins.
 
 ![Best edit set per proposer on the kernel-tunable task: human sweep and random search pass the 1.03x gate, North and the tested LLMs do not](docs/img/selfimprove.png)
 
+- **North inside North (H22).** With measured feedback, one North improves its own kernel in 1 of 3 sessions (best 1.041x); a North orchestrator with four North subagents does too in 1 of 3 (best 1.056x, found KC=64). Mean best is equal (1.026x), so subagents did not help on average; a standard autotuner at the same budget got 1.002x. See H22 in [`RESULTS.md`](RESULTS.md).
+
+![Best-so-far dev speedup per round: standard autotuner, North alone, North with North subagents](docs/img/north_in_north.png)
+
 ## Scope and caveats
 
 Terms: **PLD** is prompt-lookup decoding (drafting tokens by copying matching spans from the prompt); **exact mode** means speculative output equals the same executor's plain greedy output.
