@@ -1,5 +1,9 @@
 # NEXT_STEPS
 
+## STATUS UPDATE 2026-11-12 c (RESULTS.md H26)
+DONE: (a) of 2026-11-12 b. `harness/serve.py` Engine: exact v2 everywhere, PLD + CostPolicy + index-during-prefill at B=1 (mix99 1.146x, worst 0.974x), batched plain from B=2 (B=2 capped PLD opt-in: 1.035x mean, 5/16 losses). All paths exact; batched rows == single-user outputs at B=2..32.
+NEXT: (a) continuous batching (requests joining/leaving mid-decode; per-slot positions already supported by BatchExact) and a comparison with vLLM under arrivals; (b) a better B=2 speculation rule (per-row on/off instead of a shared T); (c) B=1 persistent kernel / cross-layer prefetch.
+
 ## STATUS UPDATE 2026-11-12 b (RESULTS.md H25)
 MEASURED: same container vs vLLM 0.33 batched: exact v2 batched 1.02-1.21x at B=1..32 (2325 vs 2217 tok/s at B=32). `pld.CostPolicy` removes speculation losses on the mix (worst 0.98x); building the proposer index during prefill (`pld.prebuild`) turns long-context PLD from 0.75-0.94x into 1.08x. Rejected: in-graph tile retune (<=2%), fused MoE gate_up+down (slower), fused router+top-k (neutral).
 NEXT: (a) serving loop that uses CostPolicy + prebuild by default and gates PLD off at B>=4; (b) continuous-batching comparison with vLLM (arrivals, B>32); (c) remaining B=1 time: cross-layer weight prefetch / persistent kernel (tiles, branch balance and launch fusions are exhausted, H25 (4)).

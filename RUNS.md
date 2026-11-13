@@ -155,3 +155,6 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-12 | ap-ekDA7RRIp3FCHgbnWqQfJu | `modal run --detach modal/longexact_run.py::main --tag le9 --ctxs 32768 --x2 --overlap` | H25 32K, proposer index built during prefill; results/longexact_le9.jsonl |
 | 2026-11-12 | ap-ciT7SYKCRqpZHrwl4r6ERd | `modal run --detach modal/longexact_run.py::main --tag le10 --ctxs 131072 --x2 --overlap` | H25 128K, index during prefill; results/longexact_le10.jsonl |
 | 2026-11-12 | ap-4eMweePyOvy0Ug8RY12uqW | `modal run --detach modal/vllm_vs_x2.py::batch --tag vxb1` | H25 batched B=1..32 ours vs vLLM, one container; results/vxb_vxb1_*.jsonl |
+| 2026-11-12 | ap-Gny2DFpzBiQDd4OZEi2lwd | `modal run --detach modal/serve_run.py::main --tag sv0smoke --sections pool,mix --limit 6` | H26 serving engine smoke; results/serve_sv0smoke.jsonl |
+| 2026-11-12 | ap-0WWjsqmP8t9ej2DFgxM2Xn | `modal run --detach modal/serve_run.py::main --tag sv1 --sections mix,long,pool` | H26 full validation (mix99, 32K/128K, pool B=1..32); results/serve_sv1.jsonl |
+| 2026-11-12 | ap-xzhBwYqhEU8QUQ7zpT0l3F | `modal run --detach modal/serve_run.py::main --tag sv2b2 --sections b2` | H26 B=2 capped PLD over 16 pairs; results/serve_sv2b2.jsonl |

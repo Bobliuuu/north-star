@@ -105,3 +105,6 @@
 | 2026-11-12 | longexact le9 (ap-ekDA7RRIp3FCHgbnWqQfJu) | H100 | 255 | 0.28 (est 3.95/h) | True |
 | 2026-11-12 | longexact le10 (ap-ciT7SYKCRqpZHrwl4r6ERd) | H100 | 579 | 0.64 (est 3.95/h) | True |
 | 2026-11-12 | vllm_vs_x2 vxb1 (batched) (ap-4eMweePyOvy0Ug8RY12uqW) | H100 | 277 | 0.30 (est 3.95/h) | True |
+| 2026-11-12 | serve sv0smoke (ap-Gny2DFpzBiQDd4OZEi2lwd) | H100 | 210 | 0.23 (est 3.95/h) | True |
+| 2026-11-12 | serve sv1 (ap-0WWjsqmP8t9ej2DFgxM2Xn) | H100 | 519 | 0.57 (est 3.95/h) | True |
+| 2026-11-12 | serve sv2b2 (ap-xzhBwYqhEU8QUQ7zpT0l3F) | H100 | 106 | 0.12 (est 3.95/h) | True |

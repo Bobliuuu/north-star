@@ -126,6 +126,7 @@ class AttnWSB:
     """Per-sequence copies of fx.AttnWSX buffers, B of them back to back (same MP / NS as the per-sequence workspace)."""
     def __init__(self, ws1, B, dev):
         self.Hkv, self.G, self.D, self.T, self.MP, self.NS, self.B = ws1.Hkv, ws1.G, ws1.D, ws1.T, ws1.MP, ws1.NS, B
+        self.C = getattr(ws1, "C", fx.CHUNK)  # absolute key chunk: must match NS (exact v2 scales it with Lmax)
         n = B * self.Hkv * self.NS * self.MP
         self.acc = torch.zeros(n, self.D, device=dev, dtype=torch.float32)
         self.m = torch.full((n,), -1e30, device=dev, dtype=torch.float32)
@@ -138,6 +139,6 @@ def attn_batched(ws, qkv, cos, sin, starts, kp, vp, Lmax, rope, sliding, window,
     Hkv, G, D, T, MP, NS, B = ws.Hkv, ws.G, ws.D, ws.T, ws.MP, ws.NS, ws.B
     _rope_write_b[(Hkv, T, B)](qkv, cos, sin, starts, kp, vp, ws.q, Lmax, T=T, G=G, D=D, QD=Hkv * G * D, KD=Hkv * D, MP=MP, HKV=Hkv,
                                 ROPE=rope, num_warps=1)
-    _attn_split_b[(Hkv, NS, B)](ws.q, kp, vp, starts, ws.acc, ws.m, ws.l, Lmax, D ** -0.5, T=T, G=G, D=D, MP=MP, NS=NS, BN=BN, C=fx.CHUNK,
+    _attn_split_b[(Hkv, NS, B)](ws.q, kp, vp, starts, ws.acc, ws.m, ws.l, Lmax, D ** -0.5, T=T, G=G, D=D, MP=MP, NS=NS, BN=BN, C=getattr(ws, "C", fx.CHUNK),
                                  HKV=Hkv, SLIDING=sliding, W=window, num_warps=8)
     _attn_combine_b[(Hkv * T * G, B)](ws.acc, ws.m, ws.l, out, T=T, G=G, Hkv=Hkv, D=D, MP=MP, NS=NS, num_warps=4)

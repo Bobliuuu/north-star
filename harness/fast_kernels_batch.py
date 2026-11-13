@@ -181,7 +181,7 @@ def attn_seq(ws, qkv, cos, sin, start, kc, vc, Lmax, rope, sliding, window, out,
     """Exact attention of ONE sequence's T rows (same kernels as fx.exact_attention) writing into the `out` row slice."""
     Hkv, G, D, T, MP, NS = ws.Hkv, ws.G, ws.D, ws.T, ws.MP, ws.NS
     fb._rope_write_blk[(Hkv, T)](qkv, cos, sin, start, kc, vc, ws.q, Lmax, G=G, D=D, QD=Hkv * G * D, KD=Hkv * D, MP=MP, ROPE=rope, num_warps=1)
-    fx._attn_split_x[(Hkv, NS)](ws.q, kc, vc, start, ws.acc, ws.m, ws.l, Lmax, D ** -0.5, T=T, G=G, D=D, MP=MP, NS=NS, BN=BN, C=fx.CHUNK,
+    fx._attn_split_x[(Hkv, NS)](ws.q, kc, vc, start, ws.acc, ws.m, ws.l, Lmax, D ** -0.5, T=T, G=G, D=D, MP=MP, NS=NS, BN=BN, C=getattr(ws, "C", fx.CHUNK),
                                 SLIDING=sliding, W=window, num_warps=8)
     fx._attn_combine_x[(Hkv * T * G,)](ws.acc, ws.m, ws.l, out, T=T, G=G, Hkv=Hkv, D=D, MP=MP, NS=NS, num_warps=4)
 
