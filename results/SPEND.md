@@ -108,3 +108,9 @@
 | 2026-11-12 | serve sv0smoke (ap-Gny2DFpzBiQDd4OZEi2lwd) | H100 | 210 | 0.23 (est 3.95/h) | True |
 | 2026-11-12 | serve sv1 (ap-0WWjsqmP8t9ej2DFgxM2Xn) | H100 | 519 | 0.57 (est 3.95/h) | True |
 | 2026-11-12 | serve sv2b2 (ap-xzhBwYqhEU8QUQ7zpT0l3F) | H100 | 106 | 0.12 (est 3.95/h) | True |
+| 2026-11-12 | prefill pf1 (ap-94EYUQ1HgO77T5R5QSMXOd) | H100 | 45 | 0.05 (est 3.95/h) | True |
+| 2026-11-12 | vxcb cb0smoke (ap-uKtWF3aovIqBomjs5HTYnO) | H100 | 253 | 0.28 (est 3.95/h) | True |
+| 2026-11-12 | vxcb cb0smoke2 (ap-UFTAgWtGDxteI3eJK2yCnA) | H100 | 332 | 0.36 (est 3.95/h) | True |
+| 2026-11-12 | vxcb cb1 (ap-1BitGtaYxcZKibPplTwEvL) | H100 | 532 | 0.58 (est 3.95/h) | True |
+| 2026-11-12 | vxcb cb2 (ap-U11oMwJWeT9dbqVgpfhm3s) | H100 | 319 | 0.35 (est 3.95/h) | True |
+| 2026-11-12 | vxcb cb3 (ap-ul2ctFPWt9LizQdynmJ7Ng) | H100 | 557 | 0.61 (est 3.95/h) | True |

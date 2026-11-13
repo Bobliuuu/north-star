@@ -1,5 +1,9 @@
 # NEXT_STEPS
 
+## STATUS UPDATE 2026-11-12 d (RESULTS.md H27)
+DONE: continuous batching (`harness/cbatch.py`): pointer-table bucket graphs over 32 KV slots, every request == its isolated decode under all loads. Same container vs vLLM 0.33: 1.04-1.08x at 2-8 req/s, 0.99x at 16, 0.91x saturated (TTFT 3.1 vs 1.7 s).
+NEXT: (a) batch-invariant batched prefill (the batched mode reaches vLLM's peak, 1952 vs 1992 tok/s, but only 11/64 requests stay request-independent); (b) prefill chunks interleaved with decode steps to cut TTFT under bursts; (c) speculation for the lone request when only one slot is active.
+
 ## STATUS UPDATE 2026-11-12 c (RESULTS.md H26)
 DONE: (a) of 2026-11-12 b. `harness/serve.py` Engine: exact v2 everywhere, PLD + CostPolicy + index-during-prefill at B=1 (mix99 1.146x, worst 0.974x), batched plain from B=2 (B=2 capped PLD opt-in: 1.035x mean, 5/16 losses). All paths exact; batched rows == single-user outputs at B=2..32.
 NEXT: (a) continuous batching (requests joining/leaving mid-decode; per-slot positions already supported by BatchExact) and a comparison with vLLM under arrivals; (b) a better B=2 speculation rule (per-row on/off instead of a shared T); (c) B=1 persistent kernel / cross-layer prefetch.
