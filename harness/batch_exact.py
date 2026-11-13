@@ -12,6 +12,12 @@ import fast_kernels_battn as fba
 BATCH_ATTN = "auto"
 
 
+# True: attention branch (qkv, attention, o_proj) on a side stream, concurrent with router + MoE (North's parallel block); joins at the
+# residual. Same kernels, same values (branch perf/exact-decode); outputs go to static buffers so the graph has no cross-stream allocator reuse.
+STREAMS = False
+STREAM_PRIO = -1   # CUDA priority of the attention stream (lower = higher). Scheduling only; x4prio: verify blocks 5-7% faster at -1
+
+
 # True: rows flagged invalid by Stepb.set(valid=...) skip expert work in the gathered MoE (mode 3 / auto above GATHER_MIN_NT).
 MASK_PAD = True
 
@@ -54,7 +60,7 @@ class BatchExact:
             self._st[(B, T)] = dict(ws=X._x_state(T)["ws"], idx=torch.zeros(N, k, dtype=torch.int32, device=dev), sc=z(N, k),
                                     flag=torch.zeros(N * k, dtype=torch.int32, device=dev), hb=z(N * k, c.intermediate_size), ob=z(N * k, X.Dm),
                                     x2=z(N, X.Dm), h2=z(N, X.Dm), zero=z(N, X.Dm), ao=z(N, X.H * X.D),
-                                    valid=torch.ones(N, dtype=torch.bool, device=dev))
+                                    valid=torch.ones(N, dtype=torch.bool, device=dev), qkv=z(N, X.wqkv[0].shape[0]), a=z(N, X.Dm))
             self._st[(B, T)]["wsb"] = fba.AttnWSB(self._st[(B, T)]["ws"], B, dev)
         return self._st[(B, T)]
 
@@ -87,10 +93,21 @@ class BatchExact:
         D = X.D
         ba = _battn(B)
         pt = self.ptrs(kvs) if ba else None
+        main = torch.cuda.current_stream()
+        side = None
+        if STREAMS:
+            if not hasattr(X, "_side_stream"):
+                X._side_stream = torch.cuda.Stream(device=X.dev, priority=STREAM_PRIO)
+            side = X._side_stream
+        import contextlib
         for i, layer in enumerate(layers):
             sliding = cfg.layer_types[i] == "sliding_attention"
             at = layer.self_attn
-            qkv = fkb.lin_bt(h, X.wqkv[i])
+            if side is not None:
+                side.wait_stream(main)
+            ctx = torch.cuda.stream(side) if side is not None else contextlib.nullcontext()
+            ctx.__enter__()
+            qkv = fkb.lin_bt(h, X.wqkv[i], b["qkv"] if side is not None else None)
             rope = bool(sliding or at.force_rope)
             if ba:
                 fba.attn_batched(b["wsb"], qkv, cos, sin, starts, pt[i, 0], pt[i, 1], X.Lmax, rope, bool(sliding), W, b["ao"])
@@ -99,7 +116,8 @@ class BatchExact:
                     kc, vc = kvs[s][i]
                     fkb.attn_seq(b["ws"], qkv[s * T:(s + 1) * T], cos[s * T:(s + 1) * T], sin[s * T:(s + 1) * T], starts[s:s + 1], kc, vc, X.Lmax,
                                  rope, bool(sliding), W, b["ao"][s * T:(s + 1) * T])
-            a = fkb.lin_bt(b["ao"], at.o_proj.weight)
+            a = fkb.lin_bt(b["ao"], at.o_proj.weight, b["a"] if side is not None else None)
+            ctx.__exit__(None, None, None)
             mlp = layer.mlp
             if not hasattr(mlp, "gate"):
                 g_ = fkb.lin_bt(h, mlp.gate_proj.weight)
@@ -109,6 +127,8 @@ class BatchExact:
                 lg = fkb.lin_bt(h, mlp.gate.weight)
                 fk.router_topk(lg, b["idx"], b["sc"], k)
                 m = fkb.moe_bt(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], b["flag"], valid=b["valid"] if MASK_PAD else None)
+            if side is not None:
+                main.wait_stream(side)
             wn = layers[i + 1].input_layernorm.weight if i + 1 < X.nl else X.model.norm.weight
             fk.resid_norm(x, a, m, wn, b["x2"], b["h2"], layer.input_layernorm.variance_epsilon)
             x, h = b["x2"], b["h2"]

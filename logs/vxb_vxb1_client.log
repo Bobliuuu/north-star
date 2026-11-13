@@ -1,0 +1,318 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-4eMweePyOvy0Ug8RY12uqW
+✓ Created objects.
+├── ✓ Uploaded <home>\Documents\Projects\north-star\modal\vllm_vs_x2.py
+├── ✓ Uploaded modal\nsapp.py
+├── ✓ Uploaded <home>\Documents\Projects\north-star\src\northstar
+├── ✓ Uploaded <home>\Documents\Projects\north-star\harness
+├── ✓ Created Function remote.
+└── ✓ Created Function remote_batch.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 13.0.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:09, 42.36it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:12, 30.43it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:15, 24.13it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:16, 21.36it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:01<00:17, 20.21it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:17, 19.73it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:02<00:17, 19.46it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:02<00:17, 18.95it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:03<00:17, 18.58it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:03<00:17, 18.07it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:03<00:16, 19.06it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:04<00:16, 19.03it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:04<00:15, 19.25it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:04<00:15, 18.99it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:05<00:15, 18.91it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:05<00:15, 18.82it/s]
+[1ALoading weights:  28%|██▊       | 109/394 [00:05<00:15, 18.71it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:05<00:15, 18.20it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:06<00:14, 18.41it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:06<00:14, 18.49it/s]
+[1ALoading weights:  34%|███▍      | 133/394 [00:06<00:14, 18.43it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:07<00:13, 18.22it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:07<00:13, 18.60it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:07<00:12, 18.71it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:08<00:12, 18.62it/s]
+[1ALoading weights:  42%|████▏     | 165/394 [00:08<00:13, 17.58it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:08<00:11, 19.40it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:09<00:11, 18.98it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:09<00:11, 18.80it/s]
+[1ALoading weights:  48%|████▊     | 189/394 [00:09<00:10, 18.85it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:10<00:10, 18.80it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:10<00:09, 19.17it/s]
+[1ALoading weights:  52%|█████▏    | 205/394 [00:10<00:09, 19.19it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:10<00:09, 19.09it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:11<00:09, 18.85it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:11<00:08, 18.76it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:12<00:08, 19.29it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:12<00:07, 19.28it/s]
+[1ALoading weights:  62%|██████▏   | 245/394 [00:12<00:07, 18.99it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:12<00:07, 19.48it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:13<00:07, 19.18it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:13<00:06, 19.36it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:14<00:06, 19.57it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:14<00:05, 19.62it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:15<00:05, 19.26it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:15<00:04, 19.20it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:15<00:04, 19.43it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:16<00:04, 19.44it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:16<00:03, 19.34it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:17<00:03, 19.50it/s]
+[1ALoading weights:  85%|████████▍ | 333/394 [00:17<00:03, 19.41it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:17<00:02, 19.54it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:17<00:02, 19.61it/s]
+[1ALoading weights:  89%|████████▊ | 349/394 [00:18<00:02, 19.00it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:18<00:02, 19.04it/s]
+[1ALoading weights:  91%|█████████ | 357/394 [00:18<00:01, 18.54it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:18<00:01, 18.93it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:19<00:01, 19.06it/s]
+[1ALoading weights:  95%|█████████▍| 373/394 [00:19<00:01, 18.22it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:19<00:00, 19.27it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:20<00:00, 19.38it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:20<00:00, 19.67it/s]
+OURS_BATCH B 1 agg 310 tok/s
+OURS_BATCH B 2 agg 390 tok/s
+OURS_BATCH B 4 agg 637 tok/s
+OURS_BATCH B 8 agg 981 tok/s
+OURS_BATCH B 16 agg 1571 tok/s
+OURS_BATCH B 32 agg 2325 tok/s
+STEP ours1 {'rc': 0, 'secs': 76.60464549064636}
+W1112 18:52:30.761000 96 site-packages/torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1112 18:52:30.762000 96 site-packages/torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1112 18:52:30.762000 96 site-packages/torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+(MainProcess pid=96) INFO 11-12 18:52:33 [startup.py:96] non-default args: {'dtype': 'bfloat16', 'max_model_len': 8192, 'enable_prefix_caching': False, 'gpu_memory_utilization': 0.88, 'max_num_seqs': 32, 'disable_log_stats': True, 'model': '/weights/north-mini-code-d11e61a8'}
+(MainProcess pid=96) INFO 11-12 18:52:43 [model.py:744] Resolved architecture: Cohere2MoeForCausalLM
+(MainProcess pid=96) INFO 11-12 18:52:43 [model.py:2170] Using max model len 8192
+(MainProcess pid=96) INFO 11-12 18:52:43 [scheduler.py:310] Chunked prefill is enabled with max_num_batched_tokens=16384.
+(MainProcess pid=96) INFO 11-12 18:52:43 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native'])
+(EngineCore pid=114) INFO 11-12 18:52:48 [core.py:139] Initializing a V1 LLM engine (v0.33.0) with config: model='/weights/north-mini-code-d11e61a8', speculative_config=None, tokenizer='/weights/north-mini-code-d11e61a8', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, custom_histogram_buckets=None, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=/weights/north-mini-code-d11e61a8, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::qwen4_exp_ple_short_conv', 'vllm::qwen4_exp_qsa_with_output', 'vllm::qwen4_exp_qsa_prepare_with_output', 'vllm::linear_attention', 'vllm::qwen_gdn_attention_core', 'vllm::qwen_gdn_attention_core_fused_norm_packed', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::hpc_rope_norm_forward', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': [], 'compile_ranges_endpoints': [16384], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 64, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native']), enable_flashinfer_autotune=True, enable_rocm_segmented_attn_autotune=False, enable_cutedsl_warmup=True, enable_jit_warmup=True, monokernel=False, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+(EngineCore pid=114) INFO 11-12 18:52:49 [parallel_state.py:1929] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_d583fc26ada7469ea9cfe165293e3f5e backend=nccl
+(EngineCore pid=114) INFO 11-12 18:52:49 [parallel_state.py:2385] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank 0, EPLB rank N/A
+(EngineCore pid=114) INFO 11-12 18:52:49 [gpu_worker.py:513] Using V2 Model Runner
+(EngineCore pid=114) WARNING 11-12 18:52:49 [flashinfer.py:143] FlashInfer's precompiled kernels are missing or do not match flashinfer-python 0.7.2.post1 (flashinfer-cubin not installed, flashinfer-jit-cache not installed). FlashInfer then downloads and compiles kernels at startup, which can take several minutes, or fails to import mismatched ones. Run `vllm download-kernels` in this Python environment to install them.
+(EngineCore pid=114) INFO 11-12 18:52:51 [model_runner.py:399] Loading model from scratch...
+(EngineCore pid=114) INFO 11-12 18:52:51 [cohere2_moe.py:401] Cohere2MoE attention/MoE dual stream enabled (token threshold=256).
+(EngineCore pid=114) INFO 11-12 18:52:52 [cuda.py:508] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(EngineCore pid=114) INFO 11-12 18:52:52 [flash_attn.py:1122] Using FlashAttention version 3
+(EngineCore pid=114) INFO 11-12 18:52:52 [unquantized.py:365] Using TRITON Unquantized MoE backend out of potential backends: ['TRITON', 'BATCHED_TRITON', 'FlashInfer TRTLLM', 'FlashInfer CUTLASS'].
+(EngineCore pid=114) INFO 11-12 18:52:52 [base_loader.py:82] Initializing model took 1.618672 seconds
+(EngineCore pid=114) INFO 11-12 18:52:52 [weight_utils.py:1144] Filesystem type for checkpoints: 9P. Checkpoint size: 56.78 GiB. Available RAM: 1016.82 GiB.
+(EngineCore pid=114) INFO 11-12 18:52:52 [weight_utils.py:1167] Auto-prefetch is disabled because the filesystem (9P) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+Loading safetensors checkpoint shards:   0% Completed | 0/49 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:   2% Completed | 1/49 [00:00<00:10,  4.50it/s]
+Loading safetensors checkpoint shards:   4% Completed | 2/49 [00:00<00:11,  4.20it/s]
+Loading safetensors checkpoint shards:   6% Completed | 3/49 [00:00<00:10,  4.19it/s]
+Loading safetensors checkpoint shards:   8% Completed | 4/49 [00:00<00:10,  4.21it/s]
+Loading safetensors checkpoint shards:  10% Completed | 5/49 [00:01<00:10,  4.22it/s]
+Loading safetensors checkpoint shards:  12% Completed | 6/49 [00:01<00:10,  4.16it/s]
+Loading safetensors checkpoint shards:  14% Completed | 7/49 [00:01<00:10,  3.94it/s]
+Loading safetensors checkpoint shards:  16% Completed | 8/49 [00:01<00:10,  3.86it/s]
+Loading safetensors checkpoint shards:  18% Completed | 9/49 [00:02<00:10,  3.80it/s]
+Loading safetensors checkpoint shards:  20% Completed | 10/49 [00:02<00:10,  3.72it/s]
+Loading safetensors checkpoint shards:  22% Completed | 11/49 [00:02<00:10,  3.66it/s]
+Loading safetensors checkpoint shards:  24% Completed | 12/49 [00:03<00:10,  3.63it/s]
+Loading safetensors checkpoint shards:  27% Completed | 13/49 [00:03<00:09,  3.61it/s]
+Loading safetensors checkpoint shards:  29% Completed | 14/49 [00:03<00:09,  3.61it/s]
+Loading safetensors checkpoint shards:  31% Completed | 15/49 [00:03<00:09,  3.62it/s]
+Loading safetensors checkpoint shards:  33% Completed | 16/49 [00:04<00:09,  3.61it/s]
+Loading safetensors checkpoint shards:  35% Completed | 17/49 [00:04<00:08,  3.61it/s]
+Loading safetensors checkpoint shards:  37% Completed | 18/49 [00:04<00:08,  3.68it/s]
+Loading safetensors checkpoint shards:  39% Completed | 19/49 [00:05<00:08,  3.75it/s]
+Loading safetensors checkpoint shards:  41% Completed | 20/49 [00:05<00:07,  3.88it/s]
+Loading safetensors checkpoint shards:  43% Completed | 21/49 [00:05<00:07,  3.99it/s]
+Loading safetensors checkpoint shards:  45% Completed | 22/49 [00:05<00:06,  4.05it/s]
+Loading safetensors checkpoint shards:  47% Completed | 23/49 [00:05<00:06,  4.07it/s]
+Loading safetensors checkpoint shards:  49% Completed | 24/49 [00:06<00:06,  4.11it/s]
+Loading safetensors checkpoint shards:  51% Completed | 25/49 [00:06<00:05,  4.16it/s]
+Loading safetensors checkpoint shards:  53% Completed | 26/49 [00:06<00:05,  4.19it/s]
+Loading safetensors checkpoint shards:  55% Completed | 27/49 [00:06<00:05,  4.19it/s]
+Loading safetensors checkpoint shards:  57% Completed | 28/49 [00:07<00:05,  4.13it/s]
+Loading safetensors checkpoint shards:  59% Completed | 29/49 [00:07<00:04,  4.08it/s]
+Loading safetensors checkpoint shards:  61% Completed | 30/49 [00:07<00:04,  4.03it/s]
+Loading safetensors checkpoint shards:  63% Completed | 31/49 [00:07<00:04,  4.02it/s]
+Loading safetensors checkpoint shards:  65% Completed | 32/49 [00:08<00:04,  4.00it/s]
+Loading safetensors checkpoint shards:  67% Completed | 33/49 [00:08<00:04,  3.97it/s]
+Loading safetensors checkpoint shards:  69% Completed | 34/49 [00:08<00:03,  3.94it/s]
+Loading safetensors checkpoint shards:  71% Completed | 35/49 [00:08<00:03,  3.94it/s]
+Loading safetensors checkpoint shards:  73% Completed | 36/49 [00:09<00:03,  3.94it/s]
+Loading safetensors checkpoint shards:  76% Completed | 37/49 [00:09<00:03,  3.95it/s]
+Loading safetensors checkpoint shards:  78% Completed | 38/49 [00:09<00:02,  3.94it/s]
+Loading safetensors checkpoint shards:  80% Completed | 39/49 [00:09<00:02,  3.94it/s]
+Loading safetensors checkpoint shards:  82% Completed | 40/49 [00:10<00:02,  3.93it/s]
+Loading safetensors checkpoint shards:  84% Completed | 41/49 [00:10<00:02,  3.93it/s]
+Loading safetensors checkpoint shards:  86% Completed | 42/49 [00:10<00:01,  3.91it/s]
+Loading safetensors checkpoint shards:  88% Completed | 43/49 [00:10<00:01,  3.93it/s]
+Loading safetensors checkpoint shards:  90% Completed | 44/49 [00:11<00:01,  4.01it/s]
+Loading safetensors checkpoint shards:  92% Completed | 45/49 [00:11<00:00,  4.06it/s]
+Loading safetensors checkpoint shards:  94% Completed | 46/49 [00:11<00:00,  4.08it/s]
+Loading safetensors checkpoint shards:  96% Completed | 47/49 [00:11<00:00,  4.05it/s]
+Loading safetensors checkpoint shards:  98% Completed | 48/49 [00:12<00:00,  4.01it/s]
+Loading safetensors checkpoint shards: 100% Completed | 49/49 [00:12<00:00,  4.39it/s]
+Loading safetensors checkpoint shards: 100% Completed | 49/49 [00:12<00:00,  3.96it/s]
+
+(EngineCore pid=114) INFO 11-12 18:53:05 [default_loader.py:506] Loading weights took 12.39 seconds
+(EngineCore pid=114) INFO 11-12 18:53:05 [unquantized.py:529] Using MoEPrepareAndFinalizeNoDPEPModular
+(EngineCore pid=114) INFO 11-12 18:53:05 [unquantized.py:530] Using TritonExperts MoE backend
+(EngineCore pid=114) INFO 11-12 18:53:06 [model_runner.py:428] Model loading took 56.9 GiB memory and 15.980011 seconds
+(EngineCore pid=114) INFO 11-12 18:53:06 [topk_topp_sampler.py:149] Using FlashInfer for top-p & top-k sampling.
+(EngineCore pid=114) INFO 11-12 18:53:06 [utils.py:381] Using LBNHC KV cache layout.
+(EngineCore pid=114) WARNING 11-12 18:53:06 [kv_cache_planning.py:537] Add 3 padding layers, may waste at most 8.33% KV cache memory
+(EngineCore pid=114) INFO 11-12 18:53:07 [monitor.py:40] [backbone] Starting torch.compile
+(EngineCore pid=114) INFO 11-12 18:53:13 [backends.py:1125] [backbone] Using cache directory: /root/.cache/vllm/torch_compile_cache/1396022d2e/rank_0_0/backbone for vLLM's torch.compile
+(EngineCore pid=114) INFO 11-12 18:53:13 [backends.py:1187] [backbone] Dynamo bytecode transform time: 5.82 s
+(EngineCore pid=114) INFO 11-12 18:53:16 [backends.py:417] [backbone] Compiling a graph for compile range (1, 16384) takes 2.92 s
+(EngineCore pid=114) INFO 11-12 18:53:20 [backends.py:948] collected artifacts: 50 entries, 4 artifacts, 3794203 bytes total
+(EngineCore pid=114) INFO 11-12 18:53:20 [decorators.py:752] [backbone] saved AOT compiled function to /root/.cache/vllm/torch_compile_cache/torch_aot_compile/fe51fabf6065987f4b3c5b143641dfc4c5c8aaf1a8e98ad85f890218f53264e5/rank_0_0/model
+(EngineCore pid=114) INFO 11-12 18:53:20 [monitor.py:62] [backbone] torch.compile took 12.35 s in total
+(EngineCore pid=114) WARNING 11-12 18:53:21 [fused_moe.py:1165] Using default MoE config. Performance might be sub-optimal! Config file not found at /usr/local/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/configs/E=128,N=768,device_name=NVIDIA_H100_80GB_HBM3.json
+(EngineCore pid=114) INFO 11-12 18:53:22 [monitor.py:91] [backbone] Initial profiling/warmup run took 1.80 s
+2026-11-12 18:53:23,473 - INFO - core.py:594 - flashinfer.jit: Building JIT module sampling; this can take several minutes on first use.
+(EngineCore pid=114) WARNING 11-12 18:54:24 [kv_cache_planning.py:537] Add 3 padding layers, may waste at most 8.33% KV cache memory
+
+(EngineCore pid=114) INFO 11-12 18:54:25 [cohere2_moe.py:523] Cohere2MoE attention/MoE dual stream is active.
+[1ACapturing CUDA graphs (PIECEWISE):   0%|          | 0/11 [00:00<?, ?it/s]
+[1ACapturing CUDA graphs (PIECEWISE):   9%|▉         | 1/11 [00:01<00:10,  1.05s/it]
+[1ACapturing CUDA graphs (PIECEWISE):  18%|█▊        | 2/11 [00:01<00:04,  1.99it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  27%|██▋       | 3/11 [00:01<00:04,  1.84it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  36%|███▋      | 4/11 [00:01<00:02,  2.63it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  45%|████▌     | 5/11 [00:02<00:02,  2.20it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  55%|█████▍    | 6/11 [00:02<00:01,  2.94it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  64%|██████▎   | 7/11 [00:02<00:01,  3.69it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  73%|███████▎  | 8/11 [00:02<00:00,  4.45it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  82%|████████▏ | 9/11 [00:03<00:00,  2.09it/s]
+[1ACapturing CUDA graphs (PIECEWISE): 100%|██████████| 11/11 [00:05<00:00,  1.75it/s]
+[1ACapturing CUDA graphs (PIECEWISE): 100%|██████████| 11/11 [00:05<00:00,  2.10it/s]
+
+[1ACapturing CUDA graphs (FULL):   0%|          | 0/2 [00:00<?, ?it/s]
+[1ACapturing CUDA graphs (FULL):  50%|█████     | 1/2 [00:00<00:00,  4.21it/s]
+[1ACapturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00,  5.51it/s]
+[1ACapturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00,  5.26it/s]
+(EngineCore pid=114) INFO 11-12 18:54:31 [model_runner.py:1163] Graph capturing finished in 7 secs, took 0.17 GiB
+(EngineCore pid=114) INFO 11-12 18:54:32 [gpu_worker.py:772] Available KV cache memory: 10.69 GiB
+(EngineCore pid=114) INFO 11-12 18:54:32 [gpu_worker.py:787] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.8800 is equivalent to --gpu-memory-utilization=0.8777 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.8823. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(EngineCore pid=114) INFO 11-12 18:54:32 [kv_cache_utils.py:1147] GPU KV cache size: 107,574 tokens, Maximum concurrency for 8,192 tokens per request: 13.13x
+(EngineCore pid=114) INFO 11-12 18:54:32 [kv_cache_utils.py:865] kv cache group sizes (16, 16, 16, 16)
+(EngineCore pid=114) INFO 11-12 18:54:32 [kv_cache_utils.py:866] kv lcm block sizes 16
+(EngineCore pid=114) INFO 11-12 18:54:32 [kernel_warmup.py:179] JIT kernel warmup starting.
+(EngineCore pid=114) INFO 11-12 18:54:32 [kernel_warmup.py:192] JIT kernel warmup finished in 0.00s.
+(EngineCore pid=114) INFO 11-12 18:54:32 [kernel_warmup.py:100] Warming up ll_bf16 router GEMM kernels for shapes: ((2048, 128),).
+(EngineCore pid=114) INFO 11-12 18:54:33 [kernel_warmup.py:485] Using FlashInfer managed autotune cache (root=flashinfer default). Pass --disable-flashinfer-autotune to skip autotuning.
+2026-11-12 18:54:33,648 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-11-12 18:54:33,826 - INFO - autotune_cache.py:495 - flashinfer.jit: [Autotuner]: Managed autotune cache attached for this process: ManagedAutotuneCache(env_dir='/root/.cache/flashinfer/autotune/v2/5e9bee35662caab8', hits=0, misses=0)
+(EngineCore pid=114) INFO 11-12 18:54:33 [kernel_warmup.py:371] Running FlashInfer autotune with 16384 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192, 16384).
+2026-11-12 18:54:33,876 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+
+[1ACapturing CUDA graphs (PIECEWISE):   0%|          | 0/11 [00:00<?, ?it/s]
+[1ACapturing CUDA graphs (PIECEWISE):   9%|▉         | 1/11 [00:00<00:01,  7.48it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  18%|█▊        | 2/11 [00:00<00:01,  7.71it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  27%|██▋       | 3/11 [00:00<00:01,  7.79it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  36%|███▋      | 4/11 [00:00<00:00,  8.01it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  45%|████▌     | 5/11 [00:00<00:00,  8.09it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  55%|█████▍    | 6/11 [00:00<00:00,  8.09it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  64%|██████▎   | 7/11 [00:00<00:00,  8.01it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  73%|███████▎  | 8/11 [00:00<00:00,  8.21it/s]
+[1ACapturing CUDA graphs (PIECEWISE):  82%|████████▏ | 9/11 [00:01<00:00,  8.12it/s]
+[1ACapturing CUDA graphs (PIECEWISE): 100%|██████████| 11/11 [00:01<00:00,  8.75it/s]
+[1ACapturing CUDA graphs (PIECEWISE): 100%|██████████| 11/11 [00:01<00:00,  8.27it/s]
+
+[1ACapturing CUDA graphs (FULL):   0%|          | 0/7 [00:00<?, ?it/s]
+[1ACapturing CUDA graphs (FULL):  14%|█▍        | 1/7 [00:00<00:01,  4.94it/s]
+[1ACapturing CUDA graphs (FULL):  29%|██▊       | 2/7 [00:00<00:00,  6.24it/s]
+[1ACapturing CUDA graphs (FULL):  43%|████▎     | 3/7 [00:00<00:00,  7.30it/s]
+[1ACapturing CUDA graphs (FULL):  71%|███████▏  | 5/7 [00:00<00:00,  8.83it/s]
+[1ACapturing CUDA graphs (FULL): 100%|██████████| 7/7 [00:00<00:00,  9.96it/s]
+[1ACapturing CUDA graphs (FULL): 100%|██████████| 7/7 [00:00<00:00,  8.73it/s]
+(EngineCore pid=114) INFO 11-12 18:54:38 [model_runner.py:1163] Graph capturing finished in 3 secs, took 0.07 GiB
+(EngineCore pid=114) INFO 11-12 18:54:38 [gpu_worker.py:1003] CUDA graph pool memory: 0.07 GiB (actual), 0.18 GiB (estimated), difference: 0.11 GiB (151.4%).
+(EngineCore pid=114) INFO 11-12 18:54:38 [gpu_worker.py:1066] Free memory on device (78.47/79.17 GiB) on startup. Desired GPU memory utilization is (0.88, 69.67 GiB). Actual usage is 58.01 GiB for consumed memory (weights + non-torch), 0.98 GiB for peak activation, and 0.07 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=11238255412` (10.47 GiB) to fit into requested memory, or `--kv-cache-memory=20683552768` (19.26 GiB) to fully utilize gpu memory. Current kv cache memory in use is 10.69 GiB.
+(EngineCore pid=114) INFO 11-12 18:54:39 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore pid=114) INFO 11-12 18:54:39 [core.py:405] init engine (profile, create kv cache, warmup model) took 93.10 s (compilation: 12.35 s)
+(EngineCore pid=114) INFO 11-12 18:54:39 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native'])
+(MainProcess pid=96) INFO 11-12 18:54:41 [hf.py:736] Detected the chat template content format to be 'openai'. You can set `--chat-template-content-format` to override this.
+(EngineCore pid=114) WARNING 11-12 18:54:41 [jit_monitor.py:140] Triton kernel JIT compilation during inference: fused_moe_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+VLLM_BATCH B 1 decode agg 259 tok/s
+VLLM_BATCH B 2 decode agg 352 tok/s
+VLLM_BATCH B 4 decode agg 528 tok/s
+VLLM_BATCH B 8 decode agg 964 tok/s
+VLLM_BATCH B 16 decode agg 1547 tok/s
+VLLM_BATCH B 32 decode agg 2217 tok/s
+(MainProcess pid=96) INFO 11-12 18:55:04 [utils.py:628] [shutdown] Process manager: send sigterm to process EngineCore
+(EngineCore pid=114) INFO 11-12 18:55:04 [core.py:1525] [shutdown] EngineCore: trigger received signal=SIGTERM
+(EngineCore pid=114) INFO 11-12 18:55:04 [core.py:1712] [shutdown] EngineCore: start mode=abort timeout=0s
+(EngineCore pid=114) INFO 11-12 18:55:04 [core.py:1743] [shutdown] EngineCore: request processing complete; starting resource teardown
+(EngineCore pid=114) INFO 11-12 18:55:04 [core.py:1573] [shutdown] EngineCore: exiting busy loop
+STEP vllm {'rc': 0, 'secs': 165.5556206703186}
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:04, 76.14it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:00<00:05, 61.28it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:00<00:06, 54.62it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:00<00:07, 49.21it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:00<00:07, 47.03it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:01<00:07, 45.19it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:01<00:07, 43.45it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:01<00:07, 43.26it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:01<00:07, 43.13it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:01<00:07, 43.26it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:02<00:06, 43.71it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:02<00:06, 43.73it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:02<00:06, 43.52it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:02<00:06, 43.70it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:02<00:06, 43.71it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:03<00:05, 43.21it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:03<00:05, 43.96it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:03<00:05, 43.15it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:03<00:05, 39.72it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:03<00:05, 39.52it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:04<00:05, 39.43it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:04<00:05, 39.83it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:04<00:05, 39.36it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:04<00:04, 40.18it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:04<00:04, 40.28it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:05<00:04, 40.75it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:05<00:04, 41.26it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:05<00:03, 42.41it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:05<00:03, 42.90it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:05<00:03, 43.66it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:05<00:03, 43.91it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:06<00:02, 44.77it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:06<00:02, 45.33it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:06<00:02, 45.73it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:06<00:02, 45.65it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:06<00:02, 46.10it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:06<00:01, 46.46it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:07<00:01, 46.36it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:07<00:01, 45.88it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:07<00:01, 46.14it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:07<00:01, 46.17it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:07<00:01, 46.26it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:08<00:00, 44.35it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:08<00:00, 44.12it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:08<00:00, 43.78it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:08<00:00, 44.59it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:08<00:00, 45.24it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:08<00:00, 45.07it/s]
+OURS_BATCH B 32 agg 2326 tok/s
+STEP ours2 {'rc': 0, 'secs': 29.990999460220337}
+{'ours1': {'rc': 0, 'secs': 76.60464549064636}, 'vllm': {'rc': 0, 'secs': 165.5556206703186}, 'ours2': {'rc': 0, 'secs': 29.990999460220337}}
+VXB_DONE secs 276.8698818683624 est usd 0.30378778705000875
+[modal-client] 2026-11-12T13:55:53-0500 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-4eMweePyOvy0Ug8RY12uqW

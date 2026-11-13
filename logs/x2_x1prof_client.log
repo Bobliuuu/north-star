@@ -1,0 +1,290 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-SZB5IiYisldtj6GeFSAb73
+✓ Created objects.
+├── ✓ Uploaded <home>\Documents\Projects\north-star\modal\x2_run.py
+├── ✓ Uploaded modal\nsapp.py
+├── ✓ Uploaded <home>\Documents\Projects\north-star\src\northstar
+├── ✓ Uploaded <home>\Documents\Projects\north-star\tests
+├── ✓ Uploaded <home>\Documents\Projects\north-star\harness
+└── ✓ Created Function remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:08, 46.32it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:15, 23.74it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:17, 20.42it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:19, 18.72it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:19, 18.16it/s]
+[1ALoading weights:  11%|█▏        | 45/394 [00:02<00:19, 18.11it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:18, 18.06it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:18, 18.00it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:03<00:18, 17.45it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:03<00:19, 17.07it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:03<00:17, 18.03it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:04<00:17, 17.63it/s]
+[1ALoading weights:  22%|██▏       | 85/394 [00:04<00:17, 17.52it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:04<00:17, 17.62it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:05<00:17, 17.25it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:05<00:16, 17.33it/s]
+[1ALoading weights:  28%|██▊       | 109/394 [00:06<00:18, 15.78it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:30,  9.09it/s]
+[1ALoading weights:  30%|██▉       | 117/394 [00:07<00:34,  8.02it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:08<00:29,  9.25it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:08<00:22, 11.55it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:09<00:19, 13.24it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:09<00:16, 14.53it/s]
+[1ALoading weights:  38%|███▊      | 149/394 [00:09<00:16, 14.70it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:09<00:15, 15.59it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:10<00:14, 16.26it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:10<00:13, 16.85it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:11<00:12, 16.96it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:11<00:12, 16.88it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:12<00:11, 17.23it/s]
+[1ALoading weights:  50%|█████     | 197/394 [00:12<00:11, 17.32it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:12<00:10, 17.48it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:13<00:10, 17.54it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:13<00:09, 17.90it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:14<00:09, 17.93it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:14<00:08, 17.95it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:14<00:08, 17.94it/s]
+[1ALoading weights:  62%|██████▏   | 245/394 [00:15<00:08, 18.10it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:15<00:07, 17.90it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:15<00:07, 17.98it/s]
+[1ALoading weights:  66%|██████▌   | 261/394 [00:15<00:07, 18.05it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:16<00:07, 18.10it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:16<00:06, 17.65it/s]
+[1ALoading weights:  71%|███████   | 279/394 [00:16<00:05, 19.91it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:17<00:06, 17.15it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:17<00:06, 17.07it/s]
+[1ALoading weights:  74%|███████▍  | 293/394 [00:17<00:06, 16.79it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:18<00:05, 17.65it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:18<00:04, 17.96it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:19<00:04, 17.35it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:19<00:04, 17.63it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:19<00:03, 17.94it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:20<00:03, 17.92it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:20<00:02, 17.90it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:21<00:02, 17.83it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:21<00:01, 18.02it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:22<00:01, 18.06it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:22<00:00, 18.01it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:22<00:00, 18.08it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:23<00:00, 17.13it/s]
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-12T17:34:42Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "3c88f18ec2f9", "load_s": 35.622326612472534}
+/usr/local/lib/python3.12/site-packages/torch/profiler/profiler.py:217: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.
+  _warn_once(
+PROF v1 T 1 graph 4.523 span 4.562 busy 4.345 ksum 4.345 launches 509
+     1.799 ms  150  _lin_kernel
+     0.981 ms   48  _gateup_blk
+     0.557 ms   48  _down_blk
+     0.523 ms   49  _attn_split_x
+     0.158 ms   49  _rope_write_blk
+     0.117 ms   50  _resid_norm_kernel
+     0.092 ms   48  _topk_kernel
+     0.092 ms   49  _attn_combine_x
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.005 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.003 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    2  memcpy32_post
+     0.002 ms    1  _amax1
+PROF v1 T 13 graph 9.025 span 9.147 busy 8.931 ksum 8.931 launches 509
+     3.955 ms   48  _gateup_blk
+     1.988 ms   48  _down_blk
+     1.834 ms  150  _lin_kernel
+     0.587 ms   49  _attn_split_x
+     0.169 ms   49  _rope_write_blk
+     0.131 ms   50  _resid_norm_kernel
+     0.130 ms   49  _attn_combine_x
+     0.098 ms   48  _topk_kernel
+     0.011 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.005 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.004 ms    1  _amax1
+     0.003 ms    2  Memcpy DtoD (Device -> Device)
+PROF s T 1 graph 3.501 span 3.555 busy 3.472 ksum 5.613 launches 509
+     2.158 ms  150  _lin_kernel
+     1.168 ms   49  _attn_split_x
+     1.048 ms   48  _gateup_blk
+     0.606 ms   48  _down_blk
+     0.227 ms   49  _rope_write_blk
+     0.168 ms   49  _attn_combine_x
+     0.117 ms   50  _resid_norm_kernel
+     0.097 ms   48  _topk_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.003 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  _amax1
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+PROF s T 13 graph 7.516 span 7.542 busy 7.488 ksum 10.051 launches 509
+     3.862 ms   48  _gateup_blk
+     2.666 ms  150  _lin_kernel
+     2.002 ms   48  _down_blk
+     0.864 ms   49  _attn_split_x
+     0.218 ms   49  _rope_write_blk
+     0.176 ms   49  _attn_combine_x
+     0.127 ms   50  _resid_norm_kernel
+     0.100 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.004 ms    1  _amax1
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+PROF t T 1 graph 4.054 span 4.082 busy 3.840 ksum 3.840 launches 557
+     1.222 ms  102  _lin_kernel
+     0.940 ms   48  _gateup_blk
+     0.522 ms   49  _attn_split_x
+     0.500 ms   48  _down_blk
+     0.159 ms   49  _rope_write_blk
+     0.116 ms   50  _resid_norm_kernel
+     0.111 ms   48  _lin_sk
+     0.091 ms   49  _attn_combine_x
+     0.091 ms   48  _topk_kernel
+     0.062 ms   48  _lin_red
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.005 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.003 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+PROF t T 13 graph 7.762 span 7.801 busy 7.567 ksum 7.567 launches 557
+     3.318 ms   48  _gateup_blk
+     1.704 ms   48  _down_blk
+     1.258 ms  102  _lin_kernel
+     0.557 ms   49  _attn_split_x
+     0.165 ms   49  _rope_write_blk
+     0.128 ms   50  _resid_norm_kernel
+     0.124 ms   49  _attn_combine_x
+     0.113 ms   48  _lin_sk
+     0.092 ms   48  _topk_kernel
+     0.070 ms   48  _lin_red
+     0.011 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.005 ms    3  void at::native::elementwise_kernel<128, 2, at::
+PROF ts T 1 graph 3.047 span 3.103 busy 3.025 ksum 4.953 launches 557
+     1.271 ms  102  _lin_kernel
+     1.064 ms   49  _attn_split_x
+     0.961 ms   48  _gateup_blk
+     0.557 ms   48  _down_blk
+     0.287 ms   48  _lin_sk
+     0.258 ms   49  _attn_combine_x
+     0.246 ms   49  _rope_write_blk
+     0.116 ms   50  _resid_norm_kernel
+     0.097 ms   48  _topk_kernel
+     0.071 ms   48  _lin_red
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.002 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+PROF ts T 13 graph 6.721 span 6.793 busy 6.719 ksum 8.700 launches 557
+     3.357 ms   48  _gateup_blk
+     1.797 ms   48  _down_blk
+     1.290 ms  102  _lin_kernel
+     1.002 ms   49  _attn_split_x
+     0.405 ms   49  _attn_combine_x
+     0.287 ms   48  _lin_sk
+     0.217 ms   49  _rope_write_blk
+     0.130 ms   50  _resid_norm_kernel
+     0.099 ms   48  _topk_kernel
+     0.080 ms   48  _lin_red
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.004 ms    1  _amax1
+PROF ts_r1 T 1 graph 3.052 span 3.118 busy 3.054 ksum 5.146 launches 509
+     1.910 ms  150  _lin_kernel
+     0.986 ms   49  _attn_split_x
+     0.954 ms   48  _gateup_blk
+     0.599 ms   48  _down_blk
+     0.242 ms   49  _attn_combine_x
+     0.192 ms   49  _rope_write_blk
+     0.121 ms   48  _topk_kernel
+     0.118 ms   50  _resid_norm_kernel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.002 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+     0.002 ms    1  _amax1
+PROF ts_r1 T 13 graph 6.746 span 6.803 busy 6.728 ksum 8.758 launches 509
+     3.329 ms   48  _gateup_blk
+     1.792 ms   48  _down_blk
+     1.751 ms  150  _lin_kernel
+     1.014 ms   49  _attn_split_x
+     0.402 ms   49  _attn_combine_x
+     0.204 ms   49  _rope_write_blk
+     0.126 ms   50  _resid_norm_kernel
+     0.102 ms   48  _topk_kernel
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.007 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.004 ms    1  _amax1
+     0.004 ms    3  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    2  Memcpy DtoD (Device -> Device)
+PROF ts_m13 T 1 graph 3.149 span 3.211 busy 3.130 ksum 4.755 launches 557
+     1.267 ms  102  _lin_kernel
+     1.033 ms   48  _gateup_blk
+     0.849 ms   49  _attn_split_x
+     0.542 ms   48  _down_blk
+     0.344 ms   49  _rope_write_blk
+     0.283 ms   48  _lin_sk
+     0.125 ms   49  _attn_combine_x
+     0.117 ms   50  _resid_norm_kernel
+     0.098 ms   48  _topk_kernel
+     0.073 ms   48  _lin_red
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.005 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.002 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+PROF ts_m13 T 13 graph 6.768 span 6.822 busy 6.743 ksum 8.543 launches 557
+     3.338 ms   48  _gateup_blk
+     1.798 ms   48  _down_blk
+     1.326 ms  102  _lin_kernel
+     0.895 ms   49  _attn_split_x
+     0.335 ms   49  _attn_combine_x
+     0.283 ms   48  _lin_sk
+     0.224 ms   49  _rope_write_blk
+     0.129 ms   50  _resid_norm_kernel
+     0.098 ms   48  _topk_kernel
+     0.081 ms   48  _lin_red
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.004 ms    1  _amax1
+PROF ts_v1moe T 1 graph 3.141 span 3.202 busy 3.121 ksum 4.778 launches 557
+     1.266 ms  102  _lin_kernel
+     1.027 ms   48  _gateup_blk
+     0.844 ms   49  _attn_split_x
+     0.541 ms   48  _down_blk
+     0.382 ms   49  _rope_write_blk
+     0.281 ms   48  _lin_sk
+     0.123 ms   49  _attn_combine_x
+     0.118 ms   50  _resid_norm_kernel
+     0.097 ms   48  _topk_kernel
+     0.074 ms   48  _lin_red
+     0.005 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.005 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.002 ms    2  void at::native::elementwise_kernel<128, 2, at::
+     0.002 ms    1  void at::native::(anonymous namespace)::indexSel
+PROF ts_v1moe T 13 graph 6.769 span 6.793 busy 6.715 ksum 8.523 launches 557
+     3.341 ms   48  _gateup_blk
+     1.796 ms   48  _down_blk
+     1.291 ms  102  _lin_kernel
+     0.894 ms   49  _attn_split_x
+     0.335 ms   49  _attn_combine_x
+     0.286 ms   48  _lin_sk
+     0.234 ms   49  _rope_write_blk
+     0.129 ms   50  _resid_norm_kernel
+     0.098 ms   48  _topk_kernel
+     0.081 ms   48  _lin_red
+     0.010 ms    1  void at::native::(anonymous namespace)::indexSel
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<4
+     0.006 ms    4  void at::native::vectorized_elementwise_kernel<8
+     0.004 ms    1  _amax1
+wrote results/x2_x1prof.jsonl
+X2_DONE secs 51.484458446502686 est usd 0.05648989190657934
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-SZB5IiYisldtj6GeFSAb73

@@ -39,13 +39,20 @@ def _lin_bt(x_ptr, w_ptr, o_ptr, NT, N: tl.constexpr, K: tl.constexpr, TPAD: tl.
     tl.store(o_ptr + rt[None, :] * N + rn[:, None], acc.to(tl.bfloat16), mask=(rn < N)[:, None] & (rt < NT)[None, :])
 
 
-def lin_bt(x, w):
-    """x [NT,K] bf16 contiguous, w [N,K] -> [NT,N] bf16; same math per row as fx.lin."""
+def lin_bt(x, w, out=None):
+    """x [NT,K] bf16 contiguous, w [N,K] -> [NT,N] bf16; same math per row as fx.lin. out: optional static [NT,N] buffer."""
     NT, K = x.shape
     N = w.shape[0]
-    out = torch.empty(NT, N, device=x.device, dtype=torch.bfloat16)
-    c = fx.lin_cfg(N, K)
+    if out is None:
+        out = torch.empty(NT, N, device=x.device, dtype=torch.bfloat16)
+    c = dict(fx.lin_cfg(N, K))
     tw = TP if LIN_TW <= TP else min(LIN_TW, 64 if NT >= 64 else 32 if NT >= 32 else TP)
+    # wider row tiles: shrink pipeline stages, then BK, to fit shared memory (neither changes a row's k16 MMA accumulation order)
+    while (c["BN"] + tw) * c["BK"] * 2 * c["ns"] > 220_000:
+        if c["ns"] > 2:
+            c["ns"] -= 1
+        else:
+            c["BK"] //= 2
     _lin_bt[(triton.cdiv(NT, tw), triton.cdiv(N, c["BN"]))](x, w, out, NT, N=N, K=K, TPAD=tw, BN=c["BN"], BK=c["BK"], num_warps=c["nw"], num_stages=c["ns"])
     return out
 

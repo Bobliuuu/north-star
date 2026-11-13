@@ -160,10 +160,15 @@ def _attn_combine_x(wacc_ptr, wm_ptr, wl_ptr, out_ptr, T: tl.constexpr, G: tl.co
 
 
 class AttnWSX:
-    def __init__(self, Hkv, G, D, Lmax, T, dev, tblk=16):
+    def __init__(self, Hkv, G, D, Lmax, T, dev, tblk=16, mp_min=None, chunk=None, bn=64, nw=8):
         self.Hkv, self.G, self.D, self.T = Hkv, G, D, T
-        self.MP = max(16, triton.next_power_of_2(tblk * G))
-        self.NS = max(2, triton.next_power_of_2(triton.cdiv(Lmax, CHUNK)))
+        # absolute key chunk per split program (position-absolute, so any value keeps T-invariance; it changes the merge order vs CHUNK)
+        self.C = chunk or CHUNK
+        self.BN, self.nw = bn, nw
+        # query rows of one KV head padded to MP. Default: fixed for every T (16 tokens x G). mp_min=m: per-T padding
+        # max(m, pow2(T*G)) -- only valid if the dot result per row does not depend on M (checked on GPU, bench_x2 invariance phase)
+        self.MP = max(16, triton.next_power_of_2(tblk * G)) if mp_min is None else max(mp_min, triton.next_power_of_2(T * G))
+        self.NS = max(2, triton.next_power_of_2(triton.cdiv(Lmax, self.C)))
         n = Hkv * self.NS * self.MP
         self.acc = torch.zeros(n, D, device=dev, dtype=torch.float32)
         self.m = torch.full((n,), -1e30, device=dev, dtype=torch.float32)
@@ -172,10 +177,11 @@ class AttnWSX:
         self.o = torch.empty(T, Hkv * G * D, device=dev, dtype=torch.bfloat16)
 
 
-def exact_attention(ws: AttnWSX, qkv, cos, sin, start, kc, vc, Lmax, rope, sliding, window, rope_write, BN=64):
+def exact_attention(ws: AttnWSX, qkv, cos, sin, start, kc, vc, Lmax, rope, sliding, window, rope_write, BN=None):
     Hkv, G, D, T, MP, NS = ws.Hkv, ws.G, ws.D, ws.T, ws.MP, ws.NS
+    BN = BN or getattr(ws, "BN", 64)
     rope_write[(Hkv, T)](qkv, cos, sin, start, kc, vc, ws.q, Lmax, G=G, D=D, QD=Hkv * G * D, KD=Hkv * D, MP=MP, ROPE=rope, num_warps=1)
-    _attn_split_x[(Hkv, NS)](ws.q, kc, vc, start, ws.acc, ws.m, ws.l, Lmax, D ** -0.5, T=T, G=G, D=D, MP=MP, NS=NS, BN=BN, C=CHUNK,
-                             SLIDING=sliding, W=window, num_warps=8)
+    _attn_split_x[(Hkv, NS)](ws.q, kc, vc, start, ws.acc, ws.m, ws.l, Lmax, D ** -0.5, T=T, G=G, D=D, MP=MP, NS=NS, BN=BN, C=getattr(ws, "C", CHUNK),
+                             SLIDING=sliding, W=window, num_warps=getattr(ws, "nw", 8))
     _attn_combine_x[(Hkv * T * G,)](ws.acc, ws.m, ws.l, ws.o, T=T, G=G, Hkv=Hkv, D=D, MP=MP, NS=NS, num_warps=4)
     return ws.o

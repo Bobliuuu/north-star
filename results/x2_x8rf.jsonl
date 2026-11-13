@@ -1,0 +1,75 @@
+{"lin_cfg": {"2048x4096": {"BK": 512, "BN": 32, "SK": 1, "ns": 4, "nw": 4}, "262144x2048": {"BK": 256, "BN": 64, "SK": 1, "ns": 4, "nw": 4}, "5120x2048": {"BK": 128, "BN": 64, "SK": 1, "ns": 6, "nw": 4}}, "moe_cfg": {"BK1": 128, "BK2": 128, "BN1": 64, "BN2": 64, "ns1": 4, "ns2": 3, "nw1": 4, "nw2": 4}, "phase": "config"}
+{"T": 1, "ctx": 249, "ms_max": 4.568352222442627, "ms_med": 4.522144079208374, "ms_min": 4.507008075714111, "phase": "step", "task": "humaneval_05_158", "variant": "v1"}
+{"T": 2, "ctx": 249, "ms_max": 5.369408130645752, "ms_med": 5.288495779037476, "ms_min": 5.265664100646973, "phase": "step", "task": "humaneval_05_158", "variant": "v1"}
+{"T": 4, "ctx": 249, "ms_max": 6.494912147521973, "ms_med": 6.471760034561157, "ms_min": 6.460319995880127, "phase": "step", "task": "humaneval_05_158", "variant": "v1"}
+{"T": 8, "ctx": 249, "ms_max": 7.872672080993652, "ms_med": 7.843504190444946, "ms_min": 7.830080032348633, "phase": "step", "task": "humaneval_05_158", "variant": "v1"}
+{"T": 13, "ctx": 249, "ms_max": 9.056447982788086, "ms_med": 9.040736198425293, "ms_min": 9.026080131530762, "phase": "step", "task": "humaneval_05_158", "variant": "v1"}
+{"ctx": 249, "phase": "invariance", "rows_equal": true, "task": "humaneval_05_158", "variant": "v1"}
+{"T": 1, "ctx": 249, "ms_max": 4.661375999450684, "ms_med": 4.455392122268677, "ms_min": 4.150496006011963, "phase": "step", "task": "humaneval_05_158", "variant": "s"}
+{"T": 2, "ctx": 249, "ms_max": 3.816960096359253, "ms_med": 3.7858400344848633, "ms_min": 3.7725439071655273, "phase": "step", "task": "humaneval_05_158", "variant": "s"}
+{"T": 4, "ctx": 249, "ms_max": 6.001471996307373, "ms_med": 5.705312013626099, "ms_min": 5.435296058654785, "phase": "step", "task": "humaneval_05_158", "variant": "s"}
+{"T": 8, "ctx": 249, "ms_max": 6.8691840171813965, "ms_med": 6.706863880157471, "ms_min": 6.4325761795043945, "phase": "step", "task": "humaneval_05_158", "variant": "s"}
+{"T": 13, "ctx": 249, "ms_max": 7.245183944702148, "ms_med": 7.1850879192352295, "ms_min": 7.125664234161377, "phase": "step", "task": "humaneval_05_158", "variant": "s"}
+{"ctx": 249, "phase": "invariance", "rows_equal": true, "task": "humaneval_05_158", "variant": "s"}
+{"T": 1, "ctx": 249, "ms_max": 4.183584213256836, "ms_med": 4.150144100189209, "ms_min": 4.143648147583008, "phase": "step", "task": "humaneval_05_158", "variant": "t"}
+{"T": 2, "ctx": 249, "ms_max": 4.74121618270874, "ms_med": 4.734464168548584, "ms_min": 4.729856014251709, "phase": "step", "task": "humaneval_05_158", "variant": "t"}
+{"T": 4, "ctx": 249, "ms_max": 5.656288146972656, "ms_med": 5.647952079772949, "ms_min": 5.64035177230835, "phase": "step", "task": "humaneval_05_158", "variant": "t"}
+{"T": 8, "ctx": 249, "ms_max": 6.688000202178955, "ms_med": 6.68008017539978, "ms_min": 6.673215866088867, "phase": "step", "task": "humaneval_05_158", "variant": "t"}
+{"T": 13, "ctx": 249, "ms_max": 7.776544094085693, "ms_med": 7.763488054275513, "ms_min": 7.755392074584961, "phase": "step", "task": "humaneval_05_158", "variant": "t"}
+{"ctx": 249, "phase": "invariance", "rows_equal": true, "task": "humaneval_05_158", "variant": "t"}
+{"T": 1, "ctx": 249, "ms_max": 3.0864639282226562, "ms_med": 3.070528030395508, "ms_min": 3.037760019302368, "phase": "step", "task": "humaneval_05_158", "variant": "ts"}
+{"T": 2, "ctx": 249, "ms_max": 3.7295360565185547, "ms_med": 3.714911937713623, "ms_min": 3.7047998905181885, "phase": "step", "task": "humaneval_05_158", "variant": "ts"}
+{"T": 4, "ctx": 249, "ms_max": 4.651904106140137, "ms_med": 4.62011194229126, "ms_min": 4.607264041900635, "phase": "step", "task": "humaneval_05_158", "variant": "ts"}
+{"T": 8, "ctx": 249, "ms_max": 5.670752048492432, "ms_med": 5.661808013916016, "ms_min": 5.653535842895508, "phase": "step", "task": "humaneval_05_158", "variant": "ts"}
+{"T": 13, "ctx": 249, "ms_max": 6.778592109680176, "ms_med": 6.768048048019409, "ms_min": 6.741087913513184, "phase": "step", "task": "humaneval_05_158", "variant": "ts"}
+{"ctx": 249, "phase": "invariance", "rows_equal": true, "task": "humaneval_05_158", "variant": "ts"}
+{"T": 1, "ctx": 249, "ms_max": 3.0764479637145996, "ms_med": 3.046496033668518, "ms_min": 3.029632091522217, "phase": "step", "task": "humaneval_05_158", "variant": "rec"}
+{"T": 2, "ctx": 249, "ms_max": 3.6302719116210938, "ms_med": 3.6088640689849854, "ms_min": 3.5758719444274902, "phase": "step", "task": "humaneval_05_158", "variant": "rec"}
+{"T": 4, "ctx": 249, "ms_max": 4.4515838623046875, "ms_med": 4.4123358726501465, "ms_min": 4.392831802368164, "phase": "step", "task": "humaneval_05_158", "variant": "rec"}
+{"T": 8, "ctx": 249, "ms_max": 5.4617919921875, "ms_med": 5.444960117340088, "ms_min": 5.437024116516113, "phase": "step", "task": "humaneval_05_158", "variant": "rec"}
+{"T": 13, "ctx": 249, "ms_max": 6.560671806335449, "ms_med": 6.539440155029297, "ms_min": 6.523903846740723, "phase": "step", "task": "humaneval_05_158", "variant": "rec"}
+{"ctx": 249, "phase": "invariance", "rows_equal": true, "task": "humaneval_05_158", "variant": "rec"}
+{"T": 1, "ctx": 249, "ms_max": 3.0465919971466064, "ms_med": 3.033552050590515, "ms_min": 3.02457594871521, "phase": "step", "task": "humaneval_05_158", "variant": "rec_rf"}
+{"T": 2, "ctx": 249, "ms_max": 3.569920063018799, "ms_med": 3.5424320697784424, "ms_min": 3.5208001136779785, "phase": "step", "task": "humaneval_05_158", "variant": "rec_rf"}
+{"T": 4, "ctx": 249, "ms_max": 4.469088077545166, "ms_med": 4.430288076400757, "ms_min": 4.417407989501953, "phase": "step", "task": "humaneval_05_158", "variant": "rec_rf"}
+{"T": 8, "ctx": 249, "ms_max": 5.495456218719482, "ms_med": 5.481679916381836, "ms_min": 5.4707841873168945, "phase": "step", "task": "humaneval_05_158", "variant": "rec_rf"}
+{"T": 13, "ctx": 249, "ms_max": 6.622335910797119, "ms_med": 6.5940001010894775, "ms_min": 6.581376075744629, "phase": "step", "task": "humaneval_05_158", "variant": "rec_rf"}
+{"ctx": 249, "phase": "invariance", "rows_equal": true, "task": "humaneval_05_158", "variant": "rec_rf"}
+{"ctx": 249, "logits_equal": true, "phase": "v1_vs_s", "task": "humaneval_05_158", "ts_vs_v1_argmax_equal": true, "ts_vs_v1_maxabs": 0.0}
+{"T": 1, "ctx": 5519, "ms_max": 4.660543918609619, "ms_med": 4.645295858383179, "ms_min": 4.604640007019043, "phase": "step", "task": "gov8k_08_622", "variant": "v1"}
+{"T": 2, "ctx": 5519, "ms_max": 5.444416046142578, "ms_med": 5.413471937179565, "ms_min": 5.400479793548584, "phase": "step", "task": "gov8k_08_622", "variant": "v1"}
+{"T": 4, "ctx": 5519, "ms_max": 6.639904022216797, "ms_med": 6.6169281005859375, "ms_min": 6.534463882446289, "phase": "step", "task": "gov8k_08_622", "variant": "v1"}
+{"T": 8, "ctx": 5519, "ms_max": 8.58620834350586, "ms_med": 8.565919876098633, "ms_min": 8.549823760986328, "phase": "step", "task": "gov8k_08_622", "variant": "v1"}
+{"T": 13, "ctx": 5519, "ms_max": 9.563584327697754, "ms_med": 9.543359756469727, "ms_min": 9.520095825195312, "phase": "step", "task": "gov8k_08_622", "variant": "v1"}
+{"ctx": 5519, "phase": "invariance", "rows_equal": true, "task": "gov8k_08_622", "variant": "v1"}
+{"T": 1, "ctx": 5519, "ms_max": 3.6183040142059326, "ms_med": 3.5964159965515137, "ms_min": 3.569983959197998, "phase": "step", "task": "gov8k_08_622", "variant": "s"}
+{"T": 2, "ctx": 5519, "ms_max": 4.556992053985596, "ms_med": 4.440191984176636, "ms_min": 4.346848011016846, "phase": "step", "task": "gov8k_08_622", "variant": "s"}
+{"T": 4, "ctx": 5519, "ms_max": 5.68012809753418, "ms_med": 5.544031858444214, "ms_min": 5.450016021728516, "phase": "step", "task": "gov8k_08_622", "variant": "s"}
+{"T": 8, "ctx": 5519, "ms_max": 6.997791767120361, "ms_med": 6.917855978012085, "ms_min": 6.816544055938721, "phase": "step", "task": "gov8k_08_622", "variant": "s"}
+{"T": 13, "ctx": 5519, "ms_max": 9.004447937011719, "ms_med": 8.719104290008545, "ms_min": 8.528639793395996, "phase": "step", "task": "gov8k_08_622", "variant": "s"}
+{"ctx": 5519, "phase": "invariance", "rows_equal": true, "task": "gov8k_08_622", "variant": "s"}
+{"T": 1, "ctx": 5519, "ms_max": 4.251776218414307, "ms_med": 4.218640089035034, "ms_min": 4.196063995361328, "phase": "step", "task": "gov8k_08_622", "variant": "t"}
+{"T": 2, "ctx": 5519, "ms_max": 4.919487953186035, "ms_med": 4.893296003341675, "ms_min": 4.886496067047119, "phase": "step", "task": "gov8k_08_622", "variant": "t"}
+{"T": 4, "ctx": 5519, "ms_max": 5.849055767059326, "ms_med": 5.838000059127808, "ms_min": 5.8305277824401855, "phase": "step", "task": "gov8k_08_622", "variant": "t"}
+{"T": 8, "ctx": 5519, "ms_max": 7.230591773986816, "ms_med": 7.2061920166015625, "ms_min": 7.195487976074219, "phase": "step", "task": "gov8k_08_622", "variant": "t"}
+{"T": 13, "ctx": 5519, "ms_max": 8.460000038146973, "ms_med": 8.447903633117676, "ms_min": 8.438528060913086, "phase": "step", "task": "gov8k_08_622", "variant": "t"}
+{"ctx": 5519, "phase": "invariance", "rows_equal": true, "task": "gov8k_08_622", "variant": "t"}
+{"T": 1, "ctx": 5519, "ms_max": 3.317631959915161, "ms_med": 3.2840640544891357, "ms_min": 3.253056049346924, "phase": "step", "task": "gov8k_08_622", "variant": "ts"}
+{"T": 2, "ctx": 5519, "ms_max": 3.964063882827759, "ms_med": 3.928719997406006, "ms_min": 3.9002881050109863, "phase": "step", "task": "gov8k_08_622", "variant": "ts"}
+{"T": 4, "ctx": 5519, "ms_max": 4.957695960998535, "ms_med": 4.932384014129639, "ms_min": 4.908031940460205, "phase": "step", "task": "gov8k_08_622", "variant": "ts"}
+{"T": 8, "ctx": 5519, "ms_max": 6.32912015914917, "ms_med": 6.297871828079224, "ms_min": 6.284031867980957, "phase": "step", "task": "gov8k_08_622", "variant": "ts"}
+{"T": 13, "ctx": 5519, "ms_max": 7.5392961502075195, "ms_med": 7.526639938354492, "ms_min": 7.494239807128906, "phase": "step", "task": "gov8k_08_622", "variant": "ts"}
+{"ctx": 5519, "phase": "invariance", "rows_equal": true, "task": "gov8k_08_622", "variant": "ts"}
+{"T": 1, "ctx": 5519, "ms_max": 3.296351909637451, "ms_med": 3.251536011695862, "ms_min": 3.2263360023498535, "phase": "step", "task": "gov8k_08_622", "variant": "rec"}
+{"T": 2, "ctx": 5519, "ms_max": 3.916800022125244, "ms_med": 3.8969920873641968, "ms_min": 3.8530240058898926, "phase": "step", "task": "gov8k_08_622", "variant": "rec"}
+{"T": 4, "ctx": 5519, "ms_max": 4.7475199699401855, "ms_med": 4.727407932281494, "ms_min": 4.69817590713501, "phase": "step", "task": "gov8k_08_622", "variant": "rec"}
+{"T": 8, "ctx": 5519, "ms_max": 6.160927772521973, "ms_med": 6.132367849349976, "ms_min": 6.108992099761963, "phase": "step", "task": "gov8k_08_622", "variant": "rec"}
+{"T": 13, "ctx": 5519, "ms_max": 7.400320053100586, "ms_med": 7.383839845657349, "ms_min": 7.352128028869629, "phase": "step", "task": "gov8k_08_622", "variant": "rec"}
+{"ctx": 5519, "phase": "invariance", "rows_equal": true, "task": "gov8k_08_622", "variant": "rec"}
+{"T": 1, "ctx": 5519, "ms_max": 3.3217599391937256, "ms_med": 3.305216073989868, "ms_min": 3.2795839309692383, "phase": "step", "task": "gov8k_08_622", "variant": "rec_rf"}
+{"T": 2, "ctx": 5519, "ms_max": 3.8986880779266357, "ms_med": 3.8784960508346558, "ms_min": 3.8608639240264893, "phase": "step", "task": "gov8k_08_622", "variant": "rec_rf"}
+{"T": 4, "ctx": 5519, "ms_max": 4.814976215362549, "ms_med": 4.797887802124023, "ms_min": 4.761888027191162, "phase": "step", "task": "gov8k_08_622", "variant": "rec_rf"}
+{"T": 8, "ctx": 5519, "ms_max": 6.216159820556641, "ms_med": 6.180816173553467, "ms_min": 6.169087886810303, "phase": "step", "task": "gov8k_08_622", "variant": "rec_rf"}
+{"T": 13, "ctx": 5519, "ms_max": 7.425663948059082, "ms_med": 7.4092957973480225, "ms_min": 7.3772478103637695, "phase": "step", "task": "gov8k_08_622", "variant": "rec_rf"}
+{"ctx": 5519, "phase": "invariance", "rows_equal": true, "task": "gov8k_08_622", "variant": "rec_rf"}
+{"ctx": 5519, "logits_equal": true, "phase": "v1_vs_s", "task": "gov8k_08_622", "ts_vs_v1_argmax_equal": true, "ts_vs_v1_maxabs": 0.0}

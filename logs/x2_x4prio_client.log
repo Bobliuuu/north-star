@@ -1,0 +1,102 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-BerPIPJYQNJW2TGERFgEZS
+✓ Created objects.
+├── ✓ Uploaded <home>\Documents\Projects\north-star\modal\x2_run.py
+├── ✓ Uploaded modal\nsapp.py
+├── ✓ Uploaded <home>\Documents\Projects\north-star\src\northstar
+├── ✓ Uploaded <home>\Documents\Projects\north-star\tests
+├── ✓ Uploaded <home>\Documents\Projects\north-star\harness
+└── ✓ Created Function remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:07, 49.26it/s]
+[1ALoading weights:   4%|▍         | 16/394 [00:00<00:08, 42.46it/s]
+[1ALoading weights:   5%|▌         | 21/394 [00:00<00:20, 18.23it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:23, 15.53it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:02<00:24, 14.49it/s]
+[1ALoading weights:   9%|▉         | 37/394 [00:02<00:24, 14.84it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:24, 14.38it/s]
+[1ALoading weights:  11%|█▏        | 45/394 [00:02<00:25, 13.89it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:03<00:24, 14.09it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:24, 13.66it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:03<00:23, 14.22it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:24, 13.34it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:04<00:24, 13.38it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:23, 13.53it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:22, 14.02it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:06<00:20, 14.44it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:20, 14.13it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:06<00:20, 14.33it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:07<00:20, 14.32it/s]
+[1ALoading weights:  28%|██▊       | 109/394 [00:07<00:19, 14.26it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:19, 14.35it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:08<00:18, 14.57it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:08<00:17, 14.65it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:09<00:17, 14.63it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:09<00:16, 14.67it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:10<00:16, 14.76it/s]
+[1ALoading weights:  40%|███▉      | 157/394 [00:10<00:15, 15.11it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:10<00:15, 14.58it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:11<00:15, 14.74it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:12<00:14, 14.78it/s]
+[1ALoading weights:  46%|████▌     | 181/394 [00:12<00:14, 14.98it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:12<00:14, 14.61it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:13<00:13, 14.51it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:13<00:13, 14.62it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:14<00:12, 14.58it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:14<00:12, 14.34it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:15<00:11, 14.17it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:15<00:11, 14.34it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:16<00:10, 14.12it/s]
+[1ALoading weights:  62%|██████▏   | 245/394 [00:16<00:10, 14.05it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:17<00:10, 13.77it/s]
+[1ALoading weights:  64%|██████▍   | 253/394 [00:17<00:09, 14.31it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:17<00:09, 14.54it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:18<00:08, 14.70it/s]
+[1ALoading weights:  68%|██████▊   | 269/394 [00:18<00:08, 15.00it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:18<00:08, 14.55it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:19<00:07, 14.54it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:19<00:07, 14.59it/s]
+[1ALoading weights:  74%|███████▍  | 293/394 [00:19<00:06, 14.91it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:20<00:06, 14.59it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:20<00:05, 14.60it/s]
+[1ALoading weights:  79%|███████▊  | 310/394 [00:20<00:05, 15.95it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:21<00:05, 14.58it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:21<00:04, 14.29it/s]
+[1ALoading weights:  82%|████████▏ | 325/394 [00:22<00:04, 14.38it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:22<00:04, 14.75it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:23<00:03, 14.87it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:23<00:03, 14.97it/s]
+[1ALoading weights:  89%|████████▊ | 349/394 [00:23<00:02, 15.29it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:24<00:02, 14.63it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:24<00:02, 14.86it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:25<00:01, 14.96it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:25<00:00, 15.05it/s]
+[1ALoading weights:  97%|█████████▋| 381/394 [00:25<00:00, 15.30it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:26<00:00, 15.12it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:26<00:00, 15.03it/s]
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-12T17:50:48Z", "gpu": "NVIDIA H200", "cuda": "12.8", "gpu_mem_gb": 139.8, "pip_freeze_sha": "3c88f18ec2f9", "load_s": 36.38622713088989}
+STEP humaneval_05_158 P 249 v1 T1=4.174 T2=4.988 T4=5.798 T8=6.723 T13=7.891 inv True
+STEP humaneval_05_158 P 249 s T1=3.291 T2=3.332 T4=4.325 T8=6.206 T13=6.680 inv True
+STEP humaneval_05_158 P 249 t T1=3.556 T2=4.077 T4=4.715 T8=5.487 T13=6.258 inv True
+STEP humaneval_05_158 P 249 ts T1=2.484 T2=3.045 T4=3.673 T8=4.440 T13=5.203 inv True
+STEP humaneval_05_158 P 249 ts_side_hi T1=2.483 T2=2.880 T4=3.410 T8=4.142 T13=4.921 inv True
+STEP humaneval_05_158 P 249 ts_moe_hi T1=2.482 T2=3.027 T4=3.659 T8=4.432 T13=5.210 inv True
+STEP humaneval_05_158 P 249 ts_moe_lo T1=2.485 T2=3.021 T4=3.660 T8=4.429 T13=5.207 inv True
+STEP humaneval_05_158 P 249 ts_mp64_side_hi T1=2.452 T2=2.913 T4=3.432 T8=4.131 T13=4.916 inv True
+V1_VS_S {'ctx': 249, 'logits_equal': True, 'phase': 'v1_vs_s', 'task': 'humaneval_05_158', 'ts_vs_v1_argmax_equal': True, 'ts_vs_v1_maxabs': 0.0}
+STEP gov8k_08_622 P 5519 v1 T1=4.237 T2=5.069 T4=5.870 T8=7.194 T13=8.407 inv True
+STEP gov8k_08_622 P 5519 s T1=3.220 T2=4.522 T4=5.007 T8=6.684 T13=7.427 inv True
+STEP gov8k_08_622 P 5519 t T1=3.621 T2=4.201 T4=4.839 T8=5.846 T13=6.745 inv True
+STEP gov8k_08_622 P 5519 ts T1=2.731 T2=3.195 T4=3.879 T8=4.867 T13=5.719 inv True
+STEP gov8k_08_622 P 5519 ts_side_hi T1=2.711 T2=3.171 T4=3.695 T8=4.682 T13=5.562 inv True
+STEP gov8k_08_622 P 5519 ts_moe_hi T1=2.677 T2=3.147 T4=3.870 T8=4.857 T13=5.749 inv True
+STEP gov8k_08_622 P 5519 ts_moe_lo T1=2.662 T2=3.138 T4=3.859 T8=4.849 T13=5.724 inv True
+STEP gov8k_08_622 P 5519 ts_mp64_side_hi T1=2.690 T2=3.250 T4=3.725 T8=4.595 T13=5.556 inv True
+V1_VS_S {'ctx': 5519, 'logits_equal': True, 'phase': 'v1_vs_s', 'task': 'gov8k_08_622', 'ts_vs_v1_argmax_equal': True, 'ts_vs_v1_maxabs': 0.0}
+X2_DONE secs 120.39583253860474 est usd 0.13210098292430245
+wrote results/x2_x4prio.jsonl
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-BerPIPJYQNJW2TGERFgEZS

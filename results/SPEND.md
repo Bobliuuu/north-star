@@ -79,3 +79,29 @@
 | 20261112T131251Z | north-in-north nin1 (266 North calls) | A100-80GB | 1645 | 1.142 | True |
 | 20261112T133950Z | embedded North-in-North smoke (1 runs) | A100-80GB | 124 | 0.086 | True |
 | 20261112T144436Z | embedded North-in-North main (7 runs) | A100-80GB | 6254 | 4.343 | True |
+| 2026-11-12 | x2_tune t1lin (no weights) (ap-XvSbyE9paS6he5AC4p7Xmj) | H100 | 126 | 0.14 (est 3.95/h) | True |
+| 2026-11-12 | x2_tune t1moe (no weights) (ap-0Rb30RzTudp4cIhea5Pn19) | H100 | 141 | 0.15 (est 3.95/h) | True |
+| 2026-11-12 | x2 x0smoke (ap-wP6EniN89K2KeBLgof7Lx8) | H100 | 150 | 0.16 (est 3.95/h) | True |
+| 2026-11-12 | x2 x1prof (ap-SZB5IiYisldtj6GeFSAb73) | H100 | 60 | 0.07 (est 3.95/h) | True |
+| 2026-11-12 | x2 x2step (ap-KDdbbERhmOVsN0RQnYkBpJ) | H100 | 140 | 0.15 (est 3.95/h) | True |
+| 2026-11-12 | x2 x3 (99-prompt traffic) (ap-yxquFGZyx4Ta6R3C4ECVG9) | H100 | 543 | 0.60 (est 3.95/h) | True |
+| 2026-11-12 | x2 x4prio (ap-BerPIPJYQNJW2TGERFgEZS) | H100 | 120 | 0.13 (est 3.95/h) | True |
+| 2026-11-12 | bx2 b1 (ap-yiD2gDXqlkHugYQPoVLFj0) | H100 | 142 | 0.16 (est 3.95/h) | True |
+| 2026-11-12 | batchspec bs7 (ap-8za1Ws6oTrJunObvu2WioP) | H100 | 484 | 0.53 (est 3.95/h) | True |
+| 2026-11-12 | vllm v2 plain (ap-4RQtAPqaNHyPdlktZ1h5uz) | H100 | 389 | 0.43 (est 3.95/h) | True |
+| 2026-11-12 | longexact le3 (ap-jtXJCq5jnIMNNPUaCrYMbx) | H100 | 299 | 0.33 (est 3.95/h) | True |
+| 2026-11-12 | longexact le4 (ap-JwQrPtv8znQFKaXISA1q5C) | H100 | 515 | 0.57 (est 3.95/h) | True |
+| 2026-11-12 | lcx2 lc1 (ap-z5I0h6C9akXwKBnTr1ZmPR) | H100 | 116 | 0.13 (est 3.95/h) | True |
+| 2026-11-12 | longexact le5 (ap-aXGFj0swMEsnye2jcsLOTl) | H100 | 524 | 0.57 (est 3.95/h) | True |
+| 2026-11-12 | longexact le6 (ap-qBbqM15nkgrMCrljxR29Lb) | H100 | 241 | 0.26 (est 3.95/h) | True |
+| 2026-11-12 | vllm_vs_x2 vx1 (same container) (ap-hP2aZ9N2fXoFSslF5zBtVO) | H100 | 1095 | 1.20 (est 3.95/h) | True |
+| 2026-11-12 | x2 x5prof (ap-wLrD5tl1tavxRyVvyEmEZv) | H100 | 69 | 0.08 (est 3.95/h) | True |
+| 2026-11-12 | x2 x6 (ap-hi4VCUdLDsmdZhNCa7mMb5) | H100 | 614 | 0.67 (est 3.95/h) | True |
+| 2026-11-12 | longexact le7 (ap-xAWIRHQ5U8w9Asql5zMGaF) | H100 | 254 | 0.28 (est 3.95/h) | True |
+| 2026-11-12 | longexact le8 (ap-gyNvZZEkL0W9SJVyVGL5Le) | H100 | 557 | 0.61 (est 3.95/h) | True |
+| 2026-11-12 | x2_tune t2moef (no weights, incl. failed first launch) (ap-2OgFw0fBGywr9MKSWDzipp) | H100 | 141 | 0.15 (est 3.95/h) | True |
+| 2026-11-12 | x2 x7rf (ap-mwmmoeSfYxnNeTgvTmXhZ0) | H100 | 102 | 0.11 (est 3.95/h) | True |
+| 2026-11-12 | x2 x8rf (ap-eMOiDZ26CHB6mHxImo5vas) | H100 | 112 | 0.12 (est 3.95/h) | True |
+| 2026-11-12 | longexact le9 (ap-ekDA7RRIp3FCHgbnWqQfJu) | H100 | 255 | 0.28 (est 3.95/h) | True |
+| 2026-11-12 | longexact le10 (ap-ciT7SYKCRqpZHrwl4r6ERd) | H100 | 579 | 0.64 (est 3.95/h) | True |
+| 2026-11-12 | vllm_vs_x2 vxb1 (batched) (ap-4eMweePyOvy0Ug8RY12uqW) | H100 | 277 | 0.30 (est 3.95/h) | True |

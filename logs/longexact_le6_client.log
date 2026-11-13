@@ -1,0 +1,138 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-qBbqM15nkgrMCrljxR29Lb
+✓ Created objects.
+├── ✓ Uploaded 
+│   <home>\Documents\Projects\north-star\modal\longexact_run.py
+├── ✓ Uploaded modal\nsapp.py
+├── ✓ Uploaded <home>\Documents\Projects\north-star\src\northstar
+├── ✓ Uploaded <home>\Documents\Projects\north-star\tests
+├── ✓ Uploaded <home>\Documents\Projects\north-star\harness
+└── ✓ Created Function remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:08, 45.12it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:19, 19.51it/s]
+[1ALoading weights:   6%|▌         | 22/394 [00:00<00:17, 20.91it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:22, 16.02it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:23, 15.50it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:22, 15.28it/s]
+[1ALoading weights:  11%|█▏        | 45/394 [00:02<00:22, 15.53it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:03<00:23, 14.89it/s]
+[1ALoading weights:  13%|█▎        | 53/394 [00:03<00:23, 14.59it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:22, 14.82it/s]
+[1ALoading weights:  16%|█▌        | 62/394 [00:03<00:20, 16.54it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:23, 13.94it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:22, 14.48it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:21, 14.58it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:05<00:20, 14.68it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:20, 14.54it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:06<00:19, 14.59it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:07<00:18, 14.72it/s]
+[1ALoading weights:  30%|██▉       | 117/394 [00:07<00:18, 14.84it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:07<00:18, 14.68it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:08<00:18, 14.60it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:09<00:17, 14.54it/s]
+[1ALoading weights:  37%|███▋      | 145/394 [00:09<00:13, 18.26it/s]
+[1ALoading weights:  38%|███▊      | 148/394 [00:09<00:18, 13.20it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:10<00:17, 13.70it/s]
+[1ALoading weights:  41%|████      | 160/394 [00:10<00:13, 16.81it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:10<00:17, 12.91it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:11<00:17, 12.78it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:12<00:17, 12.62it/s]
+[1ALoading weights:  46%|████▌     | 181/394 [00:12<00:16, 13.19it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:12<00:16, 12.43it/s]
+[1ALoading weights:  49%|████▉     | 194/394 [00:12<00:11, 17.58it/s]
+[1ALoading weights:  50%|█████     | 198/394 [00:13<00:15, 12.36it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:13<00:16, 11.78it/s]
+[1ALoading weights:  52%|█████▏    | 205/394 [00:14<00:15, 12.29it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:14<00:15, 12.00it/s]
+[1ALoading weights:  54%|█████▍    | 213/394 [00:14<00:14, 12.08it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:15<00:14, 12.05it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:15<00:13, 12.04it/s]
+[1ALoading weights:  58%|█████▊    | 229/394 [00:16<00:13, 12.34it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:16<00:13, 11.86it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:17<00:12, 12.07it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:17<00:11, 12.38it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:18<00:10, 12.35it/s]
+[1ALoading weights:  68%|██████▊   | 266/394 [00:18<00:07, 16.23it/s]
+[1ALoading weights:  68%|██████▊   | 269/394 [00:19<00:10, 11.96it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:19<00:10, 11.88it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:20<00:08, 12.54it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:20<00:08, 12.68it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:21<00:07, 12.57it/s]
+[1ALoading weights:  76%|███████▋  | 301/394 [00:21<00:07, 11.88it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:22<00:09,  9.51it/s]
+[1ALoading weights:  78%|███████▊  | 309/394 [00:22<00:08,  9.93it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:23<00:09,  8.10it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:24<00:09,  7.89it/s]
+[1ALoading weights:  82%|████████▏ | 324/394 [00:25<00:08,  7.81it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:25<00:07,  8.53it/s]
+[1ALoading weights:  84%|████████▍ | 332/394 [00:25<00:07,  8.29it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:26<00:06,  8.70it/s]
+[1ALoading weights:  86%|████████▋ | 340/394 [00:26<00:06,  8.24it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:27<00:05,  9.14it/s]
+[1ALoading weights:  88%|████████▊ | 348/394 [00:27<00:05,  9.14it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:28<00:04,  8.75it/s]
+[1ALoading weights:  90%|█████████ | 356/394 [00:28<00:04,  8.22it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:29<00:03,  8.65it/s]
+[1ALoading weights:  92%|█████████▏| 364/394 [00:29<00:03,  8.63it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:30<00:02,  8.62it/s]
+[1ALoading weights:  94%|█████████▍| 372/394 [00:30<00:03,  6.99it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:31<00:01,  7.67it/s]
+[1ALoading weights:  96%|█████████▋| 380/394 [00:31<00:02,  6.70it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:32<00:01,  6.75it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:33<00:00, 11.94it/s]
+LEROW {"kind": "meta", "meta": {"cuda": "12.8", "gpu": "NVIDIA H200", "gpu_mem_gb": 139.8, "load_s": 47.28566217422485, "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "pip_freeze_sha": "3c88f18ec2f9", "python": "3.12.16", "time": "2026-11-12T18:09:11Z", "torch": "2.10.0+cu128", "transformers": "5.22.1"}, "t_s": 47.3}
+LEROW {"alloc_gb": 60.979094528, "kind": "model", "layer_types_global": 13, "layers": 49, "max_position_embeddings": 500000, "peak_gb": 61.784399872, "reserved_gb": 63.413682176, "sliding_window": 4096, "t_s": 48.4}
+LEROW {"Lmax": 33000, "alloc_gb": 65.321032704, "cell": "ctx32768", "kind": "alloc", "kv_gb": 3.311616, "peak_gb": 65.321032704, "reserved_gb": 65.781366784, "s": 0.08155989646911621, "t_s": 49.8}
+LEROW {"alloc_gb": 65.354587136, "cell": "ctx32768", "kind": "prefill_probe", "peak_gb": 66.220524544, "reserved_gb": 65.814921216, "s": 7.317534923553467, "t_s": 57.0}
+LEROW {"alloc_gb": 65.522743808, "cell": "ctx32768", "kind": "captured", "peak_gb": 66.220524544, "reserved_gb": 66.628616192, "s": 75.0839319229126, "t_s": 124.8}
+LEROW {"alloc_gb": 65.522743808, "arm2": "x2", "cell": "ctx32768", "fd_exact_vs_old": 14, "kind": "trace", "n": 192, "peak_gb": 66.388681216, "plain_exact_tok_s": 210.97750529598824, "plain_old_tok_s": 322.18631282367613, "prefill_s": 3.8816518783569336, "prompt_len": 32768, "reserved_gb": 75.621203968, "t_s": 133.6, "task": "py_lru", "tkind": "code"}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.264, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.08369346499998187, "kind": "live", "mean_accepted_per_verify": 2.1515151515151514, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 210.97750529598824, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 125, "spec_tok_s": 256.8091642446573, "spec_tok_s_excl_index": 289.18127398345683, "t_s": 136.3, "task": "py_lru", "tkind": "code", "tok_per_round": 1.536, "tokens": 192, "verify_rounds": 33}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.264, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07484108400001332, "kind": "live", "mean_accepted_per_verify": 2.1515151515151514, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 210.97750529598824, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 125, "spec_tok_s": 260.41455447179544, "spec_tok_s_excl_index": 289.8354280625404, "t_s": 138.2, "task": "py_lru", "tkind": "code", "tok_per_round": 1.536, "tokens": 192, "verify_rounds": 33}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.33125, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07840188800000192, "kind": "live", "mean_accepted_per_verify": 0.7358490566037735, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 322.18631282367613, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 160, "spec_tok_s": 307.8522468015864, "spec_tok_s_excl_index": 352.1165996560749, "t_s": 140.5, "task": "py_lru", "tkind": "code", "tok_per_round": 1.2, "tokens": 192, "verify_rounds": 53}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.33125, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07929662099999746, "kind": "live", "mean_accepted_per_verify": 0.7358490566037735, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 322.18631282367613, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 160, "spec_tok_s": 307.98315731224943, "spec_tok_s_excl_index": 352.8671697169281, "t_s": 142.3, "task": "py_lru", "tkind": "code", "tok_per_round": 1.2, "tokens": 192, "verify_rounds": 53}
+ctx32768 py_lru plain exact 211.0 old 322.2
+LEROW {"alloc_gb": 65.522743808, "arm2": "x2", "cell": "ctx32768", "fd_exact_vs_old": 33, "kind": "trace", "n": 192, "peak_gb": 66.388681216, "plain_exact_tok_s": 210.97120432385756, "plain_old_tok_s": 322.228120992123, "prefill_s": 3.7264058589935303, "prompt_len": 32768, "reserved_gb": 75.621203968, "t_s": 150.9, "task": "py_dataclass", "tkind": "code"}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.336, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.0786086490000173, "kind": "live", "mean_accepted_per_verify": 1.5952380952380953, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 210.97120432385756, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 125, "spec_tok_s": 256.41595967923394, "spec_tok_s_excl_index": 286.4924640485189, "t_s": 152.8, "task": "py_dataclass", "tkind": "code", "tok_per_round": 1.536, "tokens": 192, "verify_rounds": 42}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.336, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.0774691629999893, "kind": "live", "mean_accepted_per_verify": 1.5952380952380953, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 210.97120432385756, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 125, "spec_tok_s": 256.81674985807604, "spec_tok_s_excl_index": 286.5048921269774, "t_s": 154.7, "task": "py_dataclass", "tkind": "code", "tok_per_round": 1.536, "tokens": 192, "verify_rounds": 42}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.3111111111111111, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.08005826599998045, "kind": "live", "mean_accepted_per_verify": 0.21428571428571427, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 322.228120992123, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 180, "spec_tok_s": 283.1730348548318, "spec_tok_s_excl_index": 321.08505610863705, "t_s": 156.6, "task": "py_dataclass", "tkind": "code", "tok_per_round": 1.0666666666666667, "tokens": 192, "verify_rounds": 56}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.3111111111111111, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07749078000000509, "kind": "live", "mean_accepted_per_verify": 0.21428571428571427, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 322.228120992123, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 180, "spec_tok_s": 284.4207818994827, "spec_tok_s_excl_index": 321.303755856661, "t_s": 158.4, "task": "py_dataclass", "tkind": "code", "tok_per_round": 1.0666666666666667, "tokens": 192, "verify_rounds": 56}
+ctx32768 py_dataclass plain exact 211.0 old 322.2
+LEROW {"alloc_gb": 65.522743808, "arm2": "x2", "cell": "ctx32768", "fd_exact_vs_old": 32, "kind": "trace", "n": 192, "peak_gb": 66.388681216, "plain_exact_tok_s": 210.99609790739328, "plain_old_tok_s": 322.17447527514076, "prefill_s": 3.7260382175445557, "prompt_len": 32768, "reserved_gb": 75.621203968, "t_s": 167.5, "task": "pr_story", "tkind": "prose"}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.14285714285714285, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07914175199999818, "kind": "live", "mean_accepted_per_verify": 0.68, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 210.99609790739328, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 175, "spec_tok_s": 201.84271444112662, "spec_tok_s_excl_index": 220.15976124701535, "t_s": 169.8, "task": "pr_story", "tkind": "prose", "tok_per_round": 1.0971428571428572, "tokens": 192, "verify_rounds": 25}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.14285714285714285, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07743649299999333, "kind": "live", "mean_accepted_per_verify": 0.68, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 210.99609790739328, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 175, "spec_tok_s": 202.04840184591393, "spec_tok_s_excl_index": 219.97389047403203, "t_s": 172.1, "task": "pr_story", "tkind": "prose", "tok_per_round": 1.0971428571428572, "tokens": 192, "verify_rounds": 25}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.18857142857142858, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07853604999999675, "kind": "live", "mean_accepted_per_verify": 0.5151515151515151, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 322.17447527514076, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 175, "spec_tok_s": 295.61171521913764, "spec_tok_s_excl_index": 336.27303924812276, "t_s": 174.0, "task": "pr_story", "tkind": "prose", "tok_per_round": 1.0971428571428572, "tokens": 192, "verify_rounds": 33}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.18857142857142858, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.08029713999999899, "kind": "live", "mean_accepted_per_verify": 0.5151515151515151, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 322.17447527514076, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 175, "spec_tok_s": 294.7095482526041, "spec_tok_s_excl_index": 336.13930167292125, "t_s": 176.5, "task": "pr_story", "tkind": "prose", "tok_per_round": 1.0971428571428572, "tokens": 192, "verify_rounds": 33}
+ctx32768 pr_story plain exact 211.0 old 322.2
+LEROW {"alloc_gb": 65.522743808, "arm2": "x2", "cell": "ctx32768", "fd_exact_vs_old": 38, "kind": "trace", "n": 88, "peak_gb": 66.388681216, "plain_exact_tok_s": 210.76948376998914, "plain_old_tok_s": 321.5824463321383, "prefill_s": 3.752737045288086, "prompt_len": 32768, "reserved_gb": 75.621203968, "t_s": 183.3, "task": "term_make", "tkind": "terminal"}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.19736842105263158, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07764350400000808, "kind": "live", "mean_accepted_per_verify": 0.8666666666666667, "n": 88, "n_plain": 88, "plain_same_exec_tok_s": 210.76948376998914, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 76, "spec_tok_s": 189.37661288483216, "spec_tok_s_excl_index": 227.36726378589626, "t_s": 185.0, "task": "term_make", "tkind": "terminal", "tok_per_round": 1.1578947368421053, "tokens": 88, "verify_rounds": 15}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.19736842105263158, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07724658099999715, "kind": "live", "mean_accepted_per_verify": 0.8666666666666667, "n": 88, "n_plain": 88, "plain_same_exec_tok_s": 210.76948376998914, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 76, "spec_tok_s": 189.66163562452635, "spec_tok_s_excl_index": 227.54446013830932, "t_s": 186.7, "task": "term_make", "tkind": "terminal", "tok_per_round": 1.1578947368421053, "tokens": 88, "verify_rounds": 15}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.19696969696969696, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07962878499998283, "kind": "live", "mean_accepted_per_verify": 0.7692307692307693, "n": 75, "n_plain": 75, "plain_same_exec_tok_s": 321.5824463321383, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 66, "spec_tok_s": 251.64480159097783, "spec_tok_s_excl_index": 343.3903138126651, "t_s": 188.4, "task": "term_make", "tkind": "terminal", "tok_per_round": 1.1363636363636365, "tokens": 75, "verify_rounds": 13}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.19696969696969696, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.08038697599999978, "kind": "live", "mean_accepted_per_verify": 0.7692307692307693, "n": 75, "n_plain": 75, "plain_same_exec_tok_s": 321.5824463321383, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 66, "spec_tok_s": 250.76325061353563, "spec_tok_s_excl_index": 342.9356676784579, "t_s": 190.0, "task": "term_make", "tkind": "terminal", "tok_per_round": 1.1363636363636365, "tokens": 75, "verify_rounds": 13}
+ctx32768 term_make plain exact 210.8 old 321.6
+LEROW {"alloc_gb": 65.522743808, "arm2": "x2", "cell": "ctx32768", "fd_exact_vs_old": 114, "kind": "trace", "n": 192, "peak_gb": 66.388681216, "plain_exact_tok_s": 210.98180352601676, "plain_old_tok_s": 322.27554302786257, "prefill_s": 3.7266502380371094, "prompt_len": 32768, "reserved_gb": 75.621203968, "t_s": 198.7, "task": "edit_shutil", "tkind": "edit"}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.3473053892215569, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.0812756859999979, "kind": "live", "mean_accepted_per_verify": 0.43103448275862066, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 210.98180352601676, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 167, "spec_tok_s": 198.86661709716068, "spec_tok_s_excl_index": 217.14653334318936, "t_s": 200.9, "task": "edit_shutil", "tkind": "edit", "tok_per_round": 1.1497005988023952, "tokens": 192, "verify_rounds": 58}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.3473053892215569, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.080855487000008, "kind": "live", "mean_accepted_per_verify": 0.43103448275862066, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 210.98180352601676, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 167, "spec_tok_s": 199.0020680605873, "spec_tok_s_excl_index": 217.20474067402094, "t_s": 202.8, "task": "edit_shutil", "tkind": "edit", "tok_per_round": 1.1497005988023952, "tokens": 192, "verify_rounds": 58}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.4, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.0787026449999928, "kind": "live", "mean_accepted_per_verify": 0.5967741935483871, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 322.27554302786257, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 155, "spec_tok_s": 311.4036735649045, "spec_tok_s_excl_index": 356.96994385023334, "t_s": 204.7, "task": "edit_shutil", "tkind": "edit", "tok_per_round": 1.238709677419355, "tokens": 192, "verify_rounds": 62}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.4, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.0798691779999956, "kind": "live", "mean_accepted_per_verify": 0.5967741935483871, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 322.27554302786257, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 155, "spec_tok_s": 310.0533505409122, "spec_tok_s_excl_index": 355.964856472221, "t_s": 206.8, "task": "edit_shutil", "tkind": "edit", "tok_per_round": 1.238709677419355, "tokens": 192, "verify_rounds": 62}
+ctx32768 edit_shutil plain exact 211.0 old 322.3
+LEROW {"alloc_gb": 65.522743808, "arm2": "x2", "cell": "ctx32768", "fd_exact_vs_old": 87, "kind": "trace", "n": 192, "peak_gb": 66.388681216, "plain_exact_tok_s": 210.9855016741176, "plain_old_tok_s": 322.224543730716, "prefill_s": 3.727546215057373, "prompt_len": 32768, "reserved_gb": 75.621203968, "t_s": 215.2, "task": "extract_textwrap", "tkind": "extract"}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.345679012345679, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.08385581400000319, "kind": "live", "mean_accepted_per_verify": 0.5357142857142857, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 210.9855016741176, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 162, "spec_tok_s": 204.1661702079126, "spec_tok_s_excl_index": 224.15382735725493, "t_s": 217.8, "task": "extract_textwrap", "tkind": "extract", "tok_per_round": 1.1851851851851851, "tokens": 192, "verify_rounds": 56}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.345679012345679, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.08120216400001823, "kind": "live", "mean_accepted_per_verify": 0.5357142857142857, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 210.9855016741176, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 162, "spec_tok_s": 204.61324670698963, "spec_tok_s_excl_index": 223.99721739457078, "t_s": 220.6, "task": "extract_textwrap", "tkind": "extract", "tok_per_round": 1.1851851851851851, "tokens": 192, "verify_rounds": 56}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.35625, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07982756300000915, "kind": "live", "mean_accepted_per_verify": 0.5614035087719298, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 322.224543730716, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 160, "spec_tok_s": 308.40813384432744, "spec_tok_s_excl_index": 353.77090515885635, "t_s": 222.3, "task": "extract_textwrap", "tkind": "extract", "tok_per_round": 1.2, "tokens": 192, "verify_rounds": 57}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.35625, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07905722999998943, "kind": "live", "mean_accepted_per_verify": 0.5614035087719298, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 322.224543730716, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 160, "spec_tok_s": 308.80246889890543, "spec_tok_s_excl_index": 353.7869764258873, "t_s": 224.4, "task": "extract_textwrap", "tkind": "extract", "tok_per_round": 1.2, "tokens": 192, "verify_rounds": 57}
+ctx32768 extract_textwrap plain exact 211.0 old 322.2
+LEROW {"alloc_gb": 65.522743808, "arm2": "x2", "cell": "ctx32768", "fd_exact_vs_old": 62, "kind": "trace", "n": 192, "peak_gb": 66.388681216, "plain_exact_tok_s": 211.0168134976842, "plain_old_tok_s": 322.1714900753143, "prefill_s": 3.7270538806915283, "prompt_len": 32768, "reserved_gb": 75.621203968, "t_s": 233.0, "task": "summ_argparse", "tkind": "summarize"}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.45695364238410596, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.07995949599998653, "kind": "live", "mean_accepted_per_verify": 0.5942028985507246, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 211.0168134976842, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 151, "spec_tok_s": 211.27907324256472, "spec_tok_s_excl_index": 231.66269782815698, "t_s": 235.0, "task": "summ_argparse", "tkind": "summarize", "tok_per_round": 1.271523178807947, "tokens": 192, "verify_rounds": 69}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.45695364238410596, "exec": "exact", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.08075406099999327, "kind": "live", "mean_accepted_per_verify": 0.5942028985507246, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 211.0168134976842, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 151, "spec_tok_s": 210.9565818623312, "spec_tok_s_excl_index": 231.4966008799467, "t_s": 236.8, "task": "summ_argparse", "tkind": "summarize", "tok_per_round": 1.271523178807947, "tokens": 192, "verify_rounds": 69}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.38562091503267976, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.0787170000000117, "kind": "live", "mean_accepted_per_verify": 0.6610169491525424, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 322.1714900753143, "prompt_len": 32768, "proposer": "sam2", "rep": 0, "rounds": 153, "spec_tok_s": 317.7514330432324, "spec_tok_s_excl_index": 365.3462268786565, "t_s": 238.4, "task": "summ_argparse", "tkind": "summarize", "tok_per_round": 1.2549019607843137, "tokens": 192, "verify_rounds": 59}
+LEROW {"cell": "ctx32768", "draft_hit_rate": 0.38562091503267976, "exec": "x2", "fd_vs_same_exec": null, "gamma": 12, "identical_same_exec": true, "index_s": 0.0786250950000067, "kind": "live", "mean_accepted_per_verify": 0.6610169491525424, "n": 192, "n_plain": 192, "plain_same_exec_tok_s": 322.1714900753143, "prompt_len": 32768, "proposer": "sam2", "rep": 1, "rounds": 153, "spec_tok_s": 317.69135702893516, "spec_tok_s_excl_index": 365.2029549704939, "t_s": 240.0, "task": "summ_argparse", "tkind": "summarize", "tok_per_round": 1.2549019607843137, "tokens": 192, "verify_rounds": 59}
+ctx32768 summ_argparse plain exact 211.0 old 322.2
+LEROW {"kind": "done", "secs": 241.35460472106934, "t_s": 241.4}
+241.35460472106934
+LONGEXACT_DONE secs 241.35460472106934 est usd 0.2648196357356178
+[modal-client] 2026-11-12T13:12:37-0500 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-qBbqM15nkgrMCrljxR29Lb

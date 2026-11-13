@@ -127,15 +127,68 @@ class Policy:
                 self.cool, self.ema = self.cool0, 1.0
 
 
-def spec_loop(prop, prompt_ids, n_new, g, verify, eos=None, policy=None):
+class CostPolicy:
+    """Cost-aware draft width for ONE sequence (exact v2, H25): per round, after proposing up to g drafts, keep the first T-1 where
+    T maximises expected new tokens / cost[T]; expected tokens = 1 + sum_{i<T} q^i (geometric prefix acceptance), q = running
+    per-draft-token continuation rate with a Beta-like prior (q0, n0). cost: {T: graph ms} measured on this executor and context.
+    T=1 (plain step, no drafts) is always a candidate, so a round never costs more than plain expects to save."""
+
+    def __init__(self, g, cost, q0=0.5, n0=2.0):
+        self.g, self.cost, self.q0, self.n0 = g, dict(cost), q0, n0
+        self.S = self.F = 0.0
+
+    def q(self):
+        return (self.S + self.q0 * self.n0) / (self.S + self.F + self.n0)
+
+    def cap_now(self):
+        return self.g
+
+    def trim(self, drafts):
+        q, best, bT = self.q(), -1.0, 1
+        tok = 1.0
+        for T in range(1, len(drafts) + 2):
+            if T > 1:
+                tok += q ** (T - 1)
+            if T not in self.cost:
+                break
+            v = tok / self.cost[T]
+            if v > best:
+                best, bT = v, T
+        return drafts[:bT - 1]
+
+    def update(self, d, a):
+        if d == 0:
+            return
+        self.S += a
+        self.F += 1 if a < d else 0
+
+
+def prebuild(name, prompt_ids, n):
+    """Build n independent proposers indexed on the prompt in a background thread (overlap with GPU prefill: the index needs only the
+    prompt, and a 128K-token suffix index costs ~0.3 s of CPU vs ~32 s of prefill, H25). Returns (thread, list); join before use."""
+    import threading
+    out = []
+
+    def work():
+        for _ in range(n):
+            p = make(name); p.extend(list(prompt_ids)); out.append(p)
+    th = threading.Thread(target=work, daemon=True)
+    th.start()
+    return th, out
+
+
+def spec_loop(prop, prompt_ids, n_new, g, verify, eos=None, policy=None, prebuilt=False):
     """Greedy speculative decode. verify(tcur, drafts) -> list of len(drafts)+1 greedy next-tokens
     (pred[i] = model argmax after tcur+drafts[:i]). Returns (out, rounds), rounds = [(n_drafts, n_accepted), ...]."""
-    prop.extend(prompt_ids)
+    if not prebuilt:
+        prop.extend(prompt_ids)
     tcur, out, rounds = list(prompt_ids), [], []
     done = False
     while len(out) < n_new and not done:
         gg = g if policy is None else policy.cap_now()
         drafts = prop.propose(gg)[0] if gg > 0 else []
+        if policy is not None and hasattr(policy, "trim") and drafts:
+            drafts = policy.trim(drafts)
         pred = verify(tcur, drafts)
         a = 0
         while a < len(drafts) and drafts[a] == pred[a]:

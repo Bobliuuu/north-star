@@ -7,7 +7,7 @@ from nsapp import app, weights_vol, results_vol, WEIGHTS, MODEL_DIR
 
 
 @app.function(gpu="H100", timeout=7200, volumes={WEIGHTS: weights_vol, "/results": results_vol}, memory=65536, scaledown_window=2, max_containers=1)
-def remote(tag: str, ctxs: str, reps: int, n_new: int, old: bool):
+def remote(tag: str, ctxs: str, reps: int, n_new: int, old: bool, x2: bool = False, overlap: bool = False):
     sys.path.insert(0, "/root"); sys.path.insert(0, "/root/harness")
     from loader import load_model
     from common import env_meta
@@ -24,7 +24,7 @@ def remote(tag: str, ctxs: str, reps: int, n_new: int, old: bool):
     m, tok = load_model(MODEL_DIR, "grouped_mm")
     meta = env_meta(); meta["load_s"] = time.time() - t0
     emit(kind="meta", meta=meta)
-    bench_longexact.run(m, tok, emit, ctxs=tuple(int(c) for c in ctxs.split(",")), n_new=n_new, reps=reps, old=old)
+    bench_longexact.run(m, tok, emit, ctxs=tuple(int(c) for c in ctxs.split(",")), n_new=n_new, reps=reps, old=old, x2=x2, overlap_index=overlap)
     secs = time.time() - t0
     emit(kind="done", secs=secs)
     print("LONGEXACT_DONE secs", secs, "est usd", secs / 3600 * 3.95, flush=True)
@@ -32,5 +32,5 @@ def remote(tag: str, ctxs: str, reps: int, n_new: int, old: bool):
 
 
 @app.local_entrypoint()
-def main(tag: str = "le1", ctxs: str = "8192,32768,131072", reps: int = 2, n_new: int = 192, old: bool = True):
-    print(remote.remote(tag, ctxs, reps, n_new, old))
+def main(tag: str = "le1", ctxs: str = "8192,32768,131072", reps: int = 2, n_new: int = 192, old: bool = True, x2: bool = False, overlap: bool = False):
+    print(remote.remote(tag, ctxs, reps, n_new, old, x2, overlap))

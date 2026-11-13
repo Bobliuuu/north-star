@@ -419,3 +419,99 @@ Caveats: n=3 sessions per LLM arm, 1 for standard; loop-time feedback is a singl
 
 ## H23: embedded workers inside frozen North (qwenagent-style), ledger task (MEASURED)
 See README section "Two meanings of North inside North" for the full table. Code modal/embedded_north_run.py + src/embedded/ (copied from qwenagent, `--north 1` loads North with grouped_mm experts); raw results/embedded_main_20261112T144436Z.json, logs/embedded_main_vol/. Taps layer 12 of 49, K=4 slots, d_s=64, trained on P=2,3 for 1,500 steps (bs 16, lr 1e-3), eval P=2..8 with 100 items. Frozen North 0.10-0.15 (chance); adapter/single/multi 0.84-1.00; zeroing the return gives 0.14 for all; multi (private slots) 0.845 vs adapter 0.895 at P=8 (2 seeds), so no benefit from private slots. Capability test only; no speed or kernel-improvement claim.
+
+## H24: exact v2 decode: concurrent attention || MoE streams, H100-tuned tiles, context-scaled attention splits (branch perf/exact-decode; MEASURED, Modal H100 80GB HBM3, greedy, <=192 new tokens)
+Idea. North uses a parallel block (`x + attn(h) + mlp(h)`, both branches read the same normed `h`, NORTH_ARCH.md), but every executor so far ran the two branches serially in one stream. Exact v2 (`FastNorth.set_x2(**fast_kernels_x2.recommended(Lmax))`, `harness/fast_north.py::_forward_x2`) captures the attention branch (merged qkv, rope/KV write, split-K attention, combine, o_proj) on a side CUDA stream that runs concurrently with router + top-k + MoE on the main stream, joining at the fused residual+norm. Outputs go to static buffers so the multi-stream graph has no cross-stream allocator reuse. Same kernels, so values are unchanged. Plus: (a) per-shape linear tiles tuned on H100 (`modal/x2_tune.py`, random weights at real dims, every config checked row-invariant; `results/x2_tune_t1{lin,moe}.jsonl`): o_proj 14.9 -> 9.1 us, qkv 9.7 -> 9.2 us, MoE gate_up+down 32.7 -> 30.6 us per layer, lm_head already at 3.1 TB/s. Split-K was tried and dropped (no real-model gain, x1prof). Without split-K these tiles keep each row's k16 MMA accumulation order, so outputs stay BITWISE equal to the v1 tiles. (b) Attention stream at high CUDA priority (scheduling only). (c) The exact attention's absolute key chunk scales with KV capacity (`attn_chunk_for`: 256 up to 16K, 512 up to 64K, 1024 above): at 128K the fixed 256-key chunk gave 512 splits per head and the combine dominated. Chunks are position-absolute and fixed per executor, so plain and verify rows stay bitwise equal; above 16K they change the merge order vs v1 (outputs then differ from v1, not from themselves). The batched executor gets the same streams (`batch_exact.STREAMS`) and tiles (`fx.LIN_CFG`), with `lin_bt` shrinking stages / BK to fit shared memory for 32/64-row tiles.
+Code: harness/fast_north.py (`_forward_x2`, `set_x2`), harness/fast_kernels_x2.py, harness/fast_kernels_exact.py (`AttnWSX` chunk / padding options), harness/batch_exact.py (`STREAMS`), harness/bench_x2.py, harness/bench_bx2.py, harness/bench_lcx2.py, harness/run_x2_traffic.py; drivers modal/x2_tune.py, modal/x2_run.py, modal/bx2_run.py, modal/lcx2_run.py, modal/vllm_vs_x2.py, modal/longexact_run.py `--x2`, modal/batchspec_run.py `--streams 1 --tuned 1`; analysis scripts/analyze_x2.py, scripts/analyze_vx.py. Apps and spend: RUNS.md, results/SPEND.md (~$5.6 est. from function wall time at $3.95/h; container start and image builds extra).
+
+(1) Step profile, one mid-length real prompt (x1prof, CUPTI inside the graph replay; results/x2_x1prof.jsonl). v1: graph 4.52 ms = kernel sum 4.35 ms (fully serial; lin 1.80, gate_up 0.98, down 0.56, attention split 0.52 ms). v2: graph 3.05 ms, GPU-busy union 3.03 ms, kernel sum 4.95 ms (1.6 ms of kernel time now overlapped). Ablations, graph ms at ctx 249 (x4prio, one launch):
+| variant | T=1 | T=2 | T=4 | T=8 | T=13 |
+|---|---|---|---|---|---|
+| v1 (H14 exact path) | 4.174 | 4.988 | 5.798 | 6.723 | 7.891 |
+| streams only (v1 kernels) | 3.291 | 3.332 | 4.325 | 6.206 | 6.680 |
+| tuned tiles only | 3.556 | 4.077 | 4.715 | 5.487 | 6.258 |
+| tiles + streams | 2.484 | 3.045 | 3.673 | 4.440 | 5.203 |
+| tiles + streams, attention stream high priority (= recommended at <=16K) | 2.483 | 2.880 | 3.410 | 4.142 | 4.921 |
+Rejected: per-T query padding of 16 rows (`mp_min=16`) breaks T-invariance (mma vs wgmma); 64-row padding keeps it but gains 1-2%, not adopted; a separate MoE stream at either priority: no change; router split-K: no change. T-invariance (rows 0/3/12 of a T=13 block == T=1 steps, bitwise) held for every adopted variant at ctx 249 and 5519.
+
+(2) Real traffic, 99 prompts (H15 mix), same launch (x3; results/x2_x3.jsonl, `python scripts/analyze_x2.py results/x2_x3.jsonl`). Per task: v1 plain, v1-kernels+streams plain, v2 plain (tiles + streams, default stream priority), v2 + PLD sam2 g12 (fixed), v1 plain again (drift 1.000x).
+| path | mean tok/s | geomean vs v1 |
+|---|---|---|
+| v1 exact plain (H15/H17 path) | 237.3 | 1.000x |
+| v1 kernels + streams | 294.2 | 1.234x |
+| exact v2 plain (tiles + streams) | 386.9 | 1.629x |
+| exact v2 + PLD sam2 g12 | 448.8 | 1.864x |
+Exactness: v2 spec == v2 plain 99/99; v2 plain == v1 plain token-for-token 99/99; streams-only == v1 99/99. PLD over v2 plain: geomean 1.144x (77 wins, 18 ties, 4 losses, worst 0.918x); per category 1.01x (gov4k) to 1.38x (quality_qa). A 6-prompt smoke on another host (x0smoke) gave v1 222 -> v2 325 tok/s (1.46x), so the v2/v1 ratio itself moves with the host (1.46-1.63x).
+
+(3) Same host as stock vLLM (vx1; one H100 container, run back to back: ours on 99 prompts -> vLLM 0.33 plain (H17 settings, decode-only, best of 2) -> ours again on 33 prompts; our harness ran in vLLM's image: torch 2.14 / Triton 3.8; results/vx_vx1_*.jsonl, `python scripts/analyze_vx.py vx1`). Task-level geomean on the 99-prompt mix:
+| arm | tok/s | vs vLLM plain | wins / losses vs vLLM (+-2%) |
+|---|---|---|---|
+| vLLM 0.33 plain | 248.8 | 1.000x | - |
+| ours exact v1 plain | 220.8 | 0.887x | 0 / 99 |
+| ours v1 kernels + streams | 258.4 | 1.039x | 62 / 37 |
+| ours exact v2 plain | 321.7 | 1.293x | 99 / 0 |
+| ours exact v2 + PLD sam2 g12 | 369.8 | 1.486x | 99 / 0 |
+The second pass (33 prompts, after vLLM) reproduced every ratio within 0.7% (v2 plain 1.294x, v2+PLD 1.493x). v1 vs vLLM (0.887x) matches H17's cross-launch 0.87x. A separate vLLM-only launch the same day (vllm_v2; results/vllm_v2.jsonl) measured 299.0 tok/s on a faster host, vs 253.5 in H17: cross-launch absolute numbers moved 18%, which is why only same-container ratios are claimed against vLLM.
+
+(4) Long context, same launch per context (longexact le3 8K/32K with the 256 chunk, le6 32K and le5 128K with `attn_chunk_for`; 7 padded natural tasks, sam2 g12, 2 reps; results/longexact_le{3,4,5,6}.jsonl). First the split sweep (lcx2_lc1, graph ms T=1 / T=13; T-invariance re-checked for every variant, all True):
+| ctx | v1 | v2 chunk 256 | v2 chunk 512 | v2 chunk 1024 | v2 chunk 2048 |
+|---|---|---|---|---|---|
+| 32K | 5.11 / 9.97 | 3.74 / 7.82 | 3.63 / 7.38 | 4.13 / 7.18 | 5.34 / 7.25 |
+| 128K | 10.85 / 27.46 | 10.32 / 25.83 | 6.62 / 16.89 | 5.28 / 8.29 | 6.11 / 8.22 |
+Live decode tok/s (geomean over tasks):
+| ctx | v1 plain | v2 plain | v2/v1 | v1 + PLD | v2 + PLD | spec == plain (v1 / v2) | v2 tokens == v1 |
+|---|---|---|---|---|---|---|---|
+| 8K (le3) | 214.2 | 298.1 | 1.39x | 314.0 | 429.2 | 14/14 / 14/14 | 7/7 |
+| 32K (le6, chunk 512) | 211.0 | 322.1 | 1.53x | 216.2 | 296.0 | 14/14 / 14/14 | 0/7 |
+| 128K (le5, chunk 1024) | 90.1 | 186.6 | 2.07x | 89.5 | 139.6 | 14/14 / 14/14 | 0/7 |
+(With the 256 chunk: le3 32K 195.4 -> 265.0, 1.36x; le4 128K 97.6 -> 107.2, 1.10x.) PLD helps at 8K (1.44x over v2 plain) but now LOSES at 32K (0.92x) and 128K (0.75x): v2 made plain steps much cheaper while these padded long prompts accept little, so long-context serving should run plain (or the H19 cost-aware cap, not run here). [H25: corrected. The loss is the proposer's one-time prompt index on the decode path; built during prefill, v2 + PLD is 1.08x over v2 plain at 32K and 128K.]
+
+(5) Batched exact executor. Same launch (bx2_b1, 96 tokens, results/bx2_b1.jsonl), live plain agg tok/s, base (H20 stack) -> streams -> streams + tiles: B=1 217 -> 295 -> 313; B=4 542 -> 679 -> 726; B=8 870 -> 1030; B=16 1365 -> 1613; B=32 2128 -> 2440 (+15%); outputs equal to base at every B, eager logits bitwise at B=8 T=5 and B=32 T=1 (the tiles arm failed at B>=8 on shared memory in that launch; fixed in `lin_bt` before bs7). Full H18-H20 bench with streams + tiles (bs7, results/batchspec_bs7.jsonl, `_summary.md`) vs bs6 (H20; separate launches):
+| B | plain bs6 (H20) | plain bs7 (v2) | PLD/plain bs7 | capped/plain bs7 | exactness bs7 (plain B == B1, PLD == plain, capped == plain) |
+|---|---|---|---|---|---|
+| 1 | 218 | 308 | 1.244x | 1.240x | 64/64 each |
+| 2 | 314 | 431 | 1.049x | 1.045x | 64/64 each |
+| 4 | 514 | 676 | 0.929x | 0.951x | 64/64 each |
+| 8 | 822 | 984 | 0.951x | 1.009x | 64/64 each |
+| 16 | 1314 | 1508 | 0.882x | 1.004x | 64/64 each |
+| 32 | 2012 | 2219 | 0.754x | 0.985x | 64/64 each |
+Also found: the cost table's T=1 graph at B=32 (8.2 ms) under-states the live plain step (15 ms) because every pool prompt ends in the same chat-template token, so prompt-tail rows share experts; live rows route to ~110 of 128 experts and the step is HBM-bound on expert weights. Host work in the live loop is <0.1 ms per step (bx2_b1 set/sync split), so there is no host overhead to remove.
+
+Findings: (1) Running North's two parallel branches concurrently is the largest single-GPU win since H9: exact plain 1.23x from streams alone, 1.63x with tuned tiles, tokens unchanged. (2) Exact decode now beats stock vLLM 0.33 plain on the same H100 on all 99 real prompts (1.29x plain, 1.49x with exact PLD); before H24 it lost on every prompt (0.89x). (3) Long context was the weakest regime (H16); context-scaled splits plus streams make exact plain 1.4-2.1x faster at 8K-128K. (4) Batched plain gains shrink with B (1.41x at B=1 to 1.10-1.15x at B=32): large batches are bound by expert-weight bandwidth, not by serialisation.
+Caveats: one launch per table (cross-launch absolute tok/s moved up to 18% today; use within-launch ratios); greedy only; the same-container vLLM comparison is batch 1 with vLLM defaults (H17 settings, not tuned; vLLM is built for batched serving, which was not compared); long-context cells use 7 padded natural prompts; v2 outputs equal v1 only where the chunk is unchanged (<=16K); not bit-identical to HF `generate` (same as H14).
+
+## H25: exact v2 follow-ups: batched vs vLLM in one container, speculation that never loses, and three rejected kernel fusions (branch perf/exact-decode; MEASURED, Modal H100 80GB HBM3, greedy)
+Code: harness/pld.py (`CostPolicy`, `prebuild`, `spec_loop(prebuilt=)`), harness/bench_x2.py (cost arm, `_critical` per-branch timeline), harness/bench_longexact.py (`x2cost` arm, `overlap_index`), harness/fast_kernels_x2.py (`moe_fused` + `resid_norm_moe`, `router_topk_fused`; both off by default), harness/bench_vllm_batch.py, harness/run_bx2_plain.py, modal/vllm_vs_x2.py `::batch`, modal/x2_tune.py `--part moef`. Apps and spend: RUNS.md, results/SPEND.md (~$3.4 est.).
+
+(1) Batched plain decode vs stock vLLM 0.33 in ONE container (vxb1; results/vxb_vxb1_*.jsonl). Same 32-prompt pool as H18-H20, group = first B prompts, 192 new tokens, best of 2 reps each. Ours: batched exact executor with exact v2 (streams + tuned tiles, `TILE_GRID=6`), live plain loop; vLLM: one engine with `max_num_seqs=32` (otherwise H17 settings), decode-only aggregate = (n - B) / (t_full - t_one). Order ours -> vLLM -> ours (B=32 only; 2326 vs 2325 tok/s, no drift).
+| B | vLLM 0.33 agg tok/s | ours exact v2 agg tok/s | ours / vLLM |
+|---|---|---|---|
+| 1 | 259.2 | 310.1 | 1.196x |
+| 2 | 351.5 | 389.8 | 1.109x |
+| 4 | 527.6 | 637.0 | 1.207x |
+| 8 | 964.4 | 980.8 | 1.017x |
+| 16 | 1546.9 | 1570.7 | 1.015x |
+| 32 | 2216.7 | 2325.4 | 1.049x |
+The exact batched executor matches or beats vLLM at every batch size up to 32; the margin is large at B<=4 and 2-5% at B>=8, where both are bound by expert-weight bandwidth. Not compared: B>32, continuous batching with arrivals, prefill throughput, vLLM tuning flags.
+
+(2) Cost-aware speculation for one sequence (`pld.CostPolicy`): per round keep the first T-1 drafts where T maximises (1 + sum_{i<T} q^i) / cost[T]; cost = this executor's measured graph ms per T at this context; q = running per-draft-token continuation rate (prior 0.5, weight 2); T=1 always allowed. 99-prompt mix on exact v2 (x6; results/x2_x6.jsonl):
+| arm (vs exact v2 plain, same launch) | geomean | wins / losses (+-2%) | worst | exact == plain |
+|---|---|---|---|---|
+| PLD sam2 g12 fixed | 1.136x | 75 / 2 | 0.957x | 99/99 |
+| PLD sam2 g12 CostPolicy | 1.125x | 79 / 0 | 0.982x | 99/99 |
+CostPolicy removes the losses for 1% of the mean gain (mean T 1.61 per round). At 32K / 128K (le7 / le8) neither policy fixed the long-context loss (fixed 0.94x / 0.76x, cost 0.94x / 0.75x), which led to (3).
+
+(3) The long-context speculation "loss" was the proposer's prompt index, not verification. Excluding the one-time suffix-index build, v2 + PLD was already 1.06x (32K) and 1.09x (128K) over v2 plain (le7/le8 `spec_tok_s_excl_index`); the build costs 0.07 s at 32K and 0.33 s at 128K, while prefill takes 3.9 s / 32.5 s. `pld.prebuild` builds the proposer(s) in a background thread during prefill (`--overlap`, le9 / le10; results/longexact_le{9,10}.jsonl). Index ready when prefill ends in every task (wait 0.000 s).
+| ctx | v2 plain | v2 + PLD fixed | v2 + PLD CostPolicy | v1 plain | v1 + PLD | exact == plain (all arms) |
+|---|---|---|---|---|---|---|
+| 32K (le9) | 321.7 | 346.8 (1.078x, worst 1.00) | 344.5 (1.071x) | 210.2 | 239.4 (1.139x) | 14/14 each |
+| 128K (le10) | 188.3 | 203.3 (1.080x, worst 1.00) | 200.9 (1.067x) | 92.4 | 109.8 (1.187x) | 14/14 each |
+v2 + PLD at 128K is now 2.20x v1 plain (H16/H24 baseline: 92.4 -> 203.3). Cost: prefill measured 9-12% slower with the thread building SIX proposers (3 arms x 2 reps, Python holds the GIL against the prefill loop); a server builds one per request. H24's statement that PLD loses at 32K/128K is corrected by this: it loses only when the index build sits on the decode path.
+
+(4) Rejected (measured, kept as off-by-default options):
+- Per-branch timeline (x5prof, x7rf; `_critical`, kernels grouped by the graph stream that runs `_attn_split_x`): at T=1 the attention branch finishes last in 42-47 of 49 layers but only by 0.3 ms in total; at T=13 the MoE branch is last in all 49 layers by ~1.9-2.4 ms in total. Little imbalance is left to exploit at T=1.
+- Re-tuning tiles INSIDE the concurrent graph (x5prof, 10 MoE / qkv / o_proj / lm_head variants): best T=1 2.974 vs 3.008 ms (1%), best T=13 6.473 vs 6.582 ms (1.7%); within host noise, not adopted.
+- Fused MoE (`moe_fused`: gate_up slice + SiLU*up + down slice per program, fp32 partials reduced in `resid_norm_moe`; t2moef, random weights at real dims, T-invariant, maxabs 0 vs blk at T=1): slower at every tile (best T=1 39.6 vs 33.4 us per layer, T=13 254.6 vs 232.5 us). Fewer CTAs and a serial down loop per program outweigh the saved launch and intermediate round trip.
+- Router GEMV + top-k in one launch (`router_topk_fused`, last-program ticket; logits bitwise equal to v2): first version serialised top-k over rows (T=13 4.93 -> 6.54 ms); vectorised over rows (x8rf) it is neutral (T=1 3.046 -> 3.034 ms at ctx 249, 3.252 -> 3.305 at 5519).
+Findings: (1) Exact decode is now at least level with stock vLLM at every batch size measured (1-32) and 1.2x at B<=4, in one container. (2) With the cost-aware policy and the index built during prefill, exact speculation no longer loses anywhere measured at batch 1 (mix worst 0.98x; 32K/128K worst 0.99-1.00x). (3) Remaining B=1 time is not in kernel tiles, branch imbalance or launch count; the next lever would be cross-layer weight prefetch or a persistent kernel.
+Caveats: one launch per table; batched comparison uses decode-only aggregates on a fixed 32-prompt group per B (no arrivals); long-context cells use 7 padded natural prompts; cost tables are timed once per bucket/context on one prompt's tail.

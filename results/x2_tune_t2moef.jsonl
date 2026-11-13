@@ -1,0 +1,16 @@
+{"part": "meta", "gpu": "NVIDIA H100 80GB HBM3", "torch": "2.10.0+cu128", "triton": "3.6.0"}
+{"part": "moef", "T": 1, "cfg": "blk+resid_norm", "ms": 0.03335901250000051}
+{"part": "moef", "T": 1, "cfg": {"BJ": 64, "BK": 128, "BN2": 256, "nw": 4, "ns": 3}, "ms": 0.03964491249999943, "base_ms": 0.03335901250000051, "maxabs_vs_blk": 0.0, "invariant": null}
+{"part": "moef", "T": 1, "cfg": {"BJ": 64, "BK": 128, "BN2": 256, "nw": 8, "ns": 3}, "ms": 0.04008114375000371, "base_ms": 0.03335901250000051, "maxabs_vs_blk": 0.0, "invariant": null}
+{"part": "moef", "T": 1, "cfg": {"BJ": 64, "BK": 128, "BN2": 128, "nw": 4, "ns": 3}, "ms": 0.04075392083333629, "base_ms": 0.03335901250000051, "maxabs_vs_blk": 0.0, "invariant": null}
+{"part": "moef", "T": 1, "cfg": {"BJ": 64, "BK": 128, "BN2": 128, "nw": 8, "ns": 3}, "ms": 0.0411635812499996, "base_ms": 0.03335901250000051, "maxabs_vs_blk": 0.0, "invariant": null}
+{"part": "moef", "T": 1, "cfg": {"BJ": 64, "BK": 256, "BN2": 256, "nw": 4, "ns": 2}, "ms": 0.04378249583332957, "base_ms": 0.03335901250000051, "maxabs_vs_blk": 0.0, "invariant": null}
+{"part": "moef", "T": 1, "cfg": {"BJ": 64, "BK": 64, "BN2": 256, "nw": 4, "ns": 3}, "ms": 0.043797929166666805, "base_ms": 0.03335901250000051, "maxabs_vs_blk": 0.0, "invariant": null}
+{"part": "moef", "T": 13, "cfg": "blk+resid_norm", "ms": 0.2325024395833264}
+{"part": "moef", "T": 13, "cfg": {"BJ": 128, "BK": 64, "BN2": 64, "nw": 4, "ns": 3}, "ms": 0.2546079270833168, "base_ms": 0.2325024395833264, "maxabs_vs_blk": 0.015625, "invariant": true}
+{"part": "moef", "T": 13, "cfg": {"BJ": 128, "BK": 64, "BN2": 128, "nw": 8, "ns": 3}, "ms": 0.2546763249999806, "base_ms": 0.2325024395833264, "maxabs_vs_blk": 0.015625, "invariant": true}
+{"part": "moef", "T": 13, "cfg": {"BJ": 128, "BK": 64, "BN2": 128, "nw": 4, "ns": 3}, "ms": 0.25508210416666327, "base_ms": 0.2325024395833264, "maxabs_vs_blk": 0.015625, "invariant": true}
+{"part": "moef", "T": 13, "cfg": {"BJ": 128, "BK": 64, "BN2": 64, "nw": 8, "ns": 3}, "ms": 0.25549576874999147, "base_ms": 0.2325024395833264, "maxabs_vs_blk": 0.015625, "invariant": true}
+{"part": "moef", "T": 13, "cfg": {"BJ": 128, "BK": 64, "BN2": 128, "nw": 4, "ns": 2}, "ms": 0.26020823541665905, "base_ms": 0.2325024395833264, "maxabs_vs_blk": 0.015625, "invariant": true}
+{"part": "moef", "T": 13, "cfg": {"BJ": 128, "BK": 64, "BN2": 128, "nw": 8, "ns": 2}, "ms": 0.26030543749998947, "base_ms": 0.2325024395833264, "maxabs_vs_blk": 0.015625, "invariant": true}
+{"part": "done", "secs": 80.74940419197083}

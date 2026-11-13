@@ -1,0 +1,195 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/<workspace>/main/ap-hi4VCUdLDsmdZhNCa7mMb5
+✓ Created objects.
+├── ✓ Uploaded <home>\Documents\Projects\north-star\modal\x2_run.py
+├── ✓ Uploaded modal\nsapp.py
+├── ✓ Uploaded <home>\Documents\Projects\north-star\src\northstar
+├── ✓ Uploaded <home>\Documents\Projects\north-star\tests
+├── ✓ Uploaded <home>\Documents\Projects\north-star\harness
+└── ✓ Created Function remote.
+
+[1ALoading weights:   0%|          | 0/394 [00:00<?, ?it/s]
+[1ALoading weights:   3%|▎         | 11/394 [00:00<00:08, 43.08it/s]
+[1ALoading weights:   5%|▍         | 19/394 [00:00<00:16, 23.14it/s]
+[1ALoading weights:   7%|▋         | 27/394 [00:01<00:19, 18.75it/s]
+[1ALoading weights:   9%|▉         | 35/394 [00:01<00:20, 17.25it/s]
+[1ALoading weights:  10%|▉         | 38/394 [00:01<00:19, 18.51it/s]
+[1ALoading weights:  11%|█         | 43/394 [00:02<00:22, 15.75it/s]
+[1ALoading weights:  13%|█▎        | 51/394 [00:02<00:22, 15.40it/s]
+[1ALoading weights:  15%|█▍        | 59/394 [00:03<00:22, 15.22it/s]
+[1ALoading weights:  15%|█▌        | 61/394 [00:03<00:21, 15.25it/s]
+[1ALoading weights:  17%|█▋        | 67/394 [00:04<00:24, 13.59it/s]
+[1ALoading weights:  18%|█▊        | 69/394 [00:04<00:25, 12.83it/s]
+[1ALoading weights:  19%|█▉        | 75/394 [00:04<00:24, 13.02it/s]
+[1ALoading weights:  21%|██        | 83/394 [00:05<00:25, 12.12it/s]
+[1ALoading weights:  22%|██▏       | 85/394 [00:05<00:24, 12.68it/s]
+[1ALoading weights:  23%|██▎       | 91/394 [00:06<00:26, 11.57it/s]
+[1ALoading weights:  24%|██▍       | 94/394 [00:06<00:22, 13.16it/s]
+[1ALoading weights:  25%|██▌       | 99/394 [00:06<00:27, 10.79it/s]
+[1ALoading weights:  26%|██▌       | 101/394 [00:07<00:25, 11.33it/s]
+[1ALoading weights:  27%|██▋       | 107/394 [00:07<00:23, 12.18it/s]
+[1ALoading weights:  29%|██▉       | 115/394 [00:08<00:21, 12.89it/s]
+[1ALoading weights:  31%|███       | 123/394 [00:08<00:20, 13.43it/s]
+[1ALoading weights:  32%|███▏      | 125/394 [00:08<00:20, 13.17it/s]
+[1ALoading weights:  33%|███▎      | 131/394 [00:09<00:20, 12.91it/s]
+[1ALoading weights:  34%|███▍      | 133/394 [00:09<00:19, 13.43it/s]
+[1ALoading weights:  35%|███▌      | 139/394 [00:09<00:18, 13.79it/s]
+[1ALoading weights:  37%|███▋      | 147/394 [00:10<00:17, 14.49it/s]
+[1ALoading weights:  39%|███▉      | 155/394 [00:10<00:16, 14.64it/s]
+[1ALoading weights:  41%|████▏     | 163/394 [00:11<00:15, 15.28it/s]
+[1ALoading weights:  42%|████▏     | 165/394 [00:11<00:15, 15.23it/s]
+[1ALoading weights:  43%|████▎     | 171/394 [00:11<00:15, 14.59it/s]
+[1ALoading weights:  45%|████▌     | 179/394 [00:12<00:14, 15.22it/s]
+[1ALoading weights:  46%|████▌     | 181/394 [00:12<00:14, 15.21it/s]
+[1ALoading weights:  47%|████▋     | 187/394 [00:13<00:17, 12.16it/s]
+[1ALoading weights:  49%|████▉     | 195/394 [00:13<00:14, 13.36it/s]
+[1ALoading weights:  51%|█████     | 200/394 [00:13<00:11, 16.45it/s]
+[1ALoading weights:  52%|█████▏    | 203/394 [00:14<00:14, 12.97it/s]
+[1ALoading weights:  54%|█████▎    | 211/394 [00:14<00:12, 14.36it/s]
+[1ALoading weights:  56%|█████▌    | 219/394 [00:15<00:12, 14.41it/s]
+[1ALoading weights:  58%|█████▊    | 227/394 [00:15<00:11, 14.64it/s]
+[1ALoading weights:  60%|█████▉    | 235/394 [00:16<00:10, 15.15it/s]
+[1ALoading weights:  62%|██████▏   | 243/394 [00:16<00:09, 15.68it/s]
+[1ALoading weights:  62%|██████▏   | 245/394 [00:16<00:09, 15.94it/s]
+[1ALoading weights:  64%|██████▎   | 251/394 [00:17<00:09, 15.46it/s]
+[1ALoading weights:  64%|██████▍   | 253/394 [00:17<00:09, 14.92it/s]
+[1ALoading weights:  66%|██████▌   | 259/394 [00:17<00:08, 15.05it/s]
+[1ALoading weights:  68%|██████▊   | 267/394 [00:18<00:08, 14.95it/s]
+[1ALoading weights:  68%|██████▊   | 269/394 [00:18<00:08, 15.30it/s]
+[1ALoading weights:  70%|██████▉   | 275/394 [00:18<00:07, 14.98it/s]
+[1ALoading weights:  72%|███████▏  | 283/394 [00:19<00:07, 15.13it/s]
+[1ALoading weights:  74%|███████▍  | 291/394 [00:20<00:07, 14.38it/s]
+[1ALoading weights:  74%|███████▍  | 293/394 [00:20<00:07, 12.95it/s]
+[1ALoading weights:  76%|███████▌  | 299/394 [00:20<00:07, 12.50it/s]
+[1ALoading weights:  76%|███████▋  | 301/394 [00:21<00:07, 12.52it/s]
+[1ALoading weights:  78%|███████▊  | 307/394 [00:21<00:07, 11.27it/s]
+[1ALoading weights:  78%|███████▊  | 309/394 [00:21<00:08, 10.34it/s]
+[1ALoading weights:  80%|███████▉  | 315/394 [00:22<00:06, 11.53it/s]
+[1ALoading weights:  82%|████████▏ | 323/394 [00:22<00:05, 12.29it/s]
+[1ALoading weights:  82%|████████▏ | 325/394 [00:23<00:05, 12.07it/s]
+[1ALoading weights:  84%|████████▍ | 331/394 [00:23<00:04, 12.72it/s]
+[1ALoading weights:  86%|████████▌ | 339/394 [00:24<00:03, 13.77it/s]
+[1ALoading weights:  87%|████████▋ | 341/394 [00:24<00:03, 14.09it/s]
+[1ALoading weights:  88%|████████▊ | 347/394 [00:24<00:03, 13.54it/s]
+[1ALoading weights:  90%|█████████ | 355/394 [00:25<00:02, 14.27it/s]
+[1ALoading weights:  91%|█████████ | 357/394 [00:25<00:02, 14.14it/s]
+[1ALoading weights:  92%|█████████▏| 363/394 [00:25<00:02, 13.85it/s]
+[1ALoading weights:  93%|█████████▎| 365/394 [00:25<00:02, 13.72it/s]
+[1ALoading weights:  94%|█████████▍| 371/394 [00:26<00:01, 14.46it/s]
+[1ALoading weights:  96%|█████████▌| 379/394 [00:26<00:00, 15.04it/s]
+[1ALoading weights:  98%|█████████▊| 387/394 [00:27<00:00, 13.35it/s]
+[1ALoading weights: 100%|██████████| 394/394 [00:27<00:00, 14.30it/s]
+META {"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-12T18:39:16Z", "gpu": "NVIDIA H100 80GB HBM3", "cuda": "12.8", "gpu_mem_gb": 79.2, "pip_freeze_sha": "3c88f18ec2f9", "load_s": 44.191762924194336}
+bucket 1280 captured; tasks 69
+COST 1280 {1: 2.98, 2: 3.67, 3: 4.1, 4: 4.57, 5: 4.89, 6: 5.06, 7: 5.17, 8: 5.34, 9: 5.6, 10: 5.82, 11: 6.07, 12: 6.25, 13: 6.34}
+TR humaneval_00_12 P 232 v1 223/222 s 257 ts 331 spec 344 cost 342 exact s==v1
+TR humaneval_01_22 P 221 v1 222/222 s 252 ts 331 spec 348 cost 347 exact s==v1
+TR humaneval_02_34 P 203 v1 222/222 s 245 ts 331 spec 374 cost 367 exact s==v1
+TR humaneval_03_60 P 219 v1 222/222 s 252 ts 332 spec 478 cost 460 exact s==v1
+TR humaneval_04_1 P 246 v1 222/222 s 261 ts 331 spec 444 cost 439 exact s==v1
+TR humaneval_05_158 P 249 v1 222/222 s 262 ts 332 spec 451 cost 439 exact s==v1
+TR humaneval_06_83 P 174 v1 223/223 s 239 ts 333 spec 364 cost 371 exact s==v1
+TR humaneval_07_103 P 270 v1 222/222 s 271 ts 331 spec 344 cost 350 exact s==v1
+TR humaneval_08_71 P 251 v1 222/222 s 264 ts 332 spec 343 cost 353 exact s==v1
+TR mbpp_00_332 P 177 v1 223/223 s 239 ts 332 spec 349 cost 360 exact s==v1
+TR mbpp_01_24 P 166 v1 223/223 s 238 ts 332 spec 358 cost 362 exact s==v1
+TR mbpp_02_45 P 164 v1 223/223 s 237 ts 332 spec 355 cost 359 exact s==v1
+TR mbpp_03_68 P 167 v1 223/223 s 237 ts 332 spec 384 cost 383 exact s==v1
+TR mbpp_04_120 P 171 v1 223/223 s 238 ts 332 spec 375 cost 376 exact s==v1
+TR mbpp_05_3 P 183 v1 222/222 s 242 ts 332 spec 382 cost 376 exact s==v1
+TR mbpp_06_316 P 179 v1 223/223 s 239 ts 332 spec 352 cost 357 exact s==v1
+TR mbpp_07_435 P 241 v1 222/222 s 260 ts 332 spec 570 cost 565 exact s==v1
+TR mbpp_08_166 P 181 v1 223/223 s 241 ts 332 spec 383 cost 388 exact s==v1
+TR canitedit_00_83 P 346 v1 222/222 s 289 ts 331 spec 631 cost 614 exact s==v1
+TR canitedit_01_6 P 397 v1 222/222 s 289 ts 330 spec 490 cost 477 exact s==v1
+TR canitedit_02_11 P 466 v1 222/222 s 290 ts 331 spec 433 cost 428 exact s==v1
+TR canitedit_03_17 P 289 v1 222/222 s 278 ts 332 spec 593 cost 587 exact s==v1
+TR canitedit_04_30 P 581 v1 222/222 s 291 ts 330 spec 357 cost 356 exact s==v1
+TR canitedit_05_0 P 234 v1 223/223 s 258 ts 332 spec 384 cost 388 exact s==v1
+TR canitedit_06_79 P 492 v1 222/222 s 290 ts 331 spec 458 cost 463 exact s==v1
+TR canitedit_07_41 P 434 v1 222/222 s 289 ts 331 spec 376 cost 377 exact s==v1
+TR canitedit_08_51 P 318 v1 222/222 s 288 ts 332 spec 354 cost 361 exact s==v1
+TR cnn_summ_00_10628 P 1153 v1 222/222 s 292 ts 328 spec 337 cost 339 exact s==v1
+TR cnn_summ_01_791 P 1098 v1 221/221 s 291 ts 326 spec 322 cost 321 exact s==v1
+TR cnn_summ_02_1447 P 1188 v1 221/221 s 291 ts 327 spec 326 cost 334 exact s==v1
+TR cnn_summ_04_3851 P 823 v1 221/221 s 291 ts 328 spec 343 cost 346 exact s==v1
+TR cnn_summ_05_125 P 430 v1 222/222 s 289 ts 330 spec 338 cost 342 exact s==v1
+TR cnn_summ_06_10117 P 1176 v1 221/221 s 291 ts 327 spec 330 cost 335 exact s==v1
+TR cnn_summ_07_5325 P 1034 v1 221/221 s 291 ts 327 spec 344 cost 344 exact s==v1
+TR cnn_summ_08_6649 P 798 v1 221/222 s 291 ts 328 spec 334 cost 335 exact s==v1
+TR xsum_summ_00_10628 P 282 v1 222/222 s 274 ts 331 spec 361 cost 375 exact s==v1
+TR xsum_summ_01_791 P 190 v1 222/222 s 240 ts 331 spec 411 cost 413 exact s==v1
+TR xsum_summ_02_1447 P 429 v1 222/222 s 289 ts 330 spec 348 cost 350 exact s==v1
+TR xsum_summ_03_2188 P 1086 v1 221/221 s 291 ts 327 spec 330 cost 334 exact s==v1
+TR xsum_summ_04_3851 P 430 v1 222/222 s 289 ts 330 spec 365 cost 374 exact s==v1
+TR xsum_summ_05_125 P 487 v1 222/222 s 289 ts 330 spec 344 cost 349 exact s==v1
+TR xsum_summ_06_10117 P 429 v1 222/222 s 289 ts 330 spec 371 cost 379 exact s==v1
+TR xsum_summ_07_5325 P 245 v1 222/222 s 262 ts 331 spec 378 cost 379 exact s==v1
+TR xsum_summ_08_6649 P 269 v1 222/222 s 269 ts 331 spec 367 cost 369 exact s==v1
+TR squad_qa_00_10628 P 479 v1 222/222 s 288 ts 330 spec 468 cost 460 exact s==v1
+TR squad_qa_01_791 P 218 v1 222/222 s 224 ts 330 spec 443 cost 327 exact s==v1
+TR squad_qa_02_1447 P 342 v1 222/222 s 289 ts 331 spec 518 cost 328 exact s==v1
+TR squad_qa_03_2188 P 275 v1 222/220 s 254 ts 325 spec 391 cost 324 exact s==v1
+TR squad_qa_04_3851 P 304 v1 222/222 s 269 ts 330 spec 406 cost 398 exact s==v1
+TR squad_qa_05_125 P 212 v1 222/222 s 222 ts 331 spec 471 cost 452 exact s==v1
+TR squad_qa_06_10117 P 272 v1 222/222 s 242 ts 330 spec 349 cost 326 exact s==v1
+TR squad_qa_07_5325 P 277 v1 222/222 s 261 ts 331 spec 373 cost 370 exact s==v1
+TR squad_qa_08_6649 P 270 v1 222/222 s 242 ts 331 spec 469 cost 441 exact s==v1
+TR ultrachat_00_21256 P 742 v1 222/222 s 291 ts 329 spec 390 cost 384 exact s==v1
+TR ultrachat_03_4377 P 688 v1 222/222 s 291 ts 329 spec 322 cost 326 exact s==v1
+TR ultrachat_04_7703 P 1031 v1 221/221 s 291 ts 327 spec 334 cost 336 exact s==v1
+TR ultrachat_05_250 P 274 v1 222/222 s 271 ts 331 spec 330 cost 335 exact s==v1
+TR ultrachat_06_20235 P 959 v1 221/221 s 291 ts 327 spec 333 cost 324 exact s==v1
+TR ultrachat_07_10651 P 1073 v1 221/221 s 291 ts 327 spec 340 cost 345 exact s==v1
+TR ultrachat_08_13298 P 1117 v1 221/221 s 291 ts 327 spec 357 cost 354 exact s==v1
+TR glaive_tool_00_85027 P 319 v1 222/222 s 287 ts 331 spec 339 cost 346 exact s==v1
+TR glaive_tool_01_6334 P 160 v1 223/223 s 224 ts 332 spec 369 cost 361 exact s==v1
+TR glaive_tool_02_11579 P 293 v1 222/222 s 269 ts 332 spec 347 cost 351 exact s==v1
+TR glaive_tool_03_17509 P 433 v1 222/222 s 289 ts 331 spec 333 cost 336 exact s==v1
+TR glaive_tool_04_30812 P 183 v1 222/223 s 240 ts 332 spec 434 cost 430 exact s==v1
+TR glaive_tool_05_1000 P 540 v1 222/222 s 290 ts 330 spec 375 cost 327 exact s==v1
+TR glaive_tool_06_80941 P 222 v1 222/222 s 252 ts 331 spec 343 cost 347 exact s==v1
+TR glaive_tool_07_111370 P 403 v1 222/222 s 288 ts 331 spec 329 cost 327 exact s==v1
+TR glaive_tool_08_42607 P 223 v1 222/222 s 252 ts 327 spec 345 cost 347 exact s==v1
+bucket 2560 captured; tasks 6
+COST 2560 {1: 3.05, 2: 3.71, 3: 4.21, 4: 4.69, 5: 5.05, 6: 5.48, 7: 5.89, 8: 6.02, 9: 6.3, 10: 6.67, 11: 6.71, 12: 7.02, 13: 7.22}
+TR cnn_summ_03_2188 P 1730 v1 220/220 s 288 ts 323 spec 344 cost 352 exact s==v1
+TR ultrachat_01_1583 P 1404 v1 221/221 s 289 ts 324 spec 310 cost 320 exact s==v1
+TR ultrachat_02_2894 P 1416 v1 221/221 s 289 ts 324 spec 328 cost 328 exact s==v1
+TR gov4k_01_49 P 2421 v1 220/220 s 287 ts 312 spec 312 cost 315 exact s==v1
+TR gov8k_06_153 P 1685 v1 220/220 s 288 ts 323 spec 336 cost 334 exact s==v1
+TR quality_qa_05_1331 P 2537 v1 220/220 s 286 ts 312 spec 592 cost 572 exact s==v1
+bucket 5120 captured; tasks 12
+COST 5120 {1: 3.17, 2: 3.77, 3: 4.21, 4: 4.97, 5: 5.03, 6: 5.43, 7: 5.77, 8: 6.08, 9: 6.37, 10: 6.55, 11: 6.79, 12: 7.05, 13: 7.26}
+TR gov4k_00_664 P 2942 v1 219/219 s 283 ts 311 spec 305 cost 316 exact s==v1
+TR gov4k_02_90 P 2748 v1 219/219 s 285 ts 312 spec 322 cost 332 exact s==v1
+TR gov4k_03_136 P 2686 v1 219/219 s 285 ts 312 spec 310 cost 312 exact s==v1
+TR gov4k_04_240 P 2652 v1 219/219 s 285 ts 312 spec 317 cost 318 exact s==v1
+TR gov4k_05_7 P 2587 v1 219/219 s 286 ts 312 spec 315 cost 329 exact s==v1
+TR gov4k_06_632 P 2709 v1 219/219 s 285 ts 312 spec 315 cost 318 exact s==v1
+TR gov4k_07_870 P 2925 v1 219/219 s 283 ts 311 spec 311 cost 318 exact s==v1
+TR gov4k_08_332 P 2883 v1 219/219 s 283 ts 311 spec 299 cost 305 exact s==v1
+TR gov8k_00_578 P 5020 v1 217/217 s 281 ts 307 spec 315 cost 319 exact s==v1
+TR gov8k_02_389 P 2925 v1 219/219 s 283 ts 312 spec 319 cost 324 exact s==v1
+TR gov8k_03_452 P 4697 v1 217/217 s 281 ts 307 spec 305 cost 316 exact s==v1
+TR quality_qa_03_962 P 2595 v1 219/219 s 286 ts 312 spec 359 cost 370 exact s==v1
+bucket 10240 captured; tasks 12
+COST 10240 {1: 3.21, 2: 3.83, 3: 4.34, 4: 4.99, 5: 5.1, 6: 5.54, 7: 5.84, 8: 6.3, 9: 6.4, 10: 6.68, 11: 6.9, 12: 7.22, 13: 7.47}
+TR gov8k_01_676 P 5534 v1 216/216 s 279 ts 306 spec 323 cost 319 exact s==v1
+TR gov8k_04_827 P 5192 v1 216/216 s 279 ts 307 spec 300 cost 315 exact s==v1
+TR gov8k_05_35 P 5143 v1 216/216 s 280 ts 307 spec 332 cost 328 exact s==v1
+TR gov8k_07_749 P 5657 v1 216/216 s 279 ts 306 spec 316 cost 318 exact s==v1
+TR gov8k_08_622 P 5519 v1 216/216 s 279 ts 307 spec 306 cost 308 exact s==v1
+TR quality_qa_00_197 P 6453 v1 216/216 s 278 ts 305 spec 486 cost 465 exact s==v1
+TR quality_qa_01_361 P 6569 v1 216/216 s 278 ts 305 spec 413 cost 395 exact s==v1
+TR quality_qa_02_547 P 6459 v1 216/216 s 278 ts 305 spec 403 cost 399 exact s==v1
+TR quality_qa_04_31 P 6543 v1 216/216 s 278 ts 305 spec 334 cost 327 exact s==v1
+TR quality_qa_06_1662 P 7161 v1 215/215 s 275 ts 304 spec 371 cost 363 exact s==v1
+TR quality_qa_07_1140 P 6868 v1 216/216 s 276 ts 305 spec 401 cost 389 exact s==v1
+TR quality_qa_08_47 P 6526 v1 216/216 s 277 ts 305 spec 419 cost 400 exact s==v1
+wrote results/x2_x6.jsonl
+X2_DONE secs 614.3590619564056 est usd 0.6740884152021673
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/<workspace>/main/ap-hi4VCUdLDsmdZhNCa7mMb5
