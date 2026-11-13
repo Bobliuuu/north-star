@@ -164,3 +164,5 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-12 | ap-1BitGtaYxcZKibPplTwEvL | `modal run --detach modal/vllm_vs_x2.py::cb --tag cb1 --n-req 64 --rates 2,4,8,16,inf` | H27 batched + single prefill vs vLLM; results/vxcb_cb1_* |
 | 2026-11-12 | ap-U11oMwJWeT9dbqVgpfhm3s | `modal run --detach modal/vllm_vs_x2.py::cb --tag cb2 --prefills graph` | H27 graph prefill crashed on bucket > Lmax (fixed); vLLM ran; results/vxcb_cb2_* |
 | 2026-11-12 | ap-ul2ctFPWt9LizQdynmJ7Ng | `modal run --detach modal/vllm_vs_x2.py::cb --tag cb3 --prefills graph,single` | H27 main: graph + single prefill vs vLLM, same container; results/vxcb_cb3_* |
+| 2026-11-12 | ap-BkRkt4juTIT9t0yiJ2MDc8 | `modal run --detach modal/prof_prefill_run.py::main --tag inv1 --what probe` | H28 row-invariance probe of prefill components (layer 1, 300 vs 8192 rows); results/prefill_inv1.jsonl |
+| 2026-11-12 | ap-F1426mDCLEUcZzSm3AVSzd | `modal run --detach modal/vllm_vs_x2.py::cb --tag cb4 --prefills batched_inv,graph` | H28 batch-invariant batched prefill + graph prefill vs vLLM, same container; results/vxcb_cb4_* |

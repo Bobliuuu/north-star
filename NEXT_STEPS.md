@@ -1,5 +1,9 @@
 # NEXT_STEPS
 
+## STATUS UPDATE 2026-11-12 e (RESULTS.md H28)
+DONE: (a) of 2026-11-12 d. Batch-invariant batched prefill (attention per request, rest batched) is the continuous-batching default: saturated 1.16x vLLM, every request still == its isolated decode.
+NEXT: (a) prefill chunks interleaved with decode steps (vLLM still has lower latency at 8-16 req/s); (b) switch prefill GEMMs to the invariant-by-construction Triton kernels behind a flag, or test cuBLAS/grouped_mm invariance across more shapes; (c) speculation for a lone active request.
+
 ## STATUS UPDATE 2026-11-12 d (RESULTS.md H27)
 DONE: continuous batching (`harness/cbatch.py`): pointer-table bucket graphs over 32 KV slots, every request == its isolated decode under all loads. Same container vs vLLM 0.33: 1.04-1.08x at 2-8 req/s, 0.99x at 16, 0.91x saturated (TTFT 3.1 vs 1.7 s).
 NEXT: (a) batch-invariant batched prefill (the batched mode reaches vLLM's peak, 1952 vs 1992 tok/s, but only 11/64 requests stay request-independent); (b) prefill chunks interleaved with decode steps to cut TTFT under bursts; (c) speculation for the lone request when only one slot is active.
