@@ -1,0 +1,152 @@
+1
+00:00:00,400 --> 00:00:01,047
+Northstar.
+
+2
+00:00:01,047 --> 00:00:06,417
+Fast, exact decoding for Cohere's mixture of experts model North, on a single H100.
+
+3
+00:00:06,417 --> 00:00:11,851
+This is a short tour of what we built, what we measured, and where it does not help.
+
+4
+00:00:12,850 --> 00:00:18,200
+North is a large mixture of experts model, and decoding produces one token per forward pass.
+
+5
+00:00:18,200 --> 00:00:23,084
+A stock graphed PyTorch decode leaves the GPU waiting between many small operations.
+
+6
+00:00:23,084 --> 00:00:27,446
+Speculation usually either changes the output, or costs more than it saves.
+
+7
+00:00:27,446 --> 00:00:30,062
+We wanted speed with exactly the same tokens.
+
+8
+00:00:31,060 --> 00:00:36,033
+The pieces are a Triton decode executor, with attention and the mixture of experts branches
+
+9
+00:00:36,033 --> 00:00:37,672
+running on concurrent streams.
+
+10
+00:00:37,672 --> 00:00:42,044
+Batch invariant kernels, so output does not depend on what else is in the batch.
+
+11
+00:00:42,044 --> 00:00:46,525
+Prompt lookup speculation that is checked against the executor's own plain decode.
+
+12
+00:00:46,525 --> 00:00:49,421
+And a serving engine with continuous batching on top.
+
+13
+00:00:50,420 --> 00:00:51,725
+One launch, one H100.
+
+14
+00:00:51,725 --> 00:00:57,316
+At a two thousand token context, the graphed PyTorch baseline takes 10.70 milliseconds per
+
+15
+00:00:57,316 --> 00:00:57,688
+token.
+
+16
+00:00:57,688 --> 00:01:00,298
+The exact version two executor takes 3.12.
+
+17
+00:01:00,298 --> 00:01:06,137
+The older non exact executor sits in between, and the first exact version is slower than that.
+
+18
+00:01:07,140 --> 00:01:12,465
+That is 3.4 times faster per token, and 3.4 times at an eight thousand token context.
+
+19
+00:01:12,465 --> 00:01:18,228
+In live decoding that is about 319 tokens per second, with the same tokens as the executor's
+
+20
+00:01:18,228 --> 00:01:19,293
+own plain decode.
+
+21
+00:01:20,290 --> 00:01:27,498
+Against stock vLLM zero point three three, in the same container, on the same prompts.
+
+22
+00:01:27,498 --> 00:01:34,036
+With one user we reach 310 tokens per second against 258, which is 1.20 times.
+
+23
+00:01:34,036 --> 00:01:39,316
+With thirty two users, 2326 against 2213, a lead of 1.05 times.
+
+24
+00:01:39,316 --> 00:01:44,513
+Thirty two users together get 7.5 times the throughput of one.
+
+25
+00:01:45,510 --> 00:01:51,567
+A different experiment: embedding small trainable workers inside one frozen North forward pass.
+
+26
+00:01:51,567 --> 00:01:57,113
+On a state tracking task with four entities, frozen North scores 0.14, close to chance.
+
+27
+00:01:57,113 --> 00:01:59,153
+With an adapter it reaches 0.98.
+
+28
+00:01:59,153 --> 00:02:04,254
+But the fancier private slots design, at 0.92, does not beat the simple adapter.
+
+29
+00:02:05,250 --> 00:02:06,607
+Where it does not help.
+
+30
+00:02:06,607 --> 00:02:11,918
+Against vLLM the lead is small from eight users up, and around sixteen requests per second
+
+31
+00:02:11,918 --> 00:02:14,161
+under arrivals we are slightly slower.
+
+32
+00:02:14,161 --> 00:02:17,879
+Self speculation, the original thesis, never beat plain decode.
+
+33
+00:02:17,879 --> 00:02:23,426
+North tuning its own kernel produced only a small gain, a first sign rather than an explosion.
+
+34
+00:02:23,426 --> 00:02:28,147
+And all of this is one model, one GPU type, greedy decoding and single launches.
+
+35
+00:02:29,150 --> 00:02:34,923
+What holds up: an exact decoder that is 3.4 times faster than graphed PyTorch on one H100
+
+36
+00:02:34,923 --> 00:02:41,021
+ahead of stock vLLM from one to thirty two users in the same container, and every claim in the
+
+37
+00:02:41,021 --> 00:02:44,135
+repo labeled as measured, inferred or simulated.
+
+38
+00:02:45,140 --> 00:02:50,221
+The code, the raw results, and the full results write up are all in the repo.
+

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 460" width="980" height="460" role="img" aria-label="Time per decoded token (ms), one H100 launch">
+<rect width="980" height="460" rx="16" fill="#0b0f17"/>
+<text x="32" y="44" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-weight="700" font-size="22" fill="#e6edf6">Time per decoded token (ms), one H100 launch</text>
+<text x="32" y="68" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" fill="#8a98ad">CUDA-graph replay, median of 50; lower is better</text>
+<line x1="70" x2="950" y1="372" y2="372" stroke="#263044"/><text x="60" y="376" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8a98ad">0</text>
+<line x1="70" x2="950" y1="304" y2="304" stroke="#263044"/><text x="60" y="308" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8a98ad">5</text>
+<line x1="70" x2="950" y1="236" y2="236" stroke="#263044"/><text x="60" y="240" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8a98ad">10</text>
+<line x1="70" x2="950" y1="168" y2="168" stroke="#263044"/><text x="60" y="172" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8a98ad">15</text>
+<line x1="70" x2="950" y1="100" y2="100" stroke="#263044"/><text x="60" y="104" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8a98ad">20</text>
+<rect x="222.0" y="226.5" width="31.0" height="145.5" rx="4" fill="#27c8e8"/>
+<text x="237.5" y="220.5" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">10.70</text>
+<rect x="256.0" y="318.3" width="31.0" height="53.7" rx="4" fill="#ff6b6b"/>
+<text x="271.5" y="312.3" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">3.95</text>
+<rect x="290.0" y="309.7" width="31.0" height="62.3" rx="4" fill="#f2c14e"/>
+<text x="305.5" y="303.7" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">4.58</text>
+<rect x="324.0" y="329.6" width="31.0" height="42.4" rx="4" fill="#3ddc97"/>
+<text x="339.5" y="323.6" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">3.12</text>
+<text x="290" y="394" text-anchor="middle" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e6edf6">ctx 2048</text>
+<rect x="662.0" y="217.2" width="31.0" height="154.8" rx="4" fill="#27c8e8"/>
+<text x="677.5" y="211.2" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">11.38</text>
+<rect x="696.0" y="316.7" width="31.0" height="55.3" rx="4" fill="#ff6b6b"/>
+<text x="711.5" y="310.7" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">4.06</text>
+<rect x="730.0" y="308.9" width="31.0" height="63.1" rx="4" fill="#f2c14e"/>
+<text x="745.5" y="302.9" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">4.64</text>
+<rect x="764.0" y="326.8" width="31.0" height="45.2" rx="4" fill="#3ddc97"/>
+<text x="779.5" y="320.8" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">3.33</text>
+<text x="730" y="394" text-anchor="middle" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e6edf6">ctx 8192</text>
+<rect x="70" y="416" width="14" height="14" rx="3" fill="#27c8e8"/><text x="90" y="428" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8a98ad">PyTorch baseline (graphed)</text>
+<rect x="309.0" y="416" width="14" height="14" rx="3" fill="#ff6b6b"/><text x="329.0" y="428" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8a98ad">Triton executor (H9, not exact)</text>
+<rect x="585.5" y="416" width="14" height="14" rx="3" fill="#f2c14e"/><text x="605.5" y="428" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8a98ad">Exact v1</text>
+<rect x="689.5" y="416" width="14" height="14" rx="3" fill="#3ddc97"/><text x="709.5" y="428" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8a98ad">Exact v2</text>
+<text x="948" y="446" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8a98ad">source: results/derived/readme_data.json · lower is better</text>
+</svg>

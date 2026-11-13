@@ -1,0 +1,267 @@
+# python3 ~/video-readme-maker/vrm.py all README.spec.yml
+# Numbers come from results/*.jsonl|json through tools/readme_data.py -> results/derived/readme_data.json
+project:
+  name: Northstar
+  emoji: "🌟"
+  tagline: "Fast, exact decoding for Cohere's MoE model North on a single H100, with every number measured and logged"
+  repo: Bobliuuu/north-star
+hero:
+  title: Northstar
+  subtitle: "a Triton decode executor and lossless prompt-lookup speculation for North"
+  chips: [H100, Triton, exact decode, vs vLLM 0.33]
+theme: {accent: "#27c8e8", accent2: "#ff6b6b", accent3: "#f2c14e", good: "#3ddc97"}
+readme_out: README.md
+assets_dir: assets
+badges:
+  - {label: license, message: MIT, color: 3776ab, link: LICENSE}
+  - {label: GPU, message: "H100 80GB", color: 76b900, logo: nvidia}
+  - {label: exact decode, message: "{{ n.v2_x }} vs graphed PyTorch", color: 3ddc97}
+  - {label: "vs vLLM, 1 user", message: "{{ n.b1_ratio }}", color: 3ddc97}
+  - {label: "32 users", message: "{{ n.b32_toks }} tok/s", color: 27c8e8}
+  - {label: numbers, message: "measured and logged", color: f2c14e}
+nav:
+  - {emoji: "🎬", label: Video, anchor: video}
+  - {emoji: "📊", label: Results, anchor: results}
+  - {emoji: "🧩", label: How it works, anchor: how-it-works}
+  - {emoji: "🏁", label: vs vLLM, anchor: vs-vllm}
+  - {emoji: "🧬", label: North in North, anchor: north-in-north}
+  - {emoji: "⚠️", label: Limits, anchor: limits}
+  - {emoji: "🚀", label: Quick start, anchor: quick-start}
+  - {emoji: "🗺️", label: Repo map, anchor: repo-map}
+
+numbers:
+  base_ms: {file: results/derived/readme_data.json, path: base_ms_2048, fmt: "{:.2f}", unit: " ms"}
+  v2_ms: {file: results/derived/readme_data.json, path: "v2.2048.ms", fmt: "{:.2f}", unit: " ms"}
+  v2_x: {file: results/derived/readme_data.json, path: "v2.2048.x", fmt: "{:.1f}", unit: "x"}
+  v2_x8: {file: results/derived/readme_data.json, path: "v2.8192.x", fmt: "{:.1f}", unit: "x"}
+  v2_toks: {file: results/derived/readme_data.json, path: "v2.2048.tok_s", fmt: "{:.0f}", unit: " tok/s"}
+  b1_ours: {file: results/derived/readme_data.json, path: b1.ours, fmt: "{:.0f}"}
+  b1_vllm: {file: results/derived/readme_data.json, path: b1.vllm, fmt: "{:.0f}"}
+  b1_ratio: {file: results/derived/readme_data.json, path: b1.ratio, fmt: "{:.2f}", unit: "x"}
+  b32_ours: {file: results/derived/readme_data.json, path: b32.ours, fmt: "{:.0f}"}
+  b32_toks: {file: results/derived/readme_data.json, path: b32.ours, fmt: "{:,.0f}"}
+  b32_vllm: {file: results/derived/readme_data.json, path: b32.vllm, fmt: "{:.0f}"}
+  b32_ratio: {file: results/derived/readme_data.json, path: b32.ratio, fmt: "{:.2f}", unit: "x"}
+  scale: {file: results/derived/readme_data.json, path: scale, fmt: "{:.1f}", unit: "x"}
+  none_p4: {file: results/derived/readme_data.json, path: emb_none_p4, fmt: "{:.2f}"}
+  adapter_p4: {file: results/derived/readme_data.json, path: emb_adapter_p4, fmt: "{:.2f}"}
+  multi_p4: {file: results/derived/readme_data.json, path: emb_multi_p4, fmt: "{:.2f}"}
+  multi_p8: {file: results/derived/readme_data.json, path: emb_multi_p8, fmt: "{:.2f}"}
+  none_p8: {file: results/derived/readme_data.json, path: emb_none_p8, fmt: "{:.2f}"}
+
+intro: |
+  <a id="video"></a>
+  **Fast, exact decoding for Cohere's MoE model "North" on a single H100.** A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossless against its own plain decode*,
+  with every number measured, labeled and backed by raw logs in this repo. We also test two follow-ups: asking North to tune its own kernel, and embedding small trainable workers inside one frozen North forward pass.
+
+video:
+  url: ""
+  caption: "Explainer video (voice-over and subtitles): the executor, exact speculation, batching, the vLLM comparison, and where it does not help"
+  mp4: video/northstar_explainer.mp4
+  gif: video/preview.gif
+  srt: video/northstar_explainer.srt
+  poster: video/poster.png
+  out_dir: video/.render
+  fps: 24
+  max_mb: 22
+  render_crf: 18
+  concurrency: 4
+  music: true
+  voice: {engine: openai, voice: alloy, model: gpt-4o-mini-tts, tempo: 1.2}
+  scenes:
+    - type: title
+      title: Northstar
+      subtitle: Fast, exact decoding for North on one H100
+      chips: [Triton, exact, H100, vs vLLM]
+      say: "Northstar. Fast, exact decoding for Cohere's mixture of experts model North, on a single H100. This is a short tour of what we built, what we measured, and where it does not help."
+    - type: problem
+      heading: The problem
+      bullets:
+        - "North is a large MoE model; decode is one token per pass"
+        - "A stock graphed PyTorch decode leaves the GPU idle between small ops"
+        - "Speculation usually changes the output, or costs more than it saves"
+        - "We want speed with the exact same tokens"
+      say: "North is a large mixture of experts model, and decoding produces one token per forward pass. A stock graphed PyTorch decode leaves the GPU waiting between many small operations. Speculation usually either changes the output, or costs more than it saves. We wanted speed with exactly the same tokens."
+    - type: architecture
+      diagram: flow
+      heading: "What is in the repo"
+      say: "The pieces are a Triton decode executor, with attention and the mixture of experts branches running on concurrent streams. Batch invariant kernels, so output does not depend on what else is in the batch. Prompt lookup speculation that is checked against the executor's own plain decode. And a serving engine with continuous batching on top."
+    - type: chart
+      chart: headline_bars
+      say: "One launch, one H100. At a two thousand token context, the graphed PyTorch baseline takes {{ n.base_ms.numtext }} milliseconds per token. The exact version two executor takes {{ n.v2_ms.numtext }}. The older non exact executor sits in between, and the first exact version is slower than that."
+    - type: stat
+      number: v2_x
+      kicker: "exact v2 vs graphed PyTorch, same launch, H100"
+      label: "faster per token"
+      sub: "{{ n.v2_x8.text }} at an 8K context; the same words as its own plain decode"
+      say: "That is {{ n.v2_x.numtext }} times faster per token, and {{ n.v2_x8.numtext }} times at an eight thousand token context. In live decoding that is about {{ n.v2_toks.numtext }} tokens per second, with the same tokens as the executor's own plain decode."
+    - type: chart
+      chart: batched
+      say: "Against stock vLLM zero point three three, in the same container, on the same prompts. With one user we reach {{ n.b1_ours.numtext }} tokens per second against {{ n.b1_vllm.numtext }}, which is {{ n.b1_ratio.numtext }} times. With thirty two users, {{ n.b32_ours.numtext }} against {{ n.b32_vllm.numtext }}, a lead of {{ n.b32_ratio.numtext }} times. Thirty two users together get {{ n.scale.numtext }} times the throughput of one."
+    - type: chart
+      chart: embedded_bars
+      say: "A different experiment: embedding small trainable workers inside one frozen North forward pass. On a state tracking task with four entities, frozen North scores {{ n.none_p4.numtext }}, close to chance. With an adapter it reaches {{ n.adapter_p4.numtext }}. But the fancier private slots design, at {{ n.multi_p4.numtext }}, does not beat the simple adapter."
+    - type: caveats
+      heading: "Where it does not help"
+      bullets:
+        - "Against vLLM the lead is small from 8 users up"
+        - "Around 16 requests per second under arrivals we are slightly slower"
+        - "Self-speculation, the original thesis, never beat plain decode"
+        - "Self-improvement was small: a first sign, not an explosion"
+        - "One model, one GPU type, greedy only, single launches"
+      say: "Where it does not help. Against vLLM the lead is small from eight users up, and around sixteen requests per second under arrivals we are slightly slower. Self speculation, the original thesis, never beat plain decode. North tuning its own kernel produced only a small gain, a first sign rather than an explosion. And all of this is one model, one GPU type, greedy decoding and single launches."
+    - type: idea
+      heading: "What holds up"
+      bullets:
+        - "Exact decode {{ n.v2_x.text }} faster than graphed PyTorch on one H100"
+        - "Ahead of stock vLLM at 1 to 32 users, same container"
+        - "Every number is labeled MEASURED, INFERRED or SIMULATED"
+      say: "What holds up: an exact decoder that is {{ n.v2_x.numtext }} times faster than graphed PyTorch on one H100, ahead of stock vLLM from one to thirty two users in the same container, and every claim in the repo labeled as measured, inferred or simulated."
+    - type: end
+      title: Northstar
+      subtitle: "Raw logs, results and RESULTS.md are in the repo"
+      say: "The code, the raw results, and the full results write up are all in the repo."
+
+tables:
+  - id: headline_tbl
+    title: "One launch on H100, greedy: graph ms per token and live tok/s (192 tokens)"
+    file: results/derived/readme_data.json
+    rows_path: headline
+    highlight: "Exact v2"
+    columns:
+      - {key: ctx, title: Context}
+      - {key: decoder, title: Decoder}
+      - {key: ms, title: ms / token, align: right, fmt: "{:.2f}"}
+      - {key: x, title: "vs baseline", align: right, fmt: "{:.2f}", unit: "x"}
+      - {key: live_tok_s, title: "live tok/s", align: right, fmt: "{:.0f}"}
+  - id: batched_tbl
+    title: "Batched aggregate throughput, Northstar exact v2 vs stock vLLM 0.33, same H100 container"
+    file: results/derived/readme_data.json
+    rows_path: batched_ratio
+    columns:
+      - {key: users, title: Concurrent users, align: right}
+      - {key: ours, title: Northstar (tok/s), align: right, fmt: "{:,.0f}"}
+      - {key: vllm, title: vLLM (tok/s), align: right, fmt: "{:,.0f}"}
+      - {key: ratio, title: Ratio, align: right, fmt: "{:.2f}", unit: "x"}
+  - id: emb_tbl
+    title: "North in North (H23): accuracy by number of entities, chance 0.10"
+    file: results/derived/readme_data.json
+    rows_path: embedded
+    columns:
+      - {key: mode, title: Mode}
+      - {key: seeds, title: Seeds, align: right}
+      - {key: P2, title: "2 entities", align: right, fmt: "{:.2f}"}
+      - {key: P4, title: "4", align: right, fmt: "{:.2f}"}
+      - {key: P8, title: "8", align: right, fmt: "{:.2f}"}
+
+charts:
+  - id: headline_bars
+    type: gbar
+    title: "Time per decoded token (ms), one H100 launch"
+    subtitle: "CUDA-graph replay, median of 50; lower is better"
+    better: lower
+    file: results/derived/readme_data.json
+    rows_path: headline
+    cat: ctx
+    series: decoder
+    y: ms
+    fmt: "{:.2f}"
+  - id: batched
+    type: gbar
+    title: "Aggregate throughput (tok/s) vs concurrent users: Northstar vs vLLM 0.33"
+    subtitle: "same container, same prompts, greedy"
+    better: higher
+    file: results/derived/readme_data.json
+    rows_path: batched
+    cat: users
+    series: impl
+    y: tok_s
+    fmt: "{:.0f}"
+  - id: embedded_bars
+    type: gbar
+    title: "Embedded workers inside frozen North: accuracy by number of entities (chance 0.10)"
+    subtitle: "mean over seeds; the private-slots design does not beat the simple adapter"
+    better: higher
+    file: results/derived/readme_data.json
+    rows_path: embedded_bars
+    cat: entities
+    series: mode
+    y: acc
+    fmt: "{:.2f}"
+
+diagrams:
+  - id: flow
+    title: "Northstar decode stack"
+    nodes:
+      - {id: m, label: "North (MoE)", sub: "CohereLabs/North-Mini-Code-1.0, weights not distributed here", col: 0, row: 0, kind: store}
+      - {id: x, label: "Triton executor", sub: "attention || MoE on concurrent streams, H100-tuned tiles", col: 1, row: 0, kind: accent}
+      - {id: i, label: "Batch-invariant kernels", sub: "same tokens regardless of batch", col: 2, row: 0}
+      - {id: p, label: "Prompt-lookup speculation", sub: "exact: equals own plain greedy", col: 2, row: 1}
+      - {id: s, label: "Serving engine", sub: "continuous batching, batched prefill", col: 1, row: 1}
+      - {id: o, label: "Tokens", sub: "== plain decode of the same executor", col: 0, row: 1, kind: io}
+    edges:
+      - {from: m, to: x}
+      - {from: x, to: i}
+      - {from: i, to: p}
+      - {from: p, to: s}
+      - {from: s, to: o}
+
+sections:
+  - title: Results
+    emoji: "📊"
+    id: results
+    body: "All numbers below are MEASURED on one H100 80GB, greedy decoding, up to 192 new tokens, recomputed from `results/` by `tools/readme_data.py`. Every experiment (H1-H29) with setup, tables and caveats is in [RESULTS.md](RESULTS.md)."
+    highlights:
+      - {label: "Exact v2 vs graphed PyTorch", number: v2_x}
+      - {label: "vs vLLM, 1 user", number: b1_ratio}
+      - {label: "vs vLLM, 32 users", number: b32_ratio}
+      - {label: "32 users vs 1 user", number: scale}
+    charts: [headline_bars, batched]
+    images:
+      - {src: video/preview.gif, alt: "animated overview of the explainer video", width: "70%"}
+    tables: [headline_tbl]
+    after: |
+      **Exact mode** uses batch-invariant kernels, so speculative output equals the same executor's plain greedy output on 70/70 runs (and 14/14 at every tested context up to 128K). It is **not** bit-identical to Hugging Face `generate`.
+    details:
+      - summary: "Full results summary and the plain-English table (from the earlier README)"
+        body_file: docs/readme/headline_table.md
+      - summary: "Detailed headline results (H9-H29)"
+        body_file: docs/readme/detailed.md
+  - title: How it works
+    emoji: "🧩"
+    id: how-it-works
+    body: "Plain decode runs through a Triton executor that overlaps the attention and MoE branches on separate CUDA streams with H100-tuned tiles; the kernels are batch-invariant so a request's tokens never depend on its neighbours; speculation by prompt lookup (PLD) is cost-capped and its index is built during prefill."
+    diagrams: [flow]
+    body_file: docs/readme/background.md
+  - title: Against vLLM
+    emoji: "🏁"
+    id: vs-vllm
+    body: "Same H100, same container, same prompts (H25, `results/vxb_vxb1_*`). vLLM numbers are its decode aggregate throughput."
+    tables: [batched_tbl]
+    after: "Continuous batching under Poisson arrivals, long-context and the serving engine results are in [RESULTS.md](RESULTS.md) (H26-H28)."
+  - title: North in North
+    emoji: "🧬"
+    id: north-in-north
+    body: "Small trainable worker modules inside one frozen North forward pass (H23, Modal A100-80GB, 1,500 steps, 100 eval items per cell, 2 seeds per trained mode). Capability test on a state-tracking task, not a speed test."
+    tables: [emb_tbl]
+    charts: [embedded_bars]
+    details:
+      - summary: "Two meanings of North inside North, and the Qwen-side related benchmarks"
+        body_file: docs/readme/nin.md
+  - title: Where it does not help
+    emoji: "⚠️"
+    id: limits
+    body_file: docs/readme/limits.md
+    after: ""
+    details:
+      - summary: "Scope and caveats"
+        body_file: docs/readme/scope.md
+  - title: Quick start
+    emoji: "🚀"
+    id: quick-start
+    body_file: docs/readme/quickstart.md
+  - title: Repo map
+    emoji: "🗺️"
+    id: repo-map
+    body_file: docs/readme/repomap.md
+footer: "Generated with [video-readme-maker](https://github.com/Bobliuuu/video-readme-maker)."

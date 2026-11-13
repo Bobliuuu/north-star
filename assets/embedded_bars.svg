@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 460" width="980" height="460" role="img" aria-label="Embedded workers inside frozen North: accuracy by number of entities (chance 0.10)">
+<rect width="980" height="460" rx="16" fill="#0b0f17"/>
+<text x="32" y="44" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-weight="700" font-size="22" fill="#e6edf6">Embedded workers inside frozen North: accuracy by number of entities (chance 0.10)</text>
+<text x="32" y="68" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" fill="#8a98ad">mean over seeds; the private-slots design does not beat the simple adapter</text>
+<line x1="70" x2="950" y1="372" y2="372" stroke="#263044"/><text x="60" y="376" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8a98ad">0</text>
+<line x1="70" x2="950" y1="304" y2="304" stroke="#263044"/><text x="60" y="308" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8a98ad">0.5</text>
+<line x1="70" x2="950" y1="236" y2="236" stroke="#263044"/><text x="60" y="240" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8a98ad">1</text>
+<line x1="70" x2="950" y1="168" y2="168" stroke="#263044"/><text x="60" y="172" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8a98ad">1.5</text>
+<line x1="70" x2="950" y1="100" y2="100" stroke="#263044"/><text x="60" y="104" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8a98ad">2</text>
+<rect x="165.7" y="351.6" width="31.0" height="20.4" rx="4" fill="#27c8e8"/>
+<text x="181.2" y="345.6" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">0.15</text>
+<rect x="199.7" y="236.0" width="31.0" height="136.0" rx="4" fill="#ff6b6b"/>
+<text x="215.2" y="230.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">1.00</text>
+<rect x="233.7" y="239.4" width="31.0" height="132.6" rx="4" fill="#f2c14e"/>
+<text x="249.2" y="233.4" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">0.97</text>
+<text x="217" y="394" text-anchor="middle" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e6edf6">P2</text>
+<rect x="459.0" y="353.0" width="31.0" height="19.0" rx="4" fill="#27c8e8"/>
+<text x="474.5" y="347.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">0.14</text>
+<rect x="493.0" y="238.7" width="31.0" height="133.3" rx="4" fill="#ff6b6b"/>
+<text x="508.5" y="232.7" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">0.98</text>
+<rect x="527.0" y="246.9" width="31.0" height="125.1" rx="4" fill="#f2c14e"/>
+<text x="542.5" y="240.9" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">0.92</text>
+<text x="510" y="394" text-anchor="middle" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e6edf6">P4</text>
+<rect x="752.3" y="353.0" width="31.0" height="19.0" rx="4" fill="#27c8e8"/>
+<text x="767.8" y="347.0" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">0.14</text>
+<rect x="786.3" y="250.3" width="31.0" height="121.7" rx="4" fill="#ff6b6b"/>
+<text x="801.8" y="244.3" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">0.90</text>
+<rect x="820.3" y="257.1" width="31.0" height="114.9" rx="4" fill="#f2c14e"/>
+<text x="835.8" y="251.1" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#e6edf6">0.84</text>
+<text x="803" y="394" text-anchor="middle" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#e6edf6">P8</text>
+<rect x="70" y="416" width="14" height="14" rx="3" fill="#27c8e8"/><text x="90" y="428" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8a98ad">frozen North, nothing added</text>
+<rect x="316.5" y="416" width="14" height="14" rx="3" fill="#ff6b6b"/><text x="336.5" y="428" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8a98ad">adapter (stateless)</text>
+<rect x="503.0" y="416" width="14" height="14" rx="3" fill="#f2c14e"/><text x="523.0" y="428" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#8a98ad">multi (private slots + router)</text>
+<text x="948" y="446" text-anchor="end" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8a98ad">source: results/derived/readme_data.json · higher is better</text>
+</svg>

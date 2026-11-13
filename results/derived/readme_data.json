@@ -1,0 +1,268 @@
+{
+ "headline": [
+  {
+   "ctx": "ctx 2048",
+   "decoder": "PyTorch baseline (graphed)",
+   "ms": 10.69873571395874,
+   "x": 1.0,
+   "live_tok_s": 93.32676290238919
+  },
+  {
+   "ctx": "ctx 2048",
+   "decoder": "Triton executor (H9, not exact)",
+   "ms": 3.9519519805908203,
+   "x": 2.7072028624090896,
+   "live_tok_s": 249.68041557016426
+  },
+  {
+   "ctx": "ctx 2048",
+   "decoder": "Exact v1",
+   "ms": 4.578815937042236,
+   "x": 2.3365725683373437,
+   "live_tok_s": 218.89488693181212
+  },
+  {
+   "ctx": "ctx 2048",
+   "decoder": "Exact v2",
+   "ms": 3.1177600622177124,
+   "x": 3.431545564910649,
+   "live_tok_s": 318.61403796226153
+  },
+  {
+   "ctx": "ctx 8192",
+   "decoder": "PyTorch baseline (graphed)",
+   "ms": 11.379152297973633,
+   "x": 1.0,
+   "live_tok_s": 87.5864160311424
+  },
+  {
+   "ctx": "ctx 8192",
+   "decoder": "Triton executor (H9, not exact)",
+   "ms": 4.0638720989227295,
+   "x": 2.8000763855215998,
+   "live_tok_s": 244.14767314227473
+  },
+  {
+   "ctx": "ctx 8192",
+   "decoder": "Exact v1",
+   "ms": 4.640271902084351,
+   "x": 2.452259811081817,
+   "live_tok_s": 214.4438793314593
+  },
+  {
+   "ctx": "ctx 8192",
+   "decoder": "Exact v2",
+   "ms": 3.3259999752044678,
+   "x": 3.4212725143733933,
+   "live_tok_s": 297.7678637001478
+  }
+ ],
+ "v2": {
+  "2048": {
+   "ms": 3.1177600622177124,
+   "x": 3.431545564910649,
+   "tok_s": 318.61403796226153
+  },
+  "8192": {
+   "ms": 3.3259999752044678,
+   "x": 3.4212725143733933,
+   "tok_s": 297.7678637001478
+  }
+ },
+ "base_ms_2048": 10.69873571395874,
+ "batched": [
+  {
+   "users": "1",
+   "impl": "Northstar exact v2",
+   "tok_s": 309.62264892050075
+  },
+  {
+   "users": "2",
+   "impl": "Northstar exact v2",
+   "tok_s": 389.7101835868983
+  },
+  {
+   "users": "4",
+   "impl": "Northstar exact v2",
+   "tok_s": 636.483050264108
+  },
+  {
+   "users": "8",
+   "impl": "Northstar exact v2",
+   "tok_s": 980.5800134641199
+  },
+  {
+   "users": "16",
+   "impl": "Northstar exact v2",
+   "tok_s": 1570.4879476308524
+  },
+  {
+   "users": "32",
+   "impl": "Northstar exact v2",
+   "tok_s": 2325.7211889758473
+  },
+  {
+   "users": "1",
+   "impl": "vLLM 0.33",
+   "tok_s": 258.2011156353676
+  },
+  {
+   "users": "2",
+   "impl": "vLLM 0.33",
+   "tok_s": 350.9480179067286
+  },
+  {
+   "users": "4",
+   "impl": "vLLM 0.33",
+   "tok_s": 524.6733469312974
+  },
+  {
+   "users": "8",
+   "impl": "vLLM 0.33",
+   "tok_s": 964.2694928899173
+  },
+  {
+   "users": "16",
+   "impl": "vLLM 0.33",
+   "tok_s": 1541.9094287685134
+  },
+  {
+   "users": "32",
+   "impl": "vLLM 0.33",
+   "tok_s": 2212.8229944413824
+  }
+ ],
+ "batched_ratio": [
+  {
+   "users": 1,
+   "ours": 309.62264892050075,
+   "vllm": 258.2011156353676,
+   "ratio": 1.1991530251858042
+  },
+  {
+   "users": 2,
+   "ours": 389.7101835868983,
+   "vllm": 350.9480179067286,
+   "ratio": 1.110449877766432
+  },
+  {
+   "users": 4,
+   "ours": 636.483050264108,
+   "vllm": 524.6733469312974,
+   "ratio": 1.2131034556772546
+  },
+  {
+   "users": 8,
+   "ours": 980.5800134641199,
+   "vllm": 964.2694928899173,
+   "ratio": 1.0169148984744087
+  },
+  {
+   "users": 16,
+   "ours": 1570.4879476308524,
+   "vllm": 1541.9094287685134,
+   "ratio": 1.0185344990627394
+  },
+  {
+   "users": 32,
+   "ours": 2325.7211889758473,
+   "vllm": 2212.8229944413824,
+   "ratio": 1.051019984344914
+  }
+ ],
+ "b32": {
+  "users": 32,
+  "ours": 2325.7211889758473,
+  "vllm": 2212.8229944413824,
+  "ratio": 1.051019984344914
+ },
+ "b1": {
+  "users": 1,
+  "ours": 309.62264892050075,
+  "vllm": 258.2011156353676,
+  "ratio": 1.1991530251858042
+ },
+ "scale": 7.5114698394464146,
+ "embedded": [
+  {
+   "mode": "adapter (stateless)",
+   "seeds": 2,
+   "P2": 1.0,
+   "P4": 0.98,
+   "P8": 0.895
+  },
+  {
+   "mode": "single shared state",
+   "seeds": 2,
+   "P2": 1.0,
+   "P4": 0.96,
+   "P8": 0.885
+  },
+  {
+   "mode": "multi (private slots + router)",
+   "seeds": 2,
+   "P2": 0.975,
+   "P4": 0.9199999999999999,
+   "P8": 0.845
+  },
+  {
+   "mode": "frozen North, nothing added",
+   "seeds": 1,
+   "P2": 0.15,
+   "P4": 0.14,
+   "P8": 0.14
+  }
+ ],
+ "embedded_bars": [
+  {
+   "entities": "P2",
+   "mode": "frozen North, nothing added",
+   "acc": 0.15
+  },
+  {
+   "entities": "P2",
+   "mode": "adapter (stateless)",
+   "acc": 1.0
+  },
+  {
+   "entities": "P2",
+   "mode": "multi (private slots + router)",
+   "acc": 0.975
+  },
+  {
+   "entities": "P4",
+   "mode": "frozen North, nothing added",
+   "acc": 0.14
+  },
+  {
+   "entities": "P4",
+   "mode": "adapter (stateless)",
+   "acc": 0.98
+  },
+  {
+   "entities": "P4",
+   "mode": "multi (private slots + router)",
+   "acc": 0.9199999999999999
+  },
+  {
+   "entities": "P8",
+   "mode": "frozen North, nothing added",
+   "acc": 0.14
+  },
+  {
+   "entities": "P8",
+   "mode": "adapter (stateless)",
+   "acc": 0.895
+  },
+  {
+   "entities": "P8",
+   "mode": "multi (private slots + router)",
+   "acc": 0.845
+  }
+ ],
+ "emb_none_p4": 0.14,
+ "emb_adapter_p4": 0.98,
+ "emb_multi_p4": 0.9199999999999999,
+ "emb_multi_p8": 0.845,
+ "emb_none_p8": 0.14
+}

@@ -1,19 +1,60 @@
-<h1 align="center">🌟 Northstar 🌟</h1>
-
 <div align="center">
 
-![license MIT](https://img.shields.io/badge/license-MIT-green) ![GPU H100](https://img.shields.io/badge/GPU-H100%2080GB-76b900?logo=nvidia&logoColor=white) ![exact decode 3.4x faster](https://img.shields.io/badge/exact%20decode-3.4x%20faster-brightgreen) ![exact decode 1.29x vLLM](https://img.shields.io/badge/exact%20decode-1.29x%20vLLM%20(same%20H100)-brightgreen) ![batched 2219 tok/s](https://img.shields.io/badge/batched-2219%20tok%2Fs-blue) ![output exact](https://img.shields.io/badge/output-bit--exact%20vs%20own%20decode-success) ![self-improvement 1.056x](https://img.shields.io/badge/North%20tunes%20itself-%2B5.6%25-orange) ![every number measured](https://img.shields.io/badge/every%20number-measured%20%26%20logged-informational)
+<img src="assets/hero.svg" alt="Northstar" width="100%">
+
+# 🌟 Northstar
+
+**Fast, exact decoding for Cohere's MoE model North on a single H100, with every number measured and logged**
+
+[![license: MIT](https://img.shields.io/badge/license-MIT-3776ab)](LICENSE) ![GPU: H100 80GB](https://img.shields.io/badge/GPU-H100%2080GB-76b900?logo=nvidia&logoColor=white) ![exact decode: 3.4x vs graphed PyTorch](https://img.shields.io/badge/exact%20decode-3.4x%20vs%20graphed%20PyTorch-3ddc97) ![vs vLLM, 1 user: 1.20x](https://img.shields.io/badge/vs%20vLLM%2C%201%20user-1.20x-3ddc97) ![32 users: 2,326 tok/s](https://img.shields.io/badge/32%20users-2%2C326%20tok%2Fs-27c8e8) ![numbers: measured and logged](https://img.shields.io/badge/numbers-measured%20and%20logged-f2c14e)
+
+[🎬 Video](#video) · [📊 Results](#results) · [🧩 How it works](#how-it-works) · [🏁 vs vLLM](#vs-vllm) · [🧬 North in North](#north-in-north) · [⚠️ Limits](#limits) · [🚀 Quick start](#quick-start) · [🗺️ Repo map](#repo-map)
 
 </div>
 
-**Fast, exact decoding for Cohere's MoE model "North" on a single H100.**
-A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossless against its own plain decode*, with every number measured, labeled and backed by raw logs in this repo.
+---
 
-## 🏆 HEADLINE: how far did we push it, and what does it mean?
+**Explainer video (voice-over and subtitles): the executor, exact speculation, batching, the vLLM comparison, and where it does not help**
 
-**In plain English:** we made the AI model **about 3.4x faster at writing text**, with **the same words coming out as its own normal decoding**, on one GPU, and it now **beats the popular serving engine vLLM on the same GPU by 29% (49% with free speculation)**. Then we asked the model to speed *itself* up. It **barely managed it (about 5%)**, so for now humans are still better at tuning it.
+[![Explainer video preview (click for the mp4)](video/preview.gif)](video/northstar_explainer.mp4)
 
-### 📈 What we got
+<a id="video"></a>
+**Fast, exact decoding for Cohere's MoE model "North" on a single H100.** A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossless against its own plain decode*,
+with every number measured, labeled and backed by raw logs in this repo. We also test two follow-ups: asking North to tune its own kernel, and embedding small trainable workers inside one frozen North forward pass.
+
+<a id="results"></a>
+
+## 📊 Results
+
+All numbers below are MEASURED on one H100 80GB, greedy decoding, up to 192 new tokens, recomputed from `results/` by `tools/readme_data.py`. Every experiment (H1-H29) with setup, tables and caveats is in [RESULTS.md](RESULTS.md).
+
+| Exact v2 vs graphed PyTorch | vs vLLM, 1 user | vs vLLM, 32 users | 32 users vs 1 user |
+|:---:|:---:|:---:|:---:|
+| **3.4x** | **1.20x** | **1.05x** | **7.5x** |
+
+**One launch on H100, greedy: graph ms per token and live tok/s (192 tokens)**
+
+| Context | Decoder | ms / token | vs baseline | live tok/s |
+| :--- | :--- | ---: | ---: | ---: |
+| ctx 2048 | PyTorch baseline (graphed) | 10.70 | 1.00x | 93 |
+| ctx 2048 | Triton executor (H9, not exact) | 3.95 | 2.71x | 250 |
+| ctx 2048 | Exact v1 | 4.58 | 2.34x | 219 |
+| ctx 2048 | Exact v2 | 3.12 | 3.43x | 319 |
+| ctx 8192 | PyTorch baseline (graphed) | 11.38 | 1.00x | 88 |
+| ctx 8192 | Triton executor (H9, not exact) | 4.06 | 2.80x | 244 |
+| ctx 8192 | Exact v1 | 4.64 | 2.45x | 214 |
+| ctx 8192 | Exact v2 | 3.33 | 3.42x | 298 |
+
+<sub>Source: `results/derived/readme_data.json`</sub>
+
+<p align="center"><img src="assets/headline_bars.svg" alt="Time per decoded token (ms), one H100 launch" width="100%"></p>
+
+<p align="center"><img src="assets/batched.svg" alt="Aggregate throughput (tok/s) vs concurrent users: Northstar vs vLLM 0.33" width="100%"></p>
+
+<p align="center"><img src="video/preview.gif" alt="animated overview of the explainer video" width="70%"></p>
+
+<details>
+<summary>Full results summary and the plain-English table (from the earlier README)</summary>
 
 | Metric | Gain | Win? | Numbers |
 |---|---|---|---|
@@ -29,8 +70,7 @@ A Triton decode executor plus zero-cost prompt-lookup speculation that is *lossl
 
 Legend: ✅ clear win · 🟡 small or partial win · ➖ tie · ❌ no win. The x is the ratio against the stated baseline (higher is better; 1.00x = no change).
 
-### 💡 What that means
-
+### What that means
 | Metric | In plain English |
 |---|---|
 | ⚡ Speed | Replies show up roughly 3.4x sooner. Same hardware, same model, same answers. |
@@ -43,9 +83,10 @@ Legend: ✅ clear win · 🟡 small or partial win · ➖ tie · ❌ no win. The
 
 **Honest bottom line:** ✅ big, verified speed-ups for running North, now ahead of stock vLLM on the same H100 for one user, for static batches up to 32, and under most arrival rates we tested. ❌ no evidence yet that the model can make itself dramatically faster. Details, failures and caveats below. 👇
 
-![Northstar results summary: decode latency, exact speculation, batching, and a vLLM comparison](docs/img/summary.png)
+</details>
 
-## 📊 Detailed headline results
+<details>
+<summary>Detailed headline results (H9-H29)</summary>
 
 All numbers are MEASURED on one H100 80GB, greedy decoding, up to 192 new tokens. Full tables, methods and caveats are in [`RESULTS.md`](RESULTS.md).
 
@@ -71,6 +112,98 @@ All numbers are MEASURED on one H100 80GB, greedy decoding, up to 192 new tokens
 
 **Exact mode** uses batch-invariant kernels, so speculative output equals the same executor's plain greedy output on 70/70 runs (and 14/14 at every tested context up to 128K). It is **not** bit-identical to Hugging Face `generate`.
 
+</details>
+
+**Exact mode** uses batch-invariant kernels, so speculative output equals the same executor's plain greedy output on 70/70 runs (and 14/14 at every tested context up to 128K). It is **not** bit-identical to Hugging Face `generate`.
+
+<a id="how-it-works"></a>
+
+## 🧩 How it works
+
+Plain decode runs through a Triton executor that overlaps the attention and MoE branches on separate CUDA streams with H100-tuned tiles; the kernels are batch-invariant so a request's tokens never depend on its neighbours; speculation by prompt lookup (PLD) is cost-capped and its index is built during prefill.
+
+The project started as *North improving North*: weight-stream-fused self-speculation on a persistent-kernel VM, with zero new weights, where North drafts, verifies and proposes its own optimizations. The pre-registered kill gate ([`docs/THESIS.md`](docs/THESIS.md)) was not met, and the work that held up is the executor and the exact prompt-lookup speculation above. Related work is in [`PRIOR_ART.md`](PRIOR_ART.md) and the design in [`DESIGN.md`](DESIGN.md).
+
+Code is MIT ([`LICENSE`](LICENSE)). The prompts in `harness/workloads_real/realtraffic.jsonl` come from public datasets and keep their own licenses; see [`harness/workloads_real/LICENSES.md`](harness/workloads_real/LICENSES.md). The model weights are Cohere's and are not distributed here.
+
+<p align="center"><img src="assets/flow.svg" alt="Northstar decode stack" width="100%"></p>
+
+<a id="vs-vllm"></a>
+
+## 🏁 Against vLLM
+
+Same H100, same container, same prompts (H25, `results/vxb_vxb1_*`). vLLM numbers are its decode aggregate throughput.
+
+**Batched aggregate throughput, Northstar exact v2 vs stock vLLM 0.33, same H100 container**
+
+| Concurrent users | Northstar (tok/s) | vLLM (tok/s) | Ratio |
+| ---: | ---: | ---: | ---: |
+| 1 | 310 | 258 | 1.20x |
+| 2 | 390 | 351 | 1.11x |
+| 4 | 636 | 525 | 1.21x |
+| 8 | 981 | 964 | 1.02x |
+| 16 | 1,570 | 1,542 | 1.02x |
+| 32 | 2,326 | 2,213 | 1.05x |
+
+<sub>Source: `results/derived/readme_data.json`</sub>
+
+Continuous batching under Poisson arrivals, long-context and the serving engine results are in [RESULTS.md](RESULTS.md) (H26-H28).
+
+<a id="north-in-north"></a>
+
+## 🧬 North in North
+
+Small trainable worker modules inside one frozen North forward pass (H23, Modal A100-80GB, 1,500 steps, 100 eval items per cell, 2 seeds per trained mode). Capability test on a state-tracking task, not a speed test.
+
+**North in North (H23): accuracy by number of entities, chance 0.10**
+
+| Mode | Seeds | 2 entities | 4 | 8 |
+| :--- | ---: | ---: | ---: | ---: |
+| adapter (stateless) | 2 | 1.00 | 0.98 | 0.90 |
+| single shared state | 2 | 1.00 | 0.96 | 0.89 |
+| multi (private slots + router) | 2 | 0.97 | 0.92 | 0.84 |
+| frozen North, nothing added | 1 | 0.15 | 0.14 | 0.14 |
+
+<sub>Source: `results/derived/readme_data.json`</sub>
+
+<p align="center"><img src="assets/embedded_bars.svg" alt="Embedded workers inside frozen North: accuracy by number of entities (chance 0.10)" width="100%"></p>
+
+<details>
+<summary>Two meanings of North inside North, and the Qwen-side related benchmarks</summary>
+
+1. **Outside helpers (what H22 tested).** North is called several times from outside, each call with a different role prompt (planner, four specialists, selector). This is how most agent frameworks make "subagents". Result above: no gain on average.
+2. **Embedded (H23, tested on North).** Small trainable worker modules live *inside* one frozen North forward pass: private recurrent state, a learned router, and a return channel into the residual stream (tapped after layer 12 of 49); no prompts, no extra calls. This is what our sister project [qwenagent](https://github.com/Bobliuuu/qwenagent) built on Qwen3-0.6B; H23 ports it to North. It was tested on a state-tracking task (ledger), **not** on the kernel-speedup task, so it says nothing yet about North making itself faster.
+
+### H23 results: embedded workers inside frozen North (MEASURED, Modal A100-80GB, 1,500 steps, 100 eval items per cell)
+Trained on 2-3 entities, tested on 2-8. Accuracy (chance is 0.10):
+
+| Mode | seeds | P=2 | P=3 | P=4 | P=6 | P=8 | zero the return signal (P=4) |
+|---|---|---|---|---|---|---|---|
+| frozen North, nothing added | 1 | 0.15 | 0.14 | 0.14 | 0.10 | 0.14 | n/a |
+| adapter (stateless add-on, 970k params) | 2 | 1.00 | 0.98 / 1.00 | 0.97 / 0.99 | 0.96 / 0.95 | 0.90 / 0.89 | 0.14 |
+| single shared state (837k) | 2 | 1.00 | 0.98 / 0.97 | 0.95 / 0.97 | 0.93 / 0.95 | 0.85 / 0.92 | 0.14 |
+| **multi: private slots + learned router (the embedded "subagents", 837k)** | 2 | 0.99 / 0.96 | 0.97 / 0.94 | 0.94 / 0.90 | 0.93 / 0.93 | 0.85 / 0.84 | 0.14 |
+
+(two numbers = seed 0 / seed 1.) Findings: (1) Embedding works on North: frozen North is at chance (0.10-0.15) and every trained mode reaches 0.84-1.00 on up to 8 entities, even though training used 2-3. (2) The answer flows through the workers: zeroing the return signal sends every mode back to 0.14. (3) Private slots do not help: mean at P=8 is adapter 0.895, single 0.885, multi 0.845; mean at P=4 is 0.98 / 0.96 / 0.92. The router is only partly clean (purity at P=4: 0.84 seed 0, 0.54 seed 1) and the multi arm is the least stable, as in qwenagent on Qwen. (4) Long sequences (P=4, more updates per entity) are hard for all modes (0.31-0.54), same wall as in qwenagent.
+Caveats: 2 seeds per trained mode, 1 for frozen; one task family; accuracy cells have about +-0.05 binomial noise at n=100; capability test only, no speed measurement. Code: modal/embedded_north_run.py, src/embedded/. Raw: results/embedded_main_20261112T144436Z.json, logs/embedded_main_vol/ (per-run logs, results, worker checkpoints). Cost about $4.3 GPU time.
+
+These are results from the embedded approach on a different model (frozen Qwen3-0.6B up to 4B) and a different task (interleaved register / ledger tracking). They are the nearest evidence for what embedding would do, not evidence about North.
+
+| Benchmark | Result | Win? |
+|---|---|---|
+| Embedding trainable workers in a frozen Qwen works at all | chance → well above chance; zeroing the return channel sends it back to chance | ✅ WIN |
+| Random register names make tracking generalise (q7, 5 seeds) | trained on 2-3 registers, still well above chance at 16 | ✅ WIN |
+| Private slots vs a shared state or stateless adapter (q7, q9, 5 seeds) | no advantage: 16 registers `adapter` 28.4, `single` 27.3, `multi` 25.6, `oracle` 19.6 (%) | ❌ NO WIN |
+| Workers vs LoRA of about 441k parameters (q10, 5 seeds) | mean accuracy `multi` 0.410 vs LoRA 0.394 vs `adapter` 0.458 | ➖ TIE |
+| Realistic ledger task (q12) | trained modes ≥0.88 at P=2-3 (frozen Qwen at chance); at P=12 `single` 0.53 vs `multi` 0.39 | 🟡 PARTIAL |
+| Scale (q13) | `adapter` at P=4: 54% / 58% / 72% for 0.6B / 1.7B / 4B; `multi` falls further behind at 4B | 🟡 PARTIAL |
+
+Takeaway: embedding extra modules inside a frozen model is feasible, but the "private subagent slots" part did not beat simpler baselines. Source: qwenagent `README.md` and `results/`.
+
+</details>
+
+<a id="limits"></a>
+
 ## ⚠️ Where it does not help
 
 We report these as plainly as the wins.
@@ -87,14 +220,18 @@ We report these as plainly as the wins.
 
 ![Best-so-far dev speedup per round (closed loop): standard autotuner, North alone, North with North helpers called from outside](docs/img/north_in_north.png)
 
-## 🔍 Scope and caveats
+<details>
+<summary>Scope and caveats</summary>
 
 Terms: **PLD** is prompt-lookup decoding (drafting tokens by copying matching spans from the prompt); **exact mode** means speculative output equals the same executor's plain greedy output.
 
-
 One model (`CohereLabs/North-Mini-Code-1.0`, pinned revision), one GPU type for the headline numbers (H100; some kernel sweeps on A100-80GB), greedy decoding only, no sampling path. Single launches per configuration; absolute tok/s moves by up to about 10% between hosts, so compare ratios inside one launch first. Every claim in `RESULTS.md` is tagged MEASURED, INFERRED or SIMULATED. The self-improvement comparison ran only OpenAI models as external proposers; Anthropic, Google and other models were not tested.
 
-## 🚀 Quick start (CPU only, no GPU or weights needed)
+</details>
+
+<a id="quick-start"></a>
+
+## 🚀 Quick start
 
 ```bash
 make setup     # venv with the pinned versions from SETUP.md
@@ -119,7 +256,9 @@ stats = ce.run(reqs)                           # each request's tokens == the sa
 
 GPU runs go through [Modal](https://modal.com) and are launched with `modal run --detach`; see [`SETUP.md`](SETUP.md) for pins and [`RUNS.md`](RUNS.md) for the run ledger.
 
-## 🗺️ Repository map
+<a id="repo-map"></a>
+
+## 🗺️ Repo map
 
 | Path | What is in it |
 |---|---|
@@ -133,43 +272,6 @@ GPU runs go through [Modal](https://modal.com) and are launched with `modal run 
 | `RESULTS.md` | Every experiment (H1–H28): setup, tables, findings, caveats |
 | `NEXT_STEPS.md` | Current status and the next experiments |
 
-## 🧬 Two meanings of "North inside North"
+---
 
-1. **Outside helpers (what H22 tested).** North is called several times from outside, each call with a different role prompt (planner, four specialists, selector). This is how most agent frameworks make "subagents". Result above: no gain on average.
-2. **Embedded (H23, tested on North).** Small trainable worker modules live *inside* one frozen North forward pass: private recurrent state, a learned router, and a return channel into the residual stream (tapped after layer 12 of 49); no prompts, no extra calls. This is what our sister project [qwenagent](https://github.com/Bobliuuu/qwenagent) built on Qwen3-0.6B; H23 ports it to North. It was tested on a state-tracking task (ledger), **not** on the kernel-speedup task, so it says nothing yet about North making itself faster.
-
-### H23 results: embedded workers inside frozen North (MEASURED, Modal A100-80GB, 1,500 steps, 100 eval items per cell)
-Trained on 2-3 entities, tested on 2-8. Accuracy (chance is 0.10):
-
-| Mode | seeds | P=2 | P=3 | P=4 | P=6 | P=8 | zero the return signal (P=4) |
-|---|---|---|---|---|---|---|---|
-| frozen North, nothing added | 1 | 0.15 | 0.14 | 0.14 | 0.10 | 0.14 | n/a |
-| adapter (stateless add-on, 970k params) | 2 | 1.00 | 0.98 / 1.00 | 0.97 / 0.99 | 0.96 / 0.95 | 0.90 / 0.89 | 0.14 |
-| single shared state (837k) | 2 | 1.00 | 0.98 / 0.97 | 0.95 / 0.97 | 0.93 / 0.95 | 0.85 / 0.92 | 0.14 |
-| **multi: private slots + learned router (the embedded "subagents", 837k)** | 2 | 0.99 / 0.96 | 0.97 / 0.94 | 0.94 / 0.90 | 0.93 / 0.93 | 0.85 / 0.84 | 0.14 |
-
-(two numbers = seed 0 / seed 1.) Findings: (1) Embedding works on North: frozen North is at chance (0.10-0.15) and every trained mode reaches 0.84-1.00 on up to 8 entities, even though training used 2-3. (2) The answer flows through the workers: zeroing the return signal sends every mode back to 0.14. (3) Private slots do not help: mean at P=8 is adapter 0.895, single 0.885, multi 0.845; mean at P=4 is 0.98 / 0.96 / 0.92. The router is only partly clean (purity at P=4: 0.84 seed 0, 0.54 seed 1) and the multi arm is the least stable, as in qwenagent on Qwen. (4) Long sequences (P=4, more updates per entity) are hard for all modes (0.31-0.54), same wall as in qwenagent.
-Caveats: 2 seeds per trained mode, 1 for frozen; one task family; accuracy cells have about +-0.05 binomial noise at n=100; capability test only, no speed measurement. Code: modal/embedded_north_run.py, src/embedded/. Raw: results/embedded_main_20261112T144436Z.json, logs/embedded_main_vol/ (per-run logs, results, worker checkpoints). Cost about $4.3 GPU time.
-
-## 📚 Related benchmarks: embedded subagents inside Qwen (qwenagent, NOT North)
-
-These are results from the embedded approach on a different model (frozen Qwen3-0.6B up to 4B) and a different task (interleaved register / ledger tracking). They are the nearest evidence for what embedding would do, not evidence about North.
-
-| Benchmark | Result | Win? |
-|---|---|---|
-| Embedding trainable workers in a frozen Qwen works at all | chance → well above chance; zeroing the return channel sends it back to chance | ✅ WIN |
-| Random register names make tracking generalise (q7, 5 seeds) | trained on 2-3 registers, still well above chance at 16 | ✅ WIN |
-| Private slots vs a shared state or stateless adapter (q7, q9, 5 seeds) | no advantage: 16 registers `adapter` 28.4, `single` 27.3, `multi` 25.6, `oracle` 19.6 (%) | ❌ NO WIN |
-| Workers vs LoRA of about 441k parameters (q10, 5 seeds) | mean accuracy `multi` 0.410 vs LoRA 0.394 vs `adapter` 0.458 | ➖ TIE |
-| Realistic ledger task (q12) | trained modes ≥0.88 at P=2-3 (frozen Qwen at chance); at P=12 `single` 0.53 vs `multi` 0.39 | 🟡 PARTIAL |
-| Scale (q13) | `adapter` at P=4: 54% / 58% / 72% for 0.6B / 1.7B / 4B; `multi` falls further behind at 4B | 🟡 PARTIAL |
-
-Takeaway: embedding extra modules inside a frozen model is feasible, but the "private subagent slots" part did not beat simpler baselines. Source: qwenagent `README.md` and `results/`.
-
-## Background
-
-The project started as *North improving North*: weight-stream-fused self-speculation on a persistent-kernel VM, with zero new weights, where North drafts, verifies and proposes its own optimizations. The pre-registered kill gate ([`docs/THESIS.md`](docs/THESIS.md)) was not met, and the work that held up is the executor and the exact prompt-lookup speculation above. Related work is in [`PRIOR_ART.md`](PRIOR_ART.md) and the design in [`DESIGN.md`](DESIGN.md).
-
-## License
-
-Code is MIT ([`LICENSE`](LICENSE)). The prompts in `harness/workloads_real/realtraffic.jsonl` come from public datasets and keep their own licenses; see [`harness/workloads_real/LICENSES.md`](harness/workloads_real/LICENSES.md). The model weights are Cohere's and are not distributed here.
+<div align="center"><sub>Generated with [video-readme-maker](https://github.com/Bobliuuu/video-readme-maker).</sub></div>
