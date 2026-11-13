@@ -14,6 +14,8 @@ readme_out: README.md
 assets_dir: assets
 badges:
   - {label: license, message: MIT, color: 3776ab, link: LICENSE}
+  - {label: release, message: v0.2.0, color: 3ddc97, link: "https://github.com/Bobliuuu/north-star/releases/tag/v0.2.0"}
+  - {label: "🤗 adapters", message: Bobliu/north-star, color: f2c14e, link: "https://huggingface.co/Bobliu/north-star"}
   - {label: GPU, message: "H100 80GB", color: 76b900, logo: nvidia}
   - {label: exact decode, message: "{{ n.v2_x }} vs graphed PyTorch", color: 3ddc97}
   - {label: "vs vLLM, 1 user", message: "{{ n.b1_ratio }}", color: 3ddc97}
