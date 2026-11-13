@@ -166,3 +166,4 @@ printed line below (git history of this file is the anchor). Verify before trust
 | 2026-11-12 | ap-ul2ctFPWt9LizQdynmJ7Ng | `modal run --detach modal/vllm_vs_x2.py::cb --tag cb3 --prefills graph,single` | H27 main: graph + single prefill vs vLLM, same container; results/vxcb_cb3_* |
 | 2026-11-12 | ap-BkRkt4juTIT9t0yiJ2MDc8 | `modal run --detach modal/prof_prefill_run.py::main --tag inv1 --what probe` | H28 row-invariance probe of prefill components (layer 1, 300 vs 8192 rows); results/prefill_inv1.jsonl |
 | 2026-11-12 | ap-F1426mDCLEUcZzSm3AVSzd | `modal run --detach modal/vllm_vs_x2.py::cb --tag cb4 --prefills batched_inv,graph` | H28 batch-invariant batched prefill + graph prefill vs vLLM, same container; results/vxcb_cb4_* |
+| 2026-11-12 | ap-6nmyBBq9bFnTn1r6ir2cN0 | `modal run --detach modal/headline_run.py::main --tag hl1` | H29 same-launch headline: base / H9 fast / exact v1 / exact v2 at ctx 2K and 8K; results/headline_hl1.jsonl |

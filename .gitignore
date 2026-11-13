@@ -2,8 +2,6 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .venv/
-__pycache__/
-*.pyc
 src/kvm/replay_input.txt
 .w1work/
 .cache_tok/

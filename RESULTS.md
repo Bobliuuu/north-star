@@ -563,3 +563,13 @@ Probe first (inv1, harness/probe_inv.py, real layer-1 weights): rows of a 300-ro
 | all at t=0 | 2246.3 | 1720.2 | 1941.4 | **1.16x** | 4.17 / 4.34 | 1.85 / 1.65 | 64/64 / 64/64 |
 Findings: (1) Request independence and batched prefill are compatible: every request equals its isolated decode at every rate, and saturated throughput rises 1.31x over the graphed per-request prefill, from 0.91x to 1.16x of vLLM. (2) At 8-16 req/s vLLM still has lower mean latency (its chunked prefill interleaves with decode; ours blocks), and at 16 req/s throughput is 0.98x. (3) The invariance of cuBLAS and grouped_mm is MEASURED at these shapes (and end to end on 64 x 5 requests), not guaranteed by the libraries; the Triton lin_bt / eg5 kernels are invariant by construction and are the fallback (lin_bt 0.54 vs 0.23 ms, eg5 6.2 vs 2.3 ms per 8192-row layer).
 Caveats: one launch; 64 requests per rate; prompts <= 1.7K tokens; prefill still blocks decode. Runs: inv1, cb4 (RUNS.md, results/SPEND.md, ~$0.7 est.).
+
+## H29: headline re-measured in one launch: graphed-PyTorch baseline vs the H9 executor vs exact v1 vs exact v2 (MEASURED, Modal H100 80GB HBM3, greedy)
+The README's "2.7x" (H9) and the exact-v2 figures came from different launches. harness/bench_headline.py repeats H9's setup exactly (dev code prompt padded to ctx 2048 / 8192, T=1 CUDA-graph replay, median of 50) for all four decoders on the same KV and host, plus a 192-token live decode each (modal/headline_run.py, run hl1, results/headline_hl1.jsonl, 72 s, ~$0.08).
+| decoder | ctx 2048 graph ms | vs base | live tok/s | ctx 8192 graph ms | vs base | live tok/s |
+|---|---|---|---|---|---|---|
+| GraphNorth bmm (H2/H5 baseline) | 10.699 | 1.00x | 93.3 | 11.379 | 1.00x | 87.6 |
+| FastNorth non-exact, all options (H9 executor) | 3.952 | 2.71x | 249.7 | 4.064 | 2.80x | 244.1 |
+| FastNorth exact v1 (H14) | 4.579 | 2.34x | 218.9 | 4.640 | 2.45x | 214.4 |
+| FastNorth exact v2 (H24) | 3.118 | **3.43x** | 318.6 | 3.326 | **3.42x** | 297.8 |
+H9's 2.7x reproduces (2.71x, 10.73 -> 10.70 ms base). Exact v2 is 3.4x the baseline at both contexts and 1.27x / 1.22x faster than the non-exact H9 executor while being exact; its 192 greedy tokens equal exact v1's at both contexts.
