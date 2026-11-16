@@ -214,8 +214,8 @@ class FastNorth(GraphNorth):
                 else:
                     f2.lin_x2(h, mlp.gate.weight, b["lg"])
                     fk.router_topk(b["lg"], b["idx"], b["sc"], k)
-                if getattr(self, "moe_cuda", None) is not None:  # src/kvm/moe_fused.cu through harness/moe_cuda.py (T == 1 only)
-                    assert T == 1, "moe_cuda is a T=1 decode path"
+                if getattr(self, "moe_cuda", None) is not None:  # external MoE: harness/moe_cuda.MoeCuda (T == 1) or moe_triton.MoeTriton
+                    assert T == 1 or getattr(self.moe_cuda, "det", False), "only a deterministic (det=True) MoE may run exact verify blocks"
                     m = self.moe_cuda(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj)
                 elif getattr(self, "moe_fused", None) is not None:
                     if "part" not in b:
