@@ -108,6 +108,14 @@ static_assert(UNROLL_KS >= 1 && UNROLL_KS <= 128, "UNROLL_KS must be in [1,128]"
 static_assert((MAXTOK * LDX + MAXTOK * LDH) * 2 + 4 * 256 * 4 + MAXTOK * 8 <= 48 * 1024, "static smem must fit in 48KB");
 constexpr size_t EXPERT_BYTES = (size_t)3 * I * H * 2;
 
+// NS_NORTH_LAYOUT: read North's HF expert tensors in place (no weight copies), for the decode-path extension
+// (harness/moe_cuda.py): wg = gate_up [E, 2I, H] (gate rows 0..I-1, up rows I..2I-1; wu is ignored), wd = down [E, H, I].
+// Default layout (this file's bench/check/replay modes): wg, wu [E, I, H] and wd [E, I, H].
+#ifdef NS_NORTH_LAYOUT
+constexpr size_t GU_ESTRIDE = (size_t)2 * I * H;   // elements between experts in gate_up
+#else
+constexpr size_t GU_ESTRIDE = (size_t)I * H;
+#endif
 #if NS_LDSM
 // A fragment (16x16 bf16, row-major in shared) by one ldmatrix.x4 instead of wmma::load_matrix_sync's four loads.
 // Lanes 0-7 address rows 0-7 at k 0, 8-15 rows 8-15 at k 0, 16-23 rows 0-7 at k 8, 24-31 rows 8-15 at k 8.
@@ -141,13 +149,20 @@ __device__ __forceinline__ void run_item(const bf16* __restrict__ x, const bf16*
     const int cnt = t.pair_cnt;
     if (tid < cnt) { srow[tid] = prow[t.pair_off + tid]; sw[tid] = pw[t.pair_off + tid]; }
     __syncthreads();
-    const size_t wbase = ((size_t)t.expert * I + (size_t)t.slice * SL) * H;
+    const size_t wbase = ((size_t)t.expert * I + (size_t)t.slice * SL) * H;             // default-layout down slice
+#ifdef NS_NORTH_LAYOUT
+    const size_t gbase = (size_t)t.expert * GU_ESTRIDE + (size_t)t.slice * SL * H;
+    const bf16* const wup = wg + (size_t)I * H;                                           // up rows follow the gate rows
+#else
+    const size_t gbase = wbase;
+    const bf16* const wup = wu;
+#endif
     // ---- stage 1: gate/up for j-tile `warp` (16 intermediate cols), all tokens ----
     wmma::fragment<wmma::accumulator, 16, 16, 16, float> ag[MT], au[MT];
 #pragma unroll
     for (int m = 0; m < MT; ++m) { wmma::fill_fragment(ag[m], 0.f); wmma::fill_fragment(au[m], 0.f); }
-    const bf16* gp = wg + wbase + (size_t)warp * 16 * H;
-    const bf16* up = wu + wbase + (size_t)warp * 16 * H;
+    const bf16* gp = wg + gbase + (size_t)warp * 16 * H;
+    const bf16* up = wup + gbase + (size_t)warp * 16 * H;
     for (int kc = 0; kc < H; kc += KC) {
         __syncthreads();
         for (int i = tid; i < MT * 16 * (KC / 8); i += blockDim.x) {
@@ -187,7 +202,11 @@ __device__ __forceinline__ void run_item(const bf16* __restrict__ x, const bf16*
     }
     __syncthreads();
     // ---- stage 2: partial down projection of this slice, accumulate into out with routing weight ----
+#ifdef NS_NORTH_LAYOUT
+    const bf16* dp = wd + (size_t)t.expert * H * I + (size_t)t.slice * SL;  // B(k = slice col, n = h) at dp[n * I + k]: col-major, ld I
+#else
     const bf16* dp = wd + wbase;
+#endif
 #pragma unroll UNROLL_NT
     for (int nt = warp; nt < H / 16; nt += 4) {
         wmma::fragment<wmma::accumulator, 16, 16, 16, float> ac[MT];
@@ -195,8 +214,13 @@ __device__ __forceinline__ void run_item(const bf16* __restrict__ x, const bf16*
         for (int m = 0; m < MT; ++m) wmma::fill_fragment(ac[m], 0.f);
 #pragma unroll UNROLL_S2
         for (int ks = 0; ks < SL / 16; ++ks) {
+#ifdef NS_NORTH_LAYOUT
+            wmma::fragment<wmma::matrix_b, 16, 16, 16, bf16, wmma::col_major> b;
+            wmma::load_matrix_sync(b, dp + (size_t)nt * 16 * I + ks * 16, I);
+#else
             wmma::fragment<wmma::matrix_b, 16, 16, 16, bf16, wmma::row_major> b;
             wmma::load_matrix_sync(b, dp + (size_t)ks * 16 * H + nt * 16, H);
+#endif
 #pragma unroll
             for (int m = 0; m < MT; ++m) {
                 wmma::fragment<wmma::matrix_a, 16, 16, 16, bf16, wmma::row_major> a;
@@ -232,6 +256,7 @@ __global__ void __launch_bounds__(128, MINB_EFF) moe_kernel(const bf16* __restri
     else run_item<1>(x, wg, wu, wd, t, prow, pw, out, xs, hs, scratch, srow, sw);
 }
 
+#ifndef NS_KERNEL_ONLY   // the extension (harness/moe_cuda.py) builds only the kernel above
 __global__ void fill_bf16(bf16* p, size_t n, uint32_t seed, float scale) {
     for (size_t i = blockIdx.x * (size_t)blockDim.x + threadIdx.x; i < n; i += (size_t)gridDim.x * blockDim.x) {
         uint32_t h = (uint32_t)i * 2654435761u ^ (uint32_t)(i >> 32) * 40503u ^ seed * 97531u;
@@ -554,3 +579,4 @@ int main(int argc, char** argv) {
     fprintf(stderr, "done %d configs\n", ncfg);
     return 0;
 }
+#endif  // NS_KERNEL_ONLY

@@ -142,7 +142,8 @@ class FastNorth(GraphNorth):
     # ------------------------------------------------------------------ exact v2 (branch perf/exact-decode)
     def _x2_state(self, T):
         key = ("x2", T, getattr(self, "mp_min", None), tuple(sorted((getattr(self, "attn_kw", None) or {}).items())),
-               tuple(sorted((getattr(self, "moe_fused", None) or {}).items())), getattr(self, "moe_fused", None) is None)
+               tuple(sorted((getattr(self, "moe_fused", None) or {}).items())), getattr(self, "moe_fused", None) is None,
+               id(getattr(self, "moe_cuda", None)))
         if key not in self._x:
             b = dict(self._x_state(T))  # share the v1 attention workspace / MoE buffers
             z = lambda *s: torch.zeros(*s, dtype=torch.bfloat16, device=self.dev)
@@ -210,7 +211,10 @@ class FastNorth(GraphNorth):
                 else:
                     f2.lin_x2(h, mlp.gate.weight, b["lg"])
                     fk.router_topk(b["lg"], b["idx"], b["sc"], k)
-                if getattr(self, "moe_fused", None) is not None:
+                if getattr(self, "moe_cuda", None) is not None:  # src/kvm/moe_fused.cu through harness/moe_cuda.py (T == 1 only)
+                    assert T == 1, "moe_cuda is a T=1 decode path"
+                    m = self.moe_cuda(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj)
+                elif getattr(self, "moe_fused", None) is not None:
                     if "part" not in b:
                         J = cfg.intermediate_size // dict(f2.FUSED_MOE_CFG, **self.moe_fused)["BJ"]
                         b["part"] = torch.zeros(T * k * J, self.Dm, dtype=torch.float32, device=self.dev)
