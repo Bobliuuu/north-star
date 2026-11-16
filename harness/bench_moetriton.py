@@ -20,6 +20,21 @@ N_NEW = 192
 VARIANTS = tuple(__import__("os").environ.get("NS_TRI_VARIANTS", "tri_fast,tri_fast_atomic,tri_fused,tri_det,tri_atomic").split(","))
 
 
+def _x2kw(Lmax, name=""):
+    """exact v2's set_x2 kwargs; '@p0' / '@pm1' in the decoder name = MoE on its own stream at priority 0 / -1 (overlap split).
+    On sm_120 (99 KB of shared memory) every lin/MoE tile keeps its shape and k order but runs at most 2 pipeline stages:
+    stages never change a row's k16 accumulation order, so the numerics are those of the shipped exact v2."""
+    kw = dict(f2.recommended(Lmax))
+    if "@p0" in name:
+        kw["moe_prio"] = 0
+    elif "@pm1" in name:
+        kw["moe_prio"] = -1
+    if torch.cuda.get_device_capability()[0] >= 12:
+        kw["lin_cfg"] = {sh: dict(c, ns=min(c.get("ns", 2), 2)) for sh, c in kw["lin_cfg"].items()}
+        kw["moe_cfg"] = dict(kw["moe_cfg"], ns1=min(kw["moe_cfg"]["ns1"], 2), ns2=min(kw["moe_cfg"]["ns2"], 2))
+    return kw
+
+
 class _Comb:
     """For op checks only: sum MoeTriton(fused=True)'s per-(slot, slice) partials to one row per token."""
     def __init__(self, mi):
@@ -118,7 +133,13 @@ def run(m, tok, parts="AB", ctxs=(2048, 8192), n_tasks=4, TMAX=13, cfg=None):
     impls = {"tri_fast": mk(True, True, "kernel"), "tri_fast_sl32": mksl(True), "tri_fast_atomic_sl32": mksl(False), "tri_fast_s3": mks(3), "tri_fast_s2": mks(2), "tri_fast_atomic": mk(False, True),
              "tri_fused": mk(True, True), "tri_det": mk(True), "tri_atomic": mk(False)}
     impls = {k: v for k, v in impls.items() if k in VARIANTS}
-    j.add(phase="config", cfg={k: dict(v.cfg, det=v.det, fused=v.fused, reduce=v.reduce) for k, v in impls.items()}, triton=__import__("triton").__version__)
+    for spec in VARIANTS:   # grammar variants (moe_triton.from_spec), optionally with '@p0' / '@pm1' = MoE stream priority 0 / -1
+        base_spec = spec.split("@")[0]
+        if spec not in impls and base_spec.split("_")[0] in ("d", "a", "m"):
+            impls[spec] = impls.get(base_spec) or moe_triton.from_spec(base_spec, c.hidden_size, c.intermediate_size, c.num_experts_per_tok, dev)
+    bases = ["exact_v2"] + [b for b in __import__("os").environ.get("NS_TRI_BASES", "").split(",") if b]
+    j.add(phase="config", cfg={k: dict(v.cfg, det=v.det, fused=v.fused, reduce=v.reduce, sl=v.sl, kind=type(v).__name__) for k, v in impls.items()},
+          bases=bases, triton=__import__("triton").__version__)
     code = [r for r in by_split(load_workloads(), "dev") if r["kind"] == "code"]
     ids0 = build_ids(tok, code[0], 2048)
     for name, mi in impls.items():
@@ -143,10 +164,10 @@ def run(m, tok, parts="AB", ctxs=(2048, 8192), n_tasks=4, TMAX=13, cfg=None):
                 base = GraphNorth(ref, Lmax, "bmm"); kv = base.new_kv()
                 stp = {}
                 nost = __import__("os").environ.get("NS_TRI_NOSTREAM") == "1"   # diagnostic: also every decoder with streams off
-                for name in ["exact_v2"] + list(impls):
+                for name in bases + list(impls):
                     for streams in ((True, False) if nost else (True,)):
-                        d = FastNorth(ref, Lmax, exact=True); d.set_x2(**dict(f2.recommended(Lmax), streams=streams))
-                        if name != "exact_v2":
+                        d = FastNorth(ref, Lmax, exact=True); d.set_x2(**dict(_x2kw(Lmax, name), streams=streams))
+                        if name in impls:
                             d.moe_cuda = impls[name]
                         base.eager_prefill(ids[:-1], kv)
                         stp[name + ("" if streams else "_nostream")] = d.make_step(1, kv)
@@ -171,9 +192,9 @@ def run(m, tok, parts="AB", ctxs=(2048, 8192), n_tasks=4, TMAX=13, cfg=None):
                 ids = build_ids(tok, code[0], ctx); P = len(ids); Lmax = P + N_NEW + 64
                 base = GraphNorth(ref, Lmax, "bmm"); kv = base.new_kv()
                 decs = {}
-                for name in ["exact_v2"] + list(impls):
-                    d = FastNorth(ref, Lmax, exact=True); d.set_x2(**f2.recommended(Lmax))
-                    if name != "exact_v2":
+                for name in bases + list(impls):
+                    d = FastNorth(ref, Lmax, exact=True); d.set_x2(**_x2kw(Lmax, name))
+                    if name in impls:
                         d.moe_cuda = impls[name]
                     decs[name] = d
                 res, toks = {}, {}

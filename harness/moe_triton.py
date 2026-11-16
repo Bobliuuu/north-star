@@ -180,13 +180,104 @@ class MoeTriton(WorkTables):
 
 
 def recommended(dm, i_dim, k, dev, Lmax, exact):
-    """The measured per-chip choice (RESULTS H32, H100 / B200 / RTX PRO 6000), or None where north-star's own Triton MoE is as
+    """The measured per-chip choice (RESULTS H32/H33, H100 / B200 / RTX PRO 6000), or None where north-star's own Triton MoE is as
     fast or faster. exact=True: deterministic only (fixed-order reduce). Opt-in: FastNorth.moe_cuda = recommended(...)."""
     mj, _ = torch.cuda.get_device_capability()
     if exact:
         if mj == 10:   # B200: 1.028x at ctx 2048 (SL 64), 1.037x at ctx 8192 (SL 32, shorter CTAs leave room for the attention stream)
             return MoeTriton(dm, i_dim, k, dev, det=True, fused=True, reduce="kernel", sl=64 if Lmax <= 4096 else 32)
-        return None    # H100: tie at 2048, 0.95x at 8192; RTX PRO 6000: exact v2 itself does not fit (lin_x2 shared memory)
+        return None    # H100: tie at 2048, 0.96x at 8192 (H33: no knob fixes it); RTX PRO 6000: 0.97-0.98x
     if mj in (9, 10, 12):  # non-exact executor: fp32 atomics, in-kernel work lists
         return MoeTriton(dm, i_dim, k, dev, det=False, fused=True, sl=32 if (mj == 10 and Lmax > 4096) else 64)
     return None
+
+
+# ---------------------------------------------------------------- token-identical variant (exact v2's MoE rounding and reduction order)
+@triton.jit
+def _gateup_match(x_ptr, gu_ptr, task_ptr, prow_ptr, idx_ptr, pidx_ptr, h_ptr, H: tl.constexpr, I: tl.constexpr, SL: tl.constexpr,
+                  NS: tl.constexpr, BK: tl.constexpr, TP: tl.constexpr, T1: tl.constexpr):
+    """The port's gate/up stage (one program per (expert group, SL-column slice of I), rows = the group's tokens) with
+    fast_kernels_blk._gateup_blk's exact numerics: W as the MMA A operand, fp32 over all of H in BK chunks, g / u / silu / h
+    rounded to bf16 at the same points. Writes h[(token*k + slot), I] like _gateup_blk, so _down_blk can follow unchanged."""
+    pid = tl.program_id(0)
+    if T1:
+        e = tl.load(idx_ptr + pid // NS)
+        s = pid % NS
+        off = pid // NS
+        cnt = 1
+    else:
+        e = tl.load(task_ptr + pid * 8 + 0)
+        s = tl.load(task_ptr + pid * 8 + 1)
+        off = tl.load(task_ptr + pid * 8 + 2)
+        cnt = tl.load(task_ptr + pid * 8 + 3)
+    if cnt > 0:
+        rt = tl.arange(0, TP)
+        tm = rt < cnt
+        if T1:
+            rows = tl.zeros((TP,), dtype=tl.int32)
+            flat = (off + rt * 0).to(tl.int64)
+        else:
+            rows = tl.load(prow_ptr + off + rt, mask=tm, other=0)
+            flat = tl.load(pidx_ptr + off + rt, mask=tm, other=0).to(tl.int64)
+        rn = s * SL + tl.arange(0, SL)
+        base = gu_ptr + e.to(tl.int64) * (2 * I * H)
+        ag = tl.zeros([SL, TP], dtype=tl.float32)
+        au = tl.zeros([SL, TP], dtype=tl.float32)
+        for k0 in range(0, H, BK):
+            rk = k0 + tl.arange(0, BK)
+            xt = tl.load(x_ptr + rows.to(tl.int64)[None, :] * H + rk[:, None], mask=tm[None, :], other=0.0)
+            wg = tl.load(base + rn[:, None] * H + rk[None, :])
+            wu = tl.load(base + (rn[:, None] + I) * H + rk[None, :])
+            ag = tl.dot(wg, xt, ag)
+            au = tl.dot(wu, xt, au)
+        g = ag.to(tl.bfloat16).to(tl.float32)
+        u = au.to(tl.bfloat16).to(tl.float32)
+        sg = (g * tl.sigmoid(g)).to(tl.bfloat16).to(tl.float32)
+        tl.store(h_ptr + flat[None, :] * I + rn[:, None], (sg * u).to(tl.bfloat16), mask=tm[None, :])
+
+
+class MoeTritonMatch(MoeTriton):
+    """Token-identity attempt: the port's work list and slice-parallel gate/up (_gateup_match), then north-star's own
+    _down_blk, i.e. ONE fp32 chain over all of I per output and bf16 rounding before the routing weight, as exact v2 does.
+    The port's fused per-slice down projection cannot be kept: it splits that chain into NS independent chains that are added
+    afterwards, and fp32 addition is not associative. Returns bf16 [T*k, H] weighted expert outputs, like moe_gemv_blk."""
+
+    def __init__(self, dm, i_dim, k, dev, cfg=None, tmax=16):
+        super().__init__(dm, i_dim, k, dev, det=True, fused=True, reduce="kernel", cfg=cfg, tmax=tmax)
+        import fast_kernels_x2 as f2
+        self.mc = dict(f2.TUNED_MOE_CFG)
+        if torch.cuda.get_device_capability()[0] >= 12:   # sm_120: 99 KB; stages never change the k16 accumulation order
+            self.mc.update(ns1=min(self.mc["ns1"], 2), ns2=min(self.mc["ns2"], 2))
+        self.hb = torch.zeros(tmax * k, i_dim, dtype=torch.bfloat16, device=dev)
+        self.ob = torch.zeros(tmax * k, dm, dtype=torch.bfloat16, device=dev)
+
+    def __call__(self, h, idx, sc, gate_up, down):
+        import fast_kernels_blk as fb
+        T = idx.shape[0] if idx.dim() == 2 else 1
+        n = T * self.k
+        if T > 1:
+            _union_table[(1,)](idx, sc, self.ftasks, self.fprow, self.fpw, self.fpidx, n, K=self.k, NS=self.ns, NP=self.NP,
+                               NSP=triton.next_power_of_2(self.ns), num_warps=4)
+        TP = max(16, triton.next_power_of_2(T))
+        _gateup_match[(n * self.ns,)](h, gate_up, self.ftasks, self.fprow, idx, self.fpidx, self.hb, H=self.dm, I=self.i_dim, SL=self.sl,
+                                      NS=self.ns, BK=self.mc["BK1"], TP=TP, T1=int(T == 1), num_warps=self.mc["nw1"], num_stages=self.mc["ns1"])
+        TKP = triton.next_power_of_2(n)
+        c = self.mc
+        fb._down_blk[(n, self.dm // c["BN2"])](self.hb, idx, sc, down, self.ob, K=self.i_dim, N=self.dm, T=T, KK=self.k, TP=TP, TKP=TKP,
+                                               BN=c["BN2"], BK=c["BK2"], num_warps=c["nw2"], num_stages=c["ns2"])
+        return self.ob[:n]
+
+
+def from_spec(spec, dm, i_dim, k, dev):
+    """'d_sl32_s3_bn64_w8' -> MoeTriton: d = deterministic (in-kernel work lists + reduce kernel), a = fp32 atomics,
+    m = token-identical match; slN = slice width, sN = num_stages, bnN / bkN = tiles, wN = warps."""
+    parts = spec.split("_")
+    kind, kw, cfg = parts[0], {}, {}
+    for p in parts[1:]:
+        for key, name in (("sl", "sl"), ("bn", "BN"), ("bk", "BK"), ("s", "num_stages"), ("w", "num_warps")):
+            if p.startswith(key) and p[len(key):].isdigit():
+                (kw if name == "sl" else cfg)[name] = int(p[len(key):])
+                break
+    if kind == "m":
+        return MoeTritonMatch(dm, i_dim, k, dev, cfg=cfg)
+    return MoeTriton(dm, i_dim, k, dev, det=kind == "d", fused=True, reduce="kernel" if kind == "d" else "resid", cfg=cfg, **kw)

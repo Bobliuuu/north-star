@@ -12,6 +12,8 @@ app = modal.App("ship-moetriton", image=image)
 def _body(tag, gpu, parts, variants=""):
     sys.path.insert(0, "/root"); sys.path.insert(0, "/root/harness")
     import os
+    if "|" in variants:   # "BASES|VARIANTS": extra exact-v2 baselines, e.g. exact_v2@p0
+        b, variants = variants.split("|", 1); os.environ["NS_TRI_BASES"] = b
     if variants.startswith("nostream:"):
         os.environ["NS_TRI_NOSTREAM"] = "1"; variants = variants[len("nostream:"):]
     if variants:
