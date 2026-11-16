@@ -96,9 +96,15 @@ def attn_chunk_for(Lmax):
 def recommended(Lmax=None):
     """FastNorth.set_x2(**recommended(X.Lmax)): exact v2 = tuned tiles + attention || MoE streams, attention stream at high priority,
     attention split chunk by context capacity. Measured (results/x2_x3.jsonl, H100, 99 real prompts): plain 237 -> 387 tok/s, tokens
-    identical to the v1 exact path on 99/99 (Lmax <= 16K keeps v1's chunk)."""
-    return dict(on=True, streams=True, lin_cfg=dict(TUNED_LIN_CFG), moe_cfg=dict(TUNED_MOE_CFG), side_prio=-1,
-                attn=dict(chunk=attn_chunk_for(Lmax)))
+    identical to the v1 exact path on 99/99 (Lmax <= 16K keeps v1's chunk).
+    On sm_90 (H100) the router + MoE also get their own stream at priority 0 (moe_prio=0) instead of the capture stream: 1.016x /
+    1.048x graph time at ctx 2048 / 8192 over 3 separate launches, tokens identical (RESULTS H34). Priorities only change scheduling,
+    never values. B200 and RTX PRO 6000 showed no gain, so they keep the capture stream."""
+    kw = dict(on=True, streams=True, lin_cfg=dict(TUNED_LIN_CFG), moe_cfg=dict(TUNED_MOE_CFG), side_prio=-1,
+              attn=dict(chunk=attn_chunk_for(Lmax)))
+    if torch.cuda.is_available() and torch.cuda.get_device_capability()[0] == 9:
+        kw["moe_prio"] = 0
+    return kw
 
 
 # ---------------------------------------------------------------- fused MoE (gate_up + SiLU*up + down slice) + reduce in resid_norm

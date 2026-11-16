@@ -1,0 +1,10 @@
+{"ctx": 2048, "decoder": "base", "graph_ms": 10.739327907562256, "live_tok_s": 92.95150090306223, "ms_max": 10.876031875610352, "ms_min": 10.704959869384766, "n": 192, "phase": "headline"}
+{"ctx": 2048, "decoder": "fast", "graph_ms": 3.891983985900879, "live_tok_s": 252.98923448849428, "ms_max": 3.9072320461273193, "ms_min": 3.877664089202881, "n": 192, "phase": "headline"}
+{"ctx": 2048, "decoder": "exact_v1", "graph_ms": 4.512560129165649, "live_tok_s": 220.48267414763134, "ms_max": 4.5728960037231445, "ms_min": 4.491360187530518, "n": 192, "phase": "headline"}
+{"ctx": 2048, "decoder": "exact_v2", "graph_ms": 3.0704480409622192, "live_tok_s": 322.69484671573986, "ms_max": 3.0885119438171387, "ms_min": 3.0458240509033203, "n": 192, "phase": "headline"}
+{"ctx": 2048, "exact_v2_tokens_equal_v1": true, "phase": "summary", "speedup_vs_base": {"base": 1.0, "exact_v1": 2.379874749624202, "exact_v2": 3.4976419611376186, "fast": 2.759345348404978}}
+{"ctx": 8192, "decoder": "base", "graph_ms": 11.414000034332275, "live_tok_s": 87.33003288304582, "ms_max": 11.559264183044434, "ms_min": 11.393247604370117, "n": 192, "phase": "headline"}
+{"ctx": 8192, "decoder": "fast", "graph_ms": 3.9924639463424683, "live_tok_s": 248.52192459059768, "ms_max": 4.014656066894531, "ms_min": 3.976736068725586, "n": 192, "phase": "headline"}
+{"ctx": 8192, "decoder": "exact_v1", "graph_ms": 4.612047910690308, "live_tok_s": 215.96398317361292, "ms_max": 4.656223773956299, "ms_min": 4.578207969665527, "n": 192, "phase": "headline"}
+{"ctx": 8192, "decoder": "exact_v2", "graph_ms": 3.1238720417022705, "live_tok_s": 316.813282903783, "ms_max": 3.159104108810425, "ms_min": 3.102047920227051, "n": 192, "phase": "headline"}
+{"ctx": 8192, "exact_v2_tokens_equal_v1": true, "phase": "summary", "speedup_vs_base": {"base": 1.0, "exact_v1": 2.47482252035493, "exact_v2": 3.6537988374557497, "fast": 2.8588861885124204}}
