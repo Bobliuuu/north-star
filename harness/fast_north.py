@@ -85,7 +85,10 @@ class FastNorth(GraphNorth):
             else:
                 lg = F.linear(h, mlp.gate.weight)
                 fk.router_topk(lg, b["idx"], b["sc"], k)
-                m = fb.moe_gemv_blk(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg_blk)
+                if getattr(self, "moe_cuda", None) is not None:  # non-exact verify block through src/kvm/moe_fused.cu
+                    m = self.moe_cuda(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj)
+                else:
+                    m = fb.moe_gemv_blk(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg_blk)
             wn = layers[i + 1].input_layernorm.weight if i + 1 < self.nl else self.model.norm.weight
             fk.resid_norm(x, a, m, wn, b["x2"], b["h2"], layer.input_layernorm.variance_epsilon)
             x, h = b["x2"], b["h2"]
@@ -310,7 +313,10 @@ class FastNorth(GraphNorth):
                     sc_ = torch.sigmoid(sc_)
                     idx, sc = ix.reshape(-1), sc_.reshape(-1).to(h.dtype)
                 if "moe" in o:
-                    m = fk.moe_gemv(h, idx, sc, mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg)
+                    if getattr(self, "moe_cuda", None) is not None:  # non-exact T=1 decode through src/kvm/moe_fused.cu
+                        m = self.moe_cuda(h.reshape(1, -1), idx.reshape(1, -1), sc.reshape(1, -1), mlp.experts.gate_up_proj, mlp.experts.down_proj)
+                    else:
+                        m = fk.moe_gemv(h, idx, sc, mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg)
                     if "resid" not in o:
                         m = m.sum(0, keepdim=True)
                 else:

@@ -1,5 +1,7 @@
 """moe_fused.cu on North's real decode path (harness/bench_moecuda.py), H100.
-  modal run --detach modal/moecuda_run.py::main --tag mc1 [--pr7-src PATH]
+  modal run --detach modal/moecuda_run.py::main --tag mc1                 exact-v2 decode path (bench_moecuda.run)
+  NS_MC_MODE=fast modal run --detach modal/moecuda_run.py::main --tag mf1  non-exact executor, T=1 + verify blocks + PLD
+  (NS_PR7_SRC=PATH: also check the default-mode SASS against PR #7's moe_fused.cu)
 Own image: the CUDA devel base (nvcc, cuobjdump) with nsapp's pins, because the kernel is built here as a shared library.
 Writes northstar-results:/moecuda_<tag>.jsonl (+ .meta.json); each phase is committed as it finishes."""
 import sys, time, json, pathlib, os
@@ -11,7 +13,8 @@ PR7 = os.environ.get("NS_PR7_SRC", "")   # optional: the PR #7 moe_fused.cu, to 
 image = (
     modal.Image.from_registry("nvidia/cuda:12.9.1-devel-ubuntu22.04", add_python="3.12")
     .pip_install("torch==2.10.0", "transformers==5.22.1", "accelerate==1.15.0", "numpy==2.2.5", "huggingface_hub", "safetensors")
-    .env({"HF_HOME": "/tmp/hf", "TOKENIZERS_PARALLELISM": "false", "PYTHONUNBUFFERED": "1", "NS_KVM_SRC": "/root/kvm"})
+    .env({"HF_HOME": "/tmp/hf", "TOKENIZERS_PARALLELISM": "false", "PYTHONUNBUFFERED": "1", "NS_KVM_SRC": "/root/kvm",
+          "NS_MC_MODE": os.environ.get("NS_MC_MODE", "exact")})
     .add_local_dir("src/northstar", "/root/northstar", copy=False)
     .add_local_dir("harness", "/root/harness", copy=False)
     .add_local_dir("src/kvm", "/root/kvm", copy=False, ignore=["replay_input.txt", "**/__pycache__/**"])
@@ -61,7 +64,10 @@ def remote(tag: str):
     import bench_moecuda
     m, tok = load_model(MODEL_DIR, "grouped_mm")
     meta.update(env_meta()); meta["load_s"] = time.time() - t0; save("meta.json", json.dumps(meta))
-    j = bench_moecuda.run(m, tok, sos)
+    if os.environ.get("NS_MC_MODE", "exact") == "fast":   # non-exact executor: T=1 + verify blocks + PLD (H13 setup)
+        j = bench_moecuda.run_fast(m, tok, sos["mc_perarch"])
+    else:
+        j = bench_moecuda.run(m, tok, sos)
     text = j.text(); secs = time.time() - t0
     save("jsonl", text); meta["secs"] = secs; save("meta.json", json.dumps(meta))
     print("MC_DONE secs", secs, "est usd", secs / 3600 * 3.95, flush=True)

@@ -123,3 +123,113 @@ def run(m, tok, sos, ctxs=(2048, 8192), reps=50):
             j.add(phase="error", ctx=ctx, err=traceback.format_exc()[-1500:]); print("ERR", ctx, traceback.format_exc()[-1500:], flush=True)
             torch.cuda.empty_cache()
     return j
+
+
+# ---------------------------------------------------------------- non-exact executor: T=1 and verify blocks (H13 setup)
+@torch.no_grad()
+def op_check_block(m, mc, ids, dev, T=13):
+    """Per MoE layer, a T-token block of real hidden states: moe_cuda's union path vs the Triton union-of-experts GEMV."""
+    cfg = m.config
+    k, Dm, I = cfg.num_experts_per_tok, cfg.hidden_size, cfg.intermediate_size
+    h = m.model.embed_tokens(torch.tensor([ids[-T:]], device=dev))[0].to(torch.bfloat16).contiguous()
+    rows = []
+    for li, layer in enumerate(m.model.layers):
+        mlp = layer.mlp
+        if not hasattr(mlp, "gate"):
+            continue
+        hn = layer.input_layernorm(h).contiguous()
+        lg = (hn @ mlp.gate.weight.t()).contiguous()
+        idx = torch.empty(T, k, dtype=torch.int32, device=dev); sc = torch.empty(T, k, dtype=torch.bfloat16, device=dev)
+        fk.router_topk(lg, idx, sc, k)
+        hb = torch.empty(T * k, I, dtype=torch.bfloat16, device=dev); ob = torch.empty(T * k, Dm, dtype=torch.bfloat16, device=dev)
+        ref = fb.moe_gemv_blk(hn, idx, sc, mlp.experts.gate_up_proj, mlp.experts.down_proj, hb, ob, None).float().view(T, k, Dm).sum(1)
+        got = mc(hn, idx, sc, mlp.experts.gate_up_proj, mlp.experts.down_proj).clone()
+        rows.append(dict(layer=li, rel_l2=float((got - ref).norm() / ref.norm().clamp_min(1e-30)),
+                         bf16_equal_frac=float((got.to(torch.bfloat16) == ref.to(torch.bfloat16)).float().mean())))
+        h = (h + ref.to(torch.bfloat16)).contiguous()
+    return rows
+
+
+@torch.no_grad()
+def run_fast(m, tok, so, n_new=192, n_tasks=4, TMAX=13, proposer=("sam2", 12), reps=2):
+    """FastNorth non-exact (H9/H13 executor) with and without moe_cuda: verify-block cost per T, then plain and PLD
+    speculative decoding (H13's spec loop and best proposer) on natural dev/heldout tasks."""
+    import pld
+    j = Jsonl()
+    dev = next(m.parameters()).device
+    eos = m.config.eos_token_id; eos = eos if isinstance(eos, int) else eos[0]
+    cfg = m.config
+    ref = RefNorth(m)
+    mc = moe_cuda.MoeCuda(so, cfg.hidden_size, cfg.intermediate_size, cfg.num_experts_per_tok, dev)
+    tasks = [r for r in load_workloads() if r["split"] in ("dev", "heldout")][:n_tasks]
+    try:
+        rows = op_check_block(m, mc, build_ids(tok, tasks[0]), dev)
+        j.add(phase="op_check_block", T=13, layers=rows, rel_l2_max=max(r["rel_l2"] for r in rows), bf16_equal_frac_min=min(r["bf16_equal_frac"] for r in rows))
+        print("OPCHECK_BLOCK T=13 rel_l2 max %.2e bf16-equal min %.4f" % (max(r["rel_l2"] for r in rows), min(r["bf16_equal_frac"] for r in rows)), flush=True)
+    except Exception:
+        j.add(phase="error", where="op_check_block", err=traceback.format_exc()[-1500:]); print("ERR opblock", traceback.format_exc()[-1500:], flush=True)
+    Lmax = 2048 + n_new + 40
+    fast = FastNorth(ref, Lmax)
+    fmc = FastNorth(ref, Lmax); fmc.moe_cuda = mc
+    gb = GraphNorth(ref, Lmax, "bmm"); kv = fast.new_kv()
+    execs = {}
+    for name, ex in (("fast", fast), ("fast_mc", fmc)):
+        st = {1: ex.make_step(1, kv)}
+        for T in range(2, TMAX + 1):
+            st[T] = ex.make_step(T, kv, logits="all")
+        execs[name] = st
+    ids0 = build_ids(tok, tasks[0])
+    cost = {}
+    for name, st in execs.items():
+        gb.eager_prefill(ids0[:-1], kv)
+        cost[name] = {}
+        for T, s in st.items():
+            s.set(ids0[-T:], len(ids0) - T); cost[name][T] = time_graph(s, n=50)[0]
+    j.add(phase="cost_table", cost_ms={n: {str(t): v for t, v in c.items()} for n, c in cost.items()},
+          ratio_mc_over_fast={str(t): cost["fast_mc"][t] / cost["fast"][t] for t in cost["fast"]})
+    print("COST T: fast / fast_mc ms", {t: (round(cost["fast"][t], 3), round(cost["fast_mc"][t], 3)) for t in (1, 2, 4, 9, 13)}, flush=True)
+    pname, g = proposer
+    for t in tasks:
+        try:
+            ids = build_ids(tok, t); P = len(ids)
+            gb.eager_prefill(ids[:-1], kv)
+            res = {}
+            for name, st in execs.items():
+                best, toks = None, None
+                for rep in range(reps):
+                    tk, cur = [], ids[-1]
+                    torch.cuda.synchronize(); t0 = time.perf_counter()
+                    for i in range(n_new):
+                        st[1].set([cur], P - 1 + i); cur = int(st[1].run()[0, 0]); tk.append(cur)
+                        if cur == eos:
+                            break
+                    dt = time.perf_counter() - t0
+                    best = dt if best is None or dt < best else best
+                    toks = tk if toks is None else toks
+                plain_tps = len(toks) / best
+                sbest, sout = None, None
+                for rep in range(reps):
+                    def verify(tcur, drafts, st=st):
+                        T = 1 + len(drafts)
+                        s = st[T]; s.set([tcur[-1]] + drafts, len(tcur) - 1)
+                        return s.run()[0].tolist()
+                    torch.cuda.synchronize(); t0 = time.perf_counter()
+                    out, rounds = pld.spec_loop(pld.make(pname), ids, len(toks), g, verify, eos)
+                    torch.cuda.synchronize(); dt = time.perf_counter() - t0
+                    sbest = dt if sbest is None or dt < sbest else sbest
+                    sout = out if sout is None else sout
+                res[name] = dict(plain_tok_s=plain_tps, spec_tok_s=len(sout) / sbest, plain=toks, spec=sout, **pld.summarize_rounds(rounds, len(sout)))
+            f, c = res["fast"], res["fast_mc"]
+            row = dict(phase="live", task=t["id"], prompt_len=P, proposer=pname, gamma=g,
+                       fast_plain_tok_s=f["plain_tok_s"], fast_spec_tok_s=f["spec_tok_s"], mc_plain_tok_s=c["plain_tok_s"], mc_spec_tok_s=c["spec_tok_s"],
+                       mc_plain_vs_fast_plain=c["plain_tok_s"] / f["plain_tok_s"], mc_spec_vs_fast_spec=c["spec_tok_s"] / f["spec_tok_s"],
+                       mc_spec_vs_fast_plain=c["spec_tok_s"] / f["plain_tok_s"],
+                       mc_plain_first_diff_vs_fast=_first_diff(c["plain"], f["plain"]), mc_spec_first_diff_vs_own_plain=_first_diff(c["spec"], c["plain"]),
+                       fast_spec_first_diff_vs_own_plain=_first_diff(f["spec"], f["plain"]),
+                       fast_tok_per_round=f.get("tok_per_round"), mc_tok_per_round=c.get("tok_per_round"),
+                       fast_mean_accepted=f.get("mean_accepted_per_verify"), mc_mean_accepted=c.get("mean_accepted_per_verify"))
+            j.add(**row)
+            print("LIVE", t["id"], {k: (round(v, 3) if isinstance(v, float) else v) for k, v in row.items() if k not in ("phase",)}, flush=True)
+        except Exception:
+            j.add(phase="task_error", task=t["id"], err=traceback.format_exc()[-1200:]); print("TASK ERR", t["id"], traceback.format_exc()[-1200:], flush=True)
+    return j

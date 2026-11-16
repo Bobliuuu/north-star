@@ -252,6 +252,9 @@ __global__ void __launch_bounds__(128, MINB_EFF) moe_kernel(const bf16* __restri
     __shared__ int srow[MAXTOK];
     __shared__ float sw[MAXTOK];
     const MoeTask t = tasks[blockIdx.x];
+#ifdef NS_NORTH_LAYOUT
+    if (t.pair_cnt == 0) return;   // padding entry of the fixed-size union table (harness/moe_cuda.py, T > 1)
+#endif
     if (t.pair_cnt > MT_SPLIT) run_item<2>(x, wg, wu, wd, t, prow, pw, out, xs, hs, scratch, srow, sw);
     else run_item<1>(x, wg, wu, wd, t, prow, pw, out, xs, hs, scratch, srow, sw);
 }
