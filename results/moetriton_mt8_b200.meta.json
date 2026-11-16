@@ -1,0 +1,1 @@
+{"python": "3.12.16", "torch": "2.10.0+cu128", "transformers": "5.22.1", "model": "CohereLabs/North-Mini-Code-1.0", "model_rev": "d11e61a842617a22dc328552fa5bb86231ee4f37", "time": "2026-11-16T15:09:26Z", "gpu": "NVIDIA B200", "cuda": "12.8", "gpu_mem_gb": 178.3, "pip_freeze_sha": "3c88f18ec2f9", "load_s": 32.73956084251404, "secs": 95.48888182640076}
