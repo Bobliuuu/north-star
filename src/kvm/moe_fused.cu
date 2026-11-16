@@ -45,6 +45,43 @@ constexpr int MAXTOK = 32;             // max tokens routed to one expert (Tv+Td
 // ---- Self-improvement scope (src/selfimprove, docs/SELFIMPROVE.md): ONLY the lines between the markers may be edited
 // by the proposer. Every value below is a pure performance knob; the static_asserts after the region (protected) reject
 // values that would break the kernel's tiling, so an out-of-range tunable fails the build instead of corrupting results.
+// Per-arch codegen defaults, measured by the sass-lane compiler sweep (traces/sass-lane/*/cc-w1..4-20261115):
+// sm_90 minBlocks=3 (+9.9%), sm_100 minBlocks=3 + ldmatrix.x4 A fragments (+17.1%), sm_120 stage-1 unroll 8 (+6.1%).
+// Device pass only (__CUDA_ARCH__); the host pass never reads these. Any -DNS_* overrides; -DNS_TUNE_UPSTREAM restores
+// the pre-sweep values on every arch (the A/B baseline). These sit outside the NS-EDITABLE region on purpose: the
+// region keeps its literal values (the generic default the self-improve proposer edits); NS_MINB / NS_UNROLL_KS = 0
+// means "use the region's value", and a measured per-arch value is used only while the region value is unedited.
+#if defined(__CUDA_ARCH__) && !defined(NS_TUNE_UPSTREAM)
+#  if __CUDA_ARCH__ >= 1200
+#    define NS_ARCH_UNROLL_KS 8
+#  elif __CUDA_ARCH__ >= 1000
+#    define NS_ARCH_MINB 3
+#    define NS_ARCH_LDSM 1
+#  elif __CUDA_ARCH__ >= 900
+#    define NS_ARCH_MINB 3
+#  endif
+#endif
+#ifndef NS_MINB
+#  ifdef NS_ARCH_MINB
+#    define NS_MINB NS_ARCH_MINB
+#  else
+#    define NS_MINB 0
+#  endif
+#endif
+#ifndef NS_UNROLL_KS
+#  ifdef NS_ARCH_UNROLL_KS
+#    define NS_UNROLL_KS NS_ARCH_UNROLL_KS
+#  else
+#    define NS_UNROLL_KS 0
+#  endif
+#endif
+#ifndef NS_LDSM
+#  ifdef NS_ARCH_LDSM
+#    define NS_LDSM NS_ARCH_LDSM
+#  else
+#    define NS_LDSM 0
+#  endif
+#endif
 // NS-EDITABLE-BEGIN tunables
 constexpr int KC = 256;                // k chunk of H staged in smem for stage 1 (multiple of 16 dividing H=2048)
 constexpr int XPAD = 8;                // smem row padding (bf16 elems) for the x tile, multiple of 8 (bank conflicts)
@@ -55,6 +92,10 @@ constexpr int UNROLL_KS = 16;          // `#pragma unroll` factor of the stage-1
 constexpr int UNROLL_S2 = 4;           // `#pragma unroll` factor of the stage-2 k-step loop (SL/16 = 4 steps; 4 = full unroll, 1 = none)
 constexpr int UNROLL_NT = 1;           // `#pragma unroll` factor of the stage-2 output-tile loop `nt` (1..8; 1 = no unroll)
 // NS-EDITABLE-END
+// A per-arch value fills in only while the region holds its generic default (1 / 16), so an edited region always wins.
+constexpr int MINB_EFF = (NS_MINB > 0 && MINB_PER_SM == 1) ? NS_MINB : MINB_PER_SM;                // __launch_bounds__
+constexpr int UNROLL_KS_EFF = (NS_UNROLL_KS > 0 && UNROLL_KS == 16) ? NS_UNROLL_KS : UNROLL_KS;    // stage-1 unroll
+static_assert(MINB_EFF >= 1 && MINB_EFF <= 8 && UNROLL_KS_EFF >= 1 && UNROLL_KS_EFF <= 128, "per-arch overrides out of range");
 static_assert(UNROLL_S2 >= 1 && UNROLL_S2 <= 4, "UNROLL_S2 must be in [1,4]");
 static_assert(UNROLL_NT >= 1 && UNROLL_NT <= 8, "UNROLL_NT must be in [1,8]");
 constexpr int LDX = KC + XPAD, LDH = SL + HPAD;
@@ -66,6 +107,22 @@ static_assert(MINB_PER_SM >= 1 && MINB_PER_SM <= 8, "MINB_PER_SM must be in [1,8
 static_assert(UNROLL_KS >= 1 && UNROLL_KS <= 128, "UNROLL_KS must be in [1,128]");
 static_assert((MAXTOK * LDX + MAXTOK * LDH) * 2 + 4 * 256 * 4 + MAXTOK * 8 <= 48 * 1024, "static smem must fit in 48KB");
 constexpr size_t EXPERT_BYTES = (size_t)3 * I * H * 2;
+
+#if NS_LDSM
+// A fragment (16x16 bf16, row-major in shared) by one ldmatrix.x4 instead of wmma::load_matrix_sync's four loads.
+// Lanes 0-7 address rows 0-7 at k 0, 8-15 rows 8-15 at k 0, 16-23 rows 0-7 at k 8, 24-31 rows 8-15 at k 8.
+// Checked against the CPU reference by tests/check_cuda.py on the arch that enables it (sm_100).
+template <class F> __device__ __forceinline__ void ns_lda(F& f, const bf16* p, unsigned ld) {
+    unsigned* r = reinterpret_cast<unsigned*>(&f.x[0]);
+    const int lane = threadIdx.x & 31;
+    const bf16* q = p + ((lane & 7) + ((lane >> 3) & 1) * 8) * ld + (lane >> 4) * 8;
+    unsigned a = (unsigned)__cvta_generic_to_shared(q);
+    asm volatile("ldmatrix.sync.aligned.m8n8.x4.shared.b16 {%0,%1,%2,%3}, [%4];"
+                 : "=r"(r[0]), "=r"(r[1]), "=r"(r[2]), "=r"(r[3]) : "r"(a) : "memory");
+}
+#else
+template <class F> __device__ __forceinline__ void ns_lda(F& f, const bf16* p, unsigned ld) { wmma::load_matrix_sync(f, p, ld); }
+#endif
 
 // Task descriptor for one work item. Mirrors the ABI v2 intent (op, args, wait/publish versions); in this
 // single-launch microbenchmark all items are independent so wait/pub are KVM_NO_VAR and the dependency fields are
@@ -100,7 +157,7 @@ __device__ __forceinline__ void run_item(const bf16* __restrict__ x, const bf16*
             *reinterpret_cast<uint4*>(xs + r * LDX + c) = v;
         }
         __syncthreads();
-#pragma unroll UNROLL_KS
+#pragma unroll UNROLL_KS_EFF
         for (int ks = 0; ks < KC / 16; ++ks) {
             wmma::fragment<wmma::matrix_b, 16, 16, 16, bf16, wmma::col_major> bg, bu;
             wmma::load_matrix_sync(bg, gp + kc + ks * 16, H);
@@ -108,7 +165,7 @@ __device__ __forceinline__ void run_item(const bf16* __restrict__ x, const bf16*
 #pragma unroll
             for (int m = 0; m < MT; ++m) {
                 wmma::fragment<wmma::matrix_a, 16, 16, 16, bf16, wmma::row_major> a;
-                wmma::load_matrix_sync(a, xs + m * 16 * LDX + ks * 16, LDX);
+                ns_lda(a, xs + m * 16 * LDX + ks * 16, LDX);
                 wmma::mma_sync(ag[m], a, bg, ag[m]);
                 wmma::mma_sync(au[m], a, bu, au[m]);
             }
@@ -143,7 +200,7 @@ __device__ __forceinline__ void run_item(const bf16* __restrict__ x, const bf16*
 #pragma unroll
             for (int m = 0; m < MT; ++m) {
                 wmma::fragment<wmma::matrix_a, 16, 16, 16, bf16, wmma::row_major> a;
-                wmma::load_matrix_sync(a, hs + m * 16 * LDH + ks * 16, LDH);
+                ns_lda(a, hs + m * 16 * LDH + ks * 16, LDH);
                 wmma::mma_sync(ac[m], a, b, ac[m]);
             }
         }
@@ -161,7 +218,7 @@ __device__ __forceinline__ void run_item(const bf16* __restrict__ x, const bf16*
     }
 }
 
-__global__ void __launch_bounds__(128, MINB_PER_SM) moe_kernel(const bf16* __restrict__ x, const bf16* __restrict__ wg,
+__global__ void __launch_bounds__(128, MINB_EFF) moe_kernel(const bf16* __restrict__ x, const bf16* __restrict__ wg,
                                                   const bf16* __restrict__ wu, const bf16* __restrict__ wd,
                                                   const MoeTask* __restrict__ tasks, const int* __restrict__ prow,
                                                   const float* __restrict__ pw, float* __restrict__ out) {

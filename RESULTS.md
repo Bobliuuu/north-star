@@ -573,3 +573,12 @@ The README's "2.7x" (H9) and the exact-v2 figures came from different launches. 
 | FastNorth exact v1 (H14) | 4.579 | 2.34x | 218.9 | 4.640 | 2.45x | 214.4 |
 | FastNorth exact v2 (H24) | 3.118 | **3.43x** | 318.6 | 3.326 | **3.42x** | 297.8 |
 H9's 2.7x reproduces (2.71x, 10.73 -> 10.70 ms base). Exact v2 is 3.4x the baseline at both contexts and 1.27x / 1.22x faster than the non-exact H9 executor while being exact; its 192 greedy tokens equal exact v1's at both contexts.
+
+## H30: moe_fused per-arch codegen defaults (sass-lane compiler sweep; MEASURED, Modal H100 / B200 / RTX PRO 6000, CUDA 12.9.1, modal/ab_ccwins_run.py run cw2)
+`src/kvm/moe_fused.cu` now picks its codegen per arch at build time: sm_90 `__launch_bounds__` minBlocks 3 (254 -> 168 registers), sm_100 minBlocks 3 plus one `ldmatrix.x4` per activation fragment instead of `wmma::load_matrix_sync`'s generic loads, sm_120 stage-1 unroll 8 (234 -> 202 registers). The NS-EDITABLE region keeps its values; a per-arch value fills in only while the region value is unedited. `-DNS_TUNE_UPSTREAM` builds the old kernel, which is the A/B baseline (same source, same container).
+| chip | check_cuda (9 cases, both builds) | kernel fused_graph, geomean 4 shapes, 6 interleaved blocks | real North routing replay, 2,400 of 25,344 records, 2 rounds: time-weighted | per-record median / p10 / p90 | records slower |
+|---|---|---|---|---|---|
+| H100 80GB | PASS | 1.097x (spread 0.005) | 1.120x (spread 0.002) | 1.02 / 1.00 / 1.38 | 9% |
+| B200 | PASS | 1.170x (spread 0.008) | 1.131x (spread 0.001) | 1.02 / 1.00 / 1.41 | 8-11% |
+| RTX PRO 6000 | PASS | 1.062x (spread 0.005) | 1.056x (spread 0.000) | 1.06 / 1.04 / 1.07 | 0.4% |
+All three clear twice their spread. On H100/B200 the gain sits in the larger expert groups (p90 1.4x) while the median record is ~1.02x, and ~10% of records are marginally slower (p10 1.00x). Caveats: moe_fused is a standalone microbenchmark (src/kvm/PROVENANCE.md), not on FastNorth's decode path, so no decode tok/s changes; the replay is its real workload (H4). Output is checked against the CPU reference within tolerance (fp32 atomics), not bitwise. Sweep and SASS evidence: traceDB traces/sass-lane/<chip>/cc-w1..4-20261115; this A/B: traces/sass-lane/<chip>/ship-cw2-20261116.
