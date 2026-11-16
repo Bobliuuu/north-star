@@ -85,7 +85,10 @@ class FastNorth(GraphNorth):
             else:
                 lg = F.linear(h, mlp.gate.weight)
                 fk.router_topk(lg, b["idx"], b["sc"], k)
-                m = fb.moe_gemv_blk(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg_blk)
+                if getattr(self, "moe_cuda", None) is not None:  # non-exact verify block through src/kvm/moe_fused.cu
+                    m = self.moe_cuda(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj)
+                else:
+                    m = fb.moe_gemv_blk(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg_blk)
             wn = layers[i + 1].input_layernorm.weight if i + 1 < self.nl else self.model.norm.weight
             fk.resid_norm(x, a, m, wn, b["x2"], b["h2"], layer.input_layernorm.variance_epsilon)
             x, h = b["x2"], b["h2"]
@@ -142,7 +145,8 @@ class FastNorth(GraphNorth):
     # ------------------------------------------------------------------ exact v2 (branch perf/exact-decode)
     def _x2_state(self, T):
         key = ("x2", T, getattr(self, "mp_min", None), tuple(sorted((getattr(self, "attn_kw", None) or {}).items())),
-               tuple(sorted((getattr(self, "moe_fused", None) or {}).items())), getattr(self, "moe_fused", None) is None)
+               tuple(sorted((getattr(self, "moe_fused", None) or {}).items())), getattr(self, "moe_fused", None) is None,
+               id(getattr(self, "moe_cuda", None)))
         if key not in self._x:
             b = dict(self._x_state(T))  # share the v1 attention workspace / MoE buffers
             z = lambda *s: torch.zeros(*s, dtype=torch.bfloat16, device=self.dev)
@@ -210,7 +214,10 @@ class FastNorth(GraphNorth):
                 else:
                     f2.lin_x2(h, mlp.gate.weight, b["lg"])
                     fk.router_topk(b["lg"], b["idx"], b["sc"], k)
-                if getattr(self, "moe_fused", None) is not None:
+                if getattr(self, "moe_cuda", None) is not None:  # src/kvm/moe_fused.cu through harness/moe_cuda.py (T == 1 only)
+                    assert T == 1, "moe_cuda is a T=1 decode path"
+                    m = self.moe_cuda(h, b["idx"], b["sc"], mlp.experts.gate_up_proj, mlp.experts.down_proj)
+                elif getattr(self, "moe_fused", None) is not None:
                     if "part" not in b:
                         J = cfg.intermediate_size // dict(f2.FUSED_MOE_CFG, **self.moe_fused)["BJ"]
                         b["part"] = torch.zeros(T * k * J, self.Dm, dtype=torch.float32, device=self.dev)
@@ -306,7 +313,10 @@ class FastNorth(GraphNorth):
                     sc_ = torch.sigmoid(sc_)
                     idx, sc = ix.reshape(-1), sc_.reshape(-1).to(h.dtype)
                 if "moe" in o:
-                    m = fk.moe_gemv(h, idx, sc, mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg)
+                    if getattr(self, "moe_cuda", None) is not None:  # non-exact T=1 decode through src/kvm/moe_fused.cu
+                        m = self.moe_cuda(h.reshape(1, -1), idx.reshape(1, -1), sc.reshape(1, -1), mlp.experts.gate_up_proj, mlp.experts.down_proj)
+                    else:
+                        m = fk.moe_gemv(h, idx, sc, mlp.experts.gate_up_proj, mlp.experts.down_proj, b["hb"], b["ob"], self.kcfg)
                     if "resid" not in o:
                         m = m.sum(0, keepdim=True)
                 else:
