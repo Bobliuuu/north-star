@@ -21,7 +21,10 @@ def test_markers_wrap_only_tunables_with_unchanged_defaults():
     for protected in ("H = 2048", "SL = 64", "MAXTOK = 32", "NS = I / SL", "LDX = KC + XPAD", "static_assert", "launch_bounds", "int main"):
         assert not any(protected in l for l in code)
     assert text.count("NS-EDITABLE-BEGIN") == 1 and text.count("NS-EDITABLE-END") == 1
-    assert "__launch_bounds__(128, MINB_PER_SM)" in text and "t.pair_cnt > MT_SPLIT" in text
+    assert "__launch_bounds__(128, MINB_EFF)" in text and "t.pair_cnt > MT_SPLIT" in text
+    # per-arch defaults (sass-lane sweep) apply only while the region value is unedited, so proposer edits still bind
+    assert "MINB_EFF = (NS_MINB > 0 && MINB_PER_SM == 1) ? NS_MINB : MINB_PER_SM;" in text
+    assert "UNROLL_KS_EFF = (NS_UNROLL_KS > 0 && UNROLL_KS == 16) ? NS_UNROLL_KS : UNROLL_KS;" in text
     assert "constexpr int LDX = KC + XPAD, LDH = SL + HPAD;" in text      # == KC + 8 / SL + 8 at the defaults
 
 
